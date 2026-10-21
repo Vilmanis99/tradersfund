@@ -3,7 +3,7 @@ title: "FundingPips Zero Review 2026: Fees, Rules, Payouts"
 seoTitle: "FundingPips Zero Review 2026: Fees, Rules, Payouts"
 slug: "fundingpips-zero"
 date: "2025-10-06 17:46:59"
-modified: "2026-09-29 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "FundingPips Zero skips evaluation but keeps strict funded-stage gates. Compare all 6 prices, trailing loss, consistency, reward rules, and alternatives."
 seoDescription: "FundingPips Zero review with all 6 current prices, 3% daily and 5% trailing loss rules, 15% consistency, payout gates, and FundedNext comparison."
@@ -44,7 +44,7 @@ type: "post"
     <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Consistency</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15% maximum Consistency Score for reward eligibility</td></tr>
     <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Reward cycle</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Every 14 calendar days after the first executed trade; bi-weekly</td></tr>
     <tr><th style="padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">95%</td></tr>
-    <tr><th style="padding: 8px 12px; text-align: left;">Source capture</th><td style="padding: 8px 12px;">FundingPips first-party product and comparison pages, captured 2026-09-29</td></tr>
+    <tr><th style="padding: 8px 12px; text-align: left;">Source capture</th><td style="padding: 8px 12px;">FundingPips first-party product and comparison pages, captured 2026-10-19</td></tr>
   </tbody>
 </table>
 
@@ -56,12 +56,12 @@ type: "post"
   <caption class="hidden-caption">Current FundingPips Zero prices and refund status</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Account label</th><th style="padding: 8px 12px; text-align: left;">One-time fee</th><th style="padding: 8px 12px; text-align: left;">Refundable</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
-    <tr data-zero-price="5000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$60</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-zero-price="10000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$88</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-zero-price="25000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$188</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-zero-price="50000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$244</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-zero-price="100000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$444</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-09-29</td></tr>
-    <tr data-zero-price="200000"><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$888</td><td style="padding: 8px 12px;">No</td><td style="padding: 8px 12px;">2026-09-29</td></tr>
+    <tr data-zero-price="5000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$60</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-zero-price="10000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$88</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-zero-price="25000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$188</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-zero-price="50000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$244</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-zero-price="100000"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$444</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-zero-price="200000"><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$888</td><td style="padding: 8px 12px;">No</td><td style="padding: 8px 12px;">2026-10-19</td></tr>
   </tbody>
 </table>
 
@@ -133,7 +133,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Weekend</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Hard breach</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Allowed</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>News treatment</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">20-minute hard-breach window</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Only 40% of profits count in the 10-minute window; full losses remain</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payout eligibility</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days plus reward gates</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Next EOD after 5% growth; 1%–under 5% uses 14 days</td></tr>
-    <tr><td style="padding: 8px 12px;"><strong>Captured</strong></td><td style="padding: 8px 12px;">2026-09-29</td><td style="padding: 8px 12px;">2026-09-29</td></tr>
+    <tr><td style="padding: 8px 12px;"><strong>Captured</strong></td><td style="padding: 8px 12px;">2026-10-19</td><td style="padding: 8px 12px;">2026-10-19</td></tr>
   </tbody>
 </table>
 
@@ -145,7 +145,7 @@ type: "post"
 
 <h2>Is FundingPips Zero legit?</h2>
 
-<p>The evidence supports narrower claims than “legit” or “scam.” FundingPips publishes current Zero prices and rules on its own pages. The site’s structured Trustpilot record showed 4.5/5 from 63,734 reviews on 2026-07-27. That aggregate is a third-party sentiment signal; it does not prove that a particular strategy complies with the agreement or that a particular reward will be approved.</p>
+<p>The evidence supports narrower claims than “legit” or “scam.” FundingPips publishes current Zero prices and rules on its own pages. The site’s structured Trustpilot record showed 4.5/5 from 70,514 reviews on 2026-10-15. That aggregate is a third-party sentiment signal; it does not prove that a particular strategy complies with the agreement or that a particular reward will be approved.</p>
 
 <p>The previous version claimed that “most traders fail,” that successful payouts were confirmed, and that approval normally took 24–48 hours without a traceable product source. Those statements are removed. Purchase decisions should use the current agreement, saved checkout and rule-page copies, KYC requirements, and a complete cash ledger rather than an anecdote or rating.</p>
 
@@ -168,7 +168,7 @@ type: "post"
 
 <h3>How much does FundingPips Zero cost?</h3>
 
-<p>The 2026-09-29 capture records $60 for $5K, $88 for $10K, $188 for $25K, $244 for $50K, $444 for $100K, and $888 for $200K. All 6 fees are non-refundable.</p>
+<p>The 2026-10-19 capture records $60 for $5K, $88 for $10K, $188 for $25K, $244 for $50K, $444 for $100K, and $888 for $200K. All 6 fees are non-refundable. FundingPips' 4th-reward registration-fee refund applies only to 2 Step Standard; its Reward Methods help article (checked 2026-10-20) says it "does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero."</p>
 
 <h3>When can a FundingPips Zero trader request a reward?</h3>
 

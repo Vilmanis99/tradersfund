@@ -34,7 +34,16 @@ for (const phases of [0, 1, 2, 3]) {
   assert.equal(label.includes('без оценки'), phases === 0)
 }
 
-const now = new Date('2026-10-01T12:00:00Z')
+// Derive the frozen clock from the captures under test. A hard-coded date goes
+// behind the data on every recapture, and future-dated captures fail closed by
+// design (see isChallengeFresh), so a stale literal clock made fresh data look stale.
+const RU_FINDER_FIRMS = ['bright-funded', 'ftmo', 'fundednext', 'fundingpips']
+const latestFinderCapture = [
+  ...getAllChallenges().filter(product => RU_FINDER_FIRMS.includes(product.firmSlug)).map(product => product.sourceCapturedAt),
+  fundedNextPayoutSource.sourceCapturedAt,
+].sort().at(-1)
+const now = new Date(`${latestFinderCapture}T12:00:00Z`)
+const daysBeforeNow = days => new Date(now.getTime() - days * 86_400_000).toISOString().slice(0, 10)
 const products = getAllChallenges()
 const firms = getAllFirms()
 const rows = getRussianFinderRows(now)
@@ -46,12 +55,12 @@ assert.equal(fundedNextOneStepPayoutLabel({ ...oneStepTiming, firmSlug: 'other' 
 assert.equal(fundedNextOneStepPayoutLabel({ ...oneStepTiming, productSlug: 'stellar-instant' }, now), null)
 const timingCapture = fundedNextPayoutSource.sourceCapturedAt
 try {
-  for (const sourceCapturedAt of ['', 'invalid', '2026-02-30', '2026-08-08', '2030-01-01']) {
+  for (const sourceCapturedAt of ['', 'invalid', '2026-02-30', daysBeforeNow(31), daysBeforeNow(-1), '2030-01-01']) {
     fundedNextPayoutSource.sourceCapturedAt = sourceCapturedAt
     assert(!isFundedNextPayoutSourceFresh(now))
     assert(fundedNextOneStepPayoutLabel(oneStepTiming, now).includes('требует проверки'))
   }
-  fundedNextPayoutSource.sourceCapturedAt = '2026-09-01'
+  fundedNextPayoutSource.sourceCapturedAt = daysBeforeNow(30)
   assert(isFundedNextPayoutSourceFresh(now), 'day 30 inclusive')
 } finally { fundedNextPayoutSource.sourceCapturedAt = timingCapture }
 const payoutFixtures = [
@@ -141,10 +150,10 @@ assert.deepEqual(forged.filters, DEFAULT_FINDER_FILTERS)
 assert.deepEqual(forged.selected, selected)
 
 const sample = products.find(product => product.firmSlug === 'fundednext')
-for (const sourceCapturedAt of ['2026-07-01', '2030-01-01', 'not-a-date']) {
+for (const sourceCapturedAt of [daysBeforeNow(31), daysBeforeNow(-1), '2030-01-01', 'not-a-date']) {
   assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt }], firms, [], now).length, 0)
 }
-assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-09-01' }], firms, [], now).length, 1, 'Day 30 remains within the current editorial gate')
+assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: daysBeforeNow(30) }], firms, [], now).length, 1, 'Day 30 remains within the current editorial gate')
 assert.equal(buildChallengeComparisonRows([{ ...sample, sourceCapturedAt: '2026-08-31' }], firms, [], now).length, 0, 'Day 31 expires')
 const unknown = buildChallengeComparisonRows([{ ...sample, profitSplitPct: null, dailyLossPct: null, accountSizes: [{ sizeUsd: 50000, priceUsd: null, refundable: null }] }], firms, [], now)[0]
 assert.equal(unknown.product.profitSplitPct, null)

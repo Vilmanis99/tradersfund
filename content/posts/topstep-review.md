@@ -1,12 +1,12 @@
 ---
 title: "Topstep Review 2026: A Monthly Subscription With Two Locked Pricing Paths"
-seoTitle: "Topstep Review 2026: Pricing, Rules & Payouts"
+seoTitle: "Topstep Review 2026: Trustpilot, Pricing & Payouts"
 slug: "topstep-review"
 date: "2025-08-01 14:52:15"
-modified: "2026-10-06"
+modified: "2026-10-20"
 author: "Tara Mohseni"
 excerpt: "Topstep's evaluation rebills every month and you choose a pricing path you cannot change. We work out which path wins, at how many months, and why."
-seoDescription: "Topstep review 2026: Trading Combine pricing on two locked monthly paths, activation fees, drawdown rules, Express Funded payouts and which path costs less."
+seoDescription: "Topstep review 2026: Trustpilot 3.7 from 14,945 reviews (Oct 15), Trading Combine pricing on two locked paths, drawdown rules and Express Funded payouts."
 categories: ["Prop Firms"]
 tags: ["Topstep", "Prop Firm"]
 type: "post"
@@ -24,10 +24,10 @@ type: "post"
     <li>Profit target 6% of buying power — $3,000 / $6,000 / $9,000 at $50K / $100K / $150K.</li>
     <li>Maximum Loss Limit $2,000 / $3,000 / $4,500 — end-of-day trailing, monitored intraday, and it locks permanently once it reaches your starting balance.</li>
     <li>There is no mandatory daily loss limit. The $1,000 / $2,000 / $3,000 figures are an opt-in feature that buys a monthly discount and doubles payout caps.</li>
-    <li>The Combine's best-day target is 55%, rechecked on 2026-10-06; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
+    <li>The Combine's best-day target is 55%, rechecked on 2026-10-20; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
     <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
     <li>Topstep reports that 16.8% of Combines initiated in 2025 were completed. This historical cohort is not a forecast of your results.</li>
-    <li>Trustpilot 3.6 from 14,478 reviews was captured on 2026-07-27; it has not been rechecked in this update.</li>
+    <li>Trustpilot showed 3.7 from 14,945 reviews on 2026-10-15.</li>
   </ul>
 </div>
 
@@ -46,13 +46,13 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand, $125 minimum, 50% of balance per request</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TopstepX — confirmed in the official platform guide, checked 2026-09-08. Do not assume third-party execution compatibility.</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Futures only — CME, COMEX, NYMEX, CBOT</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.6 from 14,478 reviews</a> (verified 2026-07-27)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.7 from 14,945 reviews</a> (verified 2026-10-15)</td></tr>
   </tbody>
 </table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>Topstep's 2026-10-06 core product capture covers the Trading Combine at three sizes on <strong>two pricing paths</strong>. All six base monthly fees and both activation fees match the September capture; the Combine consistency target is now 55%. Your pricing path is locked at purchase. These are USD base prices before applicable tax, optional data and discounts. This update does not refresh the historical 2025 cohort figures or the July Trustpilot snapshot.</p>
+<p>Topstep's 2026-10-20 core product capture covers the Trading Combine at three sizes on <strong>two pricing paths</strong>. All six base monthly fees and both activation fees match the September capture; the Combine consistency target is now 55%. Your pricing path is locked at purchase. These are USD base prices before applicable tax, optional data and discounts. This update does not refresh the historical 2025 cohort figures or the July Trustpilot snapshot.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">Topstep Trading Combine products and tiers</caption>
@@ -77,7 +77,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Both paths and all six monthly prices were rechecked on <strong>2026-10-06</strong> using Topstep's pricing help article and product page. Core loss limits, payout conditions, trading hours and automation conditions were also rechecked. The minimum-day conflict remains explicitly unresolved; this does not refresh the separate September platform capture or July Trustpilot figure. See our <a href="/prop-firm-challenge-changes">dated corrections and source links</a>, then confirm the applicable purchase terms on <a href="/go/topstep">Topstep's site</a>.</p>
+<p>Both paths and all six monthly prices were rechecked on <strong>2026-10-20</strong> using Topstep's pricing help article and product page. Core loss limits, payout conditions, trading hours and automation conditions were also rechecked. The minimum-day conflict remains explicitly unresolved; this does not refresh the separate September platform capture or July Trustpilot figure. See our <a href="/prop-firm-challenge-changes">dated corrections and source links</a>, then confirm the applicable purchase terms on <a href="/go/topstep">Topstep's site</a>.</p>
 
 <p><strong>U.S. eligibility.</strong> Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links Topstep’s current eligibility and payout policies and separates that policy support from CFTC or NFA registration. Verify citizenship, residency, KYC, tax-form and bank details before purchase.</p>
 
@@ -97,7 +97,7 @@ type: "post"
 
 <p><strong>Consistency target 55%.</strong> The consistency guide, Combine parameters and marketing cards now publish 55%, replacing the 50% figure in our September capture. The guide says the best day must stay at or below 55%, with no buffer; exceeding it increases the required profit target. Its $50K example recommends staying below $1,650 against the initial $3,000 target. Additional profits in the same session also increase that best day, so they cannot resolve the excess. The funded XFA Consistency payout route remains a separate 40% test. October 6 is our observation date, not a verified effective date.</p>
 
-<p><strong>Minimum trading days: the sources still disagree.</strong> At the 2026-10-06 check the marketing FAQ described no minimum time requirement, while the Combine parameters article described passing in as few as two days. We leave the numeric minimum unverified in our comparisons. That is not permission to pass in one day: the 55% consistency objective still applies, and you should obtain clarification for your account before relying on a minimum-duration claim.</p>
+<p><strong>Minimum trading days: the sources still disagree.</strong> At the 2026-10-20 check the marketing FAQ described no minimum time requirement, while the Combine parameters article described passing in as few as two days. We leave the numeric minimum unverified in our comparisons. That is not permission to pass in one day: the 55% consistency objective still applies, and you should obtain clarification for your account before relying on a minimum-duration claim.</p>
 
 <p><strong>Session, news, automation.</strong> All positions must be closed by 3:10 PM CT or the product's market close, whichever comes first — no overnight, no weekend holding. There is no blanket news ban; the only news-related item on the prohibited list is "purposefully trading your full Maximum Position Size directly into a scheduled major news event." Automated strategies are allowed with conditions: "Topstep won't help set up or troubleshoot automated strategies, and no exceptions are made for errant trades or malfunctions." Trade copiers are allowed across Combine and Express Funded Accounts, but not Live Funded Accounts. Position size caps are 5 mini / 50 micro at $50K, 10 / 100 at $100K, 15 / 150 at $150K, with minis and micros counting at 10:1.</p>
 
@@ -151,16 +151,16 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p><strong>First request, not first money received.</strong> The payout policy rechecked on 2026-10-06 gives XFA Standard traders five winning trading days of at least $150. Subsequent requests also require positive net profit since the previous payout; the first request is exempt from that extra condition. XFA Consistency instead requires three trading days with at least one trade each and a best day no greater than 40% of total net profit. Those are funded-stage trading days, not three calendar days from buying a Combine.</p>
+<p><strong>First request, not first money received.</strong> The payout policy rechecked on 2026-10-20 gives XFA Standard traders five winning trading days of at least $150. Subsequent requests also require positive net profit since the previous payout; the first request is exempt from that extra condition. XFA Consistency instead requires three trading days with at least one trade each and a best day no greater than 40% of total net profit. Those are funded-stage trading days, not three calendar days from buying a Combine.</p>
 
 <p><strong>Request limits.</strong> The minimum is $125; eligible requests open during CME hours, Sunday 5 PM CT through Friday 5 PM CT excluding holidays. XFA requests are limited to 50% of balance and base Standard/Consistency caps of $2,000/$3,000 at $50K, $3,000/$4,000 at $100K and $5,000/$6,000 at $150K. The limited-time double-cap offer requires adding the Daily Loss Limit when purchasing a new Combine. Adding it only when activating or reactivating an XFA does not unlock those larger caps.</p>
 
 <p><strong>Split.</strong> 90/10, with one legacy carve-out: "Note for traders who joined the new Topstep dashboard before January 12, 2026: You receive 100% of your first $10,000 in lifetime profits."</p>
 
-<p><strong>Approval and transfer are separate.</strong> Our earlier statement that no settlement estimates were published is outdated. The policy rechecked on 2026-10-06 says internal approval can take 1–3 business days. Transfer estimates then depend on the payment method and bank, excluding weekends and holidays. No customer receipt or payout time was independently verified for this review.</p>
+<p><strong>Approval and transfer are separate.</strong> Our earlier statement that no settlement estimates were published is outdated. The policy rechecked on 2026-10-20 says internal approval can take 1–3 business days. Transfer estimates then depend on the payment method and bank, excluding weekends and holidays. No customer receipt or payout time was independently verified for this review.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption>Topstep payout methods — official policy checked 2026-10-06</caption>
+  <caption>Topstep payout methods — official policy checked 2026-10-20</caption>
   <thead><tr><th scope="col">Method</th><th scope="col">Availability</th><th scope="col">Transfer estimate</th><th scope="col">Topstep fee</th></tr></thead>
   <tbody>
     <tr><td>Prop-to-Brokerage</td><td>US only; eligible Topstep Brokerage account</td><td>Same day if requested before noon CT</td><td>$0</td></tr>
@@ -173,7 +173,25 @@ type: "post"
 
 <p><strong>For Russian-speaking traders abroad.</strong> Language is not an eligibility category. The eligibility policy checked on 2026-09-08 lists Russia as ineligible but allows citizens of ineligible countries to submit proof of permanent residency in an eligible country plus a local bank statement for Trust-team review. That is a possible review route, not guaranteed access. Residence or trading in an ineligible country remains disallowed. Confirm your citizenship, permanent residence and payment method before buying; Wise availability in the three listed countries does not itself make a person eligible.</p>
 
-<p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.6 from 14,478 reviews on 2026-07-27. It is older than the product check and has not been refreshed here. Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
+<p><strong>Dated community signal.</strong> Our <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot capture</a> recorded 3.7 from 14,945 reviews on 2026-10-15 (breakdown below). Read recent complaints and the firm's responses separately; a review score is neither verified payout evidence nor a guarantee that a request will be approved.</p>
+
+<h3 class="wp-block-heading"><strong>Topstep on Trustpilot (checked 2026-10-15)</strong></h3>
+<p>On 15 October 2026 Topstep's <a href="https://www.trustpilot.com/review/topstep.com">Trustpilot profile</a> showed a 3.7 TrustScore from 14,945 reviews, up from the 3.6 from 14,478 in our 27 July capture. The split is polarised, not average:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+  <caption class="hidden-caption">Topstep Trustpilot profile, checked 15 October 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Signal</th><th style="padding: 8px 12px; text-align: left;">Value</th></tr></thead>
+  <tbody>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TrustScore</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3.7 ("Average") from 14,945 reviews</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Reviews in the last 12 months</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3,551</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5-star / 1-star share</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">70% / 19% (4-star 6%, 3-star 3%, 2-star 2%)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Replies to negative reviews</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%, typically within 2 weeks</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Profile status</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Claimed, on a paid Trustpilot subscription; Topstep invites customers to review</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Recurring topics</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trustpilot lists payment, customer service, refund and price among top mentions</td></tr>
+  </tbody>
+</table>
+
+<p>Recent five-star reviews mostly praise fast payouts and support. The one-star reviews mostly describe account closures and rule changes, and Trustpilot says it does not fact-check them. Read these as complaint themes to check against the rules above, not as verified payout records.</p>
 
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 
@@ -194,7 +212,7 @@ type: "post"
   <li><strong>The fee is a subscription that rebills until you pass or cancel.</strong> A $49 headline at $50K is $196 by month four, and there is no published figure for how many rebills the median passer takes.</li>
   <li><strong>The path choice is irreversible</strong> — "Paths cannot be changed after purchase" — and it is worth $103 at month one or $35 a month by month four at $50K, decided before you have traded.</li>
   <li><strong>The loss limit counts unrealised P&amp;L intraday.</strong> A $50K account showing $2,100 of open loss is breached without a single closed trade.</li>
-  <li><strong>The Trustpilot capture is dated 2026-07-27:</strong> 3.6 from 14,478 reviews, not a current ranking or verified payout record.</li>
+  <li><strong>Trustpilot is only 3.7 from 14,945 reviews</strong> (2026-10-15), with 19% 1-star; it is not a verified payout record.</li>
   <li><strong>Back2Funded costs $599–$829 before eligible discounts and tax.</strong> It is limited to eligible XFAs lost before a first payout, with at most two reactivations and a 30-calendar-day decision window.</li>
   <li><strong>Both the Combine and the funded account are simulated.</strong> Only the Live Funded Account trades real capital, and 0.71% of Express Funded traders reached it in 2025.</li>
   <li><strong>Futures only.</strong> "Topstep traders are prohibited from trading Stocks, Options, Forex, Spot Cryptocurrency, and CFDs."</li>
@@ -213,7 +231,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is the Topstep fee a one-off payment?</strong></h3>
-<p>Topstep’s Trading Combine is a monthly subscription, not a one-off challenge fee. The $50K Standard Path costs $49 per month plus $149 activation after passing; the $50K No Activation Fee Path costs $95 per month with $0 activation, as captured on 2026-10-06. Further billing cycles increase the total, and the pricing path cannot be changed after purchase. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> separates monthly rates, first-cycle funded-cost floors and actual cash spent.</p>
+<p>Topstep’s Trading Combine is a monthly subscription, not a one-off challenge fee. The $50K Standard Path costs $49 per month plus $149 activation after passing; the $50K No Activation Fee Path costs $95 per month with $0 activation, as captured on 2026-10-20. Further billing cycles increase the total, and the pricing path cannot be changed after purchase. The <a href="/true-cost-of-prop-firm-challenges">true-cost guide</a> separates monthly rates, first-cycle funded-cost floors and actual cash spent.</p>
 
 <h3 class="wp-block-heading"><strong>Which Topstep pricing path is cheaper?</strong></h3>
 <p>It depends entirely on how many months you take. The crossover is $149 divided by the monthly premium: 3.2 months at $50K, 3.0 at $100K, 5.0 at $150K. Pass fast and the No Activation Fee Path wins; rebill repeatedly and the Standard Path wins. The choice cannot be changed after purchase.</p>
@@ -228,7 +246,7 @@ type: "post"
 <p>It moves up with your end-of-day balance and never moves down, and it stops moving once it reaches your starting balance. On a $50K account with a $2,000 limit, that lock happens the day you close at $52,000. It is monitored in real time during the session and counts unrealised P&amp;L, so an open losing position can breach it.</p>
 
 <h3 class="wp-block-heading"><strong>How many days do I need to trade?</strong></h3>
-<p>The minimum remains unverified: the two published descriptions still differ at the 2026-10-06 check. The help article describes as few as two days, while the marketing FAQ states no minimum time requirement. Do not interpret the unknown comparison field as zero; the 55% consistency objective remains applicable.</p>
+<p>The minimum remains unverified: the two published descriptions still differ at the 2026-10-20 check. The help article describes as few as two days, while the marketing FAQ states no minimum time requirement. Do not interpret the unknown comparison field as zero; the 55% consistency objective remains applicable.</p>
 
 <h3 class="wp-block-heading"><strong>How fast can I get a payout?</strong></h3>
-<p>The XFA Consistency route requires 3 trading days and a best day no greater than 40% of total net profit before requesting. XFA Standard instead requires 5 winning trading days of at least $150 each, plus its net-profit condition. Approval can take 1–3 business days separately from transfer; international Wire/SWIFT is estimated at 5–10 business days with a $30 Topstep fee. These 2026-10-06 source checks describe request eligibility and published estimates, not an independently verified payout receipt.</p>
+<p>The XFA Consistency route requires 3 trading days and a best day no greater than 40% of total net profit before requesting. XFA Standard instead requires 5 winning trading days of at least $150 each, plus its net-profit condition. Approval can take 1–3 business days separately from transfer; international Wire/SWIFT is estimated at 5–10 business days with a $30 Topstep fee. These 2026-10-20 source checks describe request eligibility and published estimates, not an independently verified payout receipt.</p>

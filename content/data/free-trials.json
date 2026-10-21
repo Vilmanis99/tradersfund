@@ -3,12 +3,16 @@
     "firmSlug": "ftmo",
     "sourceUrl": "https://ftmo.com/en/faq/how-about-a-free-trial/",
     "landingUrl": "https://ftmo.com/en/ftmo-free-trial/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-19",
     "durationDays": 14,
     "maxConcurrentAccounts": 1,
     "maxAccountSizeUsd": 200000,
     "passGrantsFunding": false,
-    "platforms": ["MT4", "MT5", "cTrader", "TradingView"],
+    "platforms": [
+      "MT4",
+      "MT5",
+      "cTrader"
+    ],
     "products": [
       {
         "productSlug": "ftmo-free-trial-1-step",
@@ -31,20 +35,36 @@
         "maxLossPct": 10,
         "drawdownType": "static",
         "consistencyRulePct": null
+      },
+      {
+        "productSlug": "ftmo-free-trial-instant",
+        "mapsToChallenge": null,
+        "phases": 1,
+        "profitTargetPct": null,
+        "minTradingDays": null,
+        "dailyLossPct": 3,
+        "maxLossPct": 10,
+        "drawdownType": "intraday-trailing",
+        "consistencyRulePct": 30
       }
     ],
     "notes": [
       "FTMO's FAQ says the 2-Step trial uses paid 2-Step objectives except that the 10% target becomes 5% and 4 minimum days become 2.",
       "FTMO's FAQ says the 1-Step trial uses paid 1-Step objectives except that the 10% target becomes 5%.",
       "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing.",
-      "Rechecked on 2026-09-14 against the FTMO free-trial FAQ and landing page; both still state a 14-day trial and one active trial.",
-      "FTMO discontinued DXtrade for new platform selection on 2026-03-24; the current four-platform listing uses TradingView instead."
-    ]
+      "Rechecked on 2026-10-19 against the FTMO Free Trial landing page (dateModified 2026-10-16) and the Free Trial FAQ: 14 days, unlimited trials one at a time, up to $200,000.",
+      "2026-10-19 change: the landing page now offers a third Free Trial that mirrors the FTMO Instant Account (no profit target, 3% daily loss, 10% balance-based intraday trailing maximum loss, 30% consistency). FTMO Instant Account paid pricing is not captured in content/data/challenges/ftmo.json, so mapsToChallenge is null.",
+      "2026-10-19 change: the landing-page FAQ says the Free Trial runs on MT4, MT5 and cTrader and that TradingView is not supported for a Free Trial; TradingView was removed from platforms.",
+      "2026-10-19: the landing page says a trial also ends if the trader does not trade in the first 7 days (inactivityCloseDays)."
+    ],
+    "inactivityCloseDays": 7,
+    "totalTrialsLimit": null,
+    "totalTrialsUnlimited": true
   },
   {
     "firmSlug": "fundednext",
     "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-19",
     "durationDays": 14,
     "durationStarts": "first-trade",
     "maxConcurrentAccounts": 1,
@@ -76,7 +96,7 @@
       "FundedNext's Help Center says the account disables after 14 calendar days from the first trade and has no reset option.",
       "The completion coupon is generated after reaching the 5% target, applies to eligible new users and CFD plans, expires after 14 days, and excludes resets.",
       "Non-US trial accounts use MT5; US trial accounts use Match-Trader.",
-      "Rechecked on 2026-09-14 against the FundedNext Help Center free-trial rules page."
+      "Rechecked on 2026-10-19 against the FundedNext Help Center free-trial rules page (article dated 2026-04-08); every structured field above still matches."
     ]
   }
 ]

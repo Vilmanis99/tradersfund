@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { getAllPosts, getPostBySlug } from '@/lib/mdx'
 import { getAllFirms, type Firm } from '@/lib/firms'
+import { promotableDiscount } from '@/lib/discountDisplay'
 
 export const alt = 'Traders Fund Hub'
 export const size = { width: 1200, height: 630 }
@@ -82,7 +83,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
     const hasDiscount =
       typeof matchedFirm.discountPct === 'number' &&
       matchedFirm.discountPct > 0 &&
-      !!matchedFirm.discountCode
+      !!matchedFirm.discountCode &&
+      promotableDiscount(matchedFirm) !== null
     const updatedLabel = formatUpdated(matchedFirm.lastUpdated)
 
     return new ImageResponse(

@@ -47,7 +47,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
@@ -57,13 +57,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Profit split recorded as the published STARTING split of 80%; page advertises 'Up To 100%' via the VIP ladder (Bronze 90%, Silver 100%). The 100% figure is a top-tier ceiling, not the entry rate.",
       "Note the EA rule differs from CTI's other products: 1-Step permits third-party EAs, while 2-Step/Instant/Direct restrict to personal EAs only.",
       "consistencyRulePct left null - no consistency percentage is published on this page.",
       "Max funding for this program is published as $400K.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/1-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged."
     ]
   },
   {
@@ -115,7 +117,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
-    "payoutFrequency": "weekly",
+    "payoutFrequency": null,
     "rules": {
       "news": true,
       "weekend": true,
@@ -125,13 +127,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Profit split recorded as the published STARTING split of 80%; VIP ladder advertises Bronze 90% and Silver 100%.",
       "The page markets 'no hidden consistency requirements' but publishes NO consistency percentage - consistencyRulePct left null rather than 0, since an absence of a stated number is not the same as a stated zero.",
       "Martingale is published as 'Not Allowed' on this product (contrast with 1-Step, where it is allowed).",
       "Max funding for this program is published as $400K.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/2-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged."
     ]
   },
   {
@@ -190,14 +194,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://citytradersimperium.com/instant-funding/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "No evaluation profit target - profitTargets null. The page instead publishes a 'Profit Target To Scale' (e.g. $125 on the $2,500 account) which is a scaling milestone, NOT a pass condition, so it is deliberately not recorded as a profit target.",
       "Scaling published as '100% balance increase per 10% milestone', up to $2M per account and $4M across two accounts.",
       "Profit split recorded as the published starting 50%; page states 'Fully Funded Level 1: 70% to 100%', VIP Bronze 90%, VIP Silver/Gold 100%.",
       "payoutFrequency left null - the page states VIP Bronze unlocks 'Weekly payouts' and VIP Silver unlocks 'Anytime payouts', but publishes no baseline frequency for a new Instant account.",
       "minTradingDays left null - the table prints a dash, which is not an explicit published number.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json"
     ]
   },
   {
@@ -241,7 +246,7 @@
     "consistencyRulePct": null,
     "profitSplitPct": 70,
     "payoutFirstDays": 5,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": "on-demand",
     "rules": {
       "news": true,
       "weekend": true,
@@ -251,13 +256,15 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
       "No evaluation profit target. The published per-tier 'Profit Target To Scale' figures ($500 on $5K, $1,000 on $10K, $2,000 on $20K, $4,000 on $40K, $8,000 on $80K) are scaling milestones, not pass conditions.",
       "Page states 'No Consistency Rules' - 'Your best day counts, not just your average'. consistencyRulePct still recorded as null because no percentage figure is published.",
       "Profit split recorded as the published starting 70%; scales to 90% (Bronze) and up to 100% (Silver/Gold).",
       "Max funding published as $4M.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json"
+      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+      "payoutFrequency monthly -> on-demand (2026-10-20): https://citytradersimperium.com/direct-funding/ (checked 2026-10-20): \"Payouts On Demand\" / \"Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.\" and FAQ: \"Direct Funding payouts are on demand from day 5.\" The 2026-10-14 capture quote (\"Starts monthly, advances to weekly (Bronze), then on demand (Silver+)\") is no longer on the page."
     ]
   }
 ]

@@ -1,0 +1,4 @@
+{
+  "_note": "Editorial pins for /ru/luchshie-prop-firmy, in order (outbound slugs). A pin applies only while that firm's russiaStatus in firms.json is 'available'; otherwise the firm falls back into the status-first order (available, then unclear/unverified, then restricted, then score). See lib/russianRanking.ts.",
+  "pinnedFirst": ["bright-funded"]
+}

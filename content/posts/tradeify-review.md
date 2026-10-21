@@ -1,12 +1,12 @@
 ---
-title: "Tradeify Review 2026: 16 Priced Tiers and 3 Funding Routes"
-seoTitle: "Tradeify Review 2026: Fees, Routes & Consistency Rules"
+title: "Tradeify Review 2026: Growth, Select or Lightning Funded?"
+seoTitle: "Tradeify Review 2026: Fees from $99, Rules & 90% Payouts"
 slug: "tradeify-review"
 date: "2026-07-28"
-modified: "2026-09-14 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Tradeify publishes 16 priced futures product-size combinations with EOD drawdown and 90% simulated payouts, but each route has a different consistency gate."
-seoDescription: "Tradeify review comparing 16 priced futures tiers, 3 funding routes, 90% simulated payouts, end-of-day drawdown, and route-specific consistency rules."
+seoDescription: "Tradeify review 2026: 16 priced futures tiers from $99 to $796, Growth vs Select vs Lightning routes, EOD trailing drawdown, consistency gates and 90% split."
 categories: ["Prop Firms"]
 tags: ["Tradeify", "Prop Firm", "Futures Prop Firms"]
 type: "post"
@@ -29,7 +29,7 @@ type: "post"
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Profit split</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">90% on simulated funded payouts; 80% on Elite Live</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Maximum active funding</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">5 simulated funded accounts, with $150,000 available per account</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Published payout rails</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">Rise bank or crypto withdrawal, with Plane as an alternative provider</td></tr>
-    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.6/5 from 3,734 reviews on 2026-07-28; 8% were 1-star</td></tr>
+    <tr><th style="padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);">Trustpilot snapshot</th><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);">4.5/5 from 5,369 reviews on 2026-10-15; 84% were 5-star</td></tr>
     <tr><th style="padding: 9px 12px; text-align: left;">India status</th><td style="padding: 9px 12px;">Passes the dated country/RBI gate; completed Indian checkout, KYC and payout proof remain unverified</td></tr>
   </tbody>
 </table>
@@ -61,7 +61,7 @@ type: "post"
   </tbody>
 </table>
 </div>
-<p style="font-size: 0.82rem; color: var(--muted);">List prices and current rules were recaptured from Tradeify's first-party pages on 2026-09-14. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">List prices were rechecked unchanged against Tradeify's own pricing reference on 2026-10-20; the rules were last recaptured from its first-party pages on 2026-09-14. Select appears twice because its single evaluation leads to a permanent Flex or Daily funded choice with different payout and risk rules. The homepage promotion is not applied to these base fees; confirm the product and final amount through <a href="/go/tradeify">Tradeify's current checkout path</a>. The Select $50K purchase remained $165, while its separately published reset fee was $109.</p>
 
 <p><strong>U.S. access.</strong> Tradeify’s Rules – Restricted Countries policy explicitly names the U.S. as an eligible example. Our <a href="/best-prop-firms-in-us">U.S. access comparison</a> links that dated first-party source and keeps eligibility separate from any CFTC or NFA registration claim.</p>
 
@@ -149,7 +149,7 @@ type: "post"
 
 <p><strong>Tradeify publishes 24-48 hours for approved processing.</strong> Rise provides bank transfers, crypto tokens and region-dependent local currencies, while Plane is an alternative provider. Rise says bank withdrawal normally takes 1-3 business days and crypto takes hours to 1 day; no fixed India-specific bank, crypto-network, intermediary or INR conversion total is published.</p>
 
-<p><strong>Community evidence is positive but not unanimous.</strong> <a href="https://www.trustpilot.com/review/tradeify.co">Trustpilot showed 4.6/5 from 3,734 reviews</a> on 2026-07-28, with 87% 5-star and 8% 1-star. Recent Reddit users alleged delayed Rise transfers and unexplained compliance restrictions, while other verified Trustpilot users reported completed payouts; each post is a user account, not an independently adjudicated payout audit. Tradeify's homepage separately claimed more than $250 million in verified payouts, which remains a firm-reported figure.</p>
+<p><strong>Community evidence is positive but not unanimous.</strong> <a href="https://www.trustpilot.com/review/tradeify.co">Trustpilot showed 4.5/5 from 5,369 reviews</a> on 2026-10-15, with 84% 5-star. Recent Reddit users alleged delayed Rise transfers and unexplained compliance restrictions, while other verified Trustpilot users reported completed payouts; each post is a user account, not an independently adjudicated payout audit. Tradeify's homepage separately claimed more than $250 million in verified payouts, which remains a firm-reported figure.</p>
 
 <!-- SECTION 7 - Pros and cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
@@ -174,7 +174,7 @@ type: "post"
   <li>Every position must close by 4:45 PM ET, excluding overnight and weekend futures strategies.</li>
   <li>The microscalping rule requires both more than 50% of trades and more than 50% of profit from holds longer than 10 seconds.</li>
   <li>A personal bot can require source ownership proof, exclusive Tradeify use and a live activation video.</li>
-  <li>Trustpilot's 2026-07-28 snapshot contained 8% 1-star reviews, and recent users alleged compliance and Rise delays.</li>
+  <li>Trustpilot slipped from 4.6 (2026-07-28) to 4.5 (2026-10-15), and recent users alleged compliance and Rise delays.</li>
   <li>No completed Indian checkout, KYC or payout receipt has been independently verified despite the India marketing pages.</li>
 </ul>
 
@@ -189,7 +189,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How much does a Tradeify account cost?</strong></h3>
-<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are 2026-09-14 base purchase prices before temporary promotions; the separately published Select $50K reset fee was $109.</p>
+<p>Growth list fees are $99, $145, $255 and $369; Select fees are $109, $165, $265 and $369; Lightning fees are $345, $492, $660 and $796 for $25K-$150K tiers. These are base purchase prices before temporary promotions, rechecked on 2026-10-20; the Select $50K reset fee is $109 (Tradeify pricing reference, help.tradeify.co/en/articles/14369021, read 2026-10-20), separate from its $165 purchase price.</p>
 
 <h3 class="wp-block-heading"><strong>Does Tradeify charge monthly or activation fees?</strong></h3>
 <p>No. The current Pricing Reference describes all 3 account types as one-time purchases with 0 recurring subscription charges, and Growth or Select activates the simulated funded stage for $0.</p>

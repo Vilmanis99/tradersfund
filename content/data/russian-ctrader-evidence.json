@@ -1,9 +1,10 @@
 {
-  "capturedAt": "2026-09-08",
+  "capturedAt": "2026-10-20",
+  "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box, curl of live help pages): cTrader Algo, all six FundedNext and both BrightFunded sources re-read; every field unchanged. Quotes: FundedNext 9129580 \"traders can purchase a Challenge with an account size up to $50,000 on cTrader. Additionally, a $25 platform fee applies to all clients\" and \"Effective from 31.03.2026, US-based traders will no longer be able to purchase new accounts on the cTrader platform\"; 8020087 \"The $25 platform fee for cTrader or Match-Trader is non-refundable (except for U.S. clients)\"; 8020763 \"FundedNext does not allow the use of EAs or automated trading on the cTrader and Match-Trader platforms regardless of account size\"; 11641140 \"The Stellar Instant Account supports both MetaTrader 4 (MT4) and MetaTrader 5 (MT5)\"; BrightFunded 10855521 \"If you are citizen, resident, or live in the US cTrader will not be available for you due to local regulations\"; 9241699 \"Please note that API and automated trading are not supported on DXtrade\" (cTrader still not addressed); help.ctrader.com/ctrader-algo \"develop and run algorithms, including cBots and indicators, using either C# or Python\". Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only).",
   "scope": "First-party platform, fee, automation, login and profile restrictions used by the Russian-language cTrader decision page.",
   "platformSource": {
     "name": "cTrader Algo",
-    "sourceCapturedAt": "2026-09-08",
+    "sourceCapturedAt": "2026-10-20",
     "sourceUrl": "https://help.ctrader.com/ctrader-algo/",
     "capability": "cTrader supports cBots, indicators and plugins, with algorithm development in C# or Python.",
     "boundary": "Platform capability does not override a prop firm's trading rules."
@@ -12,7 +13,7 @@
     {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
         "https://help.fundednext.com/en/articles/9129580-trading-with-ctrader-at-fundednext",
@@ -68,7 +69,7 @@
     {
       "firmSlug": "bright-funded",
       "firmName": "BrightFunded",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceUrls": [
         "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
         "https://help.brightfunded.com/en/articles/9241699-can-i-use-ea"
@@ -84,7 +85,7 @@
       },
       "automation": {
         "status": "requires-firm-confirmation",
-        "firmRule": "Bright Funded permits EAs generally and explicitly says API and automated trading are unsupported on DXTrade, but the captured article does not state whether cBots are supported on cTrader.",
+        "firmRule": "BrightFunded permits EAs generally and explicitly says API and automated trading are unsupported on DXTrade, but the captured article does not state whether cBots are supported on cTrader.",
         "unresolved": true
       },
       "countryRestrictions": [
@@ -98,7 +99,7 @@
       "devices": ["web", "Windows", "Mac", "Android", "iOS"],
       "loginFlow": [
         "Select cTrader only after the checkout confirms it for the profile.",
-        "Use the Bright Funded cTrader web or branded mobile application.",
+        "Use the BrightFunded cTrader web or branded mobile application.",
         "Confirm the cTrader ID and account credentials supplied for the purchased account."
       ],
       "notes": [
@@ -111,7 +112,7 @@
   "editorialBoundaries": [
     "The page compares two primary commercial partners and is not a complete directory of every cTrader prop firm.",
     "No Russian Federation access promise is made from the Russian language of the page.",
-    "Unpublished Bright Funded cTrader fees, tier limits and cBot compatibility remain unknown until confirmed by the firm.",
+    "Unpublished BrightFunded cTrader fees, tier limits and cBot compatibility remain unknown until confirmed by the firm.",
     "Temporary promotions are excluded from platform-cost examples."
   ]
 }

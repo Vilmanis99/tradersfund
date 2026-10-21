@@ -1,12 +1,12 @@
 ---
-title: "Take Profit Trader Review 2026: 3-Day New Tests, Day-One Payouts & Drawdown"
-seoTitle: "Take Profit Trader Review 2026: Fees & Drawdown"
+title: "Take Profit Trader Review 2026: Fees, Drawdown & Payouts"
+seoTitle: "Take Profit Trader Review 2026: Test Fees, Funding & Payouts"
 slug: "take-profit-trader-review"
 date: "2026-06-15"
-modified: "2026-09-14 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Take Profit Trader pairs a 3-day path for new tests with day-one payouts — then attaches an end-of-day trailing drawdown and an 80% starting split. Here's the math and who it beats."
-seoDescription: "Take Profit Trader review: current monthly fees, 3-day new Tests, end-of-day drawdown, day-one payouts, 80% split and true cost."
+seoDescription: "Take Profit Trader review 2026: monthly Test fees from $150 (25K) to $360 (150K), 6% target, 3 minimum days, EOD trailing drawdown, 50% consistency, 80% split."
 categories: ["Prop Firms"]
 tags: ["Take Profit Trader", "Prop Firm"]
 type: "post"
@@ -33,7 +33,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Daily loss limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Official sources conflict: homepage says none; captured API exposes tier values</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Min trading days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 for new Tests from 17 Aug 2026; 5 for existing/reset Tests</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Payouts</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand once funded — typically ~1 business day via ACH/Plaid, PayPal, or Wise</td></tr>
-    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.4 / 5 from ~9,250 reviews (June 2026)</td></tr>
+    <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.4 / 5 from 10,902 reviews (checked 2026-10-15)</td></tr>
   </tbody>
 </table>
 
@@ -52,14 +52,14 @@ type: "post"
     <tr><td style="padding: 8px 12px;">$150K</td><td style="padding: 8px 12px;">$360</td><td style="padding: 8px 12px;">$9,000 (6%)</td><td style="padding: 8px 12px;">$4,500</td><td style="padding: 8px 12px;">15 (150 micro)</td></tr>
   </tbody>
 </table>
-<p style="font-size: 0.82rem; color: var(--muted);">Pricing and rules were rechecked against Take Profit Trader's first-party pages on 2026-09-14. The 3-day minimum applies only to new Test accounts from 17 August 2026; existing evaluations and resets retain 5 days. Take Profit Trader runs frequent lifetime fee-discount promos — see our <a href="/prop-firm-discount-codes">prop firm discount codes page</a> for the current one. Test fees are non-refundable. For the latest, confirm on <a href="/go/take-profit-trader">the live Take Profit Trader site</a>.</p>
+<p style="font-size: 0.82rem; color: var(--muted);">Prices, profit targets and trailing drawdowns were rechecked against Take Profit Trader's public subscriptions data on 2026-10-20; the rules were last rechecked against its first-party pages on 2026-10-19. The 3-day minimum applies only to new Test accounts from 17 August 2026; existing evaluations and resets retain 5 days. Take Profit Trader runs frequent lifetime fee-discount promos — see our <a href="/prop-firm-discount-codes">prop firm discount codes page</a> for the current one. Test fees are non-refundable. For the latest, confirm on <a href="/go/take-profit-trader">the live Take Profit Trader site</a>.</p>
 
 <!-- SECTION 4 — Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
 <p><strong>End-of-day trailing drawdown — fixed in dollars, not percent.</strong> On the $50K Test, your loss line starts at $50,000 − $2,000 = $48,000. It trails your <em>closing</em> balance, updating once at 5 PM ET. Close a day at $51,200 and the line ratchets up to $49,200 — and it stays there. It never trails back down. The "end-of-day" part is the trader-friendly bit: intraday spikes don't move the line, so a green afternoon you give back before the close doesn't cost you. That's softer than Topstep's intraday trailing, where the line tracks your unrealised high tick by tick.</p>
 
-<p><strong>Daily-loss field is unresolved.</strong> Take Profit Trader's current homepage and its 17 August update say there is no daily loss limit, but the firm's public subscriptions data captured for the same product exposes tier-specific values such as $1,100 on the $50K Test. Because those first-party representations conflict, this review does not publish a daily-loss number; use the end-of-day trailing line as the confirmed boundary and ask support for the account-specific rule before relying on a large intraday loss.</p>
+<p><strong>Daily-loss field is unresolved.</strong> Take Profit Trader's current homepage and its 17 August update say there is no daily loss limit (on 2026-10-20 the homepage 50K card read "Daily Loss Limit $1100 Removed"), but the firm's public subscriptions data captured for the same product exposes tier-specific values such as $1,100 on the $50K Test. Because those first-party representations conflict, this review does not publish a daily-loss number; use the end-of-day trailing line as the confirmed boundary and ask support for the account-specific rule before relying on a large intraday loss.</p>
 
 <p><strong>Consistency rule (Test only): 50%.</strong> No single day may be worth half or more of your total profit target. On the $50K Test the target is $3,000, so no day can contribute $1,500 or more. Make $1,800 in one session and that day is "too good" — you'll need to keep trading and grow the denominator until that day is under 50% of the total. The rule exists to stop a single lucky print from funding you. The good news: it <strong>disappears completely</strong> on PRO and PRO+. Once funded, there is no consistency rule at all.</p>
 
@@ -90,7 +90,7 @@ type: "post"
 
 <p><strong>Methods and timing.</strong> After the dashboard balance update, the account-to-wallet request is now automated in approximately 1–5 seconds when the account is flat; the wallet-to-bank leg still varies by ACH/Plaid, PayPal or Wise. The buffer is the gate to understand: until your account climbs past original balance + drawdown, withdrawals are restricted, which is how Take Profit Trader protects against same-day funding-then-cashing.</p>
 
-<p><strong>Reputation.</strong> Take Profit Trader holds a 4.4/5 Trustpilot rating across roughly 9,250 reviews as of June 2026 — one of the larger review counts in the futures category, and materially ahead of most CFD firms. Treat aggregate scores as a floor, not proof: read the one- and two-star reviews for the specific failure mode (rule disputes, buffer confusion) before you commit capital.</p>
+<p><strong>Reputation.</strong> Take Profit Trader holds a 4.4/5 Trustpilot rating across 10,902 reviews as of 2026-10-15 — one of the larger review counts in the futures category, and materially ahead of most CFD firms. Treat aggregate scores as a floor, not proof: read the one- and two-star reviews for the specific failure mode (rule disputes, buffer confusion) before you commit capital.</p>
 
 <!-- SECTION 7 — Pros / Cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
@@ -125,7 +125,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Is Take Profit Trader legit?</strong></h3>
-<p>Yes — it has operated since 2021 and holds a 4.4/5 Trustpilot rating across ~9,250 reviews in our June 2026 snapshot. The firm's July 2026 payout update says the account-to-wallet leg now runs in roughly 1–5 seconds after the dashboard update, while the bank leg varies. As with any prop firm, your risk isn't legitimacy; it's misreading the trailing-drawdown and buffer rules and failing on a technicality.</p>
+<p>Yes — it has operated since 2021 and holds a 4.4/5 Trustpilot rating across 10,902 reviews on 2026-10-15. The firm's July 2026 payout update says the account-to-wallet leg now runs in roughly 1–5 seconds after the dashboard update, while the bank leg varies. As with any prop firm, your risk isn't legitimacy; it's misreading the trailing-drawdown and buffer rules and failing on a technicality.</p>
 
 <h3 class="wp-block-heading"><strong>What is the profit split at Take Profit Trader?</strong></h3>
 <p>80% on the PRO funded account, rising to 90% on PRO+ after your first payout clears the buffer. The headline "up to 90%" is the PRO+ number — most traders earn 80% on their first cycle.</p>

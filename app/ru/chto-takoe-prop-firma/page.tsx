@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   ArrowRight,
@@ -18,10 +19,15 @@ import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/chto-takoe-prop-firma'
-const TITLE = 'Что такое проп-фирма: как это работает в 2026 году'
-const DESCRIPTION = 'Что означает проп-фирма, чем глобальный челлендж отличается от традиционного проп-деска и российской компании, как проверить цену, просадку, KYC и выплату.'
+const TITLE = 'Что такое проп-фирма (проп-компания) и как она работает'
+const DESCRIPTION = 'Что такое проп-фирма и проп-компания простыми словами: как устроен челлендж, чем он отличается от проп-деска, как проверить цену, просадку, KYC и выплату.'
 
 const FUNDEDNEXT_ACCESS_URL = 'https://fundednext.com/company'
 const FUNDEDNEXT_KYC_URL = 'https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process'
@@ -118,6 +124,8 @@ export default function RussianWhatIsPropFirmPage() {
   const products = getAllChallenges()
     .filter(product => isChallengeFresh(product))
     .filter(product => product.firmSlug === 'fundednext' || product.firmSlug === 'bright-funded')
+    // Russia-open firm (BrightFunded) first, restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.firmSlug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.firmSlug)])
   const fundedNextProducts = products.filter(product => product.firmSlug === 'fundednext')
   const brightProducts = products.filter(product => product.firmSlug === 'bright-funded')
   const pricedTierCount = products.reduce((total, product) => total + product.accountSizes.filter(tier =>
@@ -158,12 +166,11 @@ export default function RussianWhatIsPropFirmPage() {
   return (
     <article data-russian-prop-definition="three-models-not-one-label" data-russian-search-intent="prop-kompanii-eto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / Что такое проп-фирма</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <div className="ru-eyebrow"><CircleHelp size={14} aria-hidden="true" /> Термин без рекламных сокращений</div>
           <h1>Что такое проп-фирма и как она работает</h1>
@@ -181,7 +188,7 @@ export default function RussianWhatIsPropFirmPage() {
           </div>
           <div className="ru-actions">
             <Link href="#tri-modeli" className="btn-primary btn-glow">Понять 3 модели <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить FundedNext и BrightFunded</Link>
+            <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline">Сравнить BrightFunded и FundedNext</Link>
           </div>
         </div>
       </section>
@@ -284,9 +291,9 @@ export default function RussianWhatIsPropFirmPage() {
         <div className="ru-shell ru-content">
           <h2>Два главных партнёра: сравнение программ вместо 2 логотипов</h2>
           <p>
-            FundedNext и BrightFunded — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
-            в универсальные варианты. {products.length > 0 ? <>
-              Текущая выборка содержит {fundedNextProducts.length} продукта FundedNext и {brightProducts.length} продукта BrightFunded,
+            BrightFunded и FundedNext — наши 2 основных коммерческих маршрута, но партнёрство не превращает их
+            в универсальные варианты; FundedNext резидентам России недоступна. {products.length > 0 ? <>
+              Текущая выборка содержит {brightProducts.length} продукта BrightFunded и {fundedNextProducts.length} продукта FundedNext,
               {pricedTierCount} ценовых уровней и диапазон от {phaseRange.at(0)} до {phaseRange.at(-1)} фаз.
               Каждая строка ниже ведёт на первичную страницу продукта и показывает дату захвата.
             </> : 'Сейчас нет программ с актуальной проверкой за 30 дней; перепроверьте первичные условия перед покупкой.'}
@@ -311,29 +318,15 @@ export default function RussianWhatIsPropFirmPage() {
             </table>
           </div>
           <p className="ru-source-line">
-            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: USD для FundedNext и EUR для BrightFunded;
+            Источников в таблице: {sourceCount}. Цены приведены в собственной валюте фирмы: EUR для BrightFunded и USD для FundedNext;
             временные промоакции и самостоятельный пересчёт в RUB не включены.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="prop-definition">
             <strong>Партнёрское раскрытие.</strong>{' '}
-            Переходы на FundedNext и BrightFunded могут принести Traders Fund Hub комиссию.
+            Переходы на BrightFunded и FundedNext могут принести Traders Fund Hub комиссию.
             Коммерческая связь не меняет {products.length} строк, {pricedTierCount} цен, даты источников или предупреждение о доступе страны.
           </div>
           <div className="ru-grid">
-            <article className="ru-card">
-              <div className="ru-card-head"><h3>FundedNext</h3><span className="ru-score">{fundedNextProducts.length} продукта</span></div>
-              <p className="ru-muted">
-                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
-                максимальной просадкой и первой датой выплаты. Для резидентов России официальные страницы содержат конфликт,
-            поэтому страница оплаты и поддержка проверяются до оплаты.
-              </p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
             <article className="ru-card">
               <div className="ru-card-head"><h3>BrightFunded</h3><span className="ru-score">{brightProducts.length} продукта</span></div>
               <p className="ru-muted">
@@ -346,6 +339,21 @@ export default function RussianWhatIsPropFirmPage() {
                   Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
+            </article>
+            <article className="ru-card">
+              <div className="ru-card-head"><h3>FundedNext</h3>{russiaStatusFor('fundednext') === 'restricted' ? <RuAccessBadgeView firm="fundednext" status="restricted" hint={false} /> : <span className="ru-score">{fundedNextProducts.length} продукта</span>}</div>
+              <p className="ru-muted">
+                Stellar 2-Step, 1-Step, Lite и Instant различаются числом фаз, условием возврата взноса,
+                максимальной просадкой и первой датой выплаты. Резидентам России FundedNext недоступна
+            (подвал fundednext.com, по данным на 20.10.2026); в других странах страница оплаты и поддержка проверяются до оплаты.
+              </p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-prop-definition-fundednext" rel="sponsored nofollow noopener" className="btn-outline">
+                  Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+              <RuFundedNextAccessCaveat />
             </article>
           </div>
         </div>
@@ -396,7 +404,7 @@ export default function RussianWhatIsPropFirmPage() {
             <strong>Практическая развилка из 2 вопросов.</strong>{' '}
             Нужна местная биржа и договор с локальным оператором — откройте
             <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"> 6 проверяемых примеров</Link>.
-            Нужен глобальный розничный CFD-продукт — сравните FundedNext и BrightFunded,
+            Нужен глобальный розничный CFD-продукт — резидентам России начинать с BrightFunded (FundedNext им недоступна), трейдерам из других стран — сравнить BrightFunded и FundedNext,
             затем заново проверьте страну, KYC и платёжный канал.
           </div>
           <div className="ru-actions">
@@ -424,6 +432,12 @@ export default function RussianWhatIsPropFirmPage() {
             а повторная покупка не совершается автоматически. Если такой исход нарушает личный бюджет,
             продукт не подходит независимо от рекламной доли 80%, 90% или «до 95%».
           </p>
+          {ruClosedFirmsHref() && (
+            <p data-russian-closed-firms-inlink="education">
+              Проп-фирмы и закрываются: <Link href={ruClosedFirmsHref() as string}>закрытые проп-компании</Link> собраны на отдельной странице
+              с датой и источником по каждой.
+            </p>
+          )}
         </div>
       </section>
 
@@ -448,8 +462,8 @@ export default function RussianWhatIsPropFirmPage() {
             Финальный источник — страница оплаты и договор в день покупки.
           </p>
           <div className="ru-actions">
-            <Link href="/ru/obzor-fundednext" className="btn-primary">Начать с FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
-            <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор BrightFunded</Link>
+            <Link href="/ru/obzor-bright-funded" className="btn-primary">Начать с BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор FundedNext (не для РФ)</Link>
           </div>
         </div>
       </section>

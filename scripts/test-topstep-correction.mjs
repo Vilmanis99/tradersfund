@@ -12,7 +12,7 @@ assert.equal(products.length, 2)
 assert.deepEqual(products.map(product => product.accountSizes.map(tier => tier.priceUsd)), [[49, 99, 199], [95, 149, 229]])
 assert.deepEqual(products.map(product => product.activationFeeUsd), [149, 0])
 for (const product of products) {
-  assert.equal(product.sourceCapturedAt, '2026-10-06')
+  assert.equal(product.sourceCapturedAt, '2026-10-20')
   assert.equal(product.consistencyRulePct, 55, 'current Combine threshold is distinct from funded 40%')
   assert.equal(product.pricingModel, 'monthly-subscription')
   assert.equal(product.minTradingDays, null, 'Conflicting minimum must not become verified two-day or zero-day permission')
@@ -21,8 +21,8 @@ for (const product of products) {
   assert.equal(product.rules.ea, 'restricted')
   assert.equal(product.rules.copyTrading, 'restricted')
   assert.deepEqual(product.accountSizes.map(tier => tier.maxLossUsd), [2000, 3000, 4500])
-  assert.equal(isChallengeFresh(product, new Date('2026-11-05T12:00:00Z')), true)
-  assert.equal(isChallengeFresh(product, new Date('2026-11-06T12:00:00Z')), false)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-19T12:00:00Z')), true)
+  assert.equal(isChallengeFresh(product, new Date('2026-11-20T12:00:00Z')), false)
   const economics = challengeTierEconomics(product, product.accountSizes[1])
   assert.equal(economics.minimumCost, product.activationFeeUsd + product.accountSizes[1].priceUsd)
   assert.equal(economics.rMultiple, economics.breakEvenProfit / 3000)
@@ -51,10 +51,15 @@ for (const product of refreshed.products) {
   assert(product.fieldEvidence.consistencyRulePct.quote.includes('55%'))
 }
 const firm = getAllFirms().find(firm => firm.name === 'Topstep')
-assert.deepEqual(firm.platforms, ['TopstepX'])
+assert.deepEqual(firm.platforms, ['TopstepX', 'Quantower'])
 assert.equal(firm.minTradingDays, null)
-assert.equal(firm.lastUpdated, '2026-07-27', 'Narrow capture does not refresh all aggregate metadata')
-assert.equal(firm.trustpilotCapturedAt, '2026-07-27')
+// The narrow 2026-10-06 consistency capture must not refresh aggregate metadata;
+// later full refreshes may. Trustpilot carries its own, independent capture date.
+assert.match(firm.lastUpdated, /^\d{4}-\d{2}-\d{2}$/)
+assert.notEqual(firm.lastUpdated, refreshed.capturedAt ?? '2026-10-06', 'Narrow capture does not refresh all aggregate metadata')
+assert.match(firm.trustpilotCapturedAt, /^\d{4}-\d{2}-\d{2}$/)
+assert(firm.trustpilotCapturedAt >= '2026-10-15', 'Trustpilot figure is from the 2026-10-15 recapture or later')
+assert.equal(typeof firm.trustpilotScore, 'number')
 const review = read('content/posts/topstep-review.md')
 const generated = spawnSync(process.execPath, ['scripts/gen-truecost.mjs', 'topstep'], { encoding: 'utf8' })
 assert.equal(generated.status, 0, generated.stderr)
@@ -63,7 +68,8 @@ assert.equal(tables.length, 2)
 for (const table of tables) assert(review.includes(table), 'Review uses exact generated computeTrueCost tables')
 for (const text of ['China, Canada and UK only', 'Approval and transfer are separate', 'not guaranteed access', '1–3 business days', '5–10 business days', 'at most two reactivations', '2026-05-29']) assert(review.includes(text), text)
 for (const text of ['does not publish a settlement duration', 'We record 2 because', 'NinjaTrader, Quantower, TradingView', 'any R we printed would be our arithmetic']) assert(!review.includes(text), text)
-assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 7, 'Reviews v2 FAQ count')
+// 7 FAQs + the 'Topstep on Trustpilot (checked …)' answer added in 68ca03d
+assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 8, 'Reviews v2 FAQ count')
 assert(!/href="https?:\/\/(?:www\.|help\.)?topstep\.com/.test(review), 'Firm links remain /go routed')
 const downstream = [
   'content/pages/how-prop-firm-challenges-work.md',
@@ -76,7 +82,7 @@ for (const file of downstream) {
   const rows = read(file).split('\n').filter(line => line.includes('data-') && line.includes('topstep:'))
   assert(rows.length)
   for (const row of rows) {
-    assert(row.includes('2026-10-06'), `${file}: Topstep example date`)
+    assert(row.includes(products[0].sourceCapturedAt), `${file}: Topstep example date matches the current capture`)
     assert(!row.includes('null trading days'))
   }
 }

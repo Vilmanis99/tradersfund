@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
@@ -19,10 +20,12 @@ import { getDealsByFirm } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-bright-funded'
-const TITLE = 'BrightFunded: обзор 2026, цены, правила и выплаты'
-const DESCRIPTION = 'BrightFunded: обзор на русском — цены в EUR, статическая и трейлинг-просадка, выплаты, Trustpilot и проверка доступа по стране.'
+const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
+const DESCRIPTION = 'BrightFunded: обзор на русском — отзывы и Trustpilot, цены в EUR, статическая и трейлинг-просадка, выплаты и проверка доступа из России и других стран.'
 // Sharing copy stays unchanged pending the separately requested approval.
 const SOCIAL_TITLE = 'Bright Funded: обзор 2026, цены, правила и выплаты'
 const SOCIAL_DESCRIPTION = 'Отзывы о Bright Funded и обзор на русском: 3 программы, 18 цен в EUR, просадка, выплаты, Trustpilot и проверка ограничений по стране.'
@@ -33,6 +36,9 @@ const REWARD_URL = 'https://help.brightfunded.com/en/articles/9268736-how-does-m
 const NEWS_URL = 'https://help.brightfunded.com/en/articles/9241694-can-i-trade-news'
 const REFUND_URL = 'https://help.brightfunded.com/en/articles/9460023-can-i-get-a-refund-for-my-brightfunded-challenge'
 const COUNTRIES_URL = 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded'
+/** The help article shows 'September 15, 2026' as its update date (read 2026-10-19); the Terms show no version date. */
+const COUNTRIES_ARTICLE_UPDATED = '15.09.2026'
+const ruDate = (iso: string) => /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split('-').reverse().join('.') : iso
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -112,7 +118,7 @@ export default function RussianBrightFundedReviewPage() {
   const bestPublicDealPct = publicDealPcts.length ? Math.max(...publicDealPcts) : null
   const offerStatusHref = publicBrightDeals.length > 0
     ? '/ru/promokody-prop-firm#bright-funded-promokody'
-    : '/ru/promokody-prop-firm#kody'
+    : '/ru/promokody-prop-firm#bright-offer-status'
   const products = getChallengesByFirm('bright-funded')
   const freshProducts = products.filter(product => freshSource(product))
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
@@ -197,13 +203,12 @@ export default function RussianBrightFundedReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /><RussianEvidenceFreshnessNotice evidence={evidenceSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt }))} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / BrightFunded</div>
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
           <h1>{TITLE}</h1>
           <p className="ru-lead">BrightFunded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
@@ -211,19 +216,20 @@ export default function RussianBrightFundedReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-bright-article="long-form">
+        <RuReviewVerdictBox route={PATH} campaign="bright-funded-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>программы со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-bright-article="long-form">
-        <section className="ru-section ru-review-toc-section">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
+            <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#verdict">Краткий вывод</a></li>
@@ -242,6 +248,7 @@ export default function RussianBrightFundedReviewPage() {
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+</RuArticleToc>
           </div>
         </section>
 
@@ -328,11 +335,21 @@ export default function RussianBrightFundedReviewPage() {
             </div>
             <div className="ru-notice" data-russian-bright-country-conflict="help-six-terms-five">
               <strong>{countrySourcesCurrent ? 'Два официальных списка расходятся.' : 'В датированном снимке два официальных списка расходились.'}</strong>{' '}
-              {countrySourcesCurrent ? 'По проверке' : 'В записи'} от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
-              <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
-              <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+              {countrySourcesCurrent ? (
+                <>
+                  По данным на {ruDate(brightEvidence.sources.countries.sourceCapturedAt)}{' '}
+                  <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> (статья обновлена {COUNTRIES_ARTICLE_UPDATED}) называет шесть стран: Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан. По данным на {ruDate(brightEvidence.sources.countryTerms.sourceCapturedAt)}{' '}
+                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> (п. 2, дата редакции не указана) называют пять стран без Пакистана и оставляют за фирмой право ограничивать доступ в других странах. Поэтому для новой регистрации ориентируйтесь на более строгий список справки.{' '}
+                </>
+              ) : (
+                <>
+                  В записи от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
+                  <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
+                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+                </>
+              )}
               {countrySourcesCurrent
-                ? 'Россия не названа ни там, ни там, но условия допускают дополнительные ограничения и учитывают фактическое местонахождение. До оплаты получите ответ поддержки для своего профиля; это расхождение не подтверждает доступ.'
+                ? 'Россия не названа ни там, ни там, но условия учитывают и фактическое местонахождение. До оплаты получите ответ поддержки для своего профиля; это расхождение не подтверждает доступ.'
                 : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. До оплаты получите ответ поддержки для своего профиля.'}
             </div>
             <p>Для русскоязычного трейдера в ЕС, Великобритании, Казахстане, ОАЭ, Израиле, Северной Америке или другой стране важен фактический профиль, а не язык. Перед оплатой уточните ограничения по гражданству, месту проживания и фактическому местонахождению, используйте собственные данные и подтвердите способ получения выплаты. Отсутствие страны в списке не гарантирует, что банк, санкционная проверка или KYC одобрит конкретного трейдера.</p>
@@ -521,9 +538,10 @@ export default function RussianBrightFundedReviewPage() {
             data-russian-bright-comparison-prices={comparisonPriceCount}
           >
             <h2 id="alternatives">С чем сравнить BrightFunded</h2>
-            <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 5 материалов помогают разобрать эти различия до регистрации.</p>
+            <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 6 материалов помогают разобрать эти различия до регистрации.</p>
             <ul className="ru-review-related-links">
               <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
+              <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–20.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>
               <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — другая конфигурация цены, просадки и условий запроса выплаты. Число программ со свежими данными: {fundedNextProducts.length}; цен в USD: {fundedNextPricedTierCount}.</li>
               <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — способы получения денег, календарь запросов и комиссии банка или сети.</li>
               <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и имя владельца платежа; отсутствие страны в запрете не равно персональному одобрению.</li>
@@ -557,6 +575,7 @@ export default function RussianBrightFundedReviewPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

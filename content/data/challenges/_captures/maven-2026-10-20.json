@@ -1,0 +1,213 @@
+{
+  "firmSlug": "maven",
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T08:21:08+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/maven-2026-10-19.json",
+  "egress": "Box egress is a US IP. Prices were compared against region-independent first-party price data where the firm publishes it (named in method); codes seen only from the US IP are recorded as regional, never as universal deals.",
+  "method": "Headless Chrome render of /pricing, /faqs and plan pages",
+  "priceSource": "https://maventrading.com/pricing (rendered text)",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "standard-1-step",
+      "prices": {
+        "2000": 15,
+        "5000": 19,
+        "10000": 37,
+        "20000": 68,
+        "50000": 170,
+        "100000": 380
+      }
+    },
+    {
+      "productSlug": "standard-2-step",
+      "prices": {
+        "2000": 19,
+        "5000": 22,
+        "10000": 44,
+        "20000": 88,
+        "50000": 220,
+        "100000": 440
+      }
+    },
+    {
+      "productSlug": "standard-3-step",
+      "prices": {
+        "2000": 13,
+        "5000": 17,
+        "10000": 38,
+        "20000": 76,
+        "50000": 190,
+        "100000": 299
+      }
+    },
+    {
+      "productSlug": "instant",
+      "prices": {
+        "2000": 15,
+        "5000": 19,
+        "10000": 37,
+        "20000": 68,
+        "50000": 170,
+        "100000": 380
+      }
+    },
+    {
+      "productSlug": "mini",
+      "prices": {
+        "2000": 17,
+        "5000": 22,
+        "10000": 44,
+        "20000": 88,
+        "50000": 220,
+        "100000": 440
+      }
+    },
+    {
+      "productSlug": "buy-now-pay-later",
+      "prices": {
+        "2000": 5,
+        "5000": 5,
+        "10000": 5,
+        "20000": 5,
+        "50000": 5,
+        "100000": 5
+      }
+    },
+    {
+      "productSlug": "omo-2-step",
+      "prices": {
+        "2000": 19,
+        "5000": 32,
+        "10000": 62,
+        "20000": 122,
+        "50000": 238,
+        "100000": 472
+      }
+    },
+    {
+      "productSlug": "predictions-1-step",
+      "prices": {
+        "5000": 44,
+        "10000": 84,
+        "20000": 154,
+        "50000": 359,
+        "100000": 599
+      }
+    },
+    {
+      "productSlug": "predictions-elite-1-step",
+      "prices": {
+        "5000": 74,
+        "10000": 139,
+        "20000": 259,
+        "50000": 599,
+        "100000": 999
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Every stored price was found in the live first-party page text (price-presence check across the pages listed in pagesRead); values unchanged."
+  ],
+  "quoteRecheck": {
+    "storedEvidenceStrings": 18,
+    "foundVerbatimInLiveText": 13,
+    "notFoundVerbatim": 5,
+    "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
+  },
+  "changes": [
+    "mini accountSizes[].refundable null -> false (FAQ refund policy program list excludes Instant Mini; single-payout model)",
+    "mini maxTradingDays 1 confirmed (24-hour trading window from the first trade)"
+  ],
+  "notes": [
+    "Price-presence check only; missing rule quotes are formatting differences.",
+    "No change found, so product sourceCapturedAt and firms.json lastUpdated stay at 2026-10-19 (dates cited in published posts remain valid)."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://maventrading.com/terms-and-conditions",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:10.864Z"
+    },
+    {
+      "url": "https://maventrading.com/pricing",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:10.865Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/mini",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:10.933Z"
+    },
+    {
+      "url": "https://maventrading.com/faqs",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:10.998Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/3-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.523Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/2-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.609Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/instant",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.683Z"
+    },
+    {
+      "url": "https://maventrading.com/challenges/1-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.794Z"
+    },
+    {
+      "url": "https://maventrading.com/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.803Z"
+    },
+    {
+      "url": "https://maventrading.com/omo-2-step",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:16.858Z"
+    },
+    {
+      "url": "https://maventrading.com/prediction-markets",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:22.596Z"
+    },
+    {
+      "url": "https://maventrading.com/buy-now-pay-later",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-20T05:14:22.796Z"
+    }
+  ],
+  "miniRecheck": {
+    "checkedAtTimestamp": "2026-10-20T11:30+03:00",
+    "requestedBy": "EN Writer via Prop Firm Tracker",
+    "sources": [
+      {
+        "url": "https://maventrading.com/faqs",
+        "quotes": [
+          "You have 24 hours to trade on your Instant Mini Funding Account. The timer starts when you place your first trade.",
+          "You must meet the payout requirements and submit your withdrawal request within the 24-hour period.",
+          "Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. The refund is processed and sent separately from your rewards.",
+          "The refund policy applies to the following programs: 1 Step Simulated Funded Account2 Step Simulated Funded Account2 Step OMO Simulated Funded Account3 Step Simulated Funded AccountBuy Now, Pay Later Simulated Funded AccountInstant Funding"
+        ]
+      },
+      {
+        "url": "https://maventrading.com/challenges/mini",
+        "quotes": [
+          "Mini $2k account $17",
+          "Payout frequency Funded 24 hours"
+        ],
+        "note": "No refundable line on any Mini card; prices 17/22/44/88/220/440 unchanged"
+      }
+    ]
+  }
+}

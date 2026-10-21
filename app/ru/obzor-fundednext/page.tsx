@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import Image from 'next/image'
@@ -18,10 +19,13 @@ import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.js
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
-const DESCRIPTION = 'FundedNext проп-компания: обзор на русском — цены программ Stellar, просадка, условия выплат, копирование сделок, отзывы и проверка доступа из своей страны.'
+const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
+const DESCRIPTION = 'FundedNext (Funded Next) проп-компания: обзор и отзывы на русском — цены Stellar, просадка, выплаты. Резидентам РФ недоступна, альтернатива — BrightFunded.'
 // Preserve existing sharing copy until its separate update is approved.
 const SOCIAL_DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
 export const revalidate = 3600
@@ -114,7 +118,7 @@ function payoutLabel(product: Challenge) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Доступен ли FundedNext резидентам России?',
-    a: 'Мы не можем подтвердить доступность. Официальная статья по CFD не включает Россию в список ограничений, но корпоративная страница FundedNext говорит, что компания не обслуживает резидентов России. Futures-продукты прямо запрещают покупку из России. До письменного подтверждения поддержки и успешной проверки профиля считать доступ доказанным нельзя.',
+    a: `${FUNDEDNEXT_RU_ACCESS_NOTE} Резидентам России мы рекомендуем BrightFunded.`,
   },
   {
     q: 'Какая программа FundedNext самая дешёвая?',
@@ -227,12 +231,11 @@ export default function RussianFundedNextReviewPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell">
-          <div className="ru-breadcrumb"><Link href="/ru">Русская версия</Link> / <Link href="/ru/luchshie-prop-firmy">Рейтинг</Link> / FundedNext</div>
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestProductCapture ?? 'не подтверждена'}</div>
@@ -245,17 +248,17 @@ export default function RussianFundedNextReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-fundednext-article="long-form">
+      <RuReviewVerdictBox route={PATH} campaign="fundednext-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>моделей со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>опубликованных цен</span></div>
             <div className="ru-stat"><strong>{priceRange(pricedTiers.map(item => item.price))}</strong><span>диапазон входа</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-fundednext-article="long-form">
-      <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
             <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию, если читатель
@@ -305,7 +308,7 @@ export default function RussianFundedNextReviewPage() {
                 <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-summary"
                   rel="sponsored nofollow noopener"
-                  className="btn-primary btn-glow"
+                  className="btn-outline"
                 >
                   Открыть текущие планы <ArrowRight size={15} aria-hidden="true" />
                 </RuGoLink>
@@ -336,7 +339,7 @@ export default function RussianFundedNextReviewPage() {
                 <RuGoLink firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-free-trial"
                   rel="sponsored nofollow noopener"
-                  className="btn-primary"
+                  className="btn-outline"
                 >
                   Начать Free Trial FundedNext <ArrowRight size={15} aria-hidden="true" />
                 </RuGoLink>
@@ -346,9 +349,10 @@ export default function RussianFundedNextReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section ru-review-toc-section">
+      <section className="ru-section ru-review-toc-section ru-p1-rail">
         <div className="ru-shell">
-          <nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
+          <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
             <div className="toc-title">Содержание обзора</div>
             <ol>
               <li><a href="#verdict">Краткий вывод</a></li>
@@ -368,6 +372,7 @@ export default function RussianFundedNextReviewPage() {
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
+</RuArticleToc>
         </div>
       </section>
 
@@ -376,19 +381,19 @@ export default function RussianFundedNextReviewPage() {
           <h2 id="verdict">Краткий вывод</h2>
           <p><strong>FundedNext нельзя оценивать по одной цифре «до 95%».</strong> Начальная доля в свежих записях различается по модели: Stellar 2-Step — {pct(twoStep?.profitSplitPct)}, Stellar Instant — {pct(instant?.profitSplitPct)}. Сначала сопоставьте правила просадки и условия выплат, затем выбирайте размер счёта. Отсутствующее значение не означает нулевую долю или разрешение торговать без ограничений.</p>
           <p>Для фиксированного запаса риска сравните оценочные программы со статической просадкой. Stellar Lite может отличаться ценой и целями, но не считается автоматически более лёгкой программой. Instant не имеет оценочных этапов; взамен нужно учитывать движущуюся границу убытка и условия получения вознаграждения. Подробные значения приведены рядом с датами проверки.</p>
-          <p>Для русскоязычного трейдера за пределами России важны фактическая страна проживания, проверка документов и доступный способ оплаты. Для резидента России официальные страницы противоречат друг другу: наличие партнёрской ссылки в обзоре не подтверждает возможность покупки.</p>
+          <p>Для русскоязычного трейдера за пределами России важны фактическая страна проживания, проверка документов и доступный способ оплаты. Резидентам России FundedNext недоступна (подвал fundednext.com, по данным на 20.10.2026); наличие партнёрской ссылки в обзоре этого не меняет.</p>
         </div>
       </section>
 
       <section className="ru-section">
         <div className="ru-shell">
-          <div id="access" className="ru-notice ru-anchor-target" data-fundednext-russia-access="conflicting">
-            <strong><AlertTriangle size={16} aria-hidden="true" /> Для резидентов России данные противоречат друг другу.</strong>{' '}
-            Статья FundedNext по ограничениям CFD, проверенная {accessCapturedAt}, не называет
-            Россию, но корпоративная страница говорит, что FundedNext Ltd не обслуживает
-            резидентов России. Futures-направление прямо запрещает покупку из России,
-            а банковский перевод и выплата на карту для России недоступны. Мы не считаем доступ
-            подтверждённым, пока поддержка и страница оплаты не подтвердят конкретный продукт и профиль.
+          <div id="access" className="ru-notice ru-anchor-target" data-fundednext-russia-access="restricted">
+            <strong><AlertTriangle size={16} aria-hidden="true" /> Для резидентов России FundedNext недоступна.</strong>{' '}
+            Подвал fundednext.com и корпоративная страница говорят, что компании FundedNext не обслуживают резидентов России
+            (по данным на 20.10.2026); статья по ограничениям CFD, проверенная {accessCapturedAt}, Россию не называет, но действующим мы считаем
+            более строгий источник. Futures-направление прямо запрещает покупку из России,
+            а банковский перевод и выплата на карту для России недоступны. Резидент РФ рискует
+            получить отказ в обслуживании или в выплате; резидентам России мы рекомендуем BrightFunded.
           </div>
           <p className="ru-source-line">Наблюдение официальных источников по стране: {accessCapturedAt}. Эта выборочная проверка не обновляет общий снимок рынка от {marketEvidence.capturedAt} и не подтверждает индивидуальный доступ.</p>
           <div className="ru-actions" aria-label="Источники ограничений FundedNext">
@@ -450,10 +455,11 @@ export default function RussianFundedNextReviewPage() {
             Выплаты — банковским переводом, через Rise или в криптовалюте (USDT ERC20/TRC20, USDC).
           </p>
           <p>
-            Для трейдеров из России важна одна деталь: на 14.10.2026 Россия не названа в списке ограничений CFD-направления FundedNext,
-            а FundedNext Futures Россию ограничивает. Выбирайте CFD-программу и не используйте VPN — фирма называет ложные данные о
-            стране основанием для закрытия аккаунта. Сравнение с другими фирмами — <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link>.
+            Для трейдеров из России главное — FundedNext резидентам РФ недоступна, и FundedNext Futures Россию тоже ограничивает. Не используйте VPN — фирма
+            называет ложные данные о стране основанием для закрытия аккаунта. Резидентам России мы рекомендуем BrightFunded — см.{' '}
+            <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link>.
           </p>
+          <RuFundedNextAccessCaveat />
         </div>
       </section>
 
@@ -603,7 +609,7 @@ export default function RussianFundedNextReviewPage() {
             </section>
           </div>
           <div className="ru-notice">
-            <strong>Проверка перед выплатой.</strong> Для резидента России остаётся конфликт официальных страниц. Для русскоязычного трейдера в Казахстане, ОАЭ, Европе, Израиле или Северной Америке важны фактическая страна проживания, адрес и платёжный профиль — гражданство и язык общения их не заменяют.
+            <strong>Проверка перед выплатой.</strong> Резидентам России FundedNext недоступна (подвал сайта, по данным на 20.10.2026). Для русскоязычного трейдера в Казахстане, ОАЭ, Европе, Израиле или Северной Америке важны фактическая страна проживания, адрес и платёжный профиль — гражданство и язык общения их не заменяют.
           </div>
         </div>
       </section>
@@ -623,7 +629,7 @@ export default function RussianFundedNextReviewPage() {
             <li>Начальная доля по свежим записям: {splitRange(freshProducts)}. Более высокий рекламный процент требует отдельных условий.</li>
             <li>Новостная прибыль после оценки может засчитываться не полностью; убыток при этом остаётся.</li>
             <li>Instant не отменяет общую границу убытка и не предусматривает возврат взноса за прохождение.</li>
-            <li>Доступ для России не подтверждён из-за противоречия официальных страниц; партнёрская ссылка не является обходом KYC.</li>
+            <li>Для резидентов России FundedNext недоступна (подвал сайта, по данным на 20.10.2026); партнёрская ссылка не является обходом KYC.</li>
           </ul>
         </div>
       </section>
@@ -737,15 +743,15 @@ export default function RussianFundedNextReviewPage() {
             <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если
             подходящий читатель зарегистрируется по ссылке ниже. Цена для читателя от
             этого не увеличивается, а редакционные числа и вердикт не меняются.
-            Резидентам России нельзя использовать ссылку до разрешения противоречия
-            между официальными страницами и подтверждения конкретного профиля.
+            Резидентам России ссылка не подходит: FundedNext исключает их в подвале сайта
+            (по данным на 20.10.2026).
           </div>
           {firm?.affiliateUrl ? (
             <div className="ru-actions">
               <RuGoLink firm="fundednext"
                 href="/go/fundednext?from=ru-fundednext-review-verdict"
                 rel="sponsored nofollow noopener"
-                className="btn-primary btn-glow"
+                className="btn-outline"
               >
                 Проверить страну и условия на FundedNext <ArrowRight size={15} aria-hidden="true" />
               </RuGoLink>
@@ -802,6 +808,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianFaq items={pageFaqs} />
         </div>
       </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

@@ -6,8 +6,12 @@ import { AUTHORS, getAuthorBySlug } from '@/lib/authors'
 import { getAllPosts } from '@/lib/mdx'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import BlogCard from '@/components/BlogCard'
+import NamedExpertBlock from '@/components/NamedExpertBlock'
 
 interface Props { params: Promise<{ slug: string }> }
+
+// Every author is prerendered; an unknown slug is a 404.
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return AUTHORS.map(a => ({ slug: a.slug }))
@@ -128,6 +132,8 @@ export default async function AuthorPage({ params }: Props) {
           )}
         </div>
       </section>
+      {/* Gated: renders nothing until content/data/named-experts.json has a name, bio and consent date for this author. */}
+      <NamedExpertBlock authorSlug={author.slug} />
 
       {/* ═══════════════════════════════ BIO ═══════════════════════════════ */}
       <section className="home-section" style={{ paddingTop: '2.5rem' }}>

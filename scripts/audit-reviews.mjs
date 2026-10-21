@@ -70,6 +70,7 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH } from '../lib/localizedRoutes.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
   getRussianDiasporaCountryRows,
@@ -128,6 +129,11 @@ const CHALLENGE_CHANGES_SOCIAL_ALT_FILE = path.join(
   'app/prop-firm-challenge-changes/opengraph-image.alt.txt',
 )
 const CHALLENGE_WATCH_FILE = path.join(ROOT, 'content/data/challenge-watch.json')
+// OFP Funding's official lineup shrank on 2026-10-14 (recapture of the ofpfunding.com
+// __NUXT_DATA__ plan payload and /trading-rules tabs): only Instant Lite, Instant Classic
+// and Instant Plus remain, each in two drawdown variants = 6 products. One Phase, Two
+// Phase, Instant Pro and Instant Prime are no longer sold. Rechecked 2026-10-19.
+const OFP_EXPECTED_PRODUCTS = 6
 const INDIA_EVIDENCE_FILE = path.join(ROOT, 'content/data/india-evidence.json')
 const INDIA_RBI_CAPTURE_FILE = path.join(ROOT, 'content/data/india-rbi-alert-capture.json')
 const INDIA_EVIDENCE_CAPTURES_DIR = path.join(
@@ -329,6 +335,7 @@ const REVIEW_TO_FIRM = {
   'my-funded-futures': 'my-funded-futures',
   'ofp-funding-review': 'ofp-funding',
   'take-profit-trader-review': 'take-profit-trader',
+  'the5ers-review': 'the5ers',
   'topstep-review': 'topstep',
   'tradeday-review': 'tradeday',
   'tradeify-review': 'tradeify',
@@ -2797,6 +2804,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/fundednext-vs-bright-funded', 'russian_comparison'],
     ['/ru/fundednext-vs-fundingpips/', 'russian_comparison'],
     ['/ru/prop-firmy-s-ctrader', 'russian_comparison'],
+    ['/ru/fundingpips-vs-bright-funded', 'russian_comparison'],
     ['/ru/promokody-prop-firm', 'russian_deals'],
     ['/ru/obzor-ftmo', 'russian_review'],
     ['/ru/obzor-fundednext/', 'russian_review'],
@@ -2818,6 +2826,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
     ['/ru/otzyvy-prop-firm', 'russian_review'],
+    [RU_CLOSED_FIRMS_PATH, 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -3598,8 +3607,8 @@ function checkIndiaChallengeChangesSurface() {
       'SOCIAL_CARD_ENTRY_COUNT = 19',
       'SOCIAL_CARD_FIRM_COUNT = 7',
       'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 8',
-      'SOCIAL_CARD_WATCH_COUNT = 11',
+      'SOCIAL_CARD_VERIFIED_COUNT = 9',
+      'SOCIAL_CARD_WATCH_COUNT = 10',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -4763,7 +4772,8 @@ function checkOvertradingGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -4852,7 +4862,7 @@ function checkOvertradingGuide() {
         `€${ftmoTier.priceEur}`,
         `${ftmo.dailyLossPct}% daily loss`,
         `${ftmo.maxLossPct}% balance-based end-of-day trailing maximum loss`,
-        `${ftmo.consistencyRulePct}% Best Day rule`,
+        [`${ftmo.consistencyRulePct}% Best Day rule`, `${ftmo.consistencyRulePct}% consistency rule`, `${ftmo.consistencyRulePct}% Consistency rule`],
         ftmo.sourceCapturedAt,
       ],
     )
@@ -5598,7 +5608,8 @@ function checkConsistencyGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -5626,7 +5637,7 @@ function checkConsistencyGuide() {
   if (data.title !== 'What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)') {
     rows.push('title must preserve consistency-rule, formula, examples, and current-year intent')
   }
-  if (data.seoTitle !== 'What Is a Prop Firm Consistency Rule? Examples (2026)') {
+  if (data.seoTitle !== 'Consistency Rule Calculator & Examples: Prop Firms (2026)') {
     rows.push('seoTitle must preserve the primary search intent and current year')
   }
   if (typeof data.seoTitle !== 'string' || data.seoTitle.length > 60) {
@@ -5650,7 +5661,7 @@ function checkConsistencyGuide() {
   expectFragments('consistency definition', stripTags(content), [
     'A prop-firm consistency rule measures whether too much of an account\'s result came from its best trading day',
     'The percentage alone is incomplete',
-    'Positive Days\' Profit',
+    ['Positive Days\' Profit', 'more than 50% of your total profit'],
     'fixed Profit Target',
     'There is no safe firm-wide shortcut',
   ])
@@ -5696,9 +5707,9 @@ function checkConsistencyGuide() {
       attributedText('tr', 'data-consistency-example', 'ftmo:ftmo-challenge-1-step'),
       [
         'FTMO 1-Step',
-        `${ftmoOneStep.consistencyRulePct}% Best Day rule`,
+        [`${ftmoOneStep.consistencyRulePct}% Best Day rule`, `${ftmoOneStep.consistencyRulePct}% consistency rule`, `${ftmoOneStep.consistencyRulePct}% Consistency rule`],
         'Challenge and reward',
-        'Positive Days\' Profit',
+        ['Positive Days\' Profit', 'total profit'],
         'Continue earning profit until no single day exceeds 50%',
         ftmoOneStep.sourceCapturedAt,
       ],
@@ -6917,9 +6928,9 @@ function checkFuturesLandingCluster() {
 
   const mffFile = read(path.join(POSTS, 'my-funded-futures.md'))
   const { data: mff, content: mffContent } = matter(mffFile)
-  const expectedMffSeoTitle = 'My Funded Futures Review 2026: Current Plans & Payouts'
+  const expectedMffSeoTitle = 'My Funded Futures Review 2026: MFF Funded Account Rules'
   const expectedMffDescription =
-    'My Funded Futures review of Rapid, Rapid EOD, Builder and Pro one-time plans, legacy Flex terms, drawdown rules, payout buffers and Russia eligibility.'
+    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, funded drawdown, payout buffers and minimums.'
   if (
     mff.seoTitle !== expectedMffSeoTitle
     || mff.seoDescription !== expectedMffDescription
@@ -7590,7 +7601,9 @@ function checkDiscountHub() {
     }
   }
 
-  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext')
+  // Only the earned Free Trial coupon must mirror free-trials.json; a separate
+  // public FundedNext checkout code (e.g. STRTN) is audited by the generic rules above.
+  const fundedNextDeal = deals.find(deal => deal.firmSlug === 'fundednext' && deal.mechanism === 'earned-coupon')
   const fundedNextTrial = freeTrials.find(trial => trial.firmSlug === 'fundednext')
   if (fundedNextDeal) {
     const coupon = fundedNextTrial?.completionCoupon
@@ -8138,7 +8151,7 @@ function checkFtmoFreeTrialGuide() {
   if (data.title !== 'FTMO Free Trial 2026: 1-Step vs 2-Step Rules') {
     rows.push('title must preserve FTMO Free Trial, year, and both product intents')
   }
-  if (data.seoTitle !== 'FTMO Free Trial 2026: Rules & 14-Day Test Plan') {
+  if (data.seoTitle !== 'FTMO Free Trial 2026: Is It Free? Rules, Limits & Test') {
     rows.push('seoTitle no longer states rules and the 14-day test intent')
   }
   if (
@@ -8947,7 +8960,7 @@ function checkPassingServicesGuide() {
     'utf-8',
   )
   if (
-    ofp.length !== 9 ||
+    ofp.length !== OFP_EXPECTED_PRODUCTS ||
     ofpProhibited.length !== ofp.length ||
     ofpDates.size !== 1 ||
     !ofpCapture.includes('Violation Consequence: Immediate account closure')
@@ -9002,7 +9015,7 @@ function checkPassingServicesGuide() {
     )
     if (
       tier.refundable !== false ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant alternative lost its refund or payout-gate support')
     }
@@ -9204,7 +9217,7 @@ function checkCopyTradingGuide() {
     ],
   )
   if (
-    fxify.length !== 8 ||
+    fxify.length !== 10 ||
     fxifyDates.size < 1 ||
     !fxifyRestricted.every(challenge =>
       challenge.notes.some(note =>
@@ -9232,7 +9245,7 @@ function checkCopyTradingGuide() {
       [...ofpDates][0],
     ],
   )
-  if (ofp.length !== 9 || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
+  if (ofp.length !== OFP_EXPECTED_PRODUCTS || ofpProhibited.length !== ofp.length || ofpDates.size !== 1) {
     rows.push('OFP Funding product count, prohibition, or capture date drifted')
   }
 
@@ -9410,7 +9423,9 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== true ||
       !fundedNextTwoStep.notes.some(note =>
-        note.includes('refundable with the first approved Performance Reward'),
+        // Official 2026-10-19 wording is "Challenge fee refunded with your 1st reward";
+        // older captures said "refundable with the first approved Performance Reward".
+        /refundable with the first approved Performance Reward|refunded with your 1st reward/i.test(note),
       )
     ) {
       rows.push('FundedNext 2-Step first-reward refund lost its capture support')
@@ -9438,7 +9453,7 @@ function checkWhatIsPropFirmGuide() {
     if (
       tier.refundable !== false ||
       fundedNextInstant.dailyLossPct !== null ||
-      !fundedNextInstant.notes.some(note => note.includes('requires 5% account growth'))
+      !fundedNextInstant.notes.some(note => /requires 5% account growth/i.test(note))
     ) {
       rows.push('FundedNext Instant refund, daily-loss, or payout-gate support drifted')
     }
@@ -9664,8 +9679,8 @@ function checkScalingPlanGuide() {
     {
       slug: 'fxify',
       name: 'FXIFY',
-      splitFragments: ['80%', '5 phase products', 'unstated on 3 products'],
-      countFragments: [[80, 5]],
+      splitFragments: ['80%', '7 products (5 phase, 2 crypto)', 'unstated on 3 products'],
+      countFragments: [[80, 7]],
       nullCount: 3,
     },
   ]
@@ -9858,6 +9873,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
+      reviewedAt: '2026-10-20',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9869,7 +9885,7 @@ function checkFundedNextComparisonOverlay() {
         '5 days',
         '7 days',
         '12% static',
-        '100% monthly',
+        '100% on demand',
         '95% on Zero',
         'fourth reward',
       ],
@@ -9879,6 +9895,9 @@ function checkFundedNextComparisonOverlay() {
         'zero minimum trading days',
         'FundingPips imposes 5',
         'FundingPips treats news-window profit normally',
+        '85% on 1 Step Flex',
+        '3 products are non-refundable',
+        '100% monthly',
       ],
     },
     {
@@ -9921,8 +9940,8 @@ function checkFundedNextComparisonOverlay() {
       continue
     }
     if (
-      !block.includes("reviewedAt: '2026-08-14'") ||
-      !block.includes("challengeReviewedAt: '2026-08-14'")
+      !block.includes(`reviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`) ||
+      !block.includes(`challengeReviewedAt: '${spec.reviewedAt ?? '2026-08-14'}'`)
     ) {
       rows.push(`${spec.slug} review dates are not current`)
     }
@@ -10397,7 +10416,7 @@ function checkTradingToolReviewCluster() {
   if (!fxReplay) {
     rows.push('FX Replay review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'FX Replay Review: Pricing, Features & Limits'
+    const expectedTitle = 'FX Replay Review: Plans, Prop-Firm Simulator & Refunds'
     if (
       fxReplay.title !== expectedTitle
       || fxReplay.seoTitle !== expectedTitle
@@ -10610,7 +10629,7 @@ function checkTradingToolReviewCluster() {
   if (!zuluTrade) {
     rows.push('ZuluTrade review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'ZuluTrade Review: Fees, Copying & Key Risks'
+    const expectedTitle = 'ZuluTrade Review: Demo Test, Fees & Key Risks'
     if (
       zuluTrade.title !== expectedTitle
       || zuluTrade.seoTitle !== expectedTitle
@@ -10722,7 +10741,7 @@ function checkTradingToolReviewCluster() {
   if (!copyFx) {
     rows.push('CopyFX review is missing from the tool-review cluster')
   } else {
-    const expectedTitle = 'CopyFX Review: New Name, Fees & Copy Risks'
+    const expectedTitle = 'CopyFX Review: What Happened, Fees & Copy Risks'
     if (
       copyFx.title !== expectedTitle
       || copyFx.seoTitle !== expectedTitle
@@ -11138,6 +11157,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
     ['/ru/fundednext-vs-bright-funded', path.join(ROOT, 'app/ru/fundednext-vs-bright-funded/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
+    ['/ru/fundingpips-vs-bright-funded', path.join(ROOT, 'app/ru/fundingpips-vs-bright-funded/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
     ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-kyc', path.join(ROOT, 'app/ru/prop-firmy-bez-kyc/page.tsx')],
@@ -11230,7 +11250,42 @@ function checkRussianAcquisitionPilot() {
   const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
     .map(url => new URL(url).pathname)
     .sort()
-  const expectedIndexNowPaths = [...russianRouteFiles.keys()].sort()
+  const closedFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8'))
+  const closedFirmsRuJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.ru.json'), 'utf8'))
+  const closedFirmsPublished = closedFirmsJson.published === true
+  // The RU closed-firms page is flag-gated (same flag as /prop-firms/closed), not an acquisition-pilot route.
+  const expectedIndexNowPaths = [...russianRouteFiles.keys(), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
+  {
+    const ruClosedFile = path.join(ROOT, `app${RU_CLOSED_FIRMS_PATH}/page.tsx`)
+    const ruClosedSource = fs.existsSync(ruClosedFile) ? fs.readFileSync(ruClosedFile, 'utf8') : ''
+    if (!ruClosedSource) rows.push(`${RU_CLOSED_FIRMS_PATH}: page folder must match RU_CLOSED_FIRMS_PATH in lib/localizedRoutes.ts`)
+    for (const token of [
+      'CLOSED_FIRMS_PUBLISHED ? undefined : { index: false',
+      'closedFirmsLanguageAlternates()',
+      "getClosedFirmViews('ru'",
+      '<ClosedFirmsList locale="ru"',
+      "inLanguage: 'ru'",
+    ]) {
+      if (ruClosedSource && !ruClosedSource.includes(token)) rows.push(`${RU_CLOSED_FIRMS_PATH}: missing ${token}`)
+    }
+    if (/\/go\/|RuGoLink/.test(ruClosedSource)) rows.push(`${RU_CLOSED_FIRMS_PATH}: closed firms must not carry sign-up CTAs`)
+    const title = ruClosedSource.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+    const description = ruClosedSource.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+    if (!title || title.length > 60) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO title is missing or over 60 characters`)
+    if (description.length < 120 || description.length > 160) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO description is ${description.length} characters, expected 120–160`)
+    const enSlugs = closedFirmsJson.firms.map(firm => firm.slug).sort()
+    const ruSlugs = Object.keys(closedFirmsRuJson.firms).sort()
+    if (JSON.stringify(enSlugs) !== JSON.stringify(ruSlugs)) {
+      rows.push(`closed-firms.ru.json slugs [${ruSlugs}] must match closed-firms.json [${enSlugs}] (section ids/anchors are shared)`)
+    }
+    if (CLOSED_FIRMS_ROUTE_PAIR.ru !== RU_CLOSED_FIRMS_PATH) rows.push('closed-firms route pair must use RU_CLOSED_FIRMS_PATH')
+    // Inlinks and the footer link must be gated by the same flag.
+    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/Footer.tsx']) {
+      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+      if (!source.includes('ruClosedFirmsHref()')) rows.push(`${file}: RU closed-firms link must go through ruClosedFirmsHref()`)
+      if (source.includes(`'${RU_CLOSED_FIRMS_PATH}'`)) rows.push(`${file}: hard-coded ${RU_CLOSED_FIRMS_PATH} bypasses the publish flag`)
+    }
+  }
   if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
     rows.push('Russian IndexNow inventory disagrees with the route source inventory')
   }
@@ -11666,10 +11721,10 @@ function checkRussianAcquisitionPilot() {
         rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
       }
       if (
-        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        localSignals.get('PropLive')?.claims?.traders !== 14_993
         || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
       ) {
-        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+        rows.push('PropLive 14,993/10,700 first-party conflict is not preserved')
       }
       if (
         localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
@@ -11693,7 +11748,7 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
         || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
-        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 50
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
         || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
@@ -11763,8 +11818,8 @@ function checkRussianAcquisitionPilot() {
         rows.push('FTMO Russian Federation restriction evidence is incomplete')
       }
       if (
-        firmAccess.get('fundednext')?.status !== 'conflicting'
-        || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        firmAccess.get('fundednext')?.status !== 'restricted'
+        || firmAccess.get('fundednext')?.sourceUrls?.length !== 6
         || !validScopedCapture(firmAccess.get('fundednext')?.sourceCapturedAt)
         || !hasScopedObservations(firmAccess.get('fundednext'))
         || !firmAccess.get('fundednext')?.notes?.some(note => note.includes('card-transfer restrictions'))
@@ -11878,7 +11933,7 @@ function checkRussianAcquisitionPilot() {
         || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
         || teamTradersEvidence.evaluation?.dailyLossPct !== 2
         || teamTradersEvidence.evaluation?.maximumLossPct !== 4
-        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 50
         || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
         || teamTradersEvidence.realAccount?.profitSharePct !== 95
         || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
@@ -11888,7 +11943,8 @@ function checkRussianAcquisitionPilot() {
       if (
         teamTradersEvidence.affiliateProgram?.status !== 'not-found'
         || teamTradersEvidence.searchIntent?.queries?.length !== 3
-        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 5
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 50 && item.legacyValue === 70 && item.recordedAt === '2026-10-20')
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
       ) {
@@ -12201,7 +12257,7 @@ function checkRussianAcquisitionPilot() {
     if (!reachableRussianRoutes.has(route)) rows.push(route + ': not reachable through Russian page links')
   }
   for (const token of [
-    "const TITLE = 'Проп-фирмы для русскоязычных трейдеров: цены и правила'",
+    "const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'",
     'data-russian-home-layout="focused"',
     'data-russian-home-diaspora-entry="trust"',
     'href="/ru/dlya-russkoyazychnykh-treyderov"',
@@ -12774,7 +12830,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(russianRouteFiles.get('/ru/fundednext-vs-bright-funded'), 'utf8')
     : ''
   for (const token of [
-    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026'",
+    "const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'",
     "const SOCIAL_TITLE = 'FundedNext или Bright Funded: сравнение 2026'",
     'FundedNext или BrightFunded: что выбрать в 2026 году',
     'data-russian-primary-comparison="fundednext-bright-funded"',
@@ -13058,7 +13114,7 @@ function checkRussianAcquisitionPilot() {
     'PROP_LIVE_ABOUT',
     'PROP_LIVE_REQUISITES',
     'PROP_LIVE_PARTNERS',
-    'PROP_LIVE_CONTRACT',
+    'data-russian-proplive-contract="unavailable"',
     'ru-proplive-global-',
     'rel="sponsored nofollow noopener"',
   ]) {
@@ -13082,7 +13138,7 @@ function checkRussianAcquisitionPilot() {
     'ERA_PAYOUT',
     'ERA_PAYOUT_SYSTEM',
     'ERA_PROFITABLE_DAYS',
-    'ERA_SPLIT',
+    'data-russian-eratrade-conflicts="three"',
     'ERA_TWO_STAGE',
     'ERA_ONE_STAGE',
     'ru-eratrade-global-',
@@ -13122,7 +13178,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-teamtraders-pricing="three-rub-tiers"',
     'data-russian-teamtraders-process="five-stages"',
     'data-russian-teamtraders-rules="manual-intraday"',
-    'data-russian-teamtraders-payouts="demo-70-real-95"',
+    'data-russian-teamtraders-payouts="demo-50-real-95"',
     'data-russian-teamtraders-source-conflict="current-vs-legacy"',
     'data-russian-teamtraders-legal="prop-offer-unavailable"',
     'data-russian-affiliate-disclosure="teamtraders-global-options"',
@@ -13199,7 +13255,7 @@ function checkRussianAcquisitionPilot() {
     'firm.trustpilotCount.toLocaleString(\'ru-RU\')',
     'Что показывают отзывы о FundedNext на Trustpilot?',
     'href="/ru/otzyvy-prop-firm#review-checklist"',
-    'data-fundednext-russia-access="conflicting"',
+    'data-fundednext-russia-access="restricted"',
     'data-fundednext-russian-truecost="true"',
     'Содержание обзора',
     'id="verdict"',
