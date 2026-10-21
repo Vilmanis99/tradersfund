@@ -1,0 +1,39 @@
+{
+  "firmSlug": "fundednext",
+  "capturedAt": "2026-10-20",
+  "scope": "Recheck of three FundedNext watch entries (EA size cutoff, Instant EA scope conflict, Stellar 1-Step forex leverage). Pages fetched 2026-10-20 ~11:10 Europe/Riga with headless Chrome (US-IP box). No product price or capture date is changed.",
+  "ea": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "Traders on account sizes of $50,000 and above must trade manually and may not use Expert Advisors, trading bots, or any automated tools—including tools that only modify trade parameters such as SL, TP, or lot size. FundedNext does not allow the use of EAs or automated trading on the cTrader and Match-Trader platforms regardless of account size.",
+    "manualOnlyFromAccountSizeUsd": 50000
+  },
+  "instantEaScope": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant",
+    "sourceCapturedAt": "2026-10-20",
+    "sourcePublishedAt": "2026-07-01",
+    "quote": "Yes, traders are allowed to use Expert Advisors (EAs) and Trading Bots in the Stellar Instant Account. ... Max allocation per strategy: A single EA or bot strategy is limited to a maximum allocation of $300,000.",
+    "notes": "Still no account-size cutoff and no explicit exemption from the general $50,000 manual-only rule."
+  },
+  "leverage": {
+    "sourceUrl": "https://help.fundednext.com/en/articles/8019669-what-is-the-leverage-of-the-trading-account",
+    "sourceCapturedAt": "2026-10-20",
+    "sourcePublishedAt": "2026-09-08",
+    "sourceFormat": "Two embedded images (copies: /workspace/tradersfundhub/evidence/fundednext-leverage-2026-10-20-1.png and -2.png)",
+    "quote": "Challenge Account: Stellar 1-Step Account | Forex 1:30 | Indices 1:10 | Commodities 1:15 | Crypto 1:1 | Stock 1:2; Stellar 2-Step & Lite Account | 1:100 | 1:25 | 1:25 | 1:1 | 1:2. FundedNext Account: Stellar 1-Step Account | 1:30 | 1:10 | 1:10 | 1:1 | 1:2; Stellar 2-Step & Lite Account | 1:100 | 1:15 | 1:15 | 1:1 | 1:2.",
+    "forexLeverage": {
+      "stellar-1-step": {
+        "challenge": 30,
+        "funded": 30
+      },
+      "stellar-2-step": {
+        "challenge": 100,
+        "funded": 100
+      },
+      "stellar-lite": {
+        "challenge": 100,
+        "funded": 100
+      }
+    }
+  }
+}

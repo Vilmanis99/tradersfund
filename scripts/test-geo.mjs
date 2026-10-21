@@ -79,6 +79,7 @@ try {
   const { authorSchema } = require(path.join(root, 'lib/schema.ts'))
   const { challengeSourceDestination, challengeSourceLink } = require(path.join(root, 'lib/challengeSources.ts'))
   const { outboundSlug } = require(path.join(root, 'lib/outboundDestinations.ts'))
+  const { getOverlay } = require(path.join(root, 'lib/comparisons.ts'))
   const { goClickEventName } = require(path.join(root, 'lib/analyticsTaxonomy.ts'))
   const { decoratePostOutboundLinks } = require(path.join(root, 'lib/postOutboundLinks.ts'))
   const { capturedEntryFees } = require(path.join(root, 'components/ReviewProductSummary.tsx'))
@@ -86,6 +87,14 @@ try {
   const Compare = require(path.join(root, 'app/compare/[matchup]/page.tsx')).default
   const Page = require(path.join(root, 'app/[slug]/page.tsx')).default
   const pilot = JSON.parse(fs.readFileSync(path.join(root, 'content/data/geo-pilot.json'), 'utf8'))
+  // Freeze the clock relative to the pilot pages' own captures. A literal date falls
+  // behind every recapture, and future-dated captures fail closed by design.
+  const pilotCaptureDates = [...pilot.pages, ...pilot.additionalPages].filter(page => page.productCards > 0).flatMap(page => {
+    const firm = getAllFirms().find(item => item.reviewUrl === page.path)
+    return getChallengesByFirm(outboundSlug(firm.name)).map(product => product.sourceCapturedAt)
+  }).sort()
+  const latestPilotCapture = new RealDate(`${pilotCaptureDates.at(-1)}T12:00:00Z`)
+  now = latestPilotCapture.toISOString()
   assert.equal(pilot.promptSet.length, 20)
   assert.equal(new Set(pilot.promptSet.map(prompt => prompt.id)).size, 20)
   assert(pilot.promptSet.every(prompt => pilot.pages.some(page => page.path === prompt.path)))
@@ -136,11 +145,20 @@ try {
     if (firmSlug === 'fundingpips') assert(productBlock.includes('Other tier fees unverified'), 'unresolved 2.5K fees are not treated as the cheapest tier')
     if (firmSlug === 'e8-markets') {
       assert(productBlock.includes('Open watch:') && productBlock.includes('e8-pro-current-page-vs-help-prices'))
-      assert.deepEqual(review.itemReviewed.offers.map(offer => offer.name), ['E8 Signature Forex — $25,000 account'], 'unsettled E8 One and Pro do not emit checkout price offers')
+      // Data-driven: the E8 One default conflict was resolved on 2026-10-19, so only
+      // products still under an open source-conflict/price watch must be withheld.
+      const watch = JSON.parse(fs.readFileSync(path.join(root, 'content/data/challenge-watch.json'), 'utf8'))
+      const unsettled = new Set(watch.filter(entry => entry.firmSlug === 'e8-markets' && entry.status === 'watch' && ['source-conflict', 'price-watch'].includes(entry.kind)).flatMap(entry => entry.productSlugs))
+      assert(unsettled.has('e8-pro'), 'fixture still exercises an open E8 watch')
+      const offerNames = review.itemReviewed.offers.map(offer => offer.name)
+      for (const product of getChallengesByFirm(firmSlug).filter(item => unsettled.has(item.productSlug))) {
+        assert(!offerNames.some(name => name.startsWith(`${product.productName} — `)), `unsettled ${product.productName} does not emit a checkout price offer`)
+      }
+      assert(offerNames.includes('E8 Signature Forex — $25,000 account'), 'settled products still emit offers')
       assert(productBlock.includes('rating is unavailable'), 'suppressed Trustpilot aggregate is rendered as a finding')
     }
     if (firmSlug === 'fxify') {
-      assert(productBlock.includes('<details') && productBlock.includes('See 6 more captured products'), 'long product menus render in a native disclosure')
+      assert(productBlock.includes('<details') && productBlock.includes(`See ${getChallengesByFirm(firmSlug).length - 2} more captured products`), 'long product menus render in a native disclosure')
       const instantLiteCard = productBlock.match(/data-review-product="instant-funding-lite">([\s\S]*?)<\/dl>/)?.[1]
       assert(instantLiteCard.includes('Minimum trading days</dt><dd>5'), 'instant account minimum days are not replaced by no evaluation')
       assert(instantLiteCard.includes('Base funded profit split</dt><dd>Unverified'), 'unverified split remains unknown')
@@ -203,11 +221,18 @@ try {
   assert(costHtml.includes('By Traders Fund Hub') && costHtml.includes('aria-label="On this page"'))
   assert.deepEqual(costLd.find(node => node['@type'] === 'FAQPage').mainEntity.map(question => ({ q: question.name, a: question.acceptedAnswer.text })), extractArticleFaq(getPageBySlug('true-cost-of-prop-firm-challenges').content, 'Common cost questions'))
   const compareHtml = renderToStaticMarkup(await Compare({ params: Promise.resolve({ matchup: 'ftmo-vs-fundednext' }) }))
-  assert(compareHtml.includes('5-business-day'))
-  assert.equal(schemas(compareHtml).find(node => node['@type'] === 'FAQPage').mainEntity.length, 7)
+  const compareFaq = schemas(compareHtml).find(node => node['@type'] === 'FAQPage')
+  if (getOverlay('ftmo-vs-fundednext')) {
+    assert(compareHtml.includes('5-business-day'))
+    assert.equal(compareFaq.mainEntity.length, 7)
+  } else {
+    // The 2026-10-01 editorial overlay predates the 2026-10-19 recaptures, so its
+    // hand-written FAQ must not be published as current structured evidence.
+    assert.equal(compareFaq, undefined, 'stale overlay FAQ is not promoted as structured evidence')
+  }
   for (const href of ['/blog/ftmo-review', '/blog/fundednext-review', '/true-cost-of-prop-firm-challenges', '/methodology']) assert(compareHtml.includes(`href="${href}"`))
 
-  now = '2026-11-07T12:00:00Z'
+  now = new RealDate(latestPilotCapture.getTime() + 31 * 86_400_000).toISOString()
   for (const slug of reviewPages.map(page => page.path.split('/').at(-1))) {
     const html = renderToStaticMarkup(await Blog({ params: Promise.resolve({ slug }) }))
     assert(html.includes('data-review-source-status="recapture-required"'))

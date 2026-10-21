@@ -1,0 +1,300 @@
+{
+  "firmSlug": "the5ers",
+  "captureType": "recapture",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T11:27:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/the5ers-2026-10-19.json",
+  "egress": "Box egress is a US IP. the5ers.com shows one USD price ladder (no regional switcher). Checkout not attempted.",
+  "method": "curl of server-rendered Next.js pages; tab tables read from the embedded page JSON; WebFetch of /summer-plan/ and Trustpilot. Raw HTML and text in /workspace/tradersfundhub/evidence/the5ers-2026-10-20/ (box), notes in /workspace/tradersfundhub/evidence/the5ers-2026-10-20.md.",
+  "pricesUnchangedSince2026_10_19": {
+    "high-stakes-new": {
+      "2500": 19,
+      "5000": 35,
+      "10000": 69,
+      "25000": 176,
+      "50000": 249,
+      "100000": 405
+    },
+    "high-stakes-classic": {
+      "2500": 22,
+      "5000": 39,
+      "10000": 78,
+      "25000": 195,
+      "50000": 279,
+      "100000": 455
+    },
+    "pro-growth": {
+      "5000": 52,
+      "10000": 98,
+      "20000": 189,
+      "50000": 329
+    },
+    "hyper-growth": {
+      "5000": 260,
+      "10000": 450,
+      "20000": 850
+    },
+    "bootcamp": {
+      "20000": "22 + 50",
+      "100000": "95 + 205",
+      "250000": "225 + 350"
+    }
+  },
+  "fields": [
+    {
+      "field": "firms.reviewUrl",
+      "value": "/blog/the5ers-review",
+      "source": "EN review content/posts/the5ers-review.md on content/en-the5ers-review-draft (0aede0d)"
+    },
+    {
+      "field": "firms.trustpilot",
+      "value": {
+        "score": 4.7,
+        "count": 40175
+      },
+      "sourceUrl": "https://www.trustpilot.com/review/the5ers.com",
+      "quote": "40,175 ... 4.7 ... Excellent ... 21,958 reviews in the last 12 months"
+    },
+    {
+      "field": "firms.payoutMethods",
+      "value": [
+        "Bank wire",
+        "Rise",
+        "Crypto"
+      ],
+      "sourceUrl": "https://the5ers.com/faqs/withdrawals-everything-you-need-to-know/",
+      "pageUpdated": "2026-08-24",
+      "quote": "We currently support the following four payout options: Rise ... Crypto ... Limit: $1,500 per withdrawal ... Bank Transfer ... Hub Credits ... Hub Credits can be used to purchase new accounts only"
+    },
+    {
+      "field": "firms.platforms",
+      "value": [
+        "MT5",
+        "cTrader",
+        "TradingView"
+      ],
+      "sourceUrl": "https://the5ers.com/faqs/which-trading-platform-do-you-use/",
+      "pageUpdated": "2026-08-13",
+      "quote": "Non-US clients can use MetaTrader 5, cTrader, and TradingView. US-based clients can use TradingView."
+    },
+    {
+      "field": "growth.capitalCap",
+      "value": "$40K cap = Hyper Growth only; Pro Growth has a $50K tier ($329) and one account of each size",
+      "sources": [
+        {
+          "url": "https://the5ers.com/hyper-growth/",
+          "quote": "Maximum capital per trader on evaluation account sizes: $40,000. (eg. you can have 1X $20K + 1X $10K + 2X $5K accounts all adding to the max starting amount of $40K)"
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-many-hyper-growth-accounts-i-can-have/",
+          "pageUpdated": "2026-07-30",
+          "quote": "You can have a max of 4 accounts. 1 * $10K, 1* $20K, and 2* $5K accounts (all adding to the max starting capital of $40K)."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-many-progrowth-accounts-can-i-have/",
+          "pageUpdated": "2026-09-15",
+          "quote": "Traders can hold a max of 4 accounts, one of each size ($5K, $10K, $20K and $50K)."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-many-the5ers-accounts-can-i-have/",
+          "pageUpdated": "2026-07-22",
+          "quote": "ProGrowth Traders can hold a max of 3 accounts, one of each size ($5K, $10K, and  $20K).",
+          "note": "older, conflicts with the 2026-09-15 FAQ"
+        }
+      ]
+    },
+    {
+      "field": "drawdownType",
+      "value": "static (all programmes)",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-the-drawdown-rule-for-high-stakes/",
+          "pageUpdated": "2026-09-15",
+          "quote": "The max loss on the account is 10% from your initial balance (absolute drawdown)"
+        },
+        {
+          "url": "https://the5ers.com/faqs/what-is-the-drawdown-rule-for-progrowth/",
+          "pageUpdated": "2026-07-30",
+          "quote": "The maximum loss for ProGrowth is 6% of the initial balance."
+        },
+        {
+          "url": "https://the5ers.com/faqs/what-is-drawdown-and-how-is-it-calculated/",
+          "pageUpdated": "2026-07-22",
+          "quote": "If the initial balance is $10,000 and the maximum drawdown of 6% is $600 then the account will be closed below the equity level of $9,400, Let’s say your account goes up to $10,300, the maximum drawdown is now $900."
+        }
+      ]
+    },
+    {
+      "field": "refund",
+      "sources": [
+        {
+          "url": "https://the5ers.com/high-stakes/",
+          "quote": "Profit Share | $2 reward | Refund | 80%-100%; Cost | $22/$19 | | Refund"
+        },
+        {
+          "url": "https://the5ers.com/faqs/payout-policy-and-hub-credit-in-the-high-stakes-program/",
+          "pageUpdated": "2026-09-14",
+          "quote": "Pass Step 1: Get 10% Hub Credit / Pass Step 2: Get 20% Hub Credit / Funded Stage: Get a 70% refund ... You will be eligible to receive 70% of this fee back with your first payout, provided you have generated a minimum profit of $150 and your account has been active for at least 14 days."
+        },
+        {
+          "url": "https://the5ers.com/terms-and-conditions/",
+          "quote": "Evaluation fee is non-refundable, once you commence said Evaluation trading activity. Provided that no trading activity has occurred on the account and you have not breached these Terms: Within 5 days of purchase: You may request a full monetary refund. After 5 days from purchase: You may request a refund in the form of Hub Credit only."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-hyper-growth-program-work/",
+          "pageUpdated": "2026-08-10",
+          "quote": "The Hyper Growth fee is non-refundable"
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-bootcamp-program-work/",
+          "pageUpdated": "2026-09-06",
+          "quote": "The Bootcamp fee is non-refundable"
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "3rd Payout Milestone: The remaining 70% of your evaluation fee is paid out directly as withdrawable cash alongside your 3rd profit payout."
+        }
+      ]
+    },
+    {
+      "field": "consistency",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-constancy-rule/",
+          "pageUpdated": "2026-10-19",
+          "quote": "Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage."
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "Consistency Requirement: 50% in both evaluation and Pro accounts"
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "Note: There is no consistency rule during the evaluation phases for the 2-Step plan."
+        }
+      ],
+      "note": "No consistency row/rule on high-stakes, hyper-growth or bootcamp pages; absence not confirmed for standard programmes."
+    },
+    {
+      "field": "growth.profitSplitPct",
+      "value": 75,
+      "sources": [
+        {
+          "url": "https://the5ers.com/hyper-growth/",
+          "quote": "$5,000 | $500 | 75%/25% ... $350,000 | $35,000 | 80%/20% ... $400,000 | $40,000 | 80%-100%"
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-hyper-growth-scaling-plan-work/",
+          "pageUpdated": "2026-07-31",
+          "quote": "Once the Evaluation phase is successfully passed, the account becomes Funded, and the payout ratio automatically increases to 75%/25%"
+        }
+      ]
+    },
+    {
+      "field": "summerPlan",
+      "checkoutVerified": false,
+      "sources": [
+        {
+          "url": "https://the5ers.com/",
+          "quote": "Limited Time Offer! Industry’s Lowest $100K For $149 Start Now"
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "Industry’s Lowest $100K Only $149 ... Limited Time Only"
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "Summer 10/5 ($149): Phase 1 profit target is 10%; Phase 2 is 5%. Summer 8/5 ($179): Phase 1 profit target is 8%; Phase 2 is 5%."
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "200K (10/5 Plan) – $249 ... 200K (8/5 Plan) – $279"
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "quote": "Account Size: $100,000 ... One-time Fee: $249"
+        },
+        {
+          "url": "https://the5ers.com/faqs/what-is-the-summer-plan-and-what-are-my-options/",
+          "pageUpdated": "2026-09-15",
+          "quote": "1-Step Plan ($249) ... 2-Step Plan (From $149)"
+        }
+      ],
+      "tables": {
+        "1-step-100k": {
+          "price": 249,
+          "maxLoss": "6%",
+          "daily": "3%",
+          "target": "10%",
+          "consistency": "50% / 50%",
+          "payoutCap": "$2000",
+          "split": "75%-25%",
+          "refund": "Refund From 3rd Payout",
+          "maxActive": 2
+        },
+        "2-step-100k-10/5": {
+          "price": 149,
+          "maxLoss": "10%",
+          "daily": "3%",
+          "targets": "10% / 5%",
+          "consistencyFunded": "50%",
+          "payoutCap": "$2000",
+          "split": "80%-20%",
+          "bonus": "10% / 20%",
+          "refund": "Refund From 3rd Payout"
+        },
+        "2-step-100k-8/5": {
+          "price": 179,
+          "targets": "8% / 5%",
+          "other": "as 10/5"
+        },
+        "2-step-200k-10/5": {
+          "price": 249,
+          "payoutCap": "$3000",
+          "split": "80%-20%",
+          "maxActive": 1,
+          "scaling": "none"
+        },
+        "2-step-200k-8/5": {
+          "price": 279,
+          "payoutCap": "$3000",
+          "split": "80%-20%",
+          "maxActive": 1,
+          "scaling": "none"
+        }
+      }
+    }
+  ],
+  "deadSources": [
+    "https://the5ers.com/growth/ (404)",
+    "https://the5ers.com/pro-growth/ (404)",
+    "https://the5ers.com/faq/ (404)",
+    "https://the5ers.com/payouts/ (404)",
+    "https://the5ers.com/scaling-plan/ (404)",
+    "https://the5ers.com/faqs/payouts/ (404, category slug)",
+    "https://the5ers.com/faqs/payments/ (404, category slug)"
+  ],
+  "conflicts": [
+    "High Stakes payout FAQ example 'a 100K account which costs $545' vs table $405 (New) / $455 (Classic): example outdated.",
+    "High Stakes general-rules FAQ (2026-09-15): 'withdraw your profits via Crypto or RISE' vs withdrawals FAQ (2026-08-24) and payout-policy FAQ (2026-09-14) listing Bank Transfer too.",
+    "Summer 1-Step table 'Max no. of active accounts 2' vs the Summer FAQ $600K buying-power cap."
+  ],
+  "russia": {
+    "status": "restricted",
+    "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "quote": "“Forbidden Territory” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "secondQuote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”).",
+    "note": "Definitions clause lists 31 territories incl. Bosnia and Herzegovina; the notice paragraph lists 30 (omits Bosnia). Both include Russia. Operator: FIVE PERCENT ONLINE LTD, England and Wales company 12553363."
+  },
+  "summerPlanPlacement": {
+    "decision": "Code Reviewer, 2026-10-20: Summer Plan products are excluded from comparisons, homepage cards and the challenge finder; they stay on the EN review page (content/posts/the5ers-review.md) as advertised list prices with the dated source and a 'checkout not verified' note.",
+    "mechanism": "No exclusion flag exists in lib/, components/ or app/ (every consumer reads content/data/challenges/<firm>.json and filters only by isChallengeFresh). The only existing mechanism is presence in that file, so the three Summer products were removed from challenges/the5ers.json in this commit; their verified rows (removed in full from 60e941e) remain here under fields[summerPlan] and in git history.",
+    "removedProducts": [
+      "summer-plan-1-step",
+      "summer-plan-2-step-10-5",
+      "summer-plan-2-step-8-5"
+    ],
+    "restoreFrom": "git show 60e941e:content/data/challenges/the5ers.json"
+  }
+}

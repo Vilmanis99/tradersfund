@@ -1,0 +1,73 @@
+{
+  "captureType": "key-facts-recheck",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "firm": "maven",
+  "productsRechecked": [
+    "buy-now-pay-later"
+  ],
+  "fieldsRechecked": [
+    "accountSizes[].priceUsd",
+    "accountSizes[].payLaterUsd",
+    "pricingModel",
+    "refundable"
+  ],
+  "result": "Stored data matches the live structure: priceUsd = $5 paid at checkout, payLaterUsd = the remaining fee due after passing, pricingModel split-payment. Not a promo and not a data error. No JSON change.",
+  "sources": [
+    {
+      "url": "https://maventrading.com/pricing",
+      "method": "curl server HTML about 12:00 Riga, US egress",
+      "rawFile": "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/maven-pricing-1200.html",
+      "quotes": [
+        "Buy Now, Pay Later $100k account Pay now: $5 Pay later: $589 Refundable on the third withdrawal",
+        "Buy Now, Pay Later $50k account Pay now: $5 Pay later: $359",
+        "Buy Now, Pay Later $2k account Pay now: $5 Pay later: $40"
+      ],
+      "tiers": {
+        "2000": [
+          5,
+          40
+        ],
+        "5000": [
+          5,
+          69
+        ],
+        "10000": [
+          5,
+          117
+        ],
+        "20000": [
+          5,
+          189
+        ],
+        "50000": [
+          5,
+          359
+        ],
+        "100000": [
+          5,
+          589
+        ]
+      }
+    },
+    {
+      "url": "https://maventrading.com/faqs",
+      "method": "curl server HTML about 12:00 Riga",
+      "rawFile": "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/maven-faqs-1200.html",
+      "quotes": [
+        "The Buy Now Pay Later is a 1 Step evaluation that costs $5 to start. If you pass the evaluation, you pay the remaining fee to activate your Simulated Funded Account.",
+        "After passing the evaluation, you’ll need to pay the remaining balance for the account you purchased. Once payment is completed, your Simulated Funded Account will be sent to you via email.",
+        "You have 14 days to complete the payment. If you need more time, contact our Support Team to discuss available arrangements.",
+        "If you’re unable to pay for the account size you selected, you may also request to downgrade to a lower account size.",
+        "Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. ... Buy Now, Pay Later Simulated Funded Account"
+      ]
+    }
+  ],
+  "structure100K": {
+    "upfrontUsd": 5,
+    "dueLaterUsd": 589,
+    "dueWhen": "after passing the 1-step evaluation and review, within 14 days, to activate the Simulated Funded Account",
+    "totalToFundedUsd": 594
+  },
+  "note": "No products array, so scripts/build-firm-rules.mjs ignores this file."
+}

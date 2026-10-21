@@ -29,7 +29,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const [chip, setChip] = useState<Chip>('all')
   const chips: Chip[] = locale === 'ru' ? ['all', 'open', 'cfd', 'futures', 'one', 'two'] : ['all', 'cfd', 'futures', 'one', 'two']
   const visible = rows.filter(row => matches(row, chip))
-  const money = (row: ComparisonRow) => new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+  const money = (row: ComparisonRow) => row.priceBreakdown ?? new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
   const na = <span className="th-na" title={t.notPublished}><span aria-hidden="true">—</span><span className="sr-only">{t.notPublished}</span></span>
   const pct = (value: number | null) => value == null ? na : `${value}%`
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref
@@ -37,6 +37,11 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
     : <Link href={row.reviewUrl} className={className.replace('th-btn--amber', 'th-btn--ghost')}>{t.review}</Link>
   const official = (row: ComparisonRow) => row.officialUrl
     ? <a href={row.officialUrl} target="_blank" rel="nofollow noopener" className="th-link" data-home-official-site={row.firmSlug}>{t.official} <span aria-hidden="true">↗</span><span className="sr-only"> ({locale === 'ru' ? 'откроется в новой вкладке' : 'opens in a new tab'})</span></a>
+    : null
+  // goHref is set only for firms with an affiliate link (homeData.ts), so this
+  // labels exactly the rows whose amber sign-up button is a partner link.
+  const partnerPill = (row: ComparisonRow) => row.goHref
+    ? <span className="partner-pill" data-partner-label={row.firmSlug} title={t.partnerTitle}>{t.partner}</span>
     : null
   const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} hint={false} /> : null
 
@@ -60,7 +65,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <th scope="row">
                   <div className="th-firm">
                     <FirmLogo name={row.firmName} src={row.logo} size={36} />
-                    <div><strong>{row.firmName}</strong><span className="th-score">★ {row.score.toFixed(1)}/10{row.trustpilot ? ` · Trustpilot ${row.trustpilot}` : ''}</span></div>
+                    <div><strong>{row.firmName}</strong> {partnerPill(row)}<span className="th-score">★ {row.score.toFixed(1)}/10{row.trustpilot ? ` · Trustpilot ${row.trustpilot}` : ''}</span></div>
                   </div>
                 </th>
                 <td className="th-muted">{row.product}</td>
@@ -80,7 +85,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
       <ul className="th-cards">
         {visible.map(row => (
           <li key={row.firmSlug} className="th-card">
-            <div className="th-firm"><FirmLogo name={row.firmName} src={row.logo} size={40} /><div><strong>{row.firmName}</strong><span className="th-score">★ {row.score.toFixed(1)}/10</span></div></div>
+            <div className="th-firm"><FirmLogo name={row.firmName} src={row.logo} size={40} /><div><strong>{row.firmName}</strong> {partnerPill(row)}<span className="th-score">★ {row.score.toFixed(1)}/10</span></div></div>
             <span className="th-small th-muted">{row.product}</span>
             <dl className="th-facts">
               <div><dt>{t.cols.fee}</dt><dd>{money(row)}</dd></div>

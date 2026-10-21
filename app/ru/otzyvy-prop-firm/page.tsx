@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import RuAllReviews from '@/components/RuAllReviews'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { RuRelatedLinks } from '@/components/RuPendingLink'
 import {
   AlertTriangle,
@@ -31,11 +33,15 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
-const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки, KYC и правила; сравнение FundedNext и BrightFunded с датами источников.'
+const DESCRIPTION = 'Отзывы о проп-фирмах на русском: как проверить выплаты, блокировки счёта, KYC и правила до оплаты. Сравнение BrightFunded и FundedNext с датами источников.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -64,7 +70,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Что проверять в отзывах о FundedNext?',
-    a: 'Сначала определите 1 из 4 продуктов: Stellar 2-Step, Stellar 1-Step, Stellar Lite или Stellar Instant. У них различаются 0–2 этапа, просадка, возврат взноса и первая стандартная заявка; официальный конфликт по российским резидентам нужно разрешить письменно до оплаты.',
+    a: 'Сначала определите 1 из 4 продуктов: Stellar 2-Step, Stellar 1-Step, Stellar Lite или Stellar Instant. У них различаются 0–2 этапа, просадка, возврат взноса и первая стандартная заявка; резидентам России FundedNext недоступна (подвал fundednext.com, по данным на 20.10.2026), поэтому им стоит начинать с BrightFunded.',
   },
   {
     q: 'Что проверять в отзывах о BrightFunded?',
@@ -80,17 +86,17 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Чем российские проп-компании отличаются от глобальных челленджей?',
-    a: 'PropLive описывает торговлю на Московской бирже через Финам, тогда как FundedNext и BrightFunded публикуют глобальные CFD-программы оценки. Рынок, договор, валюта, модель капитала и выплата различаются, поэтому один рейтинг для этих 2 моделей вводил бы в заблуждение.',
+    a: 'PropLive описывает торговлю на Московской бирже через Финам, тогда как BrightFunded и FundedNext публикуют глобальные CFD-программы оценки (FundedNext резидентам России недоступна). Рынок, договор, валюта, модель капитала и выплата различаются, поэтому один рейтинг для этих 2 моделей вводил бы в заблуждение.',
   },
   {
     q: 'Получает ли Traders Fund Hub партнёрскую комиссию?',
-    a: 'Да. Призывы к действию для FundedNext, BrightFunded и отдельно обозначенный FundingPips могут приносить комиссию. Партнёрство не добавляет баллы, не подтверждает страну и не гарантирует выплату; на странице оно отделено от таблицы первичных продуктовых данных.',
+    a: 'Да. Призывы к действию для BrightFunded, FundedNext и отдельно обозначенный FundingPips могут приносить комиссию. Партнёрство не добавляет баллы, не подтверждает страну и не гарантирует выплату; на странице оно отделено от таблицы первичных продуктовых данных.',
   },
 ]
 
 const featuredRoutes = [
-  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
   { slug: 'bright-funded', name: 'BrightFunded', reviewHref: '/ru/obzor-bright-funded' },
+  { slug: 'fundednext', name: 'FundedNext', reviewHref: '/ru/obzor-fundednext' },
 ] as const
 
 const secondaryRoute = {
@@ -187,6 +193,8 @@ export default function RussianPropFirmReviewsPage() {
       ? [{ ...route, firm, products, priceCount: publishedTierCount(products) }]
       : []
   })
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
   const secondaryFirm = firms.find(candidate => outboundSlug(candidate.name) === secondaryRoute.slug)
   const secondaryProducts = freshChallenges.filter(product => product.firmSlug === secondaryRoute.slug)
   const featuredProducts = featuredCards.flatMap(card => card.products)
@@ -199,7 +207,7 @@ export default function RussianPropFirmReviewsPage() {
     && featuredCards.length === featuredRoutes.length
     && featuredRoutes.every(route => {
       const products = challenges.filter(product => product.firmSlug === route.slug)
-      return products.length > 0 && products.every(product => isChallengeFresh(product))
+      return isProductSetFresh(products)
     })
 
   const crumbs = breadcrumbSchema([
@@ -232,7 +240,7 @@ export default function RussianPropFirmReviewsPage() {
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>
           <p className="ru-lead">
             Положительный или отрицательный отзыв без даты, продукта и названного правила нельзя переносить на будущую выплату.
-            Здесь каждый кейс проходит 7 полей проверки, а FundedNext и BrightFunded сравниваются по {featuredProducts.length} актуальным продуктам и {featuredPriceCount} опубликованным ценам.
+            Здесь каждый кейс проходит 7 полей проверки, а BrightFunded и FundedNext (не для резидентов РФ) сравниваются по {featuredProducts.length} актуальным продуктам и {featuredPriceCount} опубликованным ценам.
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные руководства по отзывам">
             <span>Автор: Edris Derakhshi</span>
@@ -245,11 +253,11 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-stats">
             <div className="ru-stat"><strong>7</strong><span>полей проверки одного отзыва</span></div>
             <div className="ru-stat"><strong>{featuredCards.length}</strong><span>главных партнёра, выделенных отдельно</span></div>
-            <div className="ru-stat"><strong>{featuredProducts.length}</strong><span>актуальных продуктов FundedNext и Bright</span></div>
+            <div className="ru-stat"><strong>{featuredProducts.length}</strong><span>актуальных продуктов Bright и FundedNext</span></div>
             <div className="ru-stat"><strong>{featuredPriceCount}</strong><span>опубликованных цен в USD/EUR</span></div>
           </div>
           <div className="ru-actions">
-            <Link href="#featured-partners" className="btn-primary btn-glow">FundedNext и BrightFunded <ArrowRight size={15} aria-hidden="true" /></Link>
+            <Link href="#featured-partners" className="btn-primary btn-glow">BrightFunded и FundedNext <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="#review-checklist" className="btn-outline">Проверить отзыв</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
@@ -261,7 +269,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell">
             <div className="ru-notice ru-disclosure ru-review-top-disclosure" data-russian-affiliate-disclosure="reviews-guide">
               <strong>Партнёрское раскрытие.</strong>{' '}
-              FundedNext и BrightFunded — два главных коммерческих маршрута этой страницы; FundingPips показан ниже как дополнительная альтернатива.
+              BrightFunded и FundedNext — два главных коммерческих маршрута этой страницы (FundedNext резидентам России недоступна); FundingPips показан ниже как дополнительная альтернатива.
               Переход может принести нам комиссию, но партнёрство даёт <strong>0 баллов</strong> к доказательству выплаты, доступности страны или качеству отзыва.
             </div>
             <nav className="toc ru-review-toc" aria-label="Содержание руководства по отзывам о проп-фирмах">
@@ -269,7 +277,7 @@ export default function RussianPropFirmReviewsPage() {
               <ol>
                 <li><a href="#country-check">Страна и KYC</a></li>
                 <li><a href="#review-checklist">7 полей проверки отзыва</a></li>
-                <li><a href="#featured-partners">FundedNext и BrightFunded</a></li>
+                <li><a href="#featured-partners">BrightFunded и FundedNext</a></li>
                 <li><a href="#product-evidence">{featuredProducts.length} продуктов и {featuredPriceCount} цен</a></li>
                 <li><a href="#payout-review">Как читать отзыв о выплате</a></li>
                 <li><a href="#negative-review">Как читать жалобу на блокировку</a></li>
@@ -287,7 +295,7 @@ export default function RussianPropFirmReviewsPage() {
             <div className="ru-notice" data-russian-country-boundary="reviews-not-access">
               <strong><AlertTriangle size={16} aria-hidden="true" /> Русский отзыв не доказывает доступность страны.</strong>{' '}
               Русскоязычный трейдер в Казахстане, Германии, Израиле, Грузии или России проходит разные проверки резидентства, гражданства, KYC и платежа.
-              У FundedNext есть {fundedNextAccess?.sourceUrls.length ?? 4} конфликтующих первичных маршрута по российским резидентам, поэтому до оплаты нужен письменный ответ поддержки; VPN и неверные данные использовать нельзя.
+              FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026); VPN и неверные данные использовать нельзя.
             </div>
           </div>
         </section>
@@ -314,23 +322,23 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-featured-partners="fundednext-bright-funded">
             <div className="ru-content">
               <h2>Главные партнёрские маршруты после проверки отзывов</h2>
-              <p>FundedNext и BrightFunded стоят рядом как коммерческие варианты, а не как одинаковые продукты. Актуальные модели с ценами в USD и EUR показаны ниже только при свежих источниках; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
+              <p>BrightFunded и FundedNext стоят рядом как коммерческие варианты, а не как одинаковые продукты. Резидентам России подходит только BrightFunded: FundedNext россиян не обслуживает. Актуальные модели с ценами в USD и EUR показаны ниже только при свежих источниках; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
             </div>
             <div className="ru-grid">
               {featuredCards.map(card => (
                 <article className="ru-card" key={card.slug} data-russian-reviews-featured-partner={card.slug}>
-                  <div className="ru-card-head"><h3>{card.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                  <div className="ru-card-head"><h3>{card.name}</h3>{russiaStatusFor(card.slug) === 'restricted' ? <RuAccessBadgeView firm={card.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
                   <ul className="ru-facts">
                     <li><Database size={14} aria-hidden="true" /> Актуальные продукты: {card.products.length}</li>
                     <li><BadgeDollarSign size={14} aria-hidden="true" /> Опубликованные цены: {card.priceCount}</li>
                     <li><ShieldCheck size={14} aria-hidden="true" /> Источники до: {card.products.map(product => product.sourceCapturedAt).sort().at(-1)}</li>
                   </ul>
                   <p>{card.slug === 'fundednext'
-                    ? 'Сначала выберите между 0, 1 и 2 этапами; затем проверьте возврат взноса, тип просадки и первую заявку. Для российского резидентства не делайте вывод из чужого отзыва: первичные страницы конфликтуют.'
+                    ? 'Резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026). Трейдеру из другой страны: сначала выберите между 0, 1 и 2 этапами; затем проверьте возврат взноса, тип просадки и первую заявку.'
                     : 'Сначала выберите 1 или 2 этапа; затем проверьте трейлинг-/статическую просадку и первую заявку. USDC ERC-20 описывает выплату, а не торговый рынок или автоматическую доступность страны.'}</p>
                   <div className="ru-actions">
                     <Link href={card.reviewHref} className="btn-outline">Полный русский обзор</Link>
-                    <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`} rel="sponsored nofollow noopener" className="btn-primary">Проверить {card.name} <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+                    <RuGoLink firm={card.slug} href={`/go/${card.slug}?from=ru-reviews-guide-${card.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(card.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>Проверить {card.name} <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                   </div>
                 </article>
               ))}
@@ -390,6 +398,12 @@ export default function RussianPropFirmReviewsPage() {
               <li><span>3</span><div><strong>Отделите спор от повторяемого сигнала.</strong><p>Один анонимный пост — сигнал для проверки. Несколько кейсов с одним правилом и датой — причина искать официальное изменение или публичное наблюдение.</p></div></li>
               <li><span>4</span><div><strong>Не платите, пока конфликт не разрешён.</strong><p>Если договор и FAQ расходятся, сохраните письменный ответ поддержки. Устный ответ и VPN не исправляют контрактный или страновой запрет.</p></div></li>
             </ol>
+            {ruClosedFirmsHref() && (
+              <p data-russian-closed-firms-inlink="reviews">
+                Отдельный случай — фирма, которая закрылась. Такие фирмы с датой, заявлением и архивной копией источника собраны
+                в <Link href={ruClosedFirmsHref() as string}>списке закрытых проп-фирм</Link>.
+              </p>
+            )}
           </div>
         </section>
 
@@ -411,7 +425,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-local-models="bridge-not-ranking">
             <div className="ru-content">
               <h2>Российские отзывы полезны, но локальные и глобальные модели нельзя смешивать</h2>
-              <p>Локальные компании помогают понять русскоязычный договор, Московскую биржу и рублёвую выплату. Они являются связующим материалом: после изучения модели читатель отдельно решает, подходит ли ему глобальный CFD-челлендж FundedNext или BrightFunded.</p>
+              <p>Локальные компании помогают понять русскоязычный договор, Московскую биржу и рублёвую выплату. Они являются связующим материалом: после изучения модели читатель отдельно решает, подходит ли ему глобальный CFD-челлендж BrightFunded или (только вне России) FundedNext.</p>
             </div>
             <div className="ru-table-wrap">
               <table className="ru-table">
@@ -431,8 +445,8 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell ru-content" data-russian-reviews-decision="reviews-to-product">
             <h2>Решение после отзывов: от кейса к точному продукту</h2>
             <div className="ru-grid">
-              <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа</h3><p>Начните с обзора моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
-              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с обзора моделей BrightFunded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор BrightFunded →</Link></article>
+              <article className="ru-card"><h3>Если важны цены в EUR и выплата USDC</h3><p>Начните с обзора моделей BrightFunded, затем разделите 1-Step и 2-Step по типу просадки и формулировкам выплаты. Резидентам России — начинать отсюда.</p><Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор BrightFunded →</Link></article>
+              <article className="ru-card"><h3>Если нужен выбор 0/1/2 этапа (не для резидентов РФ)</h3><p>Начните с обзора моделей FundedNext, затем исключите продукт по просадке, возврату взноса, первой заявке и стране. Резидентам России FundedNext недоступна.</p><Link href="/ru/obzor-fundednext" className="ru-card-link">Обзор FundedNext →</Link></article>
               <article className="ru-card"><h3>Если обе модели не подходят</h3><p>FundingPips остаётся дополнительным глобальным партнёром с {secondaryProducts.length} актуальными продуктами; он не входит в две главные карточки этой страницы.</p><Link href={secondaryRoute.reviewHref} className="ru-card-link">Обзор FundingPips →</Link></article>
             </div>
             {secondaryFirm?.affiliateUrl && secondaryProducts.length > 0 ? (
@@ -447,6 +461,8 @@ export default function RussianPropFirmReviewsPage() {
             </div>
           </div>
         </section>
+
+        <RuAllReviews marker="otzyvy" />
 
         <section className="ru-section" id="faq">
           <div className="ru-shell ru-content"><RuRelatedLinks marker="reviews" items={[{ href: '/ru/prop-kompanii-otzyvy', label: 'отзывы о проп-компаниях' }]} /><h2>Частые вопросы</h2><RussianFaq items={faqs} /></div>

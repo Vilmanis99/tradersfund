@@ -1,0 +1,40 @@
+{
+  "firmSlug": "maven",
+  "capturedAt": "2026-10-20",
+  "scope": "Recheck of the Maven Instant payout-cadence conflict and the Prediction max-loss conflict, 2026-10-20 ~11:10 Europe/Riga (headless Chrome; FAQ text from the page's FAQPage data). No product field is changed on this branch; Prediction maxLossPct/fundedMaxLossPct 5/8 were set on data/key-facts-2026-10-20.",
+  "instantPage": {
+    "sourceUrl": "https://maventrading.com/challenges/instant",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant"
+    ],
+    "quote": "Instant $2k account $15 ... Max loss 3% Daily loss 2% Profit split 80% Payout frequency Funded When Requirements are met"
+  },
+  "instantFaq": {
+    "sourceUrl": "https://maventrading.com/faqs",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant"
+    ],
+    "quote": "How Often Can I Request a Payout for an Instant Funding Account? Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below.",
+    "notes": "Changed since 2026-09-14: the FAQ now agrees with the product page (on demand) instead of the 10-business-day interval."
+  },
+  "instantTerms": {
+    "sourceUrl": "https://maventrading.com/terms-and-conditions",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "instant"
+    ],
+    "quote": "Maven Instant: This program has a 3% minimum payout requirement, a trailing 3% maximum loss from the highest equity, and a maximum daily loss of 2% based on the higher of equity or balance at 00:00 UTC+0. It offers an 80% profit split with payouts available every 10 business days."
+  },
+  "predictionFaq": {
+    "sourceUrl": "https://maventrading.com/faqs",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+  },
+  "predictionPage": {
+    "sourceUrl": "https://maventrading.com/prediction-markets",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "CHOOSE YOUR CHALLENGE TYPE Essential 1-step Elite 1-step 1 Step $5k account $44 ... Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%"
+  }
+}

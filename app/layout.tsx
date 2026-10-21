@@ -8,6 +8,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import VercelObservability from '@/components/VercelObservability'
+import TableOverflowCue from '@/components/TableOverflowCue'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { getAllPosts } from '@/lib/mdx'
 import { isNewsletterConfigured } from '@/lib/brevo'
@@ -86,10 +87,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           newsletterEnabled={isNewsletterConfigured()}
         />
         <VercelObservability />
+        <TableOverflowCue />
         <Suspense fallback={null}>
           <AnalyticsProvider
             gaMeasurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
             clarityProjectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+            yandexMetricaId={process.env.NEXT_PUBLIC_YANDEX_METRICA_ID}
+            yandexMetricaWebvisor={process.env.NEXT_PUBLIC_YANDEX_METRICA_WEBVISOR === 'true'}
             outboundRelationships={outboundRelationships}
           />
         </Suspense>

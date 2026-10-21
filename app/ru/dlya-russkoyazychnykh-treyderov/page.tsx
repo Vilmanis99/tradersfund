@@ -8,13 +8,14 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { FUNDEDNEXT_RU_ACCESS_CHECKED, FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
 export const revalidate = 3600
-const TITLE = 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ (проверено 10.2026)'
-const DESCRIPTION = 'Какие проп-компании работают с Россией в 2026 году: таблица 15 фирм со статусом для РФ, Беларуси и Казахстана, способами выплаты и ссылками на официальные правила.'
+const TITLE = 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ'
+const DESCRIPTION = 'Проп-фирмы для россиян: какие компании работают с РФ в 2026 году. Таблица 15 фирм со статусом для России, Беларуси и Казахстана, оплатой и выплатами.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -46,12 +47,12 @@ type Row = {
 // Источник: ru-availability.csv, проверка 2026-10-14. «не указано» = страна не названа в списке ограничений,
 // это не письменное подтверждение доступа. «не проверено» = данных нет, не додумывать.
 const rows: Row[] = [
-  { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
-  { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
   { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (BTC вкл. Lightning, USDT TRC20, USDC ERC-20, ETH, LTC, TRX, SOL) или карта. Выплаты: USDC (ERC-20), банковский перевод в EUR', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
-  { firm: 'FundedNext (CFD)', russia: 'Не в списке ограничений CFD', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'open', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
-  { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
+  { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
+  { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
   { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
+  { firm: 'FundedNext (CFD)', russia: `Ограничена: подвал fundednext.com исключает резидентов России; список в условиях (п. 5.3, CFD) Россию не называет (по данным на ${FUNDEDNEXT_RU_ACCESS_CHECKED})`, belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'closed', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
+  { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
   { firm: 'Topstep', russia: 'Ограничена: Россия в списке «Countries Ineligible to Trade»; решает страна проживания', belarus: 'Ограничена', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'closed', source: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep' },
   { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
   { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/' },
@@ -83,7 +84,7 @@ const localFirms = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие проп-компании работают с Россией в 2026 году?',
-    a: `На ${CHECKED} без оговорок по России работают Upscale (ограничений по странам не заявлено) и Crypto Fund Trader на платформе Match-Trader. BrightFunded и CFD-направление FundedNext не включают Россию в свои списки ограничений. FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
+    a: `На ${CHECKED} без оговорок по России работают Upscale (ограничений по странам не заявлено) и Crypto Fund Trader на платформе Match-Trader. BrightFunded не включает Россию в свои списки ограничений. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
   },
   {
     q: 'Можно ли пройти челлендж FTMO из России?',
@@ -209,17 +210,17 @@ export default function RussiaAvailabilityPage() {
 
       <section className="ru-section" id="otkryty">
         <div className="ru-shell">
-          <h2>Четыре проп-фирмы, открытые для России</h2>
+          <h2>Три проп-фирмы, открытые для России, и почему FundedNext теперь закрыта</h2>
           <div className="ru-grid">
-            <article className="ru-card" data-russia-open="upscale">
-              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Upscale</h3>
-              <p className="ru-muted">Ограничений по странам не заявлено, KYC нет (вход через Telegram, Google или кошелёк), выплаты в USDT на собственный некастодиальный кошелёк. Обратная сторона отсутствия KYC — меньше юридических гарантий: оценивайте риск сами.</p>
+            <article className="ru-card" data-russia-open="bright-funded">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>BrightFunded</h3>
+              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет. При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
               <div className="ru-actions">
-                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
-                <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
-                  Открыть Upscale <ArrowRight size={14} aria-hidden="true" />
-                </a>
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
+                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
               </div>
             </article>
             <article className="ru-card" data-russia-open="crypto-fund-trader">
@@ -232,26 +233,15 @@ export default function RussiaAvailabilityPage() {
                 </RuGoLink>
               </div>
             </article>
-            <article className="ru-card" data-russia-open="bright-funded">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>BrightFunded</h3>
-              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет. При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
+            <article className="ru-card" data-russia-open="upscale">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Upscale</h3>
+              <p className="ru-muted">Ограничений по странам не заявлено, KYC нет (вход через Telegram, Google или кошелёк), выплаты в USDT на собственный некастодиальный кошелёк. Обратная сторона отсутствия KYC — меньше юридических гарантий: оценивайте риск сами.</p>
               <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
-            <article className="ru-card" data-russia-open="fundednext">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>FundedNext (только CFD)</h3>
-              <p className="ru-muted">Россия не названа в списке ограничений CFD, но FundedNext Futures её ограничивает — не перепутайте продукт при оплате. Пункт 5.5 условий позволяет фирме блокировать санкционные страны и страны, которые не обслуживают её платёжные провайдеры. Выплаты — USDT, USDC, RiseWorks, банк, карта.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить FundedNext CFD <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
+                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
+                <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
+                  Открыть Upscale <ArrowRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </article>
             <article className="ru-card" data-russia-unclear="fundingpips">
@@ -262,6 +252,17 @@ export default function RussiaAvailabilityPage() {
                 <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
                   Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
+              </div>
+            </article>
+            <article className="ru-card" data-russia-restricted="fundednext">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>FundedNext (только CFD)</h3>
+              <p className="ru-muted">{FUNDEDNEXT_RU_ACCESS_NOTE} FundedNext Futures Россию ограничивает. Пункт 5.5 условий позволяет фирме блокировать санкционные страны и страны, которые не обслуживают её платёжные провайдеры. Выплаты — USDT, USDC, RiseWorks, банк, карта.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
+                <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-outline">
+                  Проверить FundedNext CFD <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
             </article>
@@ -338,6 +339,7 @@ export default function RussiaAvailabilityPage() {
           <h2>Что читать дальше</h2>
           <ul>
             <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
+            <li><Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded: сравнение правил, цен и оплаты</Link></li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
             <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
             <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>

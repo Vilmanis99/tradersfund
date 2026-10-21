@@ -36,7 +36,7 @@ export default function AffiliateDisclosure({
       {hasAffiliate ? (
         <>
           We may earn a commission if you sign up via eligible links on this page,
-          at no cost to you. Our reviews are independent and not influenced by partners.{' '}
+          at no cost to you. Partnerships never change our scores; partner placements are labelled.{' '}
         </>
       ) : (
         <>
@@ -45,8 +45,8 @@ export default function AffiliateDisclosure({
           affiliate tracking. Our reviews remain independent.{' '}
         </>
       )}
-      <Link href="/disclaimers" style={{ color: 'var(--accent-light)', textDecoration: 'underline' }}>
-        Learn more
+      <Link href="/how-we-make-money" style={{ color: 'var(--accent-light)', textDecoration: 'underline' }}>
+        How we make money
       </Link>.
     </p>
   )

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { DEFAULT_FINDER_FILTERS, challengeKey, filterChallengeRows, finderTier, finderAccountSizes, resolveFinderSize, type ChallengeFinderFilters, type GlobalChallengeRow } from '@/lib/challengeComparison'
+import { DEFAULT_FINDER_FILTERS, challengeKey, filterChallengeRows, finderTier, finderAccountSizes, priceBreakdownLabel, tierPriceParts, resolveFinderSize, type ChallengeFinderFilters, type GlobalChallengeRow } from '@/lib/challengeComparison'
 
 const programmes = { all: 'all', '0': 'instant', '1': 'one-step', '2': 'two-step', '3': 'three-step' } as const
 
@@ -22,8 +22,13 @@ export default function EnglishFinderEntry({ rows }: { rows: GlobalChallengeRow[
   }).slice(0, 3)
   const fee = (row: GlobalChallengeRow) => {
     const tier = finderTier(row, size)!
-    const amounts = ([['USD', tier.priceUsd], ['EUR', tier.priceEur]] as const).flatMap(([currency, value]) =>
-      value != null && value > 0 ? [new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2 }).format(value)] : [])
+    const parts = tierPriceParts(tier)
+    const amounts = ([['USD', tier.priceUsd], ['EUR', tier.priceEur]] as const).flatMap(([currency, value]) => {
+      if (value == null || value <= 0) return []
+      const format = (amount: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2 }).format(amount)
+      // "$5 now + $589 after passing" rather than an apparent $5 fee.
+      return [currency === 'USD' && parts ? priceBreakdownLabel(parts, 'en', format) : format(value)]
+    })
     return amounts.length ? amounts.join(' / ') : 'Price not verified'
   }
   return <form action="/prop-firm-challenges" method="get" className="home-finder-form home-finder-form--preview" data-english-home-finder="programme-entry">

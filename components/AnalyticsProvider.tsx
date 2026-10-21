@@ -46,6 +46,8 @@ type AnalyticsConsent = 'unknown' | 'granted' | 'denied'
 type GtagCommand = 'config' | 'consent' | 'event' | 'js' | 'set'
 type ClarityCommand = 'consent' | 'consentv2' | 'event' | 'set'
 let memoryConsent: AnalyticsConsent = 'unknown'
+// One init per counter per document, even if the consent panel is reopened.
+const yandexMetricaInitialised = new Set<number>()
 
 type GtagFunction = (
   command: GtagCommand,
@@ -58,11 +60,19 @@ type ClarityFunction = {
   q?: unknown[][]
 }
 
+type YandexMetricaCommand = 'init' | 'hit' | 'reachGoal'
+type YandexMetricaFunction = {
+  (counterId: number, command: YandexMetricaCommand, ...parameters: unknown[]): void
+  a?: unknown[][]
+  l?: number
+}
+
 declare global {
   interface Window {
     dataLayer?: unknown[]
     gtag?: GtagFunction
     clarity?: ClarityFunction
+    ym?: YandexMetricaFunction
   }
 }
 
@@ -72,6 +82,23 @@ function validGaId(value?: string) {
 
 function validClarityId(value?: string) {
   return value && /^[a-z0-9]+$/i.test(value) ? value.toLowerCase() : undefined
+}
+
+// Yandex Metrica counter IDs are plain integers. Anything else keeps it off.
+function validYandexMetricaId(value?: string) {
+  return value && /^[1-9][0-9]{0,11}$/.test(value) ? Number(value) : undefined
+}
+
+// The official tag queues calls on window.ym until tag.js arrives; this is the
+// same stub, without injecting the script (next/script does that after consent).
+function ensureYandexMetrica() {
+  if (window.ym) return
+  const ym: YandexMetricaFunction = (...args: Parameters<YandexMetricaFunction>) => {
+    ym.a = ym.a || []
+    ym.a.push(args)
+  }
+  ym.l = Date.now()
+  window.ym = ym
 }
 
 function ensureGtag() {
@@ -147,10 +174,16 @@ function subscribeToNothing() {
 export default function AnalyticsProvider({
   gaMeasurementId: rawGaId,
   clarityProjectId: rawClarityId,
+  yandexMetricaId: rawYandexMetricaId,
+  yandexMetricaWebvisor = false,
   outboundRelationships,
 }: {
   gaMeasurementId?: string
   clarityProjectId?: string
+  /** NEXT_PUBLIC_YANDEX_METRICA_ID. Unset or invalid: nothing renders or loads. */
+  yandexMetricaId?: string
+  /** Session recording stays off unless explicitly enabled. */
+  yandexMetricaWebvisor?: boolean
   outboundRelationships: Record<string, OutboundRelationship>
 }) {
   const pathname = usePathname() || '/'
@@ -158,7 +191,10 @@ export default function AnalyticsProvider({
   const consentCopy = CONSENT_COPY[pageLocale]
   const gaMeasurementId = useMemo(() => validGaId(rawGaId), [rawGaId])
   const clarityProjectId = useMemo(() => validClarityId(rawClarityId), [rawClarityId])
-  const hasOptionalAnalytics = Boolean(gaMeasurementId || clarityProjectId)
+  const yandexMetricaId = useMemo(() => validYandexMetricaId(rawYandexMetricaId), [rawYandexMetricaId])
+  // Metrica measures the Russian section only; English pages never load it.
+  const yandexMetricaActive = Boolean(yandexMetricaId) && pageLocale === 'ru'
+  const hasOptionalAnalytics = Boolean(gaMeasurementId || clarityProjectId || yandexMetricaActive)
   const consent = useSyncExternalStore(subscribeToConsent, readConsent, () => 'unknown')
   const hydrated = useSyncExternalStore(subscribeToNothing, () => true, () => false)
   const [settingsOpen, setSettingsOpen] = useState(false)
@@ -166,6 +202,7 @@ export default function AnalyticsProvider({
   const [clarityReady, setClarityReady] = useState(false)
   const scrollDepths = useRef(new Set<number>())
   const journeyViewRef = useRef('')
+  const yandexMetricaLastUrl = useRef('')
 
   useEffect(() => {
     const openSettings = () => {
@@ -194,7 +231,21 @@ export default function AnalyticsProvider({
       ensureClarity()
       setOptionalConsent('granted')
     }
-  }, [clarityProjectId, consent, gaMeasurementId])
+
+    if (yandexMetricaId && yandexMetricaActive) {
+      ensureYandexMetrica()
+      if (!yandexMetricaInitialised.has(yandexMetricaId)) {
+        yandexMetricaInitialised.add(yandexMetricaId)
+        window.ym?.(yandexMetricaId, 'init', {
+          defer: true,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: yandexMetricaWebvisor,
+        })
+      }
+    }
+  }, [clarityProjectId, consent, gaMeasurementId, yandexMetricaActive, yandexMetricaId, yandexMetricaWebvisor])
 
   useEffect(() => {
     if (journeyViewRef.current === pathname) return
@@ -236,12 +287,20 @@ export default function AnalyticsProvider({
       })
     }
 
+    if (yandexMetricaId && yandexMetricaActive) {
+      // The consent effect above has queued init (defer: true), so every view
+      // (first load and client navigation) is one explicit, pathname-only hit.
+      const hitUrl = `${window.location.origin}${pathname}`
+      window.ym?.(yandexMetricaId, 'hit', hitUrl, { referer: yandexMetricaLastUrl.current || document.referrer })
+      yandexMetricaLastUrl.current = hitUrl
+    }
+
     if (clarityProjectId && clarityReady) {
       window.clarity?.('set', 'journey_stage', stage)
       window.clarity?.('set', 'page_path', pathname)
       window.clarity?.('set', 'page_locale', locale)
     }
-  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, pathname])
+  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, pathname, yandexMetricaActive, yandexMetricaId])
 
   useEffect(() => {
     scrollDepths.current = new Set()
@@ -293,6 +352,9 @@ export default function AnalyticsProvider({
           locale: currentLocale,
         })
         trackEvent(eventName, properties)
+        if (optionalAnalyticsGranted && yandexMetricaId && yandexMetricaActive) {
+          window.ym?.(yandexMetricaId, 'reachGoal', eventName, properties)
+        }
         return
       }
 
@@ -405,7 +467,7 @@ export default function AnalyticsProvider({
       window.removeEventListener('scroll', handleScroll)
       if (engagedTimer !== undefined) window.clearTimeout(engagedTimer)
     }
-  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, outboundRelationships, pathname])
+  }, [clarityProjectId, clarityReady, consent, gaMeasurementId, gaReady, outboundRelationships, pathname, yandexMetricaActive, yandexMetricaId])
 
   const updateConsent = (nextConsent: Exclude<AnalyticsConsent, 'unknown'>) => {
     memoryConsent = nextConsent
@@ -459,6 +521,12 @@ export default function AnalyticsProvider({
             setClarityReady(true)
           }}
         />
+      )}
+
+      {consent === 'granted' && yandexMetricaActive && (
+        // The window.ym queue and init are set up in the consent effect before
+        // this async tag can execute, mirroring Yandex's own loader snippet.
+        <Script id="tfh-yandex-metrica" src="https://mc.yandex.ru/metrika/tag.js" strategy="afterInteractive" />
       )}
 
       {showConsentPanel && (
