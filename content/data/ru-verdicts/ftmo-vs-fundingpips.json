@@ -8,6 +8,7 @@
     "content/data/firms.json (origin/daily/2026-10-20b @f4e547d: platforms, assets, maxAllocation)",
     "content/data/challenges/ftmo.json (2026-10-19; payout on demand from day 14 re-checked 2026-10-20, origin/daily/2026-10-20b)",
     "content/data/challenges/fundingpips.json (2026-10-20; Zero 2026-10-19; origin/daily/2026-10-20b): prices, targets, limits, reward routes (On Demand 100% replaces Monthly), overnight/weekend rules",
+    "content/data/challenges/_captures/ftmo-2026-10-14.json → weekendOvernight (FTMO: overnight and weekend restrictions apply to Standard FTMO Accounts, not the Evaluation Process; Swing has none — firm-rules-2026-10-15.json)",
     "content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (Prop Firm Tracker, 20.10.2026: справка Get Started и Reward Methods vs Terms «ALL PAYMENTS ARE FINAL»)",
     "/workspace/tradersfundhub/evidence/fundingpips-reward-methods-2026-10-20.md (4th-reward refund only on 2 Step Standard, 20.10.2026)"
   ],
@@ -21,7 +22,7 @@
     ],
     "b": [
       "вам нужны еженедельные выплаты: 2 Step Pro платит еженедельно с 7-го дня, в FTMO первый запрос по требованию — с 14-го дня",
-      "вы держите позиции через ночь: FundingPips разрешает это во всех моделях, FTMO ограничивает",
+      "вы переносите позиции через ночь и выходные: на оценке FundingPips это разрешает, но на funded-счёте нужна опция Swing, а в Zero перенос через выходные — грубое нарушение (по данным на 20.10.2026); у FTMO ограничения действуют только на funded-счёте типа Standard, на оценке и у Swing их нет (по данным на 14.10.2026)",
       "вам нужна модель без оценки: FundingPips Zero — доля 95% при правиле стабильности 15%, за счёт 100K — $444; у FTMO есть только 2-Step и 1-Step",
       "вам нужна выплата 100%: у всех моделей FundingPips, кроме Zero, есть маршрут On Demand 100% с условиями допуска; FTMO платит 80% в 2-Step и 90% в 1-Step"
     ]
