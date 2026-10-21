@@ -41,6 +41,7 @@
     "test:watch-evidence": "node scripts/test-watch-evidence.mjs",
     "test:russian-expiry": "node scripts/test-russian-expiry.mjs",
     "test:comparison-expiry": "node scripts/test-comparison-expiry.mjs",
+    "test:comparison-overlays": "node scripts/test-comparison-overlays.mjs",
     "test:consistency-scope": "node scripts/test-consistency-scope.mjs",
     "check:finder-release": "node scripts/check-russian-finder-release.mjs",
     "check:home-release": "node scripts/check-english-home.mjs",
