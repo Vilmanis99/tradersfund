@@ -61,9 +61,13 @@ export function isRussiaAccessEvidenceDocumented(
   evidence: RussiaAccessEvidence | null | undefined,
 ): boolean {
   if (!evidence) return false
+  // The evidence status must agree with firms.json russiaStatus: a documented
+  // restriction backs 'restricted', a documented source conflict backs 'unclear'.
+  // A mismatch (e.g. 'conflicting' evidence for a firm now marked restricted)
+  // means the page copy written for one state cannot be shown as current.
   const statusOk = evidence.status === 'restricted'
     ? russiaStatusFor(slugOrName) === 'restricted'
-    : evidence.status === 'conflicting'
+    : evidence.status === 'conflicting' && russiaStatusFor(slugOrName) === 'unclear'
   if (!statusOk || !Array.isArray(evidence.sourceUrls) || evidence.sourceUrls.length === 0) return false
   const observations = evidence.sourceObservations ?? []
   return evidence.sourceUrls.every(url => /^https:\/\/\S+$/.test(url) && observations.some(item =>

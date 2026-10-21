@@ -14,6 +14,9 @@ const hooks = registerHooks({
   resolve(specifier, context, nextResolve) {
     // Next enforces this marker at bundle time; this harness runs server rendering in Node.
     if (specifier === 'server-only') return { url: 'test:server-only', shortCircuit: true }
+    // Client components such as the home FirmPairPicker call useRouter(), which throws
+    // outside a mounted App Router; static rendering never navigates, so a no-op router is enough.
+    if (specifier === 'next/navigation') return { url: 'test:next-navigation', shortCircuit: true }
     const local = specifier.startsWith('@/') ? path.join(root, specifier.slice(2))
       : specifier.startsWith('.') && context.parentURL?.startsWith('file:')
         ? path.resolve(path.dirname(fileURLToPath(context.parentURL)), specifier) : null
@@ -26,6 +29,7 @@ const hooks = registerHooks({
   },
   load(url, context, nextLoad) {
     if (url === 'test:server-only') return { format: 'commonjs', shortCircuit: true, source: 'module.exports = {}' }
+    if (url === 'test:next-navigation') return { format: 'commonjs', shortCircuit: true, source: `const real = require(${JSON.stringify(require.resolve('next/navigation'))}); const noop = () => {}; module.exports = { ...real, useRouter: () => ({ push: noop, replace: noop, prefetch: noop, back: noop, forward: noop, refresh: noop }) }` }
     if (url.startsWith(pathToFileURL(root + path.sep).href) && /\.tsx?$/.test(url) && !url.includes('/node_modules/')) {
       return { format: 'commonjs', shortCircuit: true, source: ts.transpileModule(fs.readFileSync(new URL(url), 'utf8'), {
         fileName: fileURLToPath(url), compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
@@ -59,6 +63,7 @@ try {
     }
   }
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
+  const { isProductSetFresh } = require(path.join(root, 'lib/reviewFreshness.ts'))
   // Render pages at a clock derived from the Russian-surface captures themselves.
   // Literal 2026-09-29 / 2026-10-01 clocks fell behind the 2026-10-14..19
   // recaptures; future-dated captures fail closed by design (asserted below), so
@@ -727,8 +732,10 @@ try {
   }
   const originalAccessStatus = fundedNextAccessEvidence.status
   try {
-    fundedNextAccessEvidence.status = 'restricted'
-    assert(!cryptoSchemas(renderPrimary()).some(item => item['@type'] === 'FAQPage'), 'changed FundedNext access status cannot keep the conflict-specific comparison FAQ')
+    // Flip to the other documented state: the FAQ is written for the current one
+    // ('restricted' since 2026-10-20), so a changed status must drop FAQPage schema.
+    fundedNextAccessEvidence.status = originalAccessStatus === 'restricted' ? 'conflicting' : 'restricted'
+    assert(!cryptoSchemas(renderPrimary()).some(item => item['@type'] === 'FAQPage'), 'changed FundedNext access status cannot keep the status-specific comparison FAQ')
   } finally { fundedNextAccessEvidence.status = originalAccessStatus }
   const originalAllChallenges = firmsModule.getAllChallenges
   const primaryFixtures = structuredClone(originalAllChallenges())
@@ -856,7 +863,23 @@ try {
   assert(fundedReviewRow(fundedReference, 'stellar-instant').includes('Нет дневного лимита'), 'a named fresh Instant source supports the explicit absence')
   assert(fundedReviewRow(fundedReference, 'stellar-1-step').includes('5 раб. дн.'), 'one-step timing retains the source business-day unit')
   assert(!fundedReviewRow(fundedReference, 'stellar-1-step').includes('еженедельно'), 'five business days are not flattened to a calendar-week label')
-  assert(!cryptoSchemas(fundedReference).some(item => item['@type'] === 'FAQPage'), 'stale market-access evidence withholds the FundedNext review FAQ schema')
+  // The review emits FAQ schema only while every product and every dated evidence block it cites is fresh;
+  // derive the expectation from those same sources instead of pinning one stale block.
+  const fnReviewFaqDates = [
+    ...Object.values(fundedReviewEvidence.sources).map(source => source.sourceCapturedAt),
+    fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt,
+    marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt,
+    instantEvidence.capturedAt,
+    instantEvidence.news.sourceCapturedAt,
+    mt5Evidence.ea.sourceCapturedAt,
+    mt5Evidence.instantEaScope.sourceCapturedAt,
+  ]
+  const fundedReviewProducts = getAllChallenges().filter(product => product.firmSlug === 'fundednext')
+  const fundedReviewFaqExpected = fundedReviewProducts.length > 0
+    && fundedReviewProducts.every(product => isChallengeFresh(product, new RealDate(clock))
+      && product.accountSizes.some(tier => Number.isFinite(tier.priceUsd) && tier.priceUsd > 0))
+    && fnReviewFaqDates.every(date => isChallengeFresh({ sourceCapturedAt: date }, new RealDate(clock)))
+  assert.equal(cryptoSchemas(fundedReference).some(item => item['@type'] === 'FAQPage'), fundedReviewFaqExpected, 'FundedNext review FAQ schema appears only while every cited product and evidence block is fresh')
   assert.doesNotMatch(FundedReviewModule.metadata.description, /22 цены|4 модели/)
   assert.equal(FundedReviewModule.metadata.openGraph.description, 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.', 'sharing copy is preserved pending approval')
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
@@ -867,8 +890,19 @@ try {
   assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review keeps its sign-up CTA')
   assert(fundingPipsReviewReference.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'FundingPips CTA carries the unclear Russia-access badge')
   assert.equal((fundingPipsReviewReference.match(/id="country-check"/g) ?? []).length, 1, 'moving the warning preserves one country-check anchor')
-  assert(!cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), 'stale FundingPips payout evidence withholds review FAQ schema')
-  assert(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), 'dated FAQ answers remain visibly qualified')
+  {
+    // FAQ schema follows the review's own FAQ sources (payout evidence, Reward Methods,
+    // access evidence): published only while every one is inside the 30-day window.
+    // The 2026-10-20 recaptures made them current, so derive the expectation from the data.
+    const fundingPipsFaqDates = [
+      marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? '',
+      fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1] ?? '',
+      require(path.join(root, 'content/data/russian-fundingpips-access-evidence.json')).sourceCapturedAt,
+    ]
+    const faqCurrent = fundingPipsFaqDates.every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
+    assert.equal(cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), faqCurrent, 'FundingPips review FAQ schema follows the age of its FAQ sources')
+    assert.equal(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), !faqCurrent, 'dated FAQ answers are visibly qualified only while a source is stale')
+  }
   const fundingPipsPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')
   assert(fundingPipsPayoutEvidence, 'FundingPips FAQ cites its own payout evidence rather than the broad market snapshot')
   const originalFundingPipsPayoutCapture = fundingPipsPayoutEvidence.sourceCapturedAt
@@ -894,7 +928,11 @@ try {
     clock = fundingPipsReviewClock
   }
   assert(fundingPipsReviewReference.includes('80%') && fundingPipsReviewReference.includes('10% и 8%'), 'Russian FundingPips review reflects the current Flex split and target')
-  assert(fundingPipsReviewReference.includes('2026-09-30') && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+  {
+    // Reward Methods were recaptured 2026-10-20 (Tracker); the page keeps the date in REWARD_METHODS_CAPTURED_AT.
+    const rewardMethodsDate = fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1]
+    assert(rewardMethodsDate && fundingPipsReviewReference.includes(rewardMethodsDate) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+  }
   assert(!fundingPipsReviewReference.includes('85%') && !fundingPipsReviewReference.includes('10% и 6%'), 'Russian FundingPips review does not retain retired Flex terms')
   const originalFundedEvidence = JSON.stringify(fundedReviewEvidence)
   for (const source of Object.values(fundedReviewEvidence.sources)) {
@@ -1395,8 +1433,8 @@ try {
           assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/dlya-russkoyazychnykh-treyderov'], 'diaspora Article uses the Week 1 editorial date')
         }
         const countFreeComparisonLabels = {
-          'obzor-proplive': 'сравнение программ FundedNext и BrightFunded',
-          'obzor-eratrade': 'сравнение FundedNext и BrightFunded',
+          'obzor-proplive': 'программы BrightFunded и FundedNext',
+          'obzor-eratrade': 'BrightFunded и FundedNext',
         }
         if (countFreeComparisonLabels[slug]) {
           const comparisonLinks = [...html.matchAll(/<a\b[^>]*href="\/ru\/fundednext-vs-bright-funded"[^>]*>([^<]+)<\/a>/g)].map(match => match[1])
@@ -1439,7 +1477,7 @@ try {
           const fresh = captured.filter(product => isChallengeFresh(product))
           const tierCount = fresh.reduce((count, product) => count + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
           assert(html.includes(`data-russian-bright-price-count="${tierCount}"`))
-          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && html.includes('href="/ru/promokody-prop-firm#kody"'), 'Bright review leads price readers directly to the monthly promo hub codes section')
+          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && /href="\/ru\/promokody-prop-firm#(?:bright-funded-promokody|bright-offer-status)"/.test(html), 'Bright review leads price readers directly to the monthly promo hub codes section')
           const valid = fresh.length === captured.length && Object.values(brightEvidence.sources).every(source => isChallengeFresh(source))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), valid)
           if (valid) {
@@ -1487,7 +1525,10 @@ try {
         }
         if (slug === 'obzor-fundednext') {
           const valid = fundedFixtureProducts.every(product => isChallengeFresh(product))
-            && [...fundedReviewDates, marketEvidence.capturedAt, instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
+            // Same dated blocks the page checks: scoped country access and payout evidence, not the file-wide capture.
+            && [...fundedReviewDates, fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt,
+              marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt,
+              instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
               .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), valid, 'FundedNext review schema expires with independent rule, country and programme evidence')
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
@@ -1602,7 +1643,11 @@ try {
               assert(card.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && card.includes(`href="${brightEvidence.sources.countryTerms.sourceUrl}"`), 'Bright homepage card links both first-party country sources')
               assert(card.includes(brightEvidence.sources.countryTerms.sourceCapturedAt), 'Bright homepage card shows the independently captured Terms date')
             }
-            if (!countryFresh) assert(card.includes('не подтверждает доступ сегодня'), 'old country evidence cannot imply current access')
+            // FundedNext is restricted (fundednext.com footer, 2026-10-20), so its stale copy says "unavailable" and asks for a recheck
+            // of the country terms; it never implied access. BrightFunded's stale copy must say old lists do not confirm access today.
+            if (!countryFresh) assert(firmSlug === 'fundednext'
+              ? card.includes('Недоступно для резидентов России') && card.includes('требуют новой проверки')
+              : card.includes('не подтверждает доступ сегодня'), 'old country evidence cannot imply current access')
           }
           const rows = getRussianFinderRows()
           const sizes = [...new Set(rows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)
@@ -1685,7 +1730,7 @@ try {
           const expectedFirms = getAllFirms().filter(firm => {
             const firmSlug = firm.name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
             const scoped = allProducts.filter(product => product.firmSlug === firmSlug)
-            return scoped.length > 0 && scoped.every(product => isChallengeFresh(product))
+            return isProductSetFresh(scoped) // same gate as the page: products with no listed fee cannot go stale
           })
           assert.equal((html.match(/data-ranked-firm=/g) ?? []).length, expectedFirms.length, 'consolidation retains all fresh directory firms, expiry removes stale rows')
           const rankingList = cryptoSchemas(html).find(item => item['@type'] === 'ItemList')
@@ -1874,7 +1919,7 @@ try {
           assert(html.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'instant guide carries a valid current comparison or safe fallback')
           assert(visible.includes(`не более ${instantEvidence.news.newsMllEquityBufferMaximumUses} раз на одном счёте`), 'news adjustment includes its per-account use limit')
           assert(visible.includes('карта, сохранённая в аккаунте') && visible.includes(instantEvidence.withdrawal.sourceCapturedAt), 'Instant card route stays conditional and independently dated')
-          assert(visible.includes(`ограничений от ${fundedNextAccessEvidence.sourceCapturedAt}`) && visible.includes('Общий снимок рынка от 2026-08-27 остаётся старым'), 'new access check does not relabel the broad market or imply Instant eligibility')
+          assert(visible.includes(`по проверке от ${fundedNextAccessEvidence.sourceCapturedAt}`) && visible.includes('Общий снимок рынка от 2026-08-27 остаётся старым'), 'new access check does not relabel the broad market or imply Instant eligibility')
           assert.equal(instantEvidence.news.newsMllEquityBufferMaximumUses, 3)
           assert.match(instantEvidence.news.maximumUsesEvidenceQuote, /maximum of 3 times/)
           assert.equal((html.match(/id="(?:answer|price|risk|payout|news|platform|holding|scale|reset|country|verdict|sources|faq)"/g) ?? []).length, 13, 'all established article anchors remain')
