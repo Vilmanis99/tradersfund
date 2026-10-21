@@ -357,7 +357,7 @@
   {
     "firmSlug": "fxify",
     "firmName": "FXIFY",
-    "capturedAt": "2026-10-20",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "United States",
       "Zimbabwe",
@@ -434,7 +434,7 @@
       "status": "partial",
       "summary": "Terms permit payment card and other currently offered methods; a successful Indian-card transaction is not independently tested.",
       "sourceUrls": [
-        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
+        "https://fxify.com/terms-and-conditions"
       ]
     },
     "kyc": {
@@ -464,7 +464,7 @@
       "status": "verified",
       "summary": "Challenge fees are based in USD; choosing another currency uses FXIFY's current conversion rate at checkout.",
       "sourceUrls": [
-        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
+        "https://fxify.com/terms-and-conditions"
       ]
     },
     "unresolved": "No completed Indian card checkout, dual KYC approval, or Rise payout receipt has been independently verified."
@@ -560,7 +560,7 @@
   {
     "firmSlug": "e8-markets",
     "firmName": "E8 Markets",
-    "capturedAt": "2026-10-20",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -614,7 +614,7 @@
       "accountSizeCapsUsd": {
         "e8-one": 200000
       },
-      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000. Since the 2026-09-14 capture E8 also lists E8 Zero (all sizes) for India; E8 Zero has no structured product record here, so it stays outside this screen.",
+      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
@@ -627,14 +627,14 @@
     },
     "country": {
       "status": "verified",
-      "summary": "E8 publishes India as an allocation-limited country: E8 Pro, E8 Signature and E8 Zero at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location. India is on neither the Classic/Perpetuals nor the Futures restricted list.",
+      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
     },
     "checkout": {
       "status": "partial",
-      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout (Apple Pay, Google Pay, crypto via Confirmo, card via Nuvei), but a successful Indian card or crypto purchase is not independently tested.",
+      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout, but a successful Indian card or crypto purchase is not independently tested.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts"
       ]
@@ -674,7 +674,7 @@
   {
     "firmSlug": "city-traders-imperium",
     "firmName": "City Traders Imperium",
-    "capturedAt": "2026-10-20",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "North Korea",
       "Iran",
@@ -718,15 +718,14 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; its VIP payout page also names PayPal. Delivery to an Indian bank, wallet or PayPal account remains untested.",
+      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; delivery to an Indian bank or wallet remains untested.",
       "sourceUrls": [
-        "https://citytradersimperium.com/cti-payout-proof/",
-        "https://citytradersimperium.com/vip-program-payout/"
+        "https://citytradersimperium.com/cti-payout-proof/"
       ]
     },
     "fees": {
       "status": "partial",
-      "summary": "CTI publishes fee-free bank transfers while PayPal and cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
+      "summary": "CTI publishes fee-free bank transfers while cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
       "sourceUrls": [
         "https://citytradersimperium.com/vip-program-payout/"
       ]
@@ -744,7 +743,7 @@
   {
     "firmSlug": "maven",
     "firmName": "Maven",
-    "capturedAt": "2026-10-20",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -774,7 +773,6 @@
     ],
     "restrictionListComplete": true,
     "payoutRails": [
-      "crypto",
       "rise"
     ],
     "rbiAlert": {
@@ -792,40 +790,41 @@
     },
     "checkout": {
       "status": "partial",
-      "summary": "Maven requires a payment card registered in the trader's own name and warns that third-party cards may block KYC or the funded account; the server-readable FAQ no longer lists the checkout methods, and a successful Indian-card purchase is not independently tested.",
+      "summary": "Maven publishes credit-card and other checkout options and requires the cardholder name to match KYC, but a successful Indian-card purchase is not independently tested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "kyc": {
       "status": "verified",
-      "summary": "KYC accepts a passport, driver's licence, residence permit, or national ID card (Veriff document list linked from the FAQ) and requires the personal details and payment card to belong to the trader.",
+      "summary": "Veriff KYC accepts a passport, driving licence, residence permit, or ID card and requires the personal details and payment card to belong to the trader.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "payout": {
       "status": "partial",
-      "summary": "Maven places India in its \"other countries\" group: Digital Currencies (USDT-BSC or USDC-ERC20) or Rise Pay; direct bank transfer is listed only for Nigeria, Kenya and Ghana. No Indian crypto or Rise payout is independently tested.",
+      "summary": "Maven explicitly places India in its Rise-or-other-options group rather than the named direct-bank group; the exact Indian Rise cash or crypto route remains untested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "fees": {
-      "status": "unknown",
-      "summary": "The $20 Rise payment fee captured on 2026-09-14 is no longer published in the FAQ checked on 2026-10-20; Maven publishes no current payout fee for the crypto or Rise routes.",
+      "status": "verified",
+      "summary": "Maven publishes a $20 fee for payments through Rise; any charge for an unnamed alternative or INR conversion remains outside the captured claim.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "currency": {
       "status": "verified",
-      "summary": "Captured Maven account sizes, challenge fees, and pay-later amounts are published in USD.",
+      "summary": "Captured Maven account sizes, challenge fees, pay-later amounts, and the $20 Rise fee are published in USD.",
       "sourceUrls": [
-        "https://maventrading.com/pricing"
+        "https://maventrading.com/pricing",
+        "https://maventrading.com/faqs"
       ]
     },
-    "unresolved": "No completed Indian card checkout, KYC approval, or crypto/Rise payout receipt is independently verified; the current payout fee and any INR conversion cost are unpublished."
+    "unresolved": "No completed Indian credit-card checkout, Veriff approval, or Rise payout receipt is independently verified; the exact Rise withdrawal route and any INR conversion cost remain unpublished."
   },
   {
     "firmSlug": "tradeify",
@@ -953,7 +952,7 @@
   {
     "firmSlug": "tradeday",
     "firmName": "TradeDay",
-    "capturedAt": "2026-10-20",
+    "capturedAt": "2026-09-14",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -1013,7 +1012,6 @@
       "Pakistan",
       "Panama",
       "Papua New Guinea",
-      "Palestine",
       "Philippines",
       "Puerto Rico",
       "Romania",
@@ -1030,7 +1028,6 @@
       "Tanzania",
       "Trinidad and Tobago",
       "Tunisia",
-      "Turkey",
       "Uganda",
       "Ukraine",
       "US Virgin Islands",
@@ -1053,7 +1050,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from TradeDay's current 83-name outright prohibition list (Palestine and Turkey were added after the 2026-09-14 capture; page modified 1 October); the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
+      "summary": "India is absent from TradeDay's current 81-name outright prohibition list; the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
       "sourceUrls": [
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-"
@@ -1089,7 +1086,7 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "TradeDay's homepage shows dollar-denominated promotional monthly fees on 2026-10-20 (default Daily Payouts / Intraday cards $45 / $59 / $108 / $162 against $100 / $131 / $240 / $360 list; hero says 'up to 55% OFF', pricing header 'Up to 60% off!'); the stored product captures dated 2026-10-14 run $45–$265 across 12 product-size combinations. The Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
+      "summary": "TradeDay's 9 unique product-size combinations across 18 platform cards display dollar-denominated monthly fees from $59 to $225, but the Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
       "sourceUrls": [
         "https://www.tradeday.com/"
       ]
