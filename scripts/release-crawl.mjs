@@ -2036,6 +2036,7 @@ const russianFtmoPage = pages.find(page =>
   const firstBrightTop = cryptoHtml.indexOf('/go/bright-funded?from=ru-crypto-top-bright-funded')
   const firstFundedNext = cryptoHtml.indexOf('/go/fundednext?')
   if (firstBrightTop < 0 || (firstFundedNext >= 0 && firstFundedNext < firstBrightTop)) errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded CTA must render before any FundedNext CTA')
+  if (/550 пар|криптофьючерс/i.test(cryptoHtml)) errors.push('/ru/luchshie-kripto-prop-firmy: the CFT 550-pair figure covers only one venue and must not appear')
   if (/bybit/i.test(cryptoHtml)) errors.push('/ru/luchshie-kripto-prop-firmy: standing RU rule — no Bybit claims on the page')
   const firstRanked = cryptoHtml.indexOf('data-russian-crypto-firm=')
   if (firstRanked < 0 || cryptoHtml.indexOf('data-russian-crypto-firm="bright-funded"') !== firstRanked) {

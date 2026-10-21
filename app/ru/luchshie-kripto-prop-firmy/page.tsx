@@ -62,8 +62,8 @@ const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
 const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
 // Preserve existing sharing-preview text until the separate sharing update is approved.
-const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
-const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
+const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
+const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
@@ -109,7 +109,7 @@ const cryptoWatch = cryptoMarketEvidence.watch as Array<{ firmSlug: string; firm
 
 const EVIDENCE_TEXT_OVERRIDES: Record<string, { evidenceRu: string; scopeNoteRu: string }> = {
   'crypto-fund-trader': {
-    evidenceRu: 'По FAQ CFT — более 550 пар криптофьючерсов; на Match-Trader и MetaTrader 5 — 556 криптовалют среди 720+ инструментов; плечо по криптовалютам на счетах Advanced — 1:100. Вознаграждение — банковским переводом (EUR или USD) или на кошелёк в USDT (ERC20/TRC20), BTC или ETH.',
+    evidenceRu: 'По FAQ CFT (cryptofundtrader.com/faq/), на Match-Trader и MetaTrader 5 доступно более 720 инструментов, из них 556 криптовалют; плечо по криптовалютам на счетах Advanced — 1:100. Вознаграждение — банковским переводом (EUR или USD) или на кошелёк в USDT (ERC20/TRC20), BTC или ETH.',
     scopeNoteRu: 'Привязаны Evaluation, Accelerated и Instant. Ascend исключён (в магазине недоступен к покупке, проверенной цены нет), Break тоже (открытое расхождение цен и надпись «sold out»). На MT5 и Match-Trader те же программы дают также форекс, индексы, сырьё и акции.',
   },
 }
@@ -179,7 +179,7 @@ function localizedReviewHref(reviewUrl: string) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какая крипто-проп-фирма лучшая в 2026 году?',
-    a: 'Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. Для резидентов РФ из открытых фирм в рейтинге — BrightFunded (более 48 криптопар, плечо 1:5) и Crypto Fund Trader (более 550 пар криптофьючерсов по FAQ CFT), по данным на 21.10.2026. FTMO, CTI, OFP и FundedNext для резидентов РФ закрыты. В таблицу попадают только программы с актуальными источниками и известными ценами.',
+    a: 'Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. Для резидентов РФ из открытых фирм в рейтинге — BrightFunded (более 48 криптопар, плечо 1:5) и Crypto Fund Trader (556 криптовалют на Match-Trader и MetaTrader 5 по FAQ CFT), по данным на 21.10.2026. FTMO, CTI, OFP и FundedNext для резидентов РФ закрыты. В таблицу попадают только программы с актуальными источниками и известными ценами.',
   },
   {
     q: 'Крипто-проп-фирма даёт реальные BTC или ETH?',
@@ -496,7 +496,7 @@ export default function RussianCryptoPropFirmsPage() {
               </article>
               <article className="ru-card">
                 <h3>Crypto Fund Trader: Evaluation, Accelerated и Instant</h3>
-                <p>По FAQ CFT — более 550 пар криптофьючерсов, на Match-Trader и MetaTrader 5 — 556 криптовалют; плечо по криптовалютам на счетах Advanced — 1:100 (по данным на 21.10.2026). У Instant начальная доля вознаграждения ниже, чем у оценочных программ, — подробности ниже.</p>
+                <p>По <a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener">FAQ CFT</a> на Match-Trader и MetaTrader 5 — 556 криптовалют среди более чем 720 инструментов; плечо по криптовалютам на счетах Advanced — 1:100 (по данным на 21.10.2026). У Instant начальная доля вознаграждения ниже, чем у оценочных программ, — подробности ниже.</p>
                 <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="ru-card-link">Обзор CFT на английском →</Link>
               </article>
               <article className="ru-card">

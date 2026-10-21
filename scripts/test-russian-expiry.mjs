@@ -421,8 +421,8 @@ try {
   assert.deepEqual(cryptoCards(cryptoReference), cryptoSlugs, 'current crypto fixture includes every independently sourced firm')
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
-  // Sharing metadata no longer promises a fixed inventory (Tracker 21.10: '3 проверенных' removed).
-  assert.doesNotMatch(`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.twitter.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'sharing metadata does not promise a fixed live inventory')
+  assert.equal(cryptoModule.metadata.openGraph.title, 'Крипто-проп-фирмы 2026: 3 проверенных варианта', 'sharing metadata is preserved pending separate approval')
+  assert.equal(cryptoModule.metadata.twitter.description, 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.')
   const assertCryptoArchive = html => {
     assert(html.includes('data-russian-crypto-article="long-form"') && html.includes('id="sources"'), 'expiry preserves the substantive article and dated sources')
     assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'unresolved CFT correction survives unrelated evidence expiry')
