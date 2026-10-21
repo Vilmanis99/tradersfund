@@ -295,6 +295,8 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Who should avoid Alpha Capital</strong></h2>
 <p>Traders needing a refundable fee, fully automated execution or more than the documented $400,000 shared allocation should exclude these captured configurations. Direct buyers should also exclude a plan that is incompatible with the 1% per-asset risk rule or retained 3% payout buffer. Alpha Three cannot be bought new at present (as of 20 Oct 2026). A trader relying on Swing for a new account should first resolve purchase availability with the firm; published fees and existing-account help pages do not settle that question.</p>
 
+<p>A trader who wants a two-step CFD evaluation with no time limit can compare High Stakes in the <a href="/blog/the5ers-review">The5ers review</a>. It needs 3 profitable days per step, and its loss limits tighten to 4% daily and 8% total on the $50K and $100K tiers.</p>
+
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 <h3 class="wp-block-heading"><strong>What is the cheapest Alpha Capital evaluation?</strong></h3>
 <p>Pro 6% on-demand at $27 for a $5,000 account is the lowest evaluation fee in this capture. Pro 6% bi-weekly is $30 at the same size. Direct also starts at $30, but its $2,500 instant-qualified account has no evaluation and carries different funded-stage rules.</p>
