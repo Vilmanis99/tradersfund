@@ -6889,8 +6889,12 @@
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
     "countriesRestrictedSourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "countriesRestrictedQuote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "countriesRestrictedCapturedAt": "2026-10-21",
+    "countriesRestrictedNote": "Terms 'Last update – Oct. 20th 2026', rechecked 2026-10-21 (US IP): Forbidden Territory definition unchanged (31 names). The 'residents or citizens' disclaimer on the same page and in the site footer lists 30 names, without Bosnia and Herzegovina; the definition is stored. Russia, Belarus and Crimea are named; Ukraine outside Crimea and Kazakhstan are not named (text search), which is not a positive availability statement.",
     "russiaSourceUrl": "https://the5ers.com/terms-and-conditions/",
-    "russiaSourceQuote": "“Forbidden Territory” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "russiaSourceQuote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "russiaSourceCapturedAt": "2026-10-21",
     "affiliateStatus": "none"
   }
 ]
