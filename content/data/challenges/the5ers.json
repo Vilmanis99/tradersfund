@@ -351,5 +351,135 @@
     ],
     "fundedDailyLossPct": 3,
     "fundedMaxLossPct": 4
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Futures Day Trade",
+    "productSlug": "futures-day-trade",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 59,
+        "maxLossUsd": 1000,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 100,
+        "maxLossUsd": 2000,
+        "refundable": true
+      }
+    ],
+    "pricingModel": "one-off",
+    "activationFeeUsd": 0,
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "both",
+        "appliesTo": "Per position, evaluation and funded (Pro Stage)",
+        "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": false,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://the5ers.com/futures/",
+    "sourceCapturedAt": "2026-10-21",
+    "notes": [
+      "Day Trade tab: $25K 'Price $59', $50K 'Price $100', each 'Refunded on 3rd payout.'; contracts 2 Mini/20 Micro and 4 Mini/40 Micro. 'All positions must be closed at least 10 minutes before market close'; 'No Weekend Holding'.",
+      "Overnight/weekend: 'Swing: You can hold 1 mini contract or 10 micro contracts overnight.' 'Day Trade: Overnight holding is not allowed.' 'Both programs: No weekend holding allowed. All positions must be closed at least 10 minutes before the Friday close.' (futures-faqs/overnight-holding-2, last update July 15, 2026). EA: 'Is High-Frequency Trading, Algorithmic Trading, or Hedging Permitted? No. These practices are strictly forbidden.' (futures-faqs/is-high-frequency-algorithmic-trading-and-hedging-allowed, October 12, 2026), so ea=false.",
+      "The5ers Futures (CME futures), checked 2026-10-21 from a US IP on https://the5ers.com/futures/ (tab-by-tab render, evidence /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). List prices from the programme page; checkout not reached (hub.the5ers.com/purchase?step=programs&asset=futures asks for sign-in), so not checkout-verified.",
+      "Page rows (Evaluation Phase / Pro Stage): 'Profit Target 6% 4%', 'Max Loss Limit 4% 4%', 'Drawdown Type EOD EOD', 'Consistency Rule – Per Position 40% 40%', 'Activation fee (Upon Passing) None None', 'Pass in one day ✓ -'. maxLossUsd is computed from the published 4% (not printed in dollars).",
+      "Drawdown: 'Both the Day Trade and Swing programs have a maximum drawdown of 4%, which is calculated from your highest midnight balance or equity.' (futures-faqs/what-is-my-maximum-drawdown-loss, last update July 15, 2026). No lock level is published, so none is stored.",
+      "Consistency: 'One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.' (futures-faqs/what-are-the-general-rules-for-the-futures-program, last update October 12, 2026). It is per position, applied in evaluation and funded.",
+      "Split and payouts: 'The profit split is 80/20 in your favor across all accounts.' (futures-faqs/what-is-the-profit-split-in-the5ers-futures, July 15, 2026). Payout needs a funded account, 'You’ve reached 4% profit or more, calculated from your initial account balance' and 'The account is at least 14 days old' (futures-faqs/what-do-i-need-for-a-withdrawal, September 28, 2026); then 'biweekly (14-day period)', 3.5% commission on Rise, crypto and bank transfer (futures-faqs/what-payout-methods-are-supported, July 15, 2026).",
+      "Refund: 'Once you successfully receive your third payout on any funded futures trading account, we will refund the full evaluation fee you originally paid.' (futures-faqs/evaluation-fee-refund, July 20, 2026). refundable=true means this conditional full refund at the third payout, not a cancellation refund.",
+      "One-time fee: 'You pay a one-time upfront fee when purchasing an evaluation, and there are no recurring monthly payments on either program.' (futures-faqs/is-there-a-monthly-subscription-during-the-evaluation, August 10, 2026). News: 'News trading: Allowed.' (general rules FAQ). Copy trading between own accounts and platform not recorded here.",
+      "Country rules: no futures-specific list is published; the Terms ('Last update – Oct. 20th 2026') say the services include 'proprietary trading on Contract for Difference and Futures Contract', and the site-wide Forbidden Territories footer (Russia, Belarus, Crimea named) is shown on /futures/. Capture: content/data/challenges/_captures/the5ers-2026-10-21.json"
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Futures Swing",
+    "productSlug": "futures-swing",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 69,
+        "maxLossUsd": 1000,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 120,
+        "maxLossUsd": 2000,
+        "refundable": true
+      }
+    ],
+    "pricingModel": "one-off",
+    "activationFeeUsd": 0,
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "both",
+        "appliesTo": "Per position, evaluation and funded (Pro Stage)",
+        "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": true,
+      "ea": false,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://the5ers.com/futures/",
+    "sourceCapturedAt": "2026-10-21",
+    "notes": [
+      "Swing tab: $25K 'Summer Plan Price $69', $50K 'Summer Plan Price $120', each 'Refunded on 3rd payout.'; 'Overnight Holding Limit 1 Mini, 10 Micro'. The FAQ calls the Summer Plan 'permanent price drops on Swing accounts' (futures-faqs/what-do-i-get-with-the-futures-summer-plan-2, July 23, 2026).",
+      "Overnight/weekend: 'Swing: You can hold 1 mini contract or 10 micro contracts overnight.' 'Day Trade: Overnight holding is not allowed.' 'Both programs: No weekend holding allowed. All positions must be closed at least 10 minutes before the Friday close.' (futures-faqs/overnight-holding-2, last update July 15, 2026). EA: 'Is High-Frequency Trading, Algorithmic Trading, or Hedging Permitted? No. These practices are strictly forbidden.' (futures-faqs/is-high-frequency-algorithmic-trading-and-hedging-allowed, October 12, 2026), so ea=false.",
+      "The5ers Futures (CME futures), checked 2026-10-21 from a US IP on https://the5ers.com/futures/ (tab-by-tab render, evidence /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). List prices from the programme page; checkout not reached (hub.the5ers.com/purchase?step=programs&asset=futures asks for sign-in), so not checkout-verified.",
+      "Page rows (Evaluation Phase / Pro Stage): 'Profit Target 6% 4%', 'Max Loss Limit 4% 4%', 'Drawdown Type EOD EOD', 'Consistency Rule – Per Position 40% 40%', 'Activation fee (Upon Passing) None None', 'Pass in one day ✓ -'. maxLossUsd is computed from the published 4% (not printed in dollars).",
+      "Drawdown: 'Both the Day Trade and Swing programs have a maximum drawdown of 4%, which is calculated from your highest midnight balance or equity.' (futures-faqs/what-is-my-maximum-drawdown-loss, last update July 15, 2026). No lock level is published, so none is stored.",
+      "Consistency: 'One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.' (futures-faqs/what-are-the-general-rules-for-the-futures-program, last update October 12, 2026). It is per position, applied in evaluation and funded.",
+      "Split and payouts: 'The profit split is 80/20 in your favor across all accounts.' (futures-faqs/what-is-the-profit-split-in-the5ers-futures, July 15, 2026). Payout needs a funded account, 'You’ve reached 4% profit or more, calculated from your initial account balance' and 'The account is at least 14 days old' (futures-faqs/what-do-i-need-for-a-withdrawal, September 28, 2026); then 'biweekly (14-day period)', 3.5% commission on Rise, crypto and bank transfer (futures-faqs/what-payout-methods-are-supported, July 15, 2026).",
+      "Refund: 'Once you successfully receive your third payout on any funded futures trading account, we will refund the full evaluation fee you originally paid.' (futures-faqs/evaluation-fee-refund, July 20, 2026). refundable=true means this conditional full refund at the third payout, not a cancellation refund.",
+      "One-time fee: 'You pay a one-time upfront fee when purchasing an evaluation, and there are no recurring monthly payments on either program.' (futures-faqs/is-there-a-monthly-subscription-during-the-evaluation, August 10, 2026). News: 'News trading: Allowed.' (general rules FAQ). Copy trading between own accounts and platform not recorded here.",
+      "Country rules: no futures-specific list is published; the Terms ('Last update – Oct. 20th 2026') say the services include 'proprietary trading on Contract for Difference and Futures Contract', and the site-wide Forbidden Territories footer (Russia, Belarus, Crimea named) is shown on /futures/. Capture: content/data/challenges/_captures/the5ers-2026-10-21.json"
+    ]
   }
 ]
