@@ -23,6 +23,13 @@ const GET_STARTED_URL = accessEvidence.sourceUrl
 const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
 const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
 const MASTER_SETUP_URL = 'https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup'
+// Overnight/weekend holding, read live by RU Writer on 21.10.2026 (copies: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/):
+// News Trading & Weekend Holding — evaluation: overnight + weekend allowed (1 Step Flex, 2 Step Standard, 2 Step Flex, 2 Step Pro);
+// Master: «All open trades will be automatically closed by the system unless you have the Swing add-on», daily 15-minute window, not a breach.
+// FundingPips Zero — «Leaving any position open into the weekend is an immediate account termination»; no weekday overnight restriction stated.
+const HOLDING_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504137479441-News-Trading-Weekend-Holding'
+const ZERO_URL = 'https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero'
+const HOLDING_CHECKED = '21.10.2026'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -206,9 +213,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
         <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="strategy-platforms">
           <h2>Платформы, новости, выходные и мастер-счёт</h2>
           <p><strong>FundingPips предоставляет симулированные счета, а не брокерский счёт с переданным капиталом.</strong> Текущий профиль фирмы перечисляет MT5, cTrader и Match-Trader. Официальный рабочий кабинет отдельно говорит, что MT5 недоступен в США и Канаде; это ограничение платформы, а не разрешение для любого другого продукта или профиля.</p>
-          <p>Все 5 текущих продуктов допускают перенос позиций через ночь в будни, но перенос через выходные ограничен у 4 оценочных моделей, а FundingPips Zero запрещает удержание через выходные как серьёзное нарушение. Правило новостей тоже зависит от продукта: Zero запрещает окно новостей, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
+          <p data-russian-fundingpips-holding="eval-master-zero"><strong>Перенос позиций зависит от этапа.</strong> На оценке 1 Step Flex, 2 Step Flex, 2 Step Pro и 2 Step Standard держать сделки через ночь и через выходные можно. На мастер-счёте этих четырёх моделей система каждый день автоматически закрывает все открытые позиции, если при покупке не подключена платная опция Swing. Закрытие идёт в 15-минутное окно: сейчас 20:45–21:00 UTC, с первого воскресенья ноября — 21:45–22:00 UTC. Такое автозакрытие не считается нарушением. У FundingPips Zero оценки нет: позиция, оставленная на выходные, означает немедленное закрытие счёта, а ограничений на перенос через ночь в будни статья о Zero не называет (по данным на {HOLDING_CHECKED}).</p>
+          <p>Правило новостей тоже зависит от продукта: Zero запрещает окно новостей, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
           <p>После прохождения оценки мастер-счёт требует 4 шага: KYC, проверка, соглашение с клиентом и подключение. Два внутренних этапа FundingPips могут занимать до 2 рабочих дней каждый; торговать на мастер-счёте нельзя, пока KYC, соглашение и подключение не завершены. Instant Zero убирает оценку, но не KYC или соглашение с клиентом.</p>
-          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a>.</p>
+          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a> · <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">перенос через ночь и выходные</a>, <a href={ZERO_URL} target="_blank" rel="noopener noreferrer">правила Zero</a> (по данным на {HOLDING_CHECKED}).</p>
         </div>
       </section>
 
@@ -252,7 +260,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <ul>
             <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
             <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
-            <li>Удержание позиций через выходные ограничено у всех 5 продуктов, а для Zero становится серьёзным нарушением вместе с запрещённым окном новостей.</li>
+            <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {HOLDING_CHECKED}).</li>
             <li>ОАЭ и Вьетнам прямо ограничены, дополнительно действуют списки FATF и санкционные списки ЕС/ООН; VPN или чужой адрес не создают допустимый профиль.</li>
             <li>Возврат комиссии указан только для 2 Step Standard после четвёртой выплаты — так пишет Help Centre, но Условия (Terms) этого не подтверждают; 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero возврат не получают.</li>
           </ul>
@@ -286,7 +294,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <ul>
             <li><strong>Правило стабильности:</strong> от 15% до 35% в зависимости от продукта; у части программ есть минимум прибыльных дней (у Zero — 7 дней).</li>
             <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
-            <li><strong>Перенос позиций:</strong> через ночь в будни разрешён; на этапе оценки 2 Step Standard перенос через выходные разрешён, а на мастер-счёте требует опции Swing; у Zero удержание через выходные — серьёзное нарушение.</li>
+            <li><strong>Перенос позиций:</strong> на оценке всех четырёх оценочных моделей через ночь и выходные разрешён; на мастер-счёте без опции Swing все позиции закрываются автоматически каждый день (это не нарушение); у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</li>
             <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
             <li data-russian-fundingpips-pro-min-days={proDays.days ?? 'unconfirmed'}><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {proDays.short} для новых и сброшенных счетов{proDays.dated}; купленные до 26.08.2026 сохраняют 1 день.</li>
             <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
@@ -318,8 +326,8 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
               <p>2 Step Pro начинается с {money(proFiveKPrice)} на $5K и даёт 6% статической просадки; Flex стоит {money(flexFiveKPrice)} и расширяет её до 12%. Разница в {money(fiveKPriceGap)} покупает другой запас риска, а не просто другой логотип продукта.</p>
             </article>
             <article className="ru-card">
-              <h3>Не подходит для торговли на выходных</h3>
-              <p>На мастер-счетах (Master Accounts) удержание через выходные сейчас ограничено, а у Zero это жёсткое нарушение. Трейдеру, который системно держит позицию с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
+              <h3>Не подходит для переноса позиций без Swing</h3>
+              <p>На мастер-счетах (Master Accounts) без опции Swing позиции закрываются автоматически каждый день, а у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}). Трейдеру, который системно держит позицию через ночь или с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
             </article>
             <article className="ru-card">
               <h3>{accessCurrent ? 'Не подходит резиденту ОАЭ' : 'ОАЭ: перепроверьте доступ'}</h3>
