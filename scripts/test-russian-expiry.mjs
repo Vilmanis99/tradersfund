@@ -1787,8 +1787,11 @@ try {
         if (slug === 'luchshie-kripto-prop-firmy') {
           const expected = cryptoEvidence.ranked.filter(evidence => {
             const mapped = originalByFirm(evidence.firmSlug).filter(product => evidence.productSlugs.includes(product.productSlug))
+            // A priced tier is a USD cost or, when the firm publishes no USD fee, its own EUR fee (never converted).
+            const publishedFee = (product, tier) => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0
+              || (tier.priceUsd == null && (tier.priceEur ?? 0) > 0 && !((tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0)))
             return isChallengeFresh(evidence) && mapped.length === evidence.productSlugs.length && mapped.every(product => isChallengeFresh(product)
-              && product.accountSizes.some(tier => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0))
+              && product.accountSizes.some(tier => publishedFee(product, tier)))
           })
           assert.deepEqual(cryptoCards(html), expected.map(evidence => evidence.firmSlug).sort(), `${date}: cards re-evaluate both independent source dates`)
           assert(html.includes(`data-russian-crypto-product-count="${expected.reduce((count, evidence) => count + evidence.productSlugs.length, 0)}"`), 'programme count follows the actual surviving mappings')

@@ -19,6 +19,7 @@ import {
   isChallengeFresh,
   minimumCostToFundedUsd,
   type Challenge,
+  type ChallengeAccountSize,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import {
@@ -90,12 +91,35 @@ function splitLabel(products: Challenge[]) {
   return `${valueRange(values, '%')}${values.length && values.length < products.length ? '; часть условий не подтверждена' : ''}`
 }
 
+type PublishedCost = { currency: 'USD' | 'EUR'; amount: number }
+
+// Same currency rule as minimumPublishedEntry() in lib/landings.ts: the USD
+// figure when the firm publishes one, otherwise its own EUR fee. Never
+// converted (AGENTS.md: a firm that prices in EUR keeps priceEur).
+function minimumPublishedCost(product: Challenge, tier: ChallengeAccountSize): PublishedCost | null {
+  const usd = minimumCostToFundedUsd(product, tier)
+  if (usd != null && usd > 0) return { currency: 'USD', amount: usd }
+  if (tier.priceUsd != null || tier.priceEur == null || tier.priceEur <= 0) return null
+  // A USD-denominated add-on cannot be summed with a EUR fee without an FX rate.
+  const usdExtras = (tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0)
+  return usdExtras > 0 ? null : { currency: 'EUR', amount: tier.priceEur }
+}
+
+function hasPublishedCost(product: Challenge) {
+  return product.accountSizes.some(tier => minimumPublishedCost(product, tier) != null)
+}
+
 function minimumKnownCost(products: Challenge[]) {
   const costs = products.flatMap(product => product.accountSizes.flatMap(tier => {
-    const cost = minimumCostToFundedUsd(product, tier)
-    return cost != null && cost > 0 ? [cost] : []
+    const cost = minimumPublishedCost(product, tier)
+    return cost ? [cost] : []
   }))
-  return costs.length ? `$${Math.min(...costs).toLocaleString('en-US', { maximumFractionDigits: 2 })}` : 'не подтверждены'
+  const format = (amount: number) => amount.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const usd = costs.filter(cost => cost.currency === 'USD').map(cost => cost.amount)
+  const eur = costs.filter(cost => cost.currency === 'EUR').map(cost => cost.amount)
+  if (usd.length) return `$${format(Math.min(...usd))}`
+  if (eur.length) return `€${format(Math.min(...eur))}`
+  return 'не подтверждены'
 }
 
 function localizedReviewHref(reviewUrl: string) {
@@ -148,8 +172,7 @@ export default function RussianCryptoPropFirmsPage() {
   const snapshots = mapped.flatMap(({ evidence, firm, products }) =>
     firm && freshEvidence(evidence) && evidence.productSlugs.length > 0
       && products.length === evidence.productSlugs.length
-      && products.every(product => freshEvidence(product)
-        && product.accountSizes.some(tier => (minimumCostToFundedUsd(product, tier) ?? 0) > 0))
+      && products.every(product => freshEvidence(product) && hasPublishedCost(product))
       ? [{ evidence, firm, products }] : [],
   ).sort((a, b) => {
     const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
@@ -286,7 +309,7 @@ export default function RussianCryptoPropFirmsPage() {
                     </div>
                     <ul className="ru-facts">
                       <li><ShieldCheck size={14} aria-hidden="true" /> {products.length} программ: {productNames.slice(0, 3).join(', ')}{productNames.length > 3 ? ` и ещё ${productNames.length - 3}` : ''}</li>
-                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы в USD: {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
+                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы (в валюте фирмы, без пересчёта): {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
                       <li><ShieldCheck size={14} aria-hidden="true" /> Просадка: {drawdowns.join(', ')}. Срок выплаты зависит от программы и условий запроса — см. обзор.</li>
                       <li><Database size={14} aria-hidden="true" /> {evidence.evidenceRu ?? evidence.evidence}</li>
                     </ul>
@@ -312,11 +335,11 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell" data-russian-crypto-comparison="current-source-mapped-products">
             <div className="ru-content">
               <h2>Сравнение стоимости и правил</h2>
-              <p>Показаны минимальные известные расходы в USD по программам из выборки, а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
+              <p>Показаны минимальные известные расходы по программам из выборки в той валюте, в которой их публикует фирма (USD или EUR, без пересчёта по курсу), а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
             </div>
             {snapshots.length > 0 && <div className="ru-table-wrap" role="region" aria-label="Сравнение криптопрограмм — таблицу можно прокрутить" tabIndex={0}>
               <table className="ru-table">
-                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы, USD</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
+                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы (валюта фирмы)</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
                 <tbody>
                   {snapshots.map(({ evidence, products, firm }) => (
                     <tr key={evidence.firmSlug}>
