@@ -377,7 +377,7 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="prices" data-russian-ftmo-price-count={pricedTiers.length} data-russian-ftmo-truecost={pricedTiers.length}>
-            <h2>Все 10 цен FTMO и полная стоимость в EUR</h2>
+            <h2>Все {pricedTiers.length} цен FTMO и полная стоимость в EUR</h2>
             <p>
               FTMO маркирует размер симулируемого счёта в USD, но публикует взнос в EUR. Мы сохраняем обе единицы и не применяем курс дня:
               пересчёт €540 в доллары быстро устареет и скроет комиссию банка. В таблицах ниже использованы базовые цены,
