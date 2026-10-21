@@ -103,8 +103,8 @@
       "sourceQuote": "At CTI, you're free to trade any instrument available on our platform across all our funding programs — no limitations! Whether you're into Forex, Commodities, Indices, or Crypto, we've got you covered.",
       "evidence": "CTI's help centre (article modified 5 August 2026) lets every funding program trade Crypto and lists BTCUSD, ETHUSD, LTCUSD, XRPUSD, SOLUSD and ADAUSD, with no commission on crypto. Its leverage article (2 June 2026) sets crypto at 1:1 on the 1-Step, 2-Step, Instant Funding and Instant Funding Pro programs. Payouts go by bank transfer or USDT (TRC20), with crypto payouts capped at $1,000 per client per month.",
       "evidenceRu": "Справка CTI (статья изменена 05.08.2026) разрешает торговать криптовалютами во всех программах и перечисляет BTCUSD, ETHUSD, LTCUSD, XRPUSD, SOLUSD и ADAUSD; комиссии по криптовалютам нет. В статье о плече (02.06.2026) для криптовалют указано 1:1 в 1-Step, 2-Step, Instant Funding и Instant Funding Pro. Выплаты — банковским переводом или в USDT (TRC20); криптовыплаты ограничены $1 000 на клиента в месяц.",
-      "scopeNote": "All 4 stored programs are mapped on the 'across all our funding programs' statement. The leverage table does not list Direct Funding, so its crypto leverage is unconfirmed. Six crypto symbols only.",
-      "scopeNoteRu": "Привязаны все 4 программы из наших данных на основании формулировки «во всех программах». В таблице плеча нет Direct Funding, поэтому плечо по криптовалютам для неё не подтверждено. Всего шесть криптосимволов.",
+      "scopeNote": "All 4 stored programs are mapped on the 'across all our funding programs' statement. The leverage table does not list Direct Funding, so its crypto leverage is unconfirmed (also absent from the Direct Funding help article and product page, rechecked 2026-10-21). Six crypto symbols only.",
+      "scopeNoteRu": "Привязаны все 4 программы из наших данных на основании формулировки «во всех программах». В таблице плеча нет Direct Funding, поэтому плечо по криптовалютам для неё не подтверждено (его нет и в справочной статье, и на странице Direct Funding; проверено 21.10.2026). Всего шесть криптосимволов.",
       "productScope": {
         "sourceUrl": "https://helpcenter.citytradersimperium.com/en/articles/12889170-leverage",
         "sourcePublishedAt": "2026-06-02",
@@ -116,7 +116,10 @@
         "sourcePublishedAt": "2025-11-19",
         "sourceCapturedAt": "2026-10-21",
         "sourceQuote": "Crypto Wallet Address (USDT – TRX Network) ... Due to our Anti-Money Laundering Policy (AML), crypto payouts are capped at $1,000 per client per month."
-      }
+      },
+      "openGaps": [
+        "Direct Funding crypto leverage: not in the leverage article 12889170 (dateModified 2026-06-02, re-read 2026-10-21), the Direct Funding help article 16053268 (dateModified 2026-08-05) or https://citytradersimperium.com/direct-funding/ (read 2026-10-21)."
+      ]
     },
     {
       "firmSlug": "ofp-funding",
@@ -136,8 +139,8 @@
       "sourceQuote": "Commission structure is 25 USD per million traded (notional volume) on forex, indices, and commodities, and 200 USD per million traded (notional volume) on cryptos.",
       "evidence": "OFP's help centre (updated 20 May 2026) charges 200 USD per million notional traded on cryptos, and its homepage lists Crypto among the OFP Platform markets. Its access article (updated 5 August 2026) says all accounts use the OFP platform (Sirix). Payouts go by bank transfer, card or crypto.",
       "evidenceRu": "Справка OFP (обновлена 20.05.2026) указывает комиссию 200 USD за миллион номинального объёма по криптовалютам, а главная страница называет криптовалюты среди рынков OFP Platform. По статье о доступе (обновлена 05.08.2026) все счета работают на платформе OFP (Sirix). Выплаты — банковским переводом, на карту или в криптовалюте.",
-      "scopeNote": "All 6 stored Instant products are mapped because every OFP account uses the same OFP Platform (Sirix). An open source-conflict watch (ofp-current-plan-display-conflict-2026-09-14) means the stored price ladders are not checkout-confirmed. No crypto symbol list or crypto leverage is published.",
-      "scopeNoteRu": "Привязаны все 6 программ Instant из наших данных: все счета OFP работают на одной платформе OFP (Sirix). Открытое расхождение источников (ofp-current-plan-display-conflict-2026-09-14) означает, что сохранённые цены не подтверждены в корзине. Список криптосимволов и плечо по криптовалютам не опубликованы.",
+      "scopeNote": "All 6 stored Instant products are mapped because every OFP account uses the same OFP Platform (Sirix). Crypto leverage is published only for Instant Lite (trading rules: 'Crypto 1:1/2', dynamic). Stored prices match the site's USD pricing data on 2026-10-21 but are not checkout-confirmed (login wall), and the open source-conflict watch ofp-current-plan-display-conflict-2026-09-14 still applies. No crypto symbol list is published.",
+      "scopeNoteRu": "Привязаны все 6 программ Instant из наших данных: все счета OFP работают на одной платформе OFP (Sirix). Плечо по криптовалютам опубликовано только для Instant Lite (правила торговли: «Crypto 1:1/2», динамическое). Сохранённые цены совпадают с ценовыми данными сайта на 21.10.2026, но в корзине не подтверждены (нужен вход в аккаунт); открытое расхождение источников ofp-current-plan-display-conflict-2026-09-14 остаётся. Список криптосимволов не опубликован.",
       "productScope": {
         "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
         "sourcePublishedAt": "2026-08-05",
@@ -149,6 +152,12 @@
           "sourceUrl": "https://ofpfunding.com/",
           "sourceCapturedAt": "2026-10-21",
           "sourceQuote": "Demo Trading With Institutional Conditions Lowest spreads worldwide OFP Platform Forex Index Metals Oil Crypto"
+        },
+        {
+          "sourceUrl": "https://ofpfunding.com/trading-rules",
+          "sourceCapturedAt": "2026-10-21",
+          "sourceQuote": "Instant Lite accounts operate under a dynamic leverage model, whereby leverage levels are automatically adjusted based on prevailing market volatility, liquidity conditions, and overall risk exposure. Leverage may range from a minimum of 1:1 to a maximum of 1:100. You can trade Forex, Crypto, Indices, Metals & Energies ... Instrument Leverage FX 1:1/100 Metals 1:/10 Crypto 1:1/2 Indices 1:1/10",
+          "note": "Section '4. Instruments and Leverage'; page shows no date. The table is printed under the Instant Lite paragraph only, so crypto leverage '1:1/2' (read as dynamic 1:1 to 1:2) is confirmed for Instant Lite, not for Instant Classic or Instant Plus."
         }
       ],
       "payoutMethods": {
@@ -156,7 +165,17 @@
         "sourcePublishedAt": "2025-10-17",
         "sourceCapturedAt": "2026-10-21",
         "sourceQuote": "Once validated, your payout is processed via your chosen method (bank transfer, card, or crypto)."
-      }
+      },
+      "priceRecheck": {
+        "sourceUrl": "https://ofpfunding.com/",
+        "sourceCapturedAt": "2026-10-21",
+        "note": "All 6 stored USD price ladders match the homepage __NUXT_DATA__ pricing records read 2026-10-21 (US IP; records carry currency 'USD' only, no regional variant). Checkout https://my.ofpfunding.com/prop/checkout is behind a login wall ('Login to your account'), so prices are not checkout-confirmed; no account was created and nothing was bought."
+      },
+      "openGaps": [
+        "Crypto symbol list: not published on ofpfunding.com (pages in its sitemap) or the 49 help.ofpfunding.com articles checked 2026-10-21.",
+        "Crypto leverage for Instant Classic and Instant Plus: not published; only the Instant Lite table gives 'Crypto 1:1/2'.",
+        "Checkout confirmation of prices: login required."
+      ]
     },
     {
       "firmSlug": "fundednext",
