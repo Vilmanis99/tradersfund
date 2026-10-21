@@ -1016,8 +1016,8 @@ const russianExpectations = new Map([
       markers: ['id="krasnye-flagi"', 'id="dokazatelstva-vyplat"', 'id="verdikty"'],
     }],
     ['/ru/obzor-the5ers', {
-      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'The5ers: обзор 2026 — программы, правила, доступ из России',
-      markers: ['rel="nofollow noopener noreferrer" class="btn-outline" data-russian-the5ers-official="non-affiliate"', 'data-russian-the5ers-programs="2026-10-14"'],
+      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'Обзор The5ers: программы, правила и доступ из России',
+      markers: ['data-russian-the5ers-official="non-affiliate"', 'href="/go/the5ers?from=ru-obzor-the5ers-official"', 'data-russian-alternatives="bright-funded-first"', 'data-russian-alternative="bright-funded"', 'data-russian-the5ers-bootcamp-drawdown="neutral"', 'href="/blog/the5ers-review"'],
     }],
   ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
@@ -2055,6 +2055,7 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
   ['/ru/fundingpips-vs-bright-funded', '/go/bright-funded?from=ru-comparison-fundingpips-bright-funded'],
+  ['/ru/obzor-the5ers', '/go/bright-funded?from=ru-obzor-the5ers-alt-bright-funded'],
   ['/ru/fundingpips-vs-bright-funded', '/go/fundingpips?from=ru-comparison-fundingpips-bright-funded'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
