@@ -393,7 +393,8 @@
       "Russia",
       "Belarus",
       "Kenya",
-      "Ghana"
+      "Ghana",
+      "Haiti"
     ],
     "restrictionListComplete": true,
     "productEligibility": {
@@ -425,8 +426,9 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from the current 35-jurisdiction restriction list shown across FXIFY's support pages.",
+      "summary": "India is absent from both current FXIFY lists, stored as their 36-name union: the FAQ 'What Countries are not accepted?' (schema dateModified 2026-02-12, rechecked 2026-10-21) names 35 including Haiti, and the site-wide footer names 35 including the United States but not Haiti.",
       "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
         "https://fxify.com/faqs/all-faqs/"
       ]
     },
@@ -472,7 +474,7 @@
   {
     "firmSlug": "alpha-capital",
     "firmName": "Alpha Capital",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-21",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -513,7 +515,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from Alpha Capital's current 24-jurisdiction restriction list; nationality, residence, sanctions, and document checks still apply.",
+      "summary": "India is absent from Alpha Capital's 24-jurisdiction restriction list (help article 8775575, updated 6 Jul 2026, rechecked 2026-10-21); nationality, residence, sanctions, and document checks still apply.",
       "sourceUrls": [
         "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations"
       ]
@@ -535,7 +537,7 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "Published rails are Rise, Wise, and bank transfer by WIRE, ACH, or SWIFT, with firm-side processing stated as up to 2 business days; delivery to an Indian profile remains untested.",
+      "summary": "Published rails are Rise, Wise, and bank transfer by WIRE, ACH, or SWIFT; crypto only through Rise ('We do not facilitate withdrawals directly through cryptocurrency'); firm-side processing within 2 business days. Delivery to an Indian profile remains untested.",
       "sourceUrls": [
         "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees"
       ]
@@ -830,13 +832,15 @@
   {
     "firmSlug": "tradeify",
     "firmName": "Tradeify",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-21",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
       "Algeria",
       "Andorra",
       "Angola",
+      "Antarctica",
+      "Azerbaijan",
       "Bahamas",
       "Barbados",
       "Belarus",
@@ -847,9 +851,9 @@
       "Burundi",
       "Cambodia",
       "Central African Republic",
-      "Côte d'Ivoire",
       "Crimea",
       "Cuba",
+      "Côte d'Ivoire",
       "Democratic Republic of Congo",
       "Ecuador",
       "Ethiopia",
@@ -860,11 +864,14 @@
       "Iraq",
       "Israel",
       "Jamaica",
+      "Kazakhstan",
       "Kosovo",
+      "Kyrgyzstan",
       "Laos",
       "Lebanon",
       "Liberia",
       "Libya",
+      "Macao",
       "Malaysia",
       "Mauritius",
       "Mongolia",
@@ -873,6 +880,7 @@
       "Nicaragua",
       "North Korea",
       "Pakistan",
+      "Palestine",
       "Panama",
       "Papua New Guinea",
       "Russia",
@@ -881,6 +889,7 @@
       "Sri Lanka",
       "Sudan",
       "Syria",
+      "Tajikistan",
       "Trinidad and Tobago",
       "Tunisia",
       "Turkey",
@@ -905,7 +914,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from Tradeify's complete restriction list and its sim-only list; Tradeify also publishes a dedicated guide addressing Indian futures traders.",
+      "summary": "India is absent from Tradeify's 65-country restriction list (help article 10495888, 'Updated this week', read 2026-10-21), which now also names Antarctica, Azerbaijan, Kazakhstan, Kyrgyzstan, Macao, Palestine and Tajikistan; the restriction is by residency. Tradeify also publishes a dedicated guide addressing Indian futures traders.",
       "sourceUrls": [
         "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
         "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative"
@@ -928,7 +937,7 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "Tradeify explicitly describes Rise bank and crypto withdrawals for Indian traders and publishes Plane as an alternative provider; no Indian receipt is independently verified.",
+      "summary": "Tradeify's India guide says payouts are 'processed via Rise (with Plane as a backup)'; Rise offers Bank Transfer (ACH), Crypto Tokens and Local Currencies. No Indian receipt is independently verified.",
       "sourceUrls": [
         "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
         "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method"
