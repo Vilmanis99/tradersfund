@@ -85,14 +85,14 @@ export const FEATURES: Feature[] = [
       },
       {
         q: 'Which prop firm is best for algo traders?',
-        a: 'It depends on your platform and strategy frequency. FTMO and FundedNext are the most established EA-friendly options with broad platform support. For higher-frequency systems, look at cTrader-supporting firms (FundingPips, FXIFY).',
+        a: 'It depends on your platform and strategy frequency. Most firms we track allow EAs only with conditions, such as pre-approval or platform limits, so read each firm\'s EA rules before buying. For higher-frequency systems, confirm in writing that the firm permits your strategy on the platform you plan to use, such as cTrader or MT5.',
       },
       {
         q: 'Do I need to disclose my EA to the firm?',
         a: 'Usually no — but some firms reserve the right to inspect your trading log. Avoid HFT-style scalping and copy-trading-bot setups; these are commonly flagged even on "EA allowed" accounts.',
       },
     ],
-    lastReviewed: "2026-04-24",
+    lastReviewed: "2026-10-20",
   },
   {
     slug: 'news-trading',
@@ -135,7 +135,7 @@ export const FEATURES: Feature[] = [
         a: 'Most firms void the trade and may close the account on repeat violations. Read the consequences section carefully — the punishment is usually stricter than the warning suggests.',
       },
     ],
-    lastReviewed: "2026-04-24",
+    lastReviewed: "2026-10-20",
   },
   {
     slug: 'weekend-holding',
@@ -178,7 +178,7 @@ export const FEATURES: Feature[] = [
         a: 'Yes. Even if weekend holding is allowed, a gap that triggers your max drawdown ends the account — your stop-loss won\'t fire over the weekend. Position-size accordingly.',
       },
     ],
-    lastReviewed: "2026-04-24",
+    lastReviewed: "2026-10-20",
   },
   {
     slug: 'crypto-payouts',
@@ -221,7 +221,7 @@ export const FEATURES: Feature[] = [
         a: 'In most jurisdictions, yes — the same as receiving USD. Document the exchange rate at the time of the payout. We aren\'t tax advisors; check with a local accountant.',
       },
     ],
-    lastReviewed: "2026-04-24",
+    lastReviewed: "2026-10-20",
   },
   {
     slug: 'static-drawdown',
@@ -264,7 +264,7 @@ export const FEATURES: Feature[] = [
         a: 'Most futures prop firms (Topstep, My Funded Futures, Apex) use trailing drawdown. Forex/CFD firms are split — FTMO, FundedNext, and FundingPips run static on their flagship plans.',
       },
     ],
-    lastReviewed: "2026-04-24",
+    lastReviewed: "2026-10-20",
   },
   {
     slug: 'overnight-holding',
@@ -307,7 +307,7 @@ export const FEATURES: Feature[] = [
         a: 'On forex and CFD accounts, yes — swap/rollover is charged (or occasionally credited) per night held. Crypto and some swap-free accounts differ. Read the firm\'s swap policy, not just its "overnight allowed" marketing line.',
       },
     ],
-    lastReviewed: "2026-06-04",
+    lastReviewed: "2026-10-20",
   },
 
   /* ── Product-level features ──────────────────────────────────────
@@ -410,7 +410,7 @@ export const FEATURES: Feature[] = [
         a: 'Some publish a 100% rate on specific products or as a scaling ceiling. Where a product publishes it we record it. Where it is only reachable after milestones, the milestone terms — not the headline — decide what you are actually paid.',
       },
     ],
-    lastReviewed: "2026-08-07",
+    lastReviewed: "2026-10-20",
   },
 
 ]

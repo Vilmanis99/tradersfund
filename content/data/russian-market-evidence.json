@@ -275,8 +275,8 @@
     {
       "name": "PropLive",
       "sourceUrl": "https://www.proplive.ru/",
-      "tradersClaimed": 13722,
-      "notes": "The current hero claims 13,722 traders worldwide, while a lower section still says more than 10,700; both are operator-published and not independently audited."
+      "tradersClaimed": 14993,
+      "notes": "On the 2026-10-20 recheck the hero claims 14,993 traders worldwide (13,722 on 2026-10-01), while a lower section still says more than 10,700; both are operator-published and not independently audited."
     },
     {
       "name": "Era Trade",
@@ -291,7 +291,7 @@
     {
       "operator": "Era Trade",
       "sourceUrl": "https://eratrade.net/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
         "traders": 6000,
         "countries": 70,
@@ -300,26 +300,30 @@
       },
       "notes": [
         "The operator identifies NEVERA CORE GLOBAL - FZCO in Dubai, so a Russian-language market presence is not the same as a Russian legal entity.",
-        "All scale and payout figures are operator claims and have not been independently audited."
+        "All scale and payout figures are operator claims and have not been independently audited.",
+        "2026-10-20 recheck: homepage claims unchanged (6000+ traders, 70+ countries, $2M+ paid, 80% split); see content/data/challenges/_captures/eratrade-2026-10-20.json.",
+        "2026-10-20: the help-centre URLs https://help.eratrade.club/ru/how-to-request-a-payout/ and https://help.eratrade.club/ru/profit-split-payment-methods/ (cited on /ru/obzor-eratrade) now 301-redirect to https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/; the rules there are unchanged (15 or 30 days, 3 profitable days, 1% minimum, 10% maximum per period, up to 5 business days)."
       ]
     },
     {
       "operator": "PropLive",
       "sourceUrl": "https://www.proplive.ru/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
-        "traders": 13722,
+        "traders": 14993,
         "market": "Moscow Exchange via Finam"
       },
       "notes": [
-        "The current hero claims 13,722 traders worldwide, while a lower section still says more than 10,700.",
-        "The operator describes real-market trading on the Moscow Exchange rather than the standard online challenge model used by global evaluation firms."
+        "On 2026-10-01 the hero claimed 13,722 traders worldwide, while a lower section said more than 10,700.",
+        "The operator describes real-market trading on the Moscow Exchange rather than the standard online challenge model used by global evaluation firms.",
+        "2026-10-20 recheck: the hero counter now says 14,993 traders (13,722 on 2026-10-01); the lower section still says more than 10,700. claims.traders updated to 14993 on 2026-10-20. See content/data/challenges/_captures/proplive-2026-10-20.json.",
+        "2026-10-20: https://static.proplive.ru/documents/document-17.pdf (linked from /ru/obzor-proplive as the contract) returns 404 (dead link); the Moscow Exchange via Finam description is unchanged."
       ]
     },
     {
       "operator": "KasCapital",
       "sourceUrl": "https://kascapital.io/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
         "maximumProfitSharePct": 95,
         "minimumPayoutRub": 10000,
@@ -328,13 +332,14 @@
       },
       "notes": [
         "The operator publishes weekly Monday payout processing and a 10,000 to 2,000,000 RUB request range.",
-        "These are operator-published terms and have not yet passed the site's full product capture and review workflow."
+        "These are operator-published terms and have not yet passed the site's full product capture and review workflow.",
+        "2026-10-20 recheck: up to 95% share, Monday weekly payouts and the 10,000 to 2,000,000 RUB request range are unchanged. See content/data/challenges/_captures/kascapital-2026-10-20.json."
       ]
     },
     {
       "operator": "А-Лаб Групп",
       "sourceUrl": "https://www.a-lab.name/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
         "traders": 500,
         "quarterlyTurnoverRubClaimed": 1000000000000,
@@ -344,19 +349,20 @@
       },
       "notes": [
         "Все цифры опубликованы оператором; они не являются независимым аудитом оборота, сделок или выплат.",
-        "Оператор описывает договорную работу с собственным капиталом, русскоязычную коммуникацию и расчёты в российских рублях."
+        "Оператор описывает договорную работу с собственным капиталом, русскоязычную коммуникацию и расчёты в российских рублях.",
+        "2026-10-20: повторная проверка главной страницы, все цифры и описание рынков без изменений. См. content/data/challenges/_captures/a-lab-2026-10-20.json."
       ]
     },
     {
       "operator": "TeamTraders",
       "sourceUrl": "https://teamtraders.ru/faq",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
         "stageProfitPct": 6,
         "minimumTradingSessions": 10,
         "dailyLossLimitPct": 2,
         "maximumLossPct": 4,
-        "fundedDemoProfitSharePct": 70,
+        "fundedDemoProfitSharePct": 50,
         "fundedDemoProfitCapPct": 10,
         "profitSharePct": 95,
         "maximumCapitalRub": 2000000,
@@ -366,22 +372,26 @@
       },
       "notes": [
         "Current homepage and FAQ terms were rechecked on 2026-10-01; the historical 2026-08-28 /docs/ archive says 15 sessions and a 90% split, while current pages say 10 days and 95% on the real account.",
-        "The current FAQ inserts a funded-demo stage with a 70% share and a 10% profit cap before the normal move to a real account.",
+        "The FAQ inserts a funded-demo stage with a 10% profit cap before the normal move to a real account; its trader share was 70% on 2026-10-01 and 50% on 2026-10-20.",
         "Overnight positions are prohibited; selection-stage daily or maximum-risk breaches fail the selection under the current FAQ.",
-        "The separately linked prop-trading offer is currently unavailable; the live public training offer is not a substitute for programme-specific purchase terms."
+        "The separately linked prop-trading offer is currently unavailable; the live public training offer is not a substitute for programme-specific purchase terms.",
+        "2026-10-20 recheck: prices, 6% per step, 2%/4% risk, 10 sessions, 95% real-account share and the Finam/MOEX relationship are unchanged. See content/data/challenges/_captures/teamtraders-2026-10-20.json and russian-teamtraders-evidence.json.",
+        "2026-10-20: the FAQ now gives the funded-demo trader share as 50% (70% on 2026-10-01); claims.fundedDemoProfitSharePct updated to 50.",
+        "2026-10-20: payout-frequency conflict on official pages: /faq says withdrawal requests weekly, up to 50% of currently available profit (funded demo and real account); the homepage still says requests daily with no limit."
       ]
     },
     {
       "operator": "Trade System",
       "sourceUrl": "https://tsystem.pro/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "claims": {
         "maximumProfitSharePct": 95,
         "market": "Московская биржа"
       },
       "notes": [
         "Оператор описывает обучение, отбор, риск-менеджмент и выплаты до 95%; условия нужно читать в действующем пользовательском соглашении.",
-        "Публичные страницы содержат отказ от гарантий заработка и не являются независимой историей выплат."
+        "Публичные страницы содержат отказ от гарантий заработка и не являются независимой историей выплат.",
+        "2026-10-20: повторная проверка, «до 95%», Московская биржа и криптовалютный рынок, отказ от гарантий заработка без изменений. Сайт перенаправляет посетителей с US IP на /en/; русская версия проверена с cookie lang=ru. См. content/data/challenges/_captures/trade-system-2026-10-20.json."
       ]
     }
   ],
@@ -390,7 +400,7 @@
       "operator": "Era Trade",
       "status": "public",
       "sourceUrl": "https://help.eratrade.club/ru/affiliate-program-overview/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "baseCommissionPct": 5,
       "maximumPublishedCommissionPct": 60,
       "minimumPayoutUsd": 50,
@@ -398,57 +408,63 @@
         "The standard program is available inside a user account and pays on direct challenge purchases.",
         "Higher tiers require 5 to 300 referred challenge purchases per calendar month.",
         "The Ambassador model uses a multi-level differential structure and requires individual activation.",
-        "Program existence does not substitute for product, legal-entity, payout and country-access due diligence."
+        "Program existence does not substitute for product, legal-entity, payout and country-access due diligence.",
+        "2026-10-20 recheck: 5% standard, tiers to 60% at 300+ monthly referred purchases, $50 minimum withdrawal and the separate Ambassador model are unchanged."
       ]
     },
     {
       "operator": "PropLive",
       "status": "application-only",
       "sourceUrl": "https://www.proplive.ru/partnyoram",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "maximumPublishedCommissionPct": 50,
       "notes": [
         "The published offer is aimed at trading mentors and schools rather than ordinary content affiliates.",
-        "Compensation is described as a share of students' trading profit and terms are negotiated after application."
+        "Compensation is described as a share of students' trading profit and terms are negotiated after application.",
+        "2026-10-20 recheck: still a mentors-and-schools programme, 'до 50% PayOut' of students' profit; unchanged."
       ]
     },
     {
       "operator": "KasCapital",
       "status": "not-found",
       "sourceUrl": "https://kascapital.io/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "notes": [
-        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check."
+        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check.",
+        "2026-10-20 recheck: still no referral or affiliate terms on the official homepage."
       ]
     },
     {
       "operator": "А-Лаб Групп",
       "status": "not-found",
       "sourceUrl": "https://www.a-lab.name/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "notes": [
-        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check."
+        "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check.",
+        "2026-10-20: повторная проверка, партнёрские или реферальные условия на главной странице по-прежнему не найдены."
       ]
     },
     {
       "operator": "TeamTraders",
       "status": "not-found",
       "sourceUrl": "https://teamtraders.ru/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "notes": [
         "The current homepage, FAQ and public training rules checked on 2026-10-01 do not publish an ordinary content-affiliate programme; the older prop-trading offer is unavailable.",
-        "Crypto-exchange rebate links in the footer are separate from a TeamTraders publisher-referral programme."
+        "Crypto-exchange rebate links in the footer are separate from a TeamTraders publisher-referral programme.",
+        "2026-10-20 recheck of /, /faq and /rules: still no publisher affiliate programme; the -50% rebate remains a crypto-exchange commission rebate via binam.io."
       ]
     },
     {
       "operator": "Trade System",
       "status": "described-no-terms",
       "sourceUrl": "https://tsystem.pro/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-20",
       "sourceQuote": "Наставники и партнеры помогают трейдерам развиваться и за это получают долю от их прибыли.",
       "notes": [
         "The official homepage describes a mentor/partner share of traders' profit but does not publish a percentage, qualification requirements or ordinary content-affiliate terms.",
-        "A public blog post mentions a referral program without publishing terms; this is not a verified publisher-affiliate offer."
+        "A public blog post mentions a referral program without publishing terms; this is not a verified publisher-affiliate offer.",
+        "2026-10-20 recheck: the homepage still describes a mentor/partner share without a percentage or terms; the earlier blog referral mention was not re-located."
       ]
     }
   ],
@@ -530,13 +546,15 @@
     },
     {
       "firmSlug": "fundednext",
-      "status": "conflicting",
+      "status": "restricted",
       "sourceCapturedAt": "2026-10-01",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
         "https://fundednext.com/company",
         "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
-        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits"
+        "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+        "https://fundednext.com/",
+        "https://fundednext.com/api_docs/terms-of-service"
       ],
       "sourceObservations": [
         {
@@ -563,13 +581,167 @@
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
           "sourceCapturedAt": "2026-10-01",
           "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+        },
+        {
+          "sourceUrl": "https://fundednext.com/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
+        },
+        {
+          "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "5.3. Without prejudice to other restrictions set forth in these Terms, for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
         }
       ],
       "notes": [
         "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
         "FundedNext lists Russia for bank-transfer restrictions and Russian Federation for card-transfer restrictions on performance rewards.",
-        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents."
+        "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents.",
+        "2026-10-20: status set to restricted to match firms.json (commit 41f3c05). Basis: the site-wide fundednext.com footer (also on the Terms of Service page) says the FundedNext Entities do not offer services to residents of Russia; ToS 5.3 (CFD list) omits Russia and the footer is treated as operative. The four 2026-10-01 observations keep their own dates."
+      ]
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "status": "available",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceUrls": [
+        "https://cryptofundtrader.com/faq/",
+        "https://cryptofundtrader.com/terms-and-conditions/",
+        "https://cryptofundtrader.com/",
+        "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries"
+      ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "7.3. Country Restrictions and Platform Availability Platform access is subject to regional regulations and platform-specific compliance requirements: Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Crypto Fund Trader does not apply any additional country restrictions to users who choose to complete their evaluation through Bybit."
+        },
+        {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Neither SWISS RLCRATES AG nor RLCRATES, S.L. (the company that provides services with MT5) operate in countries where crypto or CFD’s activity is not allowed."
+        },
+        {
+          "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine"
+        }
+      ],
+      "countries": {
+        "russia": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+          "note": "Russia is not named on any CFT page read (FAQ, Terms, get-started, refund policy, last-updates FAQ, homepage). Available rests on the absence of a restriction, not on a positive statement. Bybit's excluded list (third party, page updated 2026-10-16) does not name Russia."
+        },
+        "belarus": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+          "note": "Belarus not named by CFT; not in Bybit's excluded list."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine",
+          "note": "CFT names no Ukrainian restriction on Match-Trader/MT5. The Bybit route is subject to Bybit's exclusion of Crimea/Sevastopol and the non-government-controlled Donetsk, Luhansk, Kherson and Zaporizhzhia areas (third-party page)."
+        },
+        "kazakhstan": {
+          "status": "not-named",
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States.",
+          "note": "Kazakhstan not named by CFT; not in Bybit's excluded list."
+        }
+      },
+      "notes": [
+        "2026-10-20 article-slot capture: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'available'.",
+        "Unverified: Russian-issued cards (incl. Mir) at checkout; KYC outcome for Russian/Belarusian documents; payout to Russian banks. Bank transfer is EUR/USD; crypto payouts USDT (ERC20/TRC20), BTC, ETH."
+      ]
+    },
+    {
+      "firmSlug": "alpha-capital",
+      "status": "restricted",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceUrls": [
+        "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+        "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+        "https://alphacapitalgroup.uk/product"
+      ],
+      "sourceObservations": [
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ..."
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia"
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "If a trader is from a restricted country but is living in a non-restricted country and holds a government-issued document from that non-restricted country, they can be onboarded."
+        },
+        {
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "If a trader is from a restricted country and living in a restricted country, they cannot be onboarded, even if they hold a passport from another country."
+        },
+        {
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Italy Japan Jordan Kazakhstan Kenya",
+          "note": "Rendered checkout country dropdown (US-IP box, headless Chrome). Russia and Belarus are absent from the dropdown; Kazakhstan and Ukraine are present."
+        }
+      ],
+      "countries": {
+        "russia": {
+          "status": "restricted",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: ... Sudan Russia Republic of South Sudan ...",
+          "note": "Nationals or residents. Russia is not selectable at checkout. KYC article: a Russian national living in a non-restricted country with that country's government document can be onboarded; a resident of a restricted country cannot, even with another passport."
+        },
+        "belarus": {
+          "status": "restricted",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus Burundi ...",
+          "note": "Same nationals-or-residents rule as Russia; Belarus is not selectable at checkout."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia",
+          "note": "Only the sanctioned areas (Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia) are restricted; Ukraine itself is selectable at checkout (Uganda Ukraine United Arab Emirates)."
+        },
+        "kazakhstan": {
+          "status": "not-named",
+          "sourceUrl": "https://alphacapitalgroup.uk/product",
+          "sourceCapturedAt": "2026-10-20",
+          "quote": "Italy Japan Jordan Kazakhstan Kenya",
+          "note": "Kazakhstan is not on the help-centre list and is selectable at checkout."
+        }
+      },
+      "notes": [
+        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20. Capture: content/data/challenges/_captures/alpha-capital-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'restricted'."
       ]
     }
   ],
@@ -626,29 +798,30 @@
         "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
         "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work"
       ],
-      "sourceCapturedAt": "2026-09-29",
+      "sourceCapturedAt": "2026-10-20",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "through our partner SumSub"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "1–2 business days (Mon–Fri)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "Up to 4 business days"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
-          "sourceCapturedAt": "2026-09-29",
+          "sourceCapturedAt": "2026-10-20",
           "quote": "proof of identity (e.g., a government-issued ID) and a proof of address"
         }
       ],
+      "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box): both help articles re-read; provider, documents, Security Check timing and post-KYC steps unchanged. 9268287 (dated March 26, 2026) also: \"Trader Contract is sent automatically and instantly\" and \"Funded Account is activated instantly\"; 9973224 (dated April 23, 2025): \"Specific documentation may vary based on the customer’s country of residence\".",
       "required": true,
       "trigger": "After passing the final evaluation stage and before the funded-account contract",
       "provider": "SumSub",
@@ -840,7 +1013,7 @@
         "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
         "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-20",
       "methods": [
         "Card",
         "Crypto",
@@ -855,14 +1028,18 @@
       "processing": [
         "FundingPips publishes internal processing of 1 to 3 working days.",
         "The receiving wallet or bank may need an additional 1 to 2 working days.",
-        "Product-level first-reward gates range from 7 to 14 days where a current number is published."
+        "Product-level first-reward gates range from 7 to 14 days where a current number is published.",
+        "Crypto rewards are sent only in USDT/USDC on the ERC20 network."
       ],
       "fees": [
-        "Network, bank or provider costs depend on the selected reward method and must be checked before the request."
+        "Network, bank or provider costs depend on the selected reward method and must be checked before the request.",
+        "Crypto rewards are subject to service fees, exchange rates and network transaction fees deducted during processing, so the amount received may be less than requested.",
+        "Minimum request is 1% of Master Account size for Card and Crypto; Rise and Bank Transfer each require at least $500."
       ],
       "countryBoundary": [
         "Rise requires separate onboarding with the same email used at FundingPips, a government-issued ID and a selfie.",
-        "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence."
+        "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence.",
+        "Pay to Card and Bank Transfer list only Belgium, France, Germany, Italy, Netherlands, Spain, Brazil, Colombia, Mexico, Nigeria, South Africa, the UK, Turkey and Indonesia; if Rise is not supported in a country, the reward defaults to Crypto."
       ]
     }
   ]

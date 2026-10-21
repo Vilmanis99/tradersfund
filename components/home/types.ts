@@ -12,6 +12,8 @@ export interface ComparisonRow {
   assetClass: string
   price: number
   currency: 'USD' | 'EUR'
+  /** Checkout plus mandatory extras, e.g. "$5 now + $589 after passing"; null when the price is the whole entry cost. */
+  priceBreakdown: string | null
   pricingModel: string
   profitTarget: number | null
   dailyLossPct: number | null

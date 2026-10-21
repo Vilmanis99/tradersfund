@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import RuAllReviews from '@/components/RuAllReviews'
 import Link from '@/components/SafeLink'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { ArrowRight, Globe2 } from 'lucide-react'
 import type { RussianFaqItem } from '@/components/RussianFaq'
 import HeroBlock from '@/components/home/HeroBlock'
@@ -7,7 +9,8 @@ import TrustBar from '@/components/home/TrustBar'
 import ComparisonTable from '@/components/home/ComparisonTable'
 import FeaturedOfferCard from '@/components/home/FeaturedOfferCard'
 import DisclosureNote from '@/components/home/DisclosureNote'
-import Guides from '@/components/home/Guides'
+import ChallengeExplainer from '@/components/home/ChallengeExplainer'
+import { getChallengeSectionFacts } from '@/components/home/challengeFacts'
 import HomeFaq from '@/components/home/HomeFaq'
 import { getHomeComparisonRows, getHomeCounters, getVerifiedCode } from '@/components/home/homeData'
 import { RuAccessBadge } from '@/components/RuGoLink'
@@ -20,7 +23,10 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 const PATH = '/ru'
 export const revalidate = 3600
@@ -34,6 +40,10 @@ const RU_HOME_BASICS = [
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
 ]
+// Gated by the closed-firms publish flag (lib/closedFirms.ts), not by route registration.
+const RU_HOME_CLOSED_FIRMS = ruClosedFirmsHref()
+  ? [{ href: ruClosedFirmsHref() as string, title: 'Какие проп-фирмы закрылись', text: 'Даты, заявления фирм и архивные копии источников.' }]
+  : []
 const TITLE = 'Проп-фирмы 2026: условия и цены для русскоязычных трейдеров'
 const DESCRIPTION = 'Проп-фирмы и проп-компании для русскоязычных трейдеров: цены челленджей, просадка, выплаты и KYC по первичным источникам. Доступ проверяем по стране.'
 
@@ -71,7 +81,7 @@ export default function RussianHomePage() {
   const featuredPartnerCards = featuredPartnerRoutes.map(route => {
     const firm = firms.find(candidate => outboundSlug(candidate.name) === route.slug)
     const products = challenges.filter(product => product.firmSlug === route.slug)
-    const fresh = products.length > 0 && products.every(product => isChallengeFresh(product))
+    const fresh = isProductSetFresh(products)
     // Use the oldest capture so the date does not overstate freshness across products.
     const captureDate = fresh ? products.map(product => product.sourceCapturedAt).sort()[0] : null
     const countryAccess = marketEvidence.firmAccess.find(item => item.firmSlug === route.slug)
@@ -85,6 +95,8 @@ export default function RussianHomePage() {
       && (brightTermsCapturedAt === null || isChallengeFresh({ sourceCapturedAt: brightTermsCapturedAt }))
     return { ...route, firm, fresh, captureDate, countryCapturedAt, brightTermsCapturedAt, countryFresh }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([{ name: 'Traders Fund Hub', url: '/' }, { name: 'Русская версия' }])
   const pageSchema = {
@@ -101,7 +113,12 @@ export default function RussianHomePage() {
   const tableRows = getHomeComparisonRows('ru')
   const counters = getHomeCounters()
   const watchCount = getChallengeWatchEntries().length
-  const money = (row: (typeof tableRows)[number]) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+  const challengeFacts = getChallengeSectionFacts('ru')
+  // Prefer a pair with its own Russian page, then any pair with a page.
+  const pairKeys = Object.keys(challengeFacts.picker.pairHrefs)
+  const pickerInitial = ((pairKeys.find(key => challengeFacts.picker.pairHrefs[key].startsWith('/ru/')) ?? pairKeys[0])?.split('-vs-')
+    ?? challengeFacts.picker.firms.slice(0, 2).map(firm => firm.slug)) as [string, string]
+  const money = (row: (typeof tableRows)[number]) => row.priceBreakdown ?? new Intl.NumberFormat('ru-RU', { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
 
   return (
     <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
@@ -162,7 +179,7 @@ export default function RussianHomePage() {
         <div className="ru-shell" data-russian-home-basics="osnovy">
           <h2>Основы</h2>
           <div className="ru-home-guide-list">
-            {RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)).map(item => (
+            {[...RU_HOME_BASICS.filter(item => russianPublishedHref(item.href)), ...RU_HOME_CLOSED_FIRMS].map(item => (
               <Link key={item.href} href={item.href}><span><strong>{item.title}</strong><span>{item.text}</span></span><ArrowRight size={20} aria-hidden="true" /></Link>
             ))}
           </div>
@@ -174,7 +191,7 @@ export default function RussianHomePage() {
           <div className="th-section__head">
             <div>
               <h2 id="ru-home-partners-heading">Партнёры сайта</h2>
-              <p className="ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">FundedNext и BrightFunded — наши партнёры: переход на сайт фирмы может принести нам комиссию. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
+              <p className="ru-home-partner-hero-disclosure" data-russian-affiliate-disclosure="home-primary-partners">BrightFunded и FundedNext — наши партнёры: переход на сайт фирмы может принести нам комиссию. FundedNext резидентам России недоступна, её карточка — для трейдеров из других стран. Это не добавляет баллы в рейтинге и не означает, что программа подходит каждому.</p>
             </div>
             <Link href="/ru/fundednext-vs-bright-funded" className="th-link ru-home-comparison-link">FundedNext или BrightFunded: сравнить отличия <ArrowRight size={14} aria-hidden="true" /></Link>
           </div>
@@ -204,7 +221,7 @@ export default function RussianHomePage() {
                 >
                   <p>{item.fresh
                     ? item.slug === 'fundednext'
-                      ? 'Программы с оплатой в USD: с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
+                      ? 'Для трейдеров вне России: программы с оплатой в USD, с оценочными этапами или без челленджа — Stellar Instant. В обзоре разбираем различия в просадке и выплатах.'
                       : 'Программы с оплатой в EUR и одним или двумя оценочными этапами. В обзоре разбираем лимиты убытка и ожидание первой выплаты.'
                     : 'Условия программ требуют повторной проверки. В обзоре объясняем модель работы и вопросы, которые стоит задать фирме перед оплатой.'}</p>
                   <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
@@ -229,23 +246,34 @@ export default function RussianHomePage() {
       </section>
 
       <div data-russian-home-next-step="reader-decision">
-        <Guides
+        <ChallengeExplainer
+          locale="ru"
           id="ru-home-guides-heading"
           title="С чего начать"
+          facts={challengeFacts}
           data={{ 'data-russian-home-navigation': 'task-first' }}
-          items={[
-            { href: '/ru/luchshie-prop-firmy', label: 'Рейтинг', title: 'Сравнить фирмы', description: 'Цены, правила и редакционные оценки — чтобы составить свой короткий список.' },
-            { href: '/ru/prop-firmy-bez-chelendzha', label: 'Без оценки', title: 'Начать без челленджа', description: 'Разберитесь, чем отсутствие оценки отличается от отсутствия ограничений.' },
-            { href: '/ru/chto-takoe-prop-firma', label: 'Основы', title: 'Понять, как это работает', description: 'За что платит трейдер, как проходит оценка и когда можно получить прибыль.', data: { 'data-russian-home-definition-entry': 'prop-kompanii-eto' } },
+          cards={[
+            { href: '/ru/chto-takoe-prop-firma', label: 'Основы', title: 'Как устроен челлендж', cta: 'Понять, как это работает', data: { 'data-russian-home-definition-entry': 'prop-kompanii-eto' } },
+            { href: '/ru/luchshie-prop-firmy', label: 'Стоимость', title: 'Взнос — только часть цены', cta: 'Сравнить взносы' },
+            { href: '/ru/kak-rabotayut-chellendzhi-prop-firm', label: 'Перед торговлей', title: 'План вокруг правил оценки', cta: 'Разобрать правила' },
           ]}
-          linksData={{ 'data-russian-home-guides': 'selected-three' }}
-          links={[
-            { href: '/ru/kak-rabotayut-chellendzhi-prop-firm', title: 'Как пройти оценку, не нарушив правила', description: 'Цель по прибыли, просадка и этапы челленджа.' },
-            { href: '/ru/vyplaty-prop-firm', title: 'Когда и как можно получить выплату', description: 'Сроки, способы перевода и проверка документов.' },
-            { href: '/ru/promokody-prop-firm', title: 'Как проверить скидку перед оплатой', description: 'Условия предложений и итоговая цена участия.' },
-          ]}
+          pickerFallbackHref="/ru/luchshie-prop-firmy"
+          pickerInitial={pickerInitial}
+          firmBadge={slug => <RuAccessBadge firm={slug} />}
+          country={{ lead: 'Из России?', label: 'Кто принимает трейдеров из РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
+          extra={{
+            label: 'Ещё по теме:',
+            data: { 'data-russian-home-guides': 'selected-three' },
+            links: [
+              { href: '/ru/prop-firmy-bez-chelendzha', title: 'Начать без челленджа' },
+              { href: '/ru/vyplaty-prop-firm', title: 'Когда и как получить выплату' },
+              { href: '/ru/promokody-prop-firm', title: 'Как проверить скидку' },
+            ],
+          }}
         />
       </div>
+
+      <RuAllReviews marker="ru-home" sectionClassName="th-section ru-all-reviews-home" wrapClassName="th-wrap" />
 
       <HomeFaq id="ru-home-faq-heading" title="Частые вопросы" items={faqs} />
     </div>

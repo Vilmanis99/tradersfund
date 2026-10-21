@@ -1,0 +1,176 @@
+{
+  "captureType": "key-facts-consistency-recheck",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "egress": "Box egress is a US IP; consistency rules are not region-specific on any of these pages.",
+  "method": "Headless Chrome (rendered text) for help.topstep.com, help.tradeify.co, support.lucidtrading.com, takeprofittraderhelp.zendesk.com, lucidtrading.com; FundingPips Help Center API (articles/<id>.json); curl for fxify.com, ftmo.com, help.alphacapitalgroup.uk, help.e8markets.com, maventrading.com. Raw text: /workspace/tradersfundhub/evidence/key-facts-2026-10-20/c-*.txt",
+  "rechecked2026_10_20": {
+    "topstep": [
+      {
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+        "quote": "Trading Combine — Consistency Target (55%) ... Your single best day of profit must stay at or below 55% of your Profit Target. If it exceeds that, your Profit Target increases."
+      },
+      {
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+        "quote": "Express Funded Account Consistency — Consistency Objective (40%) ... When you activate your XFA, you choose Standard or Consistency as your Payout path. The Consistency path gets you to Payout eligibility faster but adds a 40% threshold."
+      }
+    ],
+    "take-profit-trader": [
+      {
+        "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent",
+        "quote": "your best trading day must be below 50% of your total net profits."
+      }
+    ],
+    "tradeify": [
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+        "quote": "Growth Sim Funded Accounts must follow a 35% Consistency Rule. Select Evaluation Accounts must follow a 40% Consistency Rule during the evaluation phase only. There is no consistency rule for Select accounts in funded mode."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10495932-lightning-funded-account-payout-policy",
+        "quote": "Lightning Funded Accounts must follow a 20% Consistency Rule for the first payout, then 25% for the second payout, and 30% for all subsequent payouts."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+        "quote": "Consistency Requirement: 40% (50% add-on available)"
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+        "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement."
+      }
+    ],
+    "lucid-trading": [
+      {
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+        "quote": "The 40% Consistency Percentage resets after each payout."
+      },
+      {
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account",
+        "quote": "LucidFlex evaluation accounts: $25K-$150K accounts, 40% consistency (50% with add-on), optional daily loss limit, one-time fee. ... Customize at checkout: Daily Loss Limit On or Off, and 40% or 50% consistency (page header: \"Updated yesterday\")"
+      },
+      {
+        "sourceUrl": "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives",
+        "quote": "The 20% Consistency Percentage resets after each payout."
+      },
+      {
+        "sourceUrl": "https://www.lucidtrading.com/",
+        "quote": "100K DAILY | EVAL | Profit Target | $6,000 | Max Loss Limit | $3,000 | Drawdown In Eval | EOD | Intraday | Daily Loss Limit | ON | OFF | Consistency | 50%"
+      }
+    ],
+    "fundingpips": [
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+        "quote": "For 2 Step Standard, the 35% Consistency Score applies only on the On Demand reward cycle."
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+        "quote": "There is no Consistency Score on either Bi-Weekly split. ... A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit."
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+        "quote": "On Demand pays a 100% split on demand and requires a 35% consistency score plus 7 profitable days at 0.5%+ each"
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+        "quote": "On Demand 100% Split ... Eligibility Requirements A 35% consistency score must be achieved"
+      },
+      {
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+        "quote": "Consistency Score 15% max The single largest winning day must not exceed 15% of total cumulative profit."
+      }
+    ],
+    "fxify": [
+      {
+        "sourceUrl": "https://fxify.com/programs/two-phase/",
+        "quote": "\"title\":\"Consistency Rule\",\"description\":\"---\",\"values\":[{...\"value\":\"N/A\"},{...\"value\":\"N/A\"},{...\"value\":\"25%\"}] (Phase 1, Phase 2, Funded; inline pricing payload, the same payload is served on every fxify.com program page)"
+      },
+      {
+        "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+        "quote": "\"title\":\"Consistency Rule\",\"description\":\"---\",\"values\":[{...\"value\":\"30%\"},{...\"value\":\"30%\"}] (Lightning)"
+      },
+      {
+        "sourceUrl": "https://fxify.com/programs/instant-funding/",
+        "quote": "\"title\":\"Consistency\",\"description\":\"---\",\"values\":[{...\"value\":\"20%\"}] (Instant Funding Lite card)"
+      },
+      {
+        "sourceUrl": "https://fxify.com/programs/crypto/",
+        "quote": "\"Consistency Rule\":\"25% (funded only)\" (1-Step) and \"Daily Drawdown\":\"3%\",\"Max Trailing Drawdown\":\"6%\",\"Consistency Rule\":\"25%\" (Instant Funding); rendered page: \"Follow the rules: 3% daily, 6% max trailing, 25% consistency, 7 minimum trading days\""
+      }
+    ],
+    "ftmo": [
+      {
+        "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+        "quote": "Consistency Applicable to accounts initiated from orders created on or after 12 Oct 2026 ... To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit."
+      }
+    ],
+    "alpha-capital": [
+      {
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+        "quote": "Adhere to the Best Day Rule. ... Alpha Pro, Swing, One, and Three: 40% Alpha Direct: 15% ... If the result is greater than 0.40 (40%), the trader is not complying with the consistency rule."
+      }
+    ],
+    "e8-markets": [
+      {
+        "sourceUrl": "https://help.e8markets.com/en/articles/11775980-e8-one",
+        "quote": "During the SimFI™ challenge stage, there is no consistency rule, however, on the SimFI™ Performance account, there is a 40% Best Day rule"
+      },
+      {
+        "sourceUrl": "https://help.e8markets.com/en/articles/11755943-e8-signature-forex",
+        "quote": "35% Best Day rule - With a 35% best-day rule, you must ensure that no single trading day exceeds more than 35% of your total generated profits."
+      }
+    ],
+    "maven": [
+      {
+        "sourceUrl": "https://maventrading.com/faqs",
+        "quote": "In Instant Funding Account, a 20% Consistency Score is required."
+      },
+      {
+        "sourceUrl": "https://maventrading.com/faqs",
+        "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required. For a $10,000 Instant Mini Funding Account, your largest winning trade must not exceed 15% of your total profit"
+      },
+      {
+        "sourceUrl": "https://maventrading.com/faqs",
+        "quote": "Is there a Consistency score in the Buy Now Pay Later Challenge and Simulated Funded Account? There is no Consistency Score requirement during the Evaluation Phase. In the Funded Phase, a 20% Consistency Score is required."
+      }
+    ]
+  },
+  "fromEarlierCapturesNotRecheckedToday": {
+    "crypto-fund-trader/break": "Stored note: \"40% final-stage consistency\" (https://cryptofundtrader.com/break-challenge/, capture 2026-10-19). Break is a 1-phase product and \"final-stage\" does not say evaluation or funded, so no consistencyScope or consistencyRules were set (left empty rather than guessed). Today's curl of the JS-rendered page did not expose the text.",
+    "my-funded-futures": "Stored product notes, not rechecked today: rapid \"50% evaluation-only consistency rule\" (myfundedfutures.com/plans/rapid); pro \"50% evaluation-only consistency rule\" (/plans/pro); rapid-eod \"30% evaluation consistency\" (myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan); builder \"Sim Funded Builder applies a 50% consistency rule at payout\" (/plans/builder). flex: the stored evidence states no scope, so none was set.",
+    "tradeday": "Stored product notes, not rechecked today: Quick Pay \"30% evaluation consistency\" (freshdesk 103000405228); Fast Pass \"45% consistency applies to evaluation profit\" (103000405229), and \"accounts opened on or after 2026-07-26 must satisfy 45% consistency on gross profits for every payout\" (103000404096).",
+    "e8-markets/e8-one-perpetuals": "consistencyRulePct 40 is stored, but the E8 One help article (11775980) does not name the Perpetuals variant, so no scope was set."
+  },
+  "valueChanges": [
+    {
+      "file": "content/data/challenges/lucid-trading.json",
+      "productSlug": "lucidflex",
+      "field": "consistencyRulePct",
+      "before": 50,
+      "after": 40,
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account"
+    }
+  ],
+  "scopeLeftEmpty": [
+    "crypto-fund-trader/break",
+    "e8-markets/e8-one-perpetuals",
+    "my-funded-futures/flex"
+  ],
+  "devQuestionTradeifyGrowth": {
+    "answer": "funded only",
+    "quotes": [
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+        "quote": "Growth Sim Funded Accounts must follow a 35% Consistency Rule."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+        "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement."
+      },
+      {
+        "sourceUrl": "https://help.tradeify.co/en/articles/11083796-growth-funded-account-payout-policy",
+        "quote": "Consistency Rule: Abide by the 35% Consistency Rule (see: What is the Consistency Rule?)"
+      }
+    ],
+    "caveat": "The Select evaluation article (12853921) adds \"Note: Growth Evaluation does NOT have a consistency rule at any stage.\" That line refers to the Growth evaluation; the Growth Funded payout policy and the consistency article both apply 35% to Growth Sim Funded payouts."
+  }
+}

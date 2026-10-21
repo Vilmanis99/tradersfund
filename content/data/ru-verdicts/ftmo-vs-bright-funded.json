@@ -1,0 +1,43 @@
+{
+  "route": "/ru/ftmo-vs-bright-funded",
+  "type": "comparison",
+  "a": "BrightFunded",
+  "b": "FTMO",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json",
+    "content/data/challenges/bright-funded.json (2026-10-20)",
+    "content/data/challenges/ftmo.json (2026-10-19)",
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)"
+  ],
+  "verdict": "В двухэтапной модели BrightFunded 2-Step Classic и FTMO 2-Step почти совпадают: цели 10% + 5%, лимиты 5% в день и 10% статично. За счёт 100K BrightFunded берёт €497, FTMO — €540; различаются срок выплаты, удержание позиций и одноэтапные модели (по данным на 19.10.2026).",
+  "picks": {
+    "a": [
+      "вы держите позиции через ночь и выходные: BrightFunded разрешает, FTMO ограничивает",
+      "вам нужна самая дешёвая двухэтапная оценка на 100K в евро: 2-Step Bright — €477, FTMO 2-Step — €540",
+      "вы хотите вернуть взнос и в одноэтапной модели: у BrightFunded 1-Step он возвратный, у FTMO 1-Step — нет"
+    ],
+    "b": [
+      "вам нужна выплата пораньше: в FTMO первый запрос по требованию — с 14-го дня, в BrightFunded — с 30-го, дальше раз в две недели",
+      "вам нужна доля 90% сразу: FTMO 1-Step платит 90%, базовая доля BrightFunded — 80%",
+      "вы торгуете акциями либо на TradingView и MT4: их указывает FTMO, у BrightFunded — форекс, индексы, сырьё и MT5, DXTrade, cTrader; криптопары BrightFunded также предлагает (более 48, по данным справки BrightFunded, проверка 20.10.2026)",
+      "вы планируете крупный счёт: максимальная аллокация FTMO — $2 000 000, BrightFunded — $400 000"
+    ]
+  },
+  "russiaPick": {
+    "statusFrom": "russiaStatus",
+    "firms": [
+      "BrightFunded",
+      "FTMO"
+    ],
+    "alternatives": [],
+    "oneOpen": {
+      "text": "вы резидент РФ: у {open} статус «{openBadge}», у {other} — «{otherBadge}»"
+    },
+    "neitherOpen": {
+      "text": "Для резидента РФ ни у одной из двух фирм нет статуса «{altBadge}»: у {a} — «{aBadge}», у {b} — «{bBadge}».",
+      "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+    },
+    "bothOpen": null
+  }
+}

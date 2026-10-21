@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Menu, X, ChevronDown, GitCompare, Languages, Mail } from 'lucide-react'
 import { getAlternateLanguageHref } from '@/lib/localizedRoutes'
+import { closedFirmsRoutePair } from '@/lib/closedFirms'
 import { navLinks } from './navLinks'
 
 const russianNavLinks = [
@@ -52,7 +53,11 @@ export default function HeaderNav({ dataStatus }: HeaderNavProps) {
   const pathname = usePathname()
   const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
   const activeNavLinks = isRussian ? russianNavLinks : navLinks
-  const languageHref = getAlternateLanguageHref(pathname)
+  // The closed-firms pair is flag-gated, so it is resolved separately from LOCALIZED_ROUTE_PAIRS.
+  const closedFirmsPair = closedFirmsRoutePair(pathname)
+  const languageHref = closedFirmsPair
+    ? (pathname === closedFirmsPair.ru ? closedFirmsPair.en : closedFirmsPair.ru)
+    : getAlternateLanguageHref(pathname)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [lastPath, setLastPath] = useState(pathname)

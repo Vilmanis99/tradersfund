@@ -1,0 +1,1715 @@
+{
+  "_readme": "Single override file for generated verdict copy (design/article-format-spec.md C3, C9); shape documented in tradersfundhub/design/phase1-copy-drafts.md. reviews.<post slug>: verdict (string replaces the review's first Verdict sentence; null hides it), bestFor / notFor (arrays, max 2 shown). compares.<canonical matchup>: pickA / pickB (arrays, max 3 shown; A is the firm named first in the slug; an empty array hides that side's list). A missing key uses the data-built lines. Overrides must not add figures that are not in firms.json or the challenge captures.",
+  "reviews": {
+    "alpha-capital-review": {
+      "bestFor": [
+        "Fixed floors: Alpha Pro max loss is static at 6%, 8% or 10%",
+        "Small budgets: Alpha Pro 6% on-demand starts at $27 for $5K"
+      ],
+      "notFor": [
+        "Big-day traders on on-demand plans: they carry a 40% consistency rule",
+        "Anyone wanting a fee refund: no Alpha Capital fee is refundable"
+      ]
+    },
+    "bright-funded-prop-firm": {
+      "bestFor": [
+        "Getting your fee back: every BrightFunded account size is refundable",
+        "Weekend holders: all 3 BrightFunded plans allow weekend and overnight"
+      ],
+      "notFor": [
+        "Traders who want paying fast: the first payout comes at day 30",
+        "Fixed-floor fans on 1-Step: its 6% max loss trails"
+      ]
+    },
+    "city-traders-imperium-review": {
+      "bestFor": [
+        "First payout in as little as 7 days; weekly unlocks at VIP Bronze",
+        "News traders: all 4 CTI products allow news trading"
+      ],
+      "notFor": [
+        "Instant Funding buyers chasing a big split: it starts at 50%",
+        "Fixed-floor fans on 1-Step: its 5% max loss trails"
+      ]
+    },
+    "crypto-fund-trader-review": {
+      "bestFor": [
+        "No-rush traders: 2-Phase has no minimum days and no time limit",
+        "Crypto traders who want a fixed floor: 2-Phase max loss is static 10%"
+      ],
+      "notFor": [
+        "Instant buyers chasing a big split: Instant starts at 50%",
+        "Big-day traders on Break: it has a 40% consistency rule"
+      ]
+    },
+    "e8-markets-review": {
+      "bestFor": [
+        "Fast payouts: E8 One lets you request on demand from day 3",
+        "Big-day traders: E8 Pro has a static 8% floor and no consistency %"
+      ],
+      "notFor": [
+        "Traders who need daily room: E8 Pro caps daily loss at 2.5%",
+        "Anyone wanting a fee refund: no E8 Markets fee is refundable"
+      ]
+    },
+    "ftmo-review": {
+      "bestFor": [
+        "Traders who want a fixed floor: 2-Step max loss is a static 10%",
+        "Getting your fee back: every 2-Step account size is refundable"
+      ],
+      "notFor": [
+        "Big-day traders: 1-Step won't pass or pay out until best day ≤50%",
+        "1-Step buyers hoping for a refund: its €79–€999 fee isn't refundable"
+      ]
+    },
+    "fundednext-review": {
+      "bestFor": [
+        "1-step payouts: weekly, with the first reward after 5 business days",
+        "Getting your fee back: Stellar 2-Step, 1-Step and Lite are refundable"
+      ],
+      "notFor": [
+        "Instant buyers wanting a refund: its $59.99–$599.99 fee isn't refunded",
+        "Fixed-floor fans on Instant: its 6% max loss trails"
+      ]
+    },
+    "funding-pips-review": {
+      "bestFor": [
+        "Weekly payouts: 2 Step Pro pays from day 7, then weekly at 80%",
+        "Fixed floors: all 4 FundingPips evaluations use a static max loss"
+      ],
+      "notFor": [
+        "Weekend holders: weekends are restricted, and not allowed on Zero",
+        "Big-day traders on Zero: it has a 15% consistency rule"
+      ]
+    },
+    "fxify-review": {
+      "bestFor": [
+        "News traders: all 5 phase challenges allow news; EAs need pre-approval",
+        "Fee refunds: One Phase, Two Phase Standard, Three Phase, Lightning Challenge"
+      ],
+      "notFor": [
+        "Refund seekers on Two Phase Classic, Two Phase Pro or Instant Funding: none",
+        "Fixed-floor fans on One Phase: its 6% max loss trails"
+      ]
+    },
+    "lucid-trading-review": {
+      "bestFor": [
+        "Fast payouts: LucidDaily plans can pay on demand from day 1",
+        "Skipping activation fees: LucidPro, Flex and Daily list $0 activation"
+      ],
+      "notFor": [
+        "Swing traders: LucidPro, Flex and Direct bar overnight holding",
+        "Anyone wanting a fee refund: no Lucid Trading fee is refundable"
+      ]
+    },
+    "maven-prop-firm-review": {
+      "bestFor": [
+        "Tiny budgets: Standard 3-Step starts at $13 for a $2K account",
+        "Getting your fee back: Standard 1-, 2- and 3-Step fees are refundable"
+      ],
+      "notFor": [
+        "EA users: every Maven product bans expert advisors",
+        "Wide-stop traders: Standard 3-Step allows 2% daily and 3% max loss"
+      ]
+    },
+    "my-funded-futures": {
+      "bestFor": [
+        "Big-day traders: Builder has no consistency rule and pays from day 2",
+        "Skipping activation fees: every MFF plan lists $0 activation"
+      ],
+      "notFor": [
+        "Overnight holders: every MFF plan bars overnight positions",
+        "Anyone wanting a fee refund: no MFF fee is refundable"
+      ]
+    },
+    "ofp-funding-review": {
+      "bestFor": [
+        "No-wait starters: Instant Classic has no evaluation and 0 minimum days",
+        "Getting your fee back: every OFP account size is refundable"
+      ],
+      "notFor": [
+        "Copy traders: every OFP product prohibits copy trading",
+        "MT5 or cTrader users: OFP runs only on its own Sirix platform"
+      ]
+    },
+    "take-profit-trader-review": {
+      "bestFor": [
+        "Fast payouts: funded requests are on demand, with no minimum wait",
+        "Big-day traders who can pass: the 50% rule applies to the Test only"
+      ],
+      "notFor": [
+        "Algo traders: Take Profit Trader does not allow EAs",
+        "One-off buyers: The Test bills $150–$360 a month, plus $130 activation"
+      ]
+    },
+    "topstep-review": {
+      "bestFor": [
+        "A 90% split: both Trading Combine paths list a 90% profit split",
+        "Skipping activation fees: the No Activation Fee Path charges $0"
+      ],
+      "notFor": [
+        "Overnight or weekend holders: Topstep bars both on both Combine paths",
+        "Big-day traders: the Trading Combine has a 55% consistency target"
+      ]
+    },
+    "tradeday-review": {
+      "bestFor": [
+        "Fast payouts: Quick Pay plans can pay on demand from day 1",
+        "Skipping activation fees: every TradeDay plan lists $0 activation"
+      ],
+      "notFor": [
+        "Split-maximisers on Quick Pay: its profit split is 50%",
+        "Swing traders: every TradeDay plan bars overnight and weekend holds"
+      ]
+    },
+    "tradeify-review": {
+      "bestFor": [
+        "Skipping the evaluation: Lightning Funded has no evaluation phase",
+        "News traders: every Tradeify plan allows news trading"
+      ],
+      "notFor": [
+        "Swing traders: every Tradeify plan bars overnight and weekend holds",
+        "Anyone wanting a fee refund: no Tradeify fee is refundable"
+      ]
+    }
+  },
+  "compares": {
+    "alpha-capital-vs-bright-funded": {
+      "pickA": [
+        "you want an early first payout: Alpha Pro bi-weekly plans pay from day 14 (BrightFunded: day 30)",
+        "you want to skip the evaluation: Alpha Capital sells funded accounts with no evaluation; BrightFunded doesn't",
+        "operating history matters to you: Alpha Capital was founded in 2021, BrightFunded in 2023"
+      ],
+      "pickB": [
+        "you want the fee back: every BrightFunded product is refundable; no Alpha Capital fee is",
+        "you trade on DXTrade: BrightFunded supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-city-traders-imperium": {
+      "pickA": [
+        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; City Traders Imperium's lowest is $449",
+        "you want a bigger account: Alpha Capital goes up to $200,000; City Traders Imperium tops out at $100,000",
+        "you trade on cTrader: Alpha Capital supports it; City Traders Imperium doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (Alpha bi-weekly plans: day 14)",
+        "you trade the news: City Traders Imperium allows it on every product; Alpha Capital restricts it everywhere",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Alpha Capital restricts them everywhere"
+      ]
+    },
+    "alpha-capital-vs-crypto-fund-trader": {
+      "pickA": [
+        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you trade on cTrader: Alpha Capital supports it; Crypto Fund Trader doesn't list it",
+        "you plan to scale: Alpha Capital lists a $400,000 maximum allocation; Crypto Fund Trader lists $300,000"
+      ],
+      "pickB": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; Alpha Capital lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; Alpha Capital restricts it everywhere",
+        "you want no minimum trading days: CFT's 2-Phase Evaluation lists 0; Alpha Capital evaluations need 1+"
+      ]
+    },
+    "alpha-capital-vs-e8-markets": {
+      "pickA": [
+        "you want to skip the evaluation: Alpha Capital sells funded accounts with no evaluation; E8 Markets doesn't"
+      ],
+      "pickB": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (Alpha bi-weekly plans: day 14)",
+        "you want a lower $100K fee: E8 Signature lists $280; Alpha Capital's lowest is $397",
+        "you trade crypto: E8 Markets lists 2 crypto products; Alpha Capital lists none"
+      ]
+    },
+    "alpha-capital-vs-ftmo": {
+      "pickA": [
+        "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; FTMO restricts it everywhere",
+        "you want to skip the evaluation: Alpha Capital sells funded accounts with no evaluation; FTMO doesn't"
+      ],
+      "pickB": [
+        "you want the fee back: FTMO 2-Step is refundable; no Alpha Capital fee is",
+        "you want a higher starting split: FTMO 1-Step pays 90%; Alpha Capital's evaluations top out at 80%",
+        "you trade on MT4: FTMO supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-fundednext": {
+      "pickA": [
+        "you plan to scale: Alpha Capital lists a $400,000 maximum allocation; FundedNext lists $300,000"
+      ],
+      "pickB": [
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (Alpha bi-weekly plans: day 14)",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no Alpha Capital fee is",
+        "you trade on MT4: FundedNext supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-fundingpips": {
+      "pickA": [
+        "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; FundingPips restricts it everywhere",
+        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; FundingPips' lowest is $422",
+        "you want a lower one-phase target: Alpha One on-demand asks 10%; FundingPips' lowest is 12%"
+      ],
+      "pickB": [
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (Alpha bi-weekly plans: day 14)",
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; Alpha Capital evaluations cap at 10%",
+        "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); Alpha Capital evaluations need 1+"
+      ]
+    },
+    "alpha-capital-vs-fxify": {
+      "pickA": [
+        "you trade on cTrader: Alpha Capital supports it; FXIFY doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (Alpha bi-weekly plans: day 14)",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Alpha Capital fee is",
+        "you trade crypto: FXIFY lists 2 crypto products; Alpha Capital lists none"
+      ]
+    },
+    "alpha-capital-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Alpha Pro bi-weekly plans list none; every Lucid plan has one (20%–50%)",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Lucid Trading product trails",
+        "you trade forex/CFD rather than futures: every Lucid Trading product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (Alpha bi-weekly plans: day 14)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; Alpha Capital lists none",
+        "you want a higher starting split: LucidPro pays 90%; Alpha Capital's evaluations top out at 80%"
+      ]
+    },
+    "alpha-capital-vs-maven": {
+      "pickA": [
+        "you run EAs: Alpha Capital allows them with limits on 9 of its 10 products; Maven bars them everywhere",
+        "you want a bigger account: Alpha Capital goes up to $200,000; Maven tops out at $100,000",
+        "you trade on cTrader: Alpha Capital supports it; Maven doesn't list it"
+      ],
+      "pickB": [
+        "you want the fee back: 8 of 9 Maven products are refundable; no Alpha Capital fee is",
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; Alpha Capital's lowest is $397",
+        "you trade the news: Maven allows it on 4 of its 9 products; Alpha Capital restricts it everywhere"
+      ]
+    },
+    "alpha-capital-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: Alpha Capital allows it on 9 of its 10 products; My Funded Futures bars it everywhere",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (Alpha bi-weekly plans: day 14)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; Alpha Capital lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; Alpha Capital's evaluations top out at 80%"
+      ]
+    },
+    "alpha-capital-vs-ofp-funding": {
+      "pickA": [
+        "you trade on MT5: Alpha Capital supports it; OFP Funding doesn't list it",
+        "you plan to scale: Alpha Capital lists a $400,000 maximum allocation; OFP Funding lists $300,000"
+      ],
+      "pickB": [
+        "you want the fee back: every OFP Funding product is refundable; no Alpha Capital fee is",
+        "you want a bigger account: OFP Funding goes up to $300,000; Alpha Capital tops out at $200,000"
+      ]
+    },
+    "alpha-capital-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Alpha Pro bi-weekly plans list none; Take Profit Trader's Test has a 50% rule",
+        "you hold overnight: Alpha Capital allows it on 9 of its 10 products; Take Profit Trader bars it everywhere",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Alpha bi-weekly plans: day 14)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; Alpha Capital lists none",
+        "you trade on TradingView: Take Profit Trader supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Alpha Pro bi-weekly plans list none; Topstep's Combine has a 55% target",
+        "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; Topstep bars it everywhere",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Topstep product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; Alpha Capital lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; Alpha Capital's evaluations top out at 80%",
+        "you trade on Quantower: Topstep supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Alpha Pro bi-weekly plans list none; every TradeDay plan has one (30%–45%)",
+        "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; TradeDay bars it everywhere",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every TradeDay product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (Alpha bi-weekly plans: day 14)",
+        "you trade futures: every TradeDay product is a futures evaluation; Alpha Capital lists none",
+        "you trade on TradingView: TradeDay supports it; Alpha Capital doesn't list it"
+      ]
+    },
+    "alpha-capital-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Alpha Pro bi-weekly plans list none; every Tradeify plan has one (20%–40%)",
+        "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; Tradeify bars it everywhere",
+        "you want a static loss floor: Alpha Pro 6% bi-weekly's 6% max loss is static; every Tradeify product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (Alpha bi-weekly plans: day 14)",
+        "you trade futures: every Tradeify product is a futures evaluation; Alpha Capital lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Alpha Capital's evaluations top out at 80%"
+      ]
+    },
+    "bright-funded-vs-city-traders-imperium": {
+      "pickA": [
+        "you want a bigger account: BrightFunded goes up to $200,000; City Traders Imperium tops out at $100,000",
+        "you trade on cTrader: BrightFunded supports it; City Traders Imperium doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (BrightFunded: day 30)",
+        "you trade the news: City Traders Imperium allows it on every product; BrightFunded restricts it everywhere",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; BrightFunded restricts them everywhere"
+      ]
+    },
+    "bright-funded-vs-crypto-fund-trader": {
+      "pickA": [
+        "you trade on cTrader: BrightFunded supports it; Crypto Fund Trader doesn't list it",
+        "you plan to scale: BrightFunded lists a $400,000 maximum allocation; Crypto Fund Trader lists $300,000"
+      ],
+      "pickB": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; BrightFunded lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; BrightFunded restricts it everywhere",
+        "you want no minimum trading days: CFT's 2-Phase Evaluation lists 0; BrightFunded evaluations need 5+"
+      ]
+    },
+    "bright-funded-vs-e8-markets": {
+      "pickA": [
+        "you want the fee back: every BrightFunded product is refundable; no E8 Markets fee is",
+        "you trade on DXTrade: BrightFunded supports it; E8 Markets doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (BrightFunded: day 30)",
+        "you trade crypto: E8 Markets lists 2 crypto products; BrightFunded lists none",
+        "you trade the news: E8 Markets allows it on 2 of its 5 products; BrightFunded restricts it everywhere"
+      ]
+    },
+    "bright-funded-vs-ftmo": {
+      "pickA": [
+        "you hold overnight or over weekends: BrightFunded allows both everywhere; FTMO restricts both",
+        "you trade on DXTrade: BrightFunded supports it; FTMO doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: FTMO pays on demand from day 14 (BrightFunded: day 30)",
+        "you want a higher starting split: FTMO 1-Step pays 90%; BrightFunded's evaluations top out at 80%",
+        "you trade on MT4: FTMO supports it; BrightFunded doesn't list it"
+      ]
+    },
+    "bright-funded-vs-fundednext": {
+      "pickA": [
+        "you trade on DXTrade: BrightFunded supports it; FundedNext doesn't list it",
+        "you plan to scale: BrightFunded lists a $400,000 maximum allocation; FundedNext lists $300,000"
+      ],
+      "pickB": [
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (BrightFunded: day 30)",
+        "you want to skip the evaluation: FundedNext sells funded accounts with no evaluation; BrightFunded doesn't",
+        "you trade on MT4: FundedNext supports it; BrightFunded doesn't list it"
+      ]
+    },
+    "bright-funded-vs-fundingpips": {
+      "pickA": [
+        "you hold over weekends: BrightFunded allows it on every product; FundingPips restricts it everywhere",
+        "you trade on DXTrade: BrightFunded supports it; FundingPips doesn't list it",
+        "you want a lower one-phase target: BrightFunded 1-Step asks 10%; FundingPips' lowest is 12%"
+      ],
+      "pickB": [
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (BrightFunded: day 30)",
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; BrightFunded evaluations cap at 10%",
+        "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); BrightFunded evaluations need 5+"
+      ]
+    },
+    "bright-funded-vs-fxify": {
+      "pickA": [
+        "you trade on cTrader: BrightFunded supports it; FXIFY doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (BrightFunded: day 30)",
+        "you trade crypto: FXIFY lists 2 crypto products; BrightFunded lists none",
+        "you trade the news: FXIFY allows it on 5 of its 10 products; BrightFunded restricts it everywhere"
+      ]
+    },
+    "bright-funded-vs-lucid-trading": {
+      "pickA": [
+        "you want the fee back: every BrightFunded product is refundable; no Lucid Trading fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every Lucid Trading product trails",
+        "you trade forex/CFD rather than futures: every Lucid Trading product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (BrightFunded: day 30)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; BrightFunded lists none",
+        "you want a higher starting split: LucidPro pays 90%; BrightFunded's evaluations top out at 80%"
+      ]
+    },
+    "bright-funded-vs-maven": {
+      "pickA": [
+        "you run EAs: BrightFunded allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: BrightFunded goes up to $200,000; Maven tops out at $100,000",
+        "you trade on cTrader: BrightFunded supports it; Maven doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: Maven's Standard plans pay from day 10 (BrightFunded: day 30)",
+        "you trade the news: Maven allows it on 4 of its 9 products; BrightFunded restricts it everywhere",
+        "you want to skip the evaluation: Maven sells funded accounts with no evaluation; BrightFunded doesn't"
+      ]
+    },
+    "bright-funded-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: BrightFunded allows it on every product; My Funded Futures bars it everywhere",
+        "you want the fee back: every BrightFunded product is refundable; no My Funded Futures fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every My Funded Futures product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (BrightFunded: day 30)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; BrightFunded lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; BrightFunded's evaluations top out at 80%"
+      ]
+    },
+    "bright-funded-vs-ofp-funding": {
+      "pickA": [
+        "you trade on MT5: BrightFunded supports it; OFP Funding doesn't list it",
+        "you plan to scale: BrightFunded lists a $400,000 maximum allocation; OFP Funding lists $300,000"
+      ],
+      "pickB": [
+        "you want an early first payout: OFP Instant Classic and Plus pay from day 14 (BrightFunded: day 30)",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; BrightFunded doesn't",
+        "you want a bigger account: OFP Funding goes up to $300,000; BrightFunded tops out at $200,000"
+      ]
+    },
+    "bright-funded-vs-take-profit-trader": {
+      "pickA": [
+        "you hold overnight: BrightFunded allows it on every product; Take Profit Trader bars it everywhere",
+        "you want the fee back: every BrightFunded product is refundable; no Take Profit Trader fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (BrightFunded: day 30)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; BrightFunded lists none",
+        "you trade on TradingView: Take Profit Trader supports it; BrightFunded doesn't list it"
+      ]
+    },
+    "bright-funded-vs-topstep": {
+      "pickA": [
+        "you hold overnight or over weekends: BrightFunded allows both everywhere; Topstep bars both",
+        "you want the fee back: every BrightFunded product is refundable; no Topstep fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every Topstep product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; BrightFunded lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; BrightFunded's evaluations top out at 80%",
+        "you trade on Quantower: Topstep supports it; BrightFunded doesn't list it"
+      ]
+    },
+    "bright-funded-vs-tradeday": {
+      "pickA": [
+        "you hold overnight or over weekends: BrightFunded allows both everywhere; TradeDay bars both",
+        "you want the fee back: every BrightFunded product is refundable; no TradeDay fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every TradeDay product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (BrightFunded: day 30)",
+        "you trade futures: every TradeDay product is a futures evaluation; BrightFunded lists none",
+        "you trade on TradingView: TradeDay supports it; BrightFunded doesn't list it"
+      ]
+    },
+    "bright-funded-vs-tradeify": {
+      "pickA": [
+        "you hold overnight or over weekends: BrightFunded allows both everywhere; Tradeify bars both",
+        "you want the fee back: every BrightFunded product is refundable; no Tradeify fee is",
+        "you want a static loss floor: BrightFunded 2-Step Bright's 8% max loss is static; every Tradeify product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (BrightFunded: day 30)",
+        "you trade futures: every Tradeify product is a futures evaluation; BrightFunded lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; BrightFunded's evaluations top out at 80%"
+      ]
+    },
+    "city-traders-imperium-vs-crypto-fund-trader": {
+      "pickA": [
+        "you want a lower $100K fee: CTI 1-Step lists $449; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Crypto Fund Trader restricts them everywhere",
+        "you want a lower one-phase target: CTI 1-Step asks 8%; Crypto Fund Trader's lowest is 10%"
+      ],
+      "pickB": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; City Traders Imperium lists none",
+        "you want no minimum trading days: CFT's 2-Phase Evaluation lists 0; City Traders Imperium evaluations need 3+",
+        "you want a bigger account: Crypto Fund Trader goes up to $200,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-e8-markets": {
+      "pickA": [
+        "you want to skip the evaluation: City Traders Imperium sells funded accounts with no evaluation; E8 Markets doesn't",
+        "you plan to scale: City Traders Imperium lists a $2,000,000 maximum allocation; E8 Markets lists $1,000,000",
+        "operating history matters to you: City Traders Imperium was founded in 2018, E8 Markets in 2021"
+      ],
+      "pickB": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (CTI evaluations: day 7)",
+        "you want a lower $100K fee: E8 Signature lists $280; City Traders Imperium's lowest is $449",
+        "you trade crypto: E8 Markets lists 2 crypto products; City Traders Imperium lists none"
+      ]
+    },
+    "city-traders-imperium-vs-ftmo": {
+      "pickA": [
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (FTMO: day 14)",
+        "you hold overnight or over weekends: City Traders Imperium allows both everywhere; FTMO restricts both",
+        "you trade the news: City Traders Imperium allows it on every product; FTMO restricts it everywhere"
+      ],
+      "pickB": [
+        "you want a higher starting split: FTMO 1-Step pays 90%; City Traders Imperium's evaluations top out at 80%",
+        "you want a bigger account: FTMO goes up to $200,000; City Traders Imperium tops out at $100,000",
+        "you trade on MT4: FTMO supports it; City Traders Imperium doesn't list it"
+      ]
+    },
+    "city-traders-imperium-vs-fundednext": {
+      "pickA": [
+        "you trade the news: City Traders Imperium allows it on every product; FundedNext restricts it everywhere",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; FundedNext restricts them everywhere",
+        "you want a lower one-phase target: CTI 1-Step asks 8%; FundedNext's lowest is 10%"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Stellar Lite lists $399.99; City Traders Imperium's lowest is $449",
+        "you want a bigger account: FundedNext goes up to $200,000; City Traders Imperium tops out at $100,000",
+        "you trade on MT4: FundedNext supports it; City Traders Imperium doesn't list it"
+      ]
+    },
+    "city-traders-imperium-vs-fundingpips": {
+      "pickA": [
+        "you hold over weekends: City Traders Imperium allows it on every product; FundingPips restricts it everywhere",
+        "you trade the news: City Traders Imperium allows it on every product; FundingPips restricts it everywhere",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; FundingPips restricts them everywhere"
+      ],
+      "pickB": [
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; City Traders Imperium evaluations cap at 10%",
+        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; City Traders Imperium's lowest is $449",
+        "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); City Traders Imperium evaluations need 3+"
+      ]
+    },
+    "city-traders-imperium-vs-fxify": {
+      "pickA": [
+        "you trade on Match-Trader: City Traders Imperium supports it; FXIFY doesn't list it",
+        "operating history matters to you: City Traders Imperium was founded in 2018, FXIFY in 2022"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: FXIFY Three Phase lists $399; City Traders Imperium's lowest is $449",
+        "you trade crypto: FXIFY lists 2 crypto products; City Traders Imperium lists none",
+        "you want a bigger account: FXIFY goes up to $400,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-lucid-trading": {
+      "pickA": [
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every Lucid Trading product trails",
+        "you trade forex/CFD rather than futures: every Lucid Trading product is futures",
+        "you trade on MT5: City Traders Imperium supports it; Lucid Trading doesn't list it"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (CTI evaluations: day 7)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; City Traders Imperium lists none",
+        "you want a higher starting split: LucidPro pays 90%; City Traders Imperium's evaluations top out at 80%"
+      ]
+    },
+    "city-traders-imperium-vs-maven": {
+      "pickA": [
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; Maven bars them everywhere",
+        "you plan to scale: City Traders Imperium lists a $2,000,000 maximum allocation; Maven lists $1,000,000"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; City Traders Imperium's lowest is $449",
+        "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; City Traders Imperium's lowest is 8%"
+      ]
+    },
+    "city-traders-imperium-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: City Traders Imperium allows it on every product; My Funded Futures bars it everywhere",
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (CTI evaluations: day 7)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; City Traders Imperium lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; City Traders Imperium's evaluations top out at 80%"
+      ]
+    },
+    "city-traders-imperium-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: CTI's 1-Step and 2-Step allow the first payout in as little as 7 days, and weekly payouts unlock at VIP Bronze (OFP: day 14)",
+        "you trade the news: City Traders Imperium allows it on every product; OFP Funding restricts it everywhere",
+        "you run EAs: City Traders Imperium allows them on CTI 1-Step only; OFP Funding restricts them everywhere"
+      ],
+      "pickB": [
+        "you want a bigger account: OFP Funding goes up to $300,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-take-profit-trader": {
+      "pickA": [
+        "you hold overnight: City Traders Imperium allows it on every product; Take Profit Trader bars it everywhere",
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every Take Profit Trader product trails",
+        "you trade forex/CFD rather than futures: every Take Profit Trader product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (CTI evaluations: day 7)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; City Traders Imperium lists none",
+        "you want a bigger account: Take Profit Trader goes up to $150,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-topstep": {
+      "pickA": [
+        "you hold overnight or over weekends: City Traders Imperium allows both everywhere; Topstep bars both",
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every Topstep product trails",
+        "you trade forex/CFD rather than futures: every Topstep product is futures"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; City Traders Imperium lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; City Traders Imperium's evaluations top out at 80%",
+        "you want a bigger account: Topstep goes up to $150,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-tradeday": {
+      "pickA": [
+        "you hold overnight or over weekends: City Traders Imperium allows both everywhere; TradeDay bars both",
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every TradeDay product trails",
+        "you trade forex/CFD rather than futures: every TradeDay product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (CTI evaluations: day 7)",
+        "you trade futures: every TradeDay product is a futures evaluation; City Traders Imperium lists none",
+        "you want a bigger account: TradeDay goes up to $150,000; City Traders Imperium tops out at $100,000"
+      ]
+    },
+    "city-traders-imperium-vs-tradeify": {
+      "pickA": [
+        "you hold overnight or over weekends: City Traders Imperium allows both everywhere; Tradeify bars both",
+        "you want a static loss floor: CTI 2-Step's 10% max loss is static; every Tradeify product trails",
+        "you trade forex/CFD rather than futures: every Tradeify product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (CTI evaluations: day 7)",
+        "you trade futures: every Tradeify product is a futures evaluation; City Traders Imperium lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; City Traders Imperium's evaluations top out at 80%"
+      ]
+    },
+    "crypto-fund-trader-vs-e8-markets": {
+      "pickA": [
+        "you want to skip the evaluation: Crypto Fund Trader sells funded accounts with no evaluation; E8 Markets doesn't"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: E8 Signature lists $280; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you want a bigger account: E8 Markets goes up to $500,000; Crypto Fund Trader tops out at $200,000",
+        "you trade on cTrader: E8 Markets supports it; Crypto Fund Trader doesn't list it"
+      ]
+    },
+    "crypto-fund-trader-vs-ftmo": {
+      "pickA": [
+        "you hold overnight or over weekends: Crypto Fund Trader allows both everywhere; FTMO restricts both",
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; FTMO lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; FTMO restricts it everywhere"
+      ],
+      "pickB": [
+        "you trade on MT4: FTMO supports it; Crypto Fund Trader doesn't list it",
+        "you plan to scale: FTMO lists a $2,000,000 maximum allocation; Crypto Fund Trader lists $300,000",
+        "operating history matters to you: FTMO was founded in 2015, Crypto Fund Trader in 2023"
+      ]
+    },
+    "crypto-fund-trader-vs-fundednext": {
+      "pickA": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; FundedNext lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; FundedNext restricts it everywhere",
+        "you want no minimum trading days: CFT's 2-Phase Evaluation lists 0; FundedNext evaluations need 2+"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Stellar Lite lists $399.99; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you trade on MT4: FundedNext supports it; Crypto Fund Trader doesn't list it"
+      ]
+    },
+    "crypto-fund-trader-vs-fundingpips": {
+      "pickA": [
+        "you hold over weekends: Crypto Fund Trader allows it on every product; FundingPips restricts it everywhere",
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; FundingPips lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; FundingPips restricts it everywhere"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you trade on cTrader: FundingPips supports it; Crypto Fund Trader doesn't list it",
+        "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; Crypto Fund Trader lists $300,000"
+      ]
+    },
+    "crypto-fund-trader-vs-fxify": {
+      "pickA": [
+        "you trade on Match-Trader: Crypto Fund Trader supports it; FXIFY doesn't list it"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: FXIFY Three Phase lists $399; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you want a bigger account: FXIFY goes up to $400,000; Crypto Fund Trader tops out at $200,000"
+      ]
+    },
+    "crypto-fund-trader-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: CFT's 2-Phase Evaluation lists none; every Lucid plan has one (20%–50%)",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every Lucid Trading product trails",
+        "you trade crypto rather than futures: every Lucid Trading product is futures"
+      ],
+      "pickB": [
+        "you trade futures: every Lucid Trading product is a futures evaluation; Crypto Fund Trader lists none",
+        "you want a lower $100K fee: LucidFlex lists $293; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you run EAs: Lucid Trading allows them on every product; Crypto Fund Trader restricts them everywhere"
+      ]
+    },
+    "crypto-fund-trader-vs-maven": {
+      "pickA": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; Maven lists none",
+        "you run EAs: Crypto Fund Trader allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: Crypto Fund Trader goes up to $200,000; Maven tops out at $100,000"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; Crypto Fund Trader's lowest is 10%",
+        "you plan to scale: Maven lists a $1,000,000 maximum allocation; Crypto Fund Trader lists $300,000"
+      ]
+    },
+    "crypto-fund-trader-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: Crypto Fund Trader allows it on every product; My Funded Futures bars it everywhere",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every My Funded Futures product trails",
+        "you trade crypto rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you trade futures: every My Funded Futures product is a futures evaluation; Crypto Fund Trader lists none",
+        "you trade on TradingView: My Funded Futures supports it; Crypto Fund Trader doesn't list it",
+        "you want a lower one-phase target: MFF Rapid asks 6%; Crypto Fund Trader's lowest is 10%"
+      ]
+    },
+    "crypto-fund-trader-vs-ofp-funding": {
+      "pickA": [
+        "you trade crypto: Crypto Fund Trader lists 5 crypto products; OFP Funding lists none",
+        "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; OFP Funding restricts it everywhere",
+        "you trade on MT5: Crypto Fund Trader supports it; OFP Funding doesn't list it"
+      ],
+      "pickB": [
+        "you want a bigger account: OFP Funding goes up to $300,000; Crypto Fund Trader tops out at $200,000"
+      ]
+    },
+    "crypto-fund-trader-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: CFT's 2-Phase Evaluation lists none; Take Profit Trader's Test has a 50% rule",
+        "you hold overnight: Crypto Fund Trader allows it on every product; Take Profit Trader bars it everywhere",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Take Profit Trader product is a futures evaluation; Crypto Fund Trader lists none",
+        "you trade on TradingView: Take Profit Trader supports it; Crypto Fund Trader doesn't list it",
+        "you want a lower one-phase target: TPT The Test asks 6%; Crypto Fund Trader's lowest is 10%"
+      ]
+    },
+    "crypto-fund-trader-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: CFT's 2-Phase Evaluation lists none; Topstep's Combine has a 55% target",
+        "you hold overnight or over weekends: Crypto Fund Trader allows both everywhere; Topstep bars both",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every Topstep product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; Crypto Fund Trader lists none",
+        "you trade on Quantower: Topstep supports it; Crypto Fund Trader doesn't list it",
+        "you want a lower one-phase target: Topstep's Combine asks 6%; Crypto Fund Trader's lowest is 10%"
+      ]
+    },
+    "crypto-fund-trader-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: CFT's 2-Phase Evaluation lists none; every TradeDay plan has one (30%–45%)",
+        "you hold overnight or over weekends: Crypto Fund Trader allows both everywhere; TradeDay bars both",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every TradeDay product trails"
+      ],
+      "pickB": [
+        "you trade futures: every TradeDay product is a futures evaluation; Crypto Fund Trader lists none",
+        "you trade on TradingView: TradeDay supports it; Crypto Fund Trader doesn't list it",
+        "you want a lower one-phase target: TradeDay Quick Pay Intraday asks 6%; Crypto Fund Trader's lowest is 10%"
+      ]
+    },
+    "crypto-fund-trader-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: CFT's 2-Phase Evaluation lists none; every Tradeify plan has one (20%–40%)",
+        "you hold overnight or over weekends: Crypto Fund Trader allows both everywhere; Tradeify bars both",
+        "you want a static loss floor: CFT's 2-Phase Evaluation's 10% max loss is static; every Tradeify product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Tradeify product is a futures evaluation; Crypto Fund Trader lists none",
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you trade on TradingView: Tradeify supports it; Crypto Fund Trader doesn't list it"
+      ]
+    },
+    "e8-markets-vs-ftmo": {
+      "pickA": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FTMO: day 14)",
+        "you hold over weekends: E8 Markets allows it on 4 of its 5 products; FTMO restricts it everywhere",
+        "you trade crypto: E8 Markets lists 2 crypto products; FTMO lists none"
+      ],
+      "pickB": [
+        "you want the fee back: FTMO 2-Step is refundable; no E8 Markets fee is",
+        "you want a higher starting split: FTMO 1-Step pays 90%; E8 Markets' evaluations top out at 80%",
+        "you trade on MT4: FTMO supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-fundednext": {
+      "pickA": [
+        "you want a lower $100K fee: E8 Signature lists $280; FundedNext's lowest is $399.99",
+        "you trade crypto: E8 Markets lists 2 crypto products; FundedNext lists none"
+      ],
+      "pickB": [
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no E8 Markets fee is",
+        "you want to skip the evaluation: FundedNext sells funded accounts with no evaluation; E8 Markets doesn't",
+        "you trade on MT4: FundedNext supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-fundingpips": {
+      "pickA": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FundingPips: day 7)",
+        "you hold over weekends: E8 Markets allows it on 4 of its 5 products; FundingPips restricts it everywhere",
+        "you want a lower $100K fee: E8 Signature lists $280; FundingPips' lowest is $422"
+      ],
+      "pickB": [
+        "you want to skip the evaluation: FundingPips sells funded accounts with no evaluation; E8 Markets doesn't",
+        "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; E8 Markets lists $1,000,000"
+      ]
+    },
+    "e8-markets-vs-fxify": {
+      "pickA": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (FXIFY Lightning Challenge: day 7)",
+        "you want a lower $100K fee: E8 Signature lists $280; FXIFY's lowest is $399",
+        "you want a bigger account: E8 Markets goes up to $500,000; FXIFY tops out at $400,000"
+      ],
+      "pickB": [
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no E8 Markets fee is",
+        "you want to skip the evaluation: FXIFY sells funded accounts with no evaluation; E8 Markets doesn't",
+        "you trade on MT4: FXIFY supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: E8 Pro lists none; every Lucid plan has one (20%–50%)",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every Lucid Trading product trails",
+        "you trade forex/CFD or crypto rather than futures: every Lucid Trading product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (E8 Markets: day 3)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; E8 Markets lists none",
+        "you want a higher starting split: LucidPro pays 90%; E8 Markets' evaluations top out at 80%"
+      ]
+    },
+    "e8-markets-vs-maven": {
+      "pickA": [
+        "you want a lower $100K fee: E8 Signature lists $280; Maven's lowest is $299",
+        "you trade crypto: E8 Markets lists 2 crypto products; Maven lists none"
+      ],
+      "pickB": [
+        "you want the fee back: 8 of 9 Maven products are refundable; no E8 Markets fee is",
+        "you want to skip the evaluation: Maven sells funded accounts with no evaluation; E8 Markets doesn't",
+        "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; E8 Markets' lowest is 6%"
+      ]
+    },
+    "e8-markets-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: E8 Markets allows it on 4 of its 5 products; My Funded Futures bars it everywhere",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD or crypto rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (E8 Markets: day 3)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; E8 Markets lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; E8 Markets' evaluations top out at 80%"
+      ]
+    },
+    "e8-markets-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: E8 One allows on-demand requests from day 3 (OFP: day 14)",
+        "you trade crypto: E8 Markets lists 2 crypto products; OFP Funding lists none",
+        "you trade the news: E8 Markets allows it on 2 of its 5 products; OFP Funding restricts it everywhere"
+      ],
+      "pickB": [
+        "you want the fee back: every OFP Funding product is refundable; no E8 Markets fee is",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; E8 Markets doesn't"
+      ]
+    },
+    "e8-markets-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: E8 Pro lists none; Take Profit Trader's Test has a 50% rule",
+        "you hold overnight: E8 Markets allows it on 4 of its 5 products; Take Profit Trader bars it everywhere",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (E8 Markets: day 3)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; E8 Markets lists none",
+        "you trade on TradingView: Take Profit Trader supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: E8 Pro lists none; Topstep's Combine has a 55% target",
+        "you hold over weekends: E8 Markets allows it on 4 of its 5 products; Topstep bars it everywhere",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every Topstep product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; E8 Markets lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; E8 Markets' evaluations top out at 80%",
+        "you trade on Quantower: Topstep supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: E8 Pro lists none; every TradeDay plan has one (30%–45%)",
+        "you hold over weekends: E8 Markets allows it on 4 of its 5 products; TradeDay bars it everywhere",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every TradeDay product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (E8 Markets: day 3)",
+        "you trade futures: every TradeDay product is a futures evaluation; E8 Markets lists none",
+        "you trade on TradingView: TradeDay supports it; E8 Markets doesn't list it"
+      ]
+    },
+    "e8-markets-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: E8 Pro lists none; every Tradeify plan has one (20%–40%)",
+        "you hold over weekends: E8 Markets allows it on 4 of its 5 products; Tradeify bars it everywhere",
+        "you want a static loss floor: E8 Pro's 8% max loss is static; every Tradeify product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (E8 Markets: day 3)",
+        "you trade futures: every Tradeify product is a futures evaluation; E8 Markets lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; E8 Markets' evaluations top out at 80%"
+      ]
+    },
+    "ftmo-vs-fundednext": {
+      "pickA": [
+        "you want a higher starting split: FTMO 1-Step pays 90%; FundedNext's evaluations top out at 80%",
+        "you trade on TradingView: FTMO supports it; FundedNext doesn't list it",
+        "you plan to scale: FTMO lists a $2,000,000 maximum allocation; FundedNext lists $300,000"
+      ],
+      "pickB": [
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (FTMO: day 14)",
+        "you hold overnight or over weekends: FundedNext allows both everywhere; FTMO restricts both",
+        "you want to skip the evaluation: FundedNext sells funded accounts with no evaluation; FTMO doesn't"
+      ]
+    },
+    "ftmo-vs-fundingpips": {
+      "pickA": [
+        "you trade on MT4: FTMO supports it; FundingPips doesn't list it",
+        "you want a lower one-phase target: FTMO 1-Step asks 10%; FundingPips' lowest is 12%",
+        "operating history matters to you: FTMO was founded in 2015, FundingPips in 2022"
+      ],
+      "pickB": [
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (FTMO: day 14)",
+        "you hold overnight: FundingPips allows it on every product; FTMO restricts it everywhere",
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; FTMO evaluations cap at 10%"
+      ]
+    },
+    "ftmo-vs-fxify": {
+      "pickA": [
+        "you trade on cTrader: FTMO supports it; FXIFY doesn't list it",
+        "operating history matters to you: FTMO was founded in 2015, FXIFY in 2022"
+      ],
+      "pickB": [
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (FTMO: day 14)",
+        "you hold over weekends: FXIFY allows it on 8 of its 10 products; FTMO restricts it everywhere",
+        "you trade crypto: FXIFY lists 2 crypto products; FTMO lists none"
+      ]
+    },
+    "ftmo-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FTMO 2-Step lists none; every Lucid plan has one (20%–50%)",
+        "you want the fee back: FTMO 2-Step is refundable; no Lucid Trading fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every Lucid Trading product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FTMO: day 14)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; FTMO lists none",
+        "you trade the news: Lucid Trading allows it on 3 of its 7 products; FTMO restricts it everywhere"
+      ]
+    },
+    "ftmo-vs-maven": {
+      "pickA": [
+        "you want a higher starting split: FTMO 1-Step pays 90%; Maven's evaluations top out at 80%",
+        "you run EAs: FTMO allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: FTMO goes up to $200,000; Maven tops out at $100,000"
+      ],
+      "pickB": [
+        "you hold over weekends: Maven allows it on every product; FTMO restricts it everywhere",
+        "you trade the news: Maven allows it on 4 of its 9 products; FTMO restricts it everywhere",
+        "you want to skip the evaluation: Maven sells funded accounts with no evaluation; FTMO doesn't"
+      ]
+    },
+    "ftmo-vs-my-funded-futures": {
+      "pickA": [
+        "you want the fee back: FTMO 2-Step is refundable; no My Funded Futures fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (FTMO: day 14)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; FTMO lists none",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; FTMO restricts it everywhere"
+      ]
+    },
+    "ftmo-vs-ofp-funding": {
+      "pickA": [
+        "you trade on MT5: FTMO supports it; OFP Funding doesn't list it",
+        "you plan to scale: FTMO lists a $2,000,000 maximum allocation; OFP Funding lists $300,000",
+        "operating history matters to you: FTMO was founded in 2015, OFP Funding in 2022"
+      ],
+      "pickB": [
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; FTMO doesn't",
+        "you want a bigger account: OFP Funding goes up to $300,000; FTMO tops out at $200,000"
+      ]
+    },
+    "ftmo-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FTMO 2-Step lists none; Take Profit Trader's Test has a 50% rule",
+        "you want the fee back: FTMO 2-Step is refundable; no Take Profit Trader fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FTMO: day 14)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; FTMO lists none",
+        "you trade on NinjaTrader: Take Profit Trader supports it; FTMO doesn't list it"
+      ]
+    },
+    "ftmo-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FTMO 2-Step lists none; Topstep's Combine has a 55% target",
+        "you want the fee back: FTMO 2-Step is refundable; no Topstep fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every Topstep product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; FTMO lists none",
+        "you trade on Quantower: Topstep supports it; FTMO doesn't list it",
+        "you want a lower one-phase target: Topstep's Combine asks 6%; FTMO's lowest is 10%"
+      ]
+    },
+    "ftmo-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FTMO 2-Step lists none; every TradeDay plan has one (30%–45%)",
+        "you want the fee back: FTMO 2-Step is refundable; no TradeDay fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every TradeDay product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FTMO: day 14)",
+        "you trade futures: every TradeDay product is a futures evaluation; FTMO lists none",
+        "you trade on NinjaTrader: TradeDay supports it; FTMO doesn't list it"
+      ]
+    },
+    "ftmo-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FTMO 2-Step lists none; every Tradeify plan has one (20%–40%)",
+        "you want the fee back: FTMO 2-Step is refundable; no Tradeify fee is",
+        "you want a static loss floor: FTMO 2-Step's 10% max loss is static; every Tradeify product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FTMO: day 14)",
+        "you trade futures: every Tradeify product is a futures evaluation; FTMO lists none",
+        "you trade the news: Tradeify allows it on every product; FTMO restricts it everywhere"
+      ]
+    },
+    "fundednext-vs-fundingpips": {
+      "pickA": [
+        "you hold over weekends: FundedNext allows it on every product; FundingPips restricts it everywhere",
+        "you want a lower $100K fee: Stellar Lite lists $399.99; FundingPips' lowest is $422",
+        "you trade on MT4: FundedNext supports it; FundingPips doesn't list it"
+      ],
+      "pickB": [
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; FundedNext evaluations cap at 10%",
+        "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); FundedNext evaluations need 2+",
+        "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; FundedNext lists $300,000"
+      ]
+    },
+    "fundednext-vs-fxify": {
+      "pickA": [
+        "you trade on cTrader: FundedNext supports it; FXIFY doesn't list it"
+      ],
+      "pickB": [
+        "you trade crypto: FXIFY lists 2 crypto products; FundedNext lists none",
+        "you trade the news: FXIFY allows it on 5 of its 10 products; FundedNext restricts it everywhere"
+      ]
+    },
+    "fundednext-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Stellar Instant has none; every Lucid plan has one (20%–50%)",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no Lucid Trading fee is",
+        "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every Lucid Trading product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Lucid Trading product is a futures evaluation; FundedNext lists none",
+        "you want a higher starting split: LucidPro pays 90%; FundedNext's evaluations top out at 80%"
+      ]
+    },
+    "fundednext-vs-maven": {
+      "pickA": [
+        "you run EAs: FundedNext allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: FundedNext goes up to $200,000; Maven tops out at $100,000"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundedNext's lowest is $399.99",
+        "you trade the news: Maven allows it on 4 of its 9 products; FundedNext restricts it everywhere",
+        "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; FundedNext's lowest is 10%"
+      ]
+    },
+    "fundednext-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: FundedNext allows it on every product; My Funded Futures bars it everywhere",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no My Funded Futures fee is",
+        "you want a static loss floor: Stellar 2-Step's 10% max loss is static; every My Funded Futures product trails"
+      ],
+      "pickB": [
+        "you trade futures: every My Funded Futures product is a futures evaluation; FundedNext lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; FundedNext's evaluations top out at 80%"
+      ]
+    },
+    "fundednext-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: Stellar 1-Step pays weekly, with the first reward after 5 business days (OFP: day 14)",
+        "you trade on MT5: FundedNext supports it; OFP Funding doesn't list it"
+      ],
+      "pickB": [
+        "you want a bigger account: OFP Funding goes up to $300,000; FundedNext tops out at $200,000"
+      ]
+    },
+    "fundednext-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Stellar Instant has none; Take Profit Trader's Test has a 50% rule",
+        "you hold overnight: FundedNext allows it on every product; Take Profit Trader bars it everywhere",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no Take Profit Trader fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Take Profit Trader product is a futures evaluation; FundedNext lists none",
+        "you trade on TradingView: Take Profit Trader supports it; FundedNext doesn't list it"
+      ]
+    },
+    "fundednext-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Stellar Instant has none; Topstep's Combine has a 55% target",
+        "you hold overnight or over weekends: FundedNext allows both everywhere; Topstep bars both",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no Topstep fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; FundedNext lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; FundedNext's evaluations top out at 80%",
+        "you trade on Quantower: Topstep supports it; FundedNext doesn't list it"
+      ]
+    },
+    "fundednext-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Stellar Instant has none; every TradeDay plan has one (30%–45%)",
+        "you hold overnight or over weekends: FundedNext allows both everywhere; TradeDay bars both",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no TradeDay fee is"
+      ],
+      "pickB": [
+        "you trade futures: every TradeDay product is a futures evaluation; FundedNext lists none",
+        "you trade on TradingView: TradeDay supports it; FundedNext doesn't list it"
+      ]
+    },
+    "fundednext-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Stellar Instant has none; every Tradeify plan has one (20%–40%)",
+        "you hold overnight or over weekends: FundedNext allows both everywhere; Tradeify bars both",
+        "you want the fee back: 3 of 4 FundedNext products are refundable; no Tradeify fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Tradeify product is a futures evaluation; FundedNext lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; FundedNext's evaluations top out at 80%"
+      ]
+    },
+    "fundingpips-vs-fxify": {
+      "pickA": [
+        "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; FXIFY evaluations cap at 10%",
+        "you trade on cTrader: FundingPips supports it; FXIFY doesn't list it"
+      ],
+      "pickB": [
+        "you hold over weekends: FXIFY allows it on 8 of its 10 products; FundingPips restricts it everywhere",
+        "you want a lower $100K fee: FXIFY Three Phase lists $399; FundingPips' lowest is $422",
+        "you trade crypto: FXIFY lists 2 crypto products; FundingPips lists none"
+      ]
+    },
+    "fundingpips-vs-lucid-trading": {
+      "pickA": [
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Lucid Trading product trails",
+        "you trade forex/CFD rather than futures: every Lucid Trading product is futures",
+        "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); Lucid Trading evaluations need 1+"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FundingPips: day 7)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; FundingPips lists none",
+        "you want a lower $100K fee: LucidFlex lists $293; FundingPips' lowest is $422"
+      ]
+    },
+    "fundingpips-vs-maven": {
+      "pickA": [
+        "you run EAs: FundingPips allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: FundingPips goes up to $200,000; Maven tops out at $100,000"
+      ],
+      "pickB": [
+        "you hold over weekends: Maven allows it on every product; FundingPips restricts it everywhere",
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundingPips' lowest is $422",
+        "you trade the news: Maven allows it on 4 of its 9 products; FundingPips restricts it everywhere"
+      ]
+    },
+    "fundingpips-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: FundingPips allows it on every product; My Funded Futures bars it everywhere",
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (FundingPips: day 7)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; FundingPips lists none",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; FundingPips restricts it everywhere"
+      ]
+    },
+    "fundingpips-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (OFP: day 14)",
+        "you trade on MT5: FundingPips supports it; OFP Funding doesn't list it",
+        "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; OFP Funding lists $300,000"
+      ],
+      "pickB": [
+        "you want a bigger account: OFP Funding goes up to $300,000; FundingPips tops out at $200,000"
+      ]
+    },
+    "fundingpips-vs-take-profit-trader": {
+      "pickA": [
+        "you hold overnight: FundingPips allows it on every product; Take Profit Trader bars it everywhere",
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Take Profit Trader product trails",
+        "you trade forex/CFD rather than futures: every Take Profit Trader product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FundingPips: day 7)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; FundingPips lists none",
+        "you trade on TradingView: Take Profit Trader supports it; FundingPips doesn't list it"
+      ]
+    },
+    "fundingpips-vs-topstep": {
+      "pickA": [
+        "you hold overnight: FundingPips allows it on every product; Topstep bars it everywhere",
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Topstep product trails",
+        "you trade forex/CFD rather than futures: every Topstep product is futures"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; FundingPips lists none",
+        "you trade on Quantower: Topstep supports it; FundingPips doesn't list it",
+        "you want a lower one-phase target: Topstep's Combine asks 6%; FundingPips' lowest is 12%"
+      ]
+    },
+    "fundingpips-vs-tradeday": {
+      "pickA": [
+        "you hold overnight: FundingPips allows it on every product; TradeDay bars it everywhere",
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every TradeDay product trails",
+        "you trade forex/CFD rather than futures: every TradeDay product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FundingPips: day 7)",
+        "you trade futures: every TradeDay product is a futures evaluation; FundingPips lists none",
+        "you trade on TradingView: TradeDay supports it; FundingPips doesn't list it"
+      ]
+    },
+    "fundingpips-vs-tradeify": {
+      "pickA": [
+        "you hold overnight: FundingPips allows it on every product; Tradeify bars it everywhere",
+        "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Tradeify product trails",
+        "you trade forex/CFD rather than futures: every Tradeify product is futures"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FundingPips: day 7)",
+        "you trade futures: every Tradeify product is a futures evaluation; FundingPips lists none",
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FundingPips' lowest is $422"
+      ]
+    },
+    "fxify-vs-lucid-trading": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every Lucid plan has one (20%–50%)",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Lucid Trading fee is",
+        "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every Lucid Trading product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (FXIFY Lightning Challenge: day 7)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; FXIFY lists none",
+        "you want a lower $100K fee: LucidFlex lists $293; FXIFY's lowest is $399"
+      ]
+    },
+    "fxify-vs-maven": {
+      "pickA": [
+        "you trade crypto: FXIFY lists 2 crypto products; Maven lists none",
+        "you run EAs: FXIFY allows them with pre-approval on 5 of its 10 products; Maven bars them everywhere"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; FXIFY's lowest is $399",
+        "you trade on Match-Trader: Maven supports it; FXIFY doesn't list it",
+        "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; FXIFY's lowest is 5%"
+      ]
+    },
+    "fxify-vs-my-funded-futures": {
+      "pickA": [
+        "you hold overnight: FXIFY allows it on 6 of its 10 products; My Funded Futures bars it everywhere",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no My Funded Futures fee is",
+        "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every My Funded Futures product trails"
+      ],
+      "pickB": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (FXIFY Lightning Challenge: day 7)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; FXIFY lists none",
+        "you trade on NinjaTrader: My Funded Futures supports it; FXIFY doesn't list it"
+      ]
+    },
+    "fxify-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (OFP: day 14)",
+        "you trade crypto: FXIFY lists 2 crypto products; OFP Funding lists none",
+        "you trade the news: FXIFY allows it on 5 of its 10 products; OFP Funding restricts it everywhere"
+      ],
+      "pickB": []
+    },
+    "fxify-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FXIFY One Phase lists none; Take Profit Trader's Test has a 50% rule",
+        "you hold overnight: FXIFY allows it on 6 of its 10 products; Take Profit Trader bars it everywhere",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Take Profit Trader fee is"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY Lightning Challenge: day 7)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; FXIFY lists none",
+        "you trade on NinjaTrader: Take Profit Trader supports it; FXIFY doesn't list it"
+      ]
+    },
+    "fxify-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FXIFY One Phase lists none; Topstep's Combine has a 55% target",
+        "you hold over weekends: FXIFY allows it on 8 of its 10 products; Topstep bars it everywhere",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Topstep fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; FXIFY lists none",
+        "you trade on Quantower: Topstep supports it; FXIFY doesn't list it",
+        "operating history matters to you: Topstep was founded in 2012, FXIFY in 2022"
+      ]
+    },
+    "fxify-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every TradeDay plan has one (30%–45%)",
+        "you hold over weekends: FXIFY allows it on 8 of its 10 products; TradeDay bars it everywhere",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no TradeDay fee is"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY Lightning Challenge: day 7)",
+        "you trade futures: every TradeDay product is a futures evaluation; FXIFY lists none",
+        "you trade on NinjaTrader: TradeDay supports it; FXIFY doesn't list it"
+      ]
+    },
+    "fxify-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every Tradeify plan has one (20%–40%)",
+        "you hold over weekends: FXIFY allows it on 8 of its 10 products; Tradeify bars it everywhere",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Tradeify fee is"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY Lightning Challenge: day 7)",
+        "you trade futures: every Tradeify product is a futures evaluation; FXIFY lists none",
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FXIFY's lowest is $399"
+      ]
+    },
+    "lucid-trading-vs-maven": {
+      "pickA": [
+        "you trade futures: every Lucid Trading product is a futures evaluation; Maven lists none",
+        "you want a higher starting split: LucidPro pays 90%; Maven's evaluations top out at 80%"
+      ],
+      "pickB": [
+        "you'd rather avoid a consistency rule: Maven's Standard plans list none; every Lucid plan has one (20%–50%)",
+        "you want the fee back: 8 of 9 Maven products are refundable; no Lucid Trading fee is",
+        "you want a static loss floor: Maven Standard 2-Step's 8% max loss is static; every Lucid Trading product trails"
+      ]
+    },
+    "lucid-trading-vs-my-funded-futures": {
+      "pickA": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (MFF: day 2)",
+        "you run EAs: Lucid Trading allows them on every product; My Funded Futures restricts them everywhere",
+        "you want to skip the evaluation: Lucid Trading sells funded accounts with no evaluation; My Funded Futures doesn't"
+      ],
+      "pickB": [
+        "you'd rather avoid a consistency rule: MFF Builder has none; every Lucid plan has one (20%–50%)"
+      ]
+    },
+    "lucid-trading-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: LucidDaily pays on demand from day 1 (OFP: day 14)",
+        "you trade futures: every Lucid Trading product is a futures evaluation; OFP Funding lists none",
+        "you trade the news: Lucid Trading allows it on 3 of its 7 products; OFP Funding restricts it everywhere"
+      ],
+      "pickB": [
+        "you want the fee back: every OFP Funding product is refundable; no Lucid Trading fee is",
+        "you trade forex/CFD rather than futures: every Lucid Trading product is futures",
+        "you want a bigger account: OFP Funding goes up to $300,000; Lucid Trading tops out at $150,000"
+      ]
+    },
+    "lucid-trading-vs-take-profit-trader": {
+      "pickA": [
+        "you want a higher starting split: LucidPro pays 90%; Take Profit Trader's evaluations top out at 80%",
+        "you trade the news: Lucid Trading allows it on 3 of its 7 products; Take Profit Trader restricts it everywhere",
+        "you run EAs: Lucid Trading allows them on every product; Take Profit Trader bars them everywhere"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (Lucid: day 1)",
+        "operating history matters to you: Take Profit Trader was founded in 2021, Lucid Trading in 2024"
+      ]
+    },
+    "lucid-trading-vs-topstep": {
+      "pickA": [
+        "you trade the news: Lucid Trading allows it on 3 of its 7 products; Topstep restricts it everywhere",
+        "you run EAs: Lucid Trading allows them on every product; Topstep restricts them everywhere",
+        "you want to skip the evaluation: Lucid Trading sells funded accounts with no evaluation; Topstep doesn't"
+      ],
+      "pickB": [
+        "operating history matters to you: Topstep was founded in 2012, Lucid Trading in 2024"
+      ]
+    },
+    "lucid-trading-vs-tradeday": {
+      "pickA": [
+        "you want a higher starting split: LucidPro pays 90%; TradeDay's evaluations top out at 80%",
+        "you trade the news: Lucid Trading allows it on 3 of its 7 products; TradeDay restricts it everywhere",
+        "you run EAs: Lucid Trading allows them on every product; TradeDay restricts them everywhere"
+      ],
+      "pickB": [
+        "operating history matters to you: TradeDay was founded in 2020, Lucid Trading in 2024"
+      ]
+    },
+    "lucid-trading-vs-tradeify": {
+      "pickA": [
+        "you run EAs: Lucid Trading allows them on every product; Tradeify restricts them everywhere"
+      ],
+      "pickB": [
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; Lucid Trading's lowest is $293"
+      ]
+    },
+    "maven-vs-my-funded-futures": {
+      "pickA": [
+        "you want the fee back: 8 of 9 Maven products are refundable; no My Funded Futures fee is",
+        "you want a static loss floor: Maven Standard 2-Step's 8% max loss is static; every My Funded Futures product trails",
+        "you trade forex/CFD or prediction markets rather than futures: every My Funded Futures product is futures"
+      ],
+      "pickB": [
+        "you trade futures: every My Funded Futures product is a futures evaluation; Maven lists none",
+        "you want a higher starting split: MFF Rapid pays 90%; Maven's evaluations top out at 80%"
+      ]
+    },
+    "maven-vs-ofp-funding": {
+      "pickA": [
+        "you trade the news: Maven allows it on 4 of its 9 products; OFP Funding restricts it everywhere",
+        "you trade on MT5: Maven supports it; OFP Funding doesn't list it",
+        "you plan to scale: Maven lists a $1,000,000 maximum allocation; OFP Funding lists $300,000"
+      ],
+      "pickB": [
+        "you run EAs: OFP Funding allows them with limits on every product; Maven bars them everywhere",
+        "you want a bigger account: OFP Funding goes up to $300,000; Maven tops out at $100,000"
+      ]
+    },
+    "maven-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Maven's Standard plans list none; Take Profit Trader's Test has a 50% rule",
+        "you want the fee back: 8 of 9 Maven products are refundable; no Take Profit Trader fee is",
+        "you want a static loss floor: Maven Standard 2-Step's 8% max loss is static; every Take Profit Trader product trails"
+      ],
+      "pickB": [
+        "you trade futures: every Take Profit Trader product is a futures evaluation; Maven lists none",
+        "you want a bigger account: Take Profit Trader goes up to $150,000; Maven tops out at $100,000"
+      ]
+    },
+    "maven-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Maven's Standard plans list none; Topstep's Combine has a 55% target",
+        "you hold over weekends: Maven allows it on every product; Topstep bars it everywhere",
+        "you want the fee back: 8 of 9 Maven products are refundable; no Topstep fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; Maven lists none",
+        "you want a higher starting split: both Topstep paths pay 90%; Maven's evaluations top out at 80%",
+        "you run EAs: Topstep allows them with limits on every product; Maven bars them everywhere"
+      ]
+    },
+    "maven-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Maven's Standard plans list none; every TradeDay plan has one (30%–45%)",
+        "you hold over weekends: Maven allows it on every product; TradeDay bars it everywhere",
+        "you want the fee back: 8 of 9 Maven products are refundable; no TradeDay fee is"
+      ],
+      "pickB": [
+        "you trade futures: every TradeDay product is a futures evaluation; Maven lists none",
+        "you run EAs: TradeDay allows them with limits on every product; Maven bars them everywhere"
+      ]
+    },
+    "maven-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: Maven's Standard plans list none; every Tradeify plan has one (20%–40%)",
+        "you hold over weekends: Maven allows it on every product; Tradeify bars it everywhere",
+        "you want the fee back: 8 of 9 Maven products are refundable; no Tradeify fee is"
+      ],
+      "pickB": [
+        "you trade futures: every Tradeify product is a futures evaluation; Maven lists none",
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Maven's evaluations top out at 80%"
+      ]
+    },
+    "my-funded-futures-vs-ofp-funding": {
+      "pickA": [
+        "you want an early first payout: MFF Builder allows a request from day 2 (OFP: day 14)",
+        "you trade futures: every My Funded Futures product is a futures evaluation; OFP Funding lists none",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; OFP Funding restricts it everywhere"
+      ],
+      "pickB": [
+        "you want the fee back: every OFP Funding product is refundable; no My Funded Futures fee is",
+        "you trade forex/CFD rather than futures: every My Funded Futures product is futures",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; My Funded Futures doesn't"
+      ]
+    },
+    "my-funded-futures-vs-take-profit-trader": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: MFF Builder has none; Take Profit Trader's Test has a 50% rule",
+        "you want a higher starting split: MFF Rapid pays 90%; Take Profit Trader's evaluations top out at 80%",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; Take Profit Trader restricts it everywhere"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (MFF: day 2)",
+        "operating history matters to you: Take Profit Trader was founded in 2021, My Funded Futures in 2023"
+      ]
+    },
+    "my-funded-futures-vs-topstep": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: MFF Builder has none; Topstep's Combine has a 55% target",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; Topstep restricts it everywhere",
+        "you trade on TradingView: My Funded Futures supports it; Topstep doesn't list it"
+      ],
+      "pickB": [
+        "operating history matters to you: Topstep was founded in 2012, My Funded Futures in 2023"
+      ]
+    },
+    "my-funded-futures-vs-tradeday": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: MFF Builder has none; every TradeDay plan has one (30%–45%)",
+        "you want a higher starting split: MFF Rapid pays 90%; TradeDay's evaluations top out at 80%",
+        "you trade the news: My Funded Futures allows it on MFF Builder only; TradeDay restricts it everywhere"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (MFF: day 2)",
+        "operating history matters to you: TradeDay was founded in 2020, My Funded Futures in 2023"
+      ]
+    },
+    "my-funded-futures-vs-tradeify": {
+      "pickA": [
+        "you'd rather avoid a consistency rule: MFF Builder has none; every Tradeify plan has one (20%–40%)"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (MFF: day 2)",
+        "you want to skip the evaluation: Tradeify sells funded accounts with no evaluation; My Funded Futures doesn't"
+      ]
+    },
+    "ofp-funding-vs-take-profit-trader": {
+      "pickA": [
+        "you want the fee back: every OFP Funding product is refundable; no Take Profit Trader fee is",
+        "you trade forex/CFD rather than futures: every Take Profit Trader product is futures",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; Take Profit Trader doesn't"
+      ],
+      "pickB": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (OFP: day 14)",
+        "you trade futures: every Take Profit Trader product is a futures evaluation; OFP Funding lists none",
+        "you trade on TradingView: Take Profit Trader supports it; OFP Funding doesn't list it"
+      ]
+    },
+    "ofp-funding-vs-topstep": {
+      "pickA": [
+        "you want the fee back: every OFP Funding product is refundable; no Topstep fee is",
+        "you trade forex/CFD rather than futures: every Topstep product is futures",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; Topstep doesn't"
+      ],
+      "pickB": [
+        "you trade futures: every Topstep product is a futures evaluation; OFP Funding lists none",
+        "you trade on Quantower: Topstep supports it; OFP Funding doesn't list it",
+        "you plan to scale: Topstep lists a $500,000 maximum allocation; OFP Funding lists $300,000"
+      ]
+    },
+    "ofp-funding-vs-tradeday": {
+      "pickA": [
+        "you want the fee back: every OFP Funding product is refundable; no TradeDay fee is",
+        "you trade forex/CFD rather than futures: every TradeDay product is futures",
+        "you want to skip the evaluation: OFP Funding sells funded accounts with no evaluation; TradeDay doesn't"
+      ],
+      "pickB": [
+        "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (OFP: day 14)",
+        "you trade futures: every TradeDay product is a futures evaluation; OFP Funding lists none",
+        "you trade on TradingView: TradeDay supports it; OFP Funding doesn't list it"
+      ]
+    },
+    "ofp-funding-vs-tradeify": {
+      "pickA": [
+        "you want the fee back: every OFP Funding product is refundable; no Tradeify fee is",
+        "you trade forex/CFD rather than futures: every Tradeify product is futures",
+        "you want a bigger account: OFP Funding goes up to $300,000; Tradeify tops out at $150,000"
+      ],
+      "pickB": [
+        "you want an early first payout: Tradeify Select Daily pays from day 1 (OFP: day 14)",
+        "you trade futures: every Tradeify product is a futures evaluation; OFP Funding lists none",
+        "you trade the news: Tradeify allows it on every product; OFP Funding restricts it everywhere"
+      ]
+    },
+    "take-profit-trader-vs-topstep": {
+      "pickA": [
+        "you trade on TradingView: Take Profit Trader supports it; Topstep doesn't list it"
+      ],
+      "pickB": [
+        "you want a higher starting split: both Topstep paths pay 90%; Take Profit Trader's evaluations top out at 80%",
+        "you run EAs: Topstep allows them with limits on every product; Take Profit Trader bars them everywhere",
+        "you want a cheaper $50K subscription: Topstep's Standard Path lists $49/month plus a $149 activation fee; Take Profit Trader's lowest is $170"
+      ]
+    },
+    "take-profit-trader-vs-tradeday": {
+      "pickA": [
+        "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (TradeDay: day 1)"
+      ],
+      "pickB": [
+        "you run EAs: TradeDay allows them with limits on every product; Take Profit Trader bars them everywhere",
+        "you want no activation fee: every TradeDay plan lists $0; TPT The Test charges $130",
+        "you want a cheaper $50K subscription: TradeDay Quick Pay Intraday lists {{price:tradeday/quick-pay-intraday@50000|month}}; Take Profit Trader's lowest is {{lowest:take-profit-trader@50000|month}}"
+      ]
+    },
+    "take-profit-trader-vs-tradeify": {
+      "pickA": [
+        "operating history matters to you: Take Profit Trader was founded in 2021, Tradeify in 2024"
+      ],
+      "pickB": [
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; Take Profit Trader's evaluations top out at 80%",
+        "you trade the news: Tradeify allows it on every product; Take Profit Trader restricts it everywhere",
+        "you want to skip the evaluation: Tradeify sells funded accounts with no evaluation; Take Profit Trader doesn't"
+      ]
+    },
+    "topstep-vs-tradeday": {
+      "pickA": [
+        "you want a higher starting split: both Topstep paths pay 90%; TradeDay's evaluations top out at 80%",
+        "you want a cheaper $50K subscription: Topstep's Standard Path lists $49/month plus a $149 activation fee; TradeDay's lowest is {{lowest:tradeday@50000|month}}",
+        "operating history matters to you: Topstep was founded in 2012, TradeDay in 2020"
+      ],
+      "pickB": [
+        "you trade on TradingView: TradeDay supports it; Topstep doesn't list it"
+      ]
+    },
+    "topstep-vs-tradeify": {
+      "pickA": [
+        "operating history matters to you: Topstep was founded in 2012, Tradeify in 2024"
+      ],
+      "pickB": [
+        "you trade the news: Tradeify allows it on every product; Topstep restricts it everywhere",
+        "you want to skip the evaluation: Tradeify sells funded accounts with no evaluation; Topstep doesn't",
+        "you'd rather pay once: Tradeify fees are one-off; Topstep bills monthly until you pass"
+      ]
+    },
+    "tradeday-vs-tradeify": {
+      "pickA": [
+        "operating history matters to you: TradeDay was founded in 2020, Tradeify in 2024"
+      ],
+      "pickB": [
+        "you want a higher starting split: Tradeify Growth Evaluation pays 90%; TradeDay's evaluations top out at 80%",
+        "you trade the news: Tradeify allows it on every product; TradeDay restricts it everywhere",
+        "you want to skip the evaluation: Tradeify sells funded accounts with no evaluation; TradeDay doesn't"
+      ]
+    }
+  }
+}

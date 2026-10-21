@@ -78,7 +78,7 @@ modified: "2026-10-19 12:00:00"
   </tbody>
 </table>
 
-<p>Prices and rules were rechecked on 2026-10-19 on E8's own product pages (e8markets.com/e8-one, /e8-pro and /e8-signature) and help centre; fees are undiscounted list prices, before the promotional codes E8 shows site-wide. E8 One Forex and E8 One Perpetuals use the same fee ladder, as do the two E8 Pro markets. The E8 Pro page now lists $32/$68/$148/$228/$488/$998/$2,098/$2,598, which matches the E8 Pro pre-set price table in E8's custom-account help article (updated 2026-10-08), so the earlier conflict with the retired E8PRO v2 page ($38 to $2,998) is closed. See <a href="/go/e8-markets">E8 Markets</a> before paying.</p>
+<p>Prices and rules were rechecked on 2026-10-19 on E8's own product pages (e8markets.com/e8-one, /e8-pro and /e8-signature) and help centre, and the list prices on all three product pages matched again on 2026-10-20; fees are undiscounted list prices, before the promotional codes E8 shows site-wide. E8 One Forex and E8 One Perpetuals use the same fee ladder, as do the two E8 Pro markets. The E8 Pro page now lists $32/$68/$148/$228/$488/$998/$2,098/$2,598, which matches the E8 Pro pre-set price table in E8's custom-account help article (updated 2026-10-08), so the earlier conflict with the retired E8PRO v2 page ($38 to $2,998) is closed. See <a href="/go/e8-markets">E8 Markets</a> before paying.</p>
 
 <p><strong>India eligibility is product-specific.</strong> E8's Accepted Countries article updated this week says Indian and Kenyan profiles may buy E8 Pro and E8 Signature at every published size, but E8 One only through $200,000. E8 determines eligibility from verification documents, so a current location alone does not override that account-size cap.</p>
 

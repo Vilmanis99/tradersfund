@@ -7,6 +7,7 @@ import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
 import { ruDisclosureHref } from '@/lib/ruDisclosure'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 
 type FooterProps = {
   firmCount: number
@@ -63,6 +64,8 @@ export default function Footer({
       { label: 'Как оцениваем фирмы', href: '/methodology' },
       { label: 'Как мы зарабатываем', href: ruDisclosureHref() },
       { label: 'Исправления', href: '/corrections' },
+      // Shown only while content/data/closed-firms.json is published (same flag as the EN page).
+      ...(ruClosedFirmsHref() ? [{ label: 'Закрытые проп-фирмы', href: ruClosedFirmsHref() as string }] : []),
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
     ] },
@@ -184,7 +187,8 @@ export default function Footer({
             <li><Link href="/methodology" className="tf-foot__link">{t.method}</Link></li>
             <li><Link href="/privacy-policy" className="tf-foot__link">{t.privacy}</Link></li>
             <li><Link href="/disclaimers" className="tf-foot__link">{t.disclaimers}</Link></li>
-            {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID) && (
+            {(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID
+              || (isRussian && process.env.NEXT_PUBLIC_YANDEX_METRICA_ID)) && (
               <li><AnalyticsPreferencesButton locale={isRussian ? 'ru' : 'en'} /></li>
             )}
           </ul>

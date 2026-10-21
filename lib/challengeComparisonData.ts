@@ -19,6 +19,8 @@ export function buildChallengeComparisonRows(
           sizeUsd: tier.sizeUsd, priceUsd: tier.priceUsd, priceEur: tier.priceEur ?? null,
           costToFundedUsd: minimumCostToFundedUsd(challenge, tier),
           costToFundedEur: tier.priceEur != null && tier.priceEur > 0 && (tier.payLaterUsd ?? 0) === 0 && (tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0) === 0 ? tier.priceEur : null,
+          payLaterUsd: tier.payLaterUsd ?? null,
+          activationFeeUsd: tier.activationFeeUsd ?? challenge.activationFeeUsd ?? null,
           dailyLossUsd: tier.dailyLossUsd ?? null, maxLossUsd: tier.maxLossUsd ?? null,
         })),
         pricingModel: challenge.pricingModel ?? 'one-off', profitTargets: challenge.profitTargets,

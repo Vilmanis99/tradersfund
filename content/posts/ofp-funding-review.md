@@ -3,7 +3,7 @@ title: "OFP Funding Review 2026: Six Instant Accounts, 40 Priced Tiers, One $300
 seoTitle: "OFP Funding Review 2026: Legit? Fees, Rules & Payouts"
 slug: "ofp-funding-review"
 date: "2025-04-22 12:00:00"
-modified: "2026-10-14 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Tara Mohseni"
 excerpt: "OFP now sells six instant accounts from $35 to $2,500 at an 80% base split. Instant Lite is the cheapest per dollar of drawdown; Instant Plus costs over 3x more."
 seoDescription: "OFP Funding review: is it legit, how the payout process works step by step, payout times and Rise fees, plus 6 instant accounts, true cost and drawdown rules."
@@ -25,7 +25,7 @@ type: "post"
     <li>Daily loss is measured off the <strong>previous day's closing equity</strong>, recorded at midnight GMT+2.</li>
     <li><strong>Total manageable accounts are capped at $300,000</strong>, and account merging is not supported.</li>
     <li>Instant Lite (5%/10%) is the cheapest risk-adjusted account OFP sells: $250 at $100K for an R-multiple of 0.03.</li>
-    <li><strong>Trustpilot has suppressed OFP's aggregate rating</strong> — "This company's rating is unavailable due to a breach of our guidelines" (verified 2026-07-27).</li>
+    <li><strong>Trustpilot has suppressed OFP's aggregate rating</strong> — "This company's rating is unavailable due to a breach of our guidelines" (first recorded 2026-07-27, still shown 2026-10-20).</li>
     <li><strong>Instant Plus costs over 3x Instant Lite</strong> for the same 3% daily and 5% maximum drawdown at $100K ($670 against $200).</li>
   </ul>
 </div>
@@ -241,7 +241,7 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 <p><strong>What delays or denies a payout.</strong> OFP says payouts "can be subject to additional analysis at any moment, which may require you to explain your trading strategy", and are paid only "when a real trading strategy is present". Its list of common delays includes an incomplete form, details that don't match your registered name, a rule breach under review, incomplete KYC, and third-party payment accounts. You can keep trading once you have answered the payout email.</p>
 
 
-<p><strong>Trustpilot has suppressed OFP Funding's aggregate rating.</strong> As of 2026-07-27, <a href="https://www.trustpilot.com/review/ofpfunding.com">the firm's Trustpilot profile</a> displays "This company's rating is unavailable due to a breach of our guidelines" in place of a score. That is a platform enforcement action against review-collection conduct, not a finding about payouts, and Trustpilot does not publish which guideline was breached. We report it because it is the single most material change to OFP's public trust signal, and because a suppressed rating removes the one third-party metric most traders use to sanity-check a firm. Treat any OFP star rating quoted elsewhere as stale until the profile is restored.</p>
+<p><strong>Trustpilot has suppressed OFP Funding's aggregate rating.</strong> <a href="https://www.trustpilot.com/review/ofpfunding.com">The firm's Trustpilot profile</a> displays "This company's rating is unavailable due to a breach of our guidelines" in place of a score; we first recorded this on 2026-07-27 and it was still shown on 2026-10-20. Its only stated reason, in a "Breach of guidelines" notice checked 2026-10-20, is that Trustpilot has "removed a number of fake reviews for this company"; it does not name a specific guideline. The profile also carries a "Merged reviews and profile" notice. The notice concerns review-platform guidelines, not payouts. We report it because it is the single most material change to OFP's public trust signal, and because a suppressed rating removes the one third-party metric most traders use to sanity-check a firm. Treat any OFP star rating quoted elsewhere as stale until the profile is restored.</p>
 
 <p>OFP publishes a scaling path rather than a fixed ladder: "20% total profit over three months" earns "25% return on your initial deposit". Growth is bounded by the $300,000 total manageable-account cap, and because account merging is not supported, that cap is not reachable by stacking two $200K accounts into one book.</p>
 
@@ -260,7 +260,7 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 
 <ul class="wp-block-list">
   <li><strong>No evaluation product.</strong> The 2026-10-14 lineup is instant-only, so there is no cheaper pass-a-target route.</li>
-  <li><strong>Trustpilot has suppressed the aggregate rating</strong> for a guidelines breach (verified 2026-07-27), removing the main third-party check available to a prospective buyer.</li>
+  <li><strong>Trustpilot has suppressed the aggregate rating</strong> for a guidelines breach, citing removed fake reviews (checked 2026-10-20), removing the main third-party check available to a prospective buyer.</li>
   <li><strong>Instant Plus (3%/5%) at $100K costs $670 against Instant Lite's $200</strong> for the identical 3% daily and 5% max drawdown: R = 0.17 versus 0.05.</li>
   <li><strong>Instant Lite is a one-shot account:</strong> a 5% target, 5 minimum trading days, a 30-day duration and a single reward request.</li>
   <li><strong>The consistency threshold is self-contradictory.</strong> The pricing data says 20% on Instant Classic; the help centre says 15% for bi-weekly accounts, and Instant Classic is bi-weekly.</li>
@@ -277,24 +277,18 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 
 <h2 class="wp-block-heading"><strong>Who should avoid OFP Funding</strong></h2>
 
-<p>Anyone whose strategy depends on holding through the weekend, or on a commercially available EA, should not fund an OFP account until support answers in writing — the weekend rule is unpublished and the third-party EA rule is a closure offence when the tool is a public one. Anyone whose account decision rests on third-party reputation data should also wait, because the Trustpilot rating is suppressed as of 2026-07-27 and no substitute aggregate exists. A trader who wants a classic evaluation instead of an instant account should look elsewhere, because OFP's current lineup no longer includes one; see the <a href="/cheapest-prop-firms">cheapest prop firms</a> comparison.</p>
+<p>Anyone whose strategy depends on holding through the weekend, or on a commercially available EA, should not fund an OFP account until support answers in writing — the weekend rule is unpublished and the third-party EA rule is a closure offence when the tool is a public one. Anyone whose account decision rests on third-party reputation data should also wait, because the Trustpilot rating is still suppressed as of 2026-10-20 and no substitute aggregate exists. A trader who wants a classic evaluation instead of an instant account should look elsewhere, because OFP's current lineup no longer includes one; see the <a href="/cheapest-prop-firms">cheapest prop firms</a> comparison.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
-<h3 class="wp-block-heading"><strong>Is OFP Funding legit?</strong></h3>
-<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and the product lineup changed in October 2026, so check the live terms. Read the current terms and start small before scaling up.</p>
+<h3 class="wp-block-heading"><strong>Is OFP Funding legit, and why does it have no Trustpilot rating?</strong></h3>
+<p>OFP publishes its payout process, refund terms and trading rules, and says Rewards are "funded directly by OFP's own capital" while you trade a demo account. The caveats are real: Trustpilot has suppressed its aggregate rating for a guidelines breach, several first-party sources conflict on the consistency rule, and the product lineup changed in October 2026, so check the live terms. On Trustpilot, the profile shows "This company's rating is unavailable due to a breach of our guidelines" (checked 2026-10-20). Its "Breach of guidelines" notice says only that Trustpilot has "removed a number of fake reviews for this company"; it does not name a specific guideline. The profile also shows a "Merged reviews and profile" notice. Neither is a statement about whether OFP pays out. Read the current terms and start small before scaling up.</p>
 
-<h3 class="wp-block-heading"><strong>How does the OFP Funding payout process work?</strong></h3>
-<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. The first request opens 14 calendar days after your first trade, then every 14 days on Instant Classic and Plus; Instant Lite allows a single reward within its 30-day period.</p>
+<h3 class="wp-block-heading"><strong>How does the OFP Funding payout process work, and how long does it take?</strong></h3>
+<p>Pass the review-period checks (drawdown, Inconsistency Score, no prohibited strategies), submit the payout form, let OFP self-bill the invoice, then receive USD by bank transfer, USDC, or Rise for amounts over $500. The first request opens 14 calendar days after your first trade, then every 14 days on Instant Classic and Plus; Instant Lite allows a single reward within its 30-day period. OFP quotes a 48-hour average on its trading-rules page and 2–3 business days in its help centre, processed Monday to Friday, 9 AM to 5 PM CET. Bank and crypto withdrawals under $500 are fee-free; payouts over $500 through Rise carry a fixed $50 fee.</p>
 
-<h3 class="wp-block-heading"><strong>How long do OFP Funding payouts take, and what do they cost?</strong></h3>
-<p>OFP quotes a 48-hour average on its trading-rules page and 2–3 business days in its help centre, processed Monday to Friday, 9 AM to 5 PM CET. Bank and crypto withdrawals under $500 are fee-free; payouts over $500 through Rise carry a fixed $50 fee.</p>
-
-<h3 class="wp-block-heading"><strong>What does OFP Funding actually cost?</strong></h3>
-<p>Between $35 and $2,500 across 40 priced tiers of 6 instant products, at the 80% profit-split base price (captured 2026-10-14). The cheapest entries are the $5K Instant Classic (3%/6%) and the $10K Instant Lite (3%/5%) at $35 each; the most expensive is the $300K Instant Plus (5%/10%) at $2,500. A 100% split adds roughly 20% to any of them.</p>
-
-<h3 class="wp-block-heading"><strong>Why does OFP have no Trustpilot rating?</strong></h3>
-<p>Trustpilot has suppressed it. The profile shows "This company's rating is unavailable due to a breach of our guidelines" as of 2026-07-27. Trustpilot applies this to review-collection conduct and does not publish the specific guideline breached; it is not a statement about whether OFP pays out.</p>
+<h3 class="wp-block-heading"><strong>What does OFP Funding actually cost, and is the fee refundable?</strong></h3>
+<p>Between $35 and $2,500 across 40 priced tiers of 6 instant products, at the 80% profit-split base price (captured 2026-10-14). The cheapest entries are the $5K Instant Classic (3%/6%) and the $10K Instant Lite (3%/5%) at $35 each; the most expensive is the $300K Instant Plus (5%/10%) at $2,500. A 100% split adds roughly 20% to any of them. The fee is refundable only within 14 calendar days and only if you have not traded. The terms grant a refund "provided that the account has not been used and no trading activity has occurred" and withdraw it "once any trade has been placed".</p>
 
 <h3 class="wp-block-heading"><strong>Is OFP's drawdown trailing or static?</strong></h3>
 <p>Static. The firm's own wording is "a 'hard' limit based on your initial balance" that "never changes during the challenge". On the funded side the help centre rebases it to your balance after each approved reward, so it steps up between payout cycles but never trails your equity intraday.</p>
@@ -304,9 +298,6 @@ To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.j
 
 <h3 class="wp-block-heading"><strong>Can I scale past $300,000 at OFP?</strong></h3>
 <p>No. OFP states "the total manageable accounts are capped at $300,000" and that "account merging is not supported". The scaling path — "20% total profit over three months" for "25% return on your initial deposit" — operates below that ceiling.</p>
-
-<h3 class="wp-block-heading"><strong>Is the OFP fee refundable?</strong></h3>
-<p>Only within 14 calendar days and only if you have not traded. The terms grant a refund "provided that the account has not been used and no trading activity has occurred" and withdraw it "once any trade has been placed".</p>
 
 <h3 class="wp-block-heading"><strong>Can US residents use OFP Funding?</strong></h3>
 <p>OFP states its MetaTrader 5 services are "not intended for U.S. citizens/residents". All OFP accounts are simulated, and the entity is OFP Funding Ltd, registered in St. Lucia as company 2024-00577.</p>
