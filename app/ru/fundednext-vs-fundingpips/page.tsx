@@ -441,8 +441,9 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <p className="ru-source-line">
             Партнёрские ссылки не заменяют проверку профиля. Если рассматриваете взнос в EUR, откройте{' '}
             <Link href="/ru/obzor-bright-funded">обзор BrightFunded</Link> и{' '}
-            <Link href="/ru/fundednext-vs-bright-funded">его сравнение с FundedNext</Link> или{' '}
-            <Link href="/ru/ftmo-vs-bright-funded">с FTMO</Link>. Валюта оплаты — отдельный критерий, не доказательство доступности.
+            <Link href="/ru/fundednext-vs-bright-funded">его сравнение с FundedNext</Link>,{' '}
+            <Link href="/ru/ftmo-vs-bright-funded">с FTMO</Link>, а также{' '}
+            <Link href="/ru/fundingpips-vs-bright-funded">сравнение FundingPips и BrightFunded</Link>. Валюта оплаты — отдельный критерий, не доказательство доступности.
           </p>
         </div>
       </section>

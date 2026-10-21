@@ -339,6 +339,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
+    ['/ru/fundingpips-vs-bright-funded', russianOldestChallengeLastModified('bright-funded', 'fundingpips')],
     // RU Writer's own date in the copy file; never earlier than the editorial date.
     ['/ru/kak-my-zarabatyvaem', new Date(`${RU_DISCLOSURE.updated ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/kak-my-zarabatyvaem']}T00:00:00Z`)],
     // The instant guide's Article uses its editorial date; product rows show

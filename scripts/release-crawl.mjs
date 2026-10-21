@@ -903,6 +903,34 @@ const russianExpectations = new Map([
       'https://brightfunded.com/terms-and-conditions',
     ],
   }],
+  ['/ru/fundingpips-vs-bright-funded', {
+    title: 'FundingPips или BrightFunded: условия и доступ из РФ 2026',
+    h1: 'FundingPips или BrightFunded: что выбрать в 2026 году',
+    markers: [
+      'data-russian-partner-comparison="fundingpips-bright-funded"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-access-table="ru-by-kz-ae"',
+      'data-russian-fundingpips-bright-funded-country-conflict="help-six-terms-five"',
+      'data-russian-fundingpips-payout-methods="reward-methods"',
+      'data-russian-fundingpips-payout-countries="pay-to-card-bank-14"',
+      'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods',
+      'data-russian-comparison-key-fields="11"',
+      'data-russian-comparison-product-count="8"',
+      'data-russian-comparison-verdict="by-trader-type"',
+      'data-russian-comparison-pair="classic-standard"',
+      'data-russian-comparison-pair="bright-flex-pro"',
+      'data-russian-comparison-pair="one-step"',
+      'data-russian-comparison-pair="zero-only-fundingpips"',
+      'data-russian-comparison-cta="bright-funded-first"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-risk-disclaimer="comparison"',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
+      'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started',
+    ],
+  }],
   ['/ru/fundednext-vs-fundingpips', {
     title: 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ',
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
@@ -1827,7 +1855,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
   + (closedFirmsPublished ? 1 : 0)
 
@@ -2026,6 +2054,8 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/fundingpips-vs-bright-funded', '/go/bright-funded?from=ru-comparison-fundingpips-bright-funded'],
+  ['/ru/fundingpips-vs-bright-funded', '/go/fundingpips?from=ru-comparison-fundingpips-bright-funded'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
   ['/ru/ftmo-vs-bright-funded', '/go/fundednext?from=ru-ftmo-vs-bright-fundednext'],

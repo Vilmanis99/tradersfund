@@ -35,6 +35,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
+  '/ru/fundingpips-vs-bright-funded',
   '/ru/ftmo-vs-bright-funded',
 ] as const
 
@@ -88,6 +89,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/ftmo-dlya-rossiyan': '2026-10-20',
   '/ru/ftmo-vs-bright-funded': '2026-10-20',
   '/ru/fundednext-vs-fundingpips': '2026-10-20',
+  '/ru/fundingpips-vs-bright-funded': '2026-10-21',
   '/ru/kak-my-zarabatyvaem': '2026-10-20',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
   '/ru/luchshie-kripto-prop-firmy': '2026-10-20',
