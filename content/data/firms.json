@@ -1524,8 +1524,16 @@
     "maxAllocation": "$400,000",
     "platforms": [
       "MT5",
-      "cTrader"
+      "cTrader",
+      "DXTrade",
+      "TradeLocker"
     ],
+    "platformEvidence": {
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceQuote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
+      "notes": "Help article dated July 6, 2026. Homepage platform cards (rendered 2026-10-20) also list MetaTrader 5, cTrader, TradeLocker and DX Trade, with Alpha Trader 'Coming Soon'. US residents: no MT5; cTrader closed to new US customers."
+    },
     "score": 8,
     "logo": "/images/wp/2025/07/Alpha-Capital-Logo.png",
     "reviewUrl": "/blog/alpha-capital-review",
@@ -1537,6 +1545,10 @@
       "Rise",
       "Wise"
     ],
+    "payoutMethodsSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+    "payoutMethodsQuote": "We offer multiple methods to pay your performance fees: Rise Wise Bank Transfer (WIRE / ACH / SWIFT) Cryptocurrency We do not facilitate withdrawals directly through cryptocurrency due to its lack of regulatory oversight, which contravenes our compliance standards. However, you may make cryptocurrency withdrawals through Rise, one of our authorised third-party payment service providers.",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Bank wire = WIRE/ACH/SWIFT. No direct crypto payouts; crypto only through Rise. All requests processed and paid within 2 business days. Minimum: $100 gross on bi-weekly; on-demand 2% of gross profit (Direct: 3% buffer + 1%). Help article dated July 7, 2026.",
     "drawdownType": null,
     "minTradingDays": null,
     "consistencyRule": "Product-specific: 15% on Alpha Direct; 40% on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); no consistency percentage on the other 4 products.",
@@ -1572,6 +1584,7 @@
       "Sanctioned areas of Ukraine (Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia)",
       "Republic of Congo"
     ],
+    "countriesRestrictedSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -1583,14 +1596,18 @@
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+    "russiaSourceQuote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ...",
+    "russiaNote": "Nationals or residents (July 6, 2026 article, read 2026-10-20). KYC article: a national of a restricted country living in a non-restricted country with that country's government ID can be onboarded; a resident of a restricted country cannot, even with another passport. Russia and Belarus are absent from the checkout country dropdown; Kazakhstan and Ukraine are present (sanctioned Ukrainian areas listed).",
     "legalEntity": "Alpha Capital Group Limited",
     "headquarters": "Harpenden, England, United Kingdom",
     "country": "United Kingdom",
     "regulation": null,
     "corporateSourceUrl": "https://alphacapitalgroup.uk/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-10-20",
+    "corporateNote": "ALPHA CAPITAL GROUP LIMITED, company number 13719951, registered office 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (site footer, read 2026-10-20).",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -1970,25 +1987,19 @@
       "platforms": {
         "value": [
           "MT5",
-          "cTrader"
+          "cTrader",
+          "DXTrade",
+          "TradeLocker"
         ],
-        "summary": "MT5, cTrader",
+        "summary": "MT5, cTrader, DXTrade, TradeLocker",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://alphacapitalgroup.uk/",
-            "quote": "Summary Discount Code Apply Step Step 1 Account Alpha One Size $5,000 Platform MT5 Total due One-time payment $0.00 By confirming the order: I declare that I have",
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+            "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://alphacapitalgroup.uk/",
-            "quote": "Desktop, web, and mobile access Built for serious traders Learn More Learn More cTrader Clean professional interface Fast order execution Advanced charting features De",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-20.json",
             "productSlug": null
           }
         ]
@@ -1997,7 +2008,10 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
     "trustpilotRatingSuppressed": true,
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
+    "regionalDiscountCode": "ALPHA30",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 30
   },
   {
     "name": "BrightFunded",
@@ -3575,6 +3589,10 @@
       "Crypto",
       "Bank wire"
     ],
+    "payoutMethodsSourceUrl": "https://cryptofundtrader.com/faq/",
+    "payoutMethodsQuote": "Payment methods: Directly via bank transfer in EUR or USD . Transfer directly to crypto wallet in these available currencies: USDT (ERC20) USDT (TRC20) Bitcoin (BTC) Ethereum (ETH)",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20), BTC, ETH; bank transfer in EUR or USD. KYC and a signed contract are required before any reward; FAQ states ~8 hours average processing, up to 48 business hours. Capture: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture).",
     "drawdownType": null,
     "minTradingDays": null,
     "consistencyRule": "Product-specific: 40% on Break Challenge; no consistency percentage on the other 4 products.",
@@ -3594,10 +3612,10 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-19",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "available",
     "affiliateStatus": "none",
     "rules": {
@@ -3881,7 +3899,7 @@
     "regulation": null,
     "corporateNote": "SWISS RLCRATES AG (CHE-162.567.204) states it is a payment/marketing agent for RLCRATES, S.L., which provides the MT5 service; the footer says it is not authorized or licensed in Switzerland. Offices listed: Zug, Pamplona, Dubai.",
     "corporateSourceUrl": "https://cryptofundtrader.com/",
-    "corporateCapturedAt": "2026-10-19"
+    "corporateCapturedAt": "2026-10-20"
   },
   {
     "name": "Topstep",
