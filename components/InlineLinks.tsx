@@ -1,11 +1,11 @@
-import Link from 'next/link'
+import Link from '@/components/SafeLink'
 import { Fragment, type ReactNode } from 'react'
 
 const LINK = /\[([^\]\n]+)\]\(([^)\s]+)\)/g
 
 /**
  * Renders plain copy with markdown-style links: [text](/path) becomes a
- * next/link, [text](https://...) an external link. Anything else, including
+ * SafeLink (never prefetches /go/), [text](https://...) an external link. Anything else, including
  * raw HTML, stays plain text (no dangerouslySetInnerHTML).
  */
 export default function InlineLinks({ text }: { text: string }) {

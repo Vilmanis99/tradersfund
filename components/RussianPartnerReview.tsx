@@ -240,7 +240,7 @@ export default function RussianPartnerReview({
 
               <div className="ru-review-firm-action">
                 <p>Сначала проверьте страну, точный продукт, платформу и цикл выплаты; затем сверяйте условия при оплате.</p>
-                <RuGoLink firm={affiliateSlug}
+                <RuGoLink prefetch={false} firm={affiliateSlug}
                   href={`/go/${affiliateSlug}?from=${summaryCampaign}`}
                   rel="sponsored nofollow noopener"
                   className="btn-primary btn-glow"
@@ -391,7 +391,7 @@ export default function RussianPartnerReview({
             <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если подходящий читатель зарегистрируется по ссылке ниже. Это не меняет цены, цифры или редакционный порядок. Резидентам России нельзя обходить ограничения VPN, прокси или неверными данными.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink prefetch={false} firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить страну и условия на {firmName} <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>

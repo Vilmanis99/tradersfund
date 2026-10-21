@@ -306,7 +306,7 @@ export default function RussianFundedNextReviewPage() {
 
               <div className="ru-review-firm-action">
                 <p>До покупки подтвердите доступность для своей страны, документы для KYC, платформу и итоговую сумму оплаты.</p>
-                <RuGoLink firm="fundednext"
+                <RuGoLink prefetch={false} firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-summary"
                   rel="sponsored nofollow noopener"
                   className="btn-outline"
@@ -337,7 +337,7 @@ export default function RussianFundedNextReviewPage() {
                 <Link href="/ru/promokody-prop-firm#fundednext-promokod" className="btn-outline">
                   Проверить все 4 шага
                 </Link>
-                <RuGoLink firm="fundednext"
+                <RuGoLink prefetch={false} firm="fundednext"
                   href="/go/fundednext?from=ru-fundednext-review-free-trial"
                   rel="sponsored nofollow noopener"
                   className="btn-outline"
@@ -646,7 +646,7 @@ export default function RussianFundedNextReviewPage() {
           <h2 className="ru-review-secondary-heading">Кому FundedNext не подходит</h2>
           <p>Если стратегия зависит от исполнения во время новостей, сначала проверьте правило для своей программы и этапа. Неполный зачёт прибыльных сделок при сохранении убытков может изменить её результат.</p>
           <p>Алгоритмическому трейдеру на cTrader или Match-Trader нельзя переносить правила MT4/MT5 на выбранную платформу. Резиденту России не следует оплачивать челлендж до письменного подтверждения конкретного профиля: датированные официальные источники дают противоречивые сигналы.</p>
-          <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</RuGoLink> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
+          <p>Перед регистрацией сохраните страницу выбранного продукта, проверьте юридическое лицо, итоговую валюту, KYC и доступный платёжный метод. Затем можно открыть <RuGoLink prefetch={false} firm="fundednext" href="/go/fundednext?from=ru-fundednext-review-guide" rel="sponsored nofollow noopener">актуальные планы FundedNext</RuGoLink> через контролируемый переход; партнёрская ссылка не меняет цифры или вывод обзора.</p>
         </div>
       </section>
 
@@ -749,7 +749,7 @@ export default function RussianFundedNextReviewPage() {
           </div>
           {firm?.affiliateUrl ? (
             <div className="ru-actions">
-              <RuGoLink firm="fundednext"
+              <RuGoLink prefetch={false} firm="fundednext"
                 href="/go/fundednext?from=ru-fundednext-review-verdict"
                 rel="sponsored nofollow noopener"
                 className="btn-outline"
