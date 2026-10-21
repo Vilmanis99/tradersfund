@@ -23,6 +23,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
@@ -228,6 +229,7 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
           </div></RuCapturedTerms>} />
+        <RuTelegramBlock placement="obzor-bright-funded" />
         <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
             <RuArticleToc>

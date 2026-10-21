@@ -15,6 +15,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-proplive'
 export const revalidate = 3600
@@ -146,6 +147,7 @@ export default function RussianPropLiveReviewPage() {
       </section>
 
       <RuReviewVerdictBox route={PATH} campaign="proplive-review" sourcesHref="#facts" />
+      <RuTelegramBlock placement="obzor-proplive" />
 
       <section className="ru-section" id="facts">
         <div className="ru-shell">

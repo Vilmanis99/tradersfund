@@ -8,6 +8,7 @@ import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
 import { ruDisclosureHref } from '@/lib/ruDisclosure'
 import { ruClosedFirmsHref } from '@/lib/closedFirms'
+import RuTelegramBlock from './RuTelegramBlock'
 
 type FooterProps = {
   firmCount: number
@@ -161,6 +162,7 @@ export default function Footer({
                 <NewsletterForm placement="footer" locale={isRussian ? 'ru' : 'en'} />
               </div>
             )}
+            {isRussian && <RuTelegramBlock placement="footer" variant="footer" />}
           </div>
           <nav className="tf-foot__cols" aria-label={t.nav}>
             {columns.map(column => (

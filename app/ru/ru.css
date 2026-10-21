@@ -1344,3 +1344,31 @@
   .ru-notice.ru-notice--compact { font-size: 0.82rem; line-height: 1.42; padding: 0.5rem 0.7rem; margin: 0.25rem 0 0.6rem; }
   .ru-notice--compact .ru-source-details summary { font-size: 0.78rem; }
 }
+
+/* RU Telegram channel block (components/RuTelegramBlock.tsx): after the verdict section, below the main CTA. */
+section.ru-section.ru-tg-section { padding: 0 0 clamp(0.75rem, 2vw, 1.25rem); border-top: 0; }
+.ru-tg-section .ru-shell { width: min(880px, calc(100% - 2rem)); }
+.ru-p1-article .ru-tg-section .ru-shell { width: 100%; }
+.ru-tg {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.35rem 0.85rem;
+  padding: 0.75rem 0.95rem; border: 1px solid var(--border); border-radius: var(--radius-md, 12px);
+  background: var(--surface); color: var(--text);
+}
+.ru-tg__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #229ed9; color: #fff; flex-shrink: 0; }
+.ru-tg__icon svg { margin-left: -2px; }
+.ru-tg__text { min-width: 0; }
+.ru-tg__title { margin: 0; font-weight: 800; font-size: 0.95rem; line-height: 1.3; color: var(--text); }
+.ru-tg__lead { margin: 0.1rem 0 0; font-size: 0.86rem; line-height: 1.45; color: var(--muted); }
+.ru-tg__btn {
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  padding: 0.5rem 1rem; border-radius: 10px; border: 1px solid #229ed9; color: #0f6a96;
+  font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.ru-tg__btn:hover { background: #229ed9; color: #fff; }
+.ru-tg__btn:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .ru-tg { grid-template-columns: auto minmax(0, 1fr); align-items: start; padding: 0.7rem 0.8rem; }
+  .ru-tg__icon { width: 32px; height: 32px; }
+  .ru-tg__btn { grid-column: 2; justify-self: start; padding: 0.42rem 0.95rem; }
+  .ru-tg__lead { font-size: 0.83rem; }
+}

@@ -15,6 +15,7 @@ import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ'
@@ -233,6 +234,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
       </section>
 
       <RuComparePickVerdict route={PATH} campaign="fn-vs-fp" />
+      <RuTelegramBlock placement="fundednext-vs-fundingpips" />
 
       <section className="ru-section">
         <div className="ru-shell">

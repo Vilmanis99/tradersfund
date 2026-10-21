@@ -21,6 +21,7 @@ import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -200,6 +201,7 @@ export default function RussianPartnerReview({
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
             <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
           </div></RuCapturedTerms>} />
+      <RuTelegramBlock placement={path.replace(/^\/ru\//, '')} />
       <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">

@@ -12,6 +12,7 @@ import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh, type Cha
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/ftmo-vs-bright-funded'
 const TITLE = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
@@ -297,6 +298,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       </section>
 
       <RuComparePickVerdict route={PATH} campaign="ftmo-vs-bright" />
+      <RuTelegramBlock placement="ftmo-vs-bright-funded" />
 
       <section className="ru-section">
         <div className="ru-shell">

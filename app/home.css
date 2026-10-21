@@ -181,6 +181,12 @@
 .tf-foot__fresh { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin: 0; font-size: 0.75rem; color: #9fb7b1; }
 .tf-foot__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-bright); box-shadow: 0 0 0 3px rgba(95,212,180,0.18); }
 .tf-foot__newsletter { margin-top: var(--space-4); max-width: 22rem; }
+.tf-foot .ru-tg { margin-top: var(--space-4); max-width: 22rem; grid-template-columns: auto minmax(0, 1fr); align-items: start; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #dbe8e4; }
+.tf-foot .ru-tg__title { color: #fff; font-size: 0.9rem; }
+.tf-foot .ru-tg__lead { color: #9fb7b1; font-size: 0.8rem; }
+.tf-foot .ru-tg__btn { grid-column: 2; justify-self: start; color: #fff; background: #229ed9; border-color: #229ed9; padding: 0.4rem 0.95rem; font-size: 0.85rem; }
+.tf-foot .ru-tg__btn:hover { background: #1b8bc0; }
+.tf-foot .ru-tg__btn:focus-visible { outline-color: var(--brand-bright); }
 .tf-foot__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
 .tf-foot__heading { margin: 0 0 var(--space-3); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
 .tf-foot__col ul, .tf-foot__legal { list-style: none; margin: 0; padding: 0; }

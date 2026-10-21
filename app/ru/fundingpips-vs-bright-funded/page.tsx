@@ -13,6 +13,7 @@ import { goLinkRel } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
@@ -348,6 +349,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           </p>
         </div>
       </section>
+      <RuTelegramBlock placement="fundingpips-vs-bright-funded" />
 
       <section className="ru-section" id="dostup">
         <div className="ru-shell ru-content ru-review-article">

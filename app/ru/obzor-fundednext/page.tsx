@@ -24,6 +24,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { formatRuDate } from '@/lib/ruDate'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-fundednext'
 const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
@@ -261,6 +262,7 @@ export default function RussianFundedNextReviewPage() {
             <div className="ru-stat"><strong>{priceRange(pricedTiers.map(item => item.price))}</strong><span>диапазон входа</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
           </div></RuCapturedTerms>} />
+      <RuTelegramBlock placement="obzor-fundednext" />
         <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
