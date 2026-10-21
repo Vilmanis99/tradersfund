@@ -977,6 +977,7 @@ const russianExpectations = new Map([
       '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card',
       '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-verdict',
       '/go/fundednext?from=ru-ftmo-vs-bright-fundednext',
+      'data-russian-comparison-fundednext-cta="restricted-last"',
       '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips',
       'data-russian-comparison-ftmo-cta="secondary-restricted"',
       'https://ftmo.com/en/faq/who-can-join-ftmo/',
@@ -1995,6 +1996,13 @@ const russianFtmoPage = pages.find(page =>
   const firstFtmo = comparisonHtml.indexOf('/go/ftmo?from=ru-ftmo-vs-bright-')
   if (firstBright < 0 || firstFtmo < 0 || firstBright > firstFtmo) {
     errors.push('/ru/ftmo-vs-bright-funded: BrightFunded CTA must render before any FTMO CTA')
+  }
+  // RU rule: FundedNext (restricted for Russia since 20.10) keeps its CTA with badge, but last and labelled for non-RF residents.
+  const fundedNextCta = comparisonHtml.indexOf('/go/fundednext?from=ru-ftmo-vs-bright-fundednext')
+  const otherCtas = [...comparisonHtml.matchAll(/href="\/go\/(?!fundednext)[a-z0-9-]+\?/g)].map(match => match.index)
+  if (fundedNextCta < 0 || otherCtas.some(index => index > fundedNextCta)
+    || !comparisonHtml.slice(fundedNextCta, fundedNextCta + 1500).includes('резидентам РФ FundedNext недоступна')) {
+    errors.push('/ru/ftmo-vs-bright-funded: FundedNext CTA must be the last /go/ link and carry the not-for-RF-residents label')
   }
 }
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
