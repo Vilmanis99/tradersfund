@@ -1,0 +1,56 @@
+{
+  "firmSlug": "tradeify",
+  "capturedAt": "2026-10-21",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "Tradeify",
+      "Tradeify Holdings Corp"
+    ],
+    "note": "RBI list itself rechecked 2026-10-20 (india-rbi-alert-capture.json); not re-read 2026-10-21."
+  },
+  "fetchNote": "help.tradeify.co returns a Cloudflare challenge to the box (curl 403, headless Chrome stuck on 'Just a moment...'); the three help articles were read 2026-10-21 through the WebFetch tool, whose egress country is not verified. tradeify.co was read from the US-IP box.",
+  "sources": [
+    {
+      "url": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+      "pageDate": "Updated this week (as shown 2026-10-21)",
+      "quote": "Restricted countries: the full list of 65 countries whose residents cannot use Tradeify Futures. Based on residency, not travel location",
+      "claims": {
+        "country": "India is absent from the 65-country list; 7 names were added since 2026-09-14 (Antarctica, Azerbaijan, Kazakhstan, Kyrgyzstan, Macao, Palestine, Tajikistan). The page no longer shows a separate sim-only list."
+      }
+    },
+    {
+      "url": "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
+      "quote": "payouts processed via Rise (with Plane as a backup)",
+      "claims": {
+        "indiaIntent": "Dedicated guide for Indian traders (SEBI F&O rules) describing Growth, Select and Lightning Funded and Rise/Plane payouts.",
+        "checkoutGap": "The guide does not prove a completed Indian payment-card checkout."
+      }
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method",
+      "pageDate": "Updated this week (as shown 2026-10-21)",
+      "quote": "SSN/ITIN (US) or Tax ID (international) ... Bank Transfer (ACH) - 1-3 business days Crypto Tokens - Hours to 1 day Local Currencies - Varies by region ... Q: Is there a fee to use Rise? A: No, \"Receive Payments\" is free.",
+      "claims": {
+        "kyc": "Government-issued photo ID, live selfie, address and an international Tax ID.",
+        "payout": "ACH bank, crypto tokens, local currencies; funds appear in Rise within 24-48 hours of approval.",
+        "fees": "Receive Payments is free; Indian bank, crypto, FX and intermediary charges are not published."
+      }
+    },
+    {
+      "url": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "pageDate": "Updated yesterday (as shown 2026-10-21)",
+      "quote": "Growth 25K costs $99 ... Select 25K costs $109 ... Lightning 25K costs $345 ... All plans are one-time purchases with no recurring billing.",
+      "claims": {
+        "currency": "All 12 base list prices for Growth, Select and Lightning (25K-150K) are in USD and match challenges/tradeify.json.",
+        "checkout": "One-time purchases; the article does not name Indian card acceptance."
+      }
+    }
+  ],
+  "unresolvedConflicts": [
+    "No completed Indian checkout, KYC approval, Rise or Plane onboarding, or Indian payout receipt was independently verified.",
+    "The India-targeted marketing guide is not a product table; the current help-centre pricing and rules articles control."
+  ]
+}
