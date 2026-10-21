@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { ArrowRight, ShieldAlert } from 'lucide-react'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
@@ -185,7 +186,7 @@ export default function RussianThe5ersReviewPage() {
     },
     {
       q: 'А из Казахстана, Беларуси или Украины?',
-      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Решает страна проживания (а по тексту в подвале сайта — и гражданство), а не язык. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${CHECKED}).`,
+      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Оговорка в условиях касается «резидентов или граждан», поэтому решают страна проживания и гражданство, а не язык. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${CHECKED}).`,
     },
     {
       q: 'Сколько стоит челлендж The5ers?',
@@ -199,7 +200,7 @@ export default function RussianThe5ersReviewPage() {
     },
     {
       q: 'Какая просадка в The5ers?',
-      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и лимит 3% в день. Bootcamp: 5% максимального убытка на этапах оценки, по примеру The5ers граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}).`,
+      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и лимит 3% в день. Bootcamp: статическая просадка 5% на этапах оценки — граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}).`,
     },
     {
       q: 'Какие альтернативы The5ers для трейдеров из России?',
@@ -209,7 +210,6 @@ export default function RussianThe5ersReviewPage() {
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
-    { name: 'Рейтинг проп-компаний', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор The5ers' },
   ])
   const article = {
@@ -235,7 +235,7 @@ export default function RussianThe5ersReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-the5ers="restricted" data-russian-review-editorial-date={dateModified}>
           <RussianDataFreshnessNotice firmSlugs={['the5ers']} />
-          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadge firm="the5ers" /> · условия проверены {CHECKED}</div>
+          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} /> · условия проверены {CHECKED}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
             The5ers — форекс-проп-фирма, основанная в {firm?.founded ?? '2016'} году, с четырьмя программами: двухэтапной High Stakes,
@@ -252,9 +252,10 @@ export default function RussianThe5ersReviewPage() {
             <strong>Партнёрское раскрытие.</strong> С The5ers у нас нет партнёрской программы: ссылка на её сайт обычная. По кнопкам альтернатив мы можем получить комиссию.
           </div>
           <div className="ru-actions" data-russian-the5ers-official="non-affiliate">
-            <RuGoLink firm="the5ers" href="/go/the5ers?from=ru-obzor-the5ers-official" rel={goLinkRel('the5ers')} className="btn-outline">
+            <a href={firm?.officialUrl ?? 'https://the5ers.com/'} target="_blank" rel="nofollow noopener noreferrer" className="btn-outline" data-russia-status={russiaStatusFor('the5ers')}>
               Официальный сайт The5ers <ArrowRight size={14} aria-hidden="true" />
-            </RuGoLink>
+            </a>{' '}
+            <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} />
           </div>
         </div>
       </section>
@@ -291,7 +292,7 @@ export default function RussianThe5ersReviewPage() {
         <div className="ru-shell ru-content" data-russian-the5ers-territories="cis">
           <h2>The5ers и страны СНГ: что в списке ограничений</h2>
           <p>
-            В <a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">условиях The5ers</a> есть определение запрещённой территории:
+            В <a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">условиях The5ers</a> (последнее обновление — 20.10.2026) есть определение запрещённой территории:
           </p>
           <blockquote lang="en">{firm?.russiaSourceQuote ?? '“Forbidden Territory” means any jurisdiction where Our Services are not available…'}</blockquote>
           <div className="ru-table-wrap">
@@ -307,13 +308,13 @@ export default function RussianThe5ersReviewPage() {
             </table>
           </div>
           <p>
-            Условия разрешают открыть счёт только тому, кто «do not reside in any Forbidden Territory», то есть не проживает в такой стране. Текст в
-            подвале сайта формулирует шире: услуги недоступны «residents or citizens» — резидентам <em>или гражданам</em> этих стран, а пользоваться
+            Условия разрешают открыть счёт только тому, кто «do not reside in any Forbidden Territory», то есть не проживает в такой стране. Оговорка
+            на той же странице и в подвале сайта формулирует шире: услуги недоступны «residents or citizens» — резидентам <em>или гражданам</em> этих стран, а пользоваться
             сервисом с запрещённой территории «strictly prohibited». Формулировки расходятся, поэтому:
           </p>
           <ul data-russian-the5ers-access-explainer="three-cases">
             <li><strong>Вы живёте в России</strong> — нет: это прямо запрещено условиями.</li>
-            <li><strong>Вы гражданин РФ и живёте в Казахстане, Грузии, Армении, Сербии или ЕС</strong> — по условиям решает страна проживания, по тексту в подвале — и гражданство. Уточните письменно у The5ers до оплаты; мы не обещаем, что доступ будет.</li>
+            <li><strong>Вы гражданин РФ и живёте в Казахстане, Грузии, Армении, Сербии или ЕС</strong> — оговорка «residents or citizens» исключает и граждан, хотя пункт о допуске говорит только о проживании. Исходите из того, что доступа нет; без письменного подтверждения The5ers не платите.</li>
             <li><strong>Вы живёте за рубежом и приезжаете в Россию</strong> — пользоваться сервисом с запрещённой территории нельзя, поэтому не торгуйте и не входите в кабинет, пока находитесь в РФ.</li>
           </ul>
           <p>
@@ -323,11 +324,14 @@ export default function RussianThe5ersReviewPage() {
             закроют сразу. В этом случае условия не предусматривают возврата взносов, а накопленная прибыль аннулируется. VPN и чужие данные — не
             способ попасть в The5ers, а причина потерять и оплату, и прибыль.
           </p>
+          <p>
+            Отдельно условия предупреждают, что платежи с криптобирж и платёжных сервисов, зарегистрированных в России, не обрабатываются и
+            автоматически замораживаются платёжным провайдером.
+          </p>
           <p className="ru-source-line">Источник: <S href={SRC.terms}>Terms and Conditions</S> и подвал сайта the5ers.com — по данным на {CHECKED}.</p>
           <p>
-            Какие фирмы открыты для русскоязычных трейдеров и как проверить свою страну — на странице{' '}
-            <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для русскоязычных трейдеров</Link>
-            {closedHref ? <>; фирмы, которые закрылись или прекратили приём, — в списке <Link href={closedHref}>закрытых проп-фирм</Link></> : null}.
+            Какие фирмы открыты для русскоязычных трейдеров и как проверить свою страну — в руководстве для русскоязычных трейдеров в блоке
+            «Похожие материалы» в конце статьи{closedHref ? <>; фирмы, которые закрылись или прекратили приём, — в списке <Link href={closedHref}>закрытых проп-фирм</Link></> : null}.
           </p>
         </div>
       </section>
@@ -439,7 +443,7 @@ export default function RussianThe5ersReviewPage() {
       </section>
 
       <section className="ru-section" id="bootcamp">
-        <div className="ru-shell ru-content" data-russian-the5ers-bootcamp-drawdown="neutral">
+        <div className="ru-shell ru-content" data-russian-the5ers-bootcamp-drawdown="static">
           <h2>Bootcamp: дешёвый вход и плата при финансировании</h2>
           <p>
             Bootcamp — три этапа оценки с целью {bootcamp?.profitTargets?.phase1 ?? '—'}% на каждом и максимальным убытком{' '}
@@ -448,7 +452,7 @@ export default function RussianThe5ersReviewPage() {
           </p>
           <ul>
             <li><strong>Финансируемый счёт.</strong> Цель 5% для роста, максимальный убыток {bootcamp?.fundedMaxLossPct ?? '—'}% и пауза при {bootcamp?.fundedDailyLossPct ?? '—'}% за день. Рост — на каждой цели 5%, до $4 млн.</li>
-            <li><strong>Просадка.</strong> Максимальный убыток — 5%. По примеру The5ers, при начальном балансе $10 000 счёт закрывается ниже $9 500; если эквити выросло до $10 300, допустимая просадка становится $800, то есть граница закрытия остаётся на $9 500. Отдельно тип просадки для Bootcamp фирма не называет.</li>
+            <li><strong>Просадка статическая.</strong> Максимальный убыток — 5% от начального баланса. Пример из FAQ The5ers: при балансе $10 000 счёт закрывается ниже $9 500 по эквити; если эквити выросло до $10 300, допустимая просадка становится $800, то есть граница закрытия остаётся на $9 500 и вслед за прибылью не поднимается. Выплаты уменьшают баланс и вместе с ним этот запас (<S href={SRC.drawdown}>FAQ о просадке</S>, обновлён 22.07.2026, проверено {CHECKED}).</li>
             <li><strong>Доля.</strong> До 100% (по данным The5ers); стартовый процент на странице не опубликован, поэтому в таблице числа нет.</li>
             {bootcampTotals.length ? <li data-russian-the5ers-bootcamp-cost="entry-plus-funded"><strong>Полная стоимость до финансирования:</strong> {bootcampTotals.map(row => `${sizeLabel(row.size)} — ${usd(row.entry)} + ${usd(row.funded)} = ${usd(row.total)}`).join('; ')}. Вторую часть платите, только если прошли все три этапа; при провале теряете лишь первый взнос, а новая попытка — это новая покупка.</li> : null}
             <li><strong>Ограничения.</strong> Не больше 4 активных счетов (1 × $250K, 1 × $100K, 2 × $20K), и на каждом должна быть своя стратегия. Взнос за Bootcamp не возвращается.</li>
@@ -525,7 +529,7 @@ export default function RussianThe5ersReviewPage() {
           <ul>
             <li>Нет срока на прохождение ни в одной из четырёх программ.</li>
             <li>Низкий вход: от {usd(minPrice)} в High Stakes, а Bootcamp откладывает основную плату до финансирования.</li>
-            <li>Максимальный убыток считается от начального баланса: прибыль увеличивает запас до границы закрытия.</li>
+            <li>Статическая просадка во всех программах: граница закрытия считается от начального баланса, прибыль увеличивает запас до неё.</li>
             <li>Опубликованы способы выплат, сроки обработки, минимумы и комиссии, включая криптовалюту и Rise.</li>
           </ul>
           <h3>Минусы</h3>
@@ -535,7 +539,7 @@ export default function RussianThe5ersReviewPage() {
             <li>Правило согласованности может действовать в зависимости от счёта или региона, но на страницах программ его нет.</li>
             <li>Дневное правило Pro Growth описано противоречиво: в FAQ — закрытие счёта, на странице — «No daily stop-loss».</li>
           </ul>
-          <p className="ru-source-line">Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>, <S href={SRC.consistency}>правило согласованности</S>, <S href={SRC.pgDrawdown}>просадка Pro Growth</S> — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>, <S href={SRC.consistency}>правило согласованности</S>, <S href={SRC.pgDrawdown}>просадка Pro Growth</S>, <S href={SRC.drawdown}>как считается просадка</S> — по данным на {CHECKED}.</p>
         </div>
       </section>
 

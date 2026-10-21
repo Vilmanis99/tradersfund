@@ -1017,7 +1017,7 @@ const russianExpectations = new Map([
     }],
     ['/ru/obzor-the5ers', {
       title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'Обзор The5ers: программы, правила и доступ из России',
-      markers: ['data-russian-the5ers-official="non-affiliate"', 'href="/go/the5ers?from=ru-obzor-the5ers-official"', 'data-russian-alternatives="bright-funded-first"', 'data-russian-alternative="bright-funded"', 'data-russian-the5ers-bootcamp-drawdown="neutral"', 'href="/blog/the5ers-review"'],
+      markers: ['data-russian-the5ers-official="non-affiliate"', 'data-russian-alternatives="bright-funded-first"', 'data-russian-alternative="bright-funded"', 'data-russian-the5ers-bootcamp-drawdown="static"', 'href="/blog/the5ers-review"'],
     }],
   ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
