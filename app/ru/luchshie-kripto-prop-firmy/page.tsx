@@ -62,8 +62,8 @@ const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
 const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
 // Preserve existing sharing-preview text until the separate sharing update is approved.
-const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
-const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'
+const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
+const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
@@ -103,22 +103,35 @@ function ruDate(iso: string) {
   return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)}`
 }
 
-// Official pages read by the RU Writer on 2026-10-21 (no Prop Firm Tracker crypto record yet for these firms).
-const EDITORIAL_READ = '2026-10-21'
-const OFFICIAL_CRYPTO = {
-  ftmo: {
-    url: 'https://ftmo.com/en/symbols/',
-    textRu: 'страница инструментов FTMO включает криптовалюты и предупреждает, что часы торговли криптой на выходных зависят от платформы (страница обновлена 08.10.2026)',
+// Tracker's CFT evidence text names a third-party venue; the standing rule keeps that name off /ru pages.
+// Tracker can empty the watch list; keep its row shape typed even when the JSON array is empty.
+const cryptoWatch = cryptoMarketEvidence.watch as Array<{ firmSlug: string; firmName: string; status: string; sourceUrl: string; sourceCapturedAt: string; nextStepRu?: string }>
+
+const EVIDENCE_TEXT_OVERRIDES: Record<string, { evidenceRu: string; scopeNoteRu: string }> = {
+  'crypto-fund-trader': {
+    evidenceRu: 'По FAQ CFT — более 550 пар криптофьючерсов; на Match-Trader и MetaTrader 5 — 556 криптовалют среди 720+ инструментов; плечо по криптовалютам на счетах Advanced — 1:100. Вознаграждение — банковским переводом (EUR или USD) или на кошелёк в USDT (ERC20/TRC20), BTC или ETH.',
+    scopeNoteRu: 'Привязаны Evaluation, Accelerated и Instant. Ascend исключён (в магазине недоступен к покупке, проверенной цены нет), Break тоже (открытое расхождение цен и надпись «sold out»). На MT5 и Match-Trader те же программы дают также форекс, индексы, сырьё и акции.',
   },
-  'city-traders-imperium': {
-    url: 'https://citytradersimperium.com/challenge-free-trial/',
-    textRu: 'CTI пишет, что на одном счёте можно торговать форексом, сырьём, индексами и криптовалютой; платформы — MT5 и Match-Trader',
-  },
-  'ofp-funding': {
-    url: 'https://help.ofpfunding.com/trading-commissions-fee-structure/',
-    textRu: 'комиссия OFP на криптовалюты — $200 за миллион долларов оборота против $25 на форексе, индексах и сырье (статья обновлена 20.05.2026)',
-  },
-} as const
+}
+
+function evidenceText(evidence: { firmSlug: string; evidence: string; evidenceRu?: string; scopeNote?: string; scopeNoteRu?: string }) {
+  const override = EVIDENCE_TEXT_OVERRIDES[evidence.firmSlug]
+  return {
+    evidence: override?.evidenceRu ?? evidence.evidenceRu ?? evidence.evidence,
+    scope: override?.scopeNoteRu ?? evidence.scopeNoteRu ?? evidence.scopeNote ?? '',
+  }
+}
+
+type TierCost = { amount: number; currency: 'USD' | 'EUR' }
+
+// BrightFunded and FTMO publish EUR prices only. Without a published activation fee or pay-later part, the EUR list price is the cost to a funded account; it is shown in EUR, never converted.
+function tierCost(product: Challenge, tier: Challenge['accountSizes'][number]): TierCost | null {
+  const usd = minimumCostToFundedUsd(product, tier)
+  if (usd != null && usd > 0) return { amount: usd, currency: 'USD' }
+  const eur = (tier as { priceEur?: number | null }).priceEur
+  if (eur != null && eur > 0 && (tier.payLaterUsd ?? 0) === 0 && (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0) === 0) return { amount: eur, currency: 'EUR' }
+  return null
+}
 
 const drawdownLabels: Record<string, string> = {
   static: 'статическая',
@@ -147,10 +160,16 @@ function splitLabel(products: Challenge[]) {
 
 function minimumKnownCost(products: Challenge[]) {
   const costs = products.flatMap(product => product.accountSizes.flatMap(tier => {
-    const cost = minimumCostToFundedUsd(product, tier)
-    return cost != null && cost > 0 ? [cost] : []
+    const cost = tierCost(product, tier)
+    return cost ? [cost] : []
   }))
-  return costs.length ? `$${Math.min(...costs).toLocaleString('en-US', { maximumFractionDigits: 2 })}` : 'не подтверждены'
+  const parts = (['USD', 'EUR'] as const).flatMap(currency => {
+    const amounts = costs.filter(cost => cost.currency === currency).map(cost => cost.amount)
+    if (!amounts.length) return []
+    const amount = Math.min(...amounts).toLocaleString('en-US', { maximumFractionDigits: 2 })
+    return [currency === 'USD' ? `$${amount}` : `€${amount}`]
+  })
+  return parts.length ? parts.join(' / ') : 'не подтверждены'
 }
 
 function localizedReviewHref(reviewUrl: string) {
@@ -160,7 +179,7 @@ function localizedReviewHref(reviewUrl: string) {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какая крипто-проп-фирма лучшая в 2026 году?',
-    a: 'Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. В датированном разборе FundedNext публикует размеры криптоконтрактов для всех счетов, FundingPips отдельно описывает 1 Step Flex, а Maven перечисляет четыре криптовалютные пары. В таблицу попадают только программы с актуальными источниками и известными ценами.',
+    a: 'Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. Для резидентов РФ из открытых фирм в рейтинге — BrightFunded (более 48 криптопар, плечо 1:5) и Crypto Fund Trader (более 550 пар криптофьючерсов по FAQ CFT), по данным на 21.10.2026. FTMO, CTI, OFP и FundedNext для резидентов РФ закрыты. В таблицу попадают только программы с актуальными источниками и известными ценами.',
   },
   {
     q: 'Крипто-проп-фирма даёт реальные BTC или ETH?',
@@ -204,13 +223,14 @@ export default function RussianCryptoPropFirmsPage() {
     firm && freshEvidence(evidence) && evidence.productSlugs.length > 0
       && products.length === evidence.productSlugs.length
       && products.every(product => freshEvidence(product)
-        && product.accountSizes.some(tier => (minimumCostToFundedUsd(product, tier) ?? 0) > 0))
+        && product.accountSizes.some(tier => tierCost(product, tier) != null))
       ? [{ evidence, firm, products }] : [],
   ).sort((a, b) => {
     const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
     const bKey = (b.evidence.marketModel === 'crypto-native' ? 100 : 0) + b.firm.score
     // Russia access first (open, then unclear, then restricted), as on the other /ru rankings.
     return RUSSIA_STATUS_ORDER[russiaStatusFor(a.evidence.firmSlug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.evidence.firmSlug)]
+      || Number(b.evidence.firmSlug === 'bright-funded') - Number(a.evidence.firmSlug === 'bright-funded')
       || bKey - aKey || a.firm.name.localeCompare(b.firm.name)
   })
   const payoutEvidence = cryptoMarketEvidence.payoutAlternative
@@ -223,24 +243,15 @@ export default function RussianCryptoPropFirmsPage() {
   const cftAccessObservation = cftAccess && 'sourceObservations' in cftAccess
     ? (cftAccess.sourceObservations as Array<{ sourceUrl: string; sourceCapturedAt: string; quote: string }>).find(item => item.quote.startsWith('Match-Trader:'))
     : undefined
-  const cftWatch = cryptoMarketEvidence.watch.find(item => item.firmSlug === 'crypto-fund-trader')
-  const editorialFresh = freshIso(EDITORIAL_READ)
   const shortlist = ACCESS_LIST_SLUGS
     .map((slug, index) => ({ slug, index, status: russiaStatusFor(slug) }))
     .sort((a, b) => RUSSIA_STATUS_ORDER[a.status] - RUSSIA_STATUS_ORDER[b.status] || a.index - b.index)
   const shortlistCrypto = (slug: (typeof ACCESS_LIST_SLUGS)[number]) => {
-    if (slug === 'bright-funded') {
-      return brightCryptoFresh && brightCrypto
-        ? <>справка BrightFunded: «более 48 криптовалютных пар», среди них BTC/USD и ETH/USD; плечо на криптовалюте 1:5 (по данным на {ruDate(brightCrypto.sourceCapturedAt)}). <a href={brightCrypto.sourceUrl} target="_blank" rel="nofollow noopener">Источник</a></>
-        : <>данные о криптоинструментах требуют повторной проверки.</>
+    const evidence = cryptoMarketEvidence.ranked.find(item => item.firmSlug === slug)
+    if (!evidence || !freshEvidence(evidence)) {
+      return <>данных Prop Firm Tracker о криптоинструментах за последние 30 дней нет — список инструментов не приводим.</>
     }
-    if (slug === 'crypto-fund-trader') {
-      return <>какие криптоинструменты доступны в каждой программе и на каждой платформе CFT, Prop Firm Tracker ещё не перепроверил: последняя запись — от {cftWatch ? ruDate(cftWatch.sourceCapturedAt) : 'неизвестной даты'}, она старше 30 дней. Поэтому список инструментов CFT здесь не приводим.</>
-    }
-    const official = OFFICIAL_CRYPTO[slug]
-    return editorialFresh
-      ? <>{official.textRu} (проверено редакцией {ruDate(EDITORIAL_READ)}). <a href={official.url} target="_blank" rel="nofollow noopener">Источник</a></>
-      : <>данные о криптоинструментах требуют повторной проверки.</>
+    return <>{evidenceText(evidence).evidence} (по данным на {ruDate(evidence.sourceCapturedAt)}) <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener">Источник</a></>
   }
   const shortlistAccess = (slug: (typeof ACCESS_LIST_SLUGS)[number], status: string) => {
     if (slug === 'crypto-fund-trader' && cftAccessObservation && freshIso(cftAccessObservation.sourceCapturedAt)) {
@@ -314,7 +325,7 @@ export default function RussianCryptoPropFirmsPage() {
             <div className="ru-stat"><strong>{snapshots.length}</strong><span>фирм с актуальными источниками в сравнении</span></div>
             <div className="ru-stat"><strong>{productCount}</strong><span>программ с известными ценами</span></div>
             <div className="ru-stat"><strong>{partnerCount} из {snapshots.length}</strong><span>партнёрские фирмы; порядок не меняется</span></div>
-            <div className="ru-stat"><strong>{cryptoMarketEvidence.watch.length}</strong><span>незавершённых проверок других фирм</span></div>
+            <div className="ru-stat"><strong>{cryptoWatch.length}</strong><span>незавершённых проверок других фирм</span></div>
           </div>
           <div className="ru-actions">
             <Link href="#ranking" className="btn-primary">Открыть сравнение <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -355,7 +366,7 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell" data-russian-crypto-shortlist="russia-access-first">
             <div className="ru-content">
               <h2>Крипто-проп-фирмы: сначала открытые для РФ, затем закрытые</h2>
-              <p>Порядок — по доступу для резидентов России (бейдж берётся из нашей базы), затем редакционный. Закрытые фирмы мы оставили в списке, потому что их часто ищут: бейдж показывает, почему они не подходят трейдеру из РФ. Ссылок на регистрацию у них нет.</p>
+              <p>Порядок — по доступу для резидентов России (бейдж берётся из нашей базы), затем редакционный. Закрытые фирмы мы оставили в списке, потому что их часто ищут: бейдж показывает, почему они не подходят трейдеру из РФ. Ссылки на их сайты идут последними, с пометкой «резидентам РФ недоступна»; резидентам России мы их не рекомендуем.</p>
             </div>
             <div className="ru-grid">
               {shortlist.map(({ slug, status }, position) => (
@@ -382,7 +393,7 @@ export default function RussianCryptoPropFirmsPage() {
                 </article>
               ))}
             </div>
-            <p className="ru-source-line">BrightFunded и Crypto Fund Trader пока не попали в таблицу программ ниже: для неё Prop Firm Tracker должен связать криптоинструменты с конкретными программами и ценами. Сведения FTMO, CTI и OFP о криптовалюте — с официальных страниц, проверенных редакцией; это не проверка цен и правил их программ.</p>
+            <p className="ru-source-line">Сведения о криптоинструментах — из данных Prop Firm Tracker по официальным страницам фирм. Цены, правила программ и даты проверки — в рейтинге ниже.</p>
           </div>
         </section>
 
@@ -423,12 +434,12 @@ export default function RussianCryptoPropFirmsPage() {
                     </div>
                     <ul className="ru-facts">
                       <li><ShieldCheck size={14} aria-hidden="true" /> {products.length} программ: {productNames.slice(0, 3).join(', ')}{productNames.length > 3 ? ` и ещё ${productNames.length - 3}` : ''}</li>
-                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы в USD: {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
+                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы: {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
                       <li><ShieldCheck size={14} aria-hidden="true" /> Просадка: {drawdowns.join(', ')}. Срок выплаты зависит от программы и условий запроса — см. обзор.</li>
-                      <li><Database size={14} aria-hidden="true" /> {evidence.evidenceRu ?? evidence.evidence}</li>
+                      <li><Database size={14} aria-hidden="true" /> {evidenceText(evidence).evidence}</li>
                     </ul>
-                    <p className="ru-muted">{evidence.scopeNoteRu ?? evidence.scopeNote}</p>
-                    <p className="ru-source-line">Инструменты: {evidence.sourceCapturedAt}. Самая ранняя проверка цен и правил: {products.map(product => product.sourceCapturedAt).sort()[0]}.</p>
+                    <p className="ru-muted">{evidenceText(evidence).scope}</p>
+                    <p className="ru-source-line">Инструменты — по данным на {ruDate(evidence.sourceCapturedAt)}. Цены и правила — по данным на {ruDate(products.map(product => product.sourceCapturedAt).sort()[0])} (самая ранняя проверка).</p>
                     <div className="ru-actions">
                       <Link href={reviewHref} className="btn-outline">{reviewHref.startsWith('/ru/') ? 'Русский обзор' : 'Английский обзор'}</Link>
                       <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener" className="btn-outline">Источник <ExternalLink size={13} aria-hidden="true" /></a>
@@ -450,11 +461,11 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell" data-russian-crypto-comparison="current-source-mapped-products">
             <div className="ru-content">
               <h2>Сравнение стоимости и правил</h2>
-              <p>Показаны минимальные известные расходы в USD по программам из выборки, а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
+              <p>Показаны минимальные известные расходы по программам из выборки — в валюте, в которой фирма публикует цены (BrightFunded и FTMO — в EUR, без пересчёта), — а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
             </div>
             {snapshots.length > 0 && <div className="ru-table-wrap" role="region" aria-label="Сравнение криптопрограмм — таблицу можно прокрутить" tabIndex={0}>
               <table className="ru-table">
-                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы, USD</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
+                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы (USD или EUR)</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
                 <tbody>
                   {snapshots.map(({ evidence, products, firm }) => (
                     <tr key={evidence.firmSlug}>
@@ -475,9 +486,19 @@ export default function RussianCryptoPropFirmsPage() {
 
         <section className="ru-section" id="firm-decisions">
           <div className="ru-shell ru-content" data-russian-crypto-decision-guide="product-not-logo">
-            <h2>Как выбрать между FundedNext, FundingPips и Maven</h2>
-            <p className="ru-source-line">Разбор ниже относится к датам источников в конце статьи. Отсутствие фирмы в текущей таблице не удаляет её исторический разбор и не подтверждает закрытие программы.</p>
+            <h2>Как выбрать криптопрограмму: сначала доступ из РФ, затем инструмент и правила</h2>
+            <p className="ru-source-line">FundedNext, FTMO, CTI и OFP резидентам РФ недоступны — их карточки нужны тем, кто живёт в других странах. Разбор ниже относится к датам источников в конце статьи. Отсутствие фирмы в текущей таблице не удаляет её исторический разбор и не подтверждает закрытие программы.</p>
             <div className="ru-grid">
+              <article className="ru-card">
+                <h3>BrightFunded: криптопары во всех трёх челленджах</h3>
+                <p>Справка BrightFunded перечисляет более 48 криптопар к USD; плечо по криптовалютам 1:5 одинаково для челленджей и funded-счетов (по данным на 21.10.2026). Цены BrightFunded публикует в EUR, поэтому в таблице они стоят в евро без пересчёта.</p>
+                <Link href="/ru/obzor-bright-funded" className="ru-card-link">Обзор BrightFunded →</Link>
+              </article>
+              <article className="ru-card">
+                <h3>Crypto Fund Trader: Evaluation, Accelerated и Instant</h3>
+                <p>По FAQ CFT — более 550 пар криптофьючерсов, на Match-Trader и MetaTrader 5 — 556 криптовалют; плечо по криптовалютам на счетах Advanced — 1:100 (по данным на 21.10.2026). У Instant начальная доля вознаграждения ниже, чем у оценочных программ, — подробности ниже.</p>
+                <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="ru-card-link">Обзор CFT на английском →</Link>
+              </article>
               <article className="ru-card">
                 <h3>FundedNext: один список инструментов, разные правила счетов</h3>
                 <p>Справка указывает размеры криптоконтрактов 1, 100 и 1 000 в зависимости от пары и распространяет спецификации на все счета. В нашем разборе это Stellar 2-Step, Stellar 1-Step, Stellar Lite и Stellar Instant. Общий инструмент не делает их одинаковыми: число оценочных этапов, просадка и условия вознаграждения различаются.</p>
@@ -526,16 +547,17 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="evidence-watch">
-          <div className="ru-shell" data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}>
+          <div className="ru-shell" data-russian-crypto-watch-count={cryptoWatch.length}>
             <div className="ru-content">
               <h2>Какие проверки ещё не завершены</h2>
               <p>Для перечисленных ниже фирм не хватает проверки отдельных криптопрограмм либо актуальных сведений об инструментах и условиях. Это не обвинение фирмы, не подтверждение отсутствия криптоторговли и не вывод о закрытии услуги. Причина указана отдельно для каждого случая.</p>
             </div>
-            <div className="ru-table-wrap">
+            {cryptoWatch.length === 0 ? <p className="ru-source-line" data-russian-crypto-watch-empty="true">Сейчас в данных Prop Firm Tracker нет фирм, у которых проверка криптоинструментов не завершена.</p> : null}
+            {cryptoWatch.length > 0 && <div className="ru-table-wrap">
               <table className="ru-table">
                 <thead><tr><th>Фирма</th><th>Статус</th><th>Источник по рынкам</th><th>Что требуется</th></tr></thead>
                 <tbody>
-                  {cryptoMarketEvidence.watch.map(item => (
+                  {cryptoWatch.map(item => (
                     <tr key={item.firmSlug}>
                       <td><strong>{item.firmName}</strong></td>
                       <td>{item.status === 'product-capture-needed' ? 'нужна проверка отдельных криптопрограмм' : 'нужно обновить рынок или продукты'}</td>
@@ -547,10 +569,10 @@ export default function RussianCryptoPropFirmsPage() {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </div>}
             <div className="ru-content" data-russian-crypto-cft-correction="2026-09-08">
               <h3>Crypto Fund Trader: что исправили 8 сентября</h3>
-              <p>Повторно проверили 15 базовых цен в трёх программах: Evaluation, Accelerated и Instant. Это не подтверждает доступность каждого криптоинструмента на каждой платформе. Пока связка «программа — платформа — рынок» не проверена отдельно, CFT остаётся вне этого крипторейтинга.</p>
+              <p>Повторно проверили 15 базовых цен в трёх программах: Evaluation, Accelerated и Instant. По данным на 21.10.2026 Prop Firm Tracker связал криптоинструменты CFT с этими тремя программами, поэтому CFT теперь стоит в рейтинге выше. Ascend и Break в рейтинг не входят.</p>
               <p>В проверенных начальных вариантах Instant доля вознаграждения составляет 50%, а не 80% стандартных оценочных программ. Для общего порядка запроса указаны 15 торговых дней или 30 календарных дней; отдельный путь Instant без минимального числа дней требует 10% симулированной прибыли и запроса на выплату с переходом на следующий уровень. Это не обещание немедленного перевода денег.</p>
               <p data-russian-crypto-cft-ascend="not-purchasable">Ascend завершается фиксированным вознаграждением после оценки, а не обычным счётом с постоянной долей прибыли. Ascend сейчас не продаётся: по данным на 19.10.2026 все шесть позиций Ascend ($5K–$200K) в магазине CFT недоступны к покупке, и проверка магазина 20.10.2026 это подтвердила. Поэтому цены Ascend мы не показываем и в расчётах не используем. Цены Break по данным на 14.10.2026: $70 / $140 / $200 за $25K / $50K / $100K плюс обязательный сбор за активацию $138 / $198 / $328 после прохождения; по данным на 19.10.2026 позиции Break в магазине доступны, хотя на странице Break стоит надпись «sold out». Поэтому самый дешёвый доступный к покупке вход у CFT — Accelerated $5K за $40. Наличие размера и итоговую цену проверьте в корзине. Это не вывод о закрытии программ и не подтверждение регистрации из какой-либо страны.</p>
               <p className="ru-source-line">Это датированное исправление нашего материала, не установленная дата изменения правил фирмы. Цены Break — <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">условия CFT</a> и <a href="https://cryptofundtrader.com/shop/" target="_blank" rel="nofollow noopener noreferrer">магазин CFT</a>, по данным на 14.10.2026; доступность Break к покупке — <a href="https://cryptofundtrader.com/" target="_blank" rel="nofollow noopener noreferrer">главная страница</a> и магазин, по данным на 19.10.2026; Ascend не продаётся — магазин CFT, по данным на 19.10.2026, с проверкой магазина 20.10.2026 (Prop Firm Tracker). Официальные источники и нерешённые вопросы перечислены в журнале; перед оплатой проверьте условия заново.</p>

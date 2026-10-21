@@ -1179,12 +1179,17 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="crypto-not-access"',
       'data-russian-crypto-ranking="source-gated"',
       'data-russian-affiliate-disclosure="crypto-ranking"',
-      'data-russian-crypto-product-count="12"',
-      'data-russian-crypto-partner-count="2"',
+      'data-russian-crypto-product-count="34"',
+      'data-russian-crypto-partner-count="3"',
       'data-russian-crypto-comparison="current-source-mapped-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
       'data-russian-crypto-payout-boundary="bright-funded-crypto-and-usdc"',
-      'data-russian-crypto-watch-count="4"',
+      'data-russian-crypto-watch-count="0"',
+      'data-russian-crypto-firm="bright-funded"',
+      'data-russian-crypto-firm="crypto-fund-trader"',
+      'data-russian-crypto-firm="ftmo"',
+      'data-russian-crypto-firm="city-traders-imperium"',
+      'data-russian-crypto-firm="ofp-funding"',
       'data-russian-crypto-access-pointer="top"',
       'data-russian-crypto-shortlist="russia-access-first"',
       'data-russian-crypto-shortlist-firm="bright-funded"',
@@ -2031,6 +2036,11 @@ const russianFtmoPage = pages.find(page =>
   const firstBrightTop = cryptoHtml.indexOf('/go/bright-funded?from=ru-crypto-top-bright-funded')
   const firstFundedNext = cryptoHtml.indexOf('/go/fundednext?')
   if (firstBrightTop < 0 || (firstFundedNext >= 0 && firstFundedNext < firstBrightTop)) errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded CTA must render before any FundedNext CTA')
+  if (/bybit/i.test(cryptoHtml)) errors.push('/ru/luchshie-kripto-prop-firmy: standing RU rule — no Bybit claims on the page')
+  const firstRanked = cryptoHtml.indexOf('data-russian-crypto-firm=')
+  if (firstRanked < 0 || cryptoHtml.indexOf('data-russian-crypto-firm="bright-funded"') !== firstRanked) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded must be the first card in the crypto ranking')
+  }
   const firstShortlist = cryptoHtml.indexOf('data-russian-crypto-shortlist-firm=')
   if (firstShortlist < 0 || cryptoHtml.indexOf('data-russian-crypto-shortlist-firm="bright-funded"') !== firstShortlist) {
     errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded must be the first firm in the crypto shortlist')

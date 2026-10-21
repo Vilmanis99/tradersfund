@@ -7125,9 +7125,9 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
+  if (ranked.length !== 10 || watch.length !== 0 || mappedProducts.size !== 34) {
     rows.push(
-      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture expects 10 current ranked firms, 0 watch firms and 34 mapped products (Tracker 32d050e, 21.10); received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
     )
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
@@ -12673,7 +12673,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-crypto-shortlist="russia-access-first"',
     'data-russian-crypto-access-pointer="top"',
     'data-russian-crypto-restricted-cta={evidence.firmSlug}',
-    'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
+    'data-russian-crypto-watch-count={cryptoWatch.length}',
     'data-russian-affiliate-disclosure="crypto-ranking"',
     'data-russian-country-boundary="crypto-not-access"',
     'from=ru-crypto-ranking',
