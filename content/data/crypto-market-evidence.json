@@ -2,6 +2,163 @@
   "methodology": "A ranked firm needs a first-party source that explicitly names crypto as a tradable market and fresh structured product records for every product slug mapped below. Payment or payout by crypto does not qualify. Separate crypto products without structured prices and rules remain on watch rather than inheriting a forex product row.",
   "ranked": [
     {
+      "firmSlug": "bright-funded",
+      "firmName": "BrightFunded",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "bright-funded-1-step",
+        "bright-funded-2-step-bright",
+        "bright-funded-2-step-classic"
+      ],
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded",
+      "sourcePublishedAt": "2026-05-25",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "We currently have over 48 cryptocurrency pairs, including: AAVE/USD ADA/USD ALGO/USD",
+      "evidence": "BrightFunded's help centre (article dated 25 May 2026) lists over 48 crypto /USD pairs, including BTC/USD, ETH/USD and SOL/USD. Its leverage article (17 March 2026) sets crypto at 1:5 and states that leverage is the same for Challenges and Funded Accounts. Rewards can be paid in USDC (ERC-20) or by bank transfer in EUR.",
+      "evidenceRu": "Справка BrightFunded (статья от 25.05.2026) перечисляет более 48 криптопар к USD, включая BTC/USD, ETH/USD и SOL/USD. В статье о плече (17.03.2026) для криптовалют указано 1:5, одинаково для челленджей и funded-счетов. Вознаграждение выплачивается в USDC (ERC-20) или банковским переводом в EUR.",
+      "scopeNote": "All 3 current challenges are mapped. BrightFunded's instrument and leverage articles are firm-wide and name no excluded product; the product pages themselves do not list instruments. Prices are in EUR.",
+      "scopeNoteRu": "Привязаны все 3 текущих челленджа. Статьи об инструментах и плече относятся ко всей фирме и не исключают ни одну программу; на страницах программ инструменты не перечислены. Цены указаны в EUR.",
+      "productScope": {
+        "sourceUrl": "https://help.brightfunded.com/en/articles/9268380-what-is-the-leverage-in-brightfunded-s-simulated-trading-environment",
+        "sourcePublishedAt": "2026-03-17",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Crypto: 1:5 ... Important: The leverage is the same for Challenges and Funded Accounts."
+      },
+      "payoutMethods": {
+        "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+        "sourcePublishedAt": "2026-03-18",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Available Payout Methods: Crypto (USDC – ERC-20 Network) Bank Transfer"
+      }
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "firmName": "Crypto Fund Trader",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "evaluation",
+        "accelerated",
+        "instant"
+      ],
+      "sourceUrl": "https://cryptofundtrader.com/faq/",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "On Bybit you can currently trade more than 550 crypto futures pairs. On Match-Trader and MetaTrader 5 we have more than 720 instruments available thanks to our Data Feed and Liquidity Providers (Crypto, Forex, Indices, Commodities, Stocks...)",
+      "evidence": "CFT's FAQ lists more than 550 crypto futures pairs on Bybit and 556 cryptocurrencies among the 720+ instruments on Match-Trader and MetaTrader 5, with 1:100 crypto leverage on Advanced accounts. The homepage store lets every Evaluation, Accelerated and Instant size be bought on MetaTrader 5, Match-Trader or Bybit. Rewards are paid by bank transfer (EUR or USD) or to a wallet in USDT (ERC20/TRC20), BTC or ETH.",
+      "evidenceRu": "FAQ CFT указывает более 550 криптофьючерсов на Bybit и 556 криптовалют среди 720+ инструментов на Match-Trader и MetaTrader 5; плечо по криптовалютам на счетах Advanced — 1:100. В магазине на главной странице каждый размер Evaluation, Accelerated и Instant можно купить на MetaTrader 5, Match-Trader или Bybit. Вознаграждение — банковским переводом (EUR или USD) или на кошелёк в USDT (ERC20/TRC20), BTC или ETH.",
+      "scopeNote": "Evaluation, Accelerated and Instant are mapped. Ascend is excluded (not purchasable in the store and no verified price), and so is Break (open price conflict and 'sold out' wording). The same products also trade forex, indices, commodities and stocks on MT5 and Match-Trader, so the model is multi-asset; Bybit accounts are crypto futures only (USDT pairs).",
+      "scopeNoteRu": "Привязаны Evaluation, Accelerated и Instant. Ascend исключён (в магазине недоступен к покупке, проверенной цены нет), Break тоже (открытое расхождение цен и надпись «sold out»). На MT5 и Match-Trader те же программы дают и форекс, индексы, сырьё и акции, поэтому модель мультиактивная; счета на Bybit — только криптофьючерсы (пары к USDT).",
+      "productScope": {
+        "sourceUrl": "https://cryptofundtrader.com/",
+        "sourcePublishedAt": "2026-10-08",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "EVALUATION - ONE TIME FEE - $ 58.00 PLATFORM Choose an option MetaTrader 5 Match-Trader (Works in US) BYBIT"
+      },
+      "payoutMethods": {
+        "sourceUrl": "https://cryptofundtrader.com/faq/",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Payment methods: Directly via bank transfer in EUR or USD . Transfer directly to crypto wallet in these available currencies: USDT (ERC20) USDT (TRC20) Bitcoin (BTC) Ethereum (ETH)"
+      }
+    },
+    {
+      "firmSlug": "ftmo",
+      "firmName": "FTMO",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "ftmo-challenge-2-step",
+        "ftmo-challenge-1-step"
+      ],
+      "sourceUrl": "https://ftmo.com/en/faq/which-instruments-can-i-trade-and-what-strategies-am-i-allowed-to-use/",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "You can trade all the instruments and assets that are available in your trading platform (Forex, Indices, Commodities, Stocks, Crypto,…).",
+      "evidence": "FTMO's FAQ (modified 30 September 2026) names Crypto among the tradable assets for the FTMO Challenge, FTMO Account and FTMO Instant Account. FTMO's own symbols feed listed 30 active Crypto CFDs on 21 October 2026, including BTCUSD and ETHUSD, at 1:3.33 leverage on Standard and 1:1 on Swing. Rewards can be withdrawn by bank wire, Visa Direct / Mastercard Send, Skrill or cryptocurrencies.",
+      "evidenceRu": "FAQ FTMO (изменён 30.09.2026) называет криптовалюты среди доступных активов для FTMO Challenge, FTMO Account и FTMO Instant Account. В собственном списке символов FTMO на 21.10.2026 — 30 активных крипто-CFD, включая BTCUSD и ETHUSD, с плечом 1:3,33 на Standard и 1:1 на Swing. Вознаграждение выводится банковским переводом, через Visa Direct / Mastercard Send, Skrill или в криптовалюте.",
+      "scopeNote": "Both current challenges (2-Step and 1-Step) are mapped. Prices are in EUR. FTMO Instant Account is not a stored product and is not mapped.",
+      "scopeNoteRu": "Привязаны оба текущих челленджа (2-Step и 1-Step). Цены указаны в EUR. FTMO Instant Account в наших данных не хранится и не привязан.",
+      "productScope": {
+        "sourceUrl": "https://ftmo.com/wp-json/ftmo/symbols",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "\"assetClass\":\"Crypto CFD\" ... \"code\":\"BTCUSD\" ... \"leverageStandard\":3.33,\"leverageSwing\":1"
+      },
+      "payoutMethods": {
+        "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+        "sourcePublishedAt": "2026-10-13",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Rewards can be paid out via bank wire transfer, instant transfer through Visa Direct / Mastercard Send ( up to $20,000 ), Skrill ( up to $3,000 ), or cryptocurrencies ."
+      }
+    },
+    {
+      "firmSlug": "city-traders-imperium",
+      "firmName": "City Traders Imperium",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "1-step-challenge",
+        "2-step-challenge",
+        "instant-funding",
+        "direct-funding"
+      ],
+      "sourceUrl": "https://helpcenter.citytradersimperium.com/en/articles/12877932-platforms-symbols-commissions-spreads-swaps",
+      "sourcePublishedAt": "2026-08-05",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "At CTI, you're free to trade any instrument available on our platform across all our funding programs — no limitations! Whether you're into Forex, Commodities, Indices, or Crypto, we've got you covered.",
+      "evidence": "CTI's help centre (article modified 5 August 2026) lets every funding program trade Crypto and lists BTCUSD, ETHUSD, LTCUSD, XRPUSD, SOLUSD and ADAUSD, with no commission on crypto. Its leverage article (2 June 2026) sets crypto at 1:1 on the 1-Step, 2-Step, Instant Funding and Instant Funding Pro programs. Payouts go by bank transfer or USDT (TRC20), with crypto payouts capped at $1,000 per client per month.",
+      "evidenceRu": "Справка CTI (статья изменена 05.08.2026) разрешает торговать криптовалютами во всех программах и перечисляет BTCUSD, ETHUSD, LTCUSD, XRPUSD, SOLUSD и ADAUSD; комиссии по криптовалютам нет. В статье о плече (02.06.2026) для криптовалют указано 1:1 в 1-Step, 2-Step, Instant Funding и Instant Funding Pro. Выплаты — банковским переводом или в USDT (TRC20); криптовыплаты ограничены $1 000 на клиента в месяц.",
+      "scopeNote": "All 4 stored programs are mapped on the 'across all our funding programs' statement. The leverage table does not list Direct Funding, so its crypto leverage is unconfirmed. Six crypto symbols only.",
+      "scopeNoteRu": "Привязаны все 4 программы из наших данных на основании формулировки «во всех программах». В таблице плеча нет Direct Funding, поэтому плечо по криптовалютам для неё не подтверждено. Всего шесть криптосимволов.",
+      "productScope": {
+        "sourceUrl": "https://helpcenter.citytradersimperium.com/en/articles/12889170-leverage",
+        "sourcePublishedAt": "2026-06-02",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Program Type Forex Indices Commodities Crypto 1-Step Challenge 1:30 1:10 1:10 1:1 2-Step Challenge 1:30 1:10 1:10 1:1 Instant Funding 1:30 1:10 1:10 1:1 Instant Funding Pro 1:30 1:10 1:10 1:1"
+      },
+      "payoutMethods": {
+        "sourceUrl": "https://helpcenter.citytradersimperium.com/en/articles/12879147-adding-banking-crypto-details",
+        "sourcePublishedAt": "2025-11-19",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Crypto Wallet Address (USDT – TRX Network) ... Due to our Anti-Money Laundering Policy (AML), crypto payouts are capped at $1,000 per client per month."
+      }
+    },
+    {
+      "firmSlug": "ofp-funding",
+      "firmName": "OFP Funding",
+      "marketModel": "multi-asset-cfd",
+      "productSlugs": [
+        "instant-classic-3-daily-6-max-drawdown",
+        "instant-classic-5-daily-10-max-drawdown",
+        "instant-lite",
+        "instant-lite-5-daily-10-max-drawdown",
+        "instant-plus-3-daily-5-max-drawdown",
+        "instant-plus-5-daily-10-max-drawdown"
+      ],
+      "sourceUrl": "https://help.ofpfunding.com/trading-commissions-fee-structure/",
+      "sourcePublishedAt": "2026-05-20",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "Commission structure is 25 USD per million traded (notional volume) on forex, indices, and commodities, and 200 USD per million traded (notional volume) on cryptos.",
+      "evidence": "OFP's help centre (updated 20 May 2026) charges 200 USD per million notional traded on cryptos, and its homepage lists Crypto among the OFP Platform markets. Its access article (updated 5 August 2026) says all accounts use the OFP platform (Sirix). Payouts go by bank transfer, card or crypto.",
+      "evidenceRu": "Справка OFP (обновлена 20.05.2026) указывает комиссию 200 USD за миллион номинального объёма по криптовалютам, а главная страница называет криптовалюты среди рынков OFP Platform. По статье о доступе (обновлена 05.08.2026) все счета работают на платформе OFP (Sirix). Выплаты — банковским переводом, на карту или в криптовалюте.",
+      "scopeNote": "All 6 stored Instant products are mapped because every OFP account uses the same OFP Platform (Sirix). An open source-conflict watch (ofp-current-plan-display-conflict-2026-09-14) means the stored price ladders are not checkout-confirmed. No crypto symbol list or crypto leverage is published.",
+      "scopeNoteRu": "Привязаны все 6 программ Instant из наших данных: все счета OFP работают на одной платформе OFP (Sirix). Открытое расхождение источников (ofp-current-plan-display-conflict-2026-09-14) означает, что сохранённые цены не подтверждены в корзине. Список криптосимволов и плечо по криптовалютам не опубликованы.",
+      "productScope": {
+        "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+        "sourcePublishedAt": "2026-08-05",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features."
+      },
+      "supportingSources": [
+        {
+          "sourceUrl": "https://ofpfunding.com/",
+          "sourceCapturedAt": "2026-10-21",
+          "sourceQuote": "Demo Trading With Institutional Conditions Lowest spreads worldwide OFP Platform Forex Index Metals Oil Crypto"
+        }
+      ],
+      "payoutMethods": {
+        "sourceUrl": "https://help.ofpfunding.com/how-does-the-payout-process-work-at-ofp-funding/",
+        "sourcePublishedAt": "2025-10-17",
+        "sourceCapturedAt": "2026-10-21",
+        "sourceQuote": "Once validated, your payout is processed via your chosen method (bank transfer, card, or crypto)."
+      }
+    },
+    {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
       "marketModel": "multi-asset-cfd",
@@ -92,49 +249,11 @@
     "firmSlug": "bright-funded",
     "firmName": "BrightFunded",
     "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-    "sourceCapturedAt": "2026-10-14",
+    "sourceCapturedAt": "2026-10-21",
     "sourceQuote": "Bank transfers are processed in Euros (€) Crypto payments are processed in USDC (ERC-20)",
     "evidenceRu": "Справка перечисляет вознаграждение в USDC по сети ERC-20 и банковский перевод в EUR. Это проверка способа выплаты, не торговых инструментов или доступности страны.",
-    "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json"
+    "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+    "sourcePublishedAt": "2026-03-18"
   },
-  "watch": [
-    {
-      "firmSlug": "crypto-fund-trader",
-      "firmName": "Crypto Fund Trader",
-      "status": "market-and-product-refresh-needed",
-      "sourceUrl": "https://cryptofundtrader.com/choose-your-challenge/",
-      "sourceCapturedAt": "2026-07-27",
-      "evidence": "The market/platform mapping remains dated July 27. A separate September 8 correction rechecked Evaluation, Accelerated and Instant; Ascend and Break retain older product dates with unverified entry prices. The former claim that all five products remain unchecked is no longer accurate.",
-      "nextStep": "Verify the exact crypto-market and platform scope for the three rechecked programmes. Reconcile Ascend and Break purchase terms separately; do not infer crypto availability from a payout method or return unresolved products to a current-price ranking.",
-      "productCorrectionAt": "2026-09-08",
-      "nextStepRu": "Для Evaluation, Accelerated и Instant нужно подтвердить точную связку программы, платформы и криптоинструментов. Цены входа Ascend и Break остаются неподтверждёнными; исправление от 8 сентября не обновляет старую проверку рынков."
-    },
-    {
-      "firmSlug": "ftmo",
-      "firmName": "FTMO",
-      "status": "market-and-product-refresh-needed",
-      "sourceUrl": "https://ftmo.com/en/faq/which-instruments-can-i-trade-and-what-strategies-am-i-allowed-to-use/",
-      "sourceCapturedAt": "2026-07-27",
-      "evidence": "The previous source named Crypto among the platform instruments, but the market evidence and both mapped challenge rows are now outside the 30-day window.",
-      "nextStep": "Refresh the instrument source and both current product records before restoring FTMO to the crypto ranking."
-    },
-    {
-      "firmSlug": "city-traders-imperium",
-      "firmName": "City Traders Imperium",
-      "status": "market-and-product-refresh-needed",
-      "sourceUrl": "https://citytradersimperium.com/",
-      "sourceCapturedAt": "2026-08-17",
-      "evidence": "The market source remains within the window, but all 4 mapped challenge and funding-program rows are now stale.",
-      "nextStep": "Recapture the 4 mapped programs and confirm the current crypto symbol and platform scope before ranking."
-    },
-    {
-      "firmSlug": "ofp-funding",
-      "firmName": "OFP Funding",
-      "status": "market-and-product-refresh-needed",
-      "sourceUrl": "https://ofpfunding.com/",
-      "sourceCapturedAt": "2026-07-27",
-      "evidence": "The previous source named Crypto among simulated instruments, but the market evidence and all 9 mapped product rows are now stale.",
-      "nextStep": "Refresh the instrument source and all 9 product records before returning OFP Funding to the ranking."
-    }
-  ]
+  "watch": []
 }
