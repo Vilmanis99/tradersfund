@@ -1327,3 +1327,20 @@
   .ru-hero.ru-hero--p1 h1 { font-size: 1.5rem; }
   .ru-hero--p1 .ru-lead { font-size: 0.92rem; line-height: 1.45; }
 }
+/* Article format P2, merged RU notices: a recheck warning is one short callout line;
+   the explanation, the per-source dates and the link stay on the page, collapsed. */
+.ru-notice.ru-notice--compact {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ru-notice--compact .ru-source-details { margin-top: 0.3rem; }
+.ru-notice--compact .ru-source-details summary { font-size: 0.82rem; }
+.ru-notice--compact .ru-source-details p { margin: 0.45rem 0 0; font-size: 0.85rem; color: var(--text); }
+.ru-hero--p1 .ru-notice--compact { margin-top: 0; }
+@media (max-width: 640px) {
+  .ru-notice.ru-notice--compact { font-size: 0.82rem; line-height: 1.42; padding: 0.5rem 0.7rem; margin: 0.25rem 0 0.6rem; }
+  .ru-notice--compact .ru-source-details summary { font-size: 0.78rem; }
+}

@@ -21,6 +21,7 @@ import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { formatRuDate } from '@/lib/ruDate'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-fundednext'
@@ -238,7 +239,7 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell">
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestProductCapture ?? 'не подтверждена'}</div>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestProductCapture ? formatRuDate(latestProductCapture) : 'не подтверждена'}</div>
           <h1>{TITLE}</h1>
           <p className="ru-lead">
             Модели Stellar различаются числом этапов, просадкой, долей трейдера и условиями первой выплаты.
@@ -246,7 +247,7 @@ export default function RussianFundedNextReviewPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {lastModified}</span>
+            <span>Обновлено: {formatRuDate(lastModified)}</span>
           </div>
         </div>
       </section>
