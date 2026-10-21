@@ -62,7 +62,8 @@
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
-      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck."
+      "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck.",
+      "90% reward ratio rechecked 2026-10-21: withdrawal FAQ (modified 2026-10-13) 'FTMO Account initiated from the 2-Step FTMO Challenge: By default, you receive a Reward according to 80% of the simulated profit. If the Scaling Plan or Premium Programme conditions are met, the Reward Ratio is increased to 90% .' Premium Programme page (modified 2026-10-12) lists '90% of your simulated profits' for traders from the 1-Step or 2-Step Challenge, not the Instant Account; Scaling Plan page (modified 2026-10-14): 'Keep 90% Get a 90% share of your simulated profits (valid for 2-Step only)'. profitSplitPct stays 80 (default)."
     ]
   },
   {
