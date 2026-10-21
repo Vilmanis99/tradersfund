@@ -138,5 +138,88 @@
       "Futures-specific country list: none published; the Terms cover 'Futures Contract' and the site-wide footer list applies on /futures/",
       "Futures platform name (FAQ mentions a 'BlackArrow Demo Account'; not recorded as a platform)"
     ]
+  },
+  "followUp": {
+    "question": "RU Writer /ru/obzor-the5ers (ships 23.10): Pro Growth daily loss vs 'No daily stop-loss'; consistency scope per programme/stage; Swing futures Summer Plan price status.",
+    "checkedAt": "2026-10-21T17:00:00+03:00",
+    "egress": "US IP, no VPN or proxy",
+    "rawEvidence": "/workspace/tradersfundhub/evidence/the5ers-2026-10-21c/ (box only)",
+    "proGrowthDailyLoss": {
+      "verdict": "Breach. Pro Growth's 3% daily loss terminates the account. 'No daily stop-loss' is the shared Growth header and describes Hyper Growth's non-terminating Daily Pause; it is not a per-trade stop-loss requirement.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-the-drawdown-rule-for-progrowth/",
+          "pageDate": "2026-07-30",
+          "quote": "Daily loss of ProGrowth is 3% of the starting equity of the day OR the starting balance of the day (the highest between them) at MT5 Server Time. (GMT +2 winter time or GMT+3 summer Time) Reaching any of these limits will lead to the termination of the account."
+        },
+        {
+          "url": "https://the5ers.com/hyper-growth/",
+          "pageDate": null,
+          "quote": "No daily stop-loss | Stop Out Level 6% 6% | Daily Loss 3% 3% | The profit target, maximum loss and daily Loss remain the same for the pro stages for Pro Growth Program"
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-hyper-growth-program-work/",
+          "pageDate": "2026-08-10",
+          "quote": "The daily pause does not terminate an account. It only disables the account for the current day."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-daily-pause-work/",
+          "pageDate": "2026-07-30",
+          "quote": "The Daily Pause applies for the Hyper Growth stage in all stages and the Bootcamp funded stage."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-daily-loss-limit-work-2/",
+          "pageDate": "2026-08-10",
+          "quote": "For both the 1-Step and 2-Step summer plans, the daily loss limit is 3%. ... When the Daily Loss is reached, the account is permanently terminated.",
+          "note": "Summer Plan FAQ, not Pro Growth."
+        },
+        {
+          "url": "https://the5ers.com/terms-and-conditions/",
+          "pageDate": "2026-10-20",
+          "quote": null,
+          "note": "Terms contain no 'daily', 'pause', 'drawdown', 'stop loss' or 'consisten' wording."
+        }
+      ]
+    },
+    "consistency": {
+      "verdict": "CFD High Stakes, Pro Growth, Hyper Growth, Bootcamp: none published on programme pages, programme FAQs or Terms; the general FAQ says 30%/50% on unnamed accounts or regions, so stays null. Summer Plan 1-Step: 50% evaluation and funded; Summer Plan 2-Step: none in evaluation, 50% on the $200K funded. Futures Day Trade and Swing: 40% per position, evaluation and funded.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-constancy-rule/",
+          "pageDate": "2026-10-19",
+          "quote": "Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage."
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "pageDate": null,
+          "quote": "Consistency Requirement: 50% in both evaluation and Pro accounts | Note: There is no consistency rule during the evaluation phases for the 2-Step plan."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2/",
+          "pageDate": "2026-08-11",
+          "quote": "Daily Consistency Rule: A 50% daily consistency requirement applies, meaning no single trading day can account for more than 50% of your total generated profit at the time of a payout request."
+        },
+        {
+          "url": "https://the5ers.com/futures-faqs/what-is-the-consistency-rule/",
+          "pageDate": "2026-07-20",
+          "quote": "The5ers Futures has a 40% consistency rule, which means a single trade can’t account for more than 40% of your total profits. ... This rule applies on funded accounts as well."
+        }
+      ]
+    },
+    "swingSummerPrice": {
+      "verdict": "Promotional label with no published end date, still live on 2026-10-21; the firm's sources conflict ('limited-time offer ... running through the end of summer ... reduced pricing' vs 'permanent price drops on Swing accounts'). Store $69/$120 as the current list price, not a confirmed permanent standard.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "pageDate": null,
+          "quote": "It’s a limited-time offer for Swing accounts, running through the end of summer. It includes reduced pricing across account sizes, two new account tiers (100K and 150K), and the Summer Boost Rewards program, which rewards Hub Credits at key milestones."
+        },
+        {
+          "url": "https://the5ers.com/futures-faqs/what-do-i-get-with-the-futures-summer-plan-2/",
+          "pageDate": "2026-07-23",
+          "quote": "It introduces permanent price drops on Swing accounts, brings brand-new account sizes to the platform, and features a limited-time promotional reward ladder for traders who hit key performance milestones during the summer."
+        }
+      ]
+    }
   }
 }
