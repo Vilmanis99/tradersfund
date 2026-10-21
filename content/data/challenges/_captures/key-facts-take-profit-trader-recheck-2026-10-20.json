@@ -1,0 +1,70 @@
+{
+  "captureType": "key-facts-recheck",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "firm": "take-profit-trader",
+  "productsRechecked": [
+    "the-test"
+  ],
+  "fieldsRechecked": [
+    "accountSizes[].maxLossUsd"
+  ],
+  "sources": [
+    {
+      "url": "https://takeprofittrader.com/accounts/api/subscriptions",
+      "method": "curl, US egress",
+      "testTiers": [
+        {
+          "name": "$ 25k",
+          "price": 150,
+          "balance": 25000,
+          "profitTarget": 1500,
+          "dailyLossLimit": 500,
+          "eodTrailingDrawdown": 1500
+        },
+        {
+          "name": "$ 50k",
+          "price": 170,
+          "balance": 50000,
+          "profitTarget": 3000,
+          "dailyLossLimit": 1100,
+          "eodTrailingDrawdown": 2000
+        },
+        {
+          "name": "$ 75k",
+          "price": 245,
+          "balance": 75000,
+          "profitTarget": 4500,
+          "dailyLossLimit": 1600,
+          "eodTrailingDrawdown": 2500
+        },
+        {
+          "name": "$ 100k",
+          "price": 330,
+          "balance": 100000,
+          "profitTarget": 6000,
+          "dailyLossLimit": 2200,
+          "eodTrailingDrawdown": 3000
+        },
+        {
+          "name": "$ 150k",
+          "price": 360,
+          "balance": 150000,
+          "profitTarget": 9000,
+          "dailyLossLimit": 3300,
+          "eodTrailingDrawdown": 4500
+        }
+      ]
+    },
+    {
+      "url": "https://takeprofittrader.com/",
+      "method": "headless Chrome",
+      "quotes": [
+        "Daily Loss Limit | $1100 Removed | EOD Trailing Drawdown | $2000",
+        "Daily loss rule | None | None | None",
+        "Drawdown | End Of Day | Intraday | End Of Day"
+      ]
+    }
+  ],
+  "note": "No products array, so scripts/build-firm-rules.mjs ignores this file."
+}

@@ -45,6 +45,15 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -193,6 +202,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -339,6 +357,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -485,6 +512,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -558,6 +594,15 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "On-Demand payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -592,27 +637,27 @@
     "accountSizes": [
       {
         "sizeUsd": 10000,
-        "priceUsd": 67,
+        "priceUsd": null,
         "refundable": false
       },
       {
         "sizeUsd": 25000,
-        "priceUsd": 157,
+        "priceUsd": null,
         "refundable": false
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": 247,
+        "priceUsd": null,
         "refundable": false
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": 397,
+        "priceUsd": null,
         "refundable": false
       },
       {
         "sizeUsd": 200000,
-        "priceUsd": 697,
+        "priceUsd": null,
         "refundable": false
       }
     ],
@@ -640,7 +685,7 @@
     "pricingModel": "one-off",
     "assetClass": "cfd",
     "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-    "sourceCapturedAt": "2026-10-20",
+    "sourceCapturedAt": "2026-09-14",
     "notes": [
       "Published list fees checked on 2026-10-06. Pricing article updated September 21, 2026: https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026. Discounts, swap-free and optional 90% split add-ons are excluded.",
       "Source capture is not an independently verified account purchase or payout. Confirm the selected target, payout schedule and final payable amount before purchase.",
@@ -650,7 +695,8 @@
       "No product-specific maximum trading-day value was verified in this recapture. Null is not an unlimited-period or permission claim.",
       "Mixed-scope correction: published prices and rules were read again on October 6, but current purchase availability remains unsettled. The cost article still lists fees, while the firm review calls Three unavailable and the live product selector has no three-step choice. Preserve the September 14 product date and prior archive; do not describe this as a current purchase offer.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/alpha-capital-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json"
+      "Daily recheck 2026-10-20: source pages re-read; the product date is kept at 2026-09-14 because current purchase availability is still unverified (partial capture, see the Mixed-scope correction note). Recheck log: content/data/challenges/_captures/alpha-capital-2026-10-20.json",
+      "NOT PURCHASABLE (2026-10-20): prices set to null the way unavailable products are handled (cf. CFT Ascend, e1ea100). Alpha's live checkout catalogue embedded in https://alphacapitalgroup.uk/product (window.__CHECKOUT_BOOT__) has \"Alpha Three\":[] (no purchasable items), and https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026 says \"Alpha Three is not currently offered for new purchases.\" (both re-read 2026-10-20 12:59 Riga, US-IP box; the firm review https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict says the same). Last published list fees, kept for reference only (https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026, read 2026-10-20): $10K $67, $25K $157, $50K $247, $100K $397, $200K $697. Restore them only if checkout offers Alpha Three again. sourceCapturedAt stays 2026-09-14 (partial capture; the availability conflict watch is still open). Evidence: content/data/alpha-source-conflicts-2026-10-20.json (threeCost, threeAvailability, threeSelector)."
     ]
   },
   {
@@ -702,6 +748,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Alpha Direct payouts",
+        "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",

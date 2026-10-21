@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import Image from 'next/image'
@@ -18,12 +19,13 @@ import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.js
 import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext проп: отзывы и обзор 2026, цены и правила'
-const DESCRIPTION = 'FundedNext проп-компания: обзор на русском — цены программ Stellar, просадка, условия выплат, копирование сделок, отзывы и проверка доступа из своей страны.'
+const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
+const DESCRIPTION = 'FundedNext (Funded Next) проп-компания: обзор и отзывы на русском — цены Stellar, просадка, выплаты. Резидентам РФ недоступна, альтернатива — BrightFunded.'
 // Preserve existing sharing copy until its separate update is approved.
 const SOCIAL_DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
 export const revalidate = 3600
@@ -232,7 +234,7 @@ export default function RussianFundedNextReviewPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell">
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
@@ -246,17 +248,17 @@ export default function RussianFundedNextReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-fundednext-article="long-form">
+      <RuReviewVerdictBox route={PATH} campaign="fundednext-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>моделей со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>опубликованных цен</span></div>
             <div className="ru-stat"><strong>{priceRange(pricedTiers.map(item => item.price))}</strong><span>диапазон входа</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-fundednext-article="long-form">
-      <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-opening" data-russian-fundednext-editorial-shell="review-parity">
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
             <strong>Партнёрские ссылки.</strong> Мы можем получить комиссию, если читатель
@@ -347,9 +349,10 @@ export default function RussianFundedNextReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section ru-review-toc-section">
+      <section className="ru-section ru-review-toc-section ru-p1-rail">
         <div className="ru-shell">
-          <nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
+          <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора FundedNext">
             <div className="toc-title">Содержание обзора</div>
             <ol>
               <li><a href="#verdict">Краткий вывод</a></li>
@@ -369,6 +372,7 @@ export default function RussianFundedNextReviewPage() {
               <li><a href="#faq">Частые вопросы</a></li>
             </ol>
           </nav>
+</RuArticleToc>
         </div>
       </section>
 
@@ -804,6 +808,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianFaq items={pageFaqs} />
         </div>
       </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

@@ -93,6 +93,33 @@ export interface ComparisonOverlay {
  *
  * Pages without an entry here render a fully data-driven layout.
  */
+
+/* ── Data-driven overlay facts ─────────────────────────────────── */
+
+const listNames = (names: string[]) => names.length <= 1 ? names.join('')
+  : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`
+
+/**
+ * Product-specific fee-refund sentence from the captured tier `refundable`
+ * flags: a product counts as refundable (or not) only when every tier agrees;
+ * anything else is reported as unverified rather than guessed.
+ */
+export function feeRefundSummary(firmSlugValue: string, firmName: string): string {
+  const products = getChallengesByFirm(firmSlugValue)
+  const all = (value: boolean) => products
+    .filter(product => product.accountSizes.length > 0 && product.accountSizes.every(tier => tier.refundable === value))
+    .map(product => product.productName)
+  const yes = all(true)
+  const no = all(false)
+  const unverified = products.map(product => product.productName).filter(name => !yes.includes(name) && !no.includes(name))
+  const parts = [
+    yes.length ? `${firmName} lists the fee as refundable on ${listNames(yes)}` : `${firmName} lists no product with a refundable fee`,
+    no.length ? `not on ${listNames(no)}` : '',
+    unverified.length ? `refund terms for ${listNames(unverified)} are unverified` : '',
+  ].filter(Boolean)
+  return `${parts.join('; ')}.`
+}
+
 export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
   'apex-trader-funding-vs-topstep': {
     matchupSlug: 'apex-trader-funding-vs-topstep',
@@ -139,13 +166,13 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Highest Verified Base Split', winner: 'a', reason: 'FTMO 1-Step starts at 90%. FundedNext starts its 3 evaluations at 80% and Stellar Instant at 70%; 95% is sold as an add-on.' },
       { category: 'Product Choice', winner: 'b', reason: 'FundedNext has 4 captured paths—2-Step, 1-Step, Lite and phase-0 Instant—against FTMO’s 2 evaluation products.' },
       { category: 'First-Payout Cycle on Evaluations', winner: 'b', reason: 'FundedNext Stellar 1-Step uses a 5-business-day reward cycle. Both captured FTMO products record 14 days before eligibility; approval and transfer time are separate. Stellar Instant has a different growth-based gate.' },
-      { category: 'Static 1-Step Option', winner: 'b', reason: 'FundedNext Stellar 1-Step uses a 6% static maximum loss. FTMO 1-Step uses a 10% end-of-day trailing line plus a 50% Best Day rule.' },
+      { category: 'Static 1-Step Option', winner: 'b', reason: 'FundedNext Stellar 1-Step uses a 6% static maximum loss. FTMO 1-Step uses a 10% end-of-day trailing line plus a 50% Consistency rule (best day ÷ total profit), which replaced the 50% Best Day rule for orders from 12 Oct 2026.' },
       { category: 'Platform Coverage', winner: 'tie', reason: 'Both publish MT4, MT5 and cTrader. FTMO additionally lists DXTrade, while FundedNext lists Match-Trader.' },
       { category: 'Operating History', winner: 'a', reason: 'FTMO was founded in 2015; FundedNext was founded in 2022. This is an age comparison, not a payout guarantee.' },
       { category: 'Aggregate Allocation Field', winner: 'a', reason: 'The current firm records list $2,000,000 for FTMO and $300,000 for FundedNext; scaling milestones still require separate verification.' },
     ],
     whenToPickA:
-      'Pick FTMO if the exact product trade-off fits: 2-Step gives a refundable €540 $100K route at an 80% base split, 5% daily loss and 10% static maximum loss; 1-Step costs €499 at $100K, starts at 90%, and exchanges the refund for a 3% daily cap, end-of-day trailing loss and 50% Best Day rule. FTMO also fits a trader who needs DXTrade or individual-stock CFDs. Verify the storefront for your country because the captured euro terms do not cover FTMO’s separate US routing.',
+      'Pick FTMO if the exact product trade-off fits: 2-Step gives a refundable €540 $100K route at an 80% base split, 5% daily loss and 10% static maximum loss; 1-Step costs €499 at $100K, starts at 90%, and exchanges the refund for a 3% daily cap, end-of-day trailing loss and 50% Consistency rule. FTMO also fits a trader who needs DXTrade or individual-stock CFDs. Verify the storefront for your country because the captured euro terms do not cover FTMO’s separate US routing.',
     whenToPickB:
       'Pick FundedNext if 4 product paths matter more than a universal 90% base split. At $100K, Lite lists $399.99 with an 8% static maximum loss, Stellar 2-Step lists $549.99 with 10% static loss, and Stellar 1-Step lists $569.99 with 6% static loss and a 5-business-day reward cycle. All 3 evaluations start at 80%; the 95% share is a paid option. Model the funded-stage 40% news-profit credit and the third-reward refund on new 1-Step and Lite purchases before checkout.',
     faqs: [
@@ -199,13 +226,13 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Profit Split', winner: 'tie', reason: 'Both firms pay 90% on funded accounts, processed on-demand. Genuine parity on the headline number.' },
       { category: 'Payout Speed', winner: 'tie', reason: 'Both support on-demand payouts via ACH or bank wire; MFF additionally supports crypto. Day-to-day speed is effectively identical.' },
       { category: 'Track Record', winner: 'b', reason: 'Topstep has been operating since 2012 — the longest history in futures prop trading. MFF launched November 2023 and hasn’t had a full bear-market test yet.' },
-      { category: 'Max Allocation', winner: 'a', reason: 'MFF scales to $600K in total account size; Topstep caps at $500K. Real headroom for traders who consistently pass and stack accounts.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'MFF scales to $600K in total account size; Topstep allows up to 5 active Express Funded Accounts, $150K max each. Real headroom for traders who consistently pass and stack accounts.' },
       { category: 'Platform Coverage', winner: 'a', reason: 'MFF supports NinjaTrader, Tradovate and TradingView; Topstep supports NinjaTrader, Quantower and TradingView. Tradovate access is the differentiator.' },
       { category: 'Trader Development', winner: 'b', reason: 'Topstep’s Trading Combine, consistency coaching and educational ecosystem are deeper and more established. Worth real money to traders still building discipline.' },
       { category: 'Fee Structure', winner: 'a', reason: 'MFF’s newer plan structure (Core, Scale, Pro) is more flexible on daily loss limits and total post-eval cost is lower for traders who pass on the first try.' },
     ],
     whenToPickA:
-      'Pick My Funded Futures if you’re an experienced futures trader who wants Tradovate access, a higher allocation ceiling ($600K vs $500K), and a more flexible plan structure. MFF’s newer plans are also more accommodating on daily loss limits than Topstep’s combine. The risk is that MFF is two years old — strong fundamentals, but untested through a real industry contraction.',
+      'Pick My Funded Futures if you’re an experienced futures trader who wants Tradovate access, a $600K allocation ceiling (Topstep: up to 5 active Express Funded Accounts, $150K max each), and a more flexible plan structure. MFF’s newer plans are also more accommodating on daily loss limits than Topstep’s combine. The risk is that MFF is two years old — strong fundamentals, but untested through a real industry contraction.',
     whenToPickB:
       'Pick Topstep if you’re newer to futures and want the most structured path to funded — the Trading Combine, consistency rule and TopstepX platform are explicitly designed to build habits, not just gate funding. Topstep is also the better choice if you want institutional-grade longevity: 14 years in business and a clear payout history.',
     faqs: [
@@ -329,7 +356,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     faqs: [
       { q: 'Do FTMO and FXIFY have the same drawdown rules?', a: 'Both use static drawdown on their flagship plans, which is the forgiving variant — your loss floor is fixed and doesn’t trail your equity high. FXIFY’s Lightning product is the exception, using a trailing rule with a 7-day window, so check the specific product you buy.' },
       { q: 'Can US traders use either firm?', a: 'No. FXIFY explicitly restricts US residents, and FTMO does not accept US clients either. US traders should look at futures firms like Topstep or My Funded Futures.' },
-      { q: 'Which is better value at the $100K tier?', a: 'They price similarly at $100K, and both refund the fee on first payout. FXIFY frequently runs discounts that undercut FTMO at checkout, so the live promo usually decides it — verify the current price before buying.' },
+      { q: 'Which is better value at the $100K tier?', a: `They price similarly at $100K. Refunds depend on the product: ${feeRefundSummary('ftmo', 'FTMO')} ${feeRefundSummary('fxify', 'FXIFY')} FXIFY frequently runs discounts that undercut FTMO at checkout, so the live promo usually decides it — verify the current price before buying.` },
     ],
   },
 
@@ -348,7 +375,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Holding Rules', winner: 'a', reason: 'FTMO allows overnight and weekend holding; Topstep forces all positions flat at session close — standard for futures, but a hard stop for swing traders.' },
       { category: 'US Access', winner: 'b', reason: 'Topstep accepts US-resident traders (CFTC-regulated futures path); FTMO does not accept US clients at all.' },
       { category: 'Track Record', winner: 'b', reason: 'Topstep has operated since 2012 — slightly longer than FTMO’s 2015 start, and the pioneer of the futures-prop model.' },
-      { category: 'Max Allocation', winner: 'a', reason: 'FTMO scales to $2M total allocation; Topstep caps at $500K. More headroom on the CFD side.' },
+      { category: 'Max Allocation', winner: 'a', reason: 'FTMO scales to $2M total allocation; Topstep allows up to 5 active Express Funded Accounts, $150K max each. More headroom on the CFD side.' },
     ],
     whenToPickA:
       'Pick FTMO if you trade forex, indices, crypto, commodities or stock CFDs, want forgiving static drawdown, or need to hold positions overnight or across the weekend. It’s the wrong firm only if you trade futures or live in the US — both of which point you to Topstep instead.',
@@ -420,7 +447,17 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
 
 }
 
+/**
+ * Hard off-switch for the hand-written overlays (Phase 1 rollout, 2026-10-20).
+ * Their text contradicts current captures in several places (platform lists,
+ * payout cadence, consistency targets), and the Phase 1 pick block replaces
+ * whenToPickA/B. Re-dating an overlay must not bring it back; it needs a
+ * rewrite and an explicit change here first.
+ */
+export const COMPARISON_OVERLAYS_ENABLED = false
+
 export function getOverlay(matchupSlug: string, now = new Date()): ComparisonOverlay | undefined {
+  if (!COMPARISON_OVERLAYS_ENABLED) return undefined
   const overlay = COMPARISON_OVERLAYS[matchupSlug]
   if (!overlay?.reviewedAt || !overlay.challengeReviewedAt) return undefined
 

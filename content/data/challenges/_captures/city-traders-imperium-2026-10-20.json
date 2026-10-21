@@ -63,7 +63,11 @@
     "notFoundVerbatim": 23,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "1-step-challenge / 2-step-challenge payoutFrequency weekly -> null (weekly is a VIP Bronze unlock; no baseline cycle published)",
+    "direct-funding payoutFrequency monthly -> on-demand (page now says on demand from day 5)",
+    "firms.json CTI payoutFrequency monthly -> null + payoutFrequencyNote/SourceUrl/Quote; rules.payoutFrequency byProduct updated by hand"
+  ],
   "notes": [
     "Price-presence check only; all 46 stored rule quotes found."
   ],
@@ -103,5 +107,39 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:13:57.608Z"
     }
-  ]
+  ],
+  "payoutRecheck": {
+    "checkedAtTimestamp": "2026-10-20T11:20+03:00",
+    "egress": "US IP (box), headless Chrome; payout wording is not region-specific",
+    "requestedBy": "EN Writer via Prop Firm Tracker (firm-level monthly vs product weekly mismatch)",
+    "sources": [
+      {
+        "url": "https://citytradersimperium.com/1-step-challenge/",
+        "httpStatus": 200,
+        "quotes": [
+          "Request your 1st payout in as little as 7 days.",
+          "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.",
+          "Bronze Trader",
+          "Weekly payouts unlocked.",
+          "Anytime payouts unlocked."
+        ]
+      },
+      {
+        "url": "https://citytradersimperium.com/2-step-challenge/",
+        "httpStatus": 200,
+        "quotes": [
+          "Request your first payout from CTI in as little as 7 days, with weekly and anytime options as you climb the VIP ladder."
+        ]
+      },
+      {
+        "url": "https://citytradersimperium.com/direct-funding/",
+        "httpStatus": 200,
+        "quotes": [
+          "Payouts On Demand",
+          "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
+          "Direct Funding payouts are on demand from day 5."
+        ]
+      }
+    ]
+  }
 }

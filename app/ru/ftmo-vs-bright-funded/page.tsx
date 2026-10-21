@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import type { ReactNode } from 'react'
 import Link from '@/components/SafeLink'
 import { ArrowRight, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
@@ -13,7 +15,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 const PATH = '/ru/ftmo-vs-bright-funded'
 const TITLE = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
 const H1 = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
-const DESCRIPTION = 'FTMO закрыта для РФ, Беларуси и Казахстана. Сравниваем с BrightFunded цену, просадку, сплит, выплаты, платформы и оплату криптой по данным на 19.10.2026.'
+const DESCRIPTION = 'FTMO закрыта для РФ, Беларуси и Казахстана. Сравниваем с BrightFunded цену, просадку, сплит, выплаты, платформы и оплату криптой по данным на 20.10.2026.'
 
 export const revalidate = 3600
 
@@ -28,14 +30,16 @@ export const metadata: Metadata = {
 
 /** Dated facts from Prop Firm Tracker files (/workspace/ru-data/2026-10-14-*.md) and firms.json rule evidence. */
 const TRACKER_CAPTURE = '2026-10-14'
-/** BrightFunded country sources re-read 2026-10-19: help article (updated 15.09.2026) lists 6 incl. Pakistan; Terms §2 list 5 without Pakistan and reserve further restrictions. */
-const BRIGHT_COUNTRIES_CHECKED = '2026-10-19'
-/** Prices re-read on ftmo.com (2-step-challenge, 1-step-challenge) and brightfunded.com (1-step, 2-step-bright, 2-step-classic) in the 2026-10-19 Tracker daily recheck; identical to the 14.10 capture. */
-const PRICE_CAPTURE = '2026-10-19'
+/** BrightFunded country sources: russian-bright-funded-evidence.json countries + countryTerms sourceCapturedAt 2026-10-20 (Prop Firm Tracker data/rollout-2026-10-20 @f1d15f7): help article (updated 15.09.2026) lists 6 incl. Pakistan; Terms §2 list 5 without Pakistan and reserve further restrictions. */
+const BRIGHT_COUNTRIES_CHECKED = '2026-10-20'
+/** Prices: challenges/ftmo.json and challenges/bright-funded.json sourceCapturedAt 2026-10-20 (Tracker daily recheck, _captures/ftmo-2026-10-20.json and bright-funded-2026-10-20.json; unchanged since the 14.10 capture). */
+const PRICE_CAPTURE = '2026-10-20'
 const RULES_CAPTURE = '2026-10-15'
 const TRUSTPILOT_CAPTURE = '2026-10-15'
-/** /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (ftmo.com global pages, not FTMO US). */
+/** /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (ftmo.com global pages, not FTMO US). Stays 2026-10-19: the BrightFunded crypto-checkout and payout-method articles were not re-read on 2026-10-20. */
 const PAYMENTS_CAPTURE = '2026-10-19'
+/** First payout / cadence row: BrightFunded reward article (russian-bright-funded-evidence.json reward, 2026-10-20) and FTMO payoutFrequency evidence in firms.json (2026-10-20). */
+const PAYOUT_RULES_CAPTURE = '2026-10-20'
 
 const SOURCES = {
   ftmoCountries: 'https://ftmo.com/en/faq/who-can-join-ftmo/',
@@ -191,7 +195,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       id: 'payout', field: 'Первая выплата и частота',
       bright: 'Первая выплата — через 30 дней после первой сделки на счёте. Дальше, судя по справке и списку дополнений, раз в 14 дней по умолчанию, а еженедельно — платное дополнение. Справка противоречит себе: там же 14-дневный цикл назван дополнением',
       ftmo: 'Первую выплату можно запросить на 14-й день после первой сделки; график последующих выплат FTMO публично не уточняет',
-      date: PAYMENTS_CAPTURE, source: SOURCES.brightReward, source2: SOURCES.ftmoReward,
+      date: PAYOUT_RULES_CAPTURE, source: SOURCES.brightReward, source2: SOURCES.ftmoReward,
     },
     {
       id: 'platforms', field: 'Платформы',
@@ -260,7 +264,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-partner-comparison="ftmo-bright-funded"
@@ -289,6 +293,8 @@ export default function RussianFtmoVsBrightFundedPage() {
           </div>
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="ftmo-vs-bright" />
 
       <section className="ru-section">
         <div className="ru-shell">
@@ -380,7 +386,7 @@ export default function RussianFtmoVsBrightFundedPage() {
             Срок важнее процента. У FTMO первую заявку можно подать на 14-й день после первой сделки на профинансированном
             счёте; как часто можно просить дальше, FTMO публично не уточняет. У BrightFunded первая выплата — через 30 дней,
             дальше, судя по справке и списку дополнений на сайте, раз в 14 дней по умолчанию, а еженедельно — за доплату.
-            Но справка BrightFunded {asOf(PAYMENTS_CAPTURE)} противоречит себе: там же 14-дневный цикл назван платным дополнением.
+            Но справка BrightFunded {asOf(PAYOUT_RULES_CAPTURE)} противоречит себе: там же 14-дневный цикл назван платным дополнением.
             Уточните в поддержке до оплаты, если быстрый вывод для вас критичен.
           </p>
         </div>
@@ -447,11 +453,11 @@ export default function RussianFtmoVsBrightFundedPage() {
             <Link href="/ru/promokody-prop-firm">промокоды</Link>.
           </p>
           <div className="ru-actions" data-russian-comparison-other-firms="fundednext-fundingpips">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
-              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
-            </RuGoLink>
             <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips" rel={goLinkRel('fundingpips')} className="btn-outline">
               Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
+              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
           </div>
         </div>
@@ -491,6 +497,7 @@ export default function RussianFtmoVsBrightFundedPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

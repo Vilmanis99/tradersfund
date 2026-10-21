@@ -1,0 +1,25 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "capturedAt": "2026-10-20",
+  "scope": "Recheck of the Ascend/Break homepage-vs-terms price conflict, 2026-10-20 ~12:30 Europe/Riga (headless Chrome HTML + public WooCommerce Store API, US-IP box). Ascend prices are now null in challenges/crypto-fund-trader.json because the Store API marks every Ascend item not purchasable; Break keeps the dedicated-page/terms ladder 70/140/200.",
+  "homepage": {
+    "sourceUrl": "https://cryptofundtrader.com/",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "ascend",
+      "break"
+    ],
+    "quote": "data-fase=\"Ascend\" data-tier=\"$100,000\" ... $899.00; data-fase=\"Break\" data-tier=\"$100,000\" ... $199.00",
+    "observation": "Homepage price blocks (server HTML) still show Ascend $45/$90/$225/$450/$899/$1,798 and Break $70/$139/$199. The Store API reports all of these homepage items (Ascend 162495/162500/162504/162450/162484/162490; Break 373833/373838/373842) as \"is_purchasable\": false."
+  },
+  "terms": {
+    "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+    "sourceCapturedAt": "2026-10-20",
+    "productSlugs": [
+      "ascend",
+      "break"
+    ],
+    "quote": "780 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 100,000 USD ... 5.6.6 'Break' Evaluation: ... 200 USD for the Crypto Fund Trader Evaluation Process with an initial demo capital of 100,000 USD 5.6.7 'Activation FEE' for Break Evaluations: ... 328 USD",
+    "observation": "Terms 5.6.5/5.6.6/5.6.7 unchanged from 2026-10-06."
+  }
+}

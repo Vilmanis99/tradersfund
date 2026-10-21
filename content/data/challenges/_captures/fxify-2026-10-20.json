@@ -139,12 +139,17 @@
     "notFoundVerbatim": 59,
     "notFoundExplanation": "Not-found items are editor descriptions of prices/rules or quotes with formatting differences; the underlying values were re-checked against the live data in priceQuotes / changes / notes."
   },
-  "changes": [],
+  "changes": [
+    "lightning-challenge and two-phase-classic accountSizes[].refundable true -> false (FXIFY blog 2026-09-14 fee-refund table/FAQ; Lightning FAQ still says 100% refund - conflict noted). one-phase, two-phase-standard, three-phase stay refundable; two-phase-pro unchanged (not covered by the blog).",
+    "Refund conflict resolved 2026-10-20 (Terms > dated help article > product/checkout > FAQ > blog): lightning-challenge accountSizes[].refundable false -> true (help-centre article dated 2026-05-06 and Lightning FAQ say 100% refund with first payout; Terms silent; blog 2026-09-14 outranked). two-phase-classic stays false (now backed by the help-centre comparison and the static two-phase FAQ). two-phase-pro accountSizes[].refundable true -> false (help-centre article 2026-05-15 and Pro FAQ 2026-04-29 both say no refund).",
+    "Claim recheck 2026-10-20 (see claimRecheck): Pro 8% static, India not restricted, drawdown type by product and the $250/$5K card confirmed; EA true -> \"restricted\" on the 5 phase products and news false -> \"restricted\" on Instant Standard/Lite and Lightning."
+  ],
   "notes": [
     "All 64 stored prices match. Rules evidence re-read: 1-Phase article (intercom) still says \"Profit Split 80% default, upgradable to 90%.\" (stored quote differs only in spacing).",
     "https://fxify.com/terms-and-conditions returns 404 today; not used for any stored value.",
     "firms.json lastUpdated aligned to this capture (was 2026-10-15 from the Trustpilot refresh while products were captured 2026-10-14).",
-    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified)."
+    "challenge-watch fxify-current-price-display-conflict-2026-09-14 refreshed from this capture: lastCheckedAt 2026-09-15 -> 2026-10-20; 54 tiers across its 8 products match; Instant Funding Lite tier 3 is $89 in stored data and live payload (entry text said $85). Rendered program-page cards not re-checked, so the entry stays open (status verified).",
+    "Refund resolution 2026-10-20 (pages read 13:30-14:00 Europe/Riga, US IP): refundRecheck above is the 12:05 record behind 96f6102 and is kept as history. The resolution with full sources is in sourceConflicts."
   ],
   "pagesRead": [
     {
@@ -317,5 +322,305 @@
       "httpStatus": 200,
       "fetchedAt": "2026-10-20T05:13:29.512Z"
     }
-  ]
+  ],
+  "refundRecheck": {
+    "checkedAtTimestamp": "2026-10-20T12:05+03:00",
+    "requestedBy": "Dev",
+    "sources": [
+      {
+        "url": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+        "published": "2026-09-14",
+        "quotes": [
+          "We reimburse the purchase fee for One Phase, Two Phase Standard, and Three Phase programs when their payout conditions are met.",
+          "Two Phase Classic | $379 | No | $379",
+          "Lightning Challenge | $249 | No | $249",
+          "Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure."
+        ]
+      },
+      {
+        "url": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+        "published": null,
+        "quotes": [
+          "Yes, you will receive a 100% refund alongside your first withdrawal"
+        ]
+      },
+      {
+        "url": "https://fxify.com/programs/one-phase/",
+        "quotes": [
+          "Refundable Fee 100%",
+          "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        ]
+      }
+    ]
+  },
+  "sourceConflicts": [
+    {
+      "id": "fxify-lightning-fee-refund-conflict",
+      "productSlugs": [
+        "lightning-challenge"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf",
+          "observation": "FXIFY General Terms and Conditions, footer-dated September 29, 2026 (PDF Last-Modified 2026-10-02). No product-specific fee reimbursement clause. Clause 2.6 covers cancellations and failed challenges only.",
+          "quote": "The Customer is not entitled to a refund of the fee, for example, if the Customer cancels the Customer’s Client Account or requests the cancellation by e-mail, if the Customer terminates the use of the Services or the contract (for example, fails to complete the FXIFY Challenge or the Verification), fails to meet the conditions of the FXIFY Challenge or the Verification, or violates these GTC."
+        },
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "observation": "Help-centre article, schema dateModified 2026-05-06T02:17:01Z.",
+          "quote": "Refund 100% Fee Refund with 1st Payout"
+        },
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "quote": "Fee Refund 100% refund of your evaluation fee with your first payout."
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+          "observation": "Program page (dateModified 2025-03-25) has no refund line for Lightning. The shared program-card data lists \"Refundable Fee\" 100% only for the One, Two and Three Phase cards."
+        },
+        {
+          "sourceUrl": "https://trader.fxify.com/purchasechallenge",
+          "observation": "Checkout add-ons read 2026-10-20 (US IP): Increase Leverage, No Time Limit, Increase Profit Split, Bi-Weekly Payouts, Performance Protect, No Stop Loss. No refund add-on, so a paid add-on does not explain the conflict."
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-do-i-get-a-refund-alongside-my-first-withdrawal/",
+          "observation": "FAQ, schema dateModified 2025-03-18T17:14:38Z.",
+          "quote": "Yes, you will receive a 100% refund alongside your first withdrawal"
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "observation": "Blog, published/modified 2026-09-14. The body omits Classic from its exclusion sentence, but the FAQ section includes it.",
+          "quote": "Lightning Challenge | $249 | No | $249"
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "quote": "Lightning Challenge, Two Phase Classic, and Instant Funding do not use this structure."
+        }
+      ],
+      "resolution": "Refundable (true), checked 2026-10-20. The Terms are silent on payout-linked reimbursement, so the dated help-centre article (2026-05-06) prevails over the blog (2026-09-14). The Lightning FAQ agrees with the help article. No official announcement of a Lightning refund change was found (FXIFY blog, newsroom and FAQ sitemaps read 2026-10-20; the Lightning launch announcement of March 6, 2025 does not mention refunds). Keep this conflict open as a watch: if FXIFY updates the help article or Terms to match the blog, flip it back. Display the refund as paid with the first payout only."
+    },
+    {
+      "id": "fxify-two-phase-classic-fee-refund",
+      "productSlugs": [
+        "two-phase-classic"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/12130186-2-phase-account-types",
+          "observation": "Help-centre comparison, dateModified 2026-05-07T07:56:55Z; columns Classic | Standard | PRO.",
+          "quote": "Refund No Refund Yes, alongside with the first Payout request No Refund"
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/2-phase-static-accounts-do-i-get-a-refund-alongside-my-withdrawal/",
+          "observation": "FAQ, dateModified 2025-09-01.",
+          "quote": "No Refunds are not issued with withdrawals for the Static Two-Phase account type."
+        },
+        {
+          "sourceUrl": "https://fxify.com/blog/cheapest-path-funded-50k-fxify/",
+          "quote": "Two Phase Classic | $379 | No | $379"
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/two-phase/",
+          "observation": "Program page (dateModified 2025-03-25) has a generic sentence that does not separate Classic from Standard.",
+          "quote": "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        }
+      ],
+      "resolution": "Not refundable (false), checked 2026-10-20. The dated help article and the product-scoped FAQ outrank the generic program-page sentence."
+    },
+    {
+      "id": "fxify-two-phase-pro-fee-refund",
+      "productSlugs": [
+        "two-phase-pro"
+      ],
+      "sources": [
+        {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+          "observation": "Help-centre article, dateModified 2026-05-15T02:22:13Z.",
+          "quote": "Refund No refund of fee"
+        },
+        {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-do-i-get-refund-alongside-my-withdrawal/",
+          "observation": "FAQ, dateModified 2026-04-29.",
+          "quote": "No, the 2 Phase Pro plan does not include a refund of your initial evaluation fee alongside your withdrawals."
+        },
+        {
+          "sourceUrl": "https://fxify.com/programs/two-phase/",
+          "quote": "Your purchase fee gets reimbursed to you with your first payout on request for 1,2 and 3 Phase plans."
+        }
+      ],
+      "resolution": "Not refundable (false), checked 2026-10-20. Stored true was based only on the generic program-page sentence."
+    }
+  ],
+  "claimRecheck": {
+    "checkedAt": "2026-10-20",
+    "egress": "US IP (box)",
+    "requestedBy": "EN Writer (FXIFY review claims previously cited to 2026-09-15)",
+    "claims": [
+      {
+        "id": "two-phase-pro-8pct-static",
+        "result": "confirmed",
+        "productSlugs": [
+          "two-phase-pro"
+        ],
+        "sources": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "pageDate": "2026-05-15",
+            "quote": "The 2-Phase Pro utilizes a Static Drawdown of 8% ."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/12130186-2-phase-account-types",
+            "pageDate": "2026-05-07",
+            "quote": "8% of initial account balance (Static)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+            "pageDate": "2026-09-18",
+            "quote": "Static drawdown. The maximum loss level is fixed at the start of the evaluation and remains unchanged."
+          }
+        ]
+      },
+      {
+        "id": "india-not-restricted",
+        "result": "confirmed",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+            "pageDate": "2026-02-12",
+            "quote": "The following countries are prohibited from trading with FXIFY™: Zimbabwe, Iran, Iraq, North Korea, Somalia, Vietnam, Belarus, Burundi, Central African Republic, Ivory Coast, Liberia, Libya, Sudan, Cuba, Syria, Afghanistan, Yemen, Palestine, Myanmar, Nicaragua, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Papua New Guinea, South Sudan, Vanuatu, Venezuela, Algeria, Russia, Kenya, Ghana, and Haiti."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/",
+            "pageDate": "site-wide footer",
+            "quote": "Restricted Jurisdictions: We do not establish accounts to residents of certain jurisdictions including the United States, Zimbabwe, ... Russia, Belarus, Kenya and Ghana"
+          },
+          {
+            "sourceUrl": "https://trader.fxify.com/purchasechallenge",
+            "observation": "India is selectable in the checkout country list (read 2026-10-20)."
+          }
+        ],
+        "note": "Both lists have 35 entries and neither names India; the FAQ includes Haiti (not the US), the footer includes the US (not Haiti). content/data/india-evidence.json fxify.capturedAt (2026-09-14) is not redated here because its checkout/KYC/RBI fields were not rechecked; its checkout source https://fxify.com/terms-and-conditions now returns 404 (current Terms: https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf)."
+      },
+      {
+        "id": "ea-and-news-permissions",
+        "result": "corrected",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-use-an-expert-advisor-for-mt-for-the-challenge-accounts/",
+            "pageDate": "2026-06-18",
+            "quote": "The use of an Expert Advisor, an EA, is allowed on the 1, 2 and 3 Phase challenges and their respective funded stage upon review by our support team and pre-approval."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Automation (EAs) : Allowed with prior approval. Note: EAs are strictly prohibited on the DxTrade platform."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+            "pageDate": "2025-06-26",
+            "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts."
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/two-phase-pro/2-phase-pro-what-strategies-are-allowed-or-prohibited/",
+            "pageDate": "2026-09-15",
+            "quote": "Expert Advisors (EAs) and trading bots are allowed."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases. ... Automation (EAs): Strictly prohibited"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "pageDate": "2026-05-06",
+            "quote": "News Trading: Prohibited 5 minutes before and after high-impact news releases."
+          }
+        ],
+        "change": "rules.ea true -> \"restricted\" on one-phase, two-phase-classic, two-phase-standard, two-phase-pro, three-phase (pre-approval required; EAs banned on DxTrade). rules.news false -> \"restricted\" on instant-funding-standard, instant-funding-lite, lightning-challenge (5-minute high-impact blackout, same coding as the crypto products). EA stays false on the two Instant products and Lightning; news stays true on the five phase products."
+      },
+      {
+        "id": "drawdown-type-by-product",
+        "result": "confirmed",
+        "sources": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 6% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834571-the-2-phase-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 10% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "pageDate": "2026-05-15",
+            "quote": "Max Drawdown 8% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 5% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "pageDate": "2026-05-06",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)"
+          }
+        ]
+      },
+      {
+        "id": "generic-250-5k-program-card",
+        "result": "confirmed (still displayed)",
+        "sources": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "pageDate": "2025-03-25",
+            "quote": "One Phase, 3 phases $250 For $5k account Start trading The $5k One Phase account includes:"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/two-phase/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/three-phase-challenge/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/instant-funding/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+            "pageDate": "2025-03-25",
+            "quote": "$250 For $5k account"
+          }
+        ],
+        "note": "Cards redated to 2026-10-20 in content/data/fxify-price-conflict-evidence.json; the card is not used for any stored tier price."
+      }
+    ]
+  }
 }

@@ -330,5 +330,68 @@
       "zero": "false (unchanged)"
     },
     "firmsJson": "firms.json has no refund field for any firm (schema has refundable only per challenge tier), so nothing was changed there."
+  },
+  "rewardMethods": {
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
+    "capturedAt": "2026-10-20",
+    "capturedAtTimestamp": "2026-10-20T12:02:26+03:00",
+    "method": "Zendesk Help Center API body (api/v2/help_center/en-us/articles/34504564970385.json) + headless Chrome render of the public article (US IP); every quote below found verbatim (whitespace-normalised) in both. Plain curl of the public URL returned HTTP 403 (bot check); not a geo block.",
+    "articleUpdatedAt": "2026-09-28T13:01:01Z",
+    "articleUpdatedAtNote": "Help Center API updated_at/edited_at; the rendered page shows no visible last-updated date. Unchanged since before the 2026-09-30 page constant capture.",
+    "egress": "US IP. Page wording has no region gating for methods; Pay to Card and Bank Transfer carry an explicit supported-country list (below), not IP-dependent copy.",
+    "methods": [
+      "Card",
+      "Crypto",
+      "Rise",
+      "Bank Transfer"
+    ],
+    "alternativeAllocations": [
+      "Buy a Challenge",
+      "Tradin Transfer (+30% credit)"
+    ],
+    "quotes": [
+      "Traditional Rewards: Receive your reward via Card, Crypto, Rise, or Bank Transfer.",
+      "Visa / Mastercard · Standard or Pay to Card · selected regions",
+      "USDT/USDC · ERC20",
+      "Crypto rewards are only sent in USDT/USDC on the ERC20 network.",
+      "Rewards are subject to service fees, exchange rates, and network transaction fees, all deducted during processing. The final amount received may be less than the initial value.",
+      "Rise is a financial services provider specializing in managing rewards through cryptocurrency or bank transfer. A minimum reward amount of $500 is required.",
+      "If Rise is not supported in your country, your reward will automatically default to Crypto.",
+      "The email address used with Rise must match your FundingPips account email.",
+      "Request your reward through a direct Bank Transfer to your local account. A minimum reward amount of $500 is required.",
+      "Bank transfers may not be available in all countries or regions.",
+      "The minimum reward request is 1% of your Master Account Size including FundingPips' split. This 1% minimum applies to Card, Crypto, and Tradin Transfer. Rise and Bank Transfer both require a minimum of $500.",
+      "Requests are processed within 1-3 working days (excluding weekends).",
+      "Allow an additional 1-2 working days for funds to reflect in your wallet or bank.",
+      "Wait at least 15 minutes after closing your last trade before requesting your reward.",
+      "Rewards can only be sent to accounts (e.g., card, wallet) registered in your own name."
+    ],
+    "supportedRegionsPayToCardAndBank": [
+      "BE",
+      "FR",
+      "DE",
+      "IT",
+      "NL",
+      "ES",
+      "BR",
+      "CO",
+      "MX",
+      "NG",
+      "ZA",
+      "UK",
+      "TR",
+      "ID"
+    ],
+    "secondarySource": {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup",
+      "capturedAt": "2026-10-20",
+      "articleUpdatedAt": "2026-08-28T10:06:40Z",
+      "note": "Fetched via Help Center API; still reachable, KYC/onboarding content only, no reward-method changes."
+    },
+    "changesVsRepo": [
+      "russian-market-evidence.json payoutEvidence[fundingpips].sourceCapturedAt 2026-08-27 -> 2026-10-20 (methods unchanged: Card, Crypto, Rise, Bank Transfer).",
+      "Added verified crypto network (USDT/USDC ERC20), crypto fee wording, $500 Rise/Bank minimums and the Pay to Card/Bank region list to payoutEvidence.",
+      "firms.json payoutMethods [Card, Bank wire, Rise, Crypto] already matches; no change."
+    ]
   }
 }

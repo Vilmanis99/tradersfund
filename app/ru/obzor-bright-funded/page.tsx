@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
@@ -19,6 +20,7 @@ import { getDealsByFirm } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/obzor-bright-funded'
@@ -204,7 +206,7 @@ export default function RussianBrightFundedReviewPage() {
       <Breadcrumbs ld={crumbs} locale="ru" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /><RussianEvidenceFreshnessNotice evidence={evidenceSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt }))} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
@@ -214,19 +216,20 @@ export default function RussianBrightFundedReviewPage() {
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-bright-article="long-form">
+        <RuReviewVerdictBox route={PATH} campaign="bright-funded-review" sourcesHref="#sources" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>программы со свежими данными</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-bright-article="long-form">
-        <section className="ru-section ru-review-toc-section">
+          </div></RuCapturedTerms>} />
+        <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
+            <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора BrightFunded">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#verdict">Краткий вывод</a></li>
@@ -245,6 +248,7 @@ export default function RussianBrightFundedReviewPage() {
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+</RuArticleToc>
           </div>
         </section>
 
@@ -537,7 +541,7 @@ export default function RussianBrightFundedReviewPage() {
             <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 6 материалов помогают разобрать эти различия до регистрации.</p>
             <ul className="ru-review-related-links">
               <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
-              <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–19.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>
+              <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–20.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>
               <li><Link href="/ru/obzor-fundednext">Обзор FundedNext</Link> — другая конфигурация цены, просадки и условий запроса выплаты. Число программ со свежими данными: {fundedNextProducts.length}; цен в USD: {fundedNextPricedTierCount}.</li>
               <li><Link href="/ru/vyplaty-prop-firm">Сравнение выплат проп-фирм</Link> — способы получения денег, календарь запросов и комиссии банка или сети.</li>
               <li><Link href="/ru/prop-firmy-bez-kyc">Проверка KYC и страны</Link> — гражданство, резидентство, документы и имя владельца платежа; отсутствие страны в запрете не равно персональному одобрению.</li>
@@ -571,6 +575,7 @@ export default function RussianBrightFundedReviewPage() {
             <RussianFaq items={pageFaqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

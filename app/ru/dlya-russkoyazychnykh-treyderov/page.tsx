@@ -47,12 +47,12 @@ type Row = {
 // Источник: ru-availability.csv, проверка 2026-10-14. «не указано» = страна не названа в списке ограничений,
 // это не письменное подтверждение доступа. «не проверено» = данных нет, не додумывать.
 const rows: Row[] = [
-  { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
-  { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
   { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (BTC вкл. Lightning, USDT TRC20, USDC ERC-20, ETH, LTC, TRX, SOL) или карта. Выплаты: USDC (ERC-20), банковский перевод в EUR', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
+  { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 14.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/blog/crypto-fund-trader-review' },
+  { firm: 'Upscale', russia: 'Принимает (ограничений по странам не заявлено)', belarus: 'Принимает', kazakhstan: 'Принимает', payout: 'Оплата криптовалютой; выплаты в USDT на собственный некастодиальный кошелёк; KYC нет', status: 'open', source: 'https://upscale.trade/ru/faq' },
+  { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
   { firm: 'FundedNext (CFD)', russia: `Ограничена: подвал fundednext.com исключает резидентов России; список в условиях (п. 5.3, CFD) Россию не называет (по данным на ${FUNDEDNEXT_RU_ACCESS_CHECKED})`, belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (1%; Binance Pay, BTC, ETH, LTC, DOGE, SOL, USDT, USDC), PayPal (1%), Skrill (3%), Apple/Google Pay, карты на своё имя. Выплаты: USDT (ERC20/TRC20), USDC, RiseWorks, банк, карта', status: 'closed', source: 'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds', review: '/ru/obzor-fundednext' },
   { firm: 'FundedNext Futures', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://fundednext.com/terms-of-service' },
-  { firm: 'FundingPips', russia: 'Неясно: Россия прямо не названа, но исключены страны из санкционных списков FATF и ЕС/ООН', belarus: 'Неясно', kazakhstan: 'Не названа', payout: 'Карта, USDT/USDC ERC-20, Rise (Rise требует KYC), банк', status: 'unclear', source: 'https://fundingpips.com/terms-and-conditions', review: '/ru/obzor-fundingpips' },
   { firm: 'Topstep', russia: 'Ограничена: Россия в списке «Countries Ineligible to Trade»; решает страна проживания', belarus: 'Ограничена', kazakhstan: 'Не названа', payout: 'Не проверено', status: 'closed', source: 'https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep' },
   { firm: 'FTMO', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Ограничена', payout: 'Не проверено', status: 'closed', source: 'https://ftmo.com/en/faq/who-can-join-ftmo/', review: '/ru/ftmo-dlya-rossiyan' },
   { firm: 'The5ers', russia: 'Ограничена', belarus: 'Ограничена', kazakhstan: 'Не в списке', payout: 'Не проверено', status: 'closed', source: 'https://the5ers.com/terms-and-conditions/' },
@@ -212,15 +212,15 @@ export default function RussiaAvailabilityPage() {
         <div className="ru-shell">
           <h2>Три проп-фирмы, открытые для России, и почему FundedNext теперь закрыта</h2>
           <div className="ru-grid">
-            <article className="ru-card" data-russia-open="upscale">
-              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>Upscale</h3>
-              <p className="ru-muted">Ограничений по странам не заявлено, KYC нет (вход через Telegram, Google или кошелёк), выплаты в USDT на собственный некастодиальный кошелёк. Обратная сторона отсутствия KYC — меньше юридических гарантий: оценивайте риск сами.</p>
+            <article className="ru-card" data-russia-open="bright-funded">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>BrightFunded</h3>
+              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет. При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
               <div className="ru-actions">
-                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
-                <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
-                  Открыть Upscale <ArrowRight size={14} aria-hidden="true" />
-                </a>
+                <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
+                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
+                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                </RuGoLink>
               </div>
             </article>
             <article className="ru-card" data-russia-open="crypto-fund-trader">
@@ -233,14 +233,25 @@ export default function RussiaAvailabilityPage() {
                 </RuGoLink>
               </div>
             </article>
-            <article className="ru-card" data-russia-open="bright-funded">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>BrightFunded</h3>
-              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет. При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
+            <article className="ru-card" data-russia-open="upscale">
+              <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>Upscale</h3>
+              <p className="ru-muted">Ограничений по странам не заявлено, KYC нет (вход через Telegram, Google или кошелёк), выплаты в USDT на собственный некастодиальный кошелёк. Обратная сторона отсутствия KYC — меньше юридических гарантий: оценивайте риск сами.</p>
               <div className="ru-actions">
-                <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
-                  Проверить BrightFunded <ArrowRight size={14} aria-hidden="true" />
+                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
+                <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
+                  Открыть Upscale <ArrowRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+            <article className="ru-card" data-russia-unclear="fundingpips">
+              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
+              <h3>FundingPips</h3>
+              <p className="ru-muted">Россия прямо не названа: в официальном списке ограничений — Иран, Вьетнам и ОАЭ, но фирма исключает страны из санкционных списков FATF и ЕС/ООН. Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
+              <div className="ru-actions">
+                <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
+                <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
+                  Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
             </article>
@@ -252,17 +263,6 @@ export default function RussiaAvailabilityPage() {
                 <Link href="/ru/obzor-fundednext" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-outline">
                   Проверить FundedNext CFD <ArrowRight size={14} aria-hidden="true" />
-                </RuGoLink>
-              </div>
-            </article>
-            <article className="ru-card" data-russia-unclear="fundingpips">
-              <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
-              <h3>FundingPips</h3>
-              <p className="ru-muted">Россия прямо не названа: в официальном списке ограничений — Иран, Вьетнам и ОАЭ, но фирма исключает страны из санкционных списков FATF и ЕС/ООН. Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
-              <div className="ru-actions">
-                <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
-                <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
-                  Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
                 </RuGoLink>
               </div>
             </article>

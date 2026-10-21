@@ -1,0 +1,151 @@
+{
+  "firmSlug": "teamtraders",
+  "captureType": "new-firm-research",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:00:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": null,
+  "previousEvidence": "content/data/russian-teamtraders-evidence.json (capturedAt 2026-10-01)",
+  "question": "RU Writer: TeamTraders has no firms.json entry and its RU evidence expires 31.10. Recheck official sources.",
+  "egress": "Box egress is a US IP (ipinfo country US, checked 2026-10-20). Fetched the global Russian-language pages (no /us/ or regional variant exists on these sites); no geo-redirect observed.",
+  "method": "curl of live HTML/PDF with a desktop Chrome user agent, scripts/styles stripped with BeautifulSoup, PDFs via pdftotext -layout; quotes copied verbatim and machine-checked against the saved text. Raw snapshots: /workspace/tradersfundhub/evidence/new-firms-2026-10-20/raw/ (box only).",
+  "verdict": {
+    "evidenced": true,
+    "recordTarget": "content/data/firms-pending.json (RUB-priced MOEX-futures model; no USD prices, no $100K size; needs editorial decision before firms.json)",
+    "russiaStatus": "available",
+    "russiaReason": "Inferred from operator and product, not from an eligibility clause: operator is a Russian sole proprietor (ИП, ОГРНИП) contracting under Russian law, prices in RUB, trading on Moscow Exchange futures via Finam. No published clause excluding or naming Russian residents."
+  },
+  "legal": {
+    "entity": "ИП Клычев Алишер Алиджанович",
+    "ogrnip": "323400000016841",
+    "inn": "400000476601",
+    "sourceUrl": "https://teamtraders.ru/rules",
+    "quote": "«Исполнитель» – ИП Клычев Алишер Алиджанович ОГРНИП 323400000016841 ИНН 400000476601, который дистанционно оказывает Услуги",
+    "offerRevision": "Редакция от 12 ноября 2024",
+    "note": "The /rules offer covers paid online trading-training (информационные услуги), not explicitly the internship/funded programme. https://teamtraders.ru/oferta_prop/ still returns 404 on 2026-10-20."
+  },
+  "products": {
+    "internship-2-step": {
+      "currency": "RUB",
+      "billing": "monthly",
+      "accounts": [
+        {
+          "startingBalanceRub": 500000,
+          "monthlyPriceRub": 2590,
+          "targetRub": 30000,
+          "dailyLossRub": 10000,
+          "maxLossRub": 20000
+        },
+        {
+          "startingBalanceRub": 1000000,
+          "monthlyPriceRub": 4890,
+          "targetRub": 60000,
+          "dailyLossRub": 20000,
+          "maxLossRub": 40000
+        },
+        {
+          "startingBalanceRub": 2000000,
+          "monthlyPriceRub": 8990,
+          "targetRub": 120000,
+          "dailyLossRub": 40000,
+          "maxLossRub": 80000
+        }
+      ],
+      "profitTargetPctPerStep": 6,
+      "dailyLossPct": 2,
+      "maxLossPct": 4,
+      "minTradingDaysTotal": 10,
+      "renewalDiscountPct": 20,
+      "quotes": [
+        "1 000 000 ₽ — цель 60 000 ₽ · дневной риск 20 000 ₽ · макс. риск 40 000 ₽ · стоимость 4 890 ₽",
+        "Цель по прибыли — 6%, дневной риск — 2%, максимальный риск — 4% от стартового депозита.",
+        "Минимальный срок прохождения — 10 торговых дней суммарно на оба шага отбора",
+        "Скидка на продление стажировки составляет 20% .",
+        "Стартовый баланс 500 000 ₽ Цель прибыли 30 000 ₽ Риск за сессию 10 000 ₽ Максимальный риск 20 000 ₽ Торговых сессий мин. 10"
+      ],
+      "sourceUrls": [
+        "https://teamtraders.ru/",
+        "https://teamtraders.ru/faq"
+      ],
+      "usdNote": "No USD price and no 100K-USD-equivalent size is published; nothing is converted."
+    }
+  },
+  "rules": {
+    "drawdownType": {
+      "value": "static",
+      "quote": "Дневной стоп фиксированный и считается от стартового баланса счёта.",
+      "quote2": "Если баланс счёта опускается ниже 960 000 ₽, отбор считается проваленным.",
+      "sourceUrl": "https://teamtraders.ru/faq"
+    },
+    "consistency": {
+      "value": null,
+      "note": "No consistency rule published on /, /faq or /rules."
+    },
+    "overnight": {
+      "overnightAllowed": false,
+      "weekendAllowed": false,
+      "quote": "Да, переносы позиций через ночь запрещены .",
+      "sourceUrl": "https://teamtraders.ru/faq"
+    },
+    "ea": {
+      "eaAllowed": false,
+      "quote": "Нет, использование торговых роботов и алгоритмических стратегий не предусмотрено ."
+    },
+    "copy": {
+      "copyTradingAllowed": "restricted",
+      "quote": "Мы не рекомендуем копировать сделки между разными счетами.",
+      "note": "'Not recommended', not prohibited."
+    },
+    "news": {
+      "newsTradingAllowed": true,
+      "quote": "Да, торговать новостные импульсы можно, если стратегия укладывается в правила риск-менеджмента"
+    },
+    "platforms": {
+      "value": [
+        "CScalp"
+      ],
+      "quote": "CSCALP – бесплатно всем трейдерам",
+      "note": "MOEX futures (and MOEX shares 'in connections') via Finam; new demo connections use Privod Bondar 2.0."
+    }
+  },
+  "payouts": {
+    "fundedDemoSplitPct": 50,
+    "fundedDemoSplitQuote": "Доля трейдера на финансируемом демо-счёте составляет 50% от полученной прибыли.",
+    "fundedDemoCapPct": 10,
+    "fundedDemoCapQuote": "Цель этапа — заработать 10% от размера депозита. Это же и максимальная прибыль в рамках финансируемого демо-счёта.",
+    "realAccountSplitPct": 95,
+    "realSplitQuote": "Доля трейдера составляет 95% от прибыли. Компания удерживает 5% с каждого прибыльного дня.",
+    "frequencyFaq": "При наличии положительной прибыли на счёте трейдер может еженедельно подавать заявку на вывод до 50% от текущей доступной прибыли.",
+    "frequencyHome": "Заявка на вывод: Ежедневно Лимит на вывод: Нет ограничений",
+    "schemaValue": null,
+    "frequencyNote": "Conflict: FAQ (funded demo AND real account) says weekly requests of up to 50% of available profit; homepage says daily requests with no limit. Left null.",
+    "methods": null,
+    "methodsNote": "No payout method published for the MOEX programme; requests go via the web cabinet or info@teamtraders.ru. (The separate crypto prop binam.io pays in USDT only.)",
+    "requestQuote": "Для вывода прибыли подайте заявление в личном кабинете или отправьте заявку на почту",
+    "firstPayout": "No fixed first-payout delay published; payouts start on the funded demo stage after two passed steps and a company review.",
+    "sourceUrl": "https://teamtraders.ru/faq"
+  },
+  "paymentMethods": {
+    "value": null,
+    "quote": "Оплата стоимости Услуг производится Заказчиком на условиях 100 % (стопроцентной) предварительной оплаты в безналичном порядке с использованием системы эквайринга, адаптируемой для Сайта.",
+    "note": "Training offer only; the internship checkout is in the cabinet and was not opened."
+  },
+  "discountCodes": {
+    "public": null,
+    "note": "No public discount code. 20% renewal discount is a programme rule, not a code. '-50% рибейт' is a crypto-exchange commission rebate via binam.io. Nothing for deals.json."
+  },
+  "countryAccess": {
+    "russia": "available (inferred, see verdict)",
+    "belarus": "unclear",
+    "ukraine": "unclear",
+    "kazakhstan": "unclear",
+    "note": "No country list or residency clause on /, /faq or /rules."
+  },
+  "changesVs20261001": [
+    "Funded-demo trader share is now 50% (2026-10-01 evidence: 70%). The old quote 'составляет 70% от полученной прибыли' no longer appears on /faq.",
+    "New FAQ rule: weekly withdrawal requests capped at 50% of currently available profit on funded demo and real accounts; homepage still says daily requests, no limit.",
+    "FAQ now says MOEX shares are available in connections ('Да, рынок акций доступен в подключениях').",
+    "Unchanged: prices 2 590 / 4 890 / 8 990 ₽ per month, 6% per step, 2% daily, 4% max, 10 trading days total, 95% real-account share, 20% renewal discount, overnight ban, CScalp, Finam.",
+    "Still 404: https://teamtraders.ru/oferta_prop/ (checked 2026-10-20)."
+  ]
+}

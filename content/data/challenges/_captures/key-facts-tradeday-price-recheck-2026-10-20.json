@@ -1,0 +1,96 @@
+{
+  "captureType": "key-facts-recheck",
+  "capturedAt": "2026-10-20",
+  "timezone": "Europe/Riga",
+  "firm": "tradeday",
+  "productsRechecked": [
+    "quick-pay-intraday",
+    "quick-pay-end-of-day",
+    "fast-pass-end-of-day"
+  ],
+  "fieldsRechecked": [
+    "accountSizes[].priceUsd"
+  ],
+  "sources": [
+    {
+      "url": "https://www.tradeday.com/",
+      "method": "curl server HTML about 11:55 Riga, US egress; card text '<plan> | Best Value | <drawdown> | 100k | $ | <list> | $ | <promo> | per month'",
+      "quotes": [
+        "Fast Pass | Best Value | Intraday | 100k | $ | 240 | $ | 108 | per month | Profit Target $6,000",
+        "Quick Pay | Best Value | End of Day | (Intraday Funded Drawdown) | 100k | $ | 285 | $ | 129 | per month",
+        "Fast Pass | Best Value | End of Day | 100k | $ | 350 | $ | 175 | per month",
+        "Now up to 55% OFF! Accounts from just $45!",
+        "For best pricing USE CODE \"TDNEW\""
+      ],
+      "listToPromo": {
+        "quick-pay-intraday": {
+          "25000": {
+            "list": 100,
+            "promo": 45
+          },
+          "50000": {
+            "list": 131,
+            "promo": 59
+          },
+          "100000": {
+            "list": 240,
+            "promo": 108
+          },
+          "150000": {
+            "list": 360,
+            "promo": 162
+          }
+        },
+        "quick-pay-end-of-day": {
+          "25000": {
+            "list": 120,
+            "promo": 54
+          },
+          "50000": {
+            "list": 175,
+            "promo": 79
+          },
+          "100000": {
+            "list": 285,
+            "promo": 129
+          },
+          "150000": {
+            "list": 400,
+            "promo": 180
+          }
+        },
+        "fast-pass-end-of-day": {
+          "25000": {
+            "list": 130,
+            "promo": 65
+          },
+          "50000": {
+            "list": 189,
+            "promo": 95
+          },
+          "100000": {
+            "list": 350,
+            "promo": 175
+          },
+          "150000": {
+            "list": 530,
+            "promo": 265
+          }
+        }
+      },
+      "rawFile": "/workspace/tradersfundhub/evidence/key-facts-2026-10-20/tradeday-home-1155.html"
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+      "method": "headless Chrome 2026-10-20 about 11:17 Riga",
+      "quotes": [
+        "Modified on Tue, 1 Sep at 6:47 AM",
+        "Quick Pay End of Day Evaluation … Price $120 $175 $285 $395",
+        "Quick Pay Intraday Evaluation … Price $100 $125 $230 $350",
+        "Fast Pass Evaluations … Price $130 $180 $320 $480"
+      ],
+      "status": "conflicts with homepage list on 7 of 12 tiers (agrees on 100K EOD $285)"
+    }
+  ],
+  "note": "No products array, so scripts/build-firm-rules.mjs ignores this file."
+}
