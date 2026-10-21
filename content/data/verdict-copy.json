@@ -83,11 +83,11 @@
     },
     "fxify-review": {
       "bestFor": [
-        "EA and news traders: all 5 phase challenges allow both",
-        "Getting your fee back: phase challenges and Lightning are refundable"
+        "News traders: all 5 phase challenges allow news; EAs need pre-approval",
+        "Fee refunds: One Phase, Two Phase Standard, Three Phase, Lightning Challenge"
       ],
       "notFor": [
-        "Instant Funding buyers wanting a refund: those fees are not refundable",
+        "Refund seekers on Two Phase Classic, Two Phase Pro or Instant Funding: none",
         "Fixed-floor fans on One Phase: its 6% max loss trails"
       ]
     },
@@ -257,7 +257,7 @@
       ],
       "pickB": [
         "you want an early first payout: FXIFY Lightning Challenge pays from day 7, then every 14 days (Alpha bi-weekly plans: day 14)",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no Alpha Capital fee is",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Alpha Capital fee is",
         "you trade crypto: FXIFY lists 2 crypto products; Alpha Capital lists none"
       ]
     },
@@ -741,7 +741,6 @@
       ],
       "pickB": [
         "you want a lower $100K fee: FXIFY Three Phase lists $399; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
-        "you run EAs: FXIFY allows them on 5 of its 10 products; Crypto Fund Trader restricts them everywhere",
         "you want a bigger account: FXIFY goes up to $400,000; Crypto Fund Trader tops out at $200,000"
       ]
     },
@@ -880,7 +879,7 @@
         "you want a bigger account: E8 Markets goes up to $500,000; FXIFY tops out at $400,000"
       ],
       "pickB": [
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no E8 Markets fee is",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no E8 Markets fee is",
         "you want to skip the evaluation: FXIFY sells funded accounts with no evaluation; E8 Markets doesn't",
         "you trade on MT4: FXIFY supports it; E8 Markets doesn't list it"
       ]
@@ -1127,8 +1126,7 @@
       ],
       "pickB": [
         "you trade crypto: FXIFY lists 2 crypto products; FundedNext lists none",
-        "you trade the news: FXIFY allows it on 5 of its 10 products; FundedNext restricts it everywhere",
-        "you run EAs: FXIFY allows them on 5 of its 10 products; FundedNext restricts them everywhere"
+        "you trade the news: FXIFY allows it on 5 of its 10 products; FundedNext restricts it everywhere"
       ]
     },
     "fundednext-vs-lucid-trading": {
@@ -1325,7 +1323,7 @@
     "fxify-vs-lucid-trading": {
       "pickA": [
         "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every Lucid plan has one (20%–50%)",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no Lucid Trading fee is",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Lucid Trading fee is",
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every Lucid Trading product trails"
       ],
       "pickB": [
@@ -1337,7 +1335,7 @@
     "fxify-vs-maven": {
       "pickA": [
         "you trade crypto: FXIFY lists 2 crypto products; Maven lists none",
-        "you run EAs: FXIFY allows them on 5 of its 10 products; Maven bars them everywhere"
+        "you run EAs: FXIFY allows them with pre-approval on 5 of its 10 products; Maven bars them everywhere"
       ],
       "pickB": [
         "you want a lower $100K fee: Maven Standard 3-Step lists $299; FXIFY's lowest is $399",
@@ -1348,7 +1346,7 @@
     "fxify-vs-my-funded-futures": {
       "pickA": [
         "you hold overnight: FXIFY allows it on 6 of its 10 products; My Funded Futures bars it everywhere",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no My Funded Futures fee is",
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no My Funded Futures fee is",
         "you want a static loss floor: FXIFY Two Phase Classic's 10% max loss is static; every My Funded Futures product trails"
       ],
       "pickB": [
@@ -1369,7 +1367,7 @@
       "pickA": [
         "you'd rather avoid a consistency rule: FXIFY One Phase lists none; Take Profit Trader's Test has a 50% rule",
         "you hold overnight: FXIFY allows it on 6 of its 10 products; Take Profit Trader bars it everywhere",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no Take Profit Trader fee is"
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Take Profit Trader fee is"
       ],
       "pickB": [
         "you want an early first payout: Take Profit Trader funded accounts have no minimum wait (FXIFY Lightning Challenge: day 7)",
@@ -1381,7 +1379,7 @@
       "pickA": [
         "you'd rather avoid a consistency rule: FXIFY One Phase lists none; Topstep's Combine has a 55% target",
         "you hold over weekends: FXIFY allows it on 8 of its 10 products; Topstep bars it everywhere",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no Topstep fee is"
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Topstep fee is"
       ],
       "pickB": [
         "you trade futures: every Topstep product is a futures evaluation; FXIFY lists none",
@@ -1393,7 +1391,7 @@
       "pickA": [
         "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every TradeDay plan has one (30%–45%)",
         "you hold over weekends: FXIFY allows it on 8 of its 10 products; TradeDay bars it everywhere",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no TradeDay fee is"
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no TradeDay fee is"
       ],
       "pickB": [
         "you want an early first payout: TradeDay Quick Pay pays from day 1 at a 50% split (FXIFY Lightning Challenge: day 7)",
@@ -1405,7 +1403,7 @@
       "pickA": [
         "you'd rather avoid a consistency rule: FXIFY One Phase lists none; every Tradeify plan has one (20%–40%)",
         "you hold over weekends: FXIFY allows it on 8 of its 10 products; Tradeify bars it everywhere",
-        "you want the fee back: 6 of 10 FXIFY products are refundable; no Tradeify fee is"
+        "you want the fee back: 4 of 10 FXIFY products are refundable; no Tradeify fee is"
       ],
       "pickB": [
         "you want an early first payout: Tradeify Select Daily pays from day 1 (FXIFY Lightning Challenge: day 7)",
