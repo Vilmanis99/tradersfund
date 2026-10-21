@@ -83,14 +83,15 @@
       "trading-combine-no-activation-fee-path"
     ],
     "kind": "source-conflict",
-    "status": "watch",
+    "status": "verified",
     "observedAt": "2026-09-08",
     "lastCheckedAt": "2026-10-20",
-    "title": "Topstep still gives different minimum-day descriptions",
-    "summary": "The Combine parameters article says passing can take as few as two days; the marketing FAQ says there is no minimum time requirement. Both statements were visible during this capture. TFH records the minimum-day field as unverified instead of publishing a verified two-day or zero-day minimum.",
-    "traderImpact": "Check the applicable Combine consistency requirement and obtain clarification before planning a one-day pass. The six monthly prices were separately verified; this unresolved rule does not establish a price change or a new account restriction.",
+    "title": "Topstep minimum days: no formal minimum, two days in practice",
+    "summary": "Resolved 2026-10-20: Topstep sets no stand-alone minimum-days rule (\"There’s no minimum time requirement to pass\"), but the 55% Consistency Target means no single day may exceed 55% of total profit, so a one-day pass is impossible and two trading days is the practical minimum (\"You can pass in as few as 2 days, as long as no single day exceeds 55% of your total profit\"). The two statements describe the same rule, not a conflict. The minimum-day field stays empty because no explicit minimum is stated.",
+    "traderImpact": "Plan for at least two trading days and keep the best day at or below 55% of total profit. The six monthly prices were separately verified; this resolution does not change a price or add an account restriction.",
     "sourceUrls": [
       "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+      "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
       "https://www.topstep.com/topstep-prop"
     ]
   },
@@ -570,11 +571,11 @@
       "predictions-elite-1-step"
     ],
     "kind": "source-conflict",
-    "status": "watch",
+    "status": "verified",
     "observedAt": "2026-07-27",
     "lastCheckedAt": "2026-10-20",
     "title": "Maven's Prediction pages now agree on loss limits",
-    "summary": "Resolved on 20 October: the FAQ now gives both Essential (trailing) and Elite (static) a 5% Phase-1 and 8% funded maximum loss, matching the prediction-markets cards. The FAQ previously described Essential as 3% trailing and Elite as 5% static. Kept as a watch until the stored Prediction product loss limits are updated to match.",
+    "summary": "Resolved 2026-10-20: the FAQ now gives both Essential (trailing) and Elite (static) a 5% Phase-1 and 8% funded maximum loss, matching the prediction-markets cards. The FAQ previously described Essential as 3% trailing and Elite as 5% static. The stored Prediction products now carry the same 5% Phase-1 and 8% funded maximum loss.",
     "traderImpact": "Use 5% (Phase 1) and 8% (funded) maximum loss for both Prediction paths; the two differ in drawdown model (trailing vs static). Confirm the rule set in the account agreement before purchase.",
     "sourceUrls": [
       "https://maventrading.com/prediction-markets",
