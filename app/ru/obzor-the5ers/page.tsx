@@ -33,6 +33,10 @@ const CHECKED = '21.10.2026'
 // BrightFunded help article «What countries are restricted» (updated 15.09.2026), re-read on CHECKED.
 // Crypto Fund Trader: FAQ + Terms §7.3 quotes in content/data/russian-market-evidence.json (Prop Firm Tracker, 20.10.2026).
 const CFT_ACCESS = '20.10.2026'
+// The5ers Futures: figures read on https://the5ers.com/futures/ on this date (Tracker e47c653, evidence
+// /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). Hard-coded on purpose: e47c653 may be dropped.
+// SHIP-DAY CHECK: the Swing tab is labelled «Summer Plan»; re-read the Swing $25K/$50K prices on 23.10 before release.
+const FUTURES_CHECKED = '21.10.2026'
 
 const SRC = {
   terms: 'https://the5ers.com/terms-and-conditions/',
@@ -48,6 +52,7 @@ const SRC = {
   hsPayout: 'https://the5ers.com/faqs/payout-policy-and-hub-credit-in-the-high-stakes-program/',
   hyperFaq: 'https://the5ers.com/faqs/how-does-the-hyper-growth-program-work/',
   bootcampFaq: 'https://the5ers.com/faqs/how-does-the-bootcamp-program-work/',
+  futures: 'https://the5ers.com/futures/',
   consistency: 'https://the5ers.com/faqs/what-is-constancy-rule/',
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
   cftTerms: 'https://cryptofundtrader.com/terms-and-conditions/',
@@ -129,7 +134,8 @@ const ALT_NOTES: Record<string, { note: string; sourceHref?: string; fallbackHre
 
 export default function RussianThe5ersReviewPage() {
   const firm = getAllFirms().find(candidate => candidate.name === 'The5ers')
-  const products = getChallengesByFirm('the5ers')
+  // CFD programmes only: the futures section cites the5ers.com/futures directly (data e47c653 may be dropped from the daily).
+  const products = getChallengesByFirm('the5ers').filter(product => product.assetClass === 'cfd')
   const fresh = products.filter(product => isChallengeFresh(product))
   const allFresh = isProductSetFresh(products) && isChallengeFresh({ sourceCapturedAt: CHECKED_ISO })
   const bySlug = (slug: string) => fresh.find(product => product.productSlug === slug)
@@ -186,7 +192,7 @@ export default function RussianThe5ersReviewPage() {
     },
     {
       q: 'А из Казахстана, Беларуси или Украины?',
-      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Оговорка в условиях касается «резидентов или граждан», поэтому решают страна проживания и гражданство, а не язык. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${CHECKED}).`,
+      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Решает не язык: нумерованные условия говорят о стране проживания, а оговорка в подвале сайта — о «резидентах или гражданах»; вопрос о гражданстве задавайте поддержке письменно до оплаты. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${CHECKED}).`,
     },
     {
       q: 'Сколько стоит челлендж The5ers?',
@@ -200,7 +206,7 @@ export default function RussianThe5ersReviewPage() {
     },
     {
       q: 'Какая просадка в The5ers?',
-      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и лимит 3% в день. Bootcamp: статическая просадка 5% на этапах оценки — граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}).`,
+      a: `High Stakes: 5% в день и 10% от начального баланса, на счетах $50K и $100K — 4% и 8%. Pro Growth и Hyper Growth: уровень закрытия 6% ниже начального баланса и лимит 3% в день. Bootcamp: статическая просадка 5% на этапах оценки — граница закрытия считается от начального баланса и не поднимается вслед за прибылью (по данным на ${CHECKED}). Фьючерсы: 4% с пересчётом по закрытию дня (EOD), по данным the5ers.com/futures на ${FUTURES_CHECKED}.`,
     },
     {
       q: 'Какие альтернативы The5ers для трейдеров из России?',
@@ -238,8 +244,8 @@ export default function RussianThe5ersReviewPage() {
           <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} /> · условия проверены {CHECKED}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
-            The5ers — форекс-проп-фирма, основанная в {firm?.founded ?? '2016'} году, с четырьмя программами: двухэтапной High Stakes,
-            одноэтапными Pro Growth и Hyper Growth и трёхэтапной Bootcamp. Резидентам России она недоступна: Россия и Беларусь
+            The5ers — форекс-проп-фирма, основанная в {firm?.founded ?? '2016'} году, с четырьмя CFD-программами — двухэтапной High Stakes,
+            одноэтапными Pro Growth и Hyper Growth и трёхэтапной Bootcamp — и отдельными фьючерсными программами. Резидентам России она недоступна: Россия и Беларусь
             стоят в списке запрещённых территорий её условий. Из России смотрите BrightFunded или Crypto Fund Trader. Если вы живёте в
             другой стране, ниже — цены, правила и выплаты, сверенные с официальными страницами.
           </p>
@@ -264,8 +270,8 @@ export default function RussianThe5ersReviewPage() {
         <div className="ru-shell ru-content" data-russian-the5ers-verdict="human">
           <h2>Коротко: сильная форекс-проп-фирма, но не для резидентов РФ</h2>
           <p>
-            The5ers работает с {firm?.founded ?? '2016'} года и продаёт не один челлендж, а четыре разных контракта. Самый дешёвый вход — {usd(minPrice)} за
-            {minPriceTier ? ` ${minPriceTier.product.productName} ${sizeLabel(minPriceTier.tier.sizeUsd)}` : ' минимальный счёт'}. У всех программ нет
+            The5ers работает с {firm?.founded ?? '2016'} года и продаёт не один челлендж, а четыре разных CFD-контракта (плюс фьючерсы). Самый дешёвый вход — {usd(minPrice)} за
+            {minPriceTier ? ` ${minPriceTier.product.productName} ${sizeLabel(minPriceTier.tier.sizeUsd)}` : ' минимальный счёт'}. У всех CFD-программ нет
             срока на прохождение, а максимальный убыток считается от начального баланса, а не от пика счёта. Слабые места тоже конкретные:
             3,5% с каждой выплаты, первая выплата только через 14 дней после финансирования, окно новостей в High Stakes и правило
             согласованности, которое фирма применяет «в зависимости от типа счёта или региона», не называя программы.
@@ -307,14 +313,15 @@ export default function RussianThe5ersReviewPage() {
               </tbody>
             </table>
           </div>
-          <p>
-            Условия разрешают открыть счёт только тому, кто «do not reside in any Forbidden Territory», то есть не проживает в такой стране. Оговорка
-            на той же странице и в подвале сайта формулирует шире: услуги недоступны «residents or citizens» — резидентам <em>или гражданам</em> этих стран, а пользоваться
-            сервисом с запрещённой территории «strictly prohibited». Формулировки расходятся, поэтому:
-          </p>
+          <p>Два текста на одной странице условий описывают ограничение по-разному:</p>
+          <ul data-russian-the5ers-residence-clauses="terms-vs-disclaimer">
+            <li><strong>Нумерованные условия (раздел 1 «Eligibility», пункты 3, 9 и 10)</strong> говорят только о проживании: счёт можно открыть, если вы «do not reside in any Forbidden Territory»; пользователь заявляет, что «do not reside in a prohibited jurisdiction»; счёт закрывают, если выяснится, что вы «a resident of a forbidden/sanctioned territory».</li>
+            <li><strong>Ненумерованная оговорка внизу страницы и в подвале сайта</strong> шире: услуги «not available to residents or citizens» этих стран, а «Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited».</li>
+          </ul>
+          <p>Документы противоречат друг другу в вопросе гражданства. Трактует условия сама The5ers; статус для России остаётся «ограничена». Что это значит на практике:</p>
           <ul data-russian-the5ers-access-explainer="three-cases">
             <li><strong>Вы живёте в России</strong> — нет: это прямо запрещено условиями.</li>
-            <li><strong>Вы гражданин РФ и живёте в Казахстане, Грузии, Армении, Сербии или ЕС</strong> — оговорка «residents or citizens» исключает и граждан, хотя пункт о допуске говорит только о проживании. Исходите из того, что доступа нет; без письменного подтверждения The5ers не платите.</li>
+            <li><strong>Вы гражданин РФ и живёте в Казахстане, Грузии, Армении, Сербии или ЕС</strong> — нумерованные условия говорят о проживании, оговорка в подвале — и о гражданстве. Мы не утверждаем, что доступ есть: задайте вопрос о гражданстве поддержке письменно до оплаты.</li>
             <li><strong>Вы живёте за рубежом и приезжаете в Россию</strong> — пользоваться сервисом с запрещённой территории нельзя, поэтому не торгуйте и не входите в кабинет, пока находитесь в РФ.</li>
           </ul>
           <p>
@@ -463,6 +470,24 @@ export default function RussianThe5ersReviewPage() {
         </div>
       </section>
 
+      <section className="ru-section" id="futures">
+        <div className="ru-shell ru-content" data-russian-the5ers-futures="no-cta">
+          <h2>The5ers Futures: фьючерсы CME</h2>
+          <p>
+            Кроме CFD-программ, The5ers продаёт отдельный фьючерсный продукт на контрактах CME с двумя вариантами. Day Trade: $25K — $59,
+            $50K — $100; позиции нужно закрывать до конца сессии. Swing: $25K — $69, $50K — $120 (на странице вкладка с пометкой Summer Plan);
+            можно держать через ночь 1 мини- или 10 микроконтрактов. Это цены со страницы программы, на кассе мы их не проверяли.
+          </p>
+          <p>
+            Правила у обоих вариантов общие: цель 6% на оценке и 4% на финансируемом счёте, максимальный убыток 4% с пересчётом по закрытию дня
+            (EOD: от наибольшего баланса или эквити на полночь, то есть граница подтягивается за прибылью), правило согласованности 40% на позицию, доля 80/20. Взнос возвращается после
+            третьей выплаты. Перенос через выходные запрещён, алгоритмическая и высокочастотная торговля — тоже. Ограничение для России
+            действует и здесь: условия The5ers общие для всех услуг. <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} />
+          </p>
+          <p className="ru-source-line">Источники: <S href={SRC.futures}>the5ers.com/futures</S>, <S href="https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/">общие правила фьючерсной программы</S> — по данным the5ers.com/futures, {FUTURES_CHECKED}.</p>
+        </div>
+      </section>
+
       <section className="ru-section" id="vyplaty">
         <div className="ru-shell ru-content">
           <h2>Выплаты: раз в 2 недели, комиссия 3,5%</h2>
@@ -511,8 +536,7 @@ export default function RussianThe5ersReviewPage() {
             <li><strong>Платформы.</strong> Для клиентов не из США — MetaTrader 5, cTrader и TradingView; клиентам из США доступен только TradingView. cTrader стоит на $10 больше цены программы. Выбор платформы окончательный: после покупки сменить её нельзя.</li>
             <li><strong>Копирование сделок.</strong> Условия прямо запрещают координацию и копирование сделок с другими трейдерами или счетами.</li>
             <li><strong>Советники (EA).</strong> Ограничены: условия запрещают, например, советники, которые скальпируют на ночном ролловере, и сторонние советники, уже используемые другими трейдерами.</li>
-            <li><strong>Перенос позиций.</strong> Через ночь и выходные разрешён во всех программах; за удержание индексов на выходных фирма предупреждает о высоком свопе.</li>
-            <li><strong>Фьючерсы.</strong> Условия упоминают торговлю фьючерсными контрактами, а FAQ о минимальных выплатах называет фьючерсные программы. Их правила мы не проверяли; обзор описывает только CFD-программы.</li>
+            <li><strong>Перенос позиций.</strong> Через ночь и выходные разрешён во всех CFD-программах; за удержание индексов на выходных фирма предупреждает о высоком свопе.</li>
             <li><strong>Неактивность.</strong> Счёт без сделок больше 30 дней подряд закрывается или истекает.</li>
             <li><strong>Правило согласованности.</strong> На страницах программ его нет, но в FAQ The5ers сказано, что процент зависит от типа счёта или региона — 30%, 50% или другой. Лучший день не должен превышать этот процент от общей прибыли при запросе выплаты или роста счёта. Какие счета затронуты, фирма не уточняет: спросите поддержку для своего счёта.</li>
           </ul>
@@ -527,9 +551,9 @@ export default function RussianThe5ersReviewPage() {
           <h2>Плюсы и минусы</h2>
           <h3>Плюсы</h3>
           <ul>
-            <li>Нет срока на прохождение ни в одной из четырёх программ.</li>
+            <li>Нет срока на прохождение ни в одной из четырёх CFD-программ.</li>
             <li>Низкий вход: от {usd(minPrice)} в High Stakes, а Bootcamp откладывает основную плату до финансирования.</li>
-            <li>Статическая просадка во всех программах: граница закрытия считается от начального баланса, прибыль увеличивает запас до неё.</li>
+            <li>Статическая просадка во всех CFD-программах: граница закрытия считается от начального баланса, прибыль увеличивает запас до неё.</li>
             <li>Опубликованы способы выплат, сроки обработки, минимумы и комиссии, включая криптовалюту и Rise.</li>
           </ul>
           <h3>Минусы</h3>
