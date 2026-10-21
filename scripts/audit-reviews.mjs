@@ -7142,7 +7142,7 @@ function checkCryptoLandingCluster() {
     rows.push('best-crypto-prop-firms landing config is missing')
   } else {
     for (const fragment of [
-      "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      "} from '@/lib/cryptoMarketEvidence'",
       'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
       'return products.length === productSlugs.length ? products : []',
       'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',

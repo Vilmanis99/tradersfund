@@ -12,7 +12,7 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
-import cryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import { cryptoMarketEvidence } from '@/lib/cryptoMarketEvidence'
 import {
   getAllFirms,
   getChallengesByFirm,
