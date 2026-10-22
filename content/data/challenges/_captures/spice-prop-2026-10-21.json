@@ -1,0 +1,60 @@
+{
+  "firmSlug": "spice-prop",
+  "captureType": "new-firm-research",
+  "capturedAt": "2026-10-21",
+  "capturedAtTimestamp": "2026-10-21T16:28:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": null,
+  "question": "RU SEO Lead (due 26 Oct, /ru/obzor-spice-prop ships 28 Oct): capture the terms (sanctions exclusion, Czech law, Czech and HK payment companies), add a firms-pending entry (russiaStatus 'unclear' unless a primary source says otherwise), find the NSSMC primary blacklist entry.",
+  "egress": "Box egress is a US IP; global spiceprop.com pages (EN and /ru), no VPN or proxy.",
+  "method": "curl of live HTML plus headless Chrome render (the country list is client-rendered). Raw: /workspace/tradersfundhub/evidence/spice-prop-2026-10-21/ (terms.*, en.*, ru.*, qa.*, nssmc/).",
+  "verdict": {
+    "russiaStatus": "unclear",
+    "russiaReason": "Not on the footer list; Terms 2.2/9.4 exclude citizens, residents or persons located in 'restricted or sanctioned countries' and persons on EU/UN/UK/OFAC lists without naming Russia; no first-party statement either way."
+  },
+  "terms": {
+    "url": "https://spiceprop.com/terms-conditions",
+    "title": "SpiceProp — General Terms of Service",
+    "effectiveDate": "2025-10-16",
+    "effectiveQuote": "Effective Date: 16 October 2025",
+    "annexA": {
+      "title": "Annex A: Special Provisions (Vietnam and Republic of Korea)",
+      "effectiveQuote": "Effective Date: March 20, 2026"
+    },
+    "clauses": {
+      "2.2": [
+        "Reside in a country where our Services are legally available (restricted regions are listed on our website);",
+        "Citizens, residents, or persons located in restricted or sanctioned countries are not eligible."
+      ],
+      "9.4": "Services are unavailable to residents of restricted/sanctioned regions; Persons on EU, UN, UK, or OFAC sanctions lists; and Users attempting to disguise illegal activity.",
+      "9.6": "Users must ensure that their KYC verification and trading activities are conducted using IT infrastructure consistent with their actual geolocation.",
+      "11.3": "These Terms are governed by Czech law. Exclusive jurisdiction lies with the courts of the Czech Republic, competent for the registered office of SpiceProp SRO.",
+      "11.8": "Address: Bucharova 2657/12, 158 00 Prague, Czech Republic",
+      "whoWeAre": "SpiceProp is operated by SpiceProp SL LTD and its affiliates, including SpiceProp HK Limited and SpiceProp SRO."
+    }
+  },
+  "footer": {
+    "url": "https://spiceprop.com/",
+    "alsoOn": [
+      "https://spiceprop.com/qa",
+      "https://spiceprop.com/ru",
+      "https://spiceprop.com/terms-conditions"
+    ],
+    "operatorQuote": "This website is operated by SPICEPROP SL LTD, Rodney Court Building, Rodney Bay, Gros Islet, Saint Lucia.",
+    "paymentsQuote": "Payment facilitators: SPICEPROP HK LIMITED, Flat/Rm 01-02, Austin Tower, 152 Austin Road, Tsim Sha Tsui CORP, Hong Kong; and SPICEPROP SRO, 158 00, Prague, Czech Republic, Bucharova 2657/12.",
+    "countriesQuote": "To avoid potential regulatory issues, even if no trading is occurring, we cannot register citizens from the following countries: USA North Korea Eritrea Iran Iraq Liberia Libya Somalia Sudan Syria Japan Canada Puerto Rico Indonesia",
+    "countriesQuoteRu": "Во избежание потенциального нарушения законодательства, даже в случае отсутствия торговой активности, мы не можем регистрировать клиентов из следующих стран:",
+    "promoQuote": "Offer is valid until 11:59 PM on 23 October 2026 (CET)"
+  },
+  "nssmc": {
+    "listUrl": "https://www.nssmc.gov.ua/activity/insha-diialnist/zakhyst-investoriv/",
+    "capturedAt": "2026-10-21",
+    "entryQuote": "SpiceProp https://spiceprop.com/ №10/21/2485/К04 від 24.06.2025",
+    "announcementUrl": "https://www.nssmc.gov.ua/budte-obachni-nktspfr-vyiavyla-4-novi-scam-proiekty/",
+    "announcementDate": "2025-06-25"
+  },
+  "notFound": [
+    "spiceprop.com/faq returns 404 (RU SEO Lead, 21.10); spiceprop.com/about-us returns 404 (the page is /about)",
+    "Official court-register record for case 320/3369/26 (seen only on data-ua.com)"
+  ]
+}

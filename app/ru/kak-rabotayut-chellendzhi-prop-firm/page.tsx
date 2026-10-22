@@ -14,8 +14,8 @@ import { compareRussianRanking } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
-const TITLE = 'Челлендж проп-фирмы: 5 этапов и правила (2026)'
-const DESCRIPTION = 'Как работает челлендж проп-фирмы: оплата, этапы оценки, просадка, правила профинансированного этапа, выплаты и проверка страны на текущих примерах.'
+const TITLE = 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов'
+const DESCRIPTION = 'Челлендж в трейдинге простыми словами: как работает челлендж проп-фирмы — оплата, этапы оценки, просадка, правила funded-счёта, выплата и проверка страны.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

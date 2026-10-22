@@ -87,8 +87,11 @@ for (const file of downstream) {
   }
 }
 const watches = json('content/data/challenge-watch.json').filter(entry => entry.firmSlug === 'topstep')
-assert.equal(watches.length, 3)
-assert.deepEqual(watches.map(entry => entry.status).sort(), ['verified', 'verified', 'watch'])
+assert(watches.length > 0, 'Topstep keeps its dated watch history')
+const minimumDays = watches.find(entry => entry.id === 'topstep-minimum-days-source-conflict-2026-09-08')
+assert.equal(minimumDays?.status, 'verified', 'minimum-days conflict is resolved: no formal minimum, two days in practice')
+assert(minimumDays.summary.includes('55%') && minimumDays.summary.includes('two trading days'), 'the resolution names the 55% Consistency Target and the two-day practical minimum')
+assert(products.every(product => product.minTradingDays == null), 'no explicit minimum-days rule is stored while Topstep states none')
 for (const entry of watches) assert.deepEqual(validateWatchCaptureProvenance(entry, products, () => { throw new Error('Full capture needs no rule-only lookup') }), [])
 assert(review.includes('Consistency target 55%') && review.includes('$1,650'))
 const consistencyGuide = read('content/posts/what-is-prop-firm-consistency-rule.md')

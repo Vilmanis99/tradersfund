@@ -6,6 +6,8 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { firmSlug } from '@/lib/firmSlug'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
 import { getRuCompareVerdict, getRuReviewVerdict } from '@/lib/ruVerdicts'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { compareRussianRanking } from '@/lib/russianRanking'
 
 /** RU Phase 2: Phase 1 verdict layout with RU labels and ru-RU formatting. */
 
@@ -120,7 +122,8 @@ export function RuReviewVerdictBox({ route, campaign, sourcesHref, terms }: { ro
           <div className="ru-p1-verdict__head">
             <div>
               <p id="ru-verdict-title" className="ru-p1-verdict__name">{verdict.firm}</p>
-              <RuAccessBadgeView firm={firm ? firmSlug(firm.name) : verdict.firm} status={verdict.status} />
+              {/* One Russia badge per box: it sits on the CTA row (RuCta -> RuGoLink). Header badge only when there is no CTA. */}
+              {!firm && <RuAccessBadgeView firm={verdict.firm} status={verdict.status} />}
             </div>
             {firm && <div className="ru-p1-verdict__score" aria-label={`Наша оценка: ${num(firm.score, 1)} из 10`}><strong>{firm.score.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong><span>/10</span></div>}
           </div>
@@ -199,6 +202,12 @@ export function RuComparePickVerdict({ route, campaign }: { route: string; campa
   const facts = sides.map(side => compareFacts(side.firm!, side.products))
   const labels = Object.keys(facts[0].rows).filter(label => facts.some(f => f.rows[label]))
   const mixed = facts[0].currency && facts[1].currency && facts[0].currency !== facts[1].currency
+  // CTA blocks follow the RU ranking (open-for-Russia pin, then status); the title and facts table keep slug order.
+  const ranked = [...sides].sort((x, y) => compareRussianRanking(
+    { slug: firmSlug(x.firm!.name), score: x.firm!.score, name: x.firm!.name },
+    { slug: firmSlug(y.firm!.name), score: y.firm!.score, name: y.firm!.name },
+    russiaStatusFor,
+  ))
   return (
     <section className="ru-section ru-p1-pick-section">
       <div className="ru-shell">
@@ -207,13 +216,13 @@ export function RuComparePickVerdict({ route, campaign }: { route: string; campa
           <p className="ru-p1-pick__checked">По данным на {ruDate(verdict.dataAsOf)}</p>
           <p className="ru-p1-pick__line">{verdict.verdict}</p>
           <div className="ru-p1-pick__quick" data-ru-pick-quick>
-            {sides.map(side => <RuCta key={side.key} firm={side.firm!} from={`ru-pick-quick-${campaign}`} compact />)}
+            {ranked.map(side => <RuCta key={side.key} firm={side.firm!} from={`ru-pick-quick-${campaign}`} compact />)}
           </div>
           <div className="ru-p1-pick__cols">
-            {sides.map(side => (
+            {ranked.map(side => (
               <div key={side.key} className="ru-p1-pick__col">
                 <p className="ru-p1-pick__h">{side.picks.length ? `Выбирайте ${side.name}, если…` : side.name}</p>
-                <RuAccessBadgeView firm={firmSlug(side.name)} status={side.status} />
+                {/* One Russia badge per column: it follows the CTA below (RuCta -> RuGoLink). */}
                 {side.picks.length > 0 && <ul>{side.picks.map(line => <li key={line}>{line}</li>)}</ul>}
                 <RuCta firm={side.firm!} from={`ru-pick-${campaign}`} />
               </div>

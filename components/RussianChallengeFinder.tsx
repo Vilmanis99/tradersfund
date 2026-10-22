@@ -13,7 +13,7 @@ import { trackSiteEvent } from '@/lib/clientAnalytics'
 import { russianPayoutRequestLabel } from '@/lib/russianProgrammeLabels'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
-import { RuGoLink } from '@/components/RuGoLink'
+import { RuGoLinkView } from '@/components/RuGoLinkView'
 
 const UNKNOWN = 'Нет подтверждённых данных'
 const firmLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded' ? 'BrightFunded' : row.firm.name
@@ -214,7 +214,7 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
                   : 'Страновые источники требуют повторной проверки. Прежнее отсутствие России в списках не подтверждает доступ сегодня; запросите ответ поддержки до оплаты.'}
               </div>}
               <div className="ru-finder-card-actions"><button type="button" aria-pressed={isSelected} aria-label={`${isSelected ? 'Убрать из сравнения' : 'Сравнить'} ${firmLabel(row)} ${productLabel(row)}`} disabled={!isSelected && selected.length >= 3} onClick={() => toggle(row)}>{isSelected ? <Check size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}{isSelected ? 'В сравнении' : 'Сравнить'}</button><Link href={row.firm.reviewUrl}>Разбор правил <ArrowRight size={14} aria-hidden="true" /></Link></div>
-              <RuGoLink firm={row.firm.slug} className="ru-finder-visit" href={`/go/${row.firm.slug}?from=ru-challenge-finder-${row.product.slug}`} prefetch={false} rel={row.firm.isPartner ? 'sponsored nofollow noopener' : 'nofollow noopener'}>Проверить условия у {firmLabel(row)} ↗</RuGoLink>
+              <RuGoLinkView firm={row.firm.slug} status={row.firm.russiaStatus ?? 'unverified'} className="ru-finder-visit" href={`/go/${row.firm.slug}?from=ru-challenge-finder-${row.product.slug}`} prefetch={false} rel={row.firm.isPartner ? 'sponsored nofollow noopener' : 'nofollow noopener'}>Проверить условия у {firmLabel(row)} ↗</RuGoLinkView>
               <span className="ru-source-line">Данные проверены: {row.product.capturedAt}{row.firm.isPartner ? ' · Партнёрская ссылка' : ' · Без партнёрской комиссии'}</span>
             </article>
           })}

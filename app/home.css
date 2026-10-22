@@ -150,6 +150,10 @@
 }
 @media (prefers-reduced-motion: reduce) { .th-btn, .th-guide { transition: none; } .th-btn--amber:hover, .th-guide:hover { transform: none; } }
 .th-row-badge { margin-top: var(--space-2); text-align: right; }
+/* RU: the Russia-access badge follows the CTA in the DOM (read right after it) but still shows on its own line below the actions. */
+.th-row-actions[data-row-badge="after-cta"] { flex-wrap: wrap; row-gap: var(--space-2); }
+.th-row-actions[data-row-badge="after-cta"] > .ru-access { order: 3; flex-basis: 100%; text-align: right; }
+.th-row-actions[data-row-badge="after-cta"] .ru-badge { white-space: nowrap; }
 @media (max-width: 380px) {
   .th-wrap { padding: 0 1rem; }
   .th-cards { margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
@@ -181,6 +185,12 @@
 .tf-foot__fresh { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin: 0; font-size: 0.75rem; color: #9fb7b1; }
 .tf-foot__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-bright); box-shadow: 0 0 0 3px rgba(95,212,180,0.18); }
 .tf-foot__newsletter { margin-top: var(--space-4); max-width: 22rem; }
+.tf-foot .ru-tg { margin-top: var(--space-4); max-width: 22rem; grid-template-columns: auto minmax(0, 1fr); align-items: start; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #dbe8e4; }
+.tf-foot .ru-tg__title { color: #fff; font-size: 0.9rem; }
+.tf-foot .ru-tg__lead { color: #9fb7b1; font-size: 0.8rem; }
+.tf-foot .ru-tg__btn { grid-column: 2; justify-self: start; color: #fff; background: #229ed9; border-color: #229ed9; padding: 0.4rem 0.95rem; font-size: 0.85rem; }
+.tf-foot .ru-tg__btn:hover { background: #1b8bc0; }
+.tf-foot .ru-tg__btn:focus-visible { outline-color: var(--brand-bright); }
 .tf-foot__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
 .tf-foot__heading { margin: 0 0 var(--space-3); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
 .tf-foot__col ul, .tf-foot__legal { list-style: none; margin: 0; padding: 0; }
@@ -291,5 +301,7 @@
 .uc-limits span { flex-basis: 100%; }
 .uc-limits strong { font-size: 1.125rem; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
 .uc-panel__lead { margin: 0; font-size: 0.8125rem; color: var(--muted); }
+.uc-panel__more { margin: 0.6rem 0 0; font-size: 0.8125rem; }
+.uc-panel__more a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
 .uc-bottom { align-items: start; }
 .uc-step__name, .uc-step__value, .uc-step__sub { overflow-wrap: anywhere; }

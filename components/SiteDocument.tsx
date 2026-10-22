@@ -1,9 +1,11 @@
-import type { Metadata } from 'next'
+/**
+ * The <html> document shared by every root layout: the English sections render
+ * it with lang="en" (components/EnglishRootLayout.tsx) and app/ru/layout.tsx with
+ * lang="ru", so the server HTML of every page carries its real language,
+ * crawlers that skip JS included.
+ */
 import { Suspense } from 'react'
-import './globals.css'
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/schema'
-import './light-platform.css'
-import './home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
@@ -14,37 +16,7 @@ import { getAllPosts } from '@/lib/mdx'
 import { isNewsletterConfigured } from '@/lib/brevo'
 import { buildOutboundRelationships } from '@/lib/outboundDestinations'
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://tradersfundhub.com'),
-  title: {
-    default: 'Traders Fund Hub | Best Prop Firm Reviews & Comparisons',
-    template: '%s | TFH',
-  },
-  description: 'Traders Fund Hub is your trusted source for in-depth prop firm reviews, comparisons, and trading education. Find the best prop firm for your needs.',
-  keywords: 'prop firms, prop firm reviews, funded trading, FTMO, FundedNext, FundingPips, trading education',
-  authors: [{ name: 'Traders Fund Hub' }],
-  openGraph: {
-    type: 'website',
-    siteName: 'Traders Fund Hub',
-    url: 'https://tradersfundhub.com',
-  },
-  twitter: { card: 'summary_large_image' },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      // Allow full-size image previews (Google Discover + image-rich SERPs)
-      // and uncapped text snippets.
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
-    },
-  },
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function SiteDocument({ lang, children }: { lang: 'en' | 'ru'; children: React.ReactNode }) {
   const outboundRelationships = buildOutboundRelationships(getAllFirms())
   const firms = getAllFirms()
   const challenges = getAllChallenges()
@@ -58,11 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const posts = getAllPosts()
 
   return (
-    <html lang="en" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang={lang} data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} suppressHydrationWarning>
-        {/* Keep the root document language aligned with the route before hydration.
-            The Russian segment also carries lang="ru" for crawlers and assistive
-            technology that do not execute scripts. */}
+        {/* The server already renders the route's language (each locale has its
+            own root layout); this keeps it aligned on any client-side transition. */}
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.lang = window.location.pathname.startsWith('/ru') ? 'ru' : 'en';",

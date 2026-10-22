@@ -2,7 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowLeft, Search } from 'lucide-react'
 
-// Served with HTTP 404 for unknown URLs and notFound() calls outside /ru.
+// English 404: rendered by app/global-not-found.tsx for unmatched URLs and by
+// each English section's not-found.tsx for notFound() calls outside /ru.
 export const metadata: Metadata = {
   title: { absolute: 'Page not found | TradersFundHub' },
   description: 'This page does not exist or has moved. Browse independent prop-firm reviews, comparisons and challenge data on TradersFundHub.',

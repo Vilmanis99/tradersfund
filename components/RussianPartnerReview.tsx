@@ -20,6 +20,9 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
+import PriceMatrix from '@/components/PriceMatrix'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -96,12 +99,6 @@ function productPriceRange(product: Challenge) {
     : `${formatCurrency(values[0], currency)}–${formatCurrency(values.at(-1)!, currency)}`
 }
 
-function tierPrice(tier: Challenge['accountSizes'][number]) {
-  if (tier.priceUsd != null) return formatCurrency(tier.priceUsd, 'USD')
-  if (tier.priceEur != null) return formatCurrency(tier.priceEur, 'EUR')
-  return 'не опубликована'
-}
-
 function targetLabel(product: Challenge) {
   if (!product.profitTargets) return 'без цели оценки'
   const targets = [product.profitTargets.phase1, product.profitTargets.phase2, product.profitTargets.phase3]
@@ -175,6 +172,7 @@ export default function RussianPartnerReview({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={[affiliateSlug]} from={`ru-${affiliateSlug}-review-mobile-sticky`} />
       {faqSchemaCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -198,6 +196,7 @@ export default function RussianPartnerReview({
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
             <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
           </div></RuCapturedTerms>} />
+      <RuTelegramBlock placement={path.replace(/^\/ru\//, '')} />
       <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
@@ -240,7 +239,7 @@ export default function RussianPartnerReview({
 
               <div className="ru-review-firm-action">
                 <p>Сначала проверьте страну, точный продукт, платформу и цикл выплаты; затем сверяйте условия при оплате.</p>
-                <RuGoLink firm={affiliateSlug}
+                <RuGoLink prefetch={false} firm={affiliateSlug}
                   href={`/go/${affiliateSlug}?from=${summaryCampaign}`}
                   rel="sponsored nofollow noopener"
                   className="btn-primary btn-glow"
@@ -311,22 +310,16 @@ export default function RussianPartnerReview({
       <section className="ru-section" id="prices">
         <div className="ru-shell">
           <h2>Каждая опубликованная цена</h2>
-          <div className="ru-table-wrap">
-            <table className="ru-table">
-              <thead><tr><th>Продукт</th><th>Размер счёта</th><th>Цена</th><th>Возврат</th><th>Источник</th></tr></thead>
-              <tbody>
-                {pricedTiers.map(({ product, tier }) => (
-                  <tr key={`${product.productSlug}-${tier.sizeUsd}`}>
-                    <td>{product.productName}</td>
-                    <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
-                    <td>{tierPrice(tier)}</td>
-                    <td>{tier.refundable == null ? 'не подтверждено' : tier.refundable ? 'да' : 'нет'}</td>
-                    <td>{product.sourceCapturedAt}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PriceMatrix
+            products={freshProducts}
+            firmName={firmName}
+            firmSlug={firmSlug}
+            locale="ru"
+            wrapperClassName="ru-table-wrap"
+            renderEmpty
+            ariaLabel={`Цены ${firmName} по размеру счёта — таблицу можно прокрутить`}
+            data-russian-partner-price-count={pricedTiers.length}
+          />
           <p className="ru-source-line">{sourceUrls.length} уникальных первичных страниц. Подробные заметки и доказательства доступны в <Link href={englishReviewHref} hrefLang="en">английском обзоре {firmName}</Link>.</p>
           <p className="ru-source-line">
             Официальные страницы продуктов:{' '}
@@ -391,7 +384,7 @@ export default function RussianPartnerReview({
             <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если подходящий читатель зарегистрируется по ссылке ниже. Это не меняет цены, цифры или редакционный порядок. Резидентам России нельзя обходить ограничения VPN, прокси или неверными данными.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink prefetch={false} firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить страну и условия на {firmName} <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>

@@ -24,6 +24,16 @@ import { isProductSetFresh } from '@/lib/reviewFreshness'
 
 export const revalidate = 3600
 
+// app/opengraph-image.tsx. The home page sits in the (home) root layout, which
+// does not inherit metadata files from the app/ root, so name the card here.
+const HOME_SOCIAL_IMAGE = {
+  url: '/opengraph-image',
+  width: 1200,
+  height: 630,
+  type: 'image/png',
+  alt: 'Traders Fund Hub — Best Prop Firm Reviews & Comparisons',
+}
+
 export const metadata: Metadata = {
   title: 'Best Prop Firm Reviews & Comparisons',
   description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. Every firm reviewed against the same rubric.',
@@ -33,7 +43,9 @@ export const metadata: Metadata = {
     description: 'Independent prop-firm reviews, side-by-side comparisons, and rule-change alerts. Same rubric, every firm.',
     url: '/',
     type: 'website',
+    images: [HOME_SOCIAL_IMAGE],
   },
+  twitter: { images: [HOME_SOCIAL_IMAGE] },
 }
 
 // Commercial placement is explicit and separate from the alphabetical finder.

@@ -22,6 +22,9 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
+import PriceMatrix from '@/components/PriceMatrix'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
@@ -204,6 +207,7 @@ export default function RussianBrightFundedReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['bright-funded']} from="ru-obzor-bright-funded-mobile-sticky" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -226,6 +230,7 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
           </div></RuCapturedTerms>} />
+        <RuTelegramBlock placement="obzor-bright-funded" />
         <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
             <RuArticleToc>
@@ -398,22 +403,17 @@ export default function RussianBrightFundedReviewPage() {
               <div className="ru-notice" data-russian-bright-offer-handoff="qualified-status"><strong>Акционная цена не равна базовой.</strong> В таблице сохранены цены без временных скидок. <Link href={offerStatusHref}>Проверьте статус рекламируемого кода</Link>, затем сверьте окончательную сумму, платформу и выбранные дополнения на странице оплаты. Код, опубликованный фирмой, не считается проверенной скидкой до подтверждения итоговой суммы.</div>
               {!pricedTiers.length && <p className="ru-notice" data-russian-bright-empty="recapture-required">Свежих подтверждённых цен сейчас нет. Датированный разбор правил ниже сохранён, но не подтверждает текущую стоимость. <Link href="/ru/luchshie-prop-firmy#podbor">Открыть подбор с датами источников →</Link></p>}
             </div>
-            <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Цены программ BrightFunded — таблицу можно прокрутить">
-              <table className="ru-table" data-russian-bright-price-count={pricedTiers.length}>
-                <thead><tr><th>Программа</th><th>Размер</th><th>Цена EUR</th><th>Цели</th><th>Лимиты</th><th>Дата</th></tr></thead>
-                <tbody>
-                  {pricedTiers.map(({ product, tier, price }) => (
-                    <tr key={`${product.productSlug}-${tier.sizeUsd}`}>
-                      <td>{product.productName}</td>
-                      <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
-                      <td>{eur(price)}</td>
-                      <td>{targets(product)}</td>
-                      <td>{pct(product.dailyLossPct)} / {pct(product.maxLossPct)}; {product.drawdownType ? drawdownLabels[product.drawdownType] : 'тип не подтверждён'}</td>
-                      <td>{product.sourceCapturedAt}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="ru-content">
+              <PriceMatrix
+                products={freshProducts}
+                firmName="BrightFunded"
+                firmSlug="bright-funded"
+                locale="ru"
+                wrapperClassName="ru-table-wrap"
+                renderEmpty
+                ariaLabel="Цены программ BrightFunded — таблицу можно прокрутить"
+                data-russian-bright-price-count={pricedTiers.length}
+              />
             </div>
           </div>
         </section>
