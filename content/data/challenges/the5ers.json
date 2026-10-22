@@ -76,7 +76,7 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json",
       "Drawdown static: 'The max loss on the account is 10% from your initial balance (absolute drawdown) and 5% daily drawdown that is taken from the closing equity or balance of your previous day (the highest between them)' (faqs/what-is-the-drawdown-rule-for-high-stakes, updated 2026-09-15; the $50K/$100K tabs use 4%/8%).",
       "Refund: the table's 'Refund' is a pass-and-payout fee return, not a cancellation refund: 'Pass Step 1: Get 10% Hub Credit / Pass Step 2: Get 20% Hub Credit / Funded Stage: Get a 70% refund', the 70% being withdrawable 'with your first payout, provided you have generated a minimum profit of $150 and your account has been active for at least 14 days' and only on the externally paid portion (faqs/payout-policy-and-hub-credit-in-the-high-stakes-program, 2026-09-14). The Terms say the fee is 'non-refundable, once you commence said Evaluation trading activity' (full refund only within 5 days with no trading). refundable stays null because the return is partial (70% cash + 30% Hub Credit) and conditional, which the boolean cannot express.",
-      "Consistency: no consistency row or rule on the programme page (re-read 2026-10-20), but the firm's FAQ (faqs/what-is-constancy-rule, updated 2026-10-19) says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule' without naming the accounts, so absence is not confirmed; consistencyRuleApplies stays null."
+      "Consistency (re-read 2026-10-21, US IP): no consistency row or rule on the High Stakes page, in its programme FAQs or in the Terms (Last update Oct. 20th 2026; the word does not appear). The general FAQ says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage.' (faqs/what-is-constancy-rule, last update October 19, 2026) without naming the accounts. The only named CFD consistency rules are on the Summer Plan (https://the5ers.com/summer-plan/): 1-Step 'Consistency Requirement: 50% in both evaluation and Pro accounts'; 2-Step 'There is no consistency rule during the evaluation phases for the 2-Step plan', with the $200K funded account at 'A 50% daily consistency requirement applies' (faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2, August 11, 2026). The Summer Plan 2-Step is a separate promo product, not the High Stakes New/Classic listed here. Absence is therefore not confirmed for every account or region; consistencyRuleApplies stays null and the review should say no consistency rule is published for this programme rather than 'none'."
     ]
   },
   {
@@ -156,7 +156,7 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json",
       "Drawdown static: 'The max loss on the account is 10% from your initial balance (absolute drawdown) and 5% daily drawdown that is taken from the closing equity or balance of your previous day (the highest between them)' (faqs/what-is-the-drawdown-rule-for-high-stakes, updated 2026-09-15; the $50K/$100K tabs use 4%/8%).",
       "Refund: the table's 'Refund' is a pass-and-payout fee return, not a cancellation refund: 'Pass Step 1: Get 10% Hub Credit / Pass Step 2: Get 20% Hub Credit / Funded Stage: Get a 70% refund', the 70% being withdrawable 'with your first payout, provided you have generated a minimum profit of $150 and your account has been active for at least 14 days' and only on the externally paid portion (faqs/payout-policy-and-hub-credit-in-the-high-stakes-program, 2026-09-14). The Terms say the fee is 'non-refundable, once you commence said Evaluation trading activity' (full refund only within 5 days with no trading). refundable stays null because the return is partial (70% cash + 30% Hub Credit) and conditional, which the boolean cannot express.",
-      "Consistency: no consistency row or rule on the programme page (re-read 2026-10-20), but the firm's FAQ (faqs/what-is-constancy-rule, updated 2026-10-19) says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule' without naming the accounts, so absence is not confirmed; consistencyRuleApplies stays null."
+      "Consistency (re-read 2026-10-21, US IP): no consistency row or rule on the High Stakes page, in its programme FAQs or in the Terms (Last update Oct. 20th 2026; the word does not appear). The general FAQ says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage.' (faqs/what-is-constancy-rule, last update October 19, 2026) without naming the accounts. The only named CFD consistency rules are on the Summer Plan (https://the5ers.com/summer-plan/): 1-Step 'Consistency Requirement: 50% in both evaluation and Pro accounts'; 2-Step 'There is no consistency rule during the evaluation phases for the 2-Step plan', with the $200K funded account at 'A 50% daily consistency requirement applies' (faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2, August 11, 2026). The Summer Plan 2-Step is a separate promo product, not the High Stakes New/Classic listed here. Absence is therefore not confirmed for every account or region; consistencyRuleApplies stays null and the review should say no consistency rule is published for this programme rather than 'none'."
     ]
   },
   {
@@ -212,14 +212,14 @@
     "sourceUrl": "https://the5ers.com/hyper-growth/",
     "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "Stop-out level 6% and a 3% daily limit (labelled 'Daily Pause' in the page data and 'Daily Loss' in the rendered table); the page header also says 'No daily stop-loss', so the 3% is stored as the daily limit with this caveat.",
+      "Daily loss 3% is a hard breach (re-read 2026-10-21, US IP): 'Daily loss of ProGrowth is 3% of the starting equity of the day OR the starting balance of the day (the highest between them) at MT5 Server Time. (GMT +2 winter time or GMT+3 summer Time) Reaching any of these limits will lead to the termination of the account.' (faqs/what-is-the-drawdown-rule-for-progrowth, last update July 30, 2026). The Growth page table reads 'Stop Out Level 6% 6%' / 'Daily Loss 3% 3%' (Pro Growth / Hyper Growth) and 'The profit target, maximum loss and daily Loss remain the same for the pro stages for Pro Growth Program'. The 'No daily stop-loss' bullet sits in the shared Growth header above the Pro Growth/Hyper Growth toggle and matches Hyper Growth only, whose 3% is a non-terminating Daily Pause (faqs/how-does-the-hyper-growth-program-work: 'The daily pause does not terminate an account'); it is not a per-trade stop-loss requirement, since no FAQ title, programme page or the Terms (Last update Oct. 20th 2026; no 'daily', 'pause', 'stop loss' or 'drawdown' wording) require a stop-loss on each trade. The FAQ 'How Does the Daily Loss Limit Work?' ('When the Daily Loss is reached, the account is permanently terminated', faqs/how-does-the-daily-loss-limit-work-2, August 10, 2026) is about the 1-Step and 2-Step Summer Plans, not Pro Growth. dailyLossPct=3 stays as a breach limit.",
       "News trading allowed except bracket strategies around news and practices listed in the Terms. Weekend holding allowed (indices carry a high swap). Leverage 1:30. Platform MT5.",
       "First payout 14 days after the account is activated, then every 14 days.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json",
       "Pro Growth is the default toggle on the Growth page (https://the5ers.com/hyper-growth/); the $50K tab carries only the Pro Growth column ($329). Account limit: 'Traders can hold a max of 4 accounts, one of each size ($5K, $10K, $20K and $50K)' (faqs/how-many-progrowth-accounts-can-i-have, 2026-09-15). The page's shared line 'Maximum capital per trader on evaluation account sizes: $40,000' is the Hyper Growth rule (faqs/how-many-hyper-growth-accounts-i-can-have) and does not apply to Pro Growth; an older FAQ (faqs/how-many-the5ers-accounts-can-i-have, 2026-07-22) still says 3 ProGrowth accounts ($5K/$10K/$20K).",
       "Drawdown static: 'The maximum loss for ProGrowth is 6% of the initial balance' (faqs/what-is-the-drawdown-rule-for-progrowth, 2026-07-30); Hyper Growth 'The stopout level is 6% below the inital account size' (faqs/how-does-the-hyper-growth-program-work).",
       "Starting split 75%: the Growth page scaling table (Pro Growth and Hyper Growth tabs) starts '$5,000 | $500 | 75%/25%', stays 75%/25% to $300,000, '$350,000 | 80%/20%', then '80%-100%' from $400,000; the headline 'Up to 100%' is the top of that ladder. Hyper Growth FAQ: 'the payout ratio automatically increases to 75%/25%' once funded (faqs/how-does-the-hyper-growth-scaling-plan-work, 2026-07-31).",
-      "Consistency: no consistency row or rule on the programme page (re-read 2026-10-20), but the firm's FAQ (faqs/what-is-constancy-rule, updated 2026-10-19) says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule' without naming the accounts, so absence is not confirmed; consistencyRuleApplies stays null.",
+      "Consistency (re-read 2026-10-21, US IP): no consistency row or rule on the Growth (Pro Growth tab) page, in its programme FAQs or in the Terms (Last update Oct. 20th 2026; the word does not appear). The general FAQ says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage.' (faqs/what-is-constancy-rule, last update October 19, 2026) without naming the accounts. The only named CFD consistency rules are on the Summer Plan (https://the5ers.com/summer-plan/): 1-Step 'Consistency Requirement: 50% in both evaluation and Pro accounts'; 2-Step 'There is no consistency rule during the evaluation phases for the 2-Step plan', with the $200K funded account at 'A 50% daily consistency requirement applies' (faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2, August 11, 2026). Absence is therefore not confirmed for every account or region; consistencyRuleApplies stays null and the review should say no consistency rule is published for this programme rather than 'none'.",
       "Refund: no refund row or statement on the Growth page for Pro Growth; the Terms apply: 'Evaluation fee is non-refundable, once you commence said Evaluation trading activity' (full refund only within 5 days with no trading, Hub Credit after 5 days). refundable=false."
     ]
   },
@@ -273,14 +273,14 @@
     "notes": [
       "Hyper Growth has no $50K tier on the page; it doubles the Pro account on every 10% target.",
       "The table shows no minimum profitable days and the guidelines say 'No minimum trades or days requirements for completing level 1'; stored as 0.",
-      "Stop-out level 6% and a 3% daily limit (labelled 'Daily Pause' in the page data and 'Daily Loss' in the rendered table); the page header also says 'No daily stop-loss', so the 3% is stored as the daily limit with this caveat.",
+      "Daily 3% is a Daily Pause, not a breach (re-read 2026-10-21, US IP): 'The daily pause does not terminate an account. It only disables the account for the current day. Traders can continue trading the very next day at 00:00 MT5 Server Time. Accounts that hit the stopout level will be terminated. The stopout level is 6% below the inital account size.' (faqs/how-does-the-hyper-growth-program-work, last update August 10, 2026); 'The Daily Pause applies for the Hyper Growth stage in all stages and the Bootcamp funded stage. ... When an account hits the daily pause level, all open trades get closed, and the account remains disabled until the next trading day.' (faqs/how-does-the-daily-pause-work, July 30, 2026). This is what the Growth header's 'No daily stop-loss' refers to; the rendered table row is still labelled 'Daily Loss 3%'. dailyLossPct=3 is kept as the published daily level, but it closes trades for the day and does not end the account; only the 6% stop-out does.",
       "News trading allowed except bracket strategies around news and practices listed in the Terms. Weekend holding allowed (indices carry a high swap). Leverage 1:30. Platform MT5.",
       "First payout 14 days after the account is activated, then every 14 days.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json",
       "Maximum combined evaluation capital per trader: $40,000 ('1 * $10K, 1* $20K, and 2* $5K accounts (all adding to the max starting capital of $40K)', faqs/how-many-hyper-growth-accounts-i-can-have, 2026-07-30). Hyper Growth has no $50K tier.",
       "Drawdown static: 'The maximum loss for ProGrowth is 6% of the initial balance' (faqs/what-is-the-drawdown-rule-for-progrowth, 2026-07-30); Hyper Growth 'The stopout level is 6% below the inital account size' (faqs/how-does-the-hyper-growth-program-work).",
       "Starting split 75%: the Growth page scaling table (Pro Growth and Hyper Growth tabs) starts '$5,000 | $500 | 75%/25%', stays 75%/25% to $300,000, '$350,000 | 80%/20%', then '80%-100%' from $400,000; the headline 'Up to 100%' is the top of that ladder. Hyper Growth FAQ: 'the payout ratio automatically increases to 75%/25%' once funded (faqs/how-does-the-hyper-growth-scaling-plan-work, 2026-07-31).",
-      "Consistency: no consistency row or rule on the programme page (re-read 2026-10-20), but the firm's FAQ (faqs/what-is-constancy-rule, updated 2026-10-19) says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule' without naming the accounts, so absence is not confirmed; consistencyRuleApplies stays null.",
+      "Consistency (re-read 2026-10-21, US IP): no consistency row or rule on the Growth (Hyper Growth tab) page, in its programme FAQs or in the Terms (Last update Oct. 20th 2026; the word does not appear). The general FAQ says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage.' (faqs/what-is-constancy-rule, last update October 19, 2026) without naming the accounts. The only named CFD consistency rules are on the Summer Plan (https://the5ers.com/summer-plan/): 1-Step 'Consistency Requirement: 50% in both evaluation and Pro accounts'; 2-Step 'There is no consistency rule during the evaluation phases for the 2-Step plan', with the $200K funded account at 'A 50% daily consistency requirement applies' (faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2, August 11, 2026). Absence is therefore not confirmed for every account or region; consistencyRuleApplies stays null and the review should say no consistency rule is published for this programme rather than 'none'.",
       "Refund: 'The Hyper Growth fee is non-refundable' (faqs/how-does-the-hyper-growth-program-work, 2026-08-10). refundable=false."
     ]
   },
@@ -345,11 +345,143 @@
       "Weekend and overnight holding allowed (indices may incur weekend fees). Leverage 1:30. Each active account must use a different strategy.",
       "First payout can be requested 14 days after receiving a funded account, then every 2 weeks.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/the5ers-2026-10-19.json and the5ers-2026-10-20.json",
-      "Drawdown static: 'Example for Bootcamp: If the initial balance is $10,000 and the maximum drawdown 5% is $500, the account will be closed below the equity level of $9,500. Let’s say your account goes up to $10,300, the maximum drawdown is now $800.' (faqs/what-is-drawdown-and-how-is-it-calculated).",
+      "Drawdown static (rechecked 2026-10-21, FAQ 'last update: July 22, 2026'): 'The equity stop-out level (aka drawdown) is the lowest value of the account allowed. ... Example for Bootcamp: If the initial balance is $10,000 and the maximum drawdown 5% is $500, the account will be closed below the equity level of $9,500. Let’s say your account goes up to $10,300, the maximum drawdown is now $800.' (faqs/what-is-drawdown-and-how-is-it-calculated). The example's closing level does not rise: $10,300 - $800 = $9,500, the same stop-out level as at the start; only the loss allowance measured from current equity grows. The Bootcamp page (modified 2026-10-15) states only 'Max Loss 5% 5% 5% 4%' and the Terms (last update Oct. 20th 2026) do not describe the drawdown mechanism, so there is no conflicting first-party source. The FAQ also says payouts reduce the balance and hence the drawdown allowance.",
       "Refund: 'The Bootcamp fee is non-refundable' (faqs/how-does-the-bootcamp-program-work, 2026-09-06, also on the Bootcamp page). refundable=false.",
-      "Consistency: no consistency row or rule on the programme page (re-read 2026-10-20), but the firm's FAQ (faqs/what-is-constancy-rule, updated 2026-10-19) says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule' without naming the accounts, so absence is not confirmed; consistencyRuleApplies stays null."
+      "Consistency (re-read 2026-10-21, US IP): no consistency row or rule on the Bootcamp page, in its programme FAQs or in the Terms (Last update Oct. 20th 2026; the word does not appear). The general FAQ says 'Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage.' (faqs/what-is-constancy-rule, last update October 19, 2026) without naming the accounts. The only named CFD consistency rules are on the Summer Plan (https://the5ers.com/summer-plan/): 1-Step 'Consistency Requirement: 50% in both evaluation and Pro accounts'; 2-Step 'There is no consistency rule during the evaluation phases for the 2-Step plan', with the $200K funded account at 'A 50% daily consistency requirement applies' (faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2, August 11, 2026). The Bootcamp FAQ only uses the word in a general sense: 'The Bootcamp Program is designed to test the consistency and discipline of skilled traders.' (faqs/how-does-the-bootcamp-program-work, September 6, 2026). Absence is therefore not confirmed for every account or region; consistencyRuleApplies stays null and the review should say no consistency rule is published for this programme rather than 'none'."
     ],
     "fundedDailyLossPct": 3,
     "fundedMaxLossPct": 4
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Futures Day Trade",
+    "productSlug": "futures-day-trade",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 59,
+        "maxLossUsd": 1000,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 100,
+        "maxLossUsd": 2000,
+        "refundable": true
+      }
+    ],
+    "pricingModel": "one-off",
+    "activationFeeUsd": 0,
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "both",
+        "appliesTo": "Per position, evaluation and funded (Pro Stage)",
+        "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": false,
+      "ea": false,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://the5ers.com/futures/",
+    "sourceCapturedAt": "2026-10-21",
+    "notes": [
+      "Day Trade tab: $25K 'Price $59', $50K 'Price $100', each 'Refunded on 3rd payout.'; contracts 2 Mini/20 Micro and 4 Mini/40 Micro. 'All positions must be closed at least 10 minutes before market close'; 'No Weekend Holding'.",
+      "Overnight/weekend: 'Swing: You can hold 1 mini contract or 10 micro contracts overnight.' 'Day Trade: Overnight holding is not allowed.' 'Both programs: No weekend holding allowed. All positions must be closed at least 10 minutes before the Friday close.' (futures-faqs/overnight-holding-2, last update July 15, 2026). EA: 'Is High-Frequency Trading, Algorithmic Trading, or Hedging Permitted? No. These practices are strictly forbidden.' (futures-faqs/is-high-frequency-algorithmic-trading-and-hedging-allowed, October 12, 2026), so ea=false.",
+      "The5ers Futures (CME futures), checked 2026-10-21 from a US IP on https://the5ers.com/futures/ (tab-by-tab render, evidence /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). List prices from the programme page; checkout not reached (hub.the5ers.com/purchase?step=programs&asset=futures asks for sign-in), so not checkout-verified.",
+      "Page rows (Evaluation Phase / Pro Stage): 'Profit Target 6% 4%', 'Max Loss Limit 4% 4%', 'Drawdown Type EOD EOD', 'Consistency Rule – Per Position 40% 40%', 'Activation fee (Upon Passing) None None', 'Pass in one day ✓ -'. maxLossUsd is computed from the published 4% (not printed in dollars).",
+      "Drawdown: 'Both the Day Trade and Swing programs have a maximum drawdown of 4%, which is calculated from your highest midnight balance or equity.' (futures-faqs/what-is-my-maximum-drawdown-loss, last update July 15, 2026). No lock level is published, so none is stored.",
+      "Consistency: 'One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.' (futures-faqs/what-are-the-general-rules-for-the-futures-program, last update October 12, 2026). It is per position, applied in evaluation and funded.",
+      "Split and payouts: 'The profit split is 80/20 in your favor across all accounts.' (futures-faqs/what-is-the-profit-split-in-the5ers-futures, July 15, 2026). Payout needs a funded account, 'You’ve reached 4% profit or more, calculated from your initial account balance' and 'The account is at least 14 days old' (futures-faqs/what-do-i-need-for-a-withdrawal, September 28, 2026); then 'biweekly (14-day period)', 3.5% commission on Rise, crypto and bank transfer (futures-faqs/what-payout-methods-are-supported, July 15, 2026).",
+      "Refund: 'Once you successfully receive your third payout on any funded futures trading account, we will refund the full evaluation fee you originally paid.' (futures-faqs/evaluation-fee-refund, July 20, 2026). refundable=true means this conditional full refund at the third payout, not a cancellation refund.",
+      "One-time fee: 'You pay a one-time upfront fee when purchasing an evaluation, and there are no recurring monthly payments on either program.' (futures-faqs/is-there-a-monthly-subscription-during-the-evaluation, August 10, 2026). News: 'News trading: Allowed.' (general rules FAQ). Copy trading between own accounts and platform not recorded here.",
+      "Country rules: no futures-specific list is published; the Terms ('Last update – Oct. 20th 2026') say the services include 'proprietary trading on Contract for Difference and Futures Contract', and the site-wide Forbidden Territories footer (Russia, Belarus, Crimea named) is shown on /futures/. Capture: content/data/challenges/_captures/the5ers-2026-10-21.json",
+      "Consistency stage check 2026-10-21: the page row 'Consistency Rule – Per Position 40% 40%' is shown for both the Evaluation Phase and the Pro Stage on the Day Trade and Swing tabs (https://the5ers.com/futures/ and the Futures tab of https://the5ers.com/summer-plan/). FAQ: 'The5ers Futures has a 40% consistency rule, which means a single trade can’t account for more than 40% of your total profits. ... This rule applies on funded accounts as well.' (futures-faqs/what-is-the-consistency-rule, July 20, 2026); 'To qualify for a payout or scale-up, your best trade must account for less than 40% of your total profit.' (futures-faqs/how-is-the-consistency-rule-calculated, October 6, 2026); 'Your account does not fail or get breached.' (futures-faqs/what-happens-if-my-best-trading-day-is-above-the-allowed-percentage-2, August 10, 2026). Some FAQ examples say 'best trading day' instead of best trade; the page and the general rules FAQ say per position/trade, which is what is stored. It is a payout, pass and scale-up eligibility gate, not a breach."
+    ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Futures Swing",
+    "productSlug": "futures-swing",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 25000,
+        "priceUsd": 69,
+        "maxLossUsd": 1000,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 120,
+        "maxLossUsd": 2000,
+        "refundable": true
+      }
+    ],
+    "pricingModel": "one-off",
+    "activationFeeUsd": 0,
+    "profitTargets": {
+      "phase1": 6
+    },
+    "dailyLossPct": null,
+    "maxLossPct": 4,
+    "drawdownType": "eod-trailing",
+    "minTradingDays": 1,
+    "maxTradingDays": null,
+    "consistencyRulePct": 40,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 40,
+        "scope": "both",
+        "appliesTo": "Per position, evaluation and funded (Pro Stage)",
+        "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": true,
+      "weekend": false,
+      "overnight": true,
+      "ea": false,
+      "copyTrading": null
+    },
+    "assetClass": "futures",
+    "sourceUrl": "https://the5ers.com/futures/",
+    "sourceCapturedAt": "2026-10-21",
+    "notes": [
+      "Swing tab: $25K 'Summer Plan Price $69', $50K 'Summer Plan Price $120', each 'Refunded on 3rd payout.'; 'Overnight Holding Limit 1 Mini, 10 Micro'. Price status (checked 2026-10-21, US IP): promotional label with no published end date, and the firm's two sources disagree on permanence. The Futures tab of https://the5ers.com/summer-plan/ (live on 2026-10-21, no page date shown; hero 'Limited Time Only', heading 'Futures Summer Plan') answers 'What do I get with the Futures Summer Plan?' with 'It’s a limited-time offer for Swing accounts, running through the end of summer. It includes reduced pricing across account sizes, two new account tiers (100K and 150K), and the Summer Boost Rewards program' and 'What happens to my account after the summer plan ends? Nothing changes. Any account purchased during the Summer Plan keeps running exactly as normal after the promotion ends'. The Futures FAQ says 'The Futures Summer Plan is a campaign designed to give Swing traders an aggressive edge. It introduces permanent price drops on Swing accounts, brings brand-new account sizes to the platform, and features a limited-time promotional reward ladder' (futures-faqs/what-do-i-get-with-the-futures-summer-plan-2, last update July 23, 2026). No end date is published on either page, the offer was still live after the end of summer, and no non-promotional Swing price is shown. Treat $69/$120 as the current list price under a 'Summer Plan Price' label that may change without notice, not as a confirmed permanent standard price. Re-check before publishing. Re-checked 2026-10-22 (US IP, curl of https://the5ers.com/futures/ and https://the5ers.com/summer-plan/, evidence/the5ers-2026-10-22/): Swing rows still 'Summer Plan Price' $69 / $120 'Refunded on 3rd payout.'; summer-plan FAQ still 'running through the end of summer' and 'after the promotion ends'; Futures FAQ still 'permanent price drops on Swing accounts' (last update: July 23, 2026); no end date, countdown or expiry field found in either page or its embedded page data. The Summer Boost Hub Credit ladder is explicitly 'an exclusive, limited-time promotional reward structure' for Swing only (futures-faqs/summer-boost-rewards, July 23, 2026); the 3rd-payout fee refund itself is a standing rule for both programmes (futures-faqs/evaluation-fee-refund, July 20, 2026: 'This applies universally across both our Day Trade and Swing trading programs').",
+      "Overnight/weekend: 'Swing: You can hold 1 mini contract or 10 micro contracts overnight.' 'Day Trade: Overnight holding is not allowed.' 'Both programs: No weekend holding allowed. All positions must be closed at least 10 minutes before the Friday close.' (futures-faqs/overnight-holding-2, last update July 15, 2026). EA: 'Is High-Frequency Trading, Algorithmic Trading, or Hedging Permitted? No. These practices are strictly forbidden.' (futures-faqs/is-high-frequency-algorithmic-trading-and-hedging-allowed, October 12, 2026), so ea=false.",
+      "The5ers Futures (CME futures), checked 2026-10-21 from a US IP on https://the5ers.com/futures/ (tab-by-tab render, evidence /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/futures-tabs.pw.txt). List prices from the programme page; checkout not reached (hub.the5ers.com/purchase?step=programs&asset=futures asks for sign-in), so not checkout-verified.",
+      "Page rows (Evaluation Phase / Pro Stage): 'Profit Target 6% 4%', 'Max Loss Limit 4% 4%', 'Drawdown Type EOD EOD', 'Consistency Rule – Per Position 40% 40%', 'Activation fee (Upon Passing) None None', 'Pass in one day ✓ -'. maxLossUsd is computed from the published 4% (not printed in dollars).",
+      "Drawdown: 'Both the Day Trade and Swing programs have a maximum drawdown of 4%, which is calculated from your highest midnight balance or equity.' (futures-faqs/what-is-my-maximum-drawdown-loss, last update July 15, 2026). No lock level is published, so none is stored.",
+      "Consistency: 'One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.' (futures-faqs/what-are-the-general-rules-for-the-futures-program, last update October 12, 2026). It is per position, applied in evaluation and funded.",
+      "Split and payouts: 'The profit split is 80/20 in your favor across all accounts.' (futures-faqs/what-is-the-profit-split-in-the5ers-futures, July 15, 2026). Payout needs a funded account, 'You’ve reached 4% profit or more, calculated from your initial account balance' and 'The account is at least 14 days old' (futures-faqs/what-do-i-need-for-a-withdrawal, September 28, 2026); then 'biweekly (14-day period)', 3.5% commission on Rise, crypto and bank transfer (futures-faqs/what-payout-methods-are-supported, July 15, 2026).",
+      "Refund: 'Once you successfully receive your third payout on any funded futures trading account, we will refund the full evaluation fee you originally paid.' (futures-faqs/evaluation-fee-refund, July 20, 2026). refundable=true means this conditional full refund at the third payout, not a cancellation refund.",
+      "One-time fee: 'You pay a one-time upfront fee when purchasing an evaluation, and there are no recurring monthly payments on either program.' (futures-faqs/is-there-a-monthly-subscription-during-the-evaluation, August 10, 2026). News: 'News trading: Allowed.' (general rules FAQ). Copy trading between own accounts and platform not recorded here.",
+      "Country rules: no futures-specific list is published; the Terms ('Last update – Oct. 20th 2026') say the services include 'proprietary trading on Contract for Difference and Futures Contract', and the site-wide Forbidden Territories footer (Russia, Belarus, Crimea named) is shown on /futures/. Capture: content/data/challenges/_captures/the5ers-2026-10-21.json",
+      "Consistency stage check 2026-10-21: the page row 'Consistency Rule – Per Position 40% 40%' is shown for both the Evaluation Phase and the Pro Stage on the Day Trade and Swing tabs (https://the5ers.com/futures/ and the Futures tab of https://the5ers.com/summer-plan/). FAQ: 'The5ers Futures has a 40% consistency rule, which means a single trade can’t account for more than 40% of your total profits. ... This rule applies on funded accounts as well.' (futures-faqs/what-is-the-consistency-rule, July 20, 2026); 'To qualify for a payout or scale-up, your best trade must account for less than 40% of your total profit.' (futures-faqs/how-is-the-consistency-rule-calculated, October 6, 2026); 'Your account does not fail or get breached.' (futures-faqs/what-happens-if-my-best-trading-day-is-above-the-allowed-percentage-2, August 10, 2026). Some FAQ examples say 'best trading day' instead of best trade; the page and the general rules FAQ say per position/trade, which is what is stored. It is a payout, pass and scale-up eligibility gate, not a breach."
+    ]
   }
 ]
