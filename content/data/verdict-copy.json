@@ -998,7 +998,7 @@
       ],
       "pickB": [
         "you want an early first payout: FundingPips 2 Step Pro pays weekly from day 7 (FTMO: day 14)",
-        "you hold overnight: FundingPips allows it on every product; FTMO restricts it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); FTMO restricts it everywhere",
         "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; FTMO evaluations cap at 10%"
       ]
     },
@@ -1252,7 +1252,7 @@
     },
     "fundingpips-vs-my-funded-futures": {
       "pickA": [
-        "you hold overnight: FundingPips allows it on every product; My Funded Futures bars it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); My Funded Futures bars it everywhere",
         "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every My Funded Futures product trails",
         "you trade forex/CFD rather than futures: every My Funded Futures product is futures"
       ],
@@ -1274,7 +1274,7 @@
     },
     "fundingpips-vs-take-profit-trader": {
       "pickA": [
-        "you hold overnight: FundingPips allows it on every product; Take Profit Trader bars it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); Take Profit Trader bars it everywhere",
         "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Take Profit Trader product trails",
         "you trade forex/CFD rather than futures: every Take Profit Trader product is futures"
       ],
@@ -1286,7 +1286,7 @@
     },
     "fundingpips-vs-topstep": {
       "pickA": [
-        "you hold overnight: FundingPips allows it on every product; Topstep bars it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); Topstep bars it everywhere",
         "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Topstep product trails",
         "you trade forex/CFD rather than futures: every Topstep product is futures"
       ],
@@ -1298,7 +1298,7 @@
     },
     "fundingpips-vs-tradeday": {
       "pickA": [
-        "you hold overnight: FundingPips allows it on every product; TradeDay bars it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); TradeDay bars it everywhere",
         "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every TradeDay product trails",
         "you trade forex/CFD rather than futures: every TradeDay product is futures"
       ],
@@ -1310,7 +1310,7 @@
     },
     "fundingpips-vs-tradeify": {
       "pickA": [
-        "you hold overnight: FundingPips allows it on every product; Tradeify bars it everywhere",
+        "you hold overnight: FundingPips Zero allows it, and its other 4 products allow it in evaluation (Master needs the Swing add-on); Tradeify bars it everywhere",
         "you want a static loss floor: FundingPips 1 Step Flex's 12% max loss is static; every Tradeify product trails",
         "you trade forex/CFD rather than futures: every Tradeify product is futures"
       ],

@@ -13,13 +13,14 @@ import {
 } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
-import cryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import { cryptoMarketEvidence } from '@/lib/cryptoMarketEvidence'
 import {
   getAllFirms,
   getChallengesByFirm,
   isChallengeFresh,
   minimumCostToFundedUsd,
   type Challenge,
+  type ChallengeAccountSize,
 } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import {
@@ -61,9 +62,9 @@ const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
 const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
 const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
-// Sharing title/description approved 21.10.2026 (no fixed firm/product counts).
-const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
-const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
+// RU SEO Lead approved 22.10, numberless by design
+const SOCIAL_TITLE = 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ'
+const SOCIAL_DESCRIPTION = 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
@@ -126,17 +127,6 @@ function evidenceText(evidence: { firmSlug: string; evidence: string; evidenceRu
   }
 }
 
-type TierCost = { amount: number; currency: 'USD' | 'EUR' }
-
-// BrightFunded and FTMO publish EUR prices only. Without a published activation fee or pay-later part, the EUR list price is the cost to a funded account; it is shown in EUR, never converted.
-function tierCost(product: Challenge, tier: Challenge['accountSizes'][number]): TierCost | null {
-  const usd = minimumCostToFundedUsd(product, tier)
-  if (usd != null && usd > 0) return { amount: usd, currency: 'USD' }
-  const eur = (tier as { priceEur?: number | null }).priceEur
-  if (eur != null && eur > 0 && (tier.payLaterUsd ?? 0) === 0 && (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0) === 0) return { amount: eur, currency: 'EUR' }
-  return null
-}
-
 const drawdownLabels: Record<string, string> = {
   static: 'статическая',
   trailing: 'трейлинг',
@@ -162,16 +152,34 @@ function splitLabel(products: Challenge[]) {
   return `${valueRange(values, '%')}${values.length && values.length < products.length ? '; часть условий не подтверждена' : ''}`
 }
 
+type PublishedCost = { currency: 'USD' | 'EUR'; amount: number }
+
+// Same currency rule as minimumPublishedEntry() in lib/landings.ts: the USD
+// figure when the firm publishes one, otherwise its own EUR fee. Never
+// converted (AGENTS.md: a firm that prices in EUR keeps priceEur).
+function minimumPublishedCost(product: Challenge, tier: ChallengeAccountSize): PublishedCost | null {
+  const usd = minimumCostToFundedUsd(product, tier)
+  if (usd != null && usd > 0) return { currency: 'USD', amount: usd }
+  if (tier.priceUsd != null || tier.priceEur == null || tier.priceEur <= 0) return null
+  // A USD-denominated add-on cannot be summed with a EUR fee without an FX rate.
+  const usdExtras = (tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0)
+  return usdExtras > 0 ? null : { currency: 'EUR', amount: tier.priceEur }
+}
+
+function hasPublishedCost(product: Challenge) {
+  return product.accountSizes.some(tier => minimumPublishedCost(product, tier) != null)
+}
+
 function minimumKnownCost(products: Challenge[]) {
   const costs = products.flatMap(product => product.accountSizes.flatMap(tier => {
-    const cost = tierCost(product, tier)
+    const cost = minimumPublishedCost(product, tier)
     return cost ? [cost] : []
   }))
+  // Both currencies are shown when both are published (e.g. USD firms and EUR-only BrightFunded/FTMO), never converted.
+  const format = (amount: number) => amount.toLocaleString('en-US', { maximumFractionDigits: 2 })
   const parts = (['USD', 'EUR'] as const).flatMap(currency => {
     const amounts = costs.filter(cost => cost.currency === currency).map(cost => cost.amount)
-    if (!amounts.length) return []
-    const amount = Math.min(...amounts).toLocaleString('en-US', { maximumFractionDigits: 2 })
-    return [currency === 'USD' ? `$${amount}` : `€${amount}`]
+    return amounts.length ? [currency === 'USD' ? `$${format(Math.min(...amounts))}` : `€${format(Math.min(...amounts))}`] : []
   })
   return parts.length ? parts.join(' / ') : 'не подтверждены'
 }
@@ -226,8 +234,7 @@ export default function RussianCryptoPropFirmsPage() {
   const snapshots = mapped.flatMap(({ evidence, firm, products }) =>
     firm && freshEvidence(evidence) && evidence.productSlugs.length > 0
       && products.length === evidence.productSlugs.length
-      && products.every(product => freshEvidence(product)
-        && product.accountSizes.some(tier => tierCost(product, tier) != null))
+      && products.every(product => freshEvidence(product) && hasPublishedCost(product))
       ? [{ evidence, firm, products }] : [],
   ).sort((a, b) => {
     const aKey = (a.evidence.marketModel === 'crypto-native' ? 100 : 0) + a.firm.score
@@ -440,7 +447,7 @@ export default function RussianCryptoPropFirmsPage() {
                     </div>
                     <ul className="ru-facts">
                       <li><ShieldCheck size={14} aria-hidden="true" /> {products.length} программ: {productNames.slice(0, 3).join(', ')}{productNames.length > 3 ? ` и ещё ${productNames.length - 3}` : ''}</li>
-                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы: {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
+                      <li><BadgeDollarSign size={14} aria-hidden="true" /> Минимальные известные расходы (в валюте фирмы, без пересчёта): {minimumKnownCost(products)}; начальная доля вознаграждения: {splitLabel(products)}</li>
                       <li><ShieldCheck size={14} aria-hidden="true" /> Просадка: {drawdowns.join(', ')}. Срок выплаты зависит от программы и условий запроса — см. обзор.</li>
                       <li><Database size={14} aria-hidden="true" /> {evidenceText(evidence).evidence}</li>
                     </ul>
@@ -453,8 +460,11 @@ export default function RussianCryptoPropFirmsPage() {
                         <RuGoLink firm={evidence.firmSlug} href={`/go/${evidence.firmSlug}?from=ru-crypto-ranking`} rel="sponsored nofollow noopener" className={russiaStatusFor(evidence.firmSlug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>
                           Проверить текущие условия <ArrowRight size={14} aria-hidden="true" />
                         </RuGoLink>
-                      ) : null}
-                      {affiliate && russiaStatusFor(evidence.firmSlug) === 'restricted' ? <span className="ru-muted" data-russian-crypto-restricted-cta={evidence.firmSlug}>для резидентов других стран; резидентам РФ {firm.name} недоступна</span> : null}
+                      ) : (
+                        // No affiliate CTA: the Russia-access badge (firms.json russiaStatus) still renders on the ranked card.
+                        <RuAccessBadge firm={evidence.firmSlug} />
+                      )}
+                      {russiaStatusFor(evidence.firmSlug) === 'restricted' ? <span className="ru-muted" data-russian-crypto-restricted-cta={affiliate ? evidence.firmSlug : undefined} data-russian-crypto-restricted-label={evidence.firmSlug}>для резидентов других стран; резидентам РФ {firm.name} недоступна</span> : null}
                     </div>
                   </article>
                 )
@@ -467,11 +477,11 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell" data-russian-crypto-comparison="current-source-mapped-products">
             <div className="ru-content">
               <h2>Сравнение стоимости и правил</h2>
-              <p>Показаны минимальные известные расходы по программам из выборки — в валюте, в которой фирма публикует цены (BrightFunded и FTMO — в EUR, без пересчёта), — а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
+              <p>Показаны минимальные известные расходы по программам из выборки в той валюте, в которой их публикует фирма (USD или EUR, без пересчёта по курсу), а не только рекламный первый платёж. Для Buy Now, Pay Later у Maven учитывается и обязательная доплата. У подписки минимум предполагает прохождение за первый платёжный период; повторные попытки, дополнительные периоды и опции увеличат расходы. Здесь нет прогноза прибыли или окупаемости.</p>
             </div>
             {snapshots.length > 0 && <div className="ru-table-wrap" role="region" aria-label="Сравнение криптопрограмм — таблицу можно прокрутить" tabIndex={0}>
               <table className="ru-table">
-                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы (USD или EUR)</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
+                <thead><tr><th scope="col">Фирма</th><th scope="col">Модель</th><th scope="col">Программы</th><th scope="col">Известные расходы (валюта фирмы)</th><th scope="col">Начальная доля</th><th scope="col">Просадка</th><th scope="col">Коммерческий статус</th></tr></thead>
                 <tbody>
                   {snapshots.map(({ evidence, products, firm }) => (
                     <tr key={evidence.firmSlug}>
@@ -573,7 +583,7 @@ export default function RussianCryptoPropFirmsPage() {
                       <td><strong>{item.firmName}</strong></td>
                       <td>{item.status === 'product-capture-needed' ? 'нужна проверка отдельных криптопрограмм' : 'нужно обновить рынок или продукты'}</td>
                       <td><a href={item.sourceUrl} target="_blank" rel="nofollow noopener">{item.sourceCapturedAt}</a></td>
-                      <td>{'nextStepRu' in item && item.nextStepRu ? item.nextStepRu : item.status === 'product-capture-needed'
+                      <td>{item.nextStepRu ? item.nextStepRu : item.status === 'product-capture-needed'
                         ? 'Отдельные криптопрограммы нельзя оценивать по ценам и правилам валютных счетов.'
                         : 'Нужна повторная проверка первичных источников, прежде чем использовать старые условия в сравнении.'}</td>
                     </tr>

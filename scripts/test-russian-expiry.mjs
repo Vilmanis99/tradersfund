@@ -414,20 +414,36 @@ try {
   const cTraderReference = renderToStaticMarkup(React.createElement(CTraderPage))
   assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)</h1>'), 'cTrader H1 uses the exact brand')
   assert.equal(cryptoSchemas(cTraderReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[0]?.name, 'BrightFunded', 'cTrader ItemList uses the official brand and lists the Russia-open firm first')
+  // The crypto fixture runs at a clock derived from its own captures (ranked market
+  // evidence, payout evidence and every mapped product), not RU_PAGE_CLOCK: that clock
+  // follows other firms' captures and can precede a newer crypto recheck, and
+  // future-dated captures fail closed by design.
+  const cryptoFixtureDates = [...cryptoEvidence.ranked.flatMap(evidence => [evidence.sourceCapturedAt,
+    ...firmsModule.getChallengesByFirm(evidence.firmSlug).filter(product => evidence.productSlugs.includes(product.productSlug)).map(product => product.sourceCapturedAt)]),
+  cryptoEvidence.payoutAlternative.sourceCapturedAt].sort()
+  const CRYPTO_FIXTURE_CLOCK = `${cryptoFixtureDates.at(-1)}T12:00:00Z`
+  assert(isChallengeFresh({ sourceCapturedAt: cryptoFixtureDates[0] }, new RealDate(CRYPTO_FIXTURE_CLOCK)), 'every crypto capture shares one 30-day window at the derived fixture clock')
+  clock = CRYPTO_FIXTURE_CLOCK
   const cryptoSlugs = cryptoEvidence.ranked.map(evidence => evidence.firmSlug).sort()
   const originalCryptoEvidence = JSON.stringify(cryptoEvidence)
   const originalByFirm = firmsModule.getChallengesByFirm
   const cryptoReference = renderCrypto()
   assert.deepEqual(cryptoCards(cryptoReference), cryptoSlugs, 'current crypto fixture includes every independently sourced firm')
+  const { russiaStatusFor: cryptoRussiaStatus } = require(path.join(root, 'lib/russiaAvailability.ts'))
+  for (const slug of cryptoSlugs) {
+    const card = cryptoReference.match(new RegExp(`<article\\b[^>]*data-russian-crypto-firm="${slug}"[^>]*>[\\s\\S]*?</article>`))?.[0] ?? ''
+    assert(card.includes(`data-russia-status="${cryptoRussiaStatus(slug)}" data-russia-firm="${slug}"`), `${slug}: every ranked crypto card shows its russiaStatus badge, with or without an affiliate link`)
+  }
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
-  const cryptoSocialTitle = 'Крипто-проп-фирмы 2026: кто открыт для РФ, а кто нет'
-  const cryptoSocialDescription = 'Проп трейдинг криптовалют: BrightFunded, Crypto Fund Trader, FTMO, CTI, OFP и другие — криптопары, плечо, цены, доступ из РФ и выплаты.'
-  assert.equal(cryptoModule.metadata.openGraph.title, cryptoSocialTitle, 'approved sharing title')
-  assert.equal(cryptoModule.metadata.openGraph.description, cryptoSocialDescription, 'approved sharing description')
-  assert.equal(cryptoModule.metadata.twitter.title, cryptoSocialTitle, 'twitter title matches the approved sharing title')
-  assert.equal(cryptoModule.metadata.twitter.description, cryptoSocialDescription, 'twitter description matches the approved sharing description')
-  assert.doesNotMatch(`${cryptoSocialTitle} ${cryptoSocialDescription}`, /3 проверенных|3 крипто|12 подтверждённых/, 'sharing metadata does not promise a fixed live inventory')
+  // RU SEO Lead approved 22.10, numberless by design: share strings carry no live firm or product count.
+  assert.equal(cryptoModule.metadata.openGraph.title, 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ', 'sharing title is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.title, cryptoModule.metadata.openGraph.title, 'Twitter title matches Open Graph')
+  assert.equal(cryptoModule.metadata.openGraph.description, 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.', 'sharing description is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.description, cryptoModule.metadata.openGraph.description, 'Twitter description matches Open Graph')
+  assert(cryptoModule.metadata.openGraph.description.length >= 140 && cryptoModule.metadata.openGraph.description.length <= 160, 'sharing description is 140-160 characters')
+  assert.doesNotMatch(`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`, /\d+ (?:проверенн|крипто|подтверждённ|фирм|продукт)/u, 'sharing strings promise no fixed live inventory')
+  for (const evidence of cryptoEvidence.ranked) assert(!`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`.includes(evidence.firmName), `sharing strings name no firm (${evidence.firmName})`)
   const assertCryptoArchive = html => {
     assert(html.includes('data-russian-crypto-article="long-form"') && html.includes('id="sources"'), 'expiry preserves the substantive article and dated sources')
     assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'unresolved CFT correction survives unrelated evidence expiry')
@@ -488,6 +504,7 @@ try {
     Object.assign(cryptoEvidence.payoutAlternative, restored.payoutAlternative)
   }
   assert.equal(JSON.stringify(cryptoEvidence), originalCryptoEvidence, 'crypto fixtures do not write or leave mutated source evidence')
+  clock = RU_PAGE_CLOCK
   const fundingPipsAccessEvidence = require(path.join(root, 'content/data/russian-fundingpips-access-evidence.json'))
   assert.equal(fundingPipsAccessEvidence.firmSlug, 'fundingpips', 'the country check belongs to FundingPips')
   assert.equal(fundingPipsAccessEvidence.sourceUrl, 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started', 'Russian access check cites FundingPips itself')
@@ -1794,8 +1811,11 @@ try {
         if (slug === 'luchshie-kripto-prop-firmy') {
           const expected = cryptoEvidence.ranked.filter(evidence => {
             const mapped = originalByFirm(evidence.firmSlug).filter(product => evidence.productSlugs.includes(product.productSlug))
+            // A priced tier is a USD cost or, when the firm publishes no USD fee, its own EUR fee (never converted).
+            const publishedFee = (product, tier) => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0
+              || (tier.priceUsd == null && (tier.priceEur ?? 0) > 0 && !((tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0)))
             return isChallengeFresh(evidence) && mapped.length === evidence.productSlugs.length && mapped.every(product => isChallengeFresh(product)
-              && product.accountSizes.some(tier => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0))
+              && product.accountSizes.some(tier => publishedFee(product, tier)))
           })
           assert.deepEqual(cryptoCards(html), expected.map(evidence => evidence.firmSlug).sort(), `${date}: cards re-evaluate both independent source dates`)
           assert(html.includes(`data-russian-crypto-product-count="${expected.reduce((count, evidence) => count + evidence.productSlugs.length, 0)}"`), 'programme count follows the actual surviving mappings')
@@ -1814,10 +1834,16 @@ try {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
           assert.doesNotMatch(visible, /\bcheckout\b|\btier\b|\bCTA\b|\bgates?\b|\brails?\b|\bshortlist\b|\bsnapshot\b|\bsourceCapturedAt\b/iu, 'crypto guide uses reader-facing Russian')
           assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'Dated CFT correction remains substantive after product expiry')
-          assert(!html.includes('data-russian-crypto-firm="crypto-fund-trader"'), 'A price correction does not automatically qualify CFT for crypto ranking')
+          // CFT is ranked only through its own market evidence entry (instruments, platform scope), never through a
+          // price correction: its card exists exactly when that entry and its mapped products are current, and the
+          // unresolved Ascend/Break products are never mapped.
+          const cftEvidence = cryptoEvidence.ranked.find(evidence => evidence.firmSlug === 'crypto-fund-trader')
+          assert.equal(html.includes('data-russian-crypto-firm="crypto-fund-trader"'), expected.includes(cftEvidence), 'CFT appears only while its own market evidence and mapped products are current')
+          assert(!cftEvidence || !cftEvidence.productSlugs.some(slug => ['ascend', 'break'].includes(slug)), 'unresolved Ascend/Break are never mapped into the crypto ranking')
           assert(html.includes('/blog/crypto-fund-trader-review'), 'Russian reader can reach the complete existing review')
           assert(html.includes('products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger'), 'Watch handoff uses the supported product-focus parameter')
-          assert(html.includes('Цены Ascend и Break по данным на 14.10.2026'), 'Resolved Ascend and Break prices carry the dated 14.10 capture')
+          assert(html.includes('Цены Break по данным на 14.10.2026'), 'Break prices carry the dated 14.10 capture')
+          assert(html.includes('data-russian-crypto-cft-ascend="not-purchasable"') && html.includes('Ascend сейчас не продаётся'), 'Ascend is shown as not purchasable')
         }
         if (slug === 'forex-prop-firmy') {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
