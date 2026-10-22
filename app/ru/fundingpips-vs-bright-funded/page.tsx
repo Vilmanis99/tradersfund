@@ -209,6 +209,8 @@ const SHARED_SIZES = [5000, 10000, 25000, 50000, 100000]
 export default function RussianFundingPipsVsBrightFundedPage() {
   const firms = getAllFirms()
   const bfFirm = firms.find(firm => firm.name === 'BrightFunded')
+  // previousDiscountCode (Tracker 601fbae) is history only: shown as the previous offer, never as a working code.
+  const previousBfCode = (bfFirm as { previousDiscountCode?: string } | undefined)?.previousDiscountCode
   const fpFirm = firms.find(firm => firm.name === 'FundingPips')
   const bfProducts = getChallengesByFirm('bright-funded')
   const fpProducts = getChallengesByFirm('fundingpips')
@@ -608,10 +610,8 @@ export default function RussianFundingPipsVsBrightFundedPage() {
                 DOUBLE25 expiry is unconfirmed: say only that it is not shown on the site, never that it ended. */}
             {bfFirm?.discountCode && bfFirm.discountPct && bfFirm.discountCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
-                BrightFunded: текущее предложение — код {bfFirm.discountCode}, {bfFirm.discountPct}% скидки
-                {bfFirm.discountCode === 'HW30' ? ' (акция Halloween Offer)' : ''}; дата окончания не опубликована. Код виден на главной странице BrightFunded
-                по данным на {ruDate(bfFirm.discountCodeCapturedAt)}; скидку проверяйте при оплате{bfFirm.discountCodeCheckoutVerified ? '' : ' — на кассе мы код не проверяли'}.
-                {(bfFirm as { previousDiscountCode?: string }).previousDiscountCode ? ` Код ${(bfFirm as { previousDiscountCode?: string }).previousDiscountCode} сейчас на сайте не показан.` : ''}
+                {`BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки${bfFirm.discountCode === 'HW30' ? ' (акция Halloween Offer)' : ''}; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку проверяйте при оплате.`}
+                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} он больше не показан на сайте, а окончание его действия не подтверждено.` : ''}
               </span>
             ) : (
               <span data-russian-bright-funded-promo="none">BrightFunded: действующий публичный код мы сейчас не подтверждаем.</span>
