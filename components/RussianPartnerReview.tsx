@@ -22,6 +22,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import PriceMatrix from '@/components/PriceMatrix'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -96,12 +97,6 @@ function productPriceRange(product: Challenge) {
   return values[0] === values.at(-1)
     ? formatCurrency(values[0], currency)
     : `${formatCurrency(values[0], currency)}–${formatCurrency(values.at(-1)!, currency)}`
-}
-
-function tierPrice(tier: Challenge['accountSizes'][number]) {
-  if (tier.priceUsd != null) return formatCurrency(tier.priceUsd, 'USD')
-  if (tier.priceEur != null) return formatCurrency(tier.priceEur, 'EUR')
-  return 'не опубликована'
 }
 
 function targetLabel(product: Challenge) {
@@ -315,22 +310,16 @@ export default function RussianPartnerReview({
       <section className="ru-section" id="prices">
         <div className="ru-shell">
           <h2>Каждая опубликованная цена</h2>
-          <div className="ru-table-wrap">
-            <table className="ru-table">
-              <thead><tr><th>Продукт</th><th>Размер счёта</th><th>Цена</th><th>Возврат</th><th>Источник</th></tr></thead>
-              <tbody>
-                {pricedTiers.map(({ product, tier }) => (
-                  <tr key={`${product.productSlug}-${tier.sizeUsd}`}>
-                    <td>{product.productName}</td>
-                    <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
-                    <td>{tierPrice(tier)}</td>
-                    <td>{tier.refundable == null ? 'не подтверждено' : tier.refundable ? 'да' : 'нет'}</td>
-                    <td>{product.sourceCapturedAt}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PriceMatrix
+            products={freshProducts}
+            firmName={firmName}
+            firmSlug={firmSlug}
+            locale="ru"
+            wrapperClassName="ru-table-wrap"
+            renderEmpty
+            ariaLabel={`Цены ${firmName} по размеру счёта — таблицу можно прокрутить`}
+            data-russian-partner-price-count={pricedTiers.length}
+          />
           <p className="ru-source-line">{sourceUrls.length} уникальных первичных страниц. Подробные заметки и доказательства доступны в <Link href={englishReviewHref} hrefLang="en">английском обзоре {firmName}</Link>.</p>
           <p className="ru-source-line">
             Официальные страницы продуктов:{' '}

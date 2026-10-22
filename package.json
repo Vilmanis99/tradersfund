@@ -28,6 +28,7 @@
     "capture:freshness": "node scripts/challenge-freshness.mjs",
     "test:finder": "node scripts/test-challenge-finder.mjs",
     "test:total-cost-sort": "node scripts/test-total-cost-sort.mjs",
+    "test:price-matrix": "node scripts/test-price-matrix.mjs",
     "test:navigation": "node scripts/test-navigation.mjs",
     "test:go-click-tracking": "node scripts/test-go-click-tracking.mjs",
     "test:campaign-attribution": "node scripts/test-campaign-attribution.mjs",

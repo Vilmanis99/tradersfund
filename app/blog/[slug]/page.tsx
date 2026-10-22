@@ -32,6 +32,7 @@ import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/Revi
 import { promotableDiscount } from '@/lib/discountDisplay'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReviewVerdictBox from '@/components/ReviewVerdictBox'
+import PriceMatrix from '@/components/PriceMatrix'
 import { comparisonHref } from '@/lib/relatedComparisons'
 import { getReviewCopy } from '@/lib/verdictCopy'
 import { rankFirmAlternatives } from '@/lib/firmAlternatives'
@@ -217,6 +218,17 @@ export default async function BlogPostPage({ params }: Props) {
                   compare={compareFirm ? { href: comparisonHref(matchedFirm, compareFirm), label: `Compare ${matchedFirm.name} vs ${compareFirm.name}` } : undefined}
                   sourcesHref="#captured-terms"
                 />
+                )}
+                {freshFirmProducts.length > 0 && (
+                  <PriceMatrix
+                    products={freshFirmProducts}
+                    firmName={matchedFirm.name}
+                    firmSlug={firmSlug(matchedFirm.name)}
+                    locale="en"
+                    id="price-matrix"
+                    title={`${matchedFirm.name} entry fee by account size`}
+                    ariaLabel={`${matchedFirm.name} entry fees by account size (scrollable table)`}
+                  />
                 )}
                 <details className="p1-collapsible" id="captured-terms">
                   <summary>Captured product terms and sources</summary>
