@@ -434,8 +434,14 @@ try {
   }
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
-  assert.equal(cryptoModule.metadata.openGraph.title, 'Крипто-проп-фирмы 2026: 3 проверенных варианта', 'sharing metadata is preserved pending separate approval')
-  assert.equal(cryptoModule.metadata.twitter.description, 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.')
+  // RU SEO Lead approved 22.10, numberless by design: share strings carry no live firm or product count.
+  assert.equal(cryptoModule.metadata.openGraph.title, 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ', 'sharing title is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.title, cryptoModule.metadata.openGraph.title, 'Twitter title matches Open Graph')
+  assert.equal(cryptoModule.metadata.openGraph.description, 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.', 'sharing description is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.description, cryptoModule.metadata.openGraph.description, 'Twitter description matches Open Graph')
+  assert(cryptoModule.metadata.openGraph.description.length >= 140 && cryptoModule.metadata.openGraph.description.length <= 160, 'sharing description is 140-160 characters')
+  assert.doesNotMatch(`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`, /\d+ (?:проверенн|крипто|подтверждённ|фирм|продукт)/u, 'sharing strings promise no fixed live inventory')
+  for (const evidence of cryptoEvidence.ranked) assert(!`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`.includes(evidence.firmName), `sharing strings name no firm (${evidence.firmName})`)
   const assertCryptoArchive = html => {
     assert(html.includes('data-russian-crypto-article="long-form"') && html.includes('id="sources"'), 'expiry preserves the substantive article and dated sources')
     assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'unresolved CFT correction survives unrelated evidence expiry')

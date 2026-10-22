@@ -36,9 +36,9 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто проп-компании 2026: проп-трейдинг криптовалют'
 const DESCRIPTION = 'Проп-компании и проп-трейдинг криптовалют: сравнение крипто-проп фирм по датированным источникам — комиссии, плечо, просадка, выплаты и доступ из России.'
-// Preserve existing sharing-preview text until the separate sharing update is approved.
-const SOCIAL_TITLE = 'Крипто-проп-фирмы 2026: 3 проверенных варианта'
-const SOCIAL_DESCRIPTION = 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.'
+// RU SEO Lead approved 22.10, numberless by design
+const SOCIAL_TITLE = 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ'
+const SOCIAL_DESCRIPTION = 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
