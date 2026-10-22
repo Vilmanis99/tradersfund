@@ -6239,9 +6239,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
+  // Lengths checked at the fixture's upper bound (every evidence entry current).
+  const expectedTitle = `Best Prop Firms UK 2026: ${entries.length} That Accept UK Traders`
   const expectedDescription =
-    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
+    `Prop firms that accept UK traders in 2026: ${entries.length} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -6484,14 +6485,14 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
+      `Prop firms that accept US traders in 2026: ${expected.size} firms with first-party evidence for ${expectedProductCount} US-resident products, mostly futures, plus CFTC and NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
       'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
-      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
-      'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
+      'metaTitle: `Best Prop Firms for US Traders 2026: ${CURRENT_US_FIRM_COUNT} Firms Checked`',
+      'CURRENT_US_PRODUCT_COUNT} US-resident products, mostly futures',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
       'U.S.-mapped ${products.length === 1',
@@ -7795,7 +7796,7 @@ function checkInstantFundingCluster() {
       'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
       'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`',
-      'metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`',
+      'metaTitle: `Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} With No Challenge`',
       'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',

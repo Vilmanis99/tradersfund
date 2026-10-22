@@ -534,9 +534,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-in-uk',
     h1: `Best Prop Firms UK (2026): ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms That Accept UK Traders`,
-    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} That Accept UK Traders`,
     metaDescription:
-      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
+      `Prop firms that accept UK traders in 2026: ${CURRENT_UK_FIRM_COUNT} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`,
     intro:
       `Looking for a prop firm in the UK? These ${CURRENT_UK_FIRM_COUNT} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${CURRENT_UK_PRODUCT_COUNT} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
     sortDir: 'desc',
@@ -607,9 +607,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-in-us',
     h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`,
-    metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms for US Traders 2026: ${CURRENT_US_FIRM_COUNT} Firms Checked`,
     metaDescription:
-      `Best prop firms for US traders in 2026: ${CURRENT_US_FIRM_COUNT} prop trading firms open to USA residents across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with CFTC/NFA checks.`,
+      `Prop firms that accept US traders in 2026: ${CURRENT_US_FIRM_COUNT} firms with first-party evidence for ${CURRENT_US_PRODUCT_COUNT} US-resident products, mostly futures, plus CFTC and NFA checks.`,
     intro:
       `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${CURRENT_US_FIRM_COUNT} firms that publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
@@ -844,9 +844,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-instant-funding-prop-firms',
     h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`,
-    metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`,
+    metaTitle: `Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} With No Challenge`,
     metaDescription:
-      `Best instant funding prop firms in 2026: ${CURRENT_INSTANT_FIRM_COUNT} firms and ${CURRENT_INSTANT_PRODUCT_COUNT} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`,
+      `Instant funding prop firms with no challenge: ${CURRENT_INSTANT_FIRM_COUNT} firms and ${CURRENT_INSTANT_PRODUCT_COUNT} no-evaluation accounts compared on total cost, loss limit, starting split and payout gates.`,
     intro:
       `Want a prop firm with instant funding, so you can skip the challenge? These ${CURRENT_INSTANT_FIRM_COUNT} firms have ${CURRENT_INSTANT_PRODUCT_COUNT} products captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Every card names each qualifying path and links its distinct first-party sources before comparing the loss line, total known cost, starting split, and payout gate.`,
     sortDir: 'desc',
@@ -1164,9 +1164,9 @@ function withCurrentAccessCopy(
     return {
       ...landing,
       h1: `Best Prop Firms UK (2026): ${snapshot.firmCount} Prop Trading Firms That Accept UK Traders`,
-      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
+      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} That Accept UK Traders`,
       metaDescription:
-        `Compare ${snapshot.firmCount} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
+        `Prop firms that accept UK traders in 2026: ${snapshot.firmCount} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`,
       intro:
         `Looking for a prop firm in the UK? These ${snapshot.firmCount} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${snapshot.productCount} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
       decisionGuide: landing.decisionGuide?.map(item => item.title === 'Does the policy cover every product and platform forever?'
@@ -1182,9 +1182,9 @@ function withCurrentAccessCopy(
   return {
     ...landing,
     h1: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Prop Trading Firms in the USA`,
-    metaTitle: `Best Prop Firms USA 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms for US Traders 2026: ${snapshot.firmCount} Firms Checked`,
     metaDescription:
-      `Best prop firms for US traders in 2026: ${snapshot.firmCount} prop trading firms open to USA residents across ${snapshot.productCount} exact futures and CFD products, with CFTC/NFA checks.`,
+      `Prop firms that accept US traders in 2026: ${snapshot.firmCount} firms with first-party evidence for ${snapshot.productCount} US-resident products, mostly futures, plus CFTC and NFA checks.`,
     intro:
       `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${snapshot.firmCount} firms that publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'
