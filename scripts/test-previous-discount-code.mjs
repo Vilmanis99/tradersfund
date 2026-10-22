@@ -24,9 +24,6 @@ const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.jso
 const HISTORY = /\b(previous(ly)?|former(ly)?|expired|replaced|no longer|old code|was the code|ended|superseded)\b|прежн|предыдущ|ранее|истёк|истек|больше не|заменён|заменен/i
 
 const PENDING = {
-  // EN Writer: whole article presents DOUBLE25 as the current BrightFunded code; the excerpt also
-  // feeds the blog index, category, author page, RSS and llms.txt.
-  'content/posts/brightfunded-discount-code.md': { owner: 'EN Writer', routes: ['/blog/brightfunded-discount-code', '/blog', '/category/prop-firms', '/authors/tara-mohseni', '/feed.xml', '/llms.txt'] },
 }
 
 const withPrevious = firms.filter(firm => firm.previousDiscountCode)
