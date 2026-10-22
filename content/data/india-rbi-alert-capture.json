@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-14",
+  "capturedAt": "2026-10-20",
+  "recheckNote": "Rechecked 2026-10-20 (US-IP box, curl of the RBI page): heading still reads \"Alert List (Updated as on November 19, 2025)\"; FTMO is still item 13 (https://ftmo.com/en) and FundedNext item 83 (https://fundednext.com); none of the notFound firms appear. Raw copy: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/rbi_alert.html (box only).",
   "sourceListUpdatedAt": "2025-11-19",
   "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
   "sourceScope": "RBI says the Alert List contains entities not authorised to deal in forex under FEMA or operate a forex electronic trading platform, and may include promoters of unauthorised entities or ETPs.",

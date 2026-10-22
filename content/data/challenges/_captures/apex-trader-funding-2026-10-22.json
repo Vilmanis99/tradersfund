@@ -1,0 +1,328 @@
+{
+  "firmSlug": "apex-trader-funding",
+  "captureType": "full-price-recheck",
+  "capturedAt": "2026-10-22",
+  "timezone": "Europe/Riga",
+  "label": "prices shown on apextraderfunding.com, captured 22.10.2026",
+  "decision": "EA option (a), 22.10.2026 kickoff: a fresh US-egress capture of the public pricing selector counts as verified when captured the same day and saved as evidence. Not checkout-verified.",
+  "previousCapture": "content/data/challenges/_captures/apex-trader-funding-2026-10-20.json",
+  "egress": "US (box)",
+  "method": "Browser render of https://apextraderfunding.com/ product selector (Select Type: Intraday Trail / EOD Trail; Standard | No Activation Fee; 25k/50k/100k/150k), one screenshot per combination, 08:04 Riga. Numbers transcribed from the screenshots and cross-checked: every coupon price equals 10% of the struck-through price, and all 16 list prices equal the product data embedded in the same page on 2026-10-20 (evidence/apex-us-ip-product-data-2026-10-20.json).",
+  "failedAttempts": [
+    "curl https://apextraderfunding.com/ (and /help-center/, /legacy-accounts/, /wp-json/, dashboard signup, support.apextraderfunding.com) -> HTTP 403 Cloudflare 'Just a moment...' 08:03 Riga (evidence/apex-2026-10-22/curl-attempts.txt, home.html)",
+    "headless Chrome (playwright-core) https://apextraderfunding.com/ -> HTTP 403 'Sorry, you have been blocked' Cloudflare Ray a4e5f47effd5f336, 08:03 Riga (home-rendered.txt, home-full.png)",
+    "WebFetch https://apextraderfunding.com/ -> page text readable but pricing selector is JS-rendered, no prices"
+  ],
+  "cardQuotes": [
+    "ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS.",
+    "- (with Coupon Code)",
+    "Reset Fee N/A",
+    "Min. Days To Pass 1"
+  ],
+  "promo": {
+    "code": "SAVENOW",
+    "banner": "90% OFF ALL EVALS",
+    "endsApprox": "2026-10-23T07:00+03:00 (on-page countdown; page config 2026-10-20 said expiration \"2026-10-22 23:59\")",
+    "usedInPrices": false,
+    "inDealsJson": false,
+    "note": "US-IP observation only; not checkout-verified."
+  },
+  "cards": [
+    {
+      "product": "Intraday Trail - Standard",
+      "sizeUsd": 25000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_standard_25k.png",
+      "listPriceUsd_struckThrough": 167,
+      "couponPriceUsd_withCode": 16.7,
+      "minDaysToPass": 1,
+      "maxContractsMini": 4,
+      "profitTargetUsd": 1500,
+      "maxDrawdownUsd": 1000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - Standard",
+      "sizeUsd": 50000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_standard_50k.png",
+      "listPriceUsd_struckThrough": 249,
+      "couponPriceUsd_withCode": 24.9,
+      "minDaysToPass": 1,
+      "maxContractsMini": 6,
+      "profitTargetUsd": 3000,
+      "maxDrawdownUsd": 2000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - Standard",
+      "sizeUsd": 100000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_standard_100k.png",
+      "listPriceUsd_struckThrough": 790,
+      "couponPriceUsd_withCode": 79.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 8,
+      "profitTargetUsd": 6000,
+      "maxDrawdownUsd": 3000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - Standard",
+      "sizeUsd": 150000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_standard_150k.png",
+      "listPriceUsd_struckThrough": 1190,
+      "couponPriceUsd_withCode": 119.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 12,
+      "profitTargetUsd": 9000,
+      "maxDrawdownUsd": 4000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - No Activation Fee",
+      "sizeUsd": 25000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_noactfee_25k.png",
+      "listPriceUsd_struckThrough": 690,
+      "couponPriceUsd_withCode": 69.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 4,
+      "profitTargetUsd": 1500,
+      "maxDrawdownUsd": 1000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - No Activation Fee",
+      "sizeUsd": 50000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_noactfee_50k.png",
+      "listPriceUsd_struckThrough": 490,
+      "couponPriceUsd_withCode": 49.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 6,
+      "profitTargetUsd": 3000,
+      "maxDrawdownUsd": 2000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - No Activation Fee",
+      "sizeUsd": 100000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_noactfee_100k.png",
+      "listPriceUsd_struckThrough": 590,
+      "couponPriceUsd_withCode": 59.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 8,
+      "profitTargetUsd": 6000,
+      "maxDrawdownUsd": 3000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "Intraday Trail - No Activation Fee",
+      "sizeUsd": 150000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_intraday_noactfee_150k.png",
+      "listPriceUsd_struckThrough": 1890,
+      "couponPriceUsd_withCode": 189.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 12,
+      "profitTargetUsd": 9000,
+      "maxDrawdownUsd": 4000,
+      "resetFee": "N/A",
+      "dailyLossLimitShown": false
+    },
+    {
+      "product": "EOD Trail - Standard",
+      "sizeUsd": 25000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_standard_25k.png",
+      "listPriceUsd_struckThrough": 490,
+      "couponPriceUsd_withCode": 49.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 4,
+      "profitTargetUsd": 1500,
+      "maxDrawdownUsd": 1000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 500
+    },
+    {
+      "product": "EOD Trail - Standard",
+      "sizeUsd": 50000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_standard_50k.png",
+      "listPriceUsd_struckThrough": 590,
+      "couponPriceUsd_withCode": 59.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 6,
+      "profitTargetUsd": 3000,
+      "maxDrawdownUsd": 2000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 1000
+    },
+    {
+      "product": "EOD Trail - Standard",
+      "sizeUsd": 100000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_standard_100k.png",
+      "listPriceUsd_struckThrough": 1190,
+      "couponPriceUsd_withCode": 119.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 8,
+      "profitTargetUsd": 6000,
+      "maxDrawdownUsd": 3000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 1500
+    },
+    {
+      "product": "EOD Trail - Standard",
+      "sizeUsd": 150000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_standard_150k.png",
+      "listPriceUsd_struckThrough": 2190,
+      "couponPriceUsd_withCode": 219.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 12,
+      "profitTargetUsd": 9000,
+      "maxDrawdownUsd": 4000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 2000
+    },
+    {
+      "product": "EOD Trail - No Activation Fee",
+      "sizeUsd": 25000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_noactfee_25k.png",
+      "listPriceUsd_struckThrough": 1090,
+      "couponPriceUsd_withCode": 109.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 4,
+      "profitTargetUsd": 1500,
+      "maxDrawdownUsd": 1000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 500
+    },
+    {
+      "product": "EOD Trail - No Activation Fee",
+      "sizeUsd": 50000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_noactfee_50k.png",
+      "listPriceUsd_struckThrough": 1190,
+      "couponPriceUsd_withCode": 119.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 6,
+      "profitTargetUsd": 3000,
+      "maxDrawdownUsd": 2000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 1000
+    },
+    {
+      "product": "EOD Trail - No Activation Fee",
+      "sizeUsd": 100000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_noactfee_100k.png",
+      "listPriceUsd_struckThrough": 1590,
+      "couponPriceUsd_withCode": 159.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 8,
+      "profitTargetUsd": 6000,
+      "maxDrawdownUsd": 3000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 1500
+    },
+    {
+      "product": "EOD Trail - No Activation Fee",
+      "sizeUsd": 150000,
+      "screenshot": "/workspace/tradersfundhub/evidence/apex-2026-10-22/apex_eod_noactfee_150k.png",
+      "listPriceUsd_struckThrough": 2490,
+      "couponPriceUsd_withCode": 249.0,
+      "minDaysToPass": 1,
+      "maxContractsMini": 12,
+      "profitTargetUsd": 9000,
+      "maxDrawdownUsd": 4000,
+      "resetFee": "N/A",
+      "dailyLossLimitUsd": 2000
+    }
+  ],
+  "helpCentreReadViaWebFetch2026_10_22": [
+    {
+      "url": "https://apextraderfunding.com/help-center/intraday-trailing-drawdown-accounts/intraday-trailing-drawdown-evaluations/",
+      "dateModified": "2026-04-28",
+      "quotes": [
+        "No Daily Loss Limit",
+        "No minimum trading days required, may pass in one trading day",
+        "7 calendar days to activate PA after passing",
+        "Profit Target | $1,500 | $3,000 | $6,000 | $9,000",
+        "Max Drawdown (Intraday Trailing) | $1,000 | $2,000 | $3,000 | $4,000"
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-evaluations/",
+      "dateModified": "2026-06-05",
+      "quotes": [
+        "Daily Loss Limit | $500 | $1,000 | $1,500 | $2,000",
+        "Max Drawdown (EOD) | $1,000 | $2,000 | $3,000 | $4,000",
+        "Consistency | Not Applied"
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/uncategorized/intraday-trailing-drawdown-payouts/",
+      "dateModified": "2026-04-28",
+      "quotes": [
+        "Up to weekly payouts with 100% payout split",
+        "Minimum payout amount: $500",
+        "50% consistency applies",
+        "Maximum 6 payouts per Performance Account",
+        "Min Daily Profit 25K $100, 50K $200, 100K $250, 150K $300",
+        "Payout #1 caps $1,000 / $1,500 / $2,000 / $2,500"
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/eod-trailing-drawdown-accounts/eod-payouts/",
+      "dateModified": "2026-04-28",
+      "quotes": [
+        "Min Daily Profit 25K $100, 50K $250, 100K $300, 150K $350",
+        "Payout #1 caps $1,000 / $1,500 / $2,000 / $2,500"
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/getting-started/prohibited-activities/",
+      "dateModified": "2026-07-31",
+      "quotes": [
+        "No Automation or Algorithm Usage allowed",
+        "NEWS TRADING: Trading during news is allowed for your normal trading strategy.",
+        "Holding open trade positions through the market close."
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/getting-started/futures-trading-times/",
+      "dateModified": "2026-04-20",
+      "quotes": [
+        "All trades must be closed before 4:59 PM ET.",
+        "Starting at 6:00 PM ET, you can start placing trades again."
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/uncategorized/no-activation-fee-evaluations/",
+      "dateModified": "2026-06-05",
+      "quotes": [
+        "No PA activation Fee after qualifying",
+        "the total price to activate the PA is set at $0"
+      ]
+    },
+    {
+      "url": "https://apextraderfunding.com/help-center/billing/pa-activation-process-deadline-explained/",
+      "dateModified": "2026-04-15",
+      "quotes": [
+        "complete the one-time PA activation fee using the Purchase PA link"
+      ],
+      "gap": "The 'PA Activation Fees (All Platforms)' amounts are an image; not readable. Standard activation fee therefore unverified on 2026-10-22."
+    }
+  ],
+  "unresolved": [
+    "Standard-path PA activation fee amounts not displayed on the captured cards (the 'PERFORMANCE ACCOUNT' dropdown was not expanded); Standard priceUsd left null so cost-to-funded is not understated.",
+    "Intraday No Activation Fee 25K ($690) priced above 50K ($490) and 100K ($590) as displayed.",
+    "Legacy accounts page ('Legacy Accounts Are Back ... For a Limited Time') not captured; Legacy products are not represented in data.",
+    "Non-US prices not tested."
+  ],
+  "changes": [
+    "4 products: sourceCapturedAt 2026-09-14 -> 2026-10-22",
+    "No Activation Fee (Intraday, EOD): priceUsd set for all 4 sizes, activationFeeUsd 0",
+    "Standard (Intraday, EOD): 25K Intraday $199 + $59 (2026-09-14) removed -> null; list fees recorded in notes only",
+    "challenge-watch apex-new-product-lineup-2026 lastCheckedAt -> 2026-10-22",
+    "firms.json: lastUpdated 2026-10-22; discountCodeNote/discountCodeCapturedAt updated (regional, us-only-unconfirmed)"
+  ]
+}
