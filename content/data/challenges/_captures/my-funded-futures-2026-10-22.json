@@ -1,0 +1,34 @@
+{
+  "firmSlug": "my-funded-futures",
+  "capturedAt": "2026-10-22",
+  "capturedBy": "daily data check 2026-10-22",
+  "vantage": "box (US IP) curl + WebFetch reader",
+  "changes": [
+    {
+      "product": "Rapid EOD",
+      "field": "accountSizes[50000].priceUsd",
+      "old": 157,
+      "new": 225,
+      "sourceUrl": "https://myfundedfutures.com/plans/rapid-eod",
+      "quote": "{\"@type\":\"Offer\",\"price\":\"225.00\",\"priceCurrency\":\"USD\"} (Rapid EOD $50,000); homepage card: \"RAPID EOD Daily payouts, Funded EOD drawdown One-time payment $135 Based on current promotions $225\""
+    },
+    {
+      "product": "Rapid EOD",
+      "field": "accountSizes[25000].priceUsd",
+      "old": null,
+      "new": 145,
+      "sourceUrl": "https://myfundedfutures.com/plans/rapid-eod",
+      "quote": "\"One-time fee $87 Based on current promotions $145\"; schema \"price\":\"145.00\""
+    }
+  ],
+  "crossCheck": "Homepage Product schema promo prices (CLUB 40%): Rapid 87/125/214/278, Builder 63/92, Pro 159/241/334 all equal 60% of the stored list prices, so only Rapid EOD moved.",
+  "otherObservations": [
+    "Homepage banner: \"Save 40% On Any Plan With Code CLUB. New to MFFU? Get 50% off your first eval.\" (US IP; CLUB unchanged as regionalDiscountCode)"
+  ],
+  "unchanged": {
+    "rapid": "145/209/356/463 (plans/rapid schema)",
+    "pro": "265/401/557 (plans/pro schema)",
+    "builder": "105/153 (plans/builder schema; page text says $25K & $50K only)",
+    "flex": "legacy, no longer on offer (blog/myfundedfutures-mffu-flex-plan)"
+  }
+}

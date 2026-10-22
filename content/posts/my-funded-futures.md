@@ -15,6 +15,7 @@ sourceUrls:
   - "https://myfundedfutures.com/plans/rapid"
   - "https://myfundedfutures.com/plans/pro"
   - "https://myfundedfutures.com/plans/builder"
+  - "https://myfundedfutures.com/plans/rapid-eod"
   - "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan"
   - "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look"
   - "https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look"
@@ -29,14 +30,14 @@ sourceUrls:
 
 <div data-mff-review-evidence="2026-09-14" style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
   <strong>Evidence boundary</strong>
-  <p style="margin: 0.45rem 0 0;">This page was first built from a 14 September 2026 first-party capture; prices, rules and source pages were rechecked against the plan pages on 20 October 2026. New Rapid, Rapid EOD, Builder and Pro purchases are described as one-time payments; Flex is retained only as a legacy subscription record. The plan pages now embed size-mapped prices for every Rapid, Pro and Builder tier; Rapid EOD 25K still has no published price and legacy Flex prices are no longer published, so those cells show “—” instead of carrying forward old figures.</p>
+  <p style="margin: 0.45rem 0 0;">This page was first built from a 14 September 2026 first-party capture; prices, rules and source pages were rechecked against the plan pages on 22 October 2026. New Rapid, Rapid EOD, Builder and Pro purchases are described as one-time payments; Flex is retained only as a legacy subscription record. The plan pages now list size-mapped prices for every Rapid, Rapid EOD, Pro and Builder tier; legacy Flex prices are no longer published, so those cells show “—” instead of carrying forward old figures.</p>
 </div>
 
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
     <li>Current new-purchase families are Rapid, Rapid EOD, Builder and Pro; Flex is marked legacy by MFFU.</li>
-    <li>One-time list prices (rechecked 2026-10-20): Rapid $145/$209/$356/$463 for 25K–150K, Rapid EOD 50K $157, Pro $265/$401/$557 for 50K–150K and Builder $105/$153 for 25K/50K.</li>
+    <li>One-time list prices (rechecked 2026-10-22): Rapid $145/$209/$356/$463 for 25K–150K, Rapid EOD $145/$225 for 25K/50K, Pro $265/$401/$557 for 50K–150K and Builder $105/$153 for 25K/50K.</li>
     <li>Rapid uses a 2-day evaluation, 90% split and intraday funded trailing drawdown; Rapid EOD keeps EOD drawdown funded but needs 4 days and 30% evaluation consistency.</li>
     <li>Builder needs 1 evaluation day and five simulated payouts before the documented live transition; Pro needs 14 calendar days before its first payout and has a $100,000 cycle cap.</li>
     <li>Russia is explicitly listed as restricted, so a Russian resident should not click through expecting a new MFFU account.</li>
@@ -62,7 +63,7 @@ sourceUrls:
 <table class="general-table" data-mff-plan-decision="binding-rule" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;"><caption class="hidden-caption">My Funded Futures plan decision matrix</caption><thead><tr style="background: var(--bg3);"><th>Plan</th><th>Choose it for</th><th>Binding rule to price first</th></tr></thead><tbody><tr><td>Rapid</td><td>2-day evaluation and daily requests</td><td>Real-time trailing drawdown after funding plus the size-specific payout buffer</td></tr><tr><td>Rapid EOD</td><td>EOD funded drawdown</td><td>4 evaluation days and 30% consistency</td></tr><tr><td>Builder</td><td>1-day evaluation and five-rung ladder</td><td>50% funded consistency and $1,000/$2,000 payout cap</td></tr><tr><td>Pro</td><td>$100,000 cycle ceiling</td><td>14 calendar days plus buffer before first request</td></tr></tbody></table>
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
-<p>The table records 13 product-size rows. A dash means no current first-party price is published for that row (rechecked 2026-10-20); it is not a zero fee.</p>
+<p>The table records 13 product-size rows. A dash means no current first-party price is published for that row (rechecked 2026-10-22); it is not a zero fee.</p>
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.84rem;">
   <caption class="hidden-caption">My Funded Futures product and size comparison</caption>
   <thead><tr style="background: var(--bg3);"><th>Product</th><th>Stage</th><th>Account</th><th>Price</th><th>Target</th><th>Max loss</th><th>Split</th></tr></thead>
@@ -71,8 +72,8 @@ sourceUrls:
     <tr><td>Rapid</td><td>1 phase</td><td>$50K</td><td>$209</td><td>6%</td><td>$2,000</td><td>90%</td></tr>
     <tr><td>Rapid</td><td>1 phase</td><td>$100K</td><td>$356</td><td>6%</td><td>$3,000</td><td>90%</td></tr>
     <tr><td>Rapid</td><td>1 phase</td><td>$150K</td><td>$463</td><td>6%</td><td>$4,500</td><td>90%</td></tr>
-    <tr><td>Rapid EOD</td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>90%</td></tr>
-    <tr><td>Rapid EOD</td><td>1 phase</td><td>$50K</td><td>$157</td><td>6%</td><td>$2,000</td><td>90%</td></tr>
+    <tr><td>Rapid EOD</td><td>1 phase</td><td>$25K</td><td>$145</td><td>6%</td><td>$1,000</td><td>90%</td></tr>
+    <tr><td>Rapid EOD</td><td>1 phase</td><td>$50K</td><td>$225</td><td>6%</td><td>$2,000</td><td>90%</td></tr>
     <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$25K</td><td>—</td><td>6%</td><td>$1,000</td><td>80%</td></tr>
     <tr><td>Flex <em>(legacy)</em></td><td>1 phase</td><td>$50K</td><td>—</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
     <tr><td>Pro</td><td>1 phase</td><td>$50K</td><td>$265</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
@@ -82,7 +83,7 @@ sourceUrls:
     <tr><td>Builder</td><td>1 phase</td><td>$50K</td><td>$153</td><td>6%</td><td>$2,000</td><td>80%</td></tr>
   </tbody>
 </table>
-<p>Prices and rule fields were rechecked against MFFU’s plan and help pages on 2026-10-20. Prices are one-time list prices before the site-wide coupon. Rapid, Rapid EOD, Builder and Pro are described as one-time plans in their current pages and in the terms; Flex is a legacy subscription whose prices MFFU no longer publishes. The <a href="/go/my-funded-futures">firm checkout</a> controls the final amount, add-ons and eligibility.</p>
+<p>Prices and rule fields were rechecked against MFFU’s plan and help pages on 2026-10-22; the Rapid EOD prices now come from its plan page (myfundedfutures.com/plans/rapid-eod), which replaced the $157 50K figure from MFFU’s older Rapid EOD article. Prices are one-time list prices before the site-wide coupon. Rapid, Rapid EOD, Builder and Pro are described as one-time plans in their current pages and in the terms; Flex is a legacy subscription whose prices MFFU no longer publishes. The <a href="/go/my-funded-futures">firm checkout</a> controls the final amount, add-ons and eligibility.</p>
 
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 <p><strong>Rapid:</strong> the evaluation uses an end-of-day trailing line and a 6% target, then the Sim Funded stage switches to intraday trailing. The current rules table gives a $2,000 maximum loss and 5 mini/50 micro contracts for 50K; the floor locks at +$100 once the buffer is secured.</p>
@@ -109,7 +110,7 @@ sourceUrls:
 </table>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
-<p>These tables are generated from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. Rapid EOD 25K and legacy Flex have no current published price, so no break-even number is manufactured for them.</p>
+<p>These tables are generated from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a>. Legacy Flex has no current published price, so no break-even number is manufactured for it. The Rapid EOD rows use the $145 (25K) and $225 (50K) plan-page prices captured on 2026-10-22.</p>
 
 <!-- Rapid — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
@@ -128,7 +129,8 @@ sourceUrls:
   <caption class="hidden-caption">Rapid EOD true-cost projection</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (90% split)</th><th style="padding: 8px 12px; text-align: left;">Max loss</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs tier max loss</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$157</td><td style="padding: 8px 12px;">$174</td><td style="padding: 8px 12px;">$2,000</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">—</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$145</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$161</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$1,000</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.16</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">—</td></tr>
+    <tr><td style="padding: 8px 12px;">$50K</td><td style="padding: 8px 12px;">$225</td><td style="padding: 8px 12px;">$250</td><td style="padding: 8px 12px;">$2,000</td><td style="padding: 8px 12px;">0.13</td><td style="padding: 8px 12px;">—</td></tr>
   </tbody>
 </table>
 
@@ -176,11 +178,11 @@ sourceUrls:
   <li>Rapid EOD needs 4 evaluation days and a 30% consistency cap.</li>
   <li>Builder funded payouts use a 50% consistency rule and a $1,000/$2,000 cycle cap.</li>
   <li>Pro delays the first payout until 14 calendar days plus buffer clearance.</li>
-  <li>Rapid EOD 25K has no published price, and the list prices exclude the site-wide coupon, so confirm the final amount at checkout.</li>
+  <li>The list prices exclude the site-wide coupon, so confirm the final amount at checkout.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick My Funded Futures</strong></h2>
-<p>A non-restricted, intraday futures trader who can build a $2,100 buffer should compare Rapid 50K at a one-time $209 with Rapid EOD 50K at $157. Choose Rapid for intraday funded trailing and daily requests, Rapid EOD for the EOD-funded line, Builder for the 1-day evaluation and five-rung ladder, or Pro for a 14-day window and a $100,000 cycle cap.</p>
+<p>A non-restricted, intraday futures trader who can build a $2,100 buffer should compare Rapid 50K at a one-time $209 with Rapid EOD 50K at $225. Choose Rapid for intraday funded trailing and daily requests, Rapid EOD for the EOD-funded line, Builder for the 1-day evaluation and five-rung ladder, or Pro for a 14-day window and a $100,000 cycle cap.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid My Funded Futures</strong></h2>
 <p>A Russian resident, a swing trader who needs overnight positions, or a trader who cannot verify the checkout price should avoid a new MFFU purchase. A trader needing open overnight rules should compare a product whose first-party record says overnight allowed, and a trader comparing fees should use the current list price for the chosen size rather than a promotion or an old Flex subscription figure.</p>
@@ -189,10 +191,10 @@ sourceUrls:
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 <div class="wp-block-rank-math-faq-block" data-mff-faq="current-plans">
-  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFFU plans are current in October 2026?</h3><div class="rank-math-answer">Rapid, Rapid EOD, Builder and Pro are the current new-purchase families (rechecked 2026-10-20). Flex is labelled legacy by MFFU and should not be treated as a new checkout option.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Which MFFU plans are current in October 2026?</h3><div class="rank-math-answer">Rapid, Rapid EOD, Builder and Pro are the current new-purchase families (rechecked 2026-10-22). Flex is labelled legacy by MFFU and should not be treated as a new checkout option.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Are MFFU evaluations monthly subscriptions?</h3><div class="rank-math-answer">New Rapid, Rapid EOD, Builder and Pro pages say one-time payment with no renewals. Terms published by MFFU keep recurring billing for legacy subscriptions purchased before 20 August 2026.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Can someone in Russia buy a new MFFU account?</h3><div class="rank-math-answer">No. Russia appears in MFFU's current restricted-country list, so a Russian resident cannot purchase or reset a new account while located there.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Which plan pays first?</h3><div class="rank-math-answer">Rapid and Rapid EOD use daily opportunities after their buffers; Builder describes a 48-hour cycle after 2 qualifying days, and Pro uses 14 calendar days from the first funded trade plus buffer clearance.</div></div>
   <div class="rank-math-faq-item"><h3 class="rank-math-question">Does Rapid use intraday or EOD drawdown?</h3><div class="rank-math-answer">Rapid evaluates with an EOD line but switches to intraday trailing in Sim Funded until the +$100 lock condition. Rapid EOD keeps EOD trailing in both stages.</div></div>
-  <div class="rank-math-faq-item"><h3 class="rank-math-question">Why are some current prices shown as a dash?</h3><div class="rank-math-answer">Only where MFFU publishes no current price. On 2026-10-20 the plan pages listed every Rapid, Pro and Builder size, but Rapid EOD 25K had no published price and legacy Flex prices are no longer published. Verify the final amount in the checkout before paying.</div></div>
+  <div class="rank-math-faq-item"><h3 class="rank-math-question">Why are some current prices shown as a dash?</h3><div class="rank-math-answer">Only where MFFU publishes no current price. On 2026-10-22 the plan pages listed every Rapid, Rapid EOD, Pro and Builder size; only legacy Flex prices are no longer published. Verify the final amount in the checkout before paying.</div></div>
 </div>
