@@ -20,6 +20,8 @@ import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -175,6 +177,7 @@ export default function RussianPartnerReview({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={[affiliateSlug]} from={`ru-${affiliateSlug}-review-mobile-sticky`} />
       {faqSchemaCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -198,6 +201,7 @@ export default function RussianPartnerReview({
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
             <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
           </div></RuCapturedTerms>} />
+      <RuTelegramBlock placement={path.replace(/^\/ru\//, '')} />
       <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
         <div className="ru-shell">
           <div className="ru-notice ru-disclosure ru-review-top-disclosure">
@@ -240,7 +244,7 @@ export default function RussianPartnerReview({
 
               <div className="ru-review-firm-action">
                 <p>Сначала проверьте страну, точный продукт, платформу и цикл выплаты; затем сверяйте условия при оплате.</p>
-                <RuGoLink firm={affiliateSlug}
+                <RuGoLink prefetch={false} firm={affiliateSlug}
                   href={`/go/${affiliateSlug}?from=${summaryCampaign}`}
                   rel="sponsored nofollow noopener"
                   className="btn-primary btn-glow"
@@ -391,7 +395,7 @@ export default function RussianPartnerReview({
             <strong>Партнёрское раскрытие.</strong> Мы можем получить комиссию, если подходящий читатель зарегистрируется по ссылке ниже. Это не меняет цены, цифры или редакционный порядок. Резидентам России нельзя обходить ограничения VPN, прокси или неверными данными.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
+            <RuGoLink prefetch={false} firm={affiliateSlug} href={`/go/${affiliateSlug}?from=${affiliateFrom}`} rel="sponsored nofollow noopener" className="btn-primary btn-glow">
               Проверить страну и условия на {firmName} <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
             <Link href="/ru/luchshie-prop-firmy" className="btn-outline">Сравнить глобальные фирмы</Link>

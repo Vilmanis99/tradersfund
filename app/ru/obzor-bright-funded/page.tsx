@@ -22,6 +22,8 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
@@ -204,6 +206,7 @@ export default function RussianBrightFundedReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['bright-funded']} from="ru-obzor-bright-funded-mobile-sticky" />
       {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -226,6 +229,7 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-stat"><strong>{minPrice == null ? 'Нет свежих цен' : `${eur(minPrice)}–${eur(maxPrice)}`}</strong><span>базовая стоимость участия</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
           </div></RuCapturedTerms>} />
+        <RuTelegramBlock placement="obzor-bright-funded" />
         <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
             <RuArticleToc>

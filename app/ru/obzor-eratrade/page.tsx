@@ -15,6 +15,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-eratrade'
 export const revalidate = 3600
@@ -140,6 +141,7 @@ export default function RussianEraTradeReviewPage() {
       </section>
 
       <RuReviewVerdictBox route={PATH} campaign="eratrade-review" sourcesHref="#facts" />
+      <RuTelegramBlock placement="obzor-eratrade" />
 
       <section className="ru-section" id="facts">
         <div className="ru-shell">

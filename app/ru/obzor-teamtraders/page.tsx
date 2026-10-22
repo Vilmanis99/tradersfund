@@ -28,6 +28,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-teamtraders'
 const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
@@ -207,6 +208,7 @@ export default function RussianTeamTradersReviewPage() {
       </section>
 
         <RuReviewVerdictBox route={PATH} campaign="teamtraders-review" sourcesHref="#istochniki" />
+        <RuTelegramBlock placement="obzor-teamtraders" />
 
       <div data-russian-teamtraders-evidence-status={hasFreshEvidence ? 'dated' : 'recapture-required'}>
       <section className="ru-section">

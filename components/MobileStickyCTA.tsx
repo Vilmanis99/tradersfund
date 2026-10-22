@@ -4,6 +4,8 @@ import { useEffect, useState, useSyncExternalStore } from 'react'
 import FirmLogo from './FirmLogo'
 import useCopyCode from './useCopyCode'
 import { Star, ArrowRight, Tag, Check } from 'lucide-react'
+import { RuAccessBadgeView } from './RuAccessBadgeView'
+import type { RussiaStatus } from '@/lib/russiaAvailability'
 
 /** Hydration flag has no external source to subscribe to — never notifies. */
 const subscribeNoop = () => () => {}
@@ -21,6 +23,11 @@ export interface MobileStickyCTAProps {
   affiliateSlug: string
   discountCode?: string
   discountPct?: number
+  /** RU pages: Russian labels and the Russia-access badge (firms.json russiaStatus) on the CTA row. */
+  locale?: 'en' | 'ru'
+  russiaStatus?: RussiaStatus
+  /** RU only: click-tracking placement for /go/, starting with 'ru-' (EN keeps 'mobile-sticky'). */
+  from?: string
 }
 
 /**
@@ -31,7 +38,8 @@ export interface MobileStickyCTAProps {
  * no h1 is found, but that shouldn't happen on review pages.
  */
 export default function MobileStickyCTA(props: MobileStickyCTAProps) {
-  const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct } = props
+  const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct, locale = 'en', russiaStatus, from } = props
+  const ru = locale === 'ru'
 
   const [visible, setVisible] = useState(false)
   const { copied, failed, copy } = useCopyCode(discountCode || '')
@@ -71,13 +79,16 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
 
   const hasAffiliate = Boolean(affiliateUrl)
   const ctaHref = `/go/${affiliateSlug}?from=mobile-sticky`
-  const ctaLabel = hasAffiliate ? 'View plans' : 'Official site'
+  // RU placements start with 'ru-' so click tracking files them under locale ru.
+  const href = ru && from ? `/go/${affiliateSlug}?from=${encodeURIComponent(from)}` : ctaHref
+  const ctaLabel = ru ? (hasAffiliate ? 'Перейти на сайт' : 'Официальный сайт') : (hasAffiliate ? 'View plans' : 'Official site')
 
   return (
     <div
       className={`mobile-cta-bar ${visible ? 'mobile-cta-bar--visible' : ''}`}
       role="complementary"
-      aria-label={`${name} quick actions`}
+      aria-label={ru ? `${name}: быстрые действия` : `${name} quick actions`}
+      data-mobile-sticky-cta={affiliateSlug}
     >
       {discountCode && discountPct && (
         <button
@@ -107,16 +118,18 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
           <div className="mobile-cta-bar-meta">
             <strong className="mobile-cta-bar-name">{name}</strong>
             <span className="mobile-cta-bar-score">
-              <Star size={10} aria-hidden="true" /> {score}
+              <Star size={10} aria-hidden="true" /> {ru ? score.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : score}
             </span>
+            {ru && russiaStatus && <RuAccessBadgeView firm={affiliateSlug} status={russiaStatus} hint={false} />}
           </div>
         </div>
 
         <a
-          href={ctaHref}
+          href={href}
           target="_blank"
           rel={hasAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
           className="mobile-cta-bar-cta"
+          data-russia-status={ru ? russiaStatus : undefined}
         >
           {ctaLabel}
           <ArrowRight size={14} aria-hidden="true" />

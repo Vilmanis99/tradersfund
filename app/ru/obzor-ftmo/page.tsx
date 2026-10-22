@@ -34,6 +34,8 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
@@ -219,6 +221,7 @@ export default function RussianFtmoReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['ftmo']} from="ru-obzor-ftmo-mobile-sticky" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
       <section className="ru-hero ru-hero--p1">
@@ -246,6 +249,7 @@ export default function RussianFtmoReviewPage() {
             <div className="ru-stat"><strong>{eur(Math.min(...pricedTiers.map(item => item.price)))}</strong><span>минимальная цена</span></div>
             <div className="ru-stat"><strong>{firm?.affiliateUrl ? 'да' : 'нет'}</strong><span>партнёрская связь с FTMO</span></div>
           </div></RuCapturedTerms>} />
+        <RuTelegramBlock placement="obzor-ftmo" />
         <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
             <RuArticleToc>

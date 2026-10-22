@@ -12,6 +12,8 @@ import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getA
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
@@ -271,6 +273,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['fundingpips', 'bright-funded']} from="ru-fp-vs-bright-mobile-sticky" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero">
@@ -346,6 +349,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           </p>
         </div>
       </section>
+      <RuTelegramBlock placement="fundingpips-vs-bright-funded" />
 
       <section className="ru-section" id="dostup">
         <div className="ru-shell ru-content ru-review-article">

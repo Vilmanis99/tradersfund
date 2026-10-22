@@ -43,6 +43,8 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import RuFundedNextRussiaRedirect from '@/components/RuFundedNextRussiaRedirect'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
@@ -271,6 +273,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['fundednext', 'bright-funded']} from="ru-fn-vs-bright-mobile-sticky" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -330,6 +333,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
       </section>
 
       <RuComparePickVerdict route={PATH} campaign="fn-vs-bright" />
+      <RuTelegramBlock placement="fundednext-vs-bright-funded" />
 
       <article className="ru-review-article" data-russian-primary-comparison-article="product-before-brand">
         <section className="ru-section" id="verdict">
