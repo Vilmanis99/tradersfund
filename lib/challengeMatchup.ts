@@ -449,6 +449,13 @@ export interface MatchupFirmSummary {
   drawdownTypes: string[]
   /** Account sizes with at least one verified price. */
   pricedSizes: number[]
+  /**
+   * Fresh products with no verified entry price at any size (every tier's
+   * price is null, e.g. Apex Standard since 2026-10-22, whose activation fee
+   * was not shown). They stay in the rule diff but are named, not priced, in
+   * the cost section: never $0 and never ranked.
+   */
+  unpricedProducts: string[]
   assetClasses: string[]
   currencies: ChallengeCurrency[]
   billingModels: string[]
@@ -483,9 +490,15 @@ export interface ChallengeMatchup {
 
 function summarise(slug: string, name: string, challenges: Challenge[], tracked: Challenge[]): MatchupFirmSummary {
   const pricedSizes = new Set<number>()
+  const unpricedProducts: string[] = []
   for (const challenge of challenges) {
+    let priced = false
     for (const tier of challenge.accountSizes) {
-      if (challengeTierEconomics(challenge, tier)) pricedSizes.add(tier.sizeUsd)
+      if (challengeTierEconomics(challenge, tier)) { pricedSizes.add(tier.sizeUsd); priced = true }
+    }
+    if (!priced && challenge.accountSizes.length > 0
+      && challenge.accountSizes.every(tier => tier.priceUsd == null && tier.priceEur == null)) {
+      unpricedProducts.push(challenge.productName)
     }
   }
   return {
@@ -503,6 +516,7 @@ function summarise(slug: string, name: string, challenges: Challenge[], tracked:
       formatDrawdown(challenge.drawdownType),
     ))],
     pricedSizes: [...pricedSizes].sort((x, y) => x - y),
+    unpricedProducts: unpricedProducts.sort((x, y) => x.localeCompare(y, 'en')),
     assetClasses: [...new Set(challenges.map(c => c.assetClass))],
     currencies: [...new Set(challenges.map(c => challengeCurrency(c)))],
     billingModels: [...new Set(challenges.map(c => formatBillingModel(c.pricingModel)))],

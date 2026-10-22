@@ -570,7 +570,11 @@ export type ChallengeCurrency = 'USD' | 'EUR'
 export function challengeCurrency(
   challenge: Pick<Challenge, 'accountSizes'>,
 ): ChallengeCurrency {
-  return challenge.accountSizes.some(t => t.priceUsd != null) ? 'USD' : 'EUR'
+  // EUR only when a EUR price is actually listed and no USD one is. A product
+  // that lists sizes but no price at all (Apex Standard since 2026-10-22: the
+  // activation fee was not shown) is not evidence of EUR pricing.
+  if (challenge.accountSizes.some(t => t.priceUsd != null)) return 'USD'
+  return challenge.accountSizes.some(t => t.priceEur != null) ? 'EUR' : 'USD'
 }
 
 export interface ChallengeTierEconomics {
