@@ -7134,13 +7134,66 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  // Tripwire, deliberately literal: the 2026-10-21 market recheck (crypto-market-evidence.json) ranks 10 firms
-  // (BrightFunded, CFT, FTMO, CTI, OFP added), empties the watch list and maps 34 products. Any change to the
-  // evidence file must update this line on purpose.
-  if (ranked.length !== 10 || watch.length !== 0 || mappedProducts.size !== 34) {
+  // Derived pin (same pattern as the futures cluster): the expected ranked / watch / mapped-product counts come
+  // from crypto-market-evidence.json, not literals. What stays asserted: the ranking is non-empty, every mapping
+  // is unique (so the mapped count equals the evidence's productSlugs total), every ranked product is fresh
+  // (validated above), and both rendered pages are held to these same derived counts by the release crawl
+  // (EN card count + per-card product labels; RU product/watch data attributes).
+  const derivedCryptoRanked = ranked.length
+  const derivedCryptoWatch = watch.length
+  const derivedCryptoMapped = ranked.reduce(
+    (total, entry) => total + (Array.isArray(entry.productSlugs) ? entry.productSlugs.length : 0),
+    0,
+  )
+  if (derivedCryptoRanked === 0 || derivedCryptoMapped === 0) {
     rows.push(
-      `crypto fixture expects 10 current ranked firms, 0 watch firms and 34 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms and ${derivedCryptoMapped} mapped products; the ranking cannot be empty`,
     )
+  }
+  if (mappedProducts.size !== derivedCryptoMapped) {
+    rows.push(
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms, ${derivedCryptoWatch} watch firms and ${derivedCryptoMapped} mapped products; ${mappedProducts.size} unique mappings resolved`,
+    )
+  }
+  const cryptoCountSafeguards = [
+    [read(RELEASE_CRAWL_FILE), 'release crawl', [
+      'rendered ${cards.length} firms, expected ${expectedCryptoFirms.length}',
+      'expectedCryptoFirms.length !== cryptoMarketEvidence.ranked.length',
+      'expectedCryptoProductCount !== expectedCryptoMappedProductCount',
+      '`${products.length} crypto-mapped ${products.length === 1 ? \'product\' : \'products\'}`',
+      'data-russian-crypto-product-count="${cryptoMarketEvidence.ranked.reduce((total, evidence) => total + evidence.productSlugs.length, 0)}"',
+      'data-russian-crypto-watch-count="${cryptoMarketEvidence.watch.length}"',
+      'for (const watch of cryptoMarketEvidence.watch)',
+    ]],
+    [read(LANDINGS_CONFIG_FILE), 'EN crypto landing config', [
+      'const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(',
+      'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
+    ]],
+    [read(path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')), 'RU crypto page', [
+      'data-russian-crypto-product-count={productCount}',
+      'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
+    ]],
+  ]
+  for (const [source, label, fragments] of cryptoCountSafeguards) {
+    for (const fragment of fragments) {
+      if (!source.includes(fragment)) {
+        rows.push(`${label} no longer holds the rendered crypto counts to the derived evidence counts: "${fragment}"`)
+      }
+    }
+  }
+  // The EN FAQ "Which crypto pairs can I trade?" says all five FundingPips product pages list BTCUSD and ETHUSD;
+  // hold that sentence to the per-product sources in crypto-market-evidence.json.
+  if (read(LANDINGS_CONFIG_FILE).includes('all five FundingPips product pages list BTCUSD and ETHUSD')) {
+    const fundingPips = ranked.find(entry => entry.firmSlug === 'fundingpips')
+    const productSources = fundingPips?.btcEthEvidence?.productSources ?? []
+    const citing = (fundingPips?.productSlugs ?? []).filter(productSlug => productSources.some(source =>
+      source.productSlug === productSlug
+      && /BTCUSD/.test(source.sourceQuote ?? '')
+      && /ETHUSD/.test(source.sourceQuote ?? '')
+      && isFreshDate(source.sourceCapturedAt)))
+    if (fundingPips?.productSlugs?.length !== 5 || citing.length !== 5) {
+      rows.push(`crypto FAQ claims all five FundingPips product pages list BTCUSD and ETHUSD; evidence maps ${fundingPips?.productSlugs?.length ?? 0} products and ${citing.length} fresh product sources cite both`)
+    }
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
     rows.push('crypto evidence methodology must separate tradable markets from payment and payout rails')

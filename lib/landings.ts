@@ -674,7 +674,7 @@ export const LANDINGS: Landing[] = [
       },
     ],
     snapshotProductCount: CURRENT_US_PRODUCT_COUNT,
-    lastReviewed: '2026-10-01',
+    lastReviewed: '2026-10-22',
   },
   {
     slug: 'best-prop-firms-in-india',
@@ -1065,7 +1065,7 @@ export const LANDINGS: Landing[] = [
       },
       {
         title: 'Which crypto pairs can I trade?',
-        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, the FundingPips 1 Step Flex page listed BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
+        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, all five FundingPips product pages list BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
       },
       {
         title: 'What is the cheapest crypto prop firm?',
