@@ -5,6 +5,8 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' },
   { en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' },
   { en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' },
+  { en: '/compare/bright-funded-vs-fundingpips', ru: '/ru/fundingpips-vs-bright-funded' },
+  { en: '/compare/bright-funded-vs-ftmo', ru: '/ru/ftmo-vs-bright-funded' },
   { en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' },
   { en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
@@ -35,8 +37,6 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
-  '/ru/fundingpips-vs-bright-funded',
-  '/ru/ftmo-vs-bright-funded',
 ] as const
 
 /**

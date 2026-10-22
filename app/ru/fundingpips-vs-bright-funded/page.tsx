@@ -11,7 +11,7 @@ import { minimumTradingDaysLabel } from '@/lib/challengeRuleLabels'
 import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { russianRouteDateModified } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 
@@ -56,7 +56,7 @@ export const revalidate = 3600
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
   openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
