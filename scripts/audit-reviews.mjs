@@ -7198,7 +7198,7 @@ function checkCryptoLandingCluster() {
   }
 
   const expectedDescription =
-    `Best crypto prop firms for 2026: ${ranked.length} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`
+    `Crypto prop firms where crypto is a tradable market, not just a payout method: ${ranked.length} firms compared on leverage, commission, entry price and payouts.`
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('crypto landing meta description must be between 120 and 160 characters')
   }

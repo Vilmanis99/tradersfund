@@ -3777,7 +3777,7 @@ if (cryptoLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
+    `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} With Crypto Markets | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
     // LandingPage renders the evidence-gaps section only for a non-empty watch list;
     // with watch empty the section must be absent (checked below), not required.

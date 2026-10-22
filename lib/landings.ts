@@ -991,9 +991,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-crypto-prop-firms',
     h1: `Best Crypto Prop Firms (2026): ${CURRENT_CRYPTO_FIRM_COUNT} Crypto Prop Trading Firms Compared`,
-    metaTitle: `Best Crypto Prop Firms 2026: ${CURRENT_CRYPTO_FIRM_COUNT} Firms Compared`,
+    metaTitle: `Best Crypto Prop Firms 2026: ${CURRENT_CRYPTO_FIRM_COUNT} With Crypto Markets`,
     metaDescription:
-      `Best crypto prop firms for 2026: ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`,
+      `Crypto prop firms where crypto is a tradable market, not just a payout method: ${CURRENT_CRYPTO_FIRM_COUNT} firms compared on leverage, commission, entry price and payouts.`,
     intro:
       `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. ${CRYPTO_MARKET_WATCH.length ? `The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.` : 'No checked firm is waiting on missing crypto evidence right now; a firm whose sources lapse drops out rather than borrowing stale or forex-only prices and rules.'}`,
     sortDir: 'desc',
