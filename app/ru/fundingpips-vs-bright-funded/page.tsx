@@ -604,8 +604,17 @@ export default function RussianFundingPipsVsBrightFundedPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Промокоды</h2>
           <p>
-            BrightFunded: на главной странице висит акция Double Up с кодом DOUBLE25 — 25% скидки на 2-Step (наблюдение 16.10.2026). Дата окончания
-            не указана, на кассе мы её не проверяли. FundingPips: код HELLO даёт 20% на первую покупку, кроме счетов $100K (по данным на {CHECKED}).
+            {/* BrightFunded code from firms.json (discountCode/discountPct/discountCodeCapturedAt; Tracker 68d8507: HW30 replaced DOUBLE25 on 22.10.2026). */}
+            {bfFirm?.discountCode && bfFirm.discountPct && bfFirm.discountCodeCapturedAt ? (
+              <span data-russian-bright-funded-promo={bfFirm.discountCode}>
+                BrightFunded: по данным на {ruDate(bfFirm.discountCodeCapturedAt)} на главной странице BrightFunded — код {bfFirm.discountCode}: {bfFirm.discountPct}% скидки
+                {bfFirm.discountCode === 'HW30' ? ' и 15% Evaluation Profit Reward (акция Halloween Offer)' : ''}; срок действия не указан, скидку проверяйте при оплате
+                {bfFirm.discountCodeCheckoutVerified ? '' : ' — на кассе мы код не проверяли'}.
+              </span>
+            ) : (
+              <span data-russian-bright-funded-promo="none">BrightFunded: действующий публичный код мы сейчас не подтверждаем.</span>
+            )}{' '}
+            FundingPips: код HELLO даёт 20% на первую покупку, кроме счетов $100K (по данным на {CHECKED}).
             Статус проверенных предложений — на странице <Link href="/ru/promokody-prop-firm">промокодов проп-фирм</Link>.
           </p>
         </div>
