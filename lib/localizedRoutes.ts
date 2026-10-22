@@ -92,7 +92,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/fundingpips-vs-bright-funded': '2026-10-21',
   '/ru/kak-my-zarabatyvaem': '2026-10-20',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
-  '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
+  '/ru/luchshie-kripto-prop-firmy': '2026-10-20',
   '/ru/luchshie-prop-firmy': '2026-10-20',
   '/ru/obzor-bright-funded': '2026-10-19',
   '/ru/obzor-eratrade': '2026-10-20',
