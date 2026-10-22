@@ -461,8 +461,9 @@ export default function RussianFtmoVsBrightFundedPage() {
               Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
             <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
-              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+              Сайт FundedNext <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
+            <span className="ru-muted" data-russian-comparison-fundednext-cta="restricted-last">для резидентов других стран; резидентам РФ FundedNext недоступна</span>
           </div>
         </div>
       </section>
