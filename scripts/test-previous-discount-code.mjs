@@ -27,8 +27,6 @@ const PENDING = {
   // EN Writer: whole article presents DOUBLE25 as the current BrightFunded code; the excerpt also
   // feeds the blog index, category, author page, RSS and llms.txt.
   'content/posts/brightfunded-discount-code.md': { owner: 'EN Writer', routes: ['/blog/brightfunded-discount-code', '/blog', '/category/prop-firms', '/authors/tara-mohseni', '/feed.xml', '/llms.txt'] },
-  // RU Writer: «Промокоды» section says the Double Up offer with DOUBLE25 is on the homepage.
-  'app/ru/fundingpips-vs-bright-funded/page.tsx': { owner: 'RU Writer', routes: ['/ru/fundingpips-vs-bright-funded'] },
 }
 
 const withPrevious = firms.filter(firm => firm.previousDiscountCode)
