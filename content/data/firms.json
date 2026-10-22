@@ -3947,9 +3947,9 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-22",
       "sourceQuote": "TopstepX™ is Topstep’s trading platform",
-      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility."
+      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Re-read 2026-10-22 via WebFetch (article shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
     },
     "score": 8.5,
     "logo": "/images/firms/topstep.png",
