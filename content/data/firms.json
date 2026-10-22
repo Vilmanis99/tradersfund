@@ -2125,8 +2125,12 @@
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
     "discountCodeCapturedAt": "2026-10-22",
-    "discountCodeNote": "Homepage observation 2026-10-22 (box US IP and WebFetch reader both show it): \"Halloween Offer: 30% Off Code: HW30\" plus a 15% Evaluation Profit Reward; plan table marks every 2-Step Bright size -30% (EUR 5K 47 to 32.90, 10K 87 to 60.90, 25K 187 to 130.90, 50K 277 to 193.90, 100K 477 to 333.90, 200K 947 to 662.90). Replaces the Double Up banner code DOUBLE25 (25%), no longer shown on 2026-10-22. No end date on the official page; futures T&C 4.6 (updated 9 Oct 2026): codes are personal, single-use unless stated, and may be changed or withdrawn at any time. Checkout NOT verified (account login required), so it is kept out of deals.json.",
+    "discountCodeNote": "Homepage observation 2026-10-22 (box US IP and WebFetch reader both show it; screenshot seen ~09:20 Riga): top banner \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\" and \"15% Evaluation Profit Reward\"; plan cards mark 2-Step Bright struck-through (EUR 5K 47 to 32.90, 10K 87 to 60.90, 25K 187 to 130.90, 50K 277 to 193.90, 100K 477 to 333.90; WebFetch reader also listed 200K 947 to 662.90). No end date, countdown or terms link on the homepage, and help.brightfunded.com (104 articles re-read 2026-10-22) never mentions Halloween, HW30 or DOUBLE25, so the validity is 'limited time (Halloween offer, no end date published)'. Futures T&C 4.6 (updated 9 Oct 2026): codes are personal, single-use unless stated, and may be changed or withdrawn at any time. Checkout NOT verified: step 1 shows the 2-Step Bright 5K at the unchanged EUR 47.00 list price, and the voucher field appears only at the final step after an email is entered (\"Discount voucher can be added at the final step.\"), so neither HW30 nor DOUBLE25 was tested; kept out of deals.json. Previous homepage code DOUBLE25 (Double Up, 25%): not shown on site since 22.10; expiry unconfirmed (no official source says it ended).",
     "discountPct": 30,
+    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
+    "discountCodeEvidence": "/workspace/tradersfundhub/evidence/brightfunded-codes-2026-10-22/01_homepage_HW30_banner.png (checkout: 03_checkout_step1_5k_eur47.png, 04_checkout_step2_email_required.png); https://brightfunded.com/; seen 22.10.2026 09:20 Riga",
+    "previousDiscountCode": "DOUBLE25",
+    "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
