@@ -314,17 +314,17 @@ export default function RussianFtmoVsFundedNextPage() {
               Для резидентов РФ: BrightFunded <ArrowRight size={15} aria-hidden="true" />
             </RuGoLink>
           </div>
+          <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
+            <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('ftmo')} className="btn-outline">
+              Сайт FTMO <ArrowRight size={14} aria-hidden="true" />
+            </RuGoLink>
+            <span className="ru-muted">для резидентов других стран; резидентам РФ FTMO недоступна</span>
+          </div>
           <div className="ru-actions" data-russian-comparison-fundednext-cta="secondary-restricted">
             <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
               Сайт FundedNext <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
             <span className="ru-muted">для резидентов других стран; резидентам РФ FundedNext недоступна</span>
-          </div>
-          <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
-            <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext" rel={goLinkRel('ftmo')} className="btn-outline">
-              Сайт FTMO <ArrowRight size={14} aria-hidden="true" />
-            </RuGoLink>
-            <span className="ru-muted">для резидентов других стран</span>
           </div>
           <nav className="ru-review-toc" aria-label="Содержание сравнения">
             <Link href="#verdikt">Вердикт</Link> · <Link href="#dostup">Доступ</Link> · <Link href="#programmy">Программы</Link> · <Link href="#dva-etapa">Два этапа</Link> · <Link href="#odin-etap">Один этап</Link> · <Link href="#stoimost">Стоимость</Link> · <Link href="#vyplaty">Выплаты</Link> · <Link href="#oplata">Оплата</Link> · <Link href="#alternativy">Альтернативы</Link> · <Link href="#sources">Источники</Link>
@@ -529,7 +529,7 @@ export default function RussianFtmoVsFundedNextPage() {
           </p>
           <p>
             <strong>FundedNext.</strong> Базовая доля Stellar 2-Step, 1-Step и Lite — 80%, с дополнениями до 95%. Stellar Instant
-            стартует с 70% (по данным на 19.10.2026). Способы вывода по справке (обновлена 02.10.2026): банковский перевод, Rise,
+            стартует с 70% (по данным на 19.10.2026). Способы вывода по справке (обновлена 22.10.2026): банковский перевод, Rise,
             криптовалюта (USDT ERC20/TRC20, USDC ERC20), карта, Confirmo и зачисление на FNmarkets. Банковский перевод недоступен
             для России, выплата на карту — для России и Беларуси, а Rise по собственной справке не обслуживает резидентов России
             (по данным на {TRACKER_0920}). Обработку заявки
@@ -657,8 +657,8 @@ export default function RussianFtmoVsFundedNextPage() {
           </div>
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-ftmo-fundednext-footer-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">Для резидентов РФ: BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('fundednext')} className="btn-outline">Сайт FundedNext — для резидентов других стран <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('ftmo')} className="btn-outline">Сайт FTMO — для резидентов других стран <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('ftmo')} className="btn-outline">Сайт FTMO — для резидентов других стран; резидентам РФ FTMO недоступна <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-ftmo-fundednext-footer" rel={goLinkRel('fundednext')} className="btn-outline">Сайт FundedNext — для резидентов других стран; резидентам РФ FundedNext недоступна <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
           </div>
           <p className="ru-source-line"><ShieldAlert size={14} aria-hidden="true" /> Нужна англоязычная версия? <Link href="/compare/ftmo-vs-fundednext" hrefLang="en">Открыть сравнение FTMO и FundedNext на английском</Link>.</p>
         </div>
