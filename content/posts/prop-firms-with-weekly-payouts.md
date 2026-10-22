@@ -3,7 +3,7 @@ title: "Prop Firms With Weekly Payouts (2026)"
 seoTitle: "Prop Firm Weekly Payouts 2026: 5 Firms That Pay Every 7 Days"
 slug: "prop-firms-with-weekly-payouts"
 date: "2026-10-20 12:00:00"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-22 09:00:00"
 author: "Tara Mohseni"
 excerpt: "Only five forex and crypto prop firms we track offer a 7-day payout cycle, and on three of those plans weekly costs you a lower split or a paid add-on. At a fourth, it's a VIP unlock. Here's what each one really costs."
 seoDescription: "Prop firm weekly payouts in 2026: FundedNext, FundingPips, City Traders Imperium, BrightFunded and CFT, with first-payout days, split cuts and add-on costs."
@@ -44,7 +44,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Not on the list: Apex Trader Funding advertises weekly payouts, but our last verified Apex capture is from 2026-09-14, outside our 30-day rule, so we don't quote it here. FTMO isn't on it either, because it has no weekly cycle: rewards are on demand after a 14-day wait (see the on-demand section below).</p>
+<p>Not on the list: Apex Trader Funding. Its 2026-10-22 capture lists weekly payouts, but each request also needs 5 qualifying trading days, a $500 minimum and a 50% consistency test; the <a href="/blog/apex-trader-funding-review">Apex review</a> covers those gates. FTMO isn't on it either, because it has no weekly cycle: rewards are on demand after a 14-day wait (see the on-demand section below).</p>
 
 <h2 class="wp-block-heading"><strong>FundedNext Stellar 1-Step: weekly by default, refund later</strong></h2>
 
