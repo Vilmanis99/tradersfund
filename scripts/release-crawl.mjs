@@ -1935,7 +1935,8 @@ if (russianBrightPage) {
   const costRows = brightHtml.match(/<table\b[^>]*data-russian-bright-truecost="\d+"[^>]*>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/)?.[1]
   if (Object.values(counts).some(value => !/^\d+$/.test(value)) || priceRows == null || costRows == null
     || Number(counts.price) !== Number(counts.trueCost)
-    || Number(counts.price) !== [...priceRows.matchAll(/<tr\b/g)].length
+    // C5 PriceMatrix: one priced cell per tier (rows are account sizes, columns are programmes).
+    || Number(counts.price) !== [...priceRows.matchAll(/<td\b[^>]*data-price-cell=/g)].length
     || Number(counts.trueCost) !== [...costRows.matchAll(/<tr\b/g)].length
     || !textContent(brightHtml).includes(`сравнение ${counts.products} программ и ${counts.comparisonPrices} цен в USD/EUR`)) {
     errors.push('/ru/obzor-bright-funded: rendered price and comparison counts must match their visible rows and handoff')
