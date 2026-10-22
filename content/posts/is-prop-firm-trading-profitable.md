@@ -116,7 +116,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The 16.8% initiation rate and 51.8% participant rate are not contradictory; they use different denominators. Taking <code>1 ÷ 16.8%</code> does not produce an honest “average attempts to pass” because attempts are not independent and the disclosure does not provide each participant’s retry count or spend.</p>
+<p>The 16.8% initiation rate and 51.8% participant rate are not contradictory; they use different denominators. Taking <code>1 ÷ 16.8%</code> does not produce an honest “average attempts to pass” because attempts are not independent and the disclosure does not provide each participant’s retry count or spend. Tradeify, Take Profit Trader and My Funded Futures publish comparable figures with their own denominators and periods; our <a href="/blog/prop-firm-statistics">prop firm statistics</a> page lists all four disclosures side by side.</p>
 
 <h2>What actually determines trader profitability</h2>
 

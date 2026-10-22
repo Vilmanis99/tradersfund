@@ -6,7 +6,7 @@ date: "2026-10-15 12:00:00"
 modified: "2026-10-20 12:00:00"
 author: "Tara Mohseni"
 excerpt: "A blank consistency field is not a published zero. See which products publish a percentage, which state none, and which payout-stage caveats still apply."
-seoDescription: "Looking for prop firms with no consistency rule? Compare published percentages vs null captures, CTI Direct Funding, FundedNext Stellar, BrightFunded, FTMO 2-Step and E8 Pro."
+seoDescription: "Prop firms with no consistency rule, verified: explicit none at CTI Direct Funding, FundedNext Stellar and E8 Pro, null captures, and the 15%–55% caps."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "no consistency rule prop firm", "prop firm rules", "prop firms with no consistency rule"]
 type: "post"
