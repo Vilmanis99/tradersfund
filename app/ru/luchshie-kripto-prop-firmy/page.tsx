@@ -188,6 +188,15 @@ function localizedReviewHref(reviewUrl: string) {
   return getLocalizedRoutePair(reviewUrl)?.ru ?? reviewUrl
 }
 
+// FundingPips crypto scope from crypto-market-evidence.json (Tracker 83e0a58, re-read 22.10.2026): every mapped product's own help article
+// lists «Crypto 2: BTCUSD, ETHUSD», commission 0.04%, leverage 1:2 evaluation / 1:1 Master; Zero 1:2 Standard / 1:1 Swap-Free.
+const FP_PRODUCT_LABELS: Record<string, string> = { '1-step-flex': '1 Step Flex', '2-step-standard': '2 Step Standard', '2-step-pro': '2 Step Pro', '2-step-flex': '2 Step Flex', zero: 'Zero' }
+const fpCrypto = cryptoMarketEvidence.ranked.find(item => item.firmSlug === 'fundingpips')
+const FP_PRODUCTS = (fpCrypto?.productSlugs ?? []).map(slug => FP_PRODUCT_LABELS[slug] ?? slug)
+const FP_CRYPTO_DATE = fpCrypto ? ruDate(fpCrypto.sourceCapturedAt) : null
+const FP_MODELS_LABEL = FP_PRODUCTS.length === 5 ? 'всех 5 моделях' : `${FP_PRODUCTS.length} моделях`
+const FP_CRYPTO_TERMS = `BTCUSD и ETHUSD — единственные 2 криптоинструмента, комиссия 0,04%; плечо по криптовалютам 1:2 на оценке и 1:1 на счёте Master Account, у Zero — 1:2 на Standard и 1:1 на Swap-Free`
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какая крипто-проп-фирма лучшая в 2026 году?',
@@ -211,7 +220,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Подходит ли FundingPips для криптотрейдинга?',
-    a: 'В этом сравнении источник связан только с 1 Step Flex: указаны комиссия 0,04%, плечо 1:2 на оценке и 1:1 на счёте Master Account. Это временное правило из датированной справки; другие программы фирмы не наследуют его автоматически.',
+    a: `Только для BTC и ETH. Справка FundingPips описывает криптовалюты в статье о каждой модели (${ruJoin(FP_PRODUCTS)}): ${FP_CRYPTO_TERMS} (по данным на ${FP_CRYPTO_DATE}). Других криптопар в этих статьях нет, а статус доступа из России у FundingPips неясен — см. таблицу доступа.`,
   },
   {
     q: 'Какие криптовалюты доступны у Maven?',
@@ -526,8 +535,8 @@ export default function RussianCryptoPropFirmsPage() {
                 <Link href="/ru/obzor-fundednext" className="ru-card-link">Цены и правила FundedNext →</Link>
               </article>
               <article className="ru-card">
-                <h3>FundingPips: только 1 Step Flex</h3>
-                <p>Справка 1 Step Flex указывает комиссию 0,04%, плечо 1:2 на оценке и 1:1 на следующем счёте Master Account. Изменение плеча названо временным. Для Zero, Pro, Standard и 2 Step Flex нужны отдельные подтверждения — нельзя перенести на них условия этого документа.</p>
+                <h3 data-russian-crypto-fundingpips-products={FP_PRODUCTS.length}>FundingPips: BTCUSD и ETHUSD во {FP_MODELS_LABEL}</h3>
+                <p>Справочные статьи о каждой модели ({ruJoin(FP_PRODUCTS)}) указывают одно и то же: {FP_CRYPTO_TERMS} (по данным на {FP_CRYPTO_DATE}). Выбор в крипте здесь узкий — две пары, поэтому FundingPips скорее подходит тому, кто торгует BTC и ETH наряду с форексом, чем трейдеру, которому нужны альткоины.</p>
                 <Link href="/ru/obzor-fundingpips" className="ru-card-link">Открыть полный русский обзор →</Link>
               </article>
               <article className="ru-card">
@@ -543,7 +552,7 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell ru-content">
             <h2>Комиссия, плечо, выходные и просадка важнее числа пар</h2>
             <p><strong>Комиссия.</strong> В примере FundingPips один лот ETH/USD при цене $2 600 даёт комиссию $1,04 по формуле «объём × цена × 0,04%». Это опубликованный пример расчёта, не результат торговли. Уточните, как учитываются открытие и закрытие сделки, спред и перенос позиции; одна цифра комиссии не описывает все расходы стратегии.</p>
-            <p><strong>Плечо.</strong> Большее плечо уменьшает требуемую маржу для той же позиции, но не увеличивает разрешённый убыток. У 1 Step Flex условия оценки и следующего счёта различаются, поэтому расчёт позиции нужно проверить заново после перехода. Размер условного счёта также не является личным капиталом трейдера.</p>
+            <p><strong>Плечо.</strong> Большее плечо уменьшает требуемую маржу для той же позиции, но не увеличивает разрешённый убыток. У FundingPips плечо по криптовалютам на оценке 1:2, а на счёте Master Account 1:1 (по данным на {FP_CRYPTO_DATE}), поэтому расчёт позиции нужно проверить заново после перехода. Размер условного счёта также не является личным капиталом трейдера.</p>
             <p><strong>Выходные.</strong> Работа базового крипторынка не гарантирует непрерывную работу терминала. Проверьте обслуживание, спред, перенос открытых позиций и требования закрыться перед выходными. У разрешения торговать BTCUSD и разрешения держать сделку до понедельника разные основания.</p>
             <p><strong>Просадка.</strong> При статическом лимите общий порог привязан к исходной базе; при следящем лимите он может подниматься за результатом счёта. Узнайте, используется баланс или стоимость счёта с открытой прибылью и убытком, когда пересчитывается порог и что происходит после выплаты. Сам процент без этой механики недостаточен для выбора.</p>
           </div>
