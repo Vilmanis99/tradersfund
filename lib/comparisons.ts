@@ -1,7 +1,8 @@
 import { firmSlug } from './firmSlug.ts'
 export { firmSlug }
 import type { Firm } from './firms.ts'
-import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh } from './firms.ts'
+import type { RuleEvidence } from './firms.ts'
+import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh, minimumCostToFundedUsd } from './firms.ts'
 
 export const COMPARISON_EDITORIAL_DATE = '2026-09-08'
 
@@ -120,6 +121,71 @@ export function feeRefundSummary(firmSlugValue: string, firmName: string): strin
   return `${parts.join('; ')}.`
 }
 
+const usd = (value: number) => `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
+const dayMonthYear = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+
+/**
+ * One account size of one firm, read from the challenge captures: products with a
+ * captured cost to funded at that size, and products that list sizes but no price at
+ * all (null means "price not shown", never $0).
+ */
+export function sizeFees(firmSlugValue: string, sizeUsd: number) {
+  const products = getChallengesByFirm(firmSlugValue)
+  const priced = products.flatMap(product => {
+    const tier = product.accountSizes.find(item => item.sizeUsd === sizeUsd)
+    const total = tier ? minimumCostToFundedUsd(product, tier) : null
+    return tier && total != null ? [{
+      name: product.productName, pricingModel: product.pricingModel ?? 'one-off', priceUsd: tier.priceUsd as number,
+      activationUsd: tier.activationFeeUsd ?? product.activationFeeUsd ?? 0, total, capturedAt: product.sourceCapturedAt,
+    }] : []
+  })
+  const unpriced = products
+    .filter(product => product.accountSizes.length > 0 && product.accountSizes.every(tier => tier.priceUsd == null && tier.priceEur == null))
+    .map(product => ({ name: product.productName, capturedAt: product.sourceCapturedAt }))
+  return { priced, unpriced }
+}
+
+const apex100k = sizeFees('apex-trader-funding', 100000)
+const topstep100k = sizeFees('topstep', 100000)
+const apexOneTime100k = listNames(apex100k.priced.map(item => `${usd(item.total)} for ${item.name}`))
+const apexUnpriced = listNames(apex100k.unpriced.map(item => item.name))
+const apexUnpricedDate = apex100k.unpriced.map(item => item.capturedAt).sort().at(-1)
+const apexUnpricedNote = apex100k.unpriced.length && apexUnpricedDate
+  ? `${apexUnpriced} ${apex100k.unpriced.length === 1 ? 'has' : 'have'} no captured total because the ${dayMonthYear(apexUnpricedDate)} capture did not show ${apex100k.unpriced.length === 1 ? 'its' : 'their'} PA activation fee.`
+  : ''
+const topstepMonthly100k = topstep100k.priced
+  .filter(item => item.pricingModel === 'monthly-subscription')
+  .sort((x, y) => y.activationUsd - x.activationUsd)
+  .map(item => `${usd(item.priceUsd)} a month ${item.activationUsd > 0 ? `plus a ${usd(item.activationUsd)} activation fee` : 'with no activation fee'}`)
+  .join(', or ')
+
+/**
+ * FundedNext's News Reward Share Rule from the firms.json rules.newsTrading evidence
+ * (help.fundednext.com articles 10701447 and 11641410). Scoped to funded Stellar
+ * 1-Step, 2-Step and Lite accounts and Stellar Instant; challenge accounts are exempt.
+ * Returns '' (the claim is dropped) unless every scope quote is still recorded and
+ * both articles give the same percentage.
+ */
+export function fundedNextNewsCreditSentence(
+  evidence: RuleEvidence[] = findFirmBySlug('fundednext')?.rules?.newsTrading?.evidence ?? [],
+): string {
+  const quote = (pattern: RegExp) => evidence.find(item => item.quoteKind === 'verbatim' && pattern.test(item.quote))
+  const funded = quote(/(\d+)% of the profit from these profitable trade/)
+  const instant = quote(/Only (\d+)% of the profit from trades placed during this window/)
+  const scope = quote(/applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts/)
+  const challengeExempt = quote(/Challenge Accounts are not subject to this rule/)
+  const window = quote(/total (\d+)-minute window/)
+  if (!funded || !instant || !scope || !challengeExempt || !window) return ''
+  const pct = funded.quote.match(/(\d+)%/)?.[1]
+  if (!pct || instant.quote.match(/(\d+)%/)?.[1] !== pct) return ''
+  const minutes = window.quote.match(/total (\d+)-minute window/)?.[1]
+  const readOn = [funded, instant, scope, challengeExempt, window].map(item => item.capturedAt).sort()[0]
+  return `On funded Stellar 1-Step, 2-Step and Lite accounts and on Stellar Instant, only ${pct}% of the profit from trades in the ${minutes}-minute window around a listed high-impact news event counts; challenge accounts are not subject to this rule (FundedNext help centre, read ${dayMonthYear(readOn)}).`
+}
+
+const FUNDEDNEXT_NEWS_CREDIT = fundedNextNewsCreditSentence()
+const withSentence = (text: string, sentence: string) => sentence ? `${text} ${sentence}` : text
+
 /*
  * Rewrite 2026-10-21: every claim below was checked against content/data/firms.json and
  * content/data/challenges/*.json (captures up to 2026-10-20). Claims the data does not
@@ -130,13 +196,14 @@ export function feeRefundSummary(firmSlugValue: string, firmName: string): strin
 export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
   'apex-trader-funding-vs-topstep': {
     matchupSlug: 'apex-trader-funding-vs-topstep',
-    reviewedAt: '2026-10-21',
-    challengeReviewedAt: '2026-10-21',
+    // Re-checked 2026-10-22 against Tracker's Apex capture (93bd53d): $100K fees read from data.
+    reviewedAt: '2026-10-22',
+    challengeReviewedAt: '2026-10-22',
     h1: 'Apex Trader Funding vs Topstep (2026): Speed vs Structure',
     metaDescription:
       'Apex Trader Funding vs Topstep on recorded profit split, drawdown type, consistency rules, payout cadence, automation and operating history.',
     tlDr:
-      'Apex Trader Funding’s 4 captured products record a 100% split, no evaluation consistency rule, 0 minimum trading days and weekly payouts with a 5-day first-payout field, sold with either intraday or end-of-day trailing drawdown. Topstep’s 2 Trading Combine paths record a 90% split, end-of-day trailing drawdown, a 55% evaluation consistency rule and on-demand payouts with a $125 minimum request. Apex’s $100K prices were not captured, so this overlay does not rank the two on cost.',
+      `Apex Trader Funding’s 4 captured products record a 100% split, no evaluation consistency rule, 0 minimum trading days and weekly payouts with a 5-day first-payout field, sold with either intraday or end-of-day trailing drawdown. Topstep’s 2 Trading Combine paths record a 90% split, end-of-day trailing drawdown, a 55% evaluation consistency rule and on-demand payouts with a $125 minimum request. At $100K, Apex’s captured one-time fees are ${apexOneTime100k}; ${apexUnpricedNote} Topstep bills monthly, so this overlay does not rank the two on cost.`,
     verdictByCategory: [
       // Matchup is alphabetical, so "a" = Apex Trader Funding and "b" = Topstep.
       { category: 'Recorded Profit Split', winner: 'a', reason: 'All 4 captured Apex products record 100%. Both Topstep paths record 90%.' },
@@ -147,11 +214,11 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Operating History', winner: 'b', reason: 'Topstep was founded in 2012 and Apex Trader Funding in 2021. This is an age comparison, not a payout guarantee.' },
     ],
     whenToPickA:
-      'Pick Apex if a 100% recorded split, no evaluation consistency rule and the choice between intraday and end-of-day trailing drawdown matter most. Confirm the live price first: the captured Apex products carry no $100K list fee.',
+      `Pick Apex if a 100% recorded split, no evaluation consistency rule and the choice between intraday and end-of-day trailing drawdown matter most. Confirm the checkout total first: ${apexUnpricedNote || 'Apex’s selector prices change.'}`,
     whenToPickB:
       'Pick Topstep if on-demand payouts with a $125 minimum request, conditional permission for automated strategies and a firm operating since 2012 matter more than Apex’s 100% split. Both Topstep paths use end-of-day trailing drawdown and a 55% evaluation consistency rule.',
     faqs: [
-      { q: 'Is Apex cheaper than Topstep?', a: 'The captured Apex products carry no $100K list fee, so this comparison cannot rank cost. Topstep’s $100K paths are $99 a month plus a $149 activation fee, or $149 a month with no activation fee.' },
+      { q: 'Is Apex cheaper than Topstep?', a: `The billing differs, so this comparison does not rank cost. At $100K, Apex lists one-time fees of ${apexOneTime100k}. ${apexUnpricedNote} Topstep’s $100K paths are ${topstep100k.priced.length ? topstepMonthly100k : 'not priced in the current capture'}.` },
       { q: 'Which firm has fewer evaluation rules?', a: 'Apex records 0 minimum trading days and no evaluation consistency rule. Topstep applies a 55% consistency rule in the Trading Combine.' },
       { q: 'Can I run an automated futures strategy at Apex or Topstep?', a: 'Apex’s firm record lists EAs as not allowed. Topstep’s Trading Combine parameters permit automated strategies subject to conditions.' },
     ],
@@ -178,7 +245,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     whenToPickA:
       'Pick FTMO if the exact product trade-off fits: 2-Step is a refundable €540 $100K route at an 80% base split, 5% daily loss and 10% static maximum loss; 1-Step costs €499 at $100K, starts at 90%, and exchanges the refund for a 3% daily cap, a 10% end-of-day trailing loss and a 50% Best Day consistency rule. FTMO also fits a trader who needs TradingView.',
     whenToPickB:
-      'Pick FundedNext if 4 product paths matter more than a 90% base split. At $100K, Stellar Lite lists $399.99 with an 8% static maximum loss and a 10-business-day first reward, Stellar 2-Step lists $549.99 with a 10% static loss, and Stellar 1-Step lists $569.99 with a 6% static loss and a 5-business-day reward cycle. All 3 evaluations start at 80%; the 95% share needs a paid add-on. New 1-Step fees are refunded with the third reward.',
+      withSentence('Pick FundedNext if 4 product paths matter more than a 90% base split. At $100K, Stellar Lite lists $399.99 with an 8% static maximum loss and a 10-business-day first reward, Stellar 2-Step lists $549.99 with a 10% static loss, and Stellar 1-Step lists $569.99 with a 6% static loss and a 5-business-day reward cycle. All 3 evaluations start at 80%; the 95% share needs a paid add-on. New 1-Step fees are refunded with the third reward.', FUNDEDNEXT_NEWS_CREDIT),
     faqs: [
       { q: 'Is FundedNext cheaper than FTMO at $100K?', a: 'The currencies differ, so a percentage comparison needs a live FX rate. Captured list fees are €540 for FTMO 2-Step and €499 for FTMO 1-Step, versus $549.99 for FundedNext Stellar 2-Step, $569.99 for Stellar 1-Step and $399.99 for Stellar Lite.' },
       { q: 'Which has the higher starting profit split?', a: 'FTMO 1-Step starts at 90%. FTMO 2-Step and all 3 FundedNext evaluations start at 80%, while FundedNext Stellar Instant starts at 70%. FundedNext’s 95% figure needs a paid add-on and is not the base split.' },
@@ -325,7 +392,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Refund Coverage', winner: 'a', reason: 'FundedNext’s 3 evaluation fees are refundable. FundingPips refunds only 2 Step Standard, at the fourth reward; the other 4 products are non-refundable.' },
     ],
     whenToPickA:
-      'Pick FundedNext if a lower $100K list fee, MT4 or an earlier numeric payout gate matters. Stellar Lite is $399.99 at $100K with an 8% static cap and a 10-business-day first reward; Stellar 1-Step is $569.99 with a 6% static cap, 2 minimum evaluation days and a 5-business-day first reward. All evaluations start at 80%, and new 1-Step fees are refunded with the third reward. Do not price the paid 95% add-on as the base product.',
+      withSentence('Pick FundedNext if a lower $100K list fee, MT4 or an earlier numeric payout gate matters. Stellar Lite is $399.99 at $100K with an 8% static cap and a 10-business-day first reward; Stellar 1-Step is $569.99 with a 6% static cap, 2 minimum evaluation days and a 5-business-day first reward. All evaluations start at 80%, and new 1-Step fees are refunded with the third reward. Do not price the paid 95% add-on as the base product.', FUNDEDNEXT_NEWS_CREDIT),
     whenToPickB:
       'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $422 at $100K with 6% and 6% targets, a 6% static cap, 0 minimum days, an 80% split and a 7-day weekly reward cycle. Standard instead offers Weekly 60%, Bi-Weekly 80% or On Demand 100%, each with its own conditions. The 12% Flex caps provide more starting room, and only Standard lists a fee refund (fourth reward).',
     faqs: [
@@ -413,7 +480,7 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
       { category: 'Platform Choice', winner: 'tie', reason: 'Both list MT4 and MT5. FundedNext adds cTrader and Match-Trader; FXIFY adds DXTrade and TradingView.' },
     ],
     whenToPickA:
-      'Pick FundedNext if you want every starting split and drawdown field quantified before checkout. Stellar Lite is $399.99 at $100K with an 80% split, an 8% static cap and a 10-business-day first reward; Stellar 1-Step is $569.99 with an 80% split, a 6% static cap and a 5-business-day first reward. Do not price the paid 95% add-on as the base product.',
+      withSentence('Pick FundedNext if you want every starting split and drawdown field quantified before checkout. Stellar Lite is $399.99 at $100K with an 80% split, an 8% static cap and a 10-business-day first reward; Stellar 1-Step is $569.99 with an 80% split, a 6% static cap and a 5-business-day first reward. Do not price the paid 95% add-on as the base product.', FUNDEDNEXT_NEWS_CREDIT),
     whenToPickB:
       'Pick FXIFY if product choice, DXTrade or TradingView matters more than the gaps in 3 base splits. At $100K, Three Phase costs $399 with 5% targets in 3 stages, a 5% static cap and an 80% split; Lightning also costs $399 with a 5% target, a 4% trailing cap and a 5-day maximum, but no verified base split. EAs need pre-approval and are prohibited on DXTrade.',
     faqs: [
