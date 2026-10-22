@@ -24,6 +24,7 @@
     "test:cft-correction": "node scripts/test-cft-correction.mjs",
     "test:null-price-products": "node scripts/test-null-price-products.mjs",
     "test:previous-discount-code": "node scripts/test-previous-discount-code.mjs",
+    "test:client-bundle-no-firm-internals": "node scripts/test-client-bundle-no-firm-internals.mjs",
     "test:payout-days-unit": "node scripts/test-payout-days-unit.mjs",
     "test:review-freshness": "node scripts/test-review-freshness.mjs",
     "test:topstep-correction": "node scripts/test-topstep-correction.mjs",
