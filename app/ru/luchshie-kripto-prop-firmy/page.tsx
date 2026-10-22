@@ -562,7 +562,8 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="payout-boundary">
-          <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-crypto-and-usdc">
+          {/* Marker kept as Dev's audit/crawl expect: the USDC payout method does not rank BrightFunded; its place above comes from its crypto pairs. */}
+          <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-not-ranked">
             <h2>Торговля криптовалютой и выплата в USDC — разные маршруты</h2>
             <p>У BrightFunded это два отдельных факта из двух справок. Торговля: {brightCryptoFresh && brightCrypto ? <>более 48 криптовалютных пар (по данным на {ruDate(brightCrypto.sourceCapturedAt)})</> : 'список криптоинструментов требует повторной проверки'}. Выплата: USDC по сети ERC-20 или банковский перевод в EUR. Сама по себе выплата в USDC фирму крипто-проп-компанией не делает: место в списке выше BrightFunded получила за криптопары, а не за способ перевода.</p>
             <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
@@ -580,7 +581,7 @@ export default function RussianCryptoPropFirmsPage() {
         </section>
 
         <section className="ru-section" id="evidence-watch">
-          <div className="ru-shell" data-russian-crypto-watch-count={cryptoWatch.length}>
+          <div className="ru-shell" data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}>
             <div className="ru-content">
               <h2>Какие проверки ещё не завершены</h2>
               <p>Для перечисленных ниже фирм не хватает проверки отдельных криптопрограмм либо актуальных сведений об инструментах и условиях. Это не обвинение фирмы, не подтверждение отсутствия криптоторговли и не вывод о закрытии услуги. Причина указана отдельно для каждого случая.</p>
