@@ -3,7 +3,7 @@ title: "No Hidden Rules Prop Firms: Which Firms Disclose Every Rule (2026)"
 seoTitle: "No Hidden Rules Prop Firms: Who Discloses What (2026)"
 slug: "no-hidden-rules-prop-firms"
 date: "2026-10-14 12:00:00"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-22 09:00:00"
 author: "Tara Mohseni"
 excerpt: "Every prop firm has rules; the problem is the ones that only show up when you trade or request a payout. Here is what counts as hidden and who publishes it."
 seoDescription: "Looking for a no hidden rules prop firm? See the 6 rules that most often surprise traders and which of 8 firms publish consistency, news and weekend rules."
@@ -35,7 +35,7 @@ type: "post"
 <p>Most firms allow news trading in principle but restrict a window around high-impact releases, and the window and penalty differ. Alpha Capital restricts execution in the 5 minutes before and after relevant high-impact news on Pro, One, Three and Direct. FundingPips' 1 Step Flex allows news trading during the evaluation, but on the Master Account profits from trades opened or closed within 5 minutes of high-impact news may be deducted. Maven bans opening or closing trades 2 minutes either side of a red-folder release. On FundingPips Zero, a news-window violation is a hard breach.</p>
 
 <h3 class="wp-block-heading"><strong>3. Overnight and weekend holding</strong></h3>
-<p>Holding rules often change between the evaluation and the funded stage. FundingPips allows overnight and weekend holding during evaluations, but on 1 Step Flex Master Accounts open trades are closed by the system each day unless you bought the Swing add-on. Topstep's captured products do not allow overnight or weekend holding. FTMO restricts both. Bright Funded, FundedNext Stellar products and City Traders Imperium allow both on the products we captured.</p>
+<p>Holding rules often change between the evaluation and the funded stage. FundingPips allows overnight and weekend holding during evaluations, but on the 1 Step Flex, 2 Step Standard, 2 Step Flex and 2 Step Pro Master Accounts open trades are closed by the system each day unless you bought the 10% Swing add-on at purchase (help article updated 8 Oct 2026, checked 21 Oct 2026). FundingPips Zero allows weekday overnight holding, but a position left open into the weekend means immediate account termination. Topstep's captured products do not allow overnight or weekend holding. FTMO restricts both. Bright Funded, FundedNext Stellar products and City Traders Imperium allow both on the products we captured.</p>
 
 <h3 class="wp-block-heading"><strong>4. Lot and position caps</strong></h3>
 <p>Caps are rarely on the pricing page. FundingPips' 1 Step Flex page enforces a 20-lot maximum per trade at platform level and a separate 1-lot-per-click limit on crypto (checked 2026-10-14). Maven limits funded withdrawals to $10,000 per 30-day rolling cycle per trader, and above $5,000 of profit no single day or trade may exceed 50% of the payout-cycle profit (Maven FAQ, checked 2026-10-14).</p>

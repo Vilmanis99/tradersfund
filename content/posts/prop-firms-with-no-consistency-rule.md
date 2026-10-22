@@ -6,7 +6,7 @@ date: "2026-10-15 12:00:00"
 modified: "2026-10-20 12:00:00"
 author: "Tara Mohseni"
 excerpt: "A blank consistency field is not a published zero. See which products publish a percentage, which state none, and which payout-stage caveats still apply."
-seoDescription: "Looking for prop firms with no consistency rule? Compare published percentages vs null captures, CTI Direct Funding, FundedNext Stellar, BrightFunded, FTMO 2-Step and E8 Pro."
+seoDescription: "Prop firms with no consistency rule, verified: explicit none at CTI Direct Funding, FundedNext Stellar and E8 Pro, null captures, and the 15%–55% caps."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "no consistency rule prop firm", "prop firm rules", "prop firms with no consistency rule"]
 type: "post"
@@ -44,7 +44,7 @@ type: "post"
     <tr><td><a href="/blog/topstep-review">Topstep</a></td><td>Trading Combine — No Activation Fee Path</td><td>55%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/ftmo-review">FTMO</a></td><td>FTMO Challenge: 1-Step</td><td>50%</td><td>2026-10-14</td></tr>
     <tr><td>Lucid Trading</td><td>LucidDaily (all 4 DLL/EOD variants); LucidFlex</td><td>50%</td><td>2026-10-14</td></tr>
-    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Flex; Pro; Rapid</td><td>50%</td><td>2026-10-20</td></tr>
+    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Flex; Pro; Rapid</td><td>50%</td><td>2026-10-22</td></tr>
     <tr><td>Take Profit Trader</td><td>The Test (Evaluation) — monthly subscription</td><td>50%</td><td>2026-10-19</td></tr>
     <tr><td><a href="/blog/tradeday-review">TradeDay</a></td><td>Fast Pass — End of Day</td><td>45%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/alpha-capital-review">Alpha Capital</a></td><td>Alpha One / Pro / Swing on-demand routes</td><td>40%</td><td>2026-10-14</td></tr>
@@ -56,7 +56,7 @@ type: "post"
     <tr><td><a href="/blog/funding-pips-review">FundingPips</a></td><td>2 Step Standard</td><td>35%</td><td>2026-09-29</td></tr>
     <tr><td><a href="/blog/tradeify-review">Tradeify</a></td><td>Growth Evaluation</td><td>35% (funded payout gate; see caveats)</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Lightning Challenge</td><td>30%</td><td>2026-10-20</td></tr>
-    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Rapid EOD</td><td>30%</td><td>2026-10-20</td></tr>
+    <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Rapid EOD</td><td>30%</td><td>2026-10-22</td></tr>
     <tr><td><a href="/blog/tradeday-review">TradeDay</a></td><td>Quick Pay — End of Day; Quick Pay — Intraday</td><td>30%</td><td>2026-10-14</td></tr>
     <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Crypto Instant Funding; Two Phase Classic</td><td>25%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/fxify-review">FXIFY</a></td><td>Instant Funding Lite</td><td>20%</td><td>2026-10-20</td></tr>
