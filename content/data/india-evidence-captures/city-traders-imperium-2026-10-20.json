@@ -1,0 +1,49 @@
+{
+  "firmSlug": "city-traders-imperium",
+  "capturedAt": "2026-10-20",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "City Traders Imperium",
+      "CTI"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://citytradersimperium.com/2-step-challenge/",
+      "quote": "Neither entity offers services to nationals or residents of the following jurisdictions: North Korea (DPRK), Iran, Syria, Cuba, Russia, or to any individual under international sanctions.",
+      "claims": {
+        "country": "5-jurisdiction statement unchanged; India absent.",
+        "currency": "One-time challenge fees in USD (e.g. 'One-Time Payment $549')."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
+      "quote": "(6.5.1) Nationals or residents of the following Restricted Jurisdictions: Syria, North Korea, Cuba, or Iran",
+      "claims": {
+        "checkout": "(5.7.2) bank-transfer invoice; 'The Client is responsible for all transaction fees imposed by the chosen payment service provider'.",
+        "kyc": "(7.1.1) ID with at least 3 months remaining before expiration; (7.1.2) proof of address dated within the last 3 months; (7.1.3) photo or video live verification through SumSub.",
+        "countryConflict": "The PDF still omits Russia from its 4-name list."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/cti-payout-proof/",
+      "quote": "We offer multiple payout methods, including bank transfers and cryptocurrency wallets.",
+      "claims": {
+        "payout": "Bank transfer and crypto wallet after KYC and rule review; withdrawals must be to accounts under the trader's name."
+      }
+    },
+    {
+      "url": "https://citytradersimperium.com/vip-program-payout/",
+      "quote": "Bank transfers are fee-free; PayPal and crypto may carry service/network fees.",
+      "claims": {
+        "fees": "Fee-free bank transfer; PayPal and crypto may carry fees.",
+        "payout": "Payment methods include bank transfers (no fees), PayPal, and cryptocurrency."
+      }
+    }
+  ],
+  "note": "The two older terms PDFs cited in the 2026-09-14 capture (uploads/2025/09 and uploads/2025/04) now return 404; the current terms page links uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf.",
+  "rawCopies": "/workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/cti_* (box only), curl from a US-IP box"
+}

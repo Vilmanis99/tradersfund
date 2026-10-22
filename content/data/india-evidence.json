@@ -357,7 +357,7 @@
   {
     "firmSlug": "fxify",
     "firmName": "FXIFY",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "United States",
       "Zimbabwe",
@@ -393,7 +393,8 @@
       "Russia",
       "Belarus",
       "Kenya",
-      "Ghana"
+      "Ghana",
+      "Haiti"
     ],
     "restrictionListComplete": true,
     "productEligibility": {
@@ -425,8 +426,9 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from the current 35-jurisdiction restriction list shown across FXIFY's support pages.",
+      "summary": "India is absent from both current FXIFY lists, stored as their 36-name union: the FAQ 'What Countries are not accepted?' (schema dateModified 2026-02-12, rechecked 2026-10-21) names 35 including Haiti, and the site-wide footer names 35 including the United States but not Haiti.",
       "sourceUrls": [
+        "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
         "https://fxify.com/faqs/all-faqs/"
       ]
     },
@@ -434,7 +436,7 @@
       "status": "partial",
       "summary": "Terms permit payment card and other currently offered methods; a successful Indian-card transaction is not independently tested.",
       "sourceUrls": [
-        "https://fxify.com/terms-and-conditions"
+        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
       ]
     },
     "kyc": {
@@ -464,7 +466,7 @@
       "status": "verified",
       "summary": "Challenge fees are based in USD; choosing another currency uses FXIFY's current conversion rate at checkout.",
       "sourceUrls": [
-        "https://fxify.com/terms-and-conditions"
+        "https://fxify.com/wp-content/uploads/2026/10/GENERAL-TERMS-AND-CONDITIONS-FXIFY-2026.pdf"
       ]
     },
     "unresolved": "No completed Indian card checkout, dual KYC approval, or Rise payout receipt has been independently verified."
@@ -472,7 +474,7 @@
   {
     "firmSlug": "alpha-capital",
     "firmName": "Alpha Capital",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-21",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -513,7 +515,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from Alpha Capital's current 24-jurisdiction restriction list; nationality, residence, sanctions, and document checks still apply.",
+      "summary": "India is absent from Alpha Capital's 24-jurisdiction restriction list (help article 8775575, updated 6 Jul 2026, rechecked 2026-10-21); nationality, residence, sanctions, and document checks still apply.",
       "sourceUrls": [
         "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations"
       ]
@@ -535,7 +537,7 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "Published rails are Rise, Wise, and bank transfer by WIRE, ACH, or SWIFT, with firm-side processing stated as up to 2 business days; delivery to an Indian profile remains untested.",
+      "summary": "Published rails are Rise, Wise, and bank transfer by WIRE, ACH, or SWIFT; crypto only through Rise ('We do not facilitate withdrawals directly through cryptocurrency'); firm-side processing within 2 business days. Delivery to an Indian profile remains untested.",
       "sourceUrls": [
         "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees"
       ]
@@ -560,7 +562,7 @@
   {
     "firmSlug": "e8-markets",
     "firmName": "E8 Markets",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -614,7 +616,7 @@
       "accountSizeCapsUsd": {
         "e8-one": 200000
       },
-      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000.",
+      "summary": "Indian profiles may purchase E8 Pro and E8 Signature at all published sizes, plus E8 One up to $200,000. Since the 2026-09-14 capture E8 also lists E8 Zero (all sizes) for India; E8 Zero has no structured product record here, so it stays outside this screen.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
@@ -627,14 +629,14 @@
     },
     "country": {
       "status": "verified",
-      "summary": "E8 publishes India as a limited-product country: E8 Pro and E8 Signature at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location.",
+      "summary": "E8 publishes India as an allocation-limited country: E8 Pro, E8 Signature and E8 Zero at all sizes, and E8 One up to $200,000; eligibility follows the verification document rather than current location. India is on neither the Classic/Perpetuals nor the Futures restricted list.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5514278-accepted-countries"
       ]
     },
     "checkout": {
       "status": "partial",
-      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout, but a successful Indian card or crypto purchase is not independently tested.",
+      "summary": "E8 publishes major credit and debit cards plus cryptocurrency checkout (Apple Pay, Google Pay, crypto via Confirmo, card via Nuvei), but a successful Indian card or crypto purchase is not independently tested.",
       "sourceUrls": [
         "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts"
       ]
@@ -674,7 +676,7 @@
   {
     "firmSlug": "city-traders-imperium",
     "firmName": "City Traders Imperium",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "North Korea",
       "Iran",
@@ -718,14 +720,15 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; delivery to an Indian bank or wallet remains untested.",
+      "summary": "CTI publishes bank transfer and direct cryptocurrency wallet payouts, with requests processed after KYC and rule review; its VIP payout page also names PayPal. Delivery to an Indian bank, wallet or PayPal account remains untested.",
       "sourceUrls": [
-        "https://citytradersimperium.com/cti-payout-proof/"
+        "https://citytradersimperium.com/cti-payout-proof/",
+        "https://citytradersimperium.com/vip-program-payout/"
       ]
     },
     "fees": {
       "status": "partial",
-      "summary": "CTI publishes fee-free bank transfers while cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
+      "summary": "CTI publishes fee-free bank transfers while PayPal and cryptocurrency can carry service or network charges, but it does not publish an India-specific crypto or INR conversion total.",
       "sourceUrls": [
         "https://citytradersimperium.com/vip-program-payout/"
       ]
@@ -743,7 +746,7 @@
   {
     "firmSlug": "maven",
     "firmName": "Maven",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Belarus",
@@ -773,6 +776,7 @@
     ],
     "restrictionListComplete": true,
     "payoutRails": [
+      "crypto",
       "rise"
     ],
     "rbiAlert": {
@@ -790,52 +794,53 @@
     },
     "checkout": {
       "status": "partial",
-      "summary": "Maven publishes credit-card and other checkout options and requires the cardholder name to match KYC, but a successful Indian-card purchase is not independently tested.",
+      "summary": "Maven requires a payment card registered in the trader's own name and warns that third-party cards may block KYC or the funded account; the server-readable FAQ no longer lists the checkout methods, and a successful Indian-card purchase is not independently tested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "kyc": {
       "status": "verified",
-      "summary": "Veriff KYC accepts a passport, driving licence, residence permit, or ID card and requires the personal details and payment card to belong to the trader.",
+      "summary": "KYC accepts a passport, driver's licence, residence permit, or national ID card (Veriff document list linked from the FAQ) and requires the personal details and payment card to belong to the trader.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "payout": {
       "status": "partial",
-      "summary": "Maven explicitly places India in its Rise-or-other-options group rather than the named direct-bank group; the exact Indian Rise cash or crypto route remains untested.",
+      "summary": "Maven places India in its \"other countries\" group: Digital Currencies (USDT-BSC or USDC-ERC20) or Rise Pay; direct bank transfer is listed only for Nigeria, Kenya and Ghana. No Indian crypto or Rise payout is independently tested.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "fees": {
-      "status": "verified",
-      "summary": "Maven publishes a $20 fee for payments through Rise; any charge for an unnamed alternative or INR conversion remains outside the captured claim.",
+      "status": "unknown",
+      "summary": "The $20 Rise payment fee captured on 2026-09-14 is no longer published in the FAQ checked on 2026-10-20; Maven publishes no current payout fee for the crypto or Rise routes.",
       "sourceUrls": [
         "https://maventrading.com/faqs"
       ]
     },
     "currency": {
       "status": "verified",
-      "summary": "Captured Maven account sizes, challenge fees, pay-later amounts, and the $20 Rise fee are published in USD.",
+      "summary": "Captured Maven account sizes, challenge fees, and pay-later amounts are published in USD.",
       "sourceUrls": [
-        "https://maventrading.com/pricing",
-        "https://maventrading.com/faqs"
+        "https://maventrading.com/pricing"
       ]
     },
-    "unresolved": "No completed Indian credit-card checkout, Veriff approval, or Rise payout receipt is independently verified; the exact Rise withdrawal route and any INR conversion cost remain unpublished."
+    "unresolved": "No completed Indian card checkout, KYC approval, or crypto/Rise payout receipt is independently verified; the current payout fee and any INR conversion cost are unpublished."
   },
   {
     "firmSlug": "tradeify",
     "firmName": "Tradeify",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-21",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
       "Algeria",
       "Andorra",
       "Angola",
+      "Antarctica",
+      "Azerbaijan",
       "Bahamas",
       "Barbados",
       "Belarus",
@@ -846,9 +851,9 @@
       "Burundi",
       "Cambodia",
       "Central African Republic",
-      "Côte d'Ivoire",
       "Crimea",
       "Cuba",
+      "Côte d'Ivoire",
       "Democratic Republic of Congo",
       "Ecuador",
       "Ethiopia",
@@ -859,11 +864,14 @@
       "Iraq",
       "Israel",
       "Jamaica",
+      "Kazakhstan",
       "Kosovo",
+      "Kyrgyzstan",
       "Laos",
       "Lebanon",
       "Liberia",
       "Libya",
+      "Macao",
       "Malaysia",
       "Mauritius",
       "Mongolia",
@@ -872,6 +880,7 @@
       "Nicaragua",
       "North Korea",
       "Pakistan",
+      "Palestine",
       "Panama",
       "Papua New Guinea",
       "Russia",
@@ -880,6 +889,7 @@
       "Sri Lanka",
       "Sudan",
       "Syria",
+      "Tajikistan",
       "Trinidad and Tobago",
       "Tunisia",
       "Turkey",
@@ -904,7 +914,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from Tradeify's complete restriction list and its sim-only list; Tradeify also publishes a dedicated guide addressing Indian futures traders.",
+      "summary": "India is absent from Tradeify's 65-country restriction list (help article 10495888, 'Updated this week', read 2026-10-21), which now also names Antarctica, Azerbaijan, Kazakhstan, Kyrgyzstan, Macao, Palestine and Tajikistan; the restriction is by residency. Tradeify also publishes a dedicated guide addressing Indian futures traders.",
       "sourceUrls": [
         "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
         "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative"
@@ -927,7 +937,7 @@
     },
     "payout": {
       "status": "partial",
-      "summary": "Tradeify explicitly describes Rise bank and crypto withdrawals for Indian traders and publishes Plane as an alternative provider; no Indian receipt is independently verified.",
+      "summary": "Tradeify's India guide says payouts are 'processed via Rise (with Plane as a backup)'; Rise offers Bank Transfer (ACH), Crypto Tokens and Local Currencies. No Indian receipt is independently verified.",
       "sourceUrls": [
         "https://tradeify.co/post/sebi-fo-new-rules-2026-us-futures-alternative",
         "https://help.tradeify.co/en/articles/12844518-rise-payouts-main-payout-method"
@@ -952,7 +962,7 @@
   {
     "firmSlug": "tradeday",
     "firmName": "TradeDay",
-    "capturedAt": "2026-09-14",
+    "capturedAt": "2026-10-20",
     "restrictedJurisdictions": [
       "Afghanistan",
       "Albania",
@@ -1012,6 +1022,7 @@
       "Pakistan",
       "Panama",
       "Papua New Guinea",
+      "Palestine",
       "Philippines",
       "Puerto Rico",
       "Romania",
@@ -1028,6 +1039,7 @@
       "Tanzania",
       "Trinidad and Tobago",
       "Tunisia",
+      "Turkey",
       "Uganda",
       "Ukraine",
       "US Virgin Islands",
@@ -1050,7 +1062,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from TradeDay's current 81-name outright prohibition list; the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
+      "summary": "India is absent from TradeDay's current 83-name outright prohibition list (Palestine and Turkey were added after the 2026-09-14 capture; page modified 1 October); the restriction test applies to citizenship, residence, and prolonged predominant trading location. Germany and Canada outside Ontario are separately limited to Funded Sim rather than blanket-banned.",
       "sourceUrls": [
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
         "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-"
@@ -1086,7 +1098,7 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "TradeDay's 9 unique product-size combinations across 18 platform cards display dollar-denominated monthly fees from $59 to $225, but the Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
+      "summary": "TradeDay's homepage shows dollar-denominated promotional monthly fees on 2026-10-20 (default Daily Payouts / Intraday cards $45 / $59 / $108 / $162 against $100 / $131 / $240 / $360 list; hero says 'up to 55% OFF', pricing header 'Up to 60% off!'); the stored product captures dated 2026-10-14 run $45–$265 across 12 product-size combinations. The Indian checkout's settlement currency, INR conversion and card-issuer charges remain untested.",
       "sourceUrls": [
         "https://www.tradeday.com/"
       ]

@@ -1,6 +1,7 @@
 {
   "firmSlug": "fundednext",
-  "capturedAt": "2026-08-28",
+  "capturedAt": "2026-10-20",
+  "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box, curl of live help pages): all ten first-party sources re-read; every stored field unchanged. Quotes: 8019808 \"Traders from the USA can only use Match-Trader as a trading platform.\" and \"TradingView is currently supported only for market analysis.\"; 10725745 \"FundedNext-Server 3: This server is specifically for logging into your Free Monthly Competition Account and Free Trial Account.\"; 8020763 \"Traders on accounts of $50,000 and above must trade fully manually on MetaTrader 4 or MetaTrader 5, both in Challenge and FundedNext accounts.\"; 11641338 \"A single EA or bot strategy is limited to a maximum allocation of $300,000.\" (still no account-size cutoff); 8902893 \"The maximum number of open positions is 30 at a time.\" and \"Usage of EAs is not permissible in the Free Trial Accounts.\"; 9413305 \"Download MetaTrader 5 for Windows, iOS, and Android.\". searchIntent stays a dated 2026-08-28 autocomplete snapshot. Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only).",
   "searchIntent": {
     "sourceType": "Google autocomplete",
     "capturedAt": "2026-08-28",
@@ -34,7 +35,7 @@
   },
   "platformAvailability": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "platforms": ["MT4", "MT5", "Match-Trader", "cTrader"],
     "analysisOnlyPlatform": "TradingView",
     "usaExecutionPlatform": "Match-Trader",
@@ -49,7 +50,7 @@
   },
   "desktopLogin": {
     "sourceUrl": "https://help.fundednext.com/en/articles/10725745-how-do-i-log-in-to-the-mt5-platform-pc",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "publishedAt": "2026-04-08",
     "paidServers": ["FundedNext-Server", "FundedNext-Server 2"],
     "freeTrialServer": "FundedNext-Server 3",
@@ -61,13 +62,13 @@
   },
   "dashboardLogin": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8019809-how-can-i-log-in-to-mt5-trading-terminal-from-the-fundednext-dashboard-at-fundednext-cfd",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "publishedAt": "2026-04-08",
     "steps": ["Client Dashboard", "Trading Platform", "account credentials"]
   },
   "utilities": {
     "sourceUrl": "https://help.fundednext.com/en/articles/9413305-what-s-in-the-utilities-section-of-the-fundednext-dashboard",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "publishedAt": "2026-07-17",
     "mt5Downloads": ["Windows", "iOS", "Android"],
     "notes": [
@@ -77,7 +78,7 @@
   },
   "password": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8019916-can-i-change-or-share-my-trading-platform-password",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "publishedAt": "2026-05-12",
     "resetLocation": "Account dashboard",
     "delivery": "registered email",
@@ -85,7 +86,7 @@
   },
   "ea": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext",
-    "sourceCapturedAt": "2026-09-08",
+    "sourceCapturedAt": "2026-10-20",
     "manualOnlyFromAccountSizeUsd": 50000,
     "parameterModificationToolsCountAsEa": true,
     "sizeRestrictionEvidence": "Traders on accounts of $50,000 and above must trade fully manually on MetaTrader 4 or MetaTrader 5",
@@ -104,13 +105,13 @@
   },
   "instantEaScope": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641338-can-i-use-ea-in-stellar-instant",
-    "sourceCapturedAt": "2026-09-08",
+    "sourceCapturedAt": "2026-10-20",
     "accountSizeCutoffUsd": null,
     "notes": "The product-specific article permits paid EA use subject to strategy rules but does not repeat the general article's account-size cutoff. It does not establish an exemption for scaled Instant accounts. Confirm applicability with FundedNext rather than infer an exception."
   },
   "strategyContinuity": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8388896-are-there-any-restrictions-on-my-trading-strategy",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "manualToEaSwitchAllowed": false,
     "eaToManualSwitchAllowed": false,
     "materialAssetOrRiskSwitchAllowed": false,
@@ -121,7 +122,7 @@
   },
   "prohibitedStrategies": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8020351-what-are-the-restricted-prohibited-trading-strategies",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "examples": [
       "challenge-passing services",
       "copy trading from other people",
@@ -132,7 +133,7 @@
   },
   "freeTrial": {
     "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
-    "sourceCapturedAt": "2026-08-28",
+    "sourceCapturedAt": "2026-10-20",
     "publishedAt": "2026-04-08",
     "platform": "MT5",
     "usaPlatform": "Match-Trader",

@@ -235,8 +235,8 @@ export default function RussianFtmoVsBrightFundedPage() {
     },
     {
       id: 'trustpilot', field: 'Trustpilot',
-      bright: 'Рейтинг скрыт Trustpilot из-за нарушения правил площадки; 573 отзыва',
-      ftmo: '4.8 из 5, 54 501 отзыв',
+      bright: 'Рейтинг скрыт Trustpilot из-за нарушения правил площадки; отзывов: 573',
+      ftmo: '4.8 из 5, отзывов: 54 501',
       date: TRUSTPILOT_CAPTURE, source: SOURCES.trustpilotBright,
     },
   ]
@@ -314,7 +314,7 @@ export default function RussianFtmoVsBrightFundedPage() {
             <article className="ru-card" data-russian-comparison-firm="ftmo">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FTMO <RuAccessBadge firm="ftmo" /></h3>
-              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. 4.8 на Trustpilot по 54 501 отзыву, TradingView в списке платформ, первый запрос выплаты с 14-го дня. Резидентов России FTMO не принимает: кнопка — только для тех, чьей страны нет в списке ограничений.</p>
+              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. Trustpilot: 4.8, отзывов: 54 501; TradingView в списке платформ, первый запрос выплаты с 14-го дня. Резидентов России FTMO не принимает: кнопка — только для тех, чьей страны нет в списке ограничений.</p>
               <Link href="/ru/obzor-ftmo" className="ru-card-link">Русский обзор FTMO →</Link>
               <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
                 <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card" rel={goLinkRel('ftmo')} className="btn-outline">

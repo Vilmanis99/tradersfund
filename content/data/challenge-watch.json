@@ -157,7 +157,7 @@
     "lastCheckedAt": "2026-10-20",
     "title": "FundedNext's EA article limits automation to accounts below $50,000",
     "summary": "The official EA article requires manual trading from $50,000 upward on MT4/MT5, including tools that adjust SL, TP or position size. Smaller accounts require the paid add-on and strategy checks; cTrader and Match-Trader are manual-only. September 8 is our observation date, not an established policy-change date.",
-    "traderImpact": "Buying an EA add-on is not universal permission to automate. Check the exact account size and programme. The article gives no effective date or existing-account exemption; the product price captures have not been refreshed.",
+    "traderImpact": "Buying an EA add-on is not universal permission to automate. Check the exact account size and programme. The article gives no effective date or existing-account exemption. Rule text rechecked unchanged on 2026-10-20; this rule recheck does not relabel the product price captures.",
     "sourceUrls": [
       "https://help.fundednext.com/en/articles/8020763-is-ea-allowed-in-fundednext"
     ]
@@ -322,7 +322,7 @@
     "kind": "lineup-change",
     "status": "verified",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-09-14",
+    "lastCheckedAt": "2026-10-22",
     "effectiveAt": "2026-03-01",
     "title": "Apex moved new purchases to 4 one-time evaluation paths",
     "summary": "Products bought after 1 March 2026 use Intraday or EOD drawdown with Standard or No Activation Fee pricing. The current help pages also confirm 30-day access, a 7-day activation deadline and no minimum evaluation trading days; the prior recurring products are Legacy.",
