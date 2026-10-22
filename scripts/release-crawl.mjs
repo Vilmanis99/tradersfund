@@ -1000,7 +1000,7 @@ const russianExpectations = new Map([
   // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
   ...[
     ['/ru/prop-trejding', {
-      title: 'Проп трейдинг: что это и как начать торговать в 2026', h1: 'Проп-трейдинг: торговля на капитал компании',
+      title: 'Проп трейдинг: что это и можно ли начать без вложений (2026)', h1: 'Проп-трейдинг: торговля на капитал компании',
       markers: ['data-russian-prop-trading="guide"', '"@type":"FAQPage"', 'href="/go/bright-funded?'],
     }],
     ['/ru/funded-account', {
@@ -1478,7 +1478,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', {
-    title: 'Челлендж проп-фирмы: 5 этапов и правила (2026)',
+    title: 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов',
     h1: 'Как работает челлендж проп-фирмы: от оплаты до выплаты',
     markers: [
       'data-russian-country-boundary="challenge-checkout"',
@@ -1551,7 +1551,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-teamtraders', {
-    title: 'TeamTraders: отзывы и обзор условий 2026',
+    title: 'TeamTraders: отзывы и обзор 2026 — стажировка и Мосбиржа',
     h1: 'TeamTraders: отзывы и обзор условий 2026 года',
     markers: [
       'data-russian-local-review="teamtraders"',

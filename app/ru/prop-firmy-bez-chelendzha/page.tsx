@@ -25,7 +25,7 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
-const DESCRIPTION = 'Проп-фирмы без челленджа и мгновенное финансирование: FundedNext Instant, FundingPips Zero и другие модели с датами источников — цены, просадка, выплаты.'
+const DESCRIPTION = 'Проп-фирмы без челленджа и мгновенное финансирование: FundedNext Instant (для РФ недоступна) и FundingPips Zero (статус неясен) — цены, просадка, выплаты.'
 const FUNDEDNEXT_REWARD_URL = 'https://help.fundednext.com/en/articles/11641693-what-is-the-eligibility-criteria-for-my-performance-reward-in-the-stellar-instant-account'
 const FUNDEDNEXT_SCALE_URL = 'https://help.fundednext.com/en/articles/11641516-is-there-a-scale-up-plan-for-stellar-instant-accounts'
 const FUNDEDNEXT_NEWS_URL = 'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts'
