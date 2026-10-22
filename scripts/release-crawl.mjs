@@ -3454,9 +3454,30 @@ if (futuresLandingProbe.status !== 200) {
       `${futuresLandingPath}: rendered ${cards.length} firms, expected ${expectedFuturesFirms.length}`,
     )
   }
-  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 26) {
+  // Counts come from fresh assetClass === 'futures' captures, never a hardcoded fixture;
+  // the page is checked against them below and here (firm set and summed product badges).
+  if (expectedFuturesFirms.length === 0 || expectedFuturesProductCount === 0) {
     errors.push(
-      `${futuresLandingPath}: current fixture must resolve to 7 firms and 26 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
+      `${futuresLandingPath}: no fresh futures products in the data (${expectedFuturesFirms.length} firms, ${expectedFuturesProductCount} products); the landing has nothing to rank`,
+    )
+  }
+  const expectedFuturesNames = expectedFuturesFirms.map(entry => entry.firm.name)
+  const renderedFuturesNames = cards.map(card =>
+    firmRecords.map(firm => firm.name).filter(name => card.text.includes(name))
+      .sort((a, b) => b.length - a.length)[0] ?? '(unknown firm)',
+  )
+  if (renderedFuturesNames.join(' | ') !== expectedFuturesNames.join(' | ')) {
+    errors.push(
+      `${futuresLandingPath}: rendered firms [${renderedFuturesNames.join(', ')}], expected [${expectedFuturesNames.join(', ')}]`,
+    )
+  }
+  const renderedFuturesProductCount = cards.reduce((total, card) => {
+    const count = /Products (\d+)/.exec(card.text)
+    return total + (count ? Number(count[1]) : 0)
+  }, 0)
+  if (renderedFuturesProductCount !== expectedFuturesProductCount) {
+    errors.push(
+      `${futuresLandingPath}: rendered cards list ${renderedFuturesProductCount} products, expected ${expectedFuturesProductCount} from fresh futures captures`,
     )
   }
   if (itemListCount !== 1) {

@@ -791,7 +791,7 @@
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
-    "overnightAllowed": true,
+    "overnightAllowed": "restricted",
     "weekendAllowed": "restricted",
     "copyTradingAllowed": "restricted",
     "countriesRestricted": [
