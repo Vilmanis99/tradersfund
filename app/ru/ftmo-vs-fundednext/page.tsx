@@ -14,6 +14,7 @@ import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getA
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/ftmo-vs-fundednext'
 const TITLE = 'FTMO или FundedNext: что выбрать трейдеру из России в 2026'
@@ -663,6 +664,8 @@ export default function RussianFtmoVsFundedNextPage() {
           <p className="ru-source-line"><ShieldAlert size={14} aria-hidden="true" /> Нужна англоязычная версия? <Link href="/compare/ftmo-vs-fundednext" hrefLang="en">Открыть сравнение FTMO и FundedNext на английском</Link>.</p>
         </div>
       </section>
+
+      <RuTelegramBlock placement="ftmo-vs-fundednext" />
 
       <section className="ru-section">
         <div className="ru-shell ru-content">
