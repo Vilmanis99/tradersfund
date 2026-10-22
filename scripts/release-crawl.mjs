@@ -3058,7 +3058,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUkFirms.length} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`
+    `Prop firms that accept UK traders in 2026: ${expectedUkFirms.length} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3071,7 +3071,7 @@ if (ukLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms UK 2026: ${expectedUkFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms UK 2026: ${expectedUkFirms.length} That Accept UK Traders | TFH`,
     `Best Prop Firms UK (2026): ${expectedUkFirms.length} Prop Trading Firms That Accept UK Traders`,
     `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
@@ -3207,7 +3207,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Best prop firms for US traders in 2026: ${expectedUsFirms.length} prop trading firms open to USA residents across ${expectedUsProductCount} exact futures and CFD products, with CFTC/NFA checks.`
+    `Prop firms that accept US traders in 2026: ${expectedUsFirms.length} firms with first-party evidence for ${expectedUsProductCount} US-resident products, mostly futures, plus CFTC and NFA checks.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3220,7 +3220,7 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms USA 2026: ${expectedUsFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms for US Traders 2026: ${expectedUsFirms.length} Firms Checked | TFH`,
     `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Prop Trading Firms in the USA`,
     `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
@@ -4158,7 +4158,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   const expectedDescription =
-    `Best instant funding prop firms in 2026: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`
+    `Instant funding prop firms with no challenge: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on total cost, loss limit, starting split and payout gates.`
   const renderedDescription = decodeHtml(firstMatch(
     instantLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -4171,7 +4171,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} Compared | TFH`,
+    `Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} With No Challenge | TFH`,
     `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Firms With No Evaluation`,
     `${expectedInstantFirms.length} verified firms across ${expectedInstantProductCount} phase-0 products`,
     'What instant-funding buyers should verify',
