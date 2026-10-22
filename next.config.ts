@@ -141,6 +141,11 @@ function legacyRedirects() {
 }
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // English sections and /ru have separate root layouts (server-rendered
+    // <html lang>), so unmatched URLs are served by app/global-not-found.tsx.
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

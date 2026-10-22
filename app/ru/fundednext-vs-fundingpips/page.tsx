@@ -468,9 +468,10 @@ export default function RussianFundedNextVsFundingPipsPage() {
             но она не меняет таблицу, редакционный порядок или проверку доступности.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            {/* RU ranking: Russia-open BrightFunded leads this block; the compared pair follows in slug order. */}
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
           </div>
           <p className="ru-source-line"><ShieldCheck size={14} aria-hidden="true" /> Перед оплатой откройте правила выбранного продукта. Нужна англоязычная версия? <Link href="/compare/fundednext-vs-fundingpips" hrefLang="en">Открыть полное сравнение на английском</Link>.</p>
         </div>

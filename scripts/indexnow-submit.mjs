@@ -28,8 +28,8 @@ const inSitemap = new Set(sitemapUrls)
 /** Map changed source files to public URLs; null means "can affect many pages" (submit the whole sitemap). */
 function urlsForFile(file) {
   let m
-  if ((m = file.match(/^app\/(.*)\/page\.(tsx|ts|mdx)$/)) || file === 'app/page.tsx') {
-    const route = file === 'app/page.tsx' ? '' : m[1]
+  if ((m = file.match(/^app\/(.*)\/page\.(tsx|ts|mdx)$/)) || file === 'app/(home)/page.tsx') {
+    const route = file === 'app/(home)/page.tsx' ? '' : m[1]
     if (route.includes('[')) return null // dynamic template: many URLs
     return [`${ORIGIN}/${route.replace(/\([^)]*\)\/?/g, '')}`.replace(/\/$/, '') || ORIGIN]
   }

@@ -32,6 +32,7 @@ import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import RuRussiaOpenCtas from '@/components/RuRussiaOpenCtas'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто проп-компании 2026: проп-трейдинг криптовалют'
@@ -281,6 +282,8 @@ export default function RussianCryptoPropFirmsPage() {
               Не используйте ложные документы или неверные сведения для обхода ограничений.{' '}
               <Link href="/ru/dlya-russkoyazychnykh-treyderov">Как проверить доступ из своей страны →</Link>
             </div>
+            {/* RU ranking: Russia-open firms from this page lead the CTAs; neither joins the crypto ranking below. */}
+            <RuRussiaOpenCtas firms={['bright-funded', 'crypto-fund-trader']} from="ru-crypto-russia-open" context="Из фирм на этой странице (вне крипторейтинга)" />
           </div>
         </section>
 

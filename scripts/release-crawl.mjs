@@ -5101,12 +5101,15 @@ if (indiaChangeProbe.status !== 200) {
     errors.push(`${indiaChangePath}: incorrect canonical`)
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
+  // Counts follow the page's own SOCIAL_CARD_* constants (npm run gen:share-cards; the page throws on drift).
+  const indiaChangeSource = readFileSync(join(PROJECT_ROOT, 'app/best-prop-firms-in-india/challenge-changes/page.tsx'), 'utf8')
+  const indiaCardCount = name => Number(indiaChangeSource.match(new RegExp(`const SOCIAL_CARD_${name}_COUNT = (\\d+)`))?.[1])
   for (const required of [
-    '19 India-screened updates',
-    '7 eligible firms affected',
-    '35 products',
-    '10 open watches',
-    'Showing 19 of 19 dated updates.',
+    `${indiaCardCount('ENTRY')} India-screened updates`,
+    `${indiaCardCount('FIRM')} eligible firms affected`,
+    `${indiaCardCount('PRODUCT')} products`,
+    `${indiaCardCount('WATCH')} open watches`,
+    `Showing ${indiaCardCount('ENTRY')} of ${indiaCardCount('ENTRY')} dated updates.`,
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',

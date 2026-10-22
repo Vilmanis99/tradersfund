@@ -42,7 +42,7 @@ const visible = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').
 const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
 try {
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
-  const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
+  const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, getOverlayIfCurrent, COMPARISON_OVERLAYS_ENABLED, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
   const { isSourceHoldFirm } = require(path.join(root, 'lib/reviewStatus.ts'))
   const { buildChallengeMatchup, freshChallenges } = require(path.join(root, 'lib/challengeMatchup.ts'))
   const hub = require(path.join(root, 'app/compare/page.tsx'))
@@ -74,13 +74,17 @@ try {
     const savedClock = clock
     const saved = { reviewedAt: overlay.reviewedAt, challengeReviewedAt: overlay.challengeReviewedAt }
     try {
-      clock = `${[latestFirmUpdate, latestCapture].sort().at(-1)}T12:00:00Z`
+      clock = `${[latestFirmUpdate, latestCapture, overlay.reviewedAt, overlay.challengeReviewedAt].sort().at(-1)}T12:00:00Z`
+      // The date gates are checked directly (getOverlayIfCurrent); getOverlay adds the off-switch on top.
       const current = overlay.reviewedAt >= latestFirmUpdate && overlay.challengeReviewedAt >= latestCapture
-      assert.equal(Boolean(getOverlay('ftmo-vs-fundednext')), current, 'an overlay reviewed before the latest firm or product capture is dropped')
+      assert.equal(Boolean(getOverlayIfCurrent('ftmo-vs-fundednext')), current, 'an overlay reviewed before the latest firm or product capture is dropped')
+      Object.assign(overlay, { reviewedAt: offset(latestFirmUpdate, -1), challengeReviewedAt: latestCapture })
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext'), undefined, 'a firm update after the review drops the overlay')
       Object.assign(overlay, { reviewedAt: latestFirmUpdate, challengeReviewedAt: latestCapture })
-      assert.equal(getOverlay('ftmo-vs-fundednext')?.challengeReviewedAt, latestCapture, 'product-by-product editorial recheck restores the current comparison')
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext')?.challengeReviewedAt, latestCapture, 'product-by-product editorial recheck restores the current comparison')
+      assert.equal(Boolean(getOverlay('ftmo-vs-fundednext')), COMPARISON_OVERLAYS_ENABLED, 'the hard off-switch wins over a current review')
       Object.assign(overlay, { challengeReviewedAt: offset(latestCapture, -1) })
-      assert.equal(getOverlay('ftmo-vs-fundednext'), undefined, 'one newer product capture is enough to drop the overlay')
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext'), undefined, 'one newer product capture is enough to drop the overlay')
     } finally {
       Object.assign(overlay, saved)
       clock = savedClock

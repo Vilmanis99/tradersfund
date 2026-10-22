@@ -105,7 +105,7 @@ function sourceHasToken(source, token) {
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const POSTS = path.join(ROOT, 'content/posts')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
-const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/page.tsx')
+const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/(index)/page.tsx')
 const GLOBAL_LEGACY_DIRECTORY_FILE = path.join(ROOT, 'app/main-table/page.tsx')
 const GLOBAL_DIRECTORY_COMPONENT_FILE = path.join(ROOT, 'components/FirmTable.tsx')
 const GLOBAL_CHALLENGE_PAGE_FILE = path.join(ROOT, 'app/prop-firm-challenges/page.tsx')
@@ -188,7 +188,7 @@ const INDIA_MATCHUP_SLUGS = [
 const AFFILIATE_REDIRECT_ROUTE_FILE = path.join(ROOT, 'app/go/[firm]/route.ts')
 const ANALYTICS_PROVIDER_FILE = path.join(ROOT, 'components/AnalyticsProvider.tsx')
 const INDIA_MATCHER_COMPONENT_FILE = path.join(ROOT, 'components/IndiaFirmMatcher.tsx')
-const ROOT_LAYOUT_FILE = path.join(ROOT, 'app/layout.tsx')
+const ROOT_LAYOUT_FILE = path.join(ROOT, 'components/SiteDocument.tsx')
 const BLOG_POST_PAGE_FILE = path.join(ROOT, 'app/blog/[slug]/page.tsx')
 const TRADING_TOOL_REVIEW_COMPONENT_FILE = path.join(
   ROOT,
@@ -269,7 +269,7 @@ const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
 const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
 const DISCOUNT_HUB_PAGE_FILE = path.join(
   ROOT,
-  'app/prop-firm-discount-codes/page.tsx',
+  'app/prop-firm-discount-codes/(index)/page.tsx',
 )
 const DEALS_DATA_FILE = path.join(ROOT, 'content/data/deals.json')
 const DEALS_LIBRARY_FILE = path.join(ROOT, 'lib/deals.ts')
@@ -295,10 +295,10 @@ const RELEASE_CRAWL_FILE = path.join(ROOT, 'scripts/release-crawl.mjs')
 const MDX_FILE = path.join(ROOT, 'lib/mdx.ts')
 const RETIRED_CONTENT_FILE = path.join(ROOT, 'lib/retiredContent.ts')
 const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
-const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/page.tsx')
+const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/(index)/page.tsx')
 const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
-const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
+const HOMEPAGE_FILE = path.join(ROOT, 'app/(home)/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
 const COMPARISON_VERDICT_FILE = path.join(ROOT, 'components/ComparisonVerdict.tsx')
 const RELATED_COMPARISONS_FILE = path.join(ROOT, 'components/RelatedComparisons.tsx')
@@ -1272,7 +1272,7 @@ function checkTrustAndCommercialSurface() {
     rows.push('footer contains placeholder social links')
   }
 
-  const home = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf-8')
+  const home = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf-8')
   for (const phrase of ['best for beginners', 'lowest-risk', 'standing 10%']) {
     if (home.toLowerCase().includes(phrase)) {
       rows.push(`homepage contains unsupported promotional phrase: ${phrase}`)
@@ -1750,7 +1750,7 @@ function checkGlobalDirectorySurface() {
   const rows = []
 
   if (!fs.existsSync(GLOBAL_DIRECTORY_PAGE_FILE)) {
-    rows.push('app/prop-firms/page.tsx is missing')
+    rows.push('app/prop-firms/(index)/page.tsx is missing')
   } else {
     const page = fs.readFileSync(GLOBAL_DIRECTORY_PAGE_FILE, 'utf-8')
     const requiredTokens = [
@@ -2124,7 +2124,7 @@ function checkGlobalChallengeSurface() {
   const changeLedgerInternalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/prop-firm-challenges/page.tsx', 'global challenge page'],
     [
       'app/best-prop-firms-in-india/challenge-comparison/page.tsx',
@@ -2160,7 +2160,7 @@ function checkGlobalChallengeSurface() {
   const internalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/sitemap.ts', 'sitemap'],
     ['app/llms.txt/route.ts', 'llms.txt'],
   ]
@@ -3610,11 +3610,12 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 19',
-      'SOCIAL_CARD_FIRM_COUNT = 7',
-      'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 9',
-      'SOCIAL_CARD_WATCH_COUNT = 10',
+      // Values come from npm run gen:share-cards, which also redraws the card; the page throws on drift.
+      'const SOCIAL_CARD_ENTRY_COUNT = ',
+      'const SOCIAL_CARD_FIRM_COUNT = ',
+      'const SOCIAL_CARD_PRODUCT_COUNT = ',
+      'const SOCIAL_CARD_VERIFIED_COUNT = ',
+      'const SOCIAL_CARD_WATCH_COUNT = ',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -6268,7 +6269,7 @@ function checkUkLandingCluster() {
     }
   }
 
-  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/page.tsx'))
+  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -6580,7 +6581,7 @@ function checkUsLandingConsolidation() {
     }
   }
 
-  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/page.tsx'))
+  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -9941,7 +9942,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
-      reviewedAt: '2026-10-20',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9950,10 +9951,10 @@ function checkFundedNextComparisonOverlay() {
         '5 models',
         '$399.99',
         '$422',
-        '5 days',
+        '5 business days',
         '7 days',
         '12% static',
-        '100% on demand',
+        'On Demand 100%',
         '95% on Zero',
         'fourth reward',
       ],
@@ -9971,20 +9972,21 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fxify',
       nextSlug: 'fundingpips-vs-fxify',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
-        '12 captured products',
+        '14 captured products',
         '4 paths',
-        '8 products',
+        '10 captured products',
+        'pre-approval',
         '$399.99',
         '$399',
-        '5 days',
+        '5 business days',
         '7 days',
         '80%',
         '70%',
         'up to 90%',
-        '40%',
         'DXTrade',
         'TradingView',
       ],

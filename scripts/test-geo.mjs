@@ -85,7 +85,7 @@ try {
   const { capturedEntryFees } = require(path.join(root, 'components/ReviewProductSummary.tsx'))
   const Blog = require(path.join(root, 'app/blog/[slug]/page.tsx')).default
   const Compare = require(path.join(root, 'app/compare/[matchup]/page.tsx')).default
-  const Page = require(path.join(root, 'app/[slug]/page.tsx')).default
+  const Page = require(path.join(root, 'app/[slug]/(index)/page.tsx')).default
   const pilot = JSON.parse(fs.readFileSync(path.join(root, 'content/data/geo-pilot.json'), 'utf8'))
   // Freeze the clock relative to the pilot pages' own captures. A literal date falls
   // behind every recapture, and future-dated captures fail closed by design.
