@@ -19,7 +19,11 @@ import {
   type IndiaFirmEvidence,
 } from './india'
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
-import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import {
+  cryptoMarketEvidence as typedCryptoMarketEvidence,
+  type CryptoMarketEvidence,
+  type CryptoMarketWatch,
+} from '@/lib/cryptoMarketEvidence'
 import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
 import { isProductSetFresh } from './reviewFreshness.ts'
 
@@ -140,29 +144,6 @@ interface UkAccessEvidence {
   decisionNote: string
 }
 
-interface CryptoMarketEvidence {
-  firmSlug: string
-  firmName: string
-  marketModel: 'crypto-native' | 'multi-asset-cfd'
-  productSlugs: string[]
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  evidenceRu?: string
-  scopeNote: string
-  scopeNoteRu?: string
-}
-
-interface CryptoMarketWatch {
-  firmSlug: string
-  firmName: string
-  status: 'product-capture-needed' | 'market-and-product-refresh-needed'
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  nextStep: string
-}
-
 const US_ACCESS_EVIDENCE = rawUsAccessEvidence.firms as UsAccessEvidence[]
 const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
   US_ACCESS_EVIDENCE.map(evidence => [
@@ -176,11 +157,11 @@ const UK_ACCESS_EVIDENCE_BY_SLUG = new Map(
   UK_ACCESS_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
 
-const CRYPTO_MARKET_EVIDENCE = rawCryptoMarketEvidence.ranked as CryptoMarketEvidence[]
+const CRYPTO_MARKET_EVIDENCE: CryptoMarketEvidence[] = typedCryptoMarketEvidence.ranked
 const CRYPTO_MARKET_EVIDENCE_BY_SLUG = new Map(
   CRYPTO_MARKET_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
-const CRYPTO_MARKET_WATCH = rawCryptoMarketEvidence.watch as CryptoMarketWatch[]
+const CRYPTO_MARKET_WATCH: CryptoMarketWatch[] = typedCryptoMarketEvidence.watch
 
 function isAccessEvidenceFresh(sourceCapturedAt: string) {
   const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
@@ -1014,7 +995,7 @@ export const LANDINGS: Landing[] = [
     metaDescription:
       `Best crypto prop firms for 2026: ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`,
     intro:
-      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
+      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. ${CRYPTO_MARKET_WATCH.length ? `The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.` : 'No checked firm is waiting on missing crypto evidence right now; a firm whose sources lapse drops out rather than borrowing stale or forex-only prices and rules.'}`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT,
     rank: firms => firms

@@ -52,6 +52,19 @@ assert(review.includes('author: "Edris Derakhshi"'))
 assert(review.includes("Ascend has no percentage-split True-Cost table"))
 assert(review.includes('Break Challenge true-cost projection'))
 const market = JSON.parse(readFileSync(new URL('../content/data/crypto-market-evidence.json', import.meta.url), 'utf8'))
-assert(!market.ranked.some(firm => firm.firmSlug === 'crypto-fund-trader'), 'Price correction alone is not verified crypto/platform mapping')
-assert.equal(market.watch.find(firm => firm.firmSlug === 'crypto-fund-trader').sourceCapturedAt, '2026-07-27')
+// CFT is ranked since the 2026-10-21 market recheck. A price correction alone is still not a crypto/platform
+// mapping: the ranked entry must carry its own first-party instrument and product-platform evidence, map only
+// products that are priced and not under the Break/Ascend conflict, and CFT cannot also sit on the watch list.
+const cftMarket = market.ranked.find(firm => firm.firmSlug === 'crypto-fund-trader')
+assert(cftMarket, 'CFT market evidence entry exists (ranked since the 2026-10-21 recheck)')
+assert(!market.watch.some(firm => firm.firmSlug === 'crypto-fund-trader'), 'a ranked firm is not also on the crypto watch list')
+for (const evidence of [cftMarket, cftMarket.productScope]) {
+  assert.match(evidence?.sourceUrl ?? '', /^https:\/\/(www\.)?cryptofundtrader\.com\//, 'instrument and platform evidence is first-party')
+  assert.match(evidence?.sourceCapturedAt ?? '', /^\d{4}-\d{2}-\d{2}$/, 'evidence carries its own capture date')
+  assert(evidence?.sourceQuote?.trim(), 'evidence carries a source quote')
+}
+assert(cftMarket.sourceCapturedAt > bySlug.evaluation.sourceCapturedAt, 'market evidence is a separate, later check than the price recapture it does not replace')
+const unpricedOrConflicted = new Set(['ascend', 'break'])
+assert(cftMarket.productSlugs.length > 0 && cftMarket.productSlugs.every(slug => bySlug[slug] && !unpricedOrConflicted.has(slug)
+  && bySlug[slug].accountSizes.some(tier => minimumCostToFundedUsd(bySlug[slug], tier) > 0)), 'only priced products outside the Ascend/Break conflict are mapped')
 console.log('PASS: CFT mixed-age capture, unknown purchase prices, product reward differences, aggregate correction and exact generated review tables.')

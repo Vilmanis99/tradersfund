@@ -1,0 +1,55 @@
+{
+  "firmSlug": "tradeday",
+  "capturedAt": "2026-10-20",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "TradeDay",
+      "TradeDay LLC",
+      "tradeday.com"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000123294-prohibited-countries",
+      "claims": [
+        "Modified on Thu, 1 Oct: the outright prohibition list now has 83 names (adds Palestine and Turkey) and still does not include India.",
+        "The restriction test still covers citizenship, residence, and prolonged predominant trading location.",
+        "Germany and Canada outside Ontario remain Funded Sim only; new Ukrainian users cannot onboard with Riseworks."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008683-can-anyone-join-tradeday-",
+      "claims": [
+        "Unchanged (modified 21 Jul 2025): broker, clearing firm and Riseworks KYC/AML with government-issued ID plus bank statement or utility bill."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000120177-what-happens-if-a-subscription-payment-fails-",
+      "claims": [
+        "Credit/debit card via NMI or Braintree, plus Google Pay, Apple Pay and PayPal (modified 27 May)."
+      ]
+    },
+    {
+      "url": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008898-what-are-the-payment-methods-for-my-trading-profits-",
+      "claims": [
+        "Riseworks has 2 options for payouts: Bank wire and Crypto.",
+        "US bank wire withdrawals: Free International bank wire withdrawals: $15/withdrawal L1 Crypto Withdrawals: $2.5/withdrawal + Estimated Gas Fees. L2 Crypto Withdrawals: Free."
+      ]
+    },
+    {
+      "url": "https://www.tradeday.com/",
+      "claims": [
+        "Rendered homepage (headless Chrome, 2026-10-20): hero 'Now up to 55% OFF! Accounts from just $45!', pricing header 'Simple pricing. No hidden fees. Up to 60% off!'; default Daily Payouts / Intraday cards 25k-150k at $45 / $59 / $108 / $162 per month (list $100 / $131 / $240 / $360)."
+      ]
+    }
+  ],
+  "unresolvedConflicts": [
+    "No Indian checkout, KYC approval, payout-provider invitation, bank-wire receipt, crypto receipt, or INR settlement was independently tested.",
+    "The displayed fees are tied to a 55%-off campaign rather than verified stable list prices.",
+    "First-party pages conflict on whether a funded-stage KYC failure produces a refund."
+  ],
+  "rawCopies": "/workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/tradeday.freshdesk.com_*.html, tradeday_home_rendered.txt, tradeday_home.png (box only)"
+}

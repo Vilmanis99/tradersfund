@@ -77,6 +77,9 @@ const firmRecords = JSON.parse(
 const latestProductCapture = getAllChallenges()
   .map(challenge => challenge.sourceCapturedAt).sort().at(-1)
 const challengeWatchEntries = getChallengeWatchEntries()
+const currentFtmoEurTierCount = getAllChallenges()
+  .filter(challenge => challenge.firmSlug === 'ftmo' && isChallengeFresh(challenge))
+  .reduce((total, challenge) => total + challenge.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
 const firmReviewPostRecords = new Map(firmRecords.map(firm => {
   const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
   const reviewSlug = reviewPath.split('/').filter(Boolean).at(-1)
@@ -1179,12 +1182,13 @@ const russianExpectations = new Map([
       'data-russian-country-boundary="crypto-not-access"',
       'data-russian-crypto-ranking="source-gated"',
       'data-russian-affiliate-disclosure="crypto-ranking"',
-      'data-russian-crypto-product-count="12"',
-      'data-russian-crypto-partner-count="2"',
+      // Counts derive from crypto-market-evidence.json + firms.json (every ranked firm current at release).
+      `data-russian-crypto-product-count="${cryptoMarketEvidence.ranked.reduce((total, evidence) => total + evidence.productSlugs.length, 0)}"`,
+      `data-russian-crypto-partner-count="${cryptoMarketEvidence.ranked.filter(evidence => firmRecords.find(firm => firm.name === evidence.firmName)?.affiliateUrl).length}"`,
       'data-russian-crypto-comparison="current-source-mapped-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
       'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
-      'data-russian-crypto-watch-count="7"',
+      `data-russian-crypto-watch-count="${cryptoMarketEvidence.watch.length}"`,
       '/go/fundednext?from=ru-crypto-ranking',
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
@@ -1199,8 +1203,9 @@ const russianExpectations = new Map([
       'data-russian-ftmo-verdict="two-products-not-one-brand"',
       'data-russian-ftmo-official-site="non-affiliate"',
       'data-russian-ftmo-product-matrix="two-current-products"',
-      'data-russian-ftmo-price-count="10"',
-      'data-russian-ftmo-truecost="10"',
+      // Fresh FTMO EUR tiers from the data (15 since FTMO Instant Account, 2026-10-21), as the page counts them.
+      `data-russian-ftmo-price-count="${currentFtmoEurTierCount}"`,
+      `data-russian-ftmo-truecost="${currentFtmoEurTierCount}"`,
       'data-russian-ftmo-pricing-product="ftmo-challenge-2-step"',
       'data-russian-ftmo-pricing-product="ftmo-challenge-1-step"',
       'data-russian-ftmo-risk="static-vs-eod-trailing"',
@@ -3449,9 +3454,30 @@ if (futuresLandingProbe.status !== 200) {
       `${futuresLandingPath}: rendered ${cards.length} firms, expected ${expectedFuturesFirms.length}`,
     )
   }
-  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 26) {
+  // Counts come from fresh assetClass === 'futures' captures, never a hardcoded fixture;
+  // the page is checked against them below and here (firm set and summed product badges).
+  if (expectedFuturesFirms.length === 0 || expectedFuturesProductCount === 0) {
     errors.push(
-      `${futuresLandingPath}: current fixture must resolve to 7 firms and 26 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
+      `${futuresLandingPath}: no fresh futures products in the data (${expectedFuturesFirms.length} firms, ${expectedFuturesProductCount} products); the landing has nothing to rank`,
+    )
+  }
+  const expectedFuturesNames = expectedFuturesFirms.map(entry => entry.firm.name)
+  const renderedFuturesNames = cards.map(card =>
+    firmRecords.map(firm => firm.name).filter(name => card.text.includes(name))
+      .sort((a, b) => b.length - a.length)[0] ?? '(unknown firm)',
+  )
+  if (renderedFuturesNames.join(' | ') !== expectedFuturesNames.join(' | ')) {
+    errors.push(
+      `${futuresLandingPath}: rendered firms [${renderedFuturesNames.join(', ')}], expected [${expectedFuturesNames.join(', ')}]`,
+    )
+  }
+  const renderedFuturesProductCount = cards.reduce((total, card) => {
+    const count = /Products (\d+)/.exec(card.text)
+    return total + (count ? Number(count[1]) : 0)
+  }, 0)
+  if (renderedFuturesProductCount !== expectedFuturesProductCount) {
+    errors.push(
+      `${futuresLandingPath}: rendered cards list ${renderedFuturesProductCount} products, expected ${expectedFuturesProductCount} from fresh futures captures`,
     )
   }
   if (itemListCount !== 1) {
@@ -3753,7 +3779,9 @@ if (cryptoLandingProbe.status !== 200) {
   for (const required of [
     `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
-    `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
+    // LandingPage renders the evidence-gaps section only for a non-empty watch list;
+    // with watch empty the section must be absent (checked below), not required.
+    ...(cryptoMarketEvidence.watch.length ? [`Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`] : []),
     'What crypto traders should verify',
     'Can I trade crypto, or only pay and withdraw with it?',
     'Is it a dedicated crypto account or a multi-asset CFD product?',
@@ -3764,6 +3792,9 @@ if (cryptoLandingProbe.status !== 200) {
     if (!cryptoText.includes(required)) {
       errors.push(`${cryptoLandingPath}: missing ${required}`)
     }
+  }
+  if (!cryptoMarketEvidence.watch.length && cryptoText.includes('Not ranked yet:')) {
+    errors.push(`${cryptoLandingPath}: empty watch list still renders a 'Not ranked yet' section`)
   }
   for (const required of [
     'href="/prop-firm-challenges"',

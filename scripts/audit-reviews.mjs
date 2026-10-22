@@ -37,6 +37,7 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import { hasNoListedPrice } from '../lib/reviewFreshness.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import { isSourceHoldFirm } from '../lib/reviewStatus.ts'
 import {
@@ -494,7 +495,7 @@ function loadChallenges(firmSlug) {
   return JSON.parse(fs.readFileSync(file, 'utf-8'))
 }
 
-function checkSourceFreshness(challenges, errors, warnings, allowStale = false) {
+function checkSourceFreshness(challenges, errors, warnings, allowStale = false, { exemptNoListedPrice = false } = {}) {
   const seen = new Map()
   const badUrls = new Set()
   for (const c of challenges) {
@@ -513,6 +514,9 @@ function checkSourceFreshness(challenges, errors, warnings, allowStale = false) 
       errors.push(`challenge "${c.productName}" has no sourceCapturedAt`)
       continue
     }
+    // Same exemption as the rendered surface (lib/reviewFreshness.ts): a product
+    // with no listed price at all (not on sale) shows no price that can go stale.
+    if (exemptNoListedPrice && hasNoListedPrice(c)) continue
     const age = Math.floor((TODAY - new Date(c.sourceCapturedAt)) / 86400000)
     if (age > STALE_DAYS && !seen.has(c.sourceCapturedAt)) {
       seen.set(c.sourceCapturedAt, true)
@@ -2725,7 +2729,9 @@ function checkIndiaEvidence() {
       }
 
       const freshnessErrors = []
-      checkSourceFreshness(challenges, freshnessErrors)
+      // /best-prop-firms-in-india lists not-on-sale products (lib/indiaMatcher.ts:
+      // isChallengeFresh || hasNoListedPrice), so the audit applies the same exemption.
+      checkSourceFreshness(challenges, freshnessErrors, [], false, { exemptNoListedPrice: true })
       for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
     }
   }
@@ -6174,9 +6180,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  if (entries.length !== 8 || mappedProducts.size !== 39) {
+  // 44 = every structured product of the 8 UK firms after FTMO Instant Account (2026-10-21).
+  if (entries.length !== 8 || mappedProducts.size !== 44) {
     rows.push(
-      `UK fixture expects 8 firms and 39 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+      `UK fixture expects 8 firms and 44 mapped products; received ${entries.length} and ${mappedProducts.size}`,
     )
   }
 
@@ -7003,7 +7010,9 @@ function checkFuturesLandingCluster() {
     'expectedFuturesFirms',
     'expectedFuturesProductCount',
     "challenge.assetClass === 'futures'",
-    '7 firms and 26 products',
+    'renderedFuturesNames',
+    'renderedFuturesProductCount',
+    'no fresh futures products in the data',
     'Products ${products.length}',
     'missing contextual futures-ranking backlink',
     "'/prop-firm-challenges?market=futures'",
@@ -7125,9 +7134,12 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
+  // Tripwire, deliberately literal: the 2026-10-21 market recheck (crypto-market-evidence.json) ranks 10 firms
+  // (BrightFunded, CFT, FTMO, CTI, OFP added), empties the watch list and maps 34 products. Any change to the
+  // evidence file must update this line on purpose.
+  if (ranked.length !== 10 || watch.length !== 0 || mappedProducts.size !== 34) {
     rows.push(
-      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture expects 10 current ranked firms, 0 watch firms and 34 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
     )
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
@@ -7142,7 +7154,7 @@ function checkCryptoLandingCluster() {
     rows.push('best-crypto-prop-firms landing config is missing')
   } else {
     for (const fragment of [
-      "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      "} from '@/lib/cryptoMarketEvidence'",
       'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
       'return products.length === productSlugs.length ? products : []',
       'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',
@@ -9665,8 +9677,9 @@ function checkScalingPlanGuide() {
     {
       slug: 'ftmo',
       name: 'FTMO',
-      splitFragments: ['80%', '2-Step', '90%', '1-Step'],
-      countFragments: [[80, 1], [90, 1]],
+      // FTMO Instant Account (captured 2026-10-21) is the second product at 90%.
+      splitFragments: ['80%', '2-Step', '90%', '1-Step', 'Instant Account'],
+      countFragments: [[80, 1], [90, 2]],
       nullCount: 0,
     },
     {
@@ -9834,7 +9847,8 @@ function checkFundedNextComparisonOverlay() {
     }
 
     const expectedFragments = [
-      `${ftmo.length} evaluation products`,
+      // Instant Account (phases 0) is not an evaluation product; the overlay counts evaluations only.
+      `${ftmo.filter(challenge => challenge.phases > 0).length} evaluation products`,
       `${fundedNext.length} product paths`,
       `${ftmoOneStep.profitSplitPct}%`,
       `${stellarInstant.profitSplitPct}%`,
@@ -13308,8 +13322,13 @@ function checkRussianAcquisitionPilot() {
     })
   const currentFtmoPriceCount = currentFtmoProducts.reduce((sum, product) => sum
     + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
-  if (currentFtmoProducts.length !== 2 || currentFtmoPriceCount !== 10) {
-    rows.push(`Russian FTMO fixture expects 2 products and 10 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  // FTMO Instant Account (2026-10-21, 5 EUR tiers) joins 2-Step and 1-Step. The page renders every fresh product's
+  // EUR table, so its price-count heading must come from pricedTiers rather than a literal.
+  if (currentFtmoProducts.length !== 3 || currentFtmoPriceCount !== 15) {
+    rows.push(`Russian FTMO fixture expects 3 products and 15 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  }
+  if (!ftmoRussianPage.includes('Все {pricedTiers.length} цен FTMO') || /Все \d+ цен FTMO/.test(ftmoRussianPage)) {
+    rows.push('Russian FTMO price heading must count pricedTiers, not a fixed number')
   }
   if (!fs.existsSync(path.join(CHALLENGES, '_captures', 'ftmo-2026-08-28.json'))) {
     rows.push('Russian FTMO review is missing its 2026-08-28 first-party capture provenance')
