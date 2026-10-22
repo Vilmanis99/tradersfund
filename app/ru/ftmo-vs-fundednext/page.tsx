@@ -214,7 +214,11 @@ export default function RussianFtmoVsFundedNextPage() {
   const firms = getAllFirms()
   const ftmoFirm = firms.find(firm => firm.name === 'FTMO')
   const fnFirm = firms.find(firm => firm.name === 'FundedNext')
-  const ftmoProducts = getChallengesByFirm('ftmo')
+  // FTMO Instant Account (Tracker c715d92, captured 21.10.2026) stays out of the six-product tables and is described in the Instant section only.
+  const ftmoAllProducts = getChallengesByFirm('ftmo')
+  const ftmoInstantRecord = ftmoAllProducts.find(product => product.productSlug === 'ftmo-instant-account')
+  const ftmoInstant = ftmoInstantRecord && freshProduct(ftmoInstantRecord) && ftmoInstantRecord.accountSizes.some(tier => validPrice(tier.priceEur) || validPrice(tier.priceUsd)) ? ftmoInstantRecord : undefined
+  const ftmoProducts = ftmoAllProducts.filter(product => product.productSlug !== 'ftmo-instant-account')
   const fnProducts = getChallengesByFirm('fundednext')
   const relevantProducts = [...ftmoProducts, ...fnProducts]
   const productRows: ProductRow[] = [
@@ -357,8 +361,9 @@ export default function RussianFtmoVsFundedNextPage() {
             <strong>Живёте в стране, открытой для обеих фирм.</strong> FTMO стоит выбрать, если нужны TradingView, возврат
             взноса в 2-Step и долгий путь масштабирования. Взносы при этом в евро. FundedNext удобнее, если хотите начать с
             маленького счёта или предпочитаете статическую просадку в одноэтапной программе. Счёт без оценки есть у обеих:
-            Stellar Instant у FundedNext и FTMO Instant Account у FTMO; условия FTMO Instant мы пока не сверили с данными
-            трекера, поэтому числового сравнения этой пары нет.
+            Stellar Instant у FundedNext и FTMO Instant Account у FTMO{ftmoInstant
+              ? <> (взнос от {priceRange(ftmoInstant).split('–')[0].trim()}, по данным на {ruDate(ftmoInstant.sourceCapturedAt)}); условия обоих — в разделе «Без оценки» ниже.</>
+              : <>; условия FTMO Instant мы пока не сверили с данными трекера, поэтому числового сравнения этой пары нет.</>}
           </p>
           <p>
             <strong>Торгуете на новостях.</strong> У FTMO новостные ограничения действуют только на счёте FTMO с типом Standard,
@@ -477,12 +482,17 @@ export default function RussianFtmoVsFundedNextPage() {
               Вознаграждение можно запросить сразу при росте счёта на 5% или в обычном 14-дневном цикле. Возврата взноса нет.
               Подробно — на странице <Link href="/ru/fundednext-stellar-instant">FundedNext Stellar Instant</Link> и в подборке <Link href="/ru/prop-firmy-bez-chelendzha">проп-фирм без челленджа</Link>.
             </p> : missingPair}
-            <p data-russian-comparison-ftmo-instant="official-page-only">
+            {ftmoInstant ? <p data-russian-comparison-ftmo-instant="tracker-data">
+              У FTMO тоже есть счёт без оценки — FTMO Instant Account: размеры {sizesLabel(ftmoInstant)}, разовый невозвратный взнос {priceRange(ftmoInstant)}.
+              Дневной лимит — {percent(ftmoInstant.dailyLossPct)} от начального баланса, общий — {percent(ftmoInstant.maxLossPct)}{ftmoInstant.drawdownType === 'trailing' ? <>, подвижный: держится на {percent(ftmoInstant.maxLossPct)} ниже максимального баланса и пересчитывается внутри дня</> : <> ({drawdownLabel(ftmoInstant)})</>}.
+              Самый прибыльный день не может дать больше {percent(ftmoInstant.consistencyRulePct)} общей прибыли. Доля — {splitLabel(ftmoInstant)}, программа Premium для этого счёта недоступна
+              (по данным на {ruDate(ftmoInstant.sourceCapturedAt)}). Срок первой выплаты на странице продукта не указан.
+            </p> : <p data-russian-comparison-ftmo-instant="official-page-only">
               У FTMO тоже есть счёт без оценки — FTMO Instant Account. На официальной странице указаны счёт до $100K, доля 90% и
               общий лимит убытка 10% (по данным на {CHECKED}). Цены и остальные правила этого продукта в наших проверенных данных
               пока нет, поэтому в таблицы он не входит.
-            </p>
-            <p className="ru-source-line">Источники: {fnInstant ? <><a href={fnInstant.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar Instant</a> ({ruDate(fnInstant.sourceCapturedAt)}); </> : null}<a href={SRC.ftmoInstant} target="_blank" rel="noopener noreferrer">FTMO Instant Account</a> ({CHECKED}).</p>
+            </p>}
+            <p className="ru-source-line">Источники: {fnInstant ? <><a href={fnInstant.sourceUrl} target="_blank" rel="noopener noreferrer">Stellar Instant</a> ({ruDate(fnInstant.sourceCapturedAt)}); </> : null}<a href={SRC.ftmoInstant} target="_blank" rel="noopener noreferrer">FTMO Instant Account</a> ({ftmoInstant ? ruDate(ftmoInstant.sourceCapturedAt) : CHECKED}).</p>
           </article>
         </div>
       </section>
@@ -625,7 +635,7 @@ export default function RussianFtmoVsFundedNextPage() {
             <li><a href={SRC.fnCfdCountries} target="_blank" rel="noopener noreferrer">FundedNext CFD: ограничения по странам</a> — {CHECKED}.</li>
             <li><a href={SRC.fnFuturesCountries} target="_blank" rel="noopener noreferrer">FundedNext Futures: ограничения по странам</a> — {CHECKED}.</li>
             <li><a href={SRC.ftmoPayments} target="_blank" rel="noopener noreferrer">FTMO: способы оплаты</a>, <a href={SRC.fnPayments} target="_blank" rel="noopener noreferrer">FundedNext: способы оплаты</a> и <a href={SRC.fnLocalPayments} target="_blank" rel="noopener noreferrer">локальные способы</a> — {CHECKED}.</li>
-            <li><a href={SRC.ftmoInstant} target="_blank" rel="noopener noreferrer">FTMO Instant Account</a> — {CHECKED}.</li>
+            <li><a href={SRC.ftmoInstant} target="_blank" rel="noopener noreferrer">FTMO Instant Account</a> — {ftmoInstant ? ruDate(ftmoInstant.sourceCapturedAt) : CHECKED}.</li>
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам</a> — {TRACKER_BRIGHT_COUNTRIES}.</li>
             <li><a href={SRC.fnSite} target="_blank" rel="noopener noreferrer">fundednext.com: подвал (Jurisdictional Restrictions)</a> и <a href={SRC.fnTerms} target="_blank" rel="noopener noreferrer">условия FundedNext, п. 5.3</a> — Prop Firm Tracker, {TRACKER_0920}.</li>
             <li><a href={SRC.fnAllocationCap} target="_blank" rel="noopener noreferrer">FundedNext: лимит капитала $300K</a>, <a href={SRC.fnScaleUp} target="_blank" rel="noopener noreferrer">Scale-Up до $4M (+25%)</a> и <a href={SRC.fnScaleUpOld} target="_blank" rel="noopener noreferrer">старая статья (+40%)</a> — {TRACKER_0920}.</li>
