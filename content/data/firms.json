@@ -5888,7 +5888,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-22",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -5896,8 +5896,8 @@
     "regionalDiscountCode": "SAVENOW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-20, promo expiration \"2026-10-22 23:59\" in the page config); not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-22 on every product card as the struck-through list price plus a coupon price of 10% of it \"- (with Coupon Code)\"; the on-page countdown ended about 07:00 23.10.2026 Riga, page config 2026-10-20 said expiration \"2026-10-22 23:59\"); not checkout-verified and may be US-only, so not shown as a universal code and not in deals.json. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
     "regionalDiscountPct": 90
   },
   {
