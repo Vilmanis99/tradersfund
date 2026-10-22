@@ -175,7 +175,25 @@
         "Crypto symbol list: not published on ofpfunding.com (pages in its sitemap) or the 49 help.ofpfunding.com articles checked 2026-10-21.",
         "Crypto leverage for Instant Classic and Instant Plus: not published; only the Instant Lite table gives 'Crypto 1:1/2'.",
         "Checkout confirmation of prices: login required."
-      ]
+      ],
+      "btcEthEvidence": {
+        "btcTradable": null,
+        "ethTradable": null,
+        "btcSymbol": null,
+        "ethSymbol": null,
+        "platforms": [
+          "OFP Platform (Sirix)"
+        ],
+        "leverage": "Crypto 1:1/2 (dynamic) is published for Instant Lite only; nothing published for Instant Classic or Instant Plus.",
+        "sourceUrl": "https://help.ofpfunding.com/trading-commissions-fee-structure/",
+        "sourcePublishedAt": "2026-05-20",
+        "sourceCapturedAt": "2026-10-22",
+        "sourceQuote": "Commission structure is 25 USD per million traded (notional volume) on forex, indices, and commodities, and 200 USD per million traded (notional volume) on cryptos.",
+        "note": "Generic \"cryptos\" only. Re-read 2026-10-22 together with https://ofpfunding.com/, https://ofpfunding.com/trading-rules, https://ofpfunding.com/terms-and-conditions and https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/: none names BTC, Bitcoin, ETH or Ethereum as a tradable symbol.",
+        "openGaps": [
+          "BTC and ETH not confirmed: OFP publishes 'Crypto' / 'cryptos' generically and no symbol list (pages above plus the 49 help.ofpfunding.com articles checked 2026-10-21). OFP blog posts (e.g. https://ofpfunding.com/crypto-institutions-are-in-why-prop-firm-traders-are-now-dominating-bitcoin-and-ethereum-markets, published 2026-07-13) discuss Bitcoin and Ethereum markets but are not instrument lists, so they are not used."
+        ]
+      }
     },
     {
       "firmSlug": "fundednext",
@@ -193,7 +211,45 @@
       "evidence": "FundedNext publishes cryptocurrency contract sizes of 1, 100, and 1,000 depending on the pair and states that the specifications apply to all accounts.",
       "evidenceRu": "FundedNext публикует размеры криптовалютных контрактов 1, 100 и 1 000 в зависимости от пары и указывает, что спецификации применяются ко всем счетам.",
       "scopeNoteRu": "Покрыты все 4 текущих CFD-продукта. Размер контракта зависит от пары, поэтому спецификация платформы остаётся главным источником на уровне символа.",
-      "scopeNote": "All 4 current CFD products are covered. Contract size varies by pair, so the platform specification remains the symbol-level authority."
+      "scopeNote": "All 4 current CFD products are covered. Contract size varies by pair, so the platform specification remains the symbol-level authority.",
+      "btcEthEvidence": {
+        "btcTradable": true,
+        "ethTradable": true,
+        "btcSymbol": "BTCUSD",
+        "ethSymbol": "ETHUSD",
+        "cryptoSymbols": [
+          "DOGUSD",
+          "ADAUSD",
+          "XLMUSD",
+          "XRPUSD",
+          "BTCUSD",
+          "ETHUSD",
+          "LNKUSD",
+          "LTCUSD",
+          "XMRUSD"
+        ],
+        "platforms": [
+          "MT4",
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "leverage": "Crypto 1:1 on Stellar 1-Step, Stellar 2-Step and Stellar Lite (Challenge and Funded phase) and on Stellar Instant.",
+        "sourceUrl": "https://help.fundednext.com/en/articles/8224087-fundednext-tradable-assets-what-can-i-trade-on-fundednext-cfd-accounts",
+        "sourcePublishedAt": "2026-09-08",
+        "sourceCapturedAt": "2026-10-22",
+        "sourceQuote": "Traders using our Stellar Accounts can trade CFDs across four primary asset classes. Below is the comprehensive list of available symbols: ... 3. Cryptocurrencies Trade leading digital assets against the USD: Symbols: DOGUSD, ADAUSD, XLMUSD, XRPUSD, BTCUSD, ETHUSD, LNKUSD, LTCUSD, XMRUSD.",
+        "note": "Platforms from the same article: 'You can view the real-time list of all enabled instruments directly within your trading terminal (MT4, MT5, cTrader, or Match-Trader).' US clients are limited to Match-Trader (us-access-evidence.json).",
+        "leverageSource": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/symbols-and-conditions",
+          "sourceCapturedAt": "2026-10-22",
+          "sourceQuote": "Challenge phase : – Stellar 1-Step : Forex 1:30, Indices 1:10, Commodities 1:15, Crypto 1:1, Stock 1:2 – Stellar 2-Step and Stellar Lite : Forex 1:100, Indices and, Commodities 1:25, Crypto 1:1, Stock 1:2 Funded phase : ... Crypto 1:1 ... Stellar Instant : Forex 1:30, Indices 1:5, Commodities 1:7.5, Crypto 1:1, Stock 1:2",
+          "note": "Page shows no date. Same page: 'Crypto : BTC/USD, ETH/USD, XRP/USD, and more.' Stellar Instant crypto 1:1 is also in help article 11641369 (dateModified 2026-09-08)."
+        },
+        "openGaps": [
+          "Leverage page date: https://fundednext.com/general-rules/cfds/symbols-and-conditions shows no published or modified date."
+        ]
+      }
     },
     {
       "firmSlug": "fundingpips",
@@ -208,7 +264,61 @@
       "evidence": "The 1 Step Flex specification publishes a 0.04% crypto commission, 1:2 crypto leverage during Phase 1, and 1:1 crypto leverage on the Master Account.",
       "evidenceRu": "Спецификация 1 Step Flex указывает комиссию 0,04% за криптоинструменты, плечо 1:2 на оценочном этапе и 1:1 на следующем счёте Master Account.",
       "scopeNoteRu": "Привязан только 1 Step Flex. Остальные 4 продукта FundingPips не считаются автоматически доступными для крипторынка и могут иметь другие условия.",
-      "scopeNote": "Only 1 Step Flex is mapped. The other 4 current FundingPips products are not assumed to share its crypto availability or trading conditions."
+      "scopeNote": "Only 1 Step Flex is mapped. The other 4 current FundingPips products are not assumed to share its crypto availability or trading conditions.",
+      "btcEthEvidence": {
+        "btcTradable": true,
+        "ethTradable": true,
+        "btcSymbol": "BTCUSD",
+        "ethSymbol": "ETHUSD",
+        "cryptoSymbols": [
+          "BTCUSD",
+          "ETHUSD"
+        ],
+        "platforms": [
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "leverage": "1 Step Flex: crypto 1:2 in Phase 1, 1:1 on the Master Account; Swing and Swap-Free accounts 1:1.",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+        "sourcePublishedAt": "2026-10-21",
+        "sourceCapturedAt": "2026-10-22",
+        "sourceQuote": "Instruments 41 instruments across 5 asset classes Forex, Metals, Indices, Energies, and Crypto ... Crypto 2 BTCUSD (Bitcoin vs USD), ETHUSD (Ethereum vs USD)",
+        "note": "Read through the help centre's public Zendesk articles API (the article HTML returns 403 to curl); updated_at 2026-10-21T09:41:33Z. Leverage table in the same article: 'Instrument Standard Account Swing and Swap Free accounts Forex 1:100 1:30 Metals 1:30 1:5 Energies 1:10 1:5 Indices 1:20 1:5 Crypto 1:2 1:1 Once Phase 1 is passed and the account moves to the Master Account, Crypto leverage changes from 1:2 to 1:1, including on swap-free accounts'. Platforms named in the article's add-on section: 'MT5, cTrader & Match-Trader'.",
+        "otherProductsSameList": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "sourcePublishedAt": "2026-10-21",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Crypto 2 BTCUSD (Bitcoin vs USD), ETHUSD (Ethereum vs USD)",
+            "note": "Crypto 1:2 in evaluation, 1:1 on Master Account."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "sourcePublishedAt": "2026-10-21",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Crypto 2 BTCUSD (Bitcoin vs USD), ETHUSD (Ethereum vs USD)",
+            "note": "Crypto 1:2 in evaluation, 1:1 on Master Account."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "sourcePublishedAt": "2026-10-21",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Crypto 2 BTCUSD (Bitcoin vs USD), ETHUSD (Ethereum vs USD)",
+            "note": "Crypto 1:2 in evaluation, 1:1 on Master Account."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "sourcePublishedAt": "2026-10-19",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Crypto 2 BTCUSD (Bitcoin vs USD), ETHUSD (Ethereum vs USD)",
+            "note": "Leverage table: 'Standard Account Swap-Free Account (MT5) ... Crypto 1:2 1:1'."
+          }
+        ],
+        "openGaps": [
+          "Mapping not widened: all 5 stored FundingPips products (1-step-flex, 2-step-standard, 2-step-pro, 2-step-flex, zero) now publish BTCUSD and ETHUSD in their own help articles (read 2026-10-22), but only 1-step-flex is mapped. Widening productSlugs changes which products the crypto ranking covers, so it is left for an editorial decision."
+        ]
+      }
     },
     {
       "firmSlug": "maven",
@@ -244,8 +354,42 @@
       "sourceQuote": "CRYPTO accounts are exclusively for trading cryptocurrencies. The CRYPTO account options include a One Phase Crypto Challenge and an Instant Funding Crypto Account.",
       "evidence": "FXIFY's official FAQ splits accounts into FOREX and CRYPTO and states that CRYPTO accounts are exclusively for trading cryptocurrencies, offered as a One Phase Crypto Challenge and an Instant Funding Crypto Account.",
       "evidenceRu": "Официальный FAQ FXIFY делит счета на FOREX и CRYPTO и указывает, что CRYPTO-счета предназначены исключительно для торговли криптовалютами: это One Phase Crypto Challenge и Instant Funding Crypto Account.",
-      "scopeNote": "Only the 2 dedicated crypto products are mapped. FXIFY's 8 FOREX products cannot trade crypto and are excluded.",
-      "scopeNoteRu": "Привязаны только 2 отдельных криптопродукта. 8 FOREX-продуктов FXIFY не позволяют торговать криптовалютой и исключены."
+      "scopeNote": "Only the 2 dedicated crypto products are mapped. FXIFY's FAQs say its 8 FOREX products cannot trade crypto, so they are excluded; a newer FXIFY blog post (2026-08-03) says the opposite, so that conflict is open.",
+      "scopeNoteRu": "Привязаны только 2 отдельных криптопродукта. По FAQ FXIFY 8 FOREX-продуктов не позволяют торговать криптовалютой, поэтому они исключены; более новая запись в блоге FXIFY (03.08.2026) утверждает обратное — это расхождение источников пока открыто.",
+      "btcEthEvidence": {
+        "btcTradable": true,
+        "ethTradable": true,
+        "btcSymbol": "BTC — Tether",
+        "ethSymbol": "ETH — Tether",
+        "cryptoSymbolCount": 81,
+        "platforms": [
+          "DXTrade"
+        ],
+        "leverage": "BTC, ETH and SOL 5:1; all other crypto 2:1 (Crypto accounts).",
+        "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-what-instruments-crypto-do-you-offer/",
+        "sourcePublishedAt": "2025-10-27",
+        "sourceCapturedAt": "2026-10-22",
+        "sourceQuote": "Full Crypto List (Symbol — Name), selected by Market Cap, according to the 27th of October 2025. ... BTC — Tether (Bitcoin) ... ETH — Tether (Ethereum)",
+        "note": "81 entries, all quoted against Tether (USDT). Page schema dateModified 2025-10-27.",
+        "leverageSource": {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-what-is-the-leverage-available-for-the-account/",
+          "sourcePublishedAt": "2025-10-27",
+          "sourceCapturedAt": "2026-10-22",
+          "sourceQuote": "For Bitcoin (BTC), Ethereum (ETH), and Solana (SOL), the available leverage is 5:1. For other cryptocurrencies, the leverage is 2:1.",
+          "note": "Also on the One Phase crypto help article https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto (dateModified 2026-05-06): 'Primary Assets: 5:1 for BTC (Bitcoin), ETH (Ethereum), and SOL (Solana). Altcoins: 2:1 for all other cryptocurrencies.'"
+        },
+        "platformSource": {
+          "sourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-can-i-change-my-trading-platform-during-the-program/",
+          "sourcePublishedAt": "2026-02-12",
+          "sourceCapturedAt": "2026-10-22",
+          "sourceQuote": "No, the CRYPTO plans are only supported on DXTrade."
+        },
+        "openGaps": [
+          "Symbol list age: FXIFY's crypto list says it was selected 'according to the 27th of October 2025' and has not been updated since (dateModified 2025-10-27).",
+          "Instant Funding Crypto leverage has no product-specific first-party help article; it rests on the Crypto Accounts FAQ (all crypto accounts) and FXIFY's blog https://fxify.com/blog/fxify-crypto-instant-vs-standard/ (dateModified 2026-08-03), whose table gives '5:1 on BTC, ETH, SOL. 2:1 on others' for both programs.",
+          "Source conflict on FOREX accounts: FXIFY's blog https://fxify.com/blog/best-prop-firms-for-crypto-trading/ (dateModified 2026-08-03) says 'You can trade crypto on FXIFY’s general Forex accounts alongside forex, indices, and commodities', but the FAQ https://fxify.com/faqs/all-faqs/what-instruments-are-offered-by-fxify/ (dateModified 2025-12-02) says 'Please be aware that Crypto trading is not available on the FOREX plans.' and https://fxify.com/faqs/all-faqs/crypto-accounts/which-accounts-can-i-trade-crypto-on/ (dateModified 2025-12-09) says FOREX accounts 'cannot trade cryptocurrencies'. FOREX products stay unmapped until FXIFY resolves it."
+        ]
+      }
     },
     {
       "firmSlug": "e8-markets",
@@ -261,7 +405,45 @@
       "evidence": "E8's official product pages offer a separate Perpetual market (Hyperliquid perpetuals, 24/7, including BTC) alongside Classic Markets, with its own E8 One and E8 Pro configurations.",
       "evidenceRu": "Официальные страницы E8 предлагают отдельный рынок Perpetual (бессрочные контракты Hyperliquid, 24/7, включая BTC) наряду с Classic Markets, с собственными конфигурациями E8 One и E8 Pro.",
       "scopeNote": "Only the 2 Perpetual configurations (E8 One and E8 Pro) are mapped. The Perpetual venue also lists non-crypto underlyings (gold, oil, Nasdaq, Nvidia); Classic Markets and E8 Signature products are excluded.",
-      "scopeNoteRu": "Привязаны только 2 конфигурации Perpetual (E8 One и E8 Pro). На площадке Perpetual есть и некриптовые базовые активы (золото, нефть, Nasdaq, Nvidia); продукты Classic Markets и E8 Signature исключены."
+      "scopeNoteRu": "Привязаны только 2 конфигурации Perpetual (E8 One и E8 Pro). На площадке Perpetual есть и некриптовые базовые активы (золото, нефть, Nasdaq, Nvidia); продукты Classic Markets и E8 Signature исключены.",
+      "btcEthEvidence": {
+        "btcTradable": true,
+        "ethTradable": true,
+        "btcSymbol": null,
+        "ethSymbol": null,
+        "platforms": [
+          "E8 Terminal"
+        ],
+        "leverage": "Perpetual futures (E8 One and E8 Pro): Bitcoin 1:15, Ethereum 1:15, other crypto 1:2; same in Challenge and Performance stage.",
+        "sourceUrl": "https://help.e8markets.com/en/articles/5514982-how-much-leverage-do-you-offer",
+        "sourcePublishedAt": "2026-09-29",
+        "sourceCapturedAt": "2026-10-22",
+        "sourceQuote": "Leverage will differ between products, but not between stages. ... Leverage for Perpetual futures: Challenge Type Bitcoin Ethereum Other Crypto instruments Stocks Indicies Metals Forex Energy E8 One 1:15 1:15 1:2 1:5 1:15 1:15 1:25 1:15 E8 Pro 1:15 1:15 1:2 1:5 1:15 1:15 1:25 1:15",
+        "platformSource": {
+          "sourceUrl": "https://help.e8markets.com/en/articles/9799834-available-trading-platforms",
+          "sourcePublishedAt": "2026-09-23",
+          "sourceCapturedAt": "2026-10-22",
+          "sourceQuote": "For Classic Markets and Perpetual Futures, you can choose from the following platforms, depending on your region and account type: TradeLocker MatchTrader cTrader MetaTrader 5 / MT5 E8 Terminal (Perpetual Futures market only)"
+        },
+        "supportingSources": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/16769844-what-are-perpetual-futures",
+            "sourcePublishedAt": "2026-10-07",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Perpetual Futures (Perps) is a new market available on E8 Terminal, powered by the Hyperliquid data feed. It replaces the existing Crypto market and expands the available instruments to include cryptocurrencies, stocks, indices, and metals"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "sourceCapturedAt": "2026-10-22",
+            "sourceQuote": "Perpetuals 24/7 (Hyperliquid) BTC, Gold, Oil, Nasdaq, Nvidia",
+            "note": "Same wording on https://e8markets.com/e8-one (read 2026-10-22). Page shows no date."
+          }
+        ],
+        "openGaps": [
+          "Exact BTC and ETH symbol codes: the official list https://e8x.e8markets.com/trading-symbols is a JavaScript app with no symbols in its HTML; it was not rendered on 2026-10-22, and E8's internal API was not used. BTC and ETH availability rests on the leverage table's 'Bitcoin' and 'Ethereum' columns and the product page's 'BTC'.",
+          "Per-instrument size caps: E8 says each Perps instrument has a maximum notional volume recalculated daily from Hyperliquid order-book depth (article 5514982); values not captured."
+        ]
+      }
     }
   ],
   "payoutAlternative": {

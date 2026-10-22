@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-01",
+  "capturedAt": "2026-10-22",
   "firms": [
     {
       "firmSlug": "fundednext",
@@ -15,7 +15,11 @@
       "sourceUrl": "https://help.fundednext.com/en/articles/12673271-usa-client-guide-at-fundednext-cfd-accounts-platforms-rewards",
       "secondarySourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
       "sourcePublishedAt": "2026-06-16",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-22",
+      "sourceQuote": "U.S.-based clients can purchase Stellar 1-Step, Stellar 2-Step, Stellar Lite, and Stellar Instant Accounts and access Free Trial Accounts exclusively on Match-Trader due to MetaQuotes (MT4/MT5) restrictions in the United States.",
+      "secondarySourcePublishedAt": "2026-08-27",
+      "secondarySourceQuote": "Because MT4 and MT5 are unavailable, U.S. clients will not have access to our MT5-exclusive Free Trial Accounts, Free Monthly Competition Accounts, and Stellar Instant Account.",
+      "recheckNote": "Re-read 2026-10-22 (curl, HTTP 200). USA guide dateModified 2026-06-16 and country article dateModified 2026-08-27, both unchanged; the two still conflict on Stellar Instant, so it stays excluded.",
       "evidenceLabel": "Explicit U.S. guide",
       "decisionNote": "The USA guide supports these 3 evaluation paths on Match-Trader. It also lists Stellar Instant, but FundedNext's newer country-policy article says U.S. clients cannot access that product; Stellar Instant is excluded pending clarification. This is not U.S. regulatory approval."
     },
@@ -32,8 +36,9 @@
       ],
       "platformConstraint": "Futures evaluation; live-account eligibility remains policy-dependent",
       "sourceUrl": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
-      "sourcePublishedAt": "2026-04-02",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-22",
+      "sourceQuote": "If you are a resident of an eligible country (like the US) but traveling to or vacationing in a restricted country, you can continue trading normally.",
+      "recheckNote": "Re-read 2026-10-22 via the WebFetch reader (curl from the box returns HTTP 403). The page shows 'Updated this week' with no exact date, so the earlier sourcePublishedAt 2026-04-02 was removed rather than guessed. The 65-country restricted list does not include the United States.",
       "evidenceLabel": "U.S. named eligible",
       "decisionNote": "Tradeify's restricted-country policy explicitly uses the U.S. as an eligible-country example. Its current page does not publish a Sim Funded-only country table; live-account approval and KYC remain separate checks."
     },
@@ -49,7 +54,12 @@
       "platformConstraint": "TopstepX; eligibility depends on citizenship, residency, and KYC",
       "sourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
       "secondarySourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-      "sourceCapturedAt": "2026-10-01",
+      "sourcePublishedAt": "2026-09-04",
+      "sourceCapturedAt": "2026-10-22",
+      "sourceQuote": "Eligibility is based on both citizenship and permanent residency . OFAC sanctions and partner restrictions apply. ... Requirements No US citizenship required ... Countries Ineligible to Trade Citizens of these countries can't trade or receive payouts",
+      "secondarySourcePublishedAt": "2026-10-13",
+      "secondarySourceQuote": "ACH US banks only 1-3 business days $30 ... What tax forms are required? W-9 for US persons, W-8BEN for non-US persons.",
+      "recheckNote": "Re-read 2026-10-22 from a US IP (curl, HTTP 200). Eligibility article dateModified 2026-09-04 (unchanged since the 2026-10-01 capture): the United States is in neither the 'Countries Eligible for an XFA — Not LFA' list (25 countries) nor the 'Countries Ineligible to Trade' list. Payout policy dateModified 2026-10-13 lists Prop-to-Brokerage 'US only', Aeropay and ACH 'US banks only', and W-9 for US persons. No change to the access verdict.",
       "evidenceLabel": "Policy + U.S. payout",
       "decisionNote": "Topstep's current eligibility tables do not place U.S. clients in the ineligible or XFA-only groups, and its payout policy publishes W-9 and U.S.-bank routes. Verify the exact profile before purchase."
     },
@@ -67,7 +77,12 @@
       "platformConstraint": "Futures evaluation with U.S.-residency-matched ACH payouts",
       "sourceUrl": "https://apextraderfunding.com/terms-of-use/",
       "secondarySourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/payout-method-us-based-users/",
-      "sourceCapturedAt": "2026-10-01",
+      "sourcePublishedAt": "2026-03-10",
+      "sourceCapturedAt": "2026-10-22",
+      "sourceQuote": "Services and the Program are intended for United States users, and are not intended for distribution to, solicitation of, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation",
+      "secondarySourcePublishedAt": "2026-04-15",
+      "secondarySourceQuote": "To comply with payout rules and avoid rejections, your bank account must be based in the United States, and your Apex account must also list the United States as your country of residence.",
+      "recheckNote": "Re-read 2026-10-22 via the WebFetch reader (curl from the box returns HTTP 403 on apextraderfunding.com). Terms of Use dateModified 2026-03-10 and the US payout guide dateModified 2026-04-15, both per the pages' own schema; the quoted wording still supports the decision note.",
       "evidenceLabel": "Intended for U.S. users",
       "decisionNote": "Apex's terms say the program is intended for U.S. users; its U.S. payout guide requires matching U.S. residency and ACH bank details. Apex also states it is not an FCM or broker-dealer."
     }

@@ -693,7 +693,7 @@ export const LANDINGS: Landing[] = [
       },
     ],
     snapshotProductCount: CURRENT_US_PRODUCT_COUNT,
-    lastReviewed: '2026-10-01',
+    lastReviewed: '2026-10-22',
   },
   {
     slug: 'best-prop-firms-in-india',
