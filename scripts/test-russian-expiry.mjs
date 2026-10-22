@@ -411,6 +411,8 @@ try {
   clock = RU_PAGE_CLOCK
   const firmsModule = require(path.join(root, 'lib/firms.ts'))
   const cryptoEvidence = require(path.join(root, 'content/data/crypto-market-evidence.json'))
+  // Tracker's crypto evidence can be newer than the product captures (21.10 vs 20.10); render the crypto page on the later date.
+  clock = [RU_PAGE_CLOCK, ...cryptoEvidence.ranked.map(evidence => `${evidence.sourceCapturedAt}T12:00:00Z`)].sort().at(-1)
   const cryptoModule = require(path.join(root, 'app/ru/luchshie-kripto-prop-firmy/page.tsx'))
   const renderCrypto = () => renderToStaticMarkup(React.createElement(cryptoModule.default))
   const cryptoCards = html => [...html.matchAll(/data-russian-crypto-firm="([^"]+)"/g)].map(match => match[1]).sort()
