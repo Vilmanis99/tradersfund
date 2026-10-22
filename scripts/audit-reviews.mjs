@@ -12448,7 +12448,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(fundedNextInstantEvidenceFile, 'utf8')
     : ''
   for (const token of [
-    '"capturedAt": "2026-08-29"',
+    '"capturedAt": "2026-10-20"',
     'https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost',
     'https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts',
     'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts',

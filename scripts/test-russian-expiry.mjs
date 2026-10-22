@@ -254,7 +254,7 @@ try {
   assert.equal(new Set(fundedNextAccessEvidence.sourceObservations.map(item => item.sourceUrl)).size, 6, 'all six access sources have observations')
   assert(fundedNextAccessEvidence.sourceObservations.every(item => item.sourceCapturedAt >= fundedNextAccessEvidence.sourceCapturedAt) && fundedNextAccessEvidence.sourceObservations.some(item => item.sourceCapturedAt === fundedNextAccessEvidence.sourceCapturedAt), 'FundedNext access observations keep their own dates; the scoped date is the oldest one')
   assert(fundedNextAccessEvidence.notes.some(item => item.includes('card-transfer restrictions')), 'Russian card country boundary is retained in access evidence')
-  assert.equal(instantEvidence.capturedAt, '2026-08-29', 'a payout-only recheck does not refresh all Stellar Instant rules')
+  assert.equal(instantEvidence.capturedAt, '2026-10-20', 'the full Stellar Instant rules recheck has its own date, separate from the payout-only recheck')
   assert.equal(instantEvidence.withdrawal.sourceCapturedAt, '2026-10-01', 'Stellar Instant payout routes have their own first-party recheck date')
   assert(instantEvidence.withdrawal.methods.includes('Card') && instantEvidence.withdrawal.sourceQuote.includes('saved card'), 'conditional card payout is captured for Stellar Instant')
   const fundedNextKycEvidence = marketEvidence.kycEvidence.find(item => item.firmSlug === 'fundednext')
