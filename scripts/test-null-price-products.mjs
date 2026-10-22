@@ -11,7 +11,6 @@ import path from 'node:path'
 import { createRequire, registerHooks } from 'node:module'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import ts from 'typescript'
-import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -39,7 +38,6 @@ registerHooks({
 })
 
 const { getAllChallenges, getAllFirms, getChallengesByFirm, challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd } = require(path.join(root, 'lib/firms.ts'))
-const { hasNoListedPrice } = require(path.join(root, 'lib/reviewFreshness.ts'))
 const { buildChallengeComparisonRows } = require(path.join(root, 'lib/challengeComparisonData.ts'))
 const { getChallengeWatchEntries } = require(path.join(root, 'lib/challengeWatch.ts'))
 const { challengeKey, filterChallengeRows, DEFAULT_FINDER_FILTERS, minimumTierTotalUsd, rankByTotalUsd, tierCurrency, tierPriceParts, tierTotalPrice } = require(path.join(root, 'lib/challengeComparison.ts'))
