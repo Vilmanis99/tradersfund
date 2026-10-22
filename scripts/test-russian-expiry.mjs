@@ -367,6 +367,7 @@ try {
   const products = getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug))
   const offset = (date, days) => new RealDate(new RealDate(`${date}T00:00:00Z`).getTime() + days * 86400000).toISOString().slice(0, 10)
   const instantProduct = products.find(product => product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
+  const { formatRuDate } = require(path.join(root, 'lib/ruDate.ts'))
   const instantSourceDates = [instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, instantProduct.sourceCapturedAt,
     instantEvidence.withdrawal.sourceCapturedAt, fundedNextAccessEvidence.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
   const mt5SourceDates = Object.values(mt5Evidence).filter(value => value && typeof value === 'object' && 'sourceCapturedAt' in value).map(value => value.sourceCapturedAt)
@@ -1344,9 +1345,9 @@ try {
             const localSignal = marketEvidence.localFirmSignals.find(item => item.operator === operator)
             const affiliateSignal = marketEvidence.affiliatePrograms.find(item => item.operator === operator)
             assert(localSignal && affiliateSignal, `${slug}: scoped evidence exists`)
-            assert(html.includes(`общий снимок рынка — ${marketEvidence.capturedAt}`), `${slug}: broad snapshot keeps its historical date`)
-            assert(html.includes(`заявления ${operator} на главной — ${localSignal.sourceCapturedAt}`), `${slug}: operator claims show their own capture date`)
-            assert(html.includes(`${localReviewAffiliateLabels[slug]} — ${affiliateSignal.sourceCapturedAt}`), `${slug}: affiliate check shows its own capture date`)
+            assert(html.includes(`общий снимок рынка — ${formatRuDate(marketEvidence.capturedAt)}`), `${slug}: broad snapshot keeps its historical date (DD.MM.YYYY, lib/ruDate.ts)`)
+            assert(html.includes(`заявления ${operator} на главной — ${formatRuDate(localSignal.sourceCapturedAt)}`), `${slug}: operator claims show their own capture date`)
+            assert(html.includes(`${localReviewAffiliateLabels[slug]} — ${formatRuDate(affiliateSignal.sourceCapturedAt)}`), `${slug}: affiliate check shows its own capture date`)
             assert(html.includes(`data-russian-guide-source-status="${current ? 'dated' : 'recapture-required'}"`), `${slug}: source warning follows all three capture dates`)
             assert(html.includes(`<strong>${localSignal.sourceCapturedAt}</strong><span>проверка заявлений на главной</span>`), `${slug}: hero date belongs to the operator claims`)
             assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES[`/ru/${slug}`], `${slug}: Article and sitemap use the same editorial date`)
@@ -1868,7 +1869,7 @@ try {
           const needsCheck = instantSourceDates.some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
           assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck, 'rule, price and access age are independent of editorial date')
           assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck, 'dated archival answers do not remain current FAQ structured data')
-          for (const capturedAt of instantSourceDates) assert(visible.includes(capturedAt), 'actual source dates remain visible')
+          for (const capturedAt of instantSourceDates) assert(visible.includes(capturedAt) || visible.includes(formatRuDate(capturedAt)), `actual source date ${capturedAt} remains visible (ISO or DD.MM.YYYY)`)
           assert.equal((html.match(/data-russian-fundednext-instant-tier=/g) ?? []).length,
             isChallengeFresh(instantProduct) ? instantProduct.accountSizes.filter(tier => tier.priceUsd > 0).length : 0, 'expired prices are hidden independently from explanatory rules')
           assert(html.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'instant guide carries a valid current comparison or safe fallback')
