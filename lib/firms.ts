@@ -123,6 +123,25 @@ export interface Firm {
    */
   discountCodeCheckoutVerified?: boolean
   /**
+   * Free-text validity of `discountCode` as published by the firm, e.g.
+   * 'limited time (Halloween offer, no end date published)'. Editorial record
+   * only; it is not parsed into an expiry date.
+   */
+  discountCodeValidity?: string
+  /**
+   * Where the code was seen (box screenshot paths, official URL, time seen).
+   * Internal provenance: may name box-only paths, so never render it.
+   */
+  discountCodeEvidence?: string
+  /**
+   * The code `discountCode` replaced (e.g. BrightFunded DOUBLE25 -> HW30 on
+   * 2026-10-22). History only: never render it as a live or usable code
+   * (guarded by scripts/test-previous-discount-code.mjs).
+   */
+  previousDiscountCode?: string
+  /** Free-text status of `previousDiscountCode`, e.g. 'not shown on site since 22.10; expiry unconfirmed'. */
+  previousDiscountCodeStatus?: string
+  /**
    * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
    * so no global or RU surface renders it as a universal code.
    */
@@ -570,7 +589,11 @@ export type ChallengeCurrency = 'USD' | 'EUR'
 export function challengeCurrency(
   challenge: Pick<Challenge, 'accountSizes'>,
 ): ChallengeCurrency {
-  return challenge.accountSizes.some(t => t.priceUsd != null) ? 'USD' : 'EUR'
+  // EUR only when a EUR price is actually listed and no USD one is. A product
+  // that lists sizes but no price at all (Apex Standard since 2026-10-22: the
+  // activation fee was not shown) is not evidence of EUR pricing.
+  if (challenge.accountSizes.some(t => t.priceUsd != null)) return 'USD'
+  return challenge.accountSizes.some(t => t.priceEur != null) ? 'EUR' : 'USD'
 }
 
 export interface ChallengeTierEconomics {

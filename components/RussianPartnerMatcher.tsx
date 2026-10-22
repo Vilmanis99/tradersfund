@@ -11,7 +11,8 @@ import {
   type RussianMatcherPriority,
   type RussianMatcherPartnerSlug,
 } from '@/lib/russianPartnerMatcher'
-import { RuGoLink } from '@/components/RuGoLink'
+import { RuGoLinkView } from '@/components/RuGoLinkView'
+import type { RussiaStatus } from '@/lib/russiaStatus'
 
 export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   slug: RussianMatcherPartnerSlug
@@ -20,6 +21,8 @@ export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   priceRange: string
   captureDate: string
   reviewHref: string
+  /** Resolved on the server (russiaStatusFor); the client never reads firms.json. */
+  russiaStatus?: RussiaStatus
 }
 
 const accessOptions: { value: RussianMatcherAccess; label: string }[] = [
@@ -192,14 +195,15 @@ export default function RussianPartnerMatcher({
                     </ul>
                     <div className="ru-actions">
                       <Link href={profile.reviewHref} className="btn-outline">Сначала прочитать обзор</Link>
-                      <RuGoLink firm={profile.slug}
+                      <RuGoLinkView firm={profile.slug}
+                        status={profile.russiaStatus ?? 'unverified'}
                         href={`/go/${profile.slug}?from=ru-ranking-matcher-${profile.slug}`}
                         prefetch={false}
                         rel="sponsored nofollow noopener"
                         className="btn-primary"
                       >
                         Проверить {profile.name} <ArrowRight size={14} aria-hidden="true" />
-                      </RuGoLink>
+                      </RuGoLinkView>
                     </div>
                   </article>
                 ))}

@@ -676,6 +676,7 @@
       "newsTrading": {
         "value": "restricted",
         "summary": "restricted",
+        "note": "News trading is allowed in Challenge and funded accounts. On funded Stellar 1-Step, 2-Step and Lite accounts (and on Stellar Instant), only 40% of the profit from trades executed 5 minutes before to 5 minutes after a listed high-impact news event on a correlated symbol is counted; losses stay in full. Challenge accounts are not subject to the rule. Source pages dated 2026-09-08 (10701447) and 2026-02-24 (11641410), read 2026-10-22.",
         "byProduct": {
           "stellar-2-step": "restricted",
           "stellar-1-step": "restricted",
@@ -685,18 +686,50 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account .",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+            "quote": "Time Window: Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window) will be subject to the News Reward Share Rule.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Profit Calculation: 40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Challenge Accounts are not subject to this rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+            "quote": "Only 40% of the profit from trades placed during this window will be counted toward your account’s profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           }
         ]
@@ -754,7 +787,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
     }
   },
   {
@@ -2013,9 +2046,12 @@
     },
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
-    "regionalDiscountCode": "ALPHA30",
+    "regionalDiscountCode": "MYALPHA",
     "discountCodeRegion": "us-only-unconfirmed",
-    "regionalDiscountPct": 30
+    "regionalDiscountPct": 30,
+    "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
   },
   {
     "name": "BrightFunded",
@@ -2089,12 +2125,16 @@
     "corporateCapturedAt": "2026-10-16",
     "corporateNote": "Physical address of BrightFunded Ltd (Saint Lucia, reg. 2025-00358), which offers the CFD services. Bright Global FZCO (Building A1, Dubai Digital Park, Dubai Silicon Oasis, UAE) is a separate affiliate that the homepage labels 'Dubai HQ' / 'Dubai Headquarter' and lists in the footer address; futures services are offered by affiliate BrightFunded LLC (Wyoming; Austin, TX business address).",
     "affiliateStatus": "active",
-    "discountCode": "DOUBLE25",
+    "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-10-19",
-    "discountCodeNote": "Homepage observation only (2026-10-16): Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout. No end date or terms shown; plan table marks every 2-Step size -25% (base EUR 5K 47, 10K 87, 25K 187, 50K 277, 100K 477, 200K 947); 1-Step not confirmed. Checkout NOT verified (account login required), so it is kept out of deals.json.",
-    "discountPct": 25,
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Homepage observation 2026-10-22 (box US IP and WebFetch reader both show it; screenshot seen ~09:20 Riga): top banner \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\" and \"15% Evaluation Profit Reward\"; plan cards mark 2-Step Bright struck-through (EUR 5K 47 to 32.90, 10K 87 to 60.90, 25K 187 to 130.90, 50K 277 to 193.90, 100K 477 to 333.90; WebFetch reader also listed 200K 947 to 662.90). No end date, countdown or terms link on the homepage, and help.brightfunded.com (104 articles re-read 2026-10-22) never mentions Halloween, HW30 or DOUBLE25, so the validity is 'limited time (Halloween offer, no end date published)'. Futures T&C 4.6 (updated 9 Oct 2026): codes are personal, single-use unless stated, and may be changed or withdrawn at any time. Checkout NOT verified: step 1 shows the 2-Step Bright 5K at the unchanged EUR 47.00 list price, and the voucher field appears only at the final step after an email is entered (\"Discount voucher can be added at the final step.\"), so neither HW30 nor DOUBLE25 was tested; kept out of deals.json. Previous homepage code DOUBLE25 (Double Up, 25%): not shown on site since 22.10; expiry unconfirmed (no official source says it ended).",
+    "discountPct": 30,
+    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
+    "discountCodeEvidence": "/workspace/tradersfundhub/evidence/brightfunded-codes-2026-10-22/01_homepage_HW30_banner.png (checkout: 03_checkout_step1_5k_eur47.png, 04_checkout_step2_email_required.png); https://brightfunded.com/; seen 22.10.2026 09:20 Riga",
+    "previousDiscountCode": "DOUBLE25",
+    "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
@@ -3920,9 +3960,9 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-22",
       "sourceQuote": "TopstepX™ is Topstep’s trading platform",
-      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility."
+      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Re-read 2026-10-22 via WebFetch (article shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
     },
     "score": 8.5,
     "logo": "/images/firms/topstep.png",
@@ -5061,7 +5101,13 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "regionalDiscountCode": "BREAK15",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 15,
+    "discountCodeSourceUrl": "https://citytradersimperium.com/",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Homepage pop-up: \"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\" Not valid on Direct Funding per that wording."
   },
   {
     "name": "Take Profit Trader",
@@ -5894,7 +5940,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-22",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -5902,8 +5948,8 @@
     "regionalDiscountCode": "SAVENOW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-20, promo expiration \"2026-10-22 23:59\" in the page config); not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-22 on every product card as the struck-through list price plus a coupon price of 10% of it \"- (with Coupon Code)\"; the on-page countdown ended about 07:00 23.10.2026 Riga, page config 2026-10-20 said expiration \"2026-10-22 23:59\"); not checkout-verified and may be US-only, so not shown as a universal code and not in deals.json. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
     "regionalDiscountPct": 90
   },
   {
