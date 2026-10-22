@@ -38,6 +38,11 @@ const CFT_ACCESS = '20.10.2026'
 // SHIP-DAY CHECK: the Swing tab is labelled «Summer Plan»; re-read the Swing $25K/$50K prices on 23.10 before release.
 // Swing price status is contradictory at the source (summer-plan: limited-time «through the end of summer», no end date; futures FAQ 23.07.2026: «permanent price drops») — Tracker 02128ad. Keep the page wording neutral.
 const FUTURES_CHECKED = '21.10.2026'
+// Swing $25K/$50K prices re-read by Prop Firm Tracker on 22.10.2026 (data/the5ers-firms-2026-10-20 @ 0198a11): still $69/$120, no end date or countdown, contradiction unchanged.
+const SWING_CHECKED = '22.10.2026'
+// Forbidden Territory definition, numbered Eligibility clauses and the «residents or citizens» footer re-read by Prop Firm Tracker on 22.10.2026
+// (0198a11, firms.json russiaSourceCapturedAt / russiaEligibilityClauses): unchanged, Terms «Last update – Oct. 20th 2026»; definition 31 names, footer 30 (no Bosnia and Herzegovina).
+const RUSSIA_CHECKED = '22.10.2026'
 
 const SRC = {
   terms: 'https://the5ers.com/terms-and-conditions/',
@@ -192,11 +197,11 @@ export default function RussianThe5ersReviewPage() {
   const faqs: RussianFaqItem[] = [
     {
       q: 'Можно ли торговать в The5ers из России?',
-      a: `Нет. Россия входит в список запрещённых территорий (Forbidden Territory) в условиях The5ers, по данным на ${CHECKED}. Условия требуют не проживать в такой стране, а обход ограничений через VPN называют существенным нарушением: при проверке KYC счёт могут закрыть.`,
+      a: `Нет. Россия входит в список запрещённых территорий (Forbidden Territory) в условиях The5ers, по данным на ${RUSSIA_CHECKED}. Условия требуют не проживать в такой стране, а обход ограничений через VPN называют существенным нарушением: при проверке KYC счёт могут закрыть.`,
     },
     {
       q: 'А из Казахстана, Беларуси или Украины?',
-      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Решает не язык: нумерованные условия говорят о стране проживания, а оговорка в подвале сайта — о «резидентах или гражданах»; вопрос о гражданстве задавайте поддержке письменно до оплаты. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${CHECKED}).`,
+      a: `Беларусь и Крым в списке запрещённых территорий. Казахстан и остальная Украина в нём не названы, но список открыт («including but not limited to»), поэтому отсутствие страны не подтверждает доступ. Решает не язык: нумерованные условия говорят о стране проживания, а оговорка в подвале сайта — о «резидентах или гражданах»; вопрос о гражданстве задавайте поддержке письменно до оплаты. Израиль, где живёт много русскоязычных трейдеров, тоже в списке (по данным на ${RUSSIA_CHECKED}).`,
     },
     {
       q: 'Сколько стоит челлендж The5ers?',
@@ -307,7 +312,7 @@ export default function RussianThe5ersReviewPage() {
           <blockquote lang="en">{firm?.russiaSourceQuote ?? '“Forbidden Territory” means any jurisdiction where Our Services are not available…'}</blockquote>
           <div className="ru-table-wrap">
             <table className="ru-table">
-              <thead><tr><th>Страна</th><th>В списке The5ers (по данным на {CHECKED})</th></tr></thead>
+              <thead><tr><th>Страна</th><th>В списке The5ers (по данным на {RUSSIA_CHECKED})</th></tr></thead>
               <tbody>
                 <tr><td><strong>Россия</strong></td><td>Да</td></tr>
                 <tr><td><strong>Беларусь</strong></td><td>Да</td></tr>
@@ -320,7 +325,7 @@ export default function RussianThe5ersReviewPage() {
           <p>Два текста на одной странице условий описывают ограничение по-разному:</p>
           <ul data-russian-the5ers-residence-clauses="terms-vs-disclaimer">
             <li><strong>Нумерованные условия (раздел 1 «Eligibility», пункты 3, 9 и 10)</strong> говорят только о проживании: счёт можно открыть, если вы «do not reside in any Forbidden Territory»; пользователь заявляет, что «do not reside in a prohibited jurisdiction»; счёт закрывают, если выяснится, что вы «a resident of a forbidden/sanctioned territory».</li>
-            <li><strong>Ненумерованная оговорка внизу страницы и в подвале сайта</strong> шире: услуги «not available to residents or citizens» этих стран, а «Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited».</li>
+            <li><strong>Ненумерованная оговорка внизу страницы и в подвале сайта</strong> шире: услуги «not available to residents or citizens» этих стран, а «Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited». В определении 31 территория, в оговорке — 30: Босния и Герцеговина в ней не упомянута.</li>
           </ul>
           <p>Документы противоречат друг другу в вопросе гражданства. Трактует условия сама The5ers; статус для России остаётся «ограничена». Что это значит на практике:</p>
           <ul data-russian-the5ers-access-explainer="three-cases">
@@ -339,7 +344,7 @@ export default function RussianThe5ersReviewPage() {
             Отдельно условия предупреждают, что платежи с криптобирж и платёжных сервисов, зарегистрированных в России, не обрабатываются и
             автоматически замораживаются платёжным провайдером.
           </p>
-          <p className="ru-source-line">Источник: <S href={SRC.terms}>Terms and Conditions</S> и подвал сайта the5ers.com — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источник: <S href={SRC.terms}>Terms and Conditions</S> и подвал сайта the5ers.com — по данным на {RUSSIA_CHECKED}.</p>
           <p>
             Какие фирмы открыты для русскоязычных трейдеров и как проверить свою страну — в руководстве для русскоязычных трейдеров в блоке
             «Похожие материалы» в конце статьи{closedHref ? <>; фирмы, которые закрылись или прекратили приём, — в списке <Link href={closedHref}>закрытых проп-фирм</Link></> : null}.
@@ -479,7 +484,7 @@ export default function RussianThe5ersReviewPage() {
           <h2>The5ers Futures: фьючерсы CME</h2>
           <p>
             Кроме CFD-программ, The5ers продаёт отдельный фьючерсный продукт на контрактах CME с двумя вариантами. Day Trade: $25K — $59,
-            $50K — $100; позиции нужно закрывать до конца сессии. Swing: $25K — $69, $50K — $120 (текущая цена по данным на {FUTURES_CHECKED});
+            $50K — $100; позиции нужно закрывать до конца сессии. Swing: $25K — $69, $50K — $120 (текущая цена по данным на {SWING_CHECKED});
             можно держать через ночь 1 мини- или 10 микроконтрактов. Статус цены Swing фирма описывает по-разному: <S href={SRC.summerPlan}>страница Summer Plan</S> называет
             её ограниченным предложением «до конца лета» без даты окончания, а <S href={SRC.futuresSummerFaq}>FAQ</S> (23.07.2026) — постоянным снижением. На кассе цены мы не проверяли.
           </p>
@@ -624,7 +629,7 @@ export default function RussianThe5ersReviewPage() {
             <Link href="/blog/the5ers-review" hrefLang="en">The5ers review</Link>.
           </p>
           <ul>
-            <li><a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions (Forbidden Territory, возврат, VPN, KYC)</a> — {CHECKED}</li>
+            <li><a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions (Forbidden Territory, возврат, VPN, KYC)</a> — {RUSSIA_CHECKED}</li>
             <li><a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a> — {CHECKED}</li>
             <li><a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">FAQ: выплаты</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимумы</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">Hub Credit в High Stakes</a> — {CHECKED}</li>
             <li><a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">FAQ: просадка</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">Pro Growth</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a>, <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы</a> — {CHECKED}</li>
