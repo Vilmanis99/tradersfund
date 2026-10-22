@@ -90,7 +90,7 @@ const RU_ACCESS_NOTES: Record<string, string> = {
 }
 
 // The count equals the Russia-access table rows (firms.json + RU_ACCESS_EXTRA, no duplicates); test-russian-expiry checks it.
-const DESCRIPTION = 'Рейтинг проп-компаний 2026: 23 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. BrightFunded, FundedNext, Crypto Fund Trader и другие.'
+const DESCRIPTION = 'Рейтинг проп-компаний 2026: 23 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. Для РФ открыты BrightFunded и Crypto Fund Trader.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

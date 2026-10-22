@@ -31,7 +31,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-teamtraders'
-const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
+const TITLE = 'TeamTraders: отзывы и обзор 2026 — стажировка и Мосбиржа'
 const DESCRIPTION = 'Обзор TeamTraders: месячная стажировка, торговля на Мосбирже, переход с демо на реальный счёт, условия выплат и недоступная оферта проп-программы.'
 const TEAMTRADERS_HOME = 'https://teamtraders.ru/'
 const TEAMTRADERS_FAQ = 'https://teamtraders.ru/faq'
