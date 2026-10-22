@@ -464,7 +464,7 @@ export default function RussianCryptoPropFirmsPage() {
                         // No affiliate CTA: the Russia-access badge (firms.json russiaStatus) still renders on the ranked card.
                         <RuAccessBadge firm={evidence.firmSlug} />
                       )}
-                      {russiaStatusFor(evidence.firmSlug) === 'restricted' ? <span className="ru-muted" data-russian-crypto-restricted-cta={affiliate ? evidence.firmSlug : undefined} data-russian-crypto-restricted-label={evidence.firmSlug}>для резидентов других стран; резидентам РФ {firm.name} недоступна</span> : null}
+                      {russiaStatusFor(evidence.firmSlug) === 'restricted' ? <span className="ru-muted" data-russian-crypto-restricted-cta={evidence.firmSlug}>для резидентов других стран; резидентам РФ {firm.name} недоступна</span> : null}
                     </div>
                   </article>
                 )
