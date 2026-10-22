@@ -604,12 +604,14 @@ export default function RussianFundingPipsVsBrightFundedPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Промокоды</h2>
           <p>
-            {/* BrightFunded code from firms.json (discountCode/discountPct/discountCodeCapturedAt; Tracker 68d8507: HW30 replaced DOUBLE25 on 22.10.2026). */}
+            {/* BrightFunded code from firms.json (discountCode/discountPct/discountCodeCapturedAt/previousDiscountCode; Tracker 68d8507 + 601fbae).
+                DOUBLE25 expiry is unconfirmed: say only that it is not shown on the site, never that it ended. */}
             {bfFirm?.discountCode && bfFirm.discountPct && bfFirm.discountCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
-                BrightFunded: по данным на {ruDate(bfFirm.discountCodeCapturedAt)} на главной странице BrightFunded — код {bfFirm.discountCode}: {bfFirm.discountPct}% скидки
-                {bfFirm.discountCode === 'HW30' ? ' и 15% Evaluation Profit Reward (акция Halloween Offer)' : ''}; срок действия не указан, скидку проверяйте при оплате
-                {bfFirm.discountCodeCheckoutVerified ? '' : ' — на кассе мы код не проверяли'}.
+                BrightFunded: текущее предложение — код {bfFirm.discountCode}, {bfFirm.discountPct}% скидки
+                {bfFirm.discountCode === 'HW30' ? ' (акция Halloween Offer)' : ''}; дата окончания не опубликована. Код виден на главной странице BrightFunded
+                по данным на {ruDate(bfFirm.discountCodeCapturedAt)}; скидку проверяйте при оплате{bfFirm.discountCodeCheckoutVerified ? '' : ' — на кассе мы код не проверяли'}.
+                {(bfFirm as { previousDiscountCode?: string }).previousDiscountCode ? ` Код ${(bfFirm as { previousDiscountCode?: string }).previousDiscountCode} сейчас на сайте не показан.` : ''}
               </span>
             ) : (
               <span data-russian-bright-funded-promo="none">BrightFunded: действующий публичный код мы сейчас не подтверждаем.</span>
