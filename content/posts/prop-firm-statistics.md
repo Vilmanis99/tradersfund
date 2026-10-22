@@ -173,7 +173,7 @@ type: "post"
 <p>Rules move faster than closures. Since 27 Jul 2026, our <a href="/prop-firm-challenge-changes">challenge changes log</a> has recorded 34 entries across 15 of the firms on this page:</p>
 <ul class="wp-block-list">
   <li><strong>10 verified rule changes,</strong> for example Topstep's Combine consistency target rising from 50% to 55% (observed 6 Oct 2026) and Take Profit Trader cutting new Test minimum days to three.</li>
-  <li><strong>13 source conflicts,</strong> where a firm's own pages disagree with each other. 12 were still open at the last check.</li>
+  <li><strong>13 source conflicts,</strong> where a firm's own pages disagree with each other. 10 were still open at the last check.</li>
   <li><strong>8 price watches</strong> and <strong>3 lineup changes</strong> (products added or withdrawn).</li>
 </ul>
 <p>Thirteen cases of a firm's pages contradicting each other is the clearest argument for reading the exact product page on the day you buy, not a summary written last quarter, including this one.</p>
