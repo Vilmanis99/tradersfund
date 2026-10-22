@@ -123,6 +123,25 @@ export interface Firm {
    */
   discountCodeCheckoutVerified?: boolean
   /**
+   * Free-text validity of `discountCode` as published by the firm, e.g.
+   * 'limited time (Halloween offer, no end date published)'. Editorial record
+   * only; it is not parsed into an expiry date.
+   */
+  discountCodeValidity?: string
+  /**
+   * Where the code was seen (box screenshot paths, official URL, time seen).
+   * Internal provenance: may name box-only paths, so never render it.
+   */
+  discountCodeEvidence?: string
+  /**
+   * The code `discountCode` replaced (e.g. BrightFunded DOUBLE25 -> HW30 on
+   * 2026-10-22). History only: never render it as a live or usable code
+   * (guarded by scripts/test-previous-discount-code.mjs).
+   */
+  previousDiscountCode?: string
+  /** Free-text status of `previousDiscountCode`, e.g. 'not shown on site since 22.10; expiry unconfirmed'. */
+  previousDiscountCodeStatus?: string
+  /**
    * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
    * so no global or RU surface renders it as a universal code.
    */

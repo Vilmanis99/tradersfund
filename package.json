@@ -29,6 +29,7 @@
     "test:finder": "node scripts/test-challenge-finder.mjs",
     "test:total-cost-sort": "node scripts/test-total-cost-sort.mjs",
     "test:null-price-products": "node scripts/test-null-price-products.mjs",
+    "test:previous-discount-code": "node scripts/test-previous-discount-code.mjs",
     "test:navigation": "node scripts/test-navigation.mjs",
     "test:go-click-tracking": "node scripts/test-go-click-tracking.mjs",
     "test:campaign-attribution": "node scripts/test-campaign-attribution.mjs",
