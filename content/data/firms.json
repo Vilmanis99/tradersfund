@@ -672,6 +672,7 @@
       "newsTrading": {
         "value": "restricted",
         "summary": "restricted",
+        "note": "News trading is allowed in Challenge and funded accounts. On funded Stellar 1-Step, 2-Step and Lite accounts (and on Stellar Instant), only 40% of the profit from trades executed 5 minutes before to 5 minutes after a listed high-impact news event on a correlated symbol is counted; losses stay in full. Challenge accounts are not subject to the rule. Source pages dated 2026-09-08 (10701447) and 2026-02-24 (11641410), read 2026-10-22.",
         "byProduct": {
           "stellar-2-step": "restricted",
           "stellar-1-step": "restricted",
@@ -681,18 +682,50 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account .",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+            "quote": "Time Window: Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window) will be subject to the News Reward Share Rule.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Profit Calculation: 40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Challenge Accounts are not subject to this rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+            "quote": "Only 40% of the profit from trades placed during this window will be counted toward your account’s profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           }
         ]
@@ -750,7 +783,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
     }
   },
   {
