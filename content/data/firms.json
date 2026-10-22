@@ -676,6 +676,7 @@
       "newsTrading": {
         "value": "restricted",
         "summary": "restricted",
+        "note": "News trading is allowed in Challenge and funded accounts. On funded Stellar 1-Step, 2-Step and Lite accounts (and on Stellar Instant), only 40% of the profit from trades executed 5 minutes before to 5 minutes after a listed high-impact news event on a correlated symbol is counted; losses stay in full. Challenge accounts are not subject to the rule. Source pages dated 2026-09-08 (10701447) and 2026-02-24 (11641410), read 2026-10-22.",
         "byProduct": {
           "stellar-2-step": "restricted",
           "stellar-1-step": "restricted",
@@ -685,18 +686,50 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account .",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+            "quote": "Time Window: Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window) will be subject to the News Reward Share Rule.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Profit Calculation: 40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Challenge Accounts are not subject to this rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+            "quote": "Only 40% of the profit from trades placed during this window will be counted toward your account’s profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           }
         ]
@@ -754,7 +787,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
     }
   },
   {
@@ -3920,9 +3953,9 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-22",
       "sourceQuote": "TopstepX™ is Topstep’s trading platform",
-      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility."
+      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Re-read 2026-10-22 via WebFetch (article shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
     },
     "score": 8.5,
     "logo": "/images/firms/topstep.png",
@@ -5894,7 +5927,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-22",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -5902,8 +5935,8 @@
     "regionalDiscountCode": "SAVENOW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-20, promo expiration \"2026-10-22 23:59\" in the page config); not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-22 on every product card as the struck-through list price plus a coupon price of 10% of it \"- (with Coupon Code)\"; the on-page countdown ended about 07:00 23.10.2026 Riga, page config 2026-10-20 said expiration \"2026-10-22 23:59\"); not checkout-verified and may be US-only, so not shown as a universal code and not in deals.json. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
     "regionalDiscountPct": 90
   },
   {

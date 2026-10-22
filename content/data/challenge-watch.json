@@ -322,7 +322,7 @@
     "kind": "lineup-change",
     "status": "verified",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-09-14",
+    "lastCheckedAt": "2026-10-22",
     "effectiveAt": "2026-03-01",
     "title": "Apex moved new purchases to 4 one-time evaluation paths",
     "summary": "Products bought after 1 March 2026 use Intraday or EOD drawdown with Standard or No Activation Fee pricing. The current help pages also confirm 30-day access, a 7-day activation deadline and no minimum evaluation trading days; the prior recurring products are Legacy.",
