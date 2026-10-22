@@ -66,7 +66,7 @@ type: "post"
 
 <h2>Current product examples: 15% to 55% does not mean the same thing</h2>
 
-<p>The rule is close to universal in futures and the exception in CFD: across the 89 products in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (captured 14 to 20 Oct 2026), 41 publish a consistency percentage, including 21 of the 22 futures products but only 17 of the 56 CFD products, and 40% is the most common figure.</p>
+<p>The rule is the norm in futures and the exception in CFD: across the 95 products in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (captured 14 to 22 Oct 2026), 43 publish a consistency percentage, including 23 of the 28 futures products but only 17 of the 56 CFD products, and 40% is the most common figure.</p>
 
 <table data-consistency-examples="current-products" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Current product-level prop-firm consistency examples</caption>

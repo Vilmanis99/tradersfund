@@ -25,7 +25,7 @@ type: "page"
 
 <h2>Stage 1 — Buying the challenge</h2>
 
-<p>You pick a firm, account size, and product, then pay the published one-time, split-payment, or recurring fee. Some products refund an evaluation fee after a qualifying payout; others never refund it or attach additional conditions. The current <a href="/prop-firm-challenges">product comparison</a> keeps the billing model visible instead of treating every checkout as the same kind of cost. For scale, the median list fee across 52 one-off $100K evaluation tiers at 12 firms was $452 in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (products captured 14 to 20 Oct 2026); only 25 of the 89 products counted there refund the fee on every account size.</p>
+<p>You pick a firm, account size, and product, then pay the published one-time, split-payment, or recurring fee. Some products refund an evaluation fee after a qualifying payout; others never refund it or attach additional conditions. The current <a href="/prop-firm-challenges">product comparison</a> keeps the billing model visible instead of treating every checkout as the same kind of cost. For scale, the median list fee across 54 one-off $100K evaluation tiers at 13 firms was $463.50 in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (products captured 14 to 22 Oct 2026); only 27 of the 95 products counted there refund the fee on every account size.</p>
 
 <p><strong>What the firm asks of you upfront:</strong></p>
 
