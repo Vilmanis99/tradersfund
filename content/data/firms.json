@@ -2046,9 +2046,12 @@
     },
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
-    "regionalDiscountCode": "ALPHA30",
+    "regionalDiscountCode": "MYALPHA",
     "discountCodeRegion": "us-only-unconfirmed",
-    "regionalDiscountPct": 30
+    "regionalDiscountPct": 30,
+    "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
   },
   {
     "name": "BrightFunded",
@@ -2122,12 +2125,16 @@
     "corporateCapturedAt": "2026-10-16",
     "corporateNote": "Physical address of BrightFunded Ltd (Saint Lucia, reg. 2025-00358), which offers the CFD services. Bright Global FZCO (Building A1, Dubai Digital Park, Dubai Silicon Oasis, UAE) is a separate affiliate that the homepage labels 'Dubai HQ' / 'Dubai Headquarter' and lists in the footer address; futures services are offered by affiliate BrightFunded LLC (Wyoming; Austin, TX business address).",
     "affiliateStatus": "active",
-    "discountCode": "DOUBLE25",
+    "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-10-19",
-    "discountCodeNote": "Homepage observation only (2026-10-16): Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout. No end date or terms shown; plan table marks every 2-Step size -25% (base EUR 5K 47, 10K 87, 25K 187, 50K 277, 100K 477, 200K 947); 1-Step not confirmed. Checkout NOT verified (account login required), so it is kept out of deals.json.",
-    "discountPct": 25,
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Homepage observation 2026-10-22 (box US IP and WebFetch reader both show it; screenshot seen ~09:20 Riga): top banner \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\" and \"15% Evaluation Profit Reward\"; plan cards mark 2-Step Bright struck-through (EUR 5K 47 to 32.90, 10K 87 to 60.90, 25K 187 to 130.90, 50K 277 to 193.90, 100K 477 to 333.90; WebFetch reader also listed 200K 947 to 662.90). No end date, countdown or terms link on the homepage, and help.brightfunded.com (104 articles re-read 2026-10-22) never mentions Halloween, HW30 or DOUBLE25, so the validity is 'limited time (Halloween offer, no end date published)'. Futures T&C 4.6 (updated 9 Oct 2026): codes are personal, single-use unless stated, and may be changed or withdrawn at any time. Checkout NOT verified: step 1 shows the 2-Step Bright 5K at the unchanged EUR 47.00 list price, and the voucher field appears only at the final step after an email is entered (\"Discount voucher can be added at the final step.\"), so neither HW30 nor DOUBLE25 was tested; kept out of deals.json. Previous homepage code DOUBLE25 (Double Up, 25%): not shown on site since 22.10; expiry unconfirmed (no official source says it ended).",
+    "discountPct": 30,
+    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
+    "discountCodeEvidence": "/workspace/tradersfundhub/evidence/brightfunded-codes-2026-10-22/01_homepage_HW30_banner.png (checkout: 03_checkout_step1_5k_eur47.png, 04_checkout_step2_email_required.png); https://brightfunded.com/; seen 22.10.2026 09:20 Riga",
+    "previousDiscountCode": "DOUBLE25",
+    "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
@@ -5094,7 +5101,13 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "regionalDiscountCode": "BREAK15",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 15,
+    "discountCodeSourceUrl": "https://citytradersimperium.com/",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Homepage pop-up: \"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\" Not valid on Direct Funding per that wording."
   },
   {
     "name": "Take Profit Trader",
