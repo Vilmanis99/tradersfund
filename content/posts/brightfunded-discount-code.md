@@ -12,11 +12,11 @@ tags: ["BrightFunded", "BrightFunded discount code", "prop firm discount code", 
 type: "post"
 ---
 
-<p><strong>The banner says 30% off. It does not say when it ends.</strong> On 22 Oct 2026 BrightFunded's homepage showed the code <strong>HW30</strong> in a banner reading "Halloween Offer: 30% Off Code: HW30", and the same page advertises a 15% Evaluation Profit Reward. We saw it on the homepage only; we have not verified it at checkout. The earlier DOUBLE25 code (25% off) is no longer shown. What the banner leaves out is the part that decides your real price: whether it covers all 3 plans and 18 account sizes, whether paid add-ons are discounted, and when it ends. This page separates the sourced facts from the gaps, so you know what to check before you pay.</p>
+<p><strong>The banner says 30% off. It does not say when it ends.</strong> On 22 Oct 2026 BrightFunded's homepage showed the code <strong>HW30</strong> in a banner reading "Halloween Offer: 30% Off Code: HW30", and the same page advertises a 15% Evaluation Profit Reward. It is a limited-time Halloween offer with no end date published, seen on brightfunded.com on 22.10.2026; we saw it on the homepage only and have not verified it at checkout. The previous code, DOUBLE25 (25% off), is no longer shown on the site, but we could not confirm when, or whether, it expired. What the banner leaves out is the part that decides your real price: whether it covers all 3 plans and 18 account sizes, whether paid add-ons are discounted, and when it ends. This page separates the sourced facts from the gaps, so you know what to check before you pay.</p>
 
 <div class="key-takeaways"><div class="title">Fast take</div><ul>
   <li>BrightFunded's own homepage showed the public code HW30, advertised as 30% off, on 22 Oct 2026. We have not confirmed a discounted final total at checkout, so it is not listed as a verified checkout code on our <a href="/prop-firm-discount-codes">discount-codes hub</a>. No end date is published.</li>
-  <li>The codes rotate quickly: HW30 is the third code set on the homepage in three weeks, after RALLY30 / RALLY25 / RALLY15 (2 Oct 2026) and DOUBLE25 (15 to 20 Oct 2026).</li>
+  <li>The codes rotate quickly: HW30 is the third code set on the homepage in three weeks, after RALLY30 / RALLY25 / RALLY15 (2 Oct 2026) and DOUBLE25 (first seen 15 Oct 2026; no longer shown on 22 Oct 2026, expiry unconfirmed).</li>
   <li>List prices run from €47 (the $5K 2-Step Bright) to €997 (the $200K 1-Step and 2-Step Classic), rechecked on BrightFunded's plan pages on 2026-10-20. Fees are in euros even though account sizes are in dollars.</li>
   <li>A discount changes the fee only. The 80% base split, the 30-day first payout and the 6% real-time trailing drawdown on the 1-Step stay the same.</li>
 </ul></div>
@@ -32,13 +32,13 @@ type: "post"
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Seen on</th><th style="padding: 8px 12px; text-align: left;">Code</th><th style="padding: 8px 12px; text-align: left;">Advertised saving</th><th style="padding: 8px 12px; text-align: left;">Checkout-verified?</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-22</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>HW30</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30% off ("Halloween Offer"), shown next to a 15% Evaluation Profit Reward; no end date published</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-15 to 2026-10-20</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">DOUBLE25</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">25% off, plus the 15% Evaluation Profit Reward and a free account upon payout ("Double Up Offer")</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No; no longer shown on 2026-10-22</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-15</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">DOUBLE25 (previous code)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">25% off, plus the 15% Evaluation Profit Reward and a free account upon payout ("Double Up Offer")</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No; not shown on the site on 2026-10-22, expiry unconfirmed</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-02</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">RALLY30 / RALLY25 / RALLY15</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30% off 1-Step, 25% off 2-Step Bright, 15% off 2-Step Classic ("Autumn Promo")</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No; superseded by the 2026-10-15 banner</td></tr>
     <tr><td style="padding: 8px 12px;">Before 2026-10-02</td><td style="padding: 8px 12px;">3YEARS</td><td style="padding: 8px 12px;">Anniversary code; no longer shown on the homepage on 2026-10-02</td><td style="padding: 8px 12px;">No</td></tr>
   </tbody>
 </table>
 
-<p><strong>The gotcha in that table:</strong> a coupon site that still lists DOUBLE25, RALLY30 or 3YEARS is quoting a banner BrightFunded has already replaced. Three different code sets on one homepage within three weeks is why we print a date next to every code and why you should treat any undated BrightFunded code as expired until the checkout total proves otherwise.</p>
+<p><strong>The gotcha in that table:</strong> a coupon site that still lists DOUBLE25, RALLY30 or 3YEARS is quoting a banner BrightFunded's homepage no longer shows. Three different code sets on one homepage within three weeks is why we print a date next to every code and why you should not rely on any undated BrightFunded code until the checkout total proves it works.</p>
 
 <h2 class="wp-block-heading"><strong>What the code does not change</strong></h2>
 
@@ -109,10 +109,10 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>What is the current BrightFunded discount code?</strong></h3>
-<p>HW30, advertised as 30% off ("Halloween Offer"), was the code on BrightFunded's homepage on 22 Oct 2026. It replaced DOUBLE25 (25% off). We have not confirmed a discounted checkout total, BrightFunded publishes no end date, and it rotates codes often, so use whatever code the firm's own homepage shows on the day you buy.</p>
+<p>HW30, advertised as 30% off ("Halloween Offer"), was the code on BrightFunded's homepage on 22 Oct 2026. It is a limited-time offer with no end date published. The previous code, DOUBLE25 (25% off), is no longer shown on the site; we could not confirm its expiry. We have not confirmed a discounted checkout total, BrightFunded publishes no end date, and it rotates codes often, so use whatever code the firm's own homepage shows on the day you buy.</p>
 
 <h3 class="wp-block-heading"><strong>Is there a separate BrightFunded coupon code or promo code?</strong></h3>
-<p>We have only ever seen one active code set at a time on BrightFunded's homepage, and "discount code", "coupon code" and "promo code" all describe that same code. On 2026-10-02 the homepage showed 3 product-specific codes instead (RALLY30, RALLY25 and RALLY15); DOUBLE25 replaced them on 2026-10-15, and HW30 had replaced DOUBLE25 by 2026-10-22.</p>
+<p>We have only ever seen one active code set at a time on BrightFunded's homepage, and "discount code", "coupon code" and "promo code" all describe that same code. On 2026-10-02 the homepage showed 3 product-specific codes instead (RALLY30, RALLY25 and RALLY15); DOUBLE25 replaced them on 2026-10-15, and by 2026-10-22 the homepage showed HW30 instead (DOUBLE25 no longer shown, expiry unconfirmed).</p>
 
 <h3 class="wp-block-heading"><strong>Does the BrightFunded code work on every plan?</strong></h3>
 <p>The banner does not say. It names no plans, sizes or exclusions. The homepage plan table showed all 6 2-Step Bright sizes at -30% on 22 Oct 2026, but we have not checked the 1-Step or 2-Step Classic at checkout, so compare your checkout total with the EUR list price for your plan before paying.</p>
