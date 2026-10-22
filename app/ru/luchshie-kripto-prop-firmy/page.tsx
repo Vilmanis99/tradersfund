@@ -429,8 +429,8 @@ export default function RussianCryptoPropFirmsPage() {
               Не используйте ложные документы или неверные сведения для обхода ограничений.{' '}
               <Link href="/ru/dlya-russkoyazychnykh-treyderov">Как проверить доступ из своей страны →</Link>
             </div>
-            {/* RU ranking: Russia-open firms from this page lead the CTAs; neither joins the crypto ranking below. */}
-            <RuRussiaOpenCtas firms={['bright-funded', 'crypto-fund-trader']} from="ru-crypto-russia-open" context="Из фирм на этой странице (вне крипторейтинга)" />
+            {/* RU ranking: Russia-open firms from this page lead the CTAs. Both are also in the crypto ranking below (crypto-market-evidence.json ranked), so the label does not say «вне крипторейтинга». */}
+            <RuRussiaOpenCtas firms={['bright-funded', 'crypto-fund-trader']} from="ru-crypto-russia-open" context="Из фирм на этой странице" />
           </div>
         </section>
 
