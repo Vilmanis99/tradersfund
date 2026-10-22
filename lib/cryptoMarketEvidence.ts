@@ -13,6 +13,24 @@ export interface CryptoSourceRef {
   sourceQuote?: string
 }
 
+/** Per-firm BTC/ETH tradability detail. null = the source does not state it either way. */
+export interface CryptoBtcEthEvidence extends CryptoSourceRef {
+  btcTradable: boolean | null
+  ethTradable: boolean | null
+  btcSymbol: string | null
+  ethSymbol: string | null
+  cryptoSymbols?: string[]
+  cryptoSymbolCount?: number
+  platforms?: string[]
+  leverage?: string
+  note?: string
+  openGaps?: string[]
+  leverageSource?: CryptoSourceRef & { note?: string }
+  platformSource?: CryptoSourceRef
+  supportingSources?: Array<CryptoSourceRef & { note?: string }>
+  productSources?: Array<CryptoSourceRef & { productSlug: string; note?: string }>
+}
+
 export interface CryptoMarketEvidence {
   firmSlug: string
   firmName: string
@@ -28,6 +46,7 @@ export interface CryptoMarketEvidence {
   scopeNoteRu?: string
   productScope?: CryptoSourceRef
   payoutMethods?: CryptoSourceRef
+  btcEthEvidence?: CryptoBtcEthEvidence
 }
 
 export interface CryptoMarketWatch {
