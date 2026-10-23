@@ -178,3 +178,31 @@ export function firstVerdictSentence(content: string) {
   if (!first || /^this\b[^.]*\breview\b/i.test(first)) return null
   return first
 }
+
+// ── Phase 3 article diagrams (design/article-format-spec.md §4 C15, §6 P3) ──
+
+export type ArticleDiagramName = 'drawdown-types'
+export type ArticleSegment = { kind: 'html'; html: string } | { kind: 'diagram'; name: ArticleDiagramName }
+
+const DIAGRAM_SLOT = /<div\b[^>]*\sdata-article-diagram\s*=\s*(?:"([a-z-]+)"|'([a-z-]+)')[^>]*>\s*<\/div>/gi
+const KNOWN_DIAGRAMS: ReadonlySet<string> = new Set<ArticleDiagramName>(['drawdown-types'])
+
+/**
+ * Split prepared article HTML at authored `<div data-article-diagram="name"></div>`
+ * slots so the page can render a React diagram component in place. An unknown
+ * name is left in the HTML untouched (an empty div), never guessed at.
+ */
+export function splitArticleDiagrams(html: string): ArticleSegment[] {
+  const segments: ArticleSegment[] = []
+  let last = 0
+  for (const match of html.matchAll(DIAGRAM_SLOT)) {
+    const name = match[1] ?? match[2]
+    if (!KNOWN_DIAGRAMS.has(name)) continue
+    const index = match.index ?? 0
+    if (index > last) segments.push({ kind: 'html', html: html.slice(last, index) })
+    segments.push({ kind: 'diagram', name: name as ArticleDiagramName })
+    last = index + match[0].length
+  }
+  if (last < html.length || segments.length === 0) segments.push({ kind: 'html', html: html.slice(last) })
+  return segments
+}

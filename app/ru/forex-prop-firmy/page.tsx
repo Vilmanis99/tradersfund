@@ -18,7 +18,7 @@ import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила'
-const DESCRIPTION = 'Форекс проп-компании и проп-фирмы: программы BrightFunded и FundedNext — валютные пары, плечо, цены в EUR и USD, лимиты убытка, платформы и доступ из РФ.'
+const DESCRIPTION = 'Форекс проп-компании и проп-фирмы: BrightFunded и FundedNext — валютные пары, плечо, цены в EUR и USD, лимиты убытка, платформы. FundedNext для РФ недоступна.'
 const SOCIAL_DESCRIPTION = 'Разбор форекс-программ FundedNext и Bright Funded: валютные пары, плечо, цены в USD и EUR, лимиты убытка, платформы и проверка доступа по стране.'
 
 export const metadata: Metadata = {

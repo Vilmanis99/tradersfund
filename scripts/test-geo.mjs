@@ -142,7 +142,7 @@ try {
     if (firmSlug === 'ftmo') assert(productBlock.includes('80%') && productBlock.includes('90%') && productBlock.includes('eod trailing') && productBlock.includes('static'))
     if (firmSlug === 'fundednext') assert(productBlock.includes('70%') && productBlock.includes('80%') && !productBlock.includes('95%'))
     if (firmSlug === 'topstep') assert(productBlock.includes('/month') && productBlock.includes('$149.00 activation') && productBlock.includes('Unverified'))
-    if (firmSlug === 'fundingpips') assert(productBlock.includes('Other tier fees unverified'), 'unresolved 2.5K fees are not treated as the cheapest tier')
+    if (firmSlug === 'fundingpips') assert(!productBlock.includes('Other tier fees unverified'), 'FundingPips has no unpriced tier after the unsupported $2.5K rows were removed 2026-10-23')
     if (firmSlug === 'e8-markets') {
       assert(productBlock.includes('Open watch:') && productBlock.includes('e8-pro-current-page-vs-help-prices'))
       // Data-driven: the E8 One default conflict was resolved on 2026-10-19, so only
@@ -177,7 +177,8 @@ try {
       assert.equal(bySlug('alpha-direct').accountSizes[0].priceUsd, 30)
       const directCard = productBlock.match(/data-review-product="alpha-direct">([\s\S]*?)<\/dl>/)?.[1]
       assert(directCard.includes('$0.00 activation fee') && !directCard.includes('after passing'), 'instant-account activation does not imply an evaluation phase')
-      assert.equal(bySlug('alpha-three').sourceCapturedAt, '2026-09-14', 'availability observations do not refresh a partial product capture')
+      assert.equal(bySlug('alpha-three').sourceCapturedAt, '2026-10-23', 'Alpha Three capture date moves only with a full re-read of its help article (2026-10-23 freshness recapture; availability observations alone never refresh it)')
+      assert(bySlug('alpha-three').accountSizes.every(size => size.priceUsd === null), 'not-purchasable Alpha Three keeps null prices after the recapture')
       assert(productBlock.includes('See 8 more captured products') && productBlock.includes('alpha-three-purchase-availability-conflict'))
       assert.equal(review.itemReviewed.offers.length, 5, 'only four settled Pro configurations and Direct emit offers')
       assert(review.itemReviewed.offers.every(offer => !/One|Swing|Three|Pro \(6%/.test(offer.name)), 'source-conflict configurations are not promoted as settled offers')

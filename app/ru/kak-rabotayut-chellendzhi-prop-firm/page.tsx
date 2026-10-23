@@ -12,6 +12,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { compareRussianRanking } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
 const TITLE = 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов'
@@ -170,6 +171,7 @@ export default function RussianChallengeLifecyclePage() {
             <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Максимальная просадка</h3><p className="ru-muted">Статическая линия не движется; трейлинг-линия следует за максимумом до указанной точки фиксации.</p></article>
             <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Минимальные дни</h3><p className="ru-muted">Достижение цели раньше срока не завершает этап, если продукт требует 2, 5 или больше отдельных торговых дней.</p></article>
           </div>
+          <DrawdownTypesDiagram locale="ru" id="tipy-prosadki" />
         </div>
       </section>
 

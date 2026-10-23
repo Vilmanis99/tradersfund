@@ -1,0 +1,50 @@
+{
+  "firmSlug": "alpha-capital",
+  "capturedAt": "2026-10-23",
+  "scope": "Re-observation of the Alpha Three and Alpha Swing availability conflicts for the 2026-10-23 freshness recapture. Pages fetched 2026-10-23 ~08:31 Europe/Riga (curl) and /product rendered with headless Chrome in its default state (no clicks) from a US-IP box; raw files in /workspace/tradersfundhub/evidence/alpha-recapture-2026-10-23/. Page text is identical to the 2026-10-20/22 observations. Supersedes alpha-source-conflicts-2026-10-20.json for the two watch entries.",
+  "threeCost": {
+    "sourceUrl": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+    "sourceCapturedAt": "2026-10-23",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "Alpha Three 10K $10,000 $67 Alpha Three 25K $25,000 $157 Alpha Three 50K $50,000 $247 Alpha Three 100K $100,000 $397 Alpha Three 200K $200,000 $697",
+    "notes": "The cost article still publishes all five Three fee tiers. Re-read 2026-10-23: unchanged."
+  },
+  "threeAvailability": {
+    "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+    "sourceCapturedAt": "2026-10-23",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "Alpha Three is not currently offered for new purchases at checkout. Help Centre and the T&Cs still document it for existing accounts.",
+    "notes": "Unchanged from 2026-10-06; quote re-found verbatim 2026-10-23."
+  },
+  "threeSelector": {
+    "sourceUrl": "https://alphacapitalgroup.uk/product",
+    "sourceCapturedAt": "2026-10-23",
+    "productSlugs": [
+      "alpha-three"
+    ],
+    "quote": "1 Step Standard 1-phase 2 Step Standard 2-phase Direct Instant access Alpha One 6% Alpha One 10% Alpha One 12%",
+    "notes": "The default rendered selector lists no Three choice; the only page mention of 'three' is Alpha Pro's 'three risk variants'. Re-read 2026-10-23: unchanged."
+  },
+  "swingSelector": {
+    "sourceUrl": "https://alphacapitalgroup.uk/product",
+    "sourceCapturedAt": "2026-10-23",
+    "productSlugs": [
+      "alpha-swing"
+    ],
+    "quote": "1 Step Standard 1-phase 2 Step Standard 2-phase Direct Instant access",
+    "notes": "No separate Swing account-type choice is rendered; Swing appears only in rule text (\"Not on Swing\", \"One/Pro/Swing On-Demand\") and the FAQ price-point sentence. Re-read 2026-10-23: unchanged."
+  },
+  "swingPricing": {
+    "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+    "sourceCapturedAt": "2026-10-23",
+    "productSlugs": [
+      "alpha-swing"
+    ],
+    "quote": "Also available: Alpha Swing Built for swing and position traders.",
+    "notes": "The article still describes Swing as available (\"Alpha Swing continues as before\"). Re-read 2026-10-23: unchanged."
+  }
+}

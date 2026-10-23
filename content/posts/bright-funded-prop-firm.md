@@ -6,7 +6,7 @@ date: "2025-05-19 11:10:28"
 modified: "2026-09-29"
 author: "Tara Mohseni"
 excerpt: "Bright Funded now has 3 evaluation paths and EUR list pricing. The 1-Step trailing drawdown and 30-day first payout are the deciding rules."
-seoDescription: "BrightFunded review comparing 3 EUR-priced evaluations, fees, 80% splits, static versus trailing drawdown, payout timing, and true cost."
+seoDescription: "BrightFunded review: 3 plans, 18 EUR-priced sizes from €47 to €997, 80% base split, 6% trailing vs 8–10% static drawdown, first payout after 30 days."
 categories: ["Prop Firms"]
 tags: ["Bright Funded", "Prop Firm"]
 type: "post"

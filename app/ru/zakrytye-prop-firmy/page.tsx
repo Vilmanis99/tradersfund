@@ -14,7 +14,7 @@ import { jsonLd } from '@/lib/schema'
 // Same data and the same publish flag as /prop-firms/closed: noindex, no hreflang and out of
 // the sitemap while content/data/closed-firms.json has published: false. RU text: closed-firms.ru.json.
 const PATH = RU_CLOSED_FIRMS_PATH
-const TITLE = 'Закрытые проп-фирмы: даты, заявления и источники'
+const TITLE = 'Закрытые проп-фирмы: какие закрылись, даты и заявления'
 const DESCRIPTION = 'Закрытые проп-фирмы: какие компании закрылись или перестали работать, когда это случилось, что заявила сама фирма и архивная копия каждого источника.'
 const AS_OF = formatClosedFirmsDate(CLOSED_FIRMS_CAPTURED_AT, 'ru', 'numeric')
 

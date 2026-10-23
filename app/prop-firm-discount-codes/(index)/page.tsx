@@ -240,6 +240,7 @@ export default function Page() {
 
       <section style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
         <Link href="/blog/brightfunded-discount-code" className="deal-crosslink">BrightFunded discount code →</Link>
+        <Link href="/blog/ftmo-discount-code" className="deal-crosslink">FTMO discount code →</Link>
         <Link href="/cheapest-prop-firms" className="deal-crosslink">Cheapest prop firms →</Link>
         <Link href="/true-cost-of-prop-firm-challenges" className="deal-crosslink">Calculate true cost →</Link>
         <Link href="/best-prop-firms-2026" className="deal-crosslink">Best prop firms 2026 →</Link>

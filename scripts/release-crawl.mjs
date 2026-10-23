@@ -80,6 +80,12 @@ const challengeWatchEntries = getChallengeWatchEntries()
 const currentFtmoEurTierCount = getAllChallenges()
   .filter(challenge => challenge.firmSlug === 'ftmo' && isChallengeFresh(challenge))
   .reduce((total, challenge) => total + challenge.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
+// /ru/prop-firmy-bez-chelendzha renders these counts from the same filter (phases === 0 and a fresh capture),
+// so the expected markers are derived here instead of pinned: a pinned 12/9 went stale as products were added
+// or aged out (the page had 20 products from 11 firms on 2026-10-23).
+const instantPhaseZeroProducts = getAllChallenges().filter(challenge => challenge.phases === 0 && isChallengeFresh(challenge))
+const instantPhaseZeroProductCount = instantPhaseZeroProducts.length
+const instantPhaseZeroFirmCount = new Set(instantPhaseZeroProducts.map(challenge => challenge.firmSlug)).size
 const firmReviewPostRecords = new Map(firmRecords.map(firm => {
   const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
   const reviewSlug = reviewPath.split('/').filter(Boolean).at(-1)
@@ -907,7 +913,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/ftmo-vs-fundednext', {
-    title: 'FTMO или FundedNext: что выбрать трейдеру из России в 2026',
+    title: 'FTMO или FundedNext: сравнение 2026 — обе закрыты для РФ',
     h1: 'FTMO или FundedNext: что выбрать в 2026 году',
     markers: [
       'data-russian-partner-comparison="ftmo-fundednext"',
@@ -1055,8 +1061,8 @@ const russianExpectations = new Map([
       markers: ['id="krasnye-flagi"', 'id="dokazatelstva-vyplat"', 'id="verdikty"'],
     }],
     ['/ru/obzor-the5ers', {
-      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'The5ers: обзор 2026 — программы, правила, доступ из России',
-      markers: ['rel="nofollow noopener noreferrer" class="btn-outline" data-russian-the5ers-official="non-affiliate"', 'data-russian-the5ers-programs="2026-10-14"'],
+      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'Обзор The5ers: программы, правила и доступ из России',
+      markers: ['data-russian-the5ers-official="non-affiliate"', 'data-russian-alternatives="bright-funded-first"', 'data-russian-alternative="bright-funded"', 'data-russian-the5ers-bootcamp-drawdown="static"', 'href="/blog/the5ers-review"'],
     }],
   ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
@@ -1077,8 +1083,8 @@ const russianExpectations = new Map([
     h1: 'Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips',
     markers: [
       'data-russian-instant-ranking="long-form-phase-zero"',
-      'data-russian-instant-product-count="12"',
-      'data-russian-instant-firm-count="9"',
+      `data-russian-instant-product-count="${instantPhaseZeroProductCount}"`,
+      `data-russian-instant-firm-count="${instantPhaseZeroFirmCount}"`,
       'data-russian-country-boundary="instant-not-access"',
       'data-russian-affiliate-disclosure="instant-ranking"',
       'data-russian-instant-article="global-partner-decision-guide"',
@@ -1088,9 +1094,11 @@ const russianExpectations = new Map([
       'data-russian-instant-evidence="fundingpips"',
       'data-russian-instant-partner="fundednext"',
       'data-russian-instant-partner="fundingpips"',
-      'data-russian-instant-all-products="12"',
+      `data-russian-instant-all-products="${instantPhaseZeroProductCount}"`,
       'data-russian-instant-product="fundednext:stellar-instant"',
       'data-russian-instant-product="fundingpips:zero"',
+      // Every fresh phase-0 product in the data must be listed on the page, not only the two partner rows.
+      ...instantPhaseZeroProducts.map(challenge => `data-russian-instant-product="${challenge.firmSlug}:${challenge.productSlug}"`),
       'data-russian-instant-risk="drawdown-before-price"',
       'data-russian-instant-diaspora="country-before-checkout"',
       'data-russian-instant-definition="phase-zero-not-label"',
@@ -1283,7 +1291,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
+    title: 'FundedNext проп: отзывы, обзор 2026 — недоступна для РФ',
     h1: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
@@ -1568,7 +1576,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-proplive', {
-    title: 'PropLive: обзор русской проп-компании (2026)',
+    title: 'PropLive: обзор 2026 — русская проп-компания, Мосбиржа',
     h1: 'PropLive: обзор 2026 — Мосбиржа, выплаты и условия',
     markers: [
       'data-russian-local-review="proplive"',
@@ -1669,7 +1677,7 @@ const russianExpectations = new Map([
     ],
   }],
   ...(closedFirmsPublished ? [[RU_CLOSED_FIRMS_PATH, {
-    title: 'Закрытые проп-фирмы: даты, заявления и источники',
+    title: 'Закрытые проп-фирмы: какие закрылись, даты и заявления',
     h1: 'Закрытые проп-фирмы',
     markers: [
       'data-trust-page="ru-closed-firms"',
@@ -2160,6 +2168,7 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
   ['/ru/fundingpips-vs-bright-funded', '/go/bright-funded?from=ru-comparison-fundingpips-bright-funded'],
+  ['/ru/obzor-the5ers', '/go/bright-funded?from=ru-obzor-the5ers-alt-bright-funded'],
   ['/ru/fundingpips-vs-bright-funded', '/go/fundingpips?from=ru-comparison-fundingpips-bright-funded'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],

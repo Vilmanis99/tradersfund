@@ -55,11 +55,11 @@ function load(file) {
 }
 const HeaderNav = load('components/HeaderNav.tsx').default
 const { navLinks } = load('components/navLinks.ts')
-function render({ path = '/', mobile = false, dropdown = null } = {}) {
+function render({ path = '/', mobile = false, dropdown = null, closedFirmsPublished } = {}) {
   pathname = path
   states = [mobile, dropdown, path]
   refs = []; effects = []; stateIndex = 0; refIndex = 0
-  return HeaderNav({ dataStatus: '12/19 source-checked' })
+  return HeaderNav({ dataStatus: '12/19 source-checked', closedFirmsPublished })
 }
 function nodes(tree) {
   if (!React.isValidElement(tree)) return []
@@ -94,6 +94,14 @@ const mobileTree = render({ mobile: true })
 for (const href of [...previousDestinations, '/']) assert(hrefs(mobileTree).has(href), `Preserved mobile destination: ${href}`)
 assert(hrefs(render({ path: '/ru/obzor-fundednext' })).has('/blog/fundednext-review'), 'Russian review keeps its paired English destination')
 assert(hrefs(render({ path: '/blog/fundednext-review' })).has('/ru/obzor-fundednext'), 'English review keeps its paired Russian destination')
+// The closed-firms EN<->RU language switch follows the publish flag the server Header passes in as a prop
+// (HeaderNav must not import lib/closedFirms: that bundled closed-firms.json into a client chunk).
+const closedEn = '/prop-firms/closed'
+const closedRu = '/ru/zakrytye-prop-firmy'
+assert(hrefs(render({ path: closedEn, closedFirmsPublished: true })).has(closedRu), 'Published closed-firms EN page links its RU page')
+assert(hrefs(render({ path: closedRu, closedFirmsPublished: true })).has(closedEn), 'Published closed-firms RU page links its EN page')
+assert(!hrefs(render({ path: closedEn, closedFirmsPublished: false })).has(closedRu), 'Unpublished closed-firms pair is not linked')
+assert(!hrefs(render({ path: closedEn })).has(closedRu), 'Closed-firms pair is off by default')
 const russianMobile = render({ path: '/ru', mobile: true })
 // /ru/rossiyskie-prop-kompanii was merged into the Russia hub and now 301s
 // (next.config.ts). Navigation must link the redirect target, never the redirecting URL.

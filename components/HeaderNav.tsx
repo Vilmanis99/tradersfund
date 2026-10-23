@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Menu, X, ChevronDown, GitCompare, Languages, Mail } from 'lucide-react'
-import { getAlternateLanguageHref } from '@/lib/localizedRoutes'
-import { closedFirmsRoutePair } from '@/lib/closedFirms'
+import { closedFirmsPairFor, getAlternateLanguageHref } from '@/lib/localizedRoutes'
 import { navLinks } from './navLinks'
 
 const russianNavLinks = [
@@ -47,14 +46,19 @@ const russianNavLinks = [
 interface HeaderNavProps {
   /** Current source-check coverage, e.g. "13/15 source-checked". */
   dataStatus?: string
+  /**
+   * CLOSED_FIRMS_PUBLISHED, passed in by the server Header so this client component
+   * never imports lib/closedFirms (which bundles closed-firms.json into the chunk).
+   */
+  closedFirmsPublished?: boolean
 }
 
-export default function HeaderNav({ dataStatus }: HeaderNavProps) {
+export default function HeaderNav({ dataStatus, closedFirmsPublished = false }: HeaderNavProps) {
   const pathname = usePathname()
   const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
   const activeNavLinks = isRussian ? russianNavLinks : navLinks
   // The closed-firms pair is flag-gated, so it is resolved separately from LOCALIZED_ROUTE_PAIRS.
-  const closedFirmsPair = closedFirmsRoutePair(pathname)
+  const closedFirmsPair = closedFirmsPairFor(pathname, closedFirmsPublished)
   const languageHref = closedFirmsPair
     ? (pathname === closedFirmsPair.ru ? closedFirmsPair.en : closedFirmsPair.ru)
     : getAlternateLanguageHref(pathname)
