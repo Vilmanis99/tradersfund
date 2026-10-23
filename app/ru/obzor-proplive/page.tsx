@@ -19,7 +19,7 @@ import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-proplive'
 export const revalidate = 3600
-const TITLE = 'PropLive: обзор русской проп-компании (2026)'
+const TITLE = 'PropLive: обзор 2026 — русская проп-компания, Мосбиржа'
 const DESCRIPTION = 'PropLive на русском: модель через Московскую биржу и Финам, заявления о выплатах, договор, KYC и партнёрская программа без смешения с глобальным рейтингом.'
 const PROP_LIVE_HOME = 'https://www.proplive.ru/'
 const PROP_LIVE_ABOUT = 'https://proplive.ru/o-nas'

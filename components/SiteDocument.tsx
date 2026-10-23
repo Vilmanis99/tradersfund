@@ -15,6 +15,8 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { getAllPosts } from '@/lib/mdx'
 import { isNewsletterConfigured } from '@/lib/brevo'
 import { buildOutboundRelationships } from '@/lib/outboundDestinations'
+import { ruDisclosureHref } from '@/lib/ruDisclosure'
+import { ruClosedFirmsHref } from '@/lib/closedFirms'
 
 export default function SiteDocument({ lang, children }: { lang: 'en' | 'ru'; children: React.ReactNode }) {
   const outboundRelationships = buildOutboundRelationships(getAllFirms())
@@ -56,6 +58,8 @@ export default function SiteDocument({ lang, children }: { lang: 'en' | 'ru'; ch
           articleCount={posts.length}
           latestCapture={latestCapture}
           newsletterEnabled={isNewsletterConfigured()}
+          ruDisclosureLink={ruDisclosureHref()}
+          ruClosedFirmsLink={ruClosedFirmsHref()}
         />
         <VercelObservability />
         <TableOverflowCue />

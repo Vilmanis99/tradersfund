@@ -6,7 +6,7 @@ date: "2025-08-05 10:00:00"
 modified: "2026-08-17 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Compare 4 CTI products, 23 current prices, 50%–80% starting splits, static versus trailing drawdown, and phase-0 true cost."
-seoDescription: "City Traders Imperium review covering 4 products, 23 prices, instant and evaluation paths, drawdown, splits, payout gates, and true cost."
+seoDescription: "City Traders Imperium review: 4 products and 23 prices from $29 to $3,999, 80% starting split on evaluations, 10% static 2-Step loss limit and EA rules."
 categories: ["Prop Firms"]
 tags: ["City Traders Imperium", "Prop Firm"]
 type: "post"

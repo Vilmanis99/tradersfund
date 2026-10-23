@@ -1,0 +1,311 @@
+{
+  "firmSlug": "alpha-capital",
+  "captureType": "freshness-recapture",
+  "capturedAt": "2026-10-23",
+  "capturedAtTimestamp": "2026-10-23T08:31:05+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/alpha-capital-2026-10-20.json",
+  "egress": "Box egress is a US IP. No VPN or proxy. Alpha prices in USD worldwide (availability resource: \"Simulated accounts and pricing are in USD worldwide\"). Promo codes seen from the US IP are not treated as global deals.",
+  "method": "curl of the 24 first-party pages used by the 20 and 22 Oct captures (help-centre articles and resource pages are server-rendered), plus /alpha-capital-discount-codes; headless Chrome render of /product with window.__CHECKOUT_BOOT__ parsed from the served HTML. Text compared line by line with the 2026-10-22 snapshot (evidence/alpha-delta-2026-10-22/). No order, personal data, checkout or payment submitted. Raw files: /workspace/tradersfundhub/evidence/alpha-recapture-2026-10-23/",
+  "reason": "GitHub 'Challenge source freshness' failed: oldest sourceCapturedAt in alpha-capital.json was 2026-09-14 (Alpha Three), 39 days old against the 30-day gate.",
+  "pricesMatchStored": true,
+  "priceSource": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update (tables headed \"Prices verified against live checkout on 21 September 2026.\")",
+  "storedPricesChecked": [
+    {
+      "productSlug": "alpha-one",
+      "prices": {
+        "5000": 47,
+        "10000": 87,
+        "25000": 187,
+        "50000": 277,
+        "100000": 477,
+        "200000": 947
+      }
+    },
+    {
+      "productSlug": "alpha-pro-6",
+      "prices": {
+        "5000": 30,
+        "10000": 55,
+        "25000": 127,
+        "50000": 227,
+        "100000": 427,
+        "200000": 847
+      }
+    },
+    {
+      "productSlug": "alpha-pro-6-on-demand",
+      "prices": {
+        "5000": 27,
+        "10000": 47,
+        "25000": 117,
+        "50000": 217,
+        "100000": 397,
+        "200000": 797
+      }
+    },
+    {
+      "productSlug": "alpha-pro-8-bi-weekly",
+      "prices": {
+        "5000": 40,
+        "10000": 67,
+        "25000": 197,
+        "50000": 327,
+        "100000": 577,
+        "200000": 1097
+      }
+    },
+    {
+      "productSlug": "alpha-pro-8-on-demand",
+      "prices": {
+        "5000": 37,
+        "10000": 57,
+        "25000": 177,
+        "50000": 297,
+        "100000": 527,
+        "200000": 997
+      }
+    },
+    {
+      "productSlug": "alpha-pro-10-bi-weekly",
+      "prices": {
+        "5000": 37,
+        "10000": 87,
+        "25000": 197,
+        "50000": 297,
+        "100000": 497,
+        "200000": 997
+      }
+    },
+    {
+      "productSlug": "alpha-pro-10-on-demand",
+      "prices": {
+        "5000": 33,
+        "10000": 77,
+        "25000": 177,
+        "50000": 267,
+        "100000": 447,
+        "200000": 897
+      }
+    },
+    {
+      "productSlug": "alpha-swing",
+      "prices": {
+        "5000": 70,
+        "10000": 147,
+        "25000": 247,
+        "50000": 357,
+        "100000": 577,
+        "200000": 1097
+      }
+    },
+    {
+      "productSlug": "alpha-three",
+      "prices": {
+        "10000": 67,
+        "25000": 157,
+        "50000": 247,
+        "100000": 397,
+        "200000": 697
+      }
+    },
+    {
+      "productSlug": "alpha-direct",
+      "prices": {
+        "2500": 30,
+        "5000": 67,
+        "10000": 97,
+        "25000": 197,
+        "50000": 257,
+        "100000": 457,
+        "200000": 897
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Alpha One 10% on-demand $5,000 $47 / $10,000 $87 / $25,000 $187 / $50,000 $277 / $100,000 $477 / $200,000 $947 (pricing update, 'Alpha One pricing (one-time, on-demand)').",
+    "Alpha Pro 5K row: \"$5,000 $30 / $27 $40 / $37 $37 / $33\" (BW / OD for Pro 6% / 8% / 10%); the other rows and the Swing and Instant Funding tables equal the stored values (all 9 priced products compared programmatically, 0 differences).",
+    "Instant Funding (Alpha Direct) one-time fee: $2,500 $30, $5,000 $67, $10,000 $97, $25,000 $197, $50,000 $257, $100,000 $457, $200,000 $897."
+  ],
+  "changes": [],
+  "pageDiffVs2026-10-22": "0 changed lines on all 24 pages (availability, biweekly, copy, cost, countries, dailyrisk, direct, ea, home, kyc, news, ondemand, one, payout, platforms, pricing, pro6, pro810, product, refundpol, swing, three, verdict, weekend).",
+  "verbatimQuotesFoundToday": [
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker."
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+      "quote": "We offer multiple methods to pay your performance fees:"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+      "quote": "does not provide services to persons who are nationals of, or residents in, the following countries"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/",
+      "quote": "1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (company number 13719951 on the same footer)"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+      "quote": "Last updated 19 October 2026 ... 19 Oct 2026 – 26 Oct 2026 ... Applies to all accounts through 26 October. Use code at checkout. MYALPHA"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026",
+      "quote": "Alpha Three is not currently offered for new purchases."
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "quote": "Alpha Three is not currently offered for new purchases at checkout. Help Centre and the T&Cs still document it for existing accounts."
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "quote": "Alpha One 6% and 12% are not currently offered for new purchases."
+    }
+  ],
+  "alphaThree": {
+    "helpArticle": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three (dated July 22, 2026, body unchanged)",
+    "rulesQuotedFromArticle": "Phase 1 profit target: 8% | Phase 2 profit target: 4% | Phase 3 profit target: 4% | Max Drawdown (static): 6% | Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4% | Minimum trading days (for each phase): 3",
+    "checkoutCatalogue": "window.__CHECKOUT_BOOT__.catalog[\"Alpha Three\"] = [] (identical to the 2026-10-20 capture; the whole catalogue JSON is byte-identical)",
+    "costArticleStillListsFees": "Alpha Three 10K $10,000 $67; 25K $157; 50K $247; 100K $397; 200K $697 (https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026)",
+    "verdict": "documented but not purchasable; kept as an entry with null prices; the conflict with the cost article stays on the watch list"
+  },
+  "observations": [
+    "Home page / product page promo banner: \"10K Evaluation for $40 · Use code 10KFOR40\" (same as the 22 Oct snapshot). Codes are not stored in deals data (not checkout-verified).",
+    "Open discrepancy, not acted on: the checkout catalogue JSON served in /product (window.__CHECKOUT_BOOT__, same as 20 Oct) carries a \"Price\" field that differs from the pricing-update tables for Alpha Pro bi-weekly rows (e.g. Pro 6% 5K Price \"40\" vs article $30; Pro 8% 5K \"77\" vs $40; Pro 10% 5K \"50\" vs $37) and Alpha Direct 2.5K (\"20\" vs article $30). Its \"ondemand_price\" values match the article's on-demand column. The rendered /product page shows no prices without interaction and checkout was not entered, so which figure the live checkout charges is unverified; stored values follow the article, which states it was verified against live checkout on 21 September 2026.",
+    "Footer: new 'Official channels' link (cosmetic, since 22 Oct).",
+    "Trustpilot https://www.trustpilot.com/review/alphacapitalgroup.uk returned HTTP 403 (bot-verification page) today; not retried through any workaround. trustpilotScore stays suppressed/null and trustpilotCapturedAt is not changed."
+  ],
+  "pagesRead": [
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:05+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:05+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8786973-is-copy-trading-allowed",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:05+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:06+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:06+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934210-what-are-the-daily-risk-limits-and-how-do-they-work",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:06+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:07+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934236-can-i-use-an-expert-advisor-ea",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:07+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:07+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:07+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:08+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:08+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:08+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:08+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:09+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:09+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:10+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:10+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/product",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:10+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-evaluation-fee-and-refund-policy-explained",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:11+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:11+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:11+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:12+03:00"
+    },
+    {
+      "url": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:31:12+03:00"
+    },
+    {
+      "url": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+      "httpStatus": 200,
+      "fetchedAt": "2026-10-23T08:33:11+03:00"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
+      "httpStatus": 403,
+      "fetchedAt": "2026-10-23T08:33:11+03:00"
+    }
+  ]
+}

@@ -1567,7 +1567,7 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-10-23",
       "sourceQuote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
       "notes": "Help article dated July 6, 2026. Homepage platform cards (rendered 2026-10-20) also list MetaTrader 5, cTrader, TradeLocker and DX Trade, with Alpha Trader 'Coming Soon'. US residents: no MT5; cTrader closed to new US customers."
     },
@@ -1584,7 +1584,7 @@
     ],
     "payoutMethodsSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
     "payoutMethodsQuote": "We offer multiple methods to pay your performance fees: Rise Wise Bank Transfer (WIRE / ACH / SWIFT) Cryptocurrency We do not facilitate withdrawals directly through cryptocurrency due to its lack of regulatory oversight, which contravenes our compliance standards. However, you may make cryptocurrency withdrawals through Rise, one of our authorised third-party payment service providers.",
-    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsCapturedAt": "2026-10-23",
     "payoutMethodsNote": "Bank wire = WIRE/ACH/SWIFT. No direct crypto payouts; crypto only through Rise. All requests processed and paid within 2 business days. Minimum: $100 gross on bi-weekly; on-demand 2% of gross profit (Direct: 3% buffer + 1%). Help article dated July 7, 2026.",
     "drawdownType": null,
     "minTradingDays": null,
@@ -1631,7 +1631,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-23",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
@@ -1643,8 +1643,8 @@
     "country": "United Kingdom",
     "regulation": null,
     "corporateSourceUrl": "https://alphacapitalgroup.uk/",
-    "corporateCapturedAt": "2026-10-20",
-    "corporateNote": "ALPHA CAPITAL GROUP LIMITED, company number 13719951, registered office 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (site footer, read 2026-10-20).",
+    "corporateCapturedAt": "2026-10-23",
+    "corporateNote": "ALPHA CAPITAL GROUP LIMITED, company number 13719951, registered office 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (site footer, re-read 2026-10-23).",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -2035,8 +2035,8 @@
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
             "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-20",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-20.json",
+            "capturedAt": "2026-10-23",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-23.json",
             "productSlug": null
           }
         ]
@@ -2050,8 +2050,8 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "regionalDiscountPct": 30,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-10-22",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
+    "discountCodeCapturedAt": "2026-10-23",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22 and again 2026-10-23 (codes page still \"Last updated 19 October 2026\"); not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
   },
   {
     "name": "BrightFunded",
@@ -3606,7 +3606,7 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
     "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only).",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only). Rechecked 2026-10-23 (US IP): ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\". AGHHH35 is not checkout-verified, may be US-only and is not in deals.json.",
     "regionalDiscountPct": 35
   },
   {
@@ -5945,12 +5945,11 @@
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "regionalDiscountCode": "SAVENOW",
-    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-22",
-    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-22 on every product card as the struck-through list price plus a coupon price of 10% of it \"- (with Coupon Code)\"; the on-page countdown ended about 07:00 23.10.2026 Riga, page config 2026-10-20 said expiration \"2026-10-22 23:59\"); not checkout-verified and may be US-only, so not shown as a universal code and not in deals.json. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
-    "regionalDiscountPct": 90
+    "discountCodeCapturedAt": "2026-10-23",
+    "discountCodeNote": "No public Apex code is live as of 2026-10-23: the expired code SAVENOW (\"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE!\") was seen only from a US IP on 2026-10-20 to 2026-10-22, its on-page countdown ended about 07:00 23.10.2026 Riga, and the banner was no longer on the homepage when rechecked 2026-10-23. It was never checkout-verified and was never in deals.json. The 2026-10-23 homepage instead shows \"Limited-Time Offer — Legacy Accounts Are Back\" (Legacy prices not captured).",
+    "previousDiscountCode": "SAVENOW",
+    "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },
   {
     "name": "Lucid Trading",

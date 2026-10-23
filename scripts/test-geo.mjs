@@ -177,7 +177,8 @@ try {
       assert.equal(bySlug('alpha-direct').accountSizes[0].priceUsd, 30)
       const directCard = productBlock.match(/data-review-product="alpha-direct">([\s\S]*?)<\/dl>/)?.[1]
       assert(directCard.includes('$0.00 activation fee') && !directCard.includes('after passing'), 'instant-account activation does not imply an evaluation phase')
-      assert.equal(bySlug('alpha-three').sourceCapturedAt, '2026-09-14', 'availability observations do not refresh a partial product capture')
+      assert.equal(bySlug('alpha-three').sourceCapturedAt, '2026-10-23', 'Alpha Three capture date moves only with a full re-read of its help article (2026-10-23 freshness recapture; availability observations alone never refresh it)')
+      assert(bySlug('alpha-three').accountSizes.every(size => size.priceUsd === null), 'not-purchasable Alpha Three keeps null prices after the recapture')
       assert(productBlock.includes('See 8 more captured products') && productBlock.includes('alpha-three-purchase-availability-conflict'))
       assert.equal(review.itemReviewed.offers.length, 5, 'only four settled Pro configurations and Direct emit offers')
       assert(review.itemReviewed.offers.every(offer => !/One|Swing|Three|Pro \(6%/.test(offer.name)), 'source-conflict configurations are not promoted as settled offers')

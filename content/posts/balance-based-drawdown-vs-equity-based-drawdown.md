@@ -89,6 +89,8 @@ type: "post"
 
 <h2>Static, real-time trailing, and end-of-day trailing</h2>
 
+<div data-article-diagram="drawdown-types"></div>
+
 <h3>Static maximum loss</h3>
 
 <p>A static floor is anchored to the initial balance and does not rise with profit. On a $100K account with 10% static maximum loss, $90,000 remains the overall boundary whether the account has never been profitable or has previously closed at $105,000. The extra profit creates headroom above the unchanged floor.</p>

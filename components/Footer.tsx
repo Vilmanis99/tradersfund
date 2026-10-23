@@ -6,8 +6,6 @@ import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
-import { ruDisclosureHref } from '@/lib/ruDisclosure'
-import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import RuTelegramBlock from './RuTelegramBlock'
 
 type FooterProps = {
@@ -16,6 +14,14 @@ type FooterProps = {
   articleCount: number
   latestCapture?: string
   newsletterEnabled: boolean
+  /**
+   * Resolved on the server in components/SiteDocument.tsx (lib/ruDisclosure and the
+   * closed-firms publish flag in lib/closedFirms), so this client component never
+   * pulls ru-how-we-make-money.json or closed-firms.json into a client chunk.
+   * ruClosedFirmsLink is null while the closed-firms list is unpublished.
+   */
+  ruDisclosureLink: string
+  ruClosedFirmsLink: string | null
 }
 
 type FooterLinkItem = { label: string; href: string }
@@ -26,6 +32,8 @@ export default function Footer({
   pricedChallengeCount,
   latestCapture,
   newsletterEnabled,
+  ruDisclosureLink,
+  ruClosedFirmsLink,
 }: FooterProps) {
   const pathname = usePathname()
   const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
@@ -63,10 +71,10 @@ export default function Footer({
     { title: 'О сайте', links: [
       { label: 'О нас', href: '/about' },
       { label: 'Как оцениваем фирмы', href: '/methodology' },
-      { label: 'Как мы зарабатываем', href: ruDisclosureHref() },
+      { label: 'Как мы зарабатываем', href: ruDisclosureLink },
       { label: 'Исправления', href: '/corrections' },
       // Shown only while content/data/closed-firms.json is published (same flag as the EN page).
-      ...(ruClosedFirmsHref() ? [{ label: 'Закрытые проп-фирмы', href: ruClosedFirmsHref() as string }] : []),
+      ...(ruClosedFirmsLink ? [{ label: 'Закрытые проп-фирмы', href: ruClosedFirmsLink }] : []),
       { label: 'Авторы', href: '/authors' },
       { label: 'Контакты', href: '/contact' },
     ] },

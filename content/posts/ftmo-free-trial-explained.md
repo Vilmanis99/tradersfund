@@ -6,7 +6,7 @@ date: "2025-09-30 14:19:47"
 modified: "2026-10-19"
 author: "Edris Derakhshi"
 excerpt: "The FTMO Free Trial lasts 14 days, grants no funded account, and now has separate 1-Step and 2-Step rules. Compare both before paying."
-seoDescription: "Is the FTMO Free Trial free? Yes: €0, 14 days, a 5% target and no funded account. Compare 1-Step vs 2-Step trial rules and the FundedNext free trial."
+seoDescription: "FTMO Free Trial: €0, 14 days, up to $200,000, but it closes if you place no trade in the first 7 days. 1-Step vs 2-Step rules and the 5% target."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Free Trial", "Prop Firm Challenge"]
 type: "post"
@@ -91,7 +91,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>.</p>
+<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>. FTMO's conditional $100K price cuts, which need no code, are covered in our <a href="/blog/ftmo-discount-code">FTMO discount code check</a>.</p>
 
 <h2>A 14-day test plan that produces a decision</h2>
 

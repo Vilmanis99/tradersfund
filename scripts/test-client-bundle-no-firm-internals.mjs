@@ -6,19 +6,19 @@
  * and the site-wide header/footer chunk bundled closed-firms.json and
  * ru-how-we-make-money.json (with their _note fields and /workspace evidence paths).
  *
- * PENDING: the site-wide header/footer chunk still bundles closed-firms*.json and
- * ru-how-we-make-money.json because the client Footer/HeaderNav import lib/closedFirms
- * and lib/ruDisclosure. Fixing it here would conflict with the per-locale layouts
- * (c6ec78c) and the Footer/RuGoLink edits (cc00175) further up the release stack, so
- * it is reported, not failed, while those imports remain; the strings of those data
- * files are ignored in the scan meanwhile (any other hit still fails). An entry fails
- * once its imports are gone (delete it then). `--strict` fails on PENDING too.
+ * The site-wide client Footer and HeaderNav are enforced like every other client file:
+ * components/SiteDocument.tsx and components/Header.tsx (server) resolve the closed-firms
+ * flag/link and the RU disclosure link and pass them as props, so neither client component
+ * imports lib/closedFirms or lib/ruDisclosure (each statically imports its JSON). This test
+ * fails if either import comes back, and the text of the three data files is scanned for in
+ * every client chunk below.
  *
  * Scans every .js under .next/static (run after `npm run build`) for:
  *  - internal firms.json field names (evidence, notes, previous codes, checkout flags);
  *  - box paths (/workspace/, /home/box/);
  *  - every firm's previousDiscountCode value;
- *  - the text of firms.json *Note fields and of _note fields in content/data JSON files.
+ *  - the text of firms.json *Note fields and of _note fields in content/data JSON files;
+ *  - every string of closed-firms.json, closed-firms.ru.json and ru-how-we-make-money.json.
  */
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
@@ -26,7 +26,6 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const STRICT = process.argv.includes('--strict')
 const staticDir = path.join(root, '.next/static')
 assert(fs.existsSync(staticDir), 'run `npm run build` first: .next/static is missing')
 
@@ -66,39 +65,26 @@ for (const name of fs.readdirSync(dataDir).filter(file => file.endsWith('.json')
   }
 }
 
-const PENDING = [
-  {
-    source: 'components/Footer.tsx',
-    imports: ["from '@/lib/closedFirms'", "from '@/lib/ruDisclosure'"],
-    data: ['closed-firms.json', 'closed-firms.ru.json', 'ru-how-we-make-money.json'],
-  },
-  {
-    source: 'components/HeaderNav.tsx',
-    imports: ["from '@/lib/closedFirms'"],
-    data: ['closed-firms.json', 'closed-firms.ru.json'],
-  },
-]
+// Site-wide client components must receive their data as props from the server layout.
+const SERVER_ONLY_IMPORT = /^\s*import\b[^\n]*?from\s+['"][^'"]*(lib\/closedFirms|lib\/ruDisclosure|content\/data\/closed-firms|content\/data\/ru-how-we-make-money)[^'"]*['"]/m
 const failures = []
-const ignored = new Set()
+for (const source of ['components/Footer.tsx', 'components/HeaderNav.tsx']) {
+  const text = fs.readFileSync(path.join(root, source), 'utf8')
+  assert(text.trimStart().startsWith("'use client'"), `${source} is expected to be a client component`)
+  const hit = text.match(SERVER_ONLY_IMPORT)
+  if (hit) failures.push(`${source}: client component imports ${hit[1]} (bundles closed-firms / disclosure JSON into every page)`)
+}
 function stringValues(value, out = []) {
   if (typeof value === 'string') out.push(value)
   else if (Array.isArray(value)) value.forEach(item => stringValues(item, out))
   else if (value && typeof value === 'object') Object.values(value).forEach(item => stringValues(item, out))
   return out
 }
-for (const entry of PENDING) {
-  const source = fs.readFileSync(path.join(root, entry.source), 'utf8')
-  const still = entry.imports.filter(spec => source.includes(spec))
-  if (!still.length) {
-    failures.push(`${entry.source}: no longer imports ${entry.imports.join(' / ')}; remove it from PENDING`)
-    continue
-  }
-  console.log(`PENDING ${entry.source}: ${still.join(', ')} still bundles ${entry.data.join(', ')} into a client chunk`)
-  if (STRICT) failures.push(`${entry.source}: pending client import (${still.join(', ')})`)
-  for (const name of entry.data) {
-    for (const text of stringValues(JSON.parse(fs.readFileSync(path.join(dataDir, name), 'utf8')))) {
-      if (text.length >= 20) ignored.add(text)
-    }
+// Strings from the data files only a server page may render (30+ chars: shorter ones are
+// ordinary UI words that legitimately repeat in client code).
+for (const name of ['closed-firms.json', 'closed-firms.ru.json', 'ru-how-we-make-money.json']) {
+  for (const text of stringValues(JSON.parse(fs.readFileSync(path.join(dataDir, name), 'utf8')))) {
+    if (text.length >= 30 && !/^https?:\/\//.test(text)) needles.set(text.slice(0, 60), `${name} text`)
   }
 }
 
@@ -114,10 +100,8 @@ assert(chunks.length > 0, 'no client chunks found under .next/static')
 
 // Next serialises string literals with JSON-style escapes; compare against the escaped form too.
 const forms = needle => [...new Set([needle, JSON.stringify(needle).slice(1, -1), needle.replace(/\//g, '\\/')])]
-const ignoredForms = [...ignored].flatMap(text => forms(text)).sort((a, b) => b.length - a.length)
 for (const file of chunks) {
   let source = fs.readFileSync(file, 'utf8')
-  for (const form of ignoredForms) source = source.split(form).join('')
   for (const [needle, label] of needles) {
     if (forms(needle).some(form => source.includes(form))) failures.push(`${path.relative(root, file)}: ${label}`)
   }

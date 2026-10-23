@@ -390,7 +390,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha Pro 25K quotes need a target and payout schedule",
     "summary": "The September 21 pricing update lists Pro 6% 25K at $127 bi-weekly or $117 on-demand. The older firm review still quotes $197 for an unqualified Pro 25K; that amount matches the newer Pro 8%/10% bi-weekly rows, not Pro 6%.",
     "traderImpact": "Use the row for the selected target and payout schedule. Do not transfer the generic $197 quote to Pro 6% or average the two amounts.",
@@ -409,7 +409,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha One variant availability differs between the article and selector",
     "summary": "The September 21 pricing update explicitly maps the $47–$947 ladder to One 10% and calls One 6%/12% unavailable for new purchases. On October 6, the live read-only selector nevertheless displayed selectable One 6%, 10% and 12% account types.",
     "traderImpact": "The stored Alpha One record is explicitly One 10% on-demand. Confirm whether another variant is actually purchasable and which rules apply; a visible selector choice is not a completed checkout.",
@@ -428,7 +428,7 @@
     "kind": "rule-change",
     "status": "verified",
     "observedAt": "2026-07-27",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha One 10% selector confirms on-demand and disables bi-weekly",
     "summary": "On October 6, the live One 10% checkout showed On Demand with a disabled Bi-Weekly control. This agrees with the One help page and the pricing update; the generic payout-schedule heading does not establish a One bi-weekly offer.",
     "traderImpact": "Plan cash flow around the on-demand 2% gross-profit minimum and 40% best-day rule, rather than assuming a fixed 14-day One payout schedule.",
@@ -457,7 +457,7 @@
     "kind": "price-watch",
     "status": "verified",
     "observedAt": "2026-09-14",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha Capital published-fee coverage now separates Pro schedules",
     "summary": "The September 14 fee-coverage capture has been superseded by the October 6 recapture: One 10% fees and Pro bi-weekly/on-demand choices are now explicitly separated, with Direct 2.5K corrected to $30. The earlier raw capture is retained in the archive.",
     "traderImpact": "Use the latest target-specific and payout-specific fee rows. Three remains outside this verified refresh, and availability watches must still be checked before purchase.",
@@ -809,7 +809,7 @@
     "kind": "price-watch",
     "status": "verified",
     "observedAt": "2026-10-06",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha Pro prices now separate targets and payout schedules",
     "summary": "The recapture adds separate Pro 6%/8%/10% bi-weekly and on-demand rows. Pro 6% 5K is $30 bi-weekly or $27 on-demand; One 10% 5K is $47. Direct 2.5K changes from the stored $20 to the currently published $30. Discounts and optional split/swap-free add-ons are excluded.",
     "traderImpact": "Select the payout schedule before comparing fees. Alpha Three is excluded from this verified refresh and keeps its September 14 product date because new-purchase availability is unsettled.",
@@ -829,10 +829,10 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-10-06",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha Three has published prices but unsettled purchase availability",
-    "summary": "The cost article still lists Three fees ($67-$697), while Alpha's own review and country-availability pages say Three is not currently offered for new purchases, and on 2026-10-20 the live checkout catalogue had no Alpha Three items. Our Three prices are now null (last published fees kept in the product notes) until checkout offers it again.",
-    "traderImpact": "Treat the retained September 14 Three record as a historical rule reference only; it has no current price. Confirm availability before budgeting for a new account; this observation does not refresh the product capture.",
+    "summary": "The cost article still lists Three fees ($67-$697), while Alpha's own review and country-availability pages say Three is not currently offered for new purchases, and on 2026-10-20 and again on 2026-10-23 the live checkout catalogue had no Alpha Three items. Our Three prices are now null (last published fees kept in the product notes) until checkout offers it again.",
+    "traderImpact": "Treat the retained Alpha Three record as a documented-rules reference only; it has no current price and is not purchasable. Its capture date (2026-10-23) dates the re-read of the rules and of Alpha's own 'not currently offered for new purchases' statements, not a purchase offer. Confirm availability before budgeting for a new account.",
     "sourceUrls": [
       "https://alphacapitalgroup.uk/posts/how-much-does-a-prop-firm-evaluation-cost-2026",
       "https://alphacapitalgroup.uk/resources/alpha-capital-review-2026-trader-verdict",
@@ -840,15 +840,15 @@
     ],
     "sourceConflictEvidenceRefs": [
       {
-        "file": "alpha-source-conflicts-2026-10-20.json",
+        "file": "alpha-source-conflicts-2026-10-23.json",
         "section": "threeCost"
       },
       {
-        "file": "alpha-source-conflicts-2026-10-20.json",
+        "file": "alpha-source-conflicts-2026-10-23.json",
         "section": "threeAvailability"
       },
       {
-        "file": "alpha-source-conflicts-2026-10-20.json",
+        "file": "alpha-source-conflicts-2026-10-23.json",
         "section": "threeSelector"
       }
     ]
@@ -863,7 +863,7 @@
     "kind": "source-conflict",
     "status": "watch",
     "observedAt": "2026-10-06",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-10-23",
     "title": "Alpha Swing pricing article and observed selector do not align",
     "summary": "The September 21 pricing update continues to describe Swing as available and lists its six fees. In the October 6 read-only product-selector session, the two-step account type was Pro and no Swing choice was shown.",
     "traderImpact": "The captured Swing fees are published terms, not confirmation that a new Swing purchase is available in your checkout. Confirm the exact account type before paying.",
@@ -873,11 +873,11 @@
     ],
     "sourceConflictEvidenceRefs": [
       {
-        "file": "alpha-source-conflicts-2026-10-20.json",
+        "file": "alpha-source-conflicts-2026-10-23.json",
         "section": "swingPricing"
       },
       {
-        "file": "alpha-source-conflicts-2026-10-20.json",
+        "file": "alpha-source-conflicts-2026-10-23.json",
         "section": "swingSelector"
       }
     ]

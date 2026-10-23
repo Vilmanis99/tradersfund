@@ -23,6 +23,7 @@ import { isProductSetFresh } from '@/lib/reviewFreshness'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import PriceMatrix from '@/components/PriceMatrix'
+import ChallengePath from '@/components/ChallengePath'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -320,6 +321,7 @@ export default function RussianPartnerReview({
             ariaLabel={`Цены ${firmName} по размеру счёта — таблицу можно прокрутить`}
             data-russian-partner-price-count={pricedTiers.length}
           />
+          <ChallengePath products={freshProducts} firmName={firmName} firmSlug={firmSlug} locale="ru" />
           <p className="ru-source-line">{sourceUrls.length} уникальных первичных страниц. Подробные заметки и доказательства доступны в <Link href={englishReviewHref} hrefLang="en">английском обзоре {firmName}</Link>.</p>
           <p className="ru-source-line">
             Официальные страницы продуктов:{' '}

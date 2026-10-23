@@ -881,3 +881,67 @@ html .price-matrix__table td.price-matrix__empty { color: var(--muted); font-siz
   html .price-matrix__table thead th { min-width: 5.5rem; }
   .price-matrix__table { font-size: 0.88rem; }
 }
+
+/* C15 path-to-funded flow (components/ChallengePath.tsx, design/article-format-spec.md P3) */
+html .challenge-path { margin: 0 0 1.25rem; padding: 14px 16px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg2); max-width: 100%; }
+html .challenge-path__title { font-weight: 800; color: var(--text); margin: 0 0 0.75rem; line-height: 1.3; }
+html .challenge-path__group { padding: 0.75rem 0; border-top: 1px solid var(--border); }
+html .challenge-path__group:first-of-type { border-top: 0; padding-top: 0; }
+html .challenge-path__label { margin: 0 0 0.5rem; font-weight: 700; font-size: 0.92rem; color: var(--accent2); overflow-wrap: anywhere; }
+html .challenge-path__steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+html .challenge-path__step { position: relative; display: grid; grid-template-columns: 2rem 1fr; column-gap: 0.75rem; align-items: start; padding: 0 0 1rem; margin: 0; font-size: 0.92rem; line-height: 1.4; color: var(--text); }
+html .challenge-path__step > strong { grid-column: 2; }
+html .challenge-path__step > .challenge-path__fact { grid-column: 2; color: var(--muted); }
+html .challenge-path__badge { grid-column: 1; grid-row: 1 / span 4; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; background: var(--accent-soft); color: var(--accent2); border: 2px solid var(--accent); z-index: 1; }
+html .challenge-path__step--funded .challenge-path__badge { background: var(--accent); color: var(--on-accent); }
+html .challenge-path__step--instant .challenge-path__badge { border-style: dashed; }
+html .challenge-path__step:not(:last-child)::before { content: ""; position: absolute; left: 0.95rem; top: 2rem; bottom: 0; width: 2px; background: var(--accent); opacity: 0.45; }
+html .challenge-path__step:last-child { padding-bottom: 0.25rem; }
+html .challenge-path__limits { margin: 0.5rem 0 0; padding: 8px 12px; border-radius: 8px; background: var(--bg3); font-size: 0.88rem; line-height: 1.5; color: var(--text); }
+html .challenge-path__limits-label { font-weight: 700; }
+html .challenge-path__more { margin-top: 0.5rem; border-top: 1px solid var(--border); }
+html .challenge-path__more > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 700; color: var(--accent2); }
+html .challenge-path__note { margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+html .challenge-path__chip { display: inline-block; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent2); font-weight: 700; font-size: 0.78rem; white-space: nowrap; }
+@media (min-width: 900px) {
+  html .challenge-path__steps { flex-direction: row; align-items: stretch; gap: 0.75rem; }
+  html .challenge-path__step { flex: 1 1 0; display: flex; flex-direction: column; gap: 0.2rem; padding: 12px 12px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }
+  html .challenge-path__step--funded { border-color: var(--accent); background: var(--accent-soft); }
+  html .challenge-path__badge { margin-bottom: 0.25rem; }
+  html .challenge-path__step:not(:last-child)::before { left: auto; right: -0.75rem; top: 1.9rem; bottom: auto; width: 0.75rem; height: 2px; }
+  html .challenge-path__step:last-child { padding-bottom: 12px; }
+}
+
+/* C15 drawdown-types diagram (components/DrawdownTypesDiagram.tsx) */
+html .post-prose__segment { display: contents; }
+html .drawdown-types { container-type: inline-size; margin: 1.25rem 0 1.5rem; padding: 14px 16px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg2); }
+html .drawdown-types__title { font-weight: 800; color: var(--text); margin: 0 0 0.5rem; line-height: 1.3; }
+html .drawdown-types__legend { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0 0 0.75rem; font-size: 0.85rem; color: var(--muted); }
+html .drawdown-types__key { display: inline-flex; align-items: center; gap: 0.4rem; }
+html .drawdown-types__key::before { content: ""; width: 1.4rem; height: 0; border-top: 3px solid var(--accent); }
+html .drawdown-types__key--floor::before { border-top: 3px dashed var(--danger); }
+html .drawdown-types__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+html .drawdown-types__panel { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); min-width: 0; }
+html .drawdown-types .drawdown-types__name { margin: 0 0 0.25rem; font-size: 1rem; line-height: 1.3; color: var(--text); }
+html .drawdown-types__svg { display: block; width: 100%; height: auto; }
+html .drawdown-types__axis, html .drawdown-types__tick { stroke: var(--muted); stroke-width: 1; }
+html .drawdown-types__start { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.7; }
+html .drawdown-types__equity { stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+html .drawdown-types__floor { stroke: var(--danger); stroke-width: 2.5; stroke-dasharray: 6 4; }
+html .drawdown-types__peak { fill: var(--bg2); stroke: var(--accent); stroke-width: 2; }
+html .drawdown-types__breach { fill: var(--danger); stroke: var(--bg2); stroke-width: 2; }
+html .drawdown-types__label { font-size: 10.5px; fill: var(--muted); }
+html .drawdown-types__label--breach { fill: var(--danger); font-weight: 700; }
+html .drawdown-types__result { margin: 0.25rem 0 0.15rem; font-size: 0.92rem; color: var(--text); }
+html .drawdown-types__panel--realtime .drawdown-types__result { color: var(--danger); }
+html .drawdown-types .drawdown-types__text { margin: 0; font-size: 0.88rem; line-height: 1.45; color: var(--muted); }
+html .drawdown-types__note { margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+html .drawdown-types__name { grid-column: 1 / -1; }
+@container (min-width: 520px) {
+  html .drawdown-types__panel { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 1rem; align-items: center; }
+  html .drawdown-types__panel .drawdown-types__name { margin-bottom: 0.5rem; }
+}
+@container (min-width: 1000px) {
+  html .drawdown-types__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html .drawdown-types__panel { display: block; }
+}

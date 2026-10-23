@@ -1,7 +1,11 @@
 {
   "firmSlug": "fundingpips",
   "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-  "sourceCapturedAt": "2026-10-01",
+  "sourceCapturedAt": "2026-10-23",
+  "sourceUpdatedAt": "2026-09-24",
   "residentRestrictionQuote": "FundingPips does not accept traders resident in Iran, Vietnam, or the United Arab Emirates (UAE).",
-  "scopeNote": "The page also refers to FATF and EU/UN sanctions lists. It does not verify checkout, KYC, or payouts for an individual resident of Russia or any other country."
+  "scopeNote": "The Help Center article (updated 2026-09-24) still names only Iran, Vietnam and the UAE. The fundingpips.com Terms of Service (effective May 15, 2026) and site footer add: \"Services are not offered to residents of certain jurisdictions, including countries on the FATF and EU/UN sanctions lists, Vietnam, and UAE.\" Neither page names Russia. Neither verifies checkout, KYC, or payouts for an individual resident of Russia or any other country.",
+  "termsUrl": "https://fundingpips.com/terms-and-conditions",
+  "termsEffective": "2026-05-15",
+  "termsRestrictionQuote": "Services are not offered to residents of certain jurisdictions, including countries on the FATF and EU/UN sanctions lists, Vietnam, and UAE."
 }
