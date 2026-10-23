@@ -142,7 +142,7 @@ try {
     if (firmSlug === 'ftmo') assert(productBlock.includes('80%') && productBlock.includes('90%') && productBlock.includes('eod trailing') && productBlock.includes('static'))
     if (firmSlug === 'fundednext') assert(productBlock.includes('70%') && productBlock.includes('80%') && !productBlock.includes('95%'))
     if (firmSlug === 'topstep') assert(productBlock.includes('/month') && productBlock.includes('$149.00 activation') && productBlock.includes('Unverified'))
-    if (firmSlug === 'fundingpips') assert(!productBlock.includes('Other tier fees unverified'), 'FundingPips has no unpriced tier after the unsupported $2.5K rows were removed 2026-10-23')
+    if (firmSlug === 'fundingpips') assert(productBlock.includes('Other tier fees unverified'), 'unresolved 2.5K fees are not treated as the cheapest tier')
     if (firmSlug === 'e8-markets') {
       assert(productBlock.includes('Open watch:') && productBlock.includes('e8-pro-current-page-vs-help-prices'))
       // Data-driven: the E8 One default conflict was resolved on 2026-10-19, so only

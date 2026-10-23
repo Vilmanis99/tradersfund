@@ -8,17 +8,11 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { FUNDEDNEXT_RU_ACCESS_CHECKED, FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 
 const PATH = '/ru/dlya-russkoyazychnykh-treyderov'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
-// FundingPips access-source dates come from the evidence JSON (sourceUpdatedAt = Get Started help article date, termsEffective = Terms date, sourceCapturedAt = re-read date).
-const fpDate = (iso: string) => iso.split('-').reverse().join('.')
-const FP_HELP_UPDATED = fpDate(fpAccessEvidence.sourceUpdatedAt)
-const FP_TERMS_EFFECTIVE = fpDate(fpAccessEvidence.termsEffective)
-const FP_ACCESS_CHECKED = fpDate(fpAccessEvidence.sourceCapturedAt)
 export const revalidate = 3600
 const TITLE = 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ'
 const DESCRIPTION = 'Проп-фирмы для россиян: какие компании работают с РФ в 2026 году. Таблица 15 фирм со статусом для России, Беларуси и Казахстана, оплатой и выплатами.'
@@ -253,7 +247,7 @@ export default function RussiaAvailabilityPage() {
             <article className="ru-card" data-russia-unclear="fundingpips">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FundingPips</h3>
-              <p className="ru-muted">Россия прямо не названа: справка FundingPips (обновлена {FP_HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ, а условия (действуют с {FP_TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены {FP_ACCESS_CHECKED}). Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
+              <p className="ru-muted">Россия прямо не названа: справка FundingPips (обновлена 24.09.2026) называет Иран, Вьетнам и ОАЭ, а условия (действуют с 15.05.2026) исключают резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены 23.10.2026). Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
