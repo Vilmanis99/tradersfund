@@ -3,7 +3,9 @@ import Link from '@/components/SafeLink'
 import RuPendingLink from '@/components/RuPendingLink'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianPartnerReview from '@/components/RussianPartnerReview'
-import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
+import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
+import type { Challenge } from '@/lib/firms'
+import type { ReactNode } from 'react'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
@@ -21,6 +23,13 @@ const GET_STARTED_URL = accessEvidence.sourceUrl
 const RESPONSIBLE_TRADING_URL = 'https://help.fundingpips.com/hc/en-us/articles/47328410434065-Responsible-Trading-Policy'
 const WORKSPACE_URL = 'https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace'
 const MASTER_SETUP_URL = 'https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup'
+// Overnight/weekend holding, read live by RU Writer on 21.10.2026 (copies: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/):
+// News Trading & Weekend Holding — evaluation: overnight + weekend allowed (1 Step Flex, 2 Step Standard, 2 Step Flex, 2 Step Pro);
+// Master: «All open trades will be automatically closed by the system unless you have the Swing add-on», daily 15-minute window, not a breach.
+// FundingPips Zero — «Leaving any position open into the weekend is an immediate account termination»; no weekday overnight restriction stated.
+const HOLDING_URL = 'https://help.fundingpips.com/hc/en-us/articles/34504137479441-News-Trading-Weekend-Holding'
+const ZERO_URL = 'https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero'
+const HOLDING_CHECKED = '21.10.2026'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -46,8 +55,45 @@ function proMinDaysFacts() {
   return { days, date, text, short, dated }
 }
 
+// Trace 2026-10-20: Trustpilot, rule cards, rules table and the recheck note read from data (firms.json, challenges/fundingpips.json)
+// instead of hardcoded copy. Trustpilot is hidden when trustpilotCapturedAt is missing or older than 30 days.
+const ruDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
+const pct = (value?: number | null) => value == null ? '—' : `${value}%`
+function fundingPipsTrustpilot() {
+  const firm = getAllFirms().find(item => item.name === 'FundingPips')
+  const fresh = firm?.trustpilotCapturedAt ? isChallengeFresh({ sourceCapturedAt: firm.trustpilotCapturedAt }) : false
+  if (!firm || !fresh || firm.trustpilotScore == null || firm.trustpilotCount == null) return null
+  return {
+    score: firm.trustpilotScore.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+    count: firm.trustpilotCount.toLocaleString('ru-RU'),
+    date: ruDate(firm.trustpilotCapturedAt),
+  }
+}
+function fundingPipsRuleFacts() {
+  const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
+  const bySlug = (slug: string) => products.find(product => product.productSlug === slug)
+  const targets = (product?: Challenge) => {
+    const t = product?.profitTargets
+    if (!t) return 'без оценки'
+    return t.phase2 != null ? `${t.phase1}% и ${t.phase2}%` : `${t.phase1}%`
+  }
+  const maxLoss = (product?: Challenge) => {
+    if (product?.maxLossPct == null) return '—'
+    const kind = product.drawdownType === 'static' ? 'статический' : product.drawdownType === 'trailing' ? 'плавающий' : null
+    return kind ? `${product.maxLossPct}%, ${kind}` : `${product.maxLossPct}%`
+  }
+  const dates = products.map(product => product.sourceCapturedAt).filter(Boolean).sort()
+  const newest = ruDate(dates[dates.length - 1])
+  const oldest = ruDate(dates[0])
+  const stale = products.filter(product => product.sourceCapturedAt !== dates[dates.length - 1]).map(product => product.productName)
+  const asOf = newest == null ? null : stale.length ? `${newest}; ${stale.join(', ')} — ${oldest}` : newest
+  return { bySlug, targets, maxLoss, asOf }
+}
+
 function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
   const proDays = proMinDaysFacts()
+  const trustpilot = fundingPipsTrustpilot()
+  const rules = fundingPipsRuleFacts()
   const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
   const oneStep = products.find(product => product.productSlug === '1-step-flex')
   const twoStepFlex = products.find(product => product.productSlug === '2-step-flex')
@@ -97,11 +143,15 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="otzyvy">
         <div className="ru-shell ru-content" data-russian-fundingpips-reviews="trustpilot">
           <h2>FundingPips: отзывы трейдеров</h2>
-          <p>
-            На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка 4,5 при 63 734 отзывах
-            (по данным на 27.07.2026). Высокая оценка при таком объёме говорит о массовой аудитории, но не о том, что
-            ваша выплата пройдёт: отзывы не проверяют KYC и страну автора.
-          </p>
+          {trustpilot ? (
+            <p data-russian-fundingpips-trustpilot-date={trustpilot.date ?? ''}>
+              На <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у FundingPips оценка {trustpilot.score}, отзывов: {trustpilot.count}{' '}
+              (по данным на {trustpilot.date}). Высокая оценка при таком объёме говорит о массовой аудитории, но не о том, что
+              ваша выплата пройдёт: отзывы не проверяют KYC и страну автора.
+            </p>
+          ) : (
+            <p>Свежего снимка оценки FundingPips на <a href={TRUSTPILOT_URL} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> у нас сейчас нет, поэтому цифры не показываем. Отзывы в любом случае не проверяют KYC и страну автора.</p>
+          )}
           <p>
             Как читать отзывы о FundingPips: ищите дату (правила выплат менялись 15 и 26 августа 2026 года), название продукта — Zero,
             Pro, Flex и Standard живут по разным правилам — и названное правило, из-за которого отказали. Жалоба «не выплатили» без
@@ -163,9 +213,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
         <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="strategy-platforms">
           <h2>Платформы, новости, выходные и мастер-счёт</h2>
           <p><strong>FundingPips предоставляет симулированные счета, а не брокерский счёт с переданным капиталом.</strong> Текущий профиль фирмы перечисляет MT5, cTrader и Match-Trader. Официальный рабочий кабинет отдельно говорит, что MT5 недоступен в США и Канаде; это ограничение платформы, а не разрешение для любого другого продукта или профиля.</p>
-          <p>Все 5 текущих продуктов допускают перенос позиций через ночь в будни, но перенос через выходные ограничен у 4 оценочных моделей, а FundingPips Zero запрещает удержание через выходные как серьёзное нарушение. Правило новостей тоже зависит от продукта: Zero запрещает окно новостей, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
+          <p data-russian-fundingpips-holding="eval-master-zero"><strong>Перенос позиций зависит от этапа.</strong> На оценке 1 Step Flex, 2 Step Flex, 2 Step Pro и 2 Step Standard держать сделки через ночь и через выходные можно. На мастер-счёте этих четырёх моделей система каждый день автоматически закрывает все открытые позиции, если при покупке не подключена платная опция Swing. Закрытие идёт в 15-минутное окно: сейчас 20:45–21:00 UTC, с первого воскресенья ноября — 21:45–22:00 UTC. Такое автозакрытие не считается нарушением. У FundingPips Zero оценки нет: позиция, оставленная на выходные, означает немедленное закрытие счёта, а ограничений на перенос через ночь в будни статья о Zero не называет (по данным на {HOLDING_CHECKED}).</p>
+          <p>Правило новостей тоже зависит от продукта: Zero запрещает окно новостей, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
           <p>После прохождения оценки мастер-счёт требует 4 шага: KYC, проверка, соглашение с клиентом и подключение. Два внутренних этапа FundingPips могут занимать до 2 рабочих дней каждый; торговать на мастер-счёте нельзя, пока KYC, соглашение и подключение не завершены. Instant Zero убирает оценку, но не KYC или соглашение с клиентом.</p>
-          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a>.</p>
+          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a> · <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">перенос через ночь и выходные</a>, <a href={ZERO_URL} target="_blank" rel="noopener noreferrer">правила Zero</a> (по данным на {HOLDING_CHECKED}).</p>
         </div>
       </section>
 
@@ -209,7 +260,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <ul>
             <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
             <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
-            <li>Удержание позиций через выходные ограничено у всех 5 продуктов, а для Zero становится серьёзным нарушением вместе с запрещённым окном новостей.</li>
+            <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {HOLDING_CHECKED}).</li>
             <li>ОАЭ и Вьетнам прямо ограничены, дополнительно действуют списки FATF и санкционные списки ЕС/ООН; VPN или чужой адрес не создают допустимый профиль.</li>
             <li>Возврат комиссии указан только для 2 Step Standard после четвёртой выплаты — так пишет Help Centre, но Условия (Terms) этого не подтверждают; 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero возврат не получают.</li>
           </ul>
@@ -219,24 +270,31 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="pravila">
         <div className="ru-shell ru-content" data-russian-fundingpips-rules="verified">
           <h2>Правила FundingPips</h2>
-          <p>Цели и лимиты по продуктам (данные проверены 29.09.2026):</p>
+          <p>Цели и лимиты по продуктам{rules.asOf ? ` (по данным на ${rules.asOf})` : ''}:</p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-fundingpips-rules-table="products">
               <caption className="hidden-caption">Правила FundingPips по продуктам</caption>
               <thead><tr><th>Продукт</th><th>Цель</th><th>Дневной лимит</th><th>Максимальный убыток</th></tr></thead>
               <tbody>
-                <tr><td>1 Step Flex</td><td>12%</td><td>3%</td><td>12%, статический</td></tr>
-                <tr><td>2 Step Flex</td><td>10% и 8%</td><td>4%</td><td>12%, статический</td></tr>
-                <tr><td>2 Step Pro</td><td>6% и 6%</td><td>3%</td><td>6%, статический</td></tr>
-                <tr><td>2 Step Standard</td><td>8% и 5%</td><td>5%</td><td>10%, статический</td></tr>
-                <tr><td>FundingPips Zero</td><td>без оценки</td><td>3%</td><td>5%, плавающий; открытый риск не более 1%</td></tr>
+                {(['1-step-flex', '2-step-flex', '2-step-pro', '2-step-standard', 'zero'] as const).map(slug => {
+                  const product = rules.bySlug(slug)
+                  if (!product) return null
+                  return (
+                    <tr key={slug}>
+                      <td>{product.productName}</td>
+                      <td>{rules.targets(product)}</td>
+                      <td>{pct(product.dailyLossPct)}</td>
+                      <td>{rules.maxLoss(product)}{slug === 'zero' ? '; открытый риск не более 1%' : ''}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
           <ul>
             <li><strong>Правило стабильности:</strong> от 15% до 35% в зависимости от продукта; у части программ есть минимум прибыльных дней (у Zero — 7 дней).</li>
             <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
-            <li><strong>Перенос позиций:</strong> через ночь в будни разрешён; на этапе оценки 2 Step Standard перенос через выходные разрешён, а на мастер-счёте требует опции Swing; у Zero удержание через выходные — серьёзное нарушение.</li>
+            <li><strong>Перенос позиций:</strong> на оценке всех четырёх оценочных моделей через ночь и выходные разрешён; на мастер-счёте без опции Swing все позиции закрываются автоматически каждый день (это не нарушение); у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</li>
             <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
             <li data-russian-fundingpips-pro-min-days={proDays.days ?? 'unconfirmed'}><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {proDays.short} для новых и сброшенных счетов{proDays.dated}; купленные до 26.08.2026 сохраняют 1 день.</li>
             <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
@@ -268,8 +326,8 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
               <p>2 Step Pro начинается с {money(proFiveKPrice)} на $5K и даёт 6% статической просадки; Flex стоит {money(flexFiveKPrice)} и расширяет её до 12%. Разница в {money(fiveKPriceGap)} покупает другой запас риска, а не просто другой логотип продукта.</p>
             </article>
             <article className="ru-card">
-              <h3>Не подходит для торговли на выходных</h3>
-              <p>На мастер-счетах (Master Accounts) удержание через выходные сейчас ограничено, а у Zero это жёсткое нарушение. Трейдеру, который системно держит позицию с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
+              <h3>Не подходит для переноса позиций без Swing</h3>
+              <p>На мастер-счетах (Master Accounts) без опции Swing позиции закрываются автоматически каждый день, а у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}). Трейдеру, который системно держит позицию через ночь или с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
             </article>
             <article className="ru-card">
               <h3>{accessCurrent ? 'Не подходит резиденту ОАЭ' : 'ОАЭ: перепроверьте доступ'}</h3>
@@ -287,6 +345,23 @@ export default function RussianFundingPipsReviewPage() {
   const payoutEvidenceDate = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? ''
   const accessCurrent = isChallengeFresh({ sourceCapturedAt: accessEvidence.sourceCapturedAt })
   const proDays = proMinDaysFacts()
+  const trustpilot = fundingPipsTrustpilot()
+  const rules = fundingPipsRuleFacts()
+  const oneStep = rules.bySlug('1-step-flex')
+  const twoStepFlex = rules.bySlug('2-step-flex')
+  const pro = rules.bySlug('2-step-pro')
+  const zero = rules.bySlug('zero')
+  const fiveK = (product?: Challenge) => {
+    const price = product?.accountSizes.find(tier => tier.sizeUsd === 5000)?.priceUsd
+    return price == null ? null : `$${price}`
+  }
+  const asOf = rules.asOf ? ` (по данным на ${rules.asOf})` : ''
+  const verdictCardsRaw: Array<{ title: string; body: ReactNode } | null> = [
+    oneStep ? { title: '1 Step Flex', body: <>Цель {rules.targets(oneStep)}, дневной лимит {pct(oneStep.dailyLossPct)} и максимум {rules.maxLoss(oneStep)} (по данным на {ruDate(oneStep.sourceCapturedAt)}). Маршрут 80% работает раз в 14 дней; 100% по запросу (On Demand) добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> } : null,
+    twoStepFlex ? { title: '2 Step Flex', body: <>Цели {rules.targets(twoStepFlex)}, дневной лимит {pct(twoStepFlex.dailyLossPct)}, максимум {rules.maxLoss(twoStepFlex)} (по данным на {ruDate(twoStepFlex.sourceCapturedAt)}). Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Выплата 100% по запросу добавляет отдельные условия допуска (по данным на 20.10.2026).</> } : null,
+    pro ? { title: '2 Step Pro', body: <>Цели {rules.targets(pro)}, дневной лимит {pct(pro.dailyLossPct)} и максимум {rules.maxLoss(pro)} (по данным на {ruDate(pro.sourceCapturedAt)}). У новых и сброшенных счетов {proDays.text}{proDays.dated}; можно сравнить 80% еженедельно с 100% по запросу (On Demand) при выполнении условий.</> } : null,
+  ]
+  const verdictCards = verdictCardsRaw.filter((card): card is { title: string; body: ReactNode } => card != null)
   return (
     <RussianPartnerReview
       path={PATH}
@@ -305,23 +380,19 @@ export default function RussianFundingPipsReviewPage() {
           ? 'фирма не принимает резидентов ОАЭ и Вьетнама и применяет ограничения по санкционным спискам. Русскоязычному трейдеру в Дубае этот маршрут не подходит; для любой другой страны отдельно подтвердите резидентство, KYC, оплату и вывод.'
           : 'ранее справка ограничивала резидентов ОАЭ и Вьетнама. Страновые условия требуют повторной проверки; этот старый список не подтверждает доступ сегодня. До оплаты уточните резидентство, KYC и выплату напрямую у фирмы.'}
       </span>}
-      verdict={[
-        { title: '1 Step Flex', body: <>Цель 12%, дневной лимит 3% и статический максимум 12%. Маршрут 80% работает раз в 14 дней; 100% по запросу (On Demand) добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> },
-        { title: '2 Step Flex', body: <>Цели 10% и 8%, дневной лимит 4%, статический максимум 12%. Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Выплата 100% по запросу добавляет отдельные условия допуска (по данным на 20.10.2026).</> },
-        { title: '2 Step Pro', body: <>Цели 6% и 6%, дневной лимит 3% и статический максимум 6%. У новых и сброшенных счетов {proDays.text}{proDays.dated}; можно сравнить 80% еженедельно с 100% по запросу (On Demand) при выполнении условий.</> },
-      ]}
+      verdict={verdictCards}
       editorialNotes={[
         'Комиссия за 1 Step Flex не возвращается: Help Centre (Get Started) прямо исключает этот продукт из возврата после четвёртой выплаты.',
         'У 2 Step Standard нет одной доли или единой частоты: еженедельно 60%, раз в 2 недели 80% и 100% по запросу (On Demand) имеют разные сроки и условия.',
-        'Цены и правила повторно проверены 29 сентября 2026 года после обновления официальных страниц. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.',
+        `Цены и правила сверены с официальными страницами${asOf}. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.`,
       ]}
       decisionGuide={{
         title: 'Как читать линейку FundingPips без ловушки одного сплита',
         intro: <>У FundingPips пять разных моделей, поэтому вопрос «какой процент?» недостаточен. Для решения сначала выберите риск-механику и способ запроса вознаграждения, а уже потом сравнивайте цену и доступность страны.</>,
         items: [
-          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за $32 на $5K даёт 12% статического запаса и минимум один день на фазу по маршруту 80%. 2 Step Pro за $29 сокращает запас до 6%, а у новых и сброшенных счетов {proDays.text}{proDays.dated}; выплаты — 80% еженедельно.</> },
+          { title: 'Flex и Pro — разные компромиссы', body: <>2 Step Flex за {fiveK(twoStepFlex) ?? '—'} на $5K даёт {pct(twoStepFlex?.maxLossPct)} статического запаса и минимум один день на фазу по маршруту 80%. 2 Step Pro за {fiveK(pro) ?? '—'} сокращает запас до {pct(pro?.maxLossPct)}, а у новых и сброшенных счетов {proDays.text}{proDays.dated}; выплаты — 80% еженедельно.</> },
           { title: '100% меняет условия', body: <>100% по запросу требуют правила стабильности 35%, прибыльных дней и Striking System 1% (по данным на 20.10.2026). Сравнивайте реальную доступность выплаты, а не только процент после одобрения.</> },
-          { title: 'Zero — не режим без правил', body: <>FundingPips Zero не имеет оценочного этапа, но сочетает плавающий лимит 5%, максимальный открытый риск 1%, минимум 7 прибыльных дней и правило стабильности до 15%. Такой маршрут нужно сравнивать с вашей статистикой, а не с ценой обычного челленджа.</> },
+          { title: 'Zero — не режим без правил', body: <>FundingPips Zero не имеет оценочного этапа, но сочетает плавающий лимит {pct(zero?.maxLossPct)}, максимальный открытый риск 1%, минимум 7 прибыльных дней и правило стабильности до {pct(zero?.consistencyRulePct)}{zero?.sourceCapturedAt ? ` (по данным на ${ruDate(zero.sourceCapturedAt)})` : ''}. Такой маршрут нужно сравнивать с вашей статистикой, а не с ценой обычного челленджа.</> },
         ],
       }}
       analysisTocItems={[
@@ -377,7 +448,7 @@ export default function RussianFundingPipsReviewPage() {
         },
         {
           q: 'Какие отзывы о FundingPips?',
-          a: 'На Trustpilot — 4,5 при 63 734 отзывах (снимок от 27.07.2026). Читайте отзывы с датой и названием продукта: правила выплат менялись в августе 2026 года.',
+          a: `${trustpilot ? `На Trustpilot — оценка ${trustpilot.score}, отзывов: ${trustpilot.count} (по данным на ${trustpilot.date}). ` : 'Свежего снимка оценки Trustpilot у нас сейчас нет, поэтому цифры не приводим. '}Читайте отзывы с датой и названием продукта: правила выплат менялись в августе 2026 года.`,
         },
         {
           q: 'Какие способы выплаты есть у FundingPips?',

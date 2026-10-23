@@ -14,7 +14,7 @@ const PATH = '/prop-firms/closed'
 export const metadata: Metadata = {
   title: 'Closed Prop Firms: Shutdown Notices and Sources',
   description:
-    'Prop firms that have closed or gone offline, with the date, the firm’s own notice where one exists, and an archived copy of each source.',
+    'Prop firms that have closed or gone offline, with the date, the firm’s own notice where one exists, an archived source copy, and who reported press-only claims.',
   alternates: { canonical: PATH, languages: closedFirmsLanguageAlternates() },
   robots: CLOSED_FIRMS_PUBLISHED ? undefined : { index: false, follow: true },
   openGraph: { title: 'Closed Prop Firms', url: PATH, type: 'article' },

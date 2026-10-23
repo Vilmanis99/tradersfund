@@ -14,6 +14,9 @@ const hooks = registerHooks({
   resolve(specifier, context, nextResolve) {
     // Next enforces this marker at bundle time; this harness runs server rendering in Node.
     if (specifier === 'server-only') return { url: 'test:server-only', shortCircuit: true }
+    // Client components such as the home FirmPairPicker call useRouter(), which throws
+    // outside a mounted App Router; static rendering never navigates, so a no-op router is enough.
+    if (specifier === 'next/navigation') return { url: 'test:next-navigation', shortCircuit: true }
     const local = specifier.startsWith('@/') ? path.join(root, specifier.slice(2))
       : specifier.startsWith('.') && context.parentURL?.startsWith('file:')
         ? path.resolve(path.dirname(fileURLToPath(context.parentURL)), specifier) : null
@@ -26,6 +29,7 @@ const hooks = registerHooks({
   },
   load(url, context, nextLoad) {
     if (url === 'test:server-only') return { format: 'commonjs', shortCircuit: true, source: 'module.exports = {}' }
+    if (url === 'test:next-navigation') return { format: 'commonjs', shortCircuit: true, source: `const real = require(${JSON.stringify(require.resolve('next/navigation'))}); const noop = () => {}; module.exports = { ...real, useRouter: () => ({ push: noop, replace: noop, prefetch: noop, back: noop, forward: noop, refresh: noop }) }` }
     if (url.startsWith(pathToFileURL(root + path.sep).href) && /\.tsx?$/.test(url) && !url.includes('/node_modules/')) {
       return { format: 'commonjs', shortCircuit: true, source: ts.transpileModule(fs.readFileSync(new URL(url), 'utf8'), {
         fileName: fileURLToPath(url), compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
@@ -44,7 +48,7 @@ globalThis.Date = class extends RealDate {
 const errors = []
 try {
   assert.match(fs.readFileSync(path.join(root, 'app/ru/layout.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'Russian layout must re-run age gates without a deployment')
-  assert.match(fs.readFileSync(path.join(root, 'app/page.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'English homepage must re-run product age gates without a deployment')
+  assert.match(fs.readFileSync(path.join(root, 'app/(home)/page.tsx'), 'utf8'), /export const revalidate = 3600\b/, 'English homepage must re-run product age gates without a deployment')
   const pages = fs.readdirSync(path.join(root, 'app/ru'), { withFileTypes: true })
     .filter(entry => entry.isDirectory() && fs.existsSync(path.join(root, 'app/ru', entry.name, 'page.tsx')))
     .map(entry => entry.name)
@@ -59,6 +63,7 @@ try {
     }
   }
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
+  const { isProductSetFresh } = require(path.join(root, 'lib/reviewFreshness.ts'))
   // Render pages at a clock derived from the Russian-surface captures themselves.
   // Literal 2026-09-29 / 2026-10-01 clocks fell behind the 2026-10-14..19
   // recaptures; future-dated captures fail closed by design (asserted below), so
@@ -83,7 +88,7 @@ try {
   assert.equal(brightFirm.trustpilotUrl, brightTrustpilotCapture.trustpilotUrl, 'Bright Trustpilot source URL matches its preserved observation')
   assert.match(brightTrustpilotCapture.evidence, /rating is unavailable.*breach.*guidelines/i, 'suppressed aggregate has first-party platform evidence')
   assert.match(
-    fs.readFileSync(path.join(root, 'app/page.tsx'), 'utf8'),
+    fs.readFileSync(path.join(root, 'app/(home)/page.tsx'), 'utf8'),
     /\/go\/bright-funded\?from=home-partners/,
     'English homepage keeps the Bright Funded partner placement',
   )
@@ -151,7 +156,7 @@ try {
     assert(offersHtml.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'promo hub FundingPips CTA carries the unclear Russia-access badge')
     assert(offersHtml.includes('HELLO') && offersHtml.includes('STRTN'), 'promo hub shows the batch 1 codes')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
-    const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/page.tsx')).default
+    const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/(index)/page.tsx')).default
     const originalClock = clock
     try {
       clock = new RealDate(Math.max(new RealDate(`${latestDealCheck}T12:00:00Z`).getTime() + 31 * 86_400_000, new RealDate(originalClock).getTime())).toISOString()
@@ -249,7 +254,7 @@ try {
   assert.equal(new Set(fundedNextAccessEvidence.sourceObservations.map(item => item.sourceUrl)).size, 6, 'all six access sources have observations')
   assert(fundedNextAccessEvidence.sourceObservations.every(item => item.sourceCapturedAt >= fundedNextAccessEvidence.sourceCapturedAt) && fundedNextAccessEvidence.sourceObservations.some(item => item.sourceCapturedAt === fundedNextAccessEvidence.sourceCapturedAt), 'FundedNext access observations keep their own dates; the scoped date is the oldest one')
   assert(fundedNextAccessEvidence.notes.some(item => item.includes('card-transfer restrictions')), 'Russian card country boundary is retained in access evidence')
-  assert.equal(instantEvidence.capturedAt, '2026-08-29', 'a payout-only recheck does not refresh all Stellar Instant rules')
+  assert.equal(instantEvidence.capturedAt, '2026-10-20', 'the full Stellar Instant rules recheck has its own date, separate from the payout-only recheck')
   assert.equal(instantEvidence.withdrawal.sourceCapturedAt, '2026-10-01', 'Stellar Instant payout routes have their own first-party recheck date')
   assert(instantEvidence.withdrawal.methods.includes('Card') && instantEvidence.withdrawal.sourceQuote.includes('saved card'), 'conditional card payout is captured for Stellar Instant')
   const fundedNextKycEvidence = marketEvidence.kycEvidence.find(item => item.firmSlug === 'fundednext')
@@ -367,6 +372,7 @@ try {
   const products = getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug))
   const offset = (date, days) => new RealDate(new RealDate(`${date}T00:00:00Z`).getTime() + days * 86400000).toISOString().slice(0, 10)
   const instantProduct = products.find(product => product.firmSlug === 'fundednext' && product.productSlug === 'stellar-instant')
+  const { formatRuDate } = require(path.join(root, 'lib/ruDate.ts'))
   const instantSourceDates = [instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, instantProduct.sourceCapturedAt,
     instantEvidence.withdrawal.sourceCapturedAt, fundedNextAccessEvidence.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
   const mt5SourceDates = Object.values(mt5Evidence).filter(value => value && typeof value === 'object' && 'sourceCapturedAt' in value).map(value => value.sourceCapturedAt)
@@ -405,6 +411,8 @@ try {
   clock = RU_PAGE_CLOCK
   const firmsModule = require(path.join(root, 'lib/firms.ts'))
   const cryptoEvidence = require(path.join(root, 'content/data/crypto-market-evidence.json'))
+  // Tracker's crypto evidence can be newer than the product captures (21.10 vs 20.10); render the crypto page on the later date.
+  clock = [RU_PAGE_CLOCK, ...cryptoEvidence.ranked.map(evidence => `${evidence.sourceCapturedAt}T12:00:00Z`)].sort().at(-1)
   const cryptoModule = require(path.join(root, 'app/ru/luchshie-kripto-prop-firmy/page.tsx'))
   const renderCrypto = () => renderToStaticMarkup(React.createElement(cryptoModule.default))
   const cryptoCards = html => [...html.matchAll(/data-russian-crypto-firm="([^"]+)"/g)].map(match => match[1]).sort()
@@ -412,15 +420,36 @@ try {
   const cTraderReference = renderToStaticMarkup(React.createElement(CTraderPage))
   assert(cTraderReference.includes('<h1>Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)</h1>'), 'cTrader H1 uses the exact brand')
   assert.equal(cryptoSchemas(cTraderReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[0]?.name, 'BrightFunded', 'cTrader ItemList uses the official brand and lists the Russia-open firm first')
+  // The crypto fixture runs at a clock derived from its own captures (ranked market
+  // evidence, payout evidence and every mapped product), not RU_PAGE_CLOCK: that clock
+  // follows other firms' captures and can precede a newer crypto recheck, and
+  // future-dated captures fail closed by design.
+  const cryptoFixtureDates = [...cryptoEvidence.ranked.flatMap(evidence => [evidence.sourceCapturedAt,
+    ...firmsModule.getChallengesByFirm(evidence.firmSlug).filter(product => evidence.productSlugs.includes(product.productSlug)).map(product => product.sourceCapturedAt)]),
+  cryptoEvidence.payoutAlternative.sourceCapturedAt].sort()
+  const CRYPTO_FIXTURE_CLOCK = `${cryptoFixtureDates.at(-1)}T12:00:00Z`
+  assert(isChallengeFresh({ sourceCapturedAt: cryptoFixtureDates[0] }, new RealDate(CRYPTO_FIXTURE_CLOCK)), 'every crypto capture shares one 30-day window at the derived fixture clock')
+  clock = CRYPTO_FIXTURE_CLOCK
   const cryptoSlugs = cryptoEvidence.ranked.map(evidence => evidence.firmSlug).sort()
   const originalCryptoEvidence = JSON.stringify(cryptoEvidence)
   const originalByFirm = firmsModule.getChallengesByFirm
   const cryptoReference = renderCrypto()
   assert.deepEqual(cryptoCards(cryptoReference), cryptoSlugs, 'current crypto fixture includes every independently sourced firm')
+  const { russiaStatusFor: cryptoRussiaStatus } = require(path.join(root, 'lib/russiaAvailability.ts'))
+  for (const slug of cryptoSlugs) {
+    const card = cryptoReference.match(new RegExp(`<article\\b[^>]*data-russian-crypto-firm="${slug}"[^>]*>[\\s\\S]*?</article>`))?.[0] ?? ''
+    assert(card.includes(`data-russia-status="${cryptoRussiaStatus(slug)}" data-russia-firm="${slug}"`), `${slug}: every ranked crypto card shows its russiaStatus badge, with or without an affiliate link`)
+  }
   assert(cryptoSchemas(cryptoReference).some(item => item['@type'] === 'FAQPage'))
   assert.doesNotMatch(`${cryptoModule.metadata.title.absolute} ${cryptoModule.metadata.description}`, /3 проверенных|3 крипто|12 подтверждённых/, 'search metadata does not promise a fixed live inventory')
-  assert.equal(cryptoModule.metadata.openGraph.title, 'Крипто-проп-фирмы 2026: 3 проверенных варианта', 'sharing metadata is preserved pending separate approval')
-  assert.equal(cryptoModule.metadata.twitter.description, 'Проп трейдинг криптовалют: сравниваем 3 крипто-проп фирмы и 12 подтверждённых продуктов по цене, просадке, плечу, KYC и выплатам.')
+  // RU SEO Lead approved 22.10, numberless by design: share strings carry no live firm or product count.
+  assert.equal(cryptoModule.metadata.openGraph.title, 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ', 'sharing title is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.title, cryptoModule.metadata.openGraph.title, 'Twitter title matches Open Graph')
+  assert.equal(cryptoModule.metadata.openGraph.description, 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.', 'sharing description is the approved numberless string')
+  assert.equal(cryptoModule.metadata.twitter.description, cryptoModule.metadata.openGraph.description, 'Twitter description matches Open Graph')
+  assert(cryptoModule.metadata.openGraph.description.length >= 140 && cryptoModule.metadata.openGraph.description.length <= 160, 'sharing description is 140-160 characters')
+  assert.doesNotMatch(`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`, /\d+ (?:проверенн|крипто|подтверждённ|фирм|продукт)/u, 'sharing strings promise no fixed live inventory')
+  for (const evidence of cryptoEvidence.ranked) assert(!`${cryptoModule.metadata.openGraph.title} ${cryptoModule.metadata.openGraph.description}`.includes(evidence.firmName), `sharing strings name no firm (${evidence.firmName})`)
   const assertCryptoArchive = html => {
     assert(html.includes('data-russian-crypto-article="long-form"') && html.includes('id="sources"'), 'expiry preserves the substantive article and dated sources')
     assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'unresolved CFT correction survives unrelated evidence expiry')
@@ -481,6 +510,7 @@ try {
     Object.assign(cryptoEvidence.payoutAlternative, restored.payoutAlternative)
   }
   assert.equal(JSON.stringify(cryptoEvidence), originalCryptoEvidence, 'crypto fixtures do not write or leave mutated source evidence')
+  clock = RU_PAGE_CLOCK
   const fundingPipsAccessEvidence = require(path.join(root, 'content/data/russian-fundingpips-access-evidence.json'))
   assert.equal(fundingPipsAccessEvidence.firmSlug, 'fundingpips', 'the country check belongs to FundingPips')
   assert.equal(fundingPipsAccessEvidence.sourceUrl, 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started', 'Russian access check cites FundingPips itself')
@@ -727,8 +757,10 @@ try {
   }
   const originalAccessStatus = fundedNextAccessEvidence.status
   try {
-    fundedNextAccessEvidence.status = 'restricted'
-    assert(!cryptoSchemas(renderPrimary()).some(item => item['@type'] === 'FAQPage'), 'changed FundedNext access status cannot keep the conflict-specific comparison FAQ')
+    // Flip to the other documented state: the FAQ is written for the current one
+    // ('restricted' since 2026-10-20), so a changed status must drop FAQPage schema.
+    fundedNextAccessEvidence.status = originalAccessStatus === 'restricted' ? 'conflicting' : 'restricted'
+    assert(!cryptoSchemas(renderPrimary()).some(item => item['@type'] === 'FAQPage'), 'changed FundedNext access status cannot keep the status-specific comparison FAQ')
   } finally { fundedNextAccessEvidence.status = originalAccessStatus }
   const originalAllChallenges = firmsModule.getAllChallenges
   const primaryFixtures = structuredClone(originalAllChallenges())
@@ -856,7 +888,23 @@ try {
   assert(fundedReviewRow(fundedReference, 'stellar-instant').includes('Нет дневного лимита'), 'a named fresh Instant source supports the explicit absence')
   assert(fundedReviewRow(fundedReference, 'stellar-1-step').includes('5 раб. дн.'), 'one-step timing retains the source business-day unit')
   assert(!fundedReviewRow(fundedReference, 'stellar-1-step').includes('еженедельно'), 'five business days are not flattened to a calendar-week label')
-  assert(!cryptoSchemas(fundedReference).some(item => item['@type'] === 'FAQPage'), 'stale market-access evidence withholds the FundedNext review FAQ schema')
+  // The review emits FAQ schema only while every product and every dated evidence block it cites is fresh;
+  // derive the expectation from those same sources instead of pinning one stale block.
+  const fnReviewFaqDates = [
+    ...Object.values(fundedReviewEvidence.sources).map(source => source.sourceCapturedAt),
+    fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt,
+    marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt,
+    instantEvidence.capturedAt,
+    instantEvidence.news.sourceCapturedAt,
+    mt5Evidence.ea.sourceCapturedAt,
+    mt5Evidence.instantEaScope.sourceCapturedAt,
+  ]
+  const fundedReviewProducts = getAllChallenges().filter(product => product.firmSlug === 'fundednext')
+  const fundedReviewFaqExpected = fundedReviewProducts.length > 0
+    && fundedReviewProducts.every(product => isChallengeFresh(product, new RealDate(clock))
+      && product.accountSizes.some(tier => Number.isFinite(tier.priceUsd) && tier.priceUsd > 0))
+    && fnReviewFaqDates.every(date => isChallengeFresh({ sourceCapturedAt: date }, new RealDate(clock)))
+  assert.equal(cryptoSchemas(fundedReference).some(item => item['@type'] === 'FAQPage'), fundedReviewFaqExpected, 'FundedNext review FAQ schema appears only while every cited product and evidence block is fresh')
   assert.doesNotMatch(FundedReviewModule.metadata.description, /22 цены|4 модели/)
   assert.equal(FundedReviewModule.metadata.openGraph.description, 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.', 'sharing copy is preserved pending approval')
   const FundingPipsReviewModule = require(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'))
@@ -867,8 +915,19 @@ try {
   assert(fundingPipsReviewReference.includes(fundingPipsSummaryAffiliate), 'FundingPips review keeps its sign-up CTA')
   assert(fundingPipsReviewReference.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'FundingPips CTA carries the unclear Russia-access badge')
   assert.equal((fundingPipsReviewReference.match(/id="country-check"/g) ?? []).length, 1, 'moving the warning preserves one country-check anchor')
-  assert(!cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), 'stale FundingPips payout evidence withholds review FAQ schema')
-  assert(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), 'dated FAQ answers remain visibly qualified')
+  {
+    // FAQ schema follows the review's own FAQ sources (payout evidence, Reward Methods,
+    // access evidence): published only while every one is inside the 30-day window.
+    // The 2026-10-20 recaptures made them current, so derive the expectation from the data.
+    const fundingPipsFaqDates = [
+      marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')?.sourceCapturedAt ?? '',
+      fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1] ?? '',
+      require(path.join(root, 'content/data/russian-fundingpips-access-evidence.json')).sourceCapturedAt,
+    ]
+    const faqCurrent = fundingPipsFaqDates.every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
+    assert.equal(cryptoSchemas(fundingPipsReviewReference).some(item => item['@type'] === 'FAQPage'), faqCurrent, 'FundingPips review FAQ schema follows the age of its FAQ sources')
+    assert.equal(fundingPipsReviewReference.includes('Часть источников этих ответов старше 30 дней.'), !faqCurrent, 'dated FAQ answers are visibly qualified only while a source is stale')
+  }
   const fundingPipsPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')
   assert(fundingPipsPayoutEvidence, 'FundingPips FAQ cites its own payout evidence rather than the broad market snapshot')
   const originalFundingPipsPayoutCapture = fundingPipsPayoutEvidence.sourceCapturedAt
@@ -894,7 +953,11 @@ try {
     clock = fundingPipsReviewClock
   }
   assert(fundingPipsReviewReference.includes('80%') && fundingPipsReviewReference.includes('10% и 8%'), 'Russian FundingPips review reflects the current Flex split and target')
-  assert(fundingPipsReviewReference.includes('2026-09-30') && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+  {
+    // Reward Methods were recaptured 2026-10-20 (Tracker); the page keeps the date in REWARD_METHODS_CAPTURED_AT.
+    const rewardMethodsDate = fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1]
+    assert(rewardMethodsDate && fundingPipsReviewReference.includes(rewardMethodsDate) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+  }
   assert(!fundingPipsReviewReference.includes('85%') && !fundingPipsReviewReference.includes('10% и 6%'), 'Russian FundingPips review does not retain retired Flex terms')
   const originalFundedEvidence = JSON.stringify(fundedReviewEvidence)
   for (const source of Object.values(fundedReviewEvidence.sources)) {
@@ -1101,34 +1164,87 @@ try {
   }
   const { russiaStatusFor } = require(path.join(root, 'lib/russiaAvailability.ts'))
   const { RU_ACCESS_BADGE } = require(path.join(root, 'components/RuAccessBadgeView.tsx'))
+  const { RU_RANKING_PINS } = require(path.join(root, 'lib/russianRanking.ts'))
+  /** [start, end) ranges of every <tag> element in html, from a simple open/close stack. */
+  const elementRanges = (html, tag) => {
+    const ranges = []
+    const stack = []
+    for (const match of html.matchAll(new RegExp(`<(/?)${tag}\\b[^>]*>`, 'g'))) {
+      if (match[1]) { const open = stack.pop(); if (open != null) ranges.push([open, match.index + match[0].length]) } else stack.push(match.index)
+    }
+    return ranges
+  }
+  const innermost = (ranges, at) => ranges.filter(([a, b]) => a <= at && at < b).sort((x, y) => (x[1] - x[0]) - (y[1] - y[0]))[0] ?? null
   /**
-   * Standing rule (RuGoLink, 2026-10-14): every firm keeps its sign-up CTA with a
-   * Russia-access badge. For each /go/ CTA whose firms.json russiaStatus is not
-   * 'available': (a) the RuAccessBadgeView badge for that status follows it, with
-   * the label from RU_ACCESS_BADGE; (b) when ranking applies, its first CTA is not
-   * placed above any Russia-open firm. Returns issues instead of throwing so the
-   * all-pages sweep can report every page at once.
+   * Standing rule (RuGoLink, 2026-10-14; Code Reviewer rules 2026-10-21). For each /go/ CTA on a /ru page:
+   * (a) a CTA whose firms.json russiaStatus is not 'available' is followed by the RuAccessBadgeView badge
+   *     for that status. A hideBadge CTA (data-russia-badge="column") passes only when the same <tr> holds
+   *     that firm's badge and the row has at most 3 cells: RU tables with 4+ columns get a 560 px min-width
+   *     at 390 px (light-platform.css), so a status column there can scroll out of view.
+   * (b) ranking applies to every CTA block: inside each <section> (and, except on compare pages, where the
+   *     pair blocks and pick lists are the unit, over the whole page) no firm's first
+   *     CTA sits above a Russia-open firm unless it is open itself, and among open firms the active pin
+   *     (BrightFunded, lib/russianRanking.ts) leads. CTAs inside a <table> on a compare page are exempt: the side-by-side table
+   *     keeps slug order, like the H1 and title.
+   * (c) on /ru/obzor-<firm> pages only the reviewed firm's own CTAs are exempt from (b); alternatives are
+   *     ranked like everywhere else, so an available BrightFunded leads them. The two single-product FundedNext
+   *     guides (fundednext-mt5, fundednext-stellar-instant) are treated the same way: their subject is FundedNext.
+   * Returns issues instead of throwing so the all-pages sweep can report every page at once.
    */
-  const russiaCtaIssues = (html, { ranking = true } = {}) => {
+  const russiaCtaIssues = (html, { ranking = true, reviewedFirm = null, comparePage = false } = {}) => {
+    const rows = elementRanges(html, 'tr')
+    const tables = elementRanges(html, 'table')
+    const sections = elementRanges(html, 'section')
     const ctas = [...html.matchAll(/<a\b[^>]*href="\/go\/([a-z0-9-]+)[?"][^>]*>[\s\S]*?<\/a>/g)]
       .map(match => ({ firm: match[1], status: russiaStatusFor(match[1]), end: match.index + match[0].length, start: match.index, column: match[0].includes('data-russia-badge="column"') }))
     const issues = []
     for (const cta of ctas.filter(item => item.status !== 'available')) {
       const badge = RU_ACCESS_BADGE[cta.status]
+      if (cta.column) {
+        const row = innermost(rows, cta.start)
+        const rowHtml = row ? html.slice(row[0], row[1]) : ''
+        const cells = (rowHtml.match(/<t[dh]\b/g) ?? []).length
+        if (!row || !rowHtml.includes(`<span class="ru-badge ru-badge--${badge.modifier}" data-russia-status="${cta.status}" data-russia-firm="${cta.firm}">${badge.label}</span>`)) issues.push(`${cta.firm} (${cta.status}): hideBadge CTA has no matching status badge on its own table row`)
+        else if (cells > 3) issues.push(`${cta.firm} (${cta.status}): status column is not visible next to the CTA at 390 px (${cells}-cell row scrolls sideways)`)
+        continue
+      }
       const after = html.slice(cta.end, cta.end + 400).match(/^\s*<span class="ru-access"><span class="ru-badge ru-badge--([a-z]+)" data-russia-status="([a-z]+)" data-russia-firm="([a-z0-9-]+)">([^<]+)<\/span>/)
-      if (!after) issues.push(`${cta.firm} (${cta.status}): CTA has no Russia-access badge right after it${cta.column ? ' (hideBadge, status column instead)' : ''}`)
+      if (!after) issues.push(`${cta.firm} (${cta.status}): CTA has no Russia-access badge right after it`)
       else if (JSON.stringify(after.slice(1, 5)) !== JSON.stringify([badge.modifier, cta.status, cta.firm, badge.label])) issues.push(`${cta.firm} (${cta.status}): badge reads "${after[4]}" (${after[2]}), expected "${badge.label}"`)
+    }
+    // One Russia badge per pick column (RuComparePickVerdict): the column badge and the CTA badge used to double up.
+    for (const [a, b] of elementRanges(html, 'div').filter(([a]) => html.startsWith('<div class="ru-p1-pick__col"', a))) {
+      const badges = (html.slice(a, b).match(/<span class="ru-badge /g) ?? []).length
+      if (badges !== 1) issues.push(`pick column has ${badges} Russia badges, expected 1`)
+    }
+    const pinIndex = firm => { const index = RU_RANKING_PINS.indexOf(firm); return index >= 0 && russiaStatusFor(firm) === 'available' ? index : Infinity }
+    // A Russia-open firm outranks every firm that is not open; among open firms the active pin (BrightFunded) leads.
+    // Order between non-open statuses (unclear vs restricted) is not enforced on CTA blocks.
+    const outranks = (a, b) => (a.status === 'available' && b.status !== 'available') || (a.status === 'available' && b.status === 'available' && pinIndex(a.firm) < pinIndex(b.firm))
+    const checkOrder = (list, scope) => {
+      const first = new Map()
+      for (const cta of list) if (!first.has(cta.firm)) first.set(cta.firm, cta)
+      for (const cta of first.values()) {
+        const below = [...first.values()].filter(other => other.start > cta.start && outranks(other, cta)).map(other => other.firm)
+        if (below.length) issues.push(`${cta.firm} (${cta.status}): placed above ${below.join(', ')}${scope}`)
+      }
     }
     const firstCta = new Map()
     for (const cta of ctas) if (!firstCta.has(cta.firm)) firstCta.set(cta.firm, cta)
-    if (ranking && firstCta.size > 1) {
-      const open = [...firstCta.values()].filter(cta => cta.status === 'available')
-      for (const cta of [...firstCta.values()].filter(item => item.status !== 'available')) {
-        const below = open.filter(item => item.start > cta.start).map(item => item.firm)
-        if (below.length) issues.push(`${cta.firm} (${cta.status}): placed above Russia-open ${below.join(', ')}`)
+    if (ranking) {
+      const ranked = ctas.filter(cta => cta.firm !== reviewedFirm && !(comparePage && innermost(tables, cta.start)))
+      if (!comparePage) checkOrder(ranked, '')
+      const bySection = new Map()
+      for (const cta of ranked) {
+        const section = innermost(sections, cta.start)
+        if (!section) continue
+        const key = section.join(':')
+        bySection.set(key, [...(bySection.get(key) ?? []), cta])
       }
+      for (const [key, list] of bySection) checkOrder(list, ` in the same block (section at ${key.split(':')[0]})`)
     }
-    return { ctas, firms: [...firstCta.keys()], issues: [...new Set(issues)] }
+    // Section offsets differ between dates; report one stable message per firm pair.
+    return { ctas, firms: [...firstCta.keys()], issues: [...new Set(issues.map(issue => issue.replace(/ \(section at \d+\)$/, '')))] }
   }
   const assertRussiaCtaBadgesAndOrder = (html, label) => {
     const result = russiaCtaIssues(html)
@@ -1137,34 +1253,9 @@ try {
     return result.ctas
   }
   const russiaCtaSweep = new Map()
-  // Pages that fail the widened all-/ru sweep on 2026-10-20, recorded so the branch
-  // stays green while the page fixes land on 2026-10-21. Not a waiver: any issue not
-  // listed here fails the suite, and resolved entries are reported so the list shrinks.
-  // Reviews (/ru/obzor-*) get the badge check (a) only; other pages also get ranking (b).
-  const RUSSIA_CTA_PENDING_2026_10_21 = new Set([
-    '/ru :: fundingpips (unclear): CTA has no Russia-access badge right after it',
-    '/ru/ftmo-vs-bright-funded :: ftmo (restricted): placed above Russia-open fundednext',
-    '/ru/fundednext-vs-fundingpips :: fundingpips (unclear): placed above Russia-open bright-funded',
-    '/ru/kak-rabotayut-chellendzhi-prop-firm :: fundingpips (unclear): placed above Russia-open bright-funded',
-    '/ru/luchshie-kripto-prop-firmy :: fundingpips (unclear): placed above Russia-open bright-funded, crypto-fund-trader',
-    '/ru/luchshie-prop-firmy :: fundingpips (unclear): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: take-profit-trader (unverified): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: alpha-capital (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: apex-trader-funding (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: city-traders-imperium (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: e8-markets (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: ftmo (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: fxify (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: lucid-trading (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: maven (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: my-funded-futures (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: ofp-funding (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: topstep (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: tradeday (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/luchshie-prop-firmy :: tradeify (restricted): CTA has no Russia-access badge right after it (hideBadge, status column instead)',
-    '/ru/promokody-prop-firm :: fundingpips (unclear): placed above Russia-open crypto-fund-trader',
-    '/ru/prop-firmy-bez-chelendzha :: fundingpips (unclear): placed above Russia-open bright-funded',
-  ])
+  // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
+  // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
@@ -1237,7 +1328,7 @@ try {
       assert(globalHtml.includes('No sourced product matches every filter'), 'readability work preserves the expired-source empty state')
       assert(!globalHtml.includes('class="challenge-data-table"'), 'no empty data table replaces the source warning')
     }
-    const EnglishHome = require(path.join(root, 'app/page.tsx')).default
+    const EnglishHome = require(path.join(root, 'app/(home)/page.tsx')).default
     const englishHtml = renderToStaticMarkup(React.createElement(EnglishHome))
     const englishSizes = [...new Set(englishRows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)
     const englishSize = englishSizes.includes(50000) ? 50000 : englishSizes[0]
@@ -1307,7 +1398,7 @@ try {
         assert.equal((html.match(/<h1\b/g) ?? []).length, 1, 'one H1 survives expiry')
         {
           const route = slug ? `/ru/${slug}` : '/ru'
-          const sweep = russiaCtaIssues(html, { ranking: !slug.startsWith('obzor-') })
+          const sweep = russiaCtaIssues(html, { reviewedFirm: REVIEWED_FIRM_BY_SLUG[slug] ?? null, comparePage: slug.includes('-vs-') })
           const entry = russiaCtaSweep.get(route) ?? { ctaDates: 0, firms: new Set(), issues: new Map() }
           if (sweep.ctas.length) entry.ctaDates++
           for (const firm of sweep.firms) entry.firms.add(firm)
@@ -1344,9 +1435,9 @@ try {
             const localSignal = marketEvidence.localFirmSignals.find(item => item.operator === operator)
             const affiliateSignal = marketEvidence.affiliatePrograms.find(item => item.operator === operator)
             assert(localSignal && affiliateSignal, `${slug}: scoped evidence exists`)
-            assert(html.includes(`общий снимок рынка — ${marketEvidence.capturedAt}`), `${slug}: broad snapshot keeps its historical date`)
-            assert(html.includes(`заявления ${operator} на главной — ${localSignal.sourceCapturedAt}`), `${slug}: operator claims show their own capture date`)
-            assert(html.includes(`${localReviewAffiliateLabels[slug]} — ${affiliateSignal.sourceCapturedAt}`), `${slug}: affiliate check shows its own capture date`)
+            assert(html.includes(`общий снимок рынка — ${formatRuDate(marketEvidence.capturedAt)}`), `${slug}: broad snapshot keeps its historical date (DD.MM.YYYY, lib/ruDate.ts)`)
+            assert(html.includes(`заявления ${operator} на главной — ${formatRuDate(localSignal.sourceCapturedAt)}`), `${slug}: operator claims show their own capture date`)
+            assert(html.includes(`${localReviewAffiliateLabels[slug]} — ${formatRuDate(affiliateSignal.sourceCapturedAt)}`), `${slug}: affiliate check shows its own capture date`)
             assert(html.includes(`data-russian-guide-source-status="${current ? 'dated' : 'recapture-required'}"`), `${slug}: source warning follows all three capture dates`)
             assert(html.includes(`<strong>${localSignal.sourceCapturedAt}</strong><span>проверка заявлений на главной</span>`), `${slug}: hero date belongs to the operator claims`)
             assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES[`/ru/${slug}`], `${slug}: Article and sitemap use the same editorial date`)
@@ -1395,8 +1486,8 @@ try {
           assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/dlya-russkoyazychnykh-treyderov'], 'diaspora Article uses the Week 1 editorial date')
         }
         const countFreeComparisonLabels = {
-          'obzor-proplive': 'сравнение программ FundedNext и BrightFunded',
-          'obzor-eratrade': 'сравнение FundedNext и BrightFunded',
+          'obzor-proplive': 'программы BrightFunded и FundedNext',
+          'obzor-eratrade': 'BrightFunded и FundedNext',
         }
         if (countFreeComparisonLabels[slug]) {
           const comparisonLinks = [...html.matchAll(/<a\b[^>]*href="\/ru\/fundednext-vs-bright-funded"[^>]*>([^<]+)<\/a>/g)].map(match => match[1])
@@ -1439,7 +1530,7 @@ try {
           const fresh = captured.filter(product => isChallengeFresh(product))
           const tierCount = fresh.reduce((count, product) => count + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
           assert(html.includes(`data-russian-bright-price-count="${tierCount}"`))
-          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && html.includes('href="/ru/promokody-prop-firm#kody"'), 'Bright review leads price readers directly to the monthly promo hub codes section')
+          assert(html.includes('data-russian-bright-offer-handoff="qualified-status"') && /href="\/ru\/promokody-prop-firm#(?:bright-funded-promokody|bright-offer-status)"/.test(html), 'Bright review leads price readers directly to the monthly promo hub codes section')
           const valid = fresh.length === captured.length && Object.values(brightEvidence.sources).every(source => isChallengeFresh(source))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), valid)
           if (valid) {
@@ -1487,7 +1578,10 @@ try {
         }
         if (slug === 'obzor-fundednext') {
           const valid = fundedFixtureProducts.every(product => isChallengeFresh(product))
-            && [...fundedReviewDates, marketEvidence.capturedAt, instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
+            // Same dated blocks the page checks: scoped country access and payout evidence, not the file-wide capture.
+            && [...fundedReviewDates, fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt,
+              marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')?.sourceCapturedAt ?? marketEvidence.capturedAt,
+              instantEvidence.capturedAt, instantEvidence.news.sourceCapturedAt, mt5Evidence.ea.sourceCapturedAt, mt5Evidence.instantEaScope.sourceCapturedAt]
               .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), valid, 'FundedNext review schema expires with independent rule, country and programme evidence')
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
@@ -1602,7 +1696,11 @@ try {
               assert(card.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && card.includes(`href="${brightEvidence.sources.countryTerms.sourceUrl}"`), 'Bright homepage card links both first-party country sources')
               assert(card.includes(brightEvidence.sources.countryTerms.sourceCapturedAt), 'Bright homepage card shows the independently captured Terms date')
             }
-            if (!countryFresh) assert(card.includes('не подтверждает доступ сегодня'), 'old country evidence cannot imply current access')
+            // FundedNext is restricted (fundednext.com footer, 2026-10-20), so its stale copy says "unavailable" and asks for a recheck
+            // of the country terms; it never implied access. BrightFunded's stale copy must say old lists do not confirm access today.
+            if (!countryFresh) assert(firmSlug === 'fundednext'
+              ? card.includes('Недоступно для резидентов России') && card.includes('требуют новой проверки')
+              : card.includes('не подтверждает доступ сегодня'), 'old country evidence cannot imply current access')
           }
           const rows = getRussianFinderRows()
           const sizes = [...new Set(rows.flatMap(row => row.product.tiers.map(tier => tier.sizeUsd)))].sort((a, b) => a - b)
@@ -1685,9 +1783,12 @@ try {
           const expectedFirms = getAllFirms().filter(firm => {
             const firmSlug = firm.name.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').replace(/^brightfunded$/, 'bright-funded') /* keep slug after the BrightFunded rename (lib/firmSlug.ts) */
             const scoped = allProducts.filter(product => product.firmSlug === firmSlug)
-            return scoped.length > 0 && scoped.every(product => isChallengeFresh(product))
+            return isProductSetFresh(scoped) // same gate as the page: products with no listed fee cannot go stale
           })
           assert.equal((html.match(/data-ranked-firm=/g) ?? []).length, expectedFirms.length, 'consolidation retains all fresh directory firms, expiry removes stale rows')
+          const accessRows = Number(html.match(/data-russian-ranking-russia-access="(\d+)"/)?.[1])
+          assert.equal((html.match(/<tr data-russia-status=/g) ?? []).length, accessRows, 'Russia-access table renders one row per firm')
+          assert(String(pageModule.metadata.description).includes(`${accessRows} фирм`), 'search description firm count equals the Russia-access table rows')
           const rankingList = cryptoSchemas(html).find(item => item['@type'] === 'ItemList')
           assert.equal(rankingList?.numberOfItems, expectedFirms.length, 'Russian ranking schema matches the visible current directory')
           for (const [firmName, schemaName, firmSlug, reviewPath] of [
@@ -1787,8 +1888,11 @@ try {
         if (slug === 'luchshie-kripto-prop-firmy') {
           const expected = cryptoEvidence.ranked.filter(evidence => {
             const mapped = originalByFirm(evidence.firmSlug).filter(product => evidence.productSlugs.includes(product.productSlug))
+            // A priced tier is a USD cost or, when the firm publishes no USD fee, its own EUR fee (never converted).
+            const publishedFee = (product, tier) => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0
+              || (tier.priceUsd == null && (tier.priceEur ?? 0) > 0 && !((tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? product.activationFeeUsd ?? 0)))
             return isChallengeFresh(evidence) && mapped.length === evidence.productSlugs.length && mapped.every(product => isChallengeFresh(product)
-              && product.accountSizes.some(tier => (firmsModule.minimumCostToFundedUsd(product, tier) ?? 0) > 0))
+              && product.accountSizes.some(tier => publishedFee(product, tier)))
           })
           assert.deepEqual(cryptoCards(html), expected.map(evidence => evidence.firmSlug).sort(), `${date}: cards re-evaluate both independent source dates`)
           assert(html.includes(`data-russian-crypto-product-count="${expected.reduce((count, evidence) => count + evidence.productSlugs.length, 0)}"`), 'programme count follows the actual surviving mappings')
@@ -1807,10 +1911,16 @@ try {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
           assert.doesNotMatch(visible, /\bcheckout\b|\btier\b|\bCTA\b|\bgates?\b|\brails?\b|\bshortlist\b|\bsnapshot\b|\bsourceCapturedAt\b/iu, 'crypto guide uses reader-facing Russian')
           assert(html.includes('data-russian-crypto-cft-correction="2026-09-08"'), 'Dated CFT correction remains substantive after product expiry')
-          assert(!html.includes('data-russian-crypto-firm="crypto-fund-trader"'), 'A price correction does not automatically qualify CFT for crypto ranking')
+          // CFT is ranked only through its own market evidence entry (instruments, platform scope), never through a
+          // price correction: its card exists exactly when that entry and its mapped products are current, and the
+          // unresolved Ascend/Break products are never mapped.
+          const cftEvidence = cryptoEvidence.ranked.find(evidence => evidence.firmSlug === 'crypto-fund-trader')
+          assert.equal(html.includes('data-russian-crypto-firm="crypto-fund-trader"'), expected.includes(cftEvidence), 'CFT appears only while its own market evidence and mapped products are current')
+          assert(!cftEvidence || !cftEvidence.productSlugs.some(slug => ['ascend', 'break'].includes(slug)), 'unresolved Ascend/Break are never mapped into the crypto ranking')
           assert(html.includes('/blog/crypto-fund-trader-review'), 'Russian reader can reach the complete existing review')
           assert(html.includes('products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger'), 'Watch handoff uses the supported product-focus parameter')
-          assert(html.includes('Цены Ascend и Break по данным на 14.10.2026'), 'Resolved Ascend and Break prices carry the dated 14.10 capture')
+          assert(html.includes('Цены Break по данным на 14.10.2026'), 'Break prices carry the dated 14.10 capture')
+          assert(html.includes('data-russian-crypto-cft-ascend="not-purchasable"') && html.includes('Ascend сейчас не продаётся'), 'Ascend is shown as not purchasable')
         }
         if (slug === 'forex-prop-firmy') {
           const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
@@ -1868,13 +1978,13 @@ try {
           const needsCheck = instantSourceDates.some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
           assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck, 'rule, price and access age are independent of editorial date')
           assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck, 'dated archival answers do not remain current FAQ structured data')
-          for (const capturedAt of instantSourceDates) assert(visible.includes(capturedAt), 'actual source dates remain visible')
+          for (const capturedAt of instantSourceDates) assert(visible.includes(capturedAt) || visible.includes(formatRuDate(capturedAt)), `actual source date ${capturedAt} remains visible (ISO or DD.MM.YYYY)`)
           assert.equal((html.match(/data-russian-fundednext-instant-tier=/g) ?? []).length,
             isChallengeFresh(instantProduct) ? instantProduct.accountSizes.filter(tier => tier.priceUsd > 0).length : 0, 'expired prices are hidden independently from explanatory rules')
           assert(html.includes(getRussianInstantFinderHref().replace(/&/g, '&amp;')), 'instant guide carries a valid current comparison or safe fallback')
           assert(visible.includes(`не более ${instantEvidence.news.newsMllEquityBufferMaximumUses} раз на одном счёте`), 'news adjustment includes its per-account use limit')
           assert(visible.includes('карта, сохранённая в аккаунте') && visible.includes(instantEvidence.withdrawal.sourceCapturedAt), 'Instant card route stays conditional and independently dated')
-          assert(visible.includes(`ограничений от ${fundedNextAccessEvidence.sourceCapturedAt}`) && visible.includes('Общий снимок рынка от 2026-08-27 остаётся старым'), 'new access check does not relabel the broad market or imply Instant eligibility')
+          assert(visible.includes(`по проверке от ${fundedNextAccessEvidence.sourceCapturedAt}`) && visible.includes('Общий снимок рынка от 2026-08-27 остаётся старым'), 'new access check does not relabel the broad market or imply Instant eligibility')
           assert.equal(instantEvidence.news.newsMllEquityBufferMaximumUses, 3)
           assert.match(instantEvidence.news.maximumUsesEvidenceQuote, /maximum of 3 times/)
           assert.equal((html.match(/id="(?:answer|price|risk|payout|news|platform|holding|scale|reset|country|verdict|sources|faq)"/g) ?? []).length, 13, 'all established article anchors remain')
@@ -1921,13 +2031,13 @@ try {
   assert.deepEqual(errors, [])
   {
     const found = new Set([...russiaCtaSweep].flatMap(([route, entry]) => [...entry.issues.keys()].map(issue => `${route} :: ${issue}`)))
-    const unexpected = [...found].filter(item => !RUSSIA_CTA_PENDING_2026_10_21.has(item))
-    assert.deepEqual(unexpected, [], 'no new Russia-access badge or ranking issue on any /ru page')
-    const resolved = [...RUSSIA_CTA_PENDING_2026_10_21].filter(item => !found.has(item))
-    if (resolved.length) console.log(`Russia CTA sweep: ${resolved.length} pending item(s) now pass; remove them from RUSSIA_CTA_PENDING_2026_10_21:\n  ${resolved.join('\n  ')}`)
+    assert.deepEqual([...found].sort(), [], 'no Russia-access badge or ranking issue on any /ru page')
     const covered = [...russiaCtaSweep.values()].filter(entry => entry.ctaDates > 0).length
-    assert.equal(covered, pages.length, 'every /ru page in the sweep renders firm CTAs on at least one date')
-    console.log(`Russia CTA sweep: ${covered} /ru pages with firm CTAs checked; ${found.size} known issue(s) pending for 2026-10-21.`)
+    // Pages without sign-up CTAs by design: the commission-disclosure page and the closed-firms list.
+    const NO_CTA_PAGES = new Set(['kak-my-zarabatyvaem', 'zakrytye-prop-firmy'])
+    for (const slug of NO_CTA_PAGES) assert.equal(russiaCtaSweep.get(`/ru/${slug}`)?.ctaDates, 0, `/ru/${slug} stays free of /go/ sign-up CTAs`)
+    assert.equal(covered, pages.filter(slug => !NO_CTA_PAGES.has(slug)).length, 'every other /ru page in the sweep renders firm CTAs on at least one date')
+    console.log(`Russia CTA sweep: ${covered} /ru pages with firm CTAs checked; no badge or ranking issues.`)
   }
   console.log(`Russian expiry rendering passed: ${pages.length} pages plus the English homepage × ${dates.length} dates, covering source day-30/day-31 boundaries.`)
 } finally {

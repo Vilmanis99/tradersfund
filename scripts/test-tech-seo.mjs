@@ -39,7 +39,7 @@ assert(!/hasData[^\n]*robots|robots[^\n]*hasData/.test(read('app/compare/[matchu
 
 // 3. Yandex Metrica: env-driven, consent-gated, Russian pages only, Webvisor off by default.
 const provider = read('components/AnalyticsProvider.tsx')
-const layoutSources = ['app/layout.tsx', 'app/(en)/layout.tsx', 'app/ru/layout.tsx', 'components/SiteDocument.tsx']
+const layoutSources = ['app/layout.tsx', 'app/ru/layout.tsx', 'components/SiteDocument.tsx']
   .map(file => { try { return read(file) } catch { return '' } }).join('\n')
 assert(layoutSources.includes('process.env.NEXT_PUBLIC_YANDEX_METRICA_ID'), 'counter ID comes from the env')
 assert(provider.includes("consent === 'granted' && yandexMetricaActive && ("), 'tag.js renders only after consent')
@@ -47,4 +47,29 @@ assert(provider.includes("Boolean(yandexMetricaId) && pageLocale === 'ru'"), 'Me
 assert(provider.includes('yandexMetricaWebvisor = false'), 'Webvisor is off by default')
 assert(provider.includes('webvisor: yandexMetricaWebvisor'), 'Webvisor follows the explicit flag')
 
-console.log('Tech SEO guards passed: /ru lowercase redirects, compare robots unchanged, Yandex Metrica gate.')
+// 4. Server-rendered <html lang>: /ru and every English section have their own
+// root layout. A new top-level route without one fails the build; name it here.
+const fs = await import('node:fs')
+if (!fs.existsSync(path.join(root, 'app/layout.tsx'))) {
+  assert(read('components/SiteDocument.tsx').includes('<html lang={lang}'), 'the shared document renders the locale it is given')
+  assert(read('app/ru/layout.tsx').includes('<SiteDocument lang="ru">'), '/ru renders <html lang="ru"> on the server')
+  assert(read('components/EnglishRootLayout.tsx').includes('<SiteDocument lang="en">'), 'English sections render <html lang="en">')
+  const hasPage = dir => fs.readdirSync(dir, { withFileTypes: true }).some(entry =>
+    entry.isDirectory() ? hasPage(path.join(dir, entry.name)) : /^page\.(tsx|ts|jsx|js|mdx)$/.test(entry.name))
+  const missing = fs.readdirSync(path.join(root, 'app'), { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && hasPage(path.join(root, 'app', entry.name)))
+    .filter(entry => !fs.existsSync(path.join(root, 'app', entry.name, 'layout.tsx')))
+    .map(entry => `app/${entry.name}`)
+  assert.deepEqual(missing, [], `top-level route folders need a root layout.tsx (copy app/blog/layout.tsx): ${missing.join(', ')}`)
+  // title.template ("%s | TFH") only reaches child segments of the layout that
+  // defines it, so a page beside a root layout must use an absolute title or
+  // live in a child (index) group like app/blog/(index)/page.tsx.
+  const besideRootLayout = fs.readdirSync(path.join(root, 'app'), { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && fs.existsSync(path.join(root, 'app', entry.name, 'layout.tsx')))
+    .map(entry => path.join('app', entry.name, 'page.tsx'))
+    .filter(file => fs.existsSync(path.join(root, file)))
+    .filter(file => !/title:\s*\{\s*absolute:|permanentRedirect\(|redirect\(/.test(read(file)) && file !== path.join('app', '(home)', 'page.tsx'))
+  assert.deepEqual(besideRootLayout, [], `move these into an (index) group so titles keep the site suffix: ${besideRootLayout.join(', ')}`)
+}
+
+console.log('Tech SEO guards passed: /ru lowercase redirects, compare robots unchanged, Yandex Metrica gate, per-locale root layouts.')

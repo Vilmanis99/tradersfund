@@ -472,29 +472,29 @@
     {
       "firmSlug": "the5ers",
       "status": "restricted",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-10-21",
       "sourceUrls": [
         "https://the5ers.com/terms-and-conditions/"
       ],
       "sourceObservations": [
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited."
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea,"
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "(iv) do not reside in any Forbidden Territory;"
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "Payments sent from crypto exchanges or service providers established in Russia, or from platforms, exchanges, or payment agents listed under EU restrictive measures (including Annex XLV to Regulation (EU) No 833/2014, as amended from time to time), or any other sanctioned entities, cannot be processed and will be automatically placed on hold by the payment processor."
         }
       ],
@@ -502,28 +502,28 @@
         "russia": {
           "status": "restricted",
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
           "note": "Named in both Forbidden Territory lists; applies to residents or citizens. Separately, crypto payments from Russian-established exchanges/payment agents are held by the processor."
         },
         "belarus": {
           "status": "restricted",
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
           "note": "Named in both Forbidden Territory lists; residents or citizens."
         },
         "ukraine": {
           "status": "product-specific",
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea,",
           "note": "Only Crimea is named. Ukraine as a country and the Donetsk, Luhansk, Kherson and Zaporizhzhia regions are not named; the Sanctions Regime clause (OFAC/EU/UK) may still reach other occupied areas, which was not confirmed."
         },
         "kazakhstan": {
           "status": "not-named",
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-10-21",
           "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited.",
           "note": "Kazakhstan does not appear in either list or anywhere in the Terms (text search 2026-10-20). Not-named is not a positive availability statement; checkout/KYC not tested."
         }
@@ -531,7 +531,8 @@
       "notes": [
         "Terms page header: 'Last update – Oct. 12th 2026'; read 2026-10-20 ~11:30 Riga from a US IP. Raw: /workspace/tradersfundhub/evidence/the5ers-2026-10-20/terms-and-conditions.txt (box). Matches firms.json russiaStatus 'restricted'.",
         "Both lists say 'including but not limited to', and the Terms add that services are unavailable 'where prohibited by a Sanctions Regime or by Our policy as updated from time to time', so absence from the list is not a guarantee.",
-        "Operator per Terms: FIVE PERCENT ONLINE LTD, UK company number 12553363."
+        "Operator per Terms: FIVE PERCENT ONLINE LTD, UK company number 12553363.",
+        "2026-10-21 recheck (US IP): Terms page now shows 'Last update – Oct. 20th 2026'; every quote above is still present verbatim; 'Kazakhstan' and 'Ukrain' still do not occur anywhere in the Terms; Crimea, Belarus and Russia unchanged. The 'residents or citizens' disclaimer lists 30 names (no Bosnia and Herzegovina) while the Forbidden Territory definition lists 31."
       ]
     },
     {
@@ -849,7 +850,8 @@
         "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup",
         "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods"
       ],
-      "sourceCapturedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-10-20",
+      "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box, headless Chrome; plain curl gets 403): Master Account Setup re-read, every field unchanged. Quotes: \"KYC (Know Your Customer) is a mandatory step before a Master Account can be fully accessed\"; \"It is automated and usually takes a few minutes. Only one verified account is allowed per trader.\"; \"Four steps, in order: KYC, then In Review, then Customer Agreement, then Onboarding.\"; \"Two are handled by FundingPips: In Review and Onboarding, each up to 2 working days.\"; \"A clear selfie that matches the proof of identity document submitted.\" New on the page: \"Zero and the 1K Instant Giveaway skip In Review and get the Customer Agreement together with KYC, since both are instant Master Accounts.\" Reward Methods re-read the same day (Rise, $500 minimum).",
       "required": true,
       "trigger": "Before full access to the Master Account",
       "provider": "FundingPips, with separate provider verification for some reward methods",
@@ -860,6 +862,7 @@
       ],
       "additionalChecks": [
         "FundingPips permits only one verified identity and one account per trader.",
+        "FundingPips Zero and the 1K Instant Giveaway are instant Master Accounts: they skip In Review and receive the Customer Agreement together with KYC.",
         "Rise onboarding requires the same email used with FundingPips, a government-issued ID and a selfie."
       ],
       "timing": [

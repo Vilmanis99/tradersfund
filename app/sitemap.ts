@@ -336,6 +336,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       russianOldestChallengeLastModified('fundednext', 'fundingpips'),
     ],
     ['/ru/ftmo-vs-bright-funded', russianOldestChallengeLastModified('ftmo', 'bright-funded')],
+    ['/ru/ftmo-vs-fundednext', russianOldestChallengeLastModified('ftmo', 'fundednext')],
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],

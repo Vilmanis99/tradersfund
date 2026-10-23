@@ -7,8 +7,8 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": 199,
-        "activationFeeUsd": 59,
+        "priceUsd": null,
+        "activationFeeUsd": null,
         "maxLossUsd": 1000,
         "refundable": null
       },
@@ -56,12 +56,11 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-22",
     "notes": [
+      "EVALUATION LIST FEES shown 2026-10-22 (struck-through One Pack price, 25K/50K/100K/150K): $167 / $249 / $790 / $1,190. priceUsd is left null on purpose: this Standard path charges a separate one-time PA activation fee (help centre: \"complete the one-time PA activation fee\") and the 2026-10-22 card did not display its amount, so a cost-to-funded figure would be understated. Earlier $199 + $59 (25K Intraday, 2026-09-14) is superseded and removed.",
       "NEW PRODUCT ONLY: Apex states that products bought after March 1, 2026 use the new Intraday/EOD structure; earlier recurring products are Legacy and are not represented here.",
-      "ONE-TIME EVALUATION: the new product card says 'ONE-TIME Fee. No Rebill. Eval Active for 30 Days' and says there are no resets.",
-      "PARTIAL PRICE CAPTURE: only the 25K Intraday Standard list fee ($199) and current activation fee ($59) were exposed by the first-party product card. The $19.90 coupon price was tied to an affiliate-code URL and is disclosed but not used in True-Cost math. Prices for 50K, 100K and 150K remain null.",
-      "ACTIVATION-FEE CONFLICT: current first-party crawl variants showed $59 on the 25K card; older first-party variants showed $69. The current $59 value is recorded and must be rechecked before purchase.",
+      "ONE-TIME EVALUATION: the product card says \"ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS.\" and \"NO RESETS\" (re-read 2026-10-22).",
       "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000 on $25K / $50K / $100K / $150K. Each equals 6% of the headline balance.",
       "INTRADAY TRAILING DRAWDOWN follows the highest balance in real time, includes unrealized gains, and never moves down. Dollar caps are $1,000 / $2,000 / $3,000 / $4,000.",
       "NO EVALUATION DAILY LOSS LIMIT applies on Intraday products; the real-time trailing threshold is the evaluation risk control.",
@@ -76,8 +75,11 @@
       "INACTIVITY: each new Performance Account needs at least 2 trading days with $50 or more net profit inside every rolling 30-day window; otherwise the PA can close permanently.",
       "Performance Accounts are simulated. Apex may invite selected traders into a separate live program.",
       "The published account path supports Rithmic, Tradovate and WealthCharts; certain EUREX products are available only through Tradovate.",
-      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
+      "RECHECK 2026-10-22 (option (a), EA decision): prices shown on apextraderfunding.com, captured 22.10.2026. US-egress browser render of https://apextraderfunding.com/ product selector; one screenshot per type/size in /workspace/tradersfundhub/evidence/apex-2026-10-22/ (box only). Not checkout-verified.",
+      "Rules re-read 2026-10-22 on the selector cards (Min. Days To Pass 1; Max Contracts 4/6/8/12 mini; Profit Target $1,500/$3,000/$6,000/$9,000; Max Drawdown $1,000/$2,000/$3,000/$4,000; Reset Fee N/A) and via WebFetch on the help centre: intraday evaluations (dateModified 2026-04-28), EOD evaluations (2026-06-05), intraday payouts (2026-04-28), EOD payouts (2026-04-28), prohibited activities (2026-07-31), futures trading times (2026-04-20), No Activation Fee evaluations (2026-06-05). minTradingDays stays 0: the help centre says \"No minimum trading days required, may pass in one trading day\"; the card's \"Min. Days To Pass 1\" is the same one-day pass.",
+      "Card wording 2026-10-22: \"ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS.\"",
+      "TIME-LIMITED PROMO (not used in price math, not in deals.json): every card showed the struck-through list price and a coupon price of exactly 10% of it \"- (with Coupon Code)\" under the banner \"90% OFF ALL EVALS\" with code SAVENOW; the on-page countdown ended about 07:00 23.10.2026 Riga (page config 2026-10-20: expiration \"2026-10-22 23:59\"). Seen from a US IP only.",
+      "Capture provenance and per-field quotes: content/data/challenges/_captures/apex-trader-funding-2026-10-22.json"
     ]
   },
   {
@@ -140,9 +142,9 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-22",
     "notes": [
-      "EOD STANDARD uses the same post-March 1, 2026 one-time 30-day evaluation model, but current evaluation and activation prices remain null because the selected product cards could not be independently exposed.",
+      "EVALUATION LIST FEES shown 2026-10-22 (struck-through One Pack price, 25K/50K/100K/150K): $490 / $590 / $1,190 / $2,190. priceUsd is left null on purpose: this Standard path charges a separate one-time PA activation fee (help centre: \"complete the one-time PA activation fee\") and the 2026-10-22 card did not display its amount, so a cost-to-funded figure would be understated. Earlier $199 + $59 (25K Intraday, 2026-09-14) is superseded and removed.",
       "PROFIT TARGETS are $1,500 / $3,000 / $6,000 / $9,000, equal to 6% of $25K / $50K / $100K / $150K.",
       "EOD DRAWDOWN is calculated from the end-of-day balance at market close and then enforced intraday during the following session. Dollar caps are $1,000 / $2,000 / $3,000 / $4,000.",
       "EVALUATION DAILY LOSS LIMITS are $500 / $1,000 / $1,500 / $2,000. Reaching the DLL flattens positions and pauses trading for the session but does not fail the evaluation.",
@@ -153,8 +155,11 @@
       "EOD FIRST-REQUEST CAPS are $1,000 / $1,500 / $2,000 / $2,500. Each PA closes after 6 approved payouts.",
       "The 100% payout split, day-trading cutoff, restricted news rule, automation ban, same-user copy restriction and inactivity rule match the Intraday path.",
       "EOD Performance Accounts use tier-based contract and daily-loss scaling; the starting maximum contract counts are 2 / 4 / 6 / 10 across $25K / $50K / $100K / $150K.",
-      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
+      "RECHECK 2026-10-22 (option (a), EA decision): prices shown on apextraderfunding.com, captured 22.10.2026. US-egress browser render of https://apextraderfunding.com/ product selector; one screenshot per type/size in /workspace/tradersfundhub/evidence/apex-2026-10-22/ (box only). Not checkout-verified.",
+      "Rules re-read 2026-10-22 on the selector cards (Min. Days To Pass 1; Max Contracts 4/6/8/12 mini; Profit Target $1,500/$3,000/$6,000/$9,000; Max Drawdown $1,000/$2,000/$3,000/$4,000; Reset Fee N/A) and via WebFetch on the help centre: intraday evaluations (dateModified 2026-04-28), EOD evaluations (2026-06-05), intraday payouts (2026-04-28), EOD payouts (2026-04-28), prohibited activities (2026-07-31), futures trading times (2026-04-20), No Activation Fee evaluations (2026-06-05). minTradingDays stays 0: the help centre says \"No minimum trading days required, may pass in one trading day\"; the card's \"Min. Days To Pass 1\" is the same one-day pass.",
+      "Card wording 2026-10-22: \"ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS.\"",
+      "TIME-LIMITED PROMO (not used in price math, not in deals.json): every card showed the struck-through list price and a coupon price of exactly 10% of it \"- (with Coupon Code)\" under the banner \"90% OFF ALL EVALS\" with code SAVENOW; the on-page countdown ended about 07:00 23.10.2026 Riga (page config 2026-10-20: expiration \"2026-10-22 23:59\"). Seen from a US IP only.",
+      "Capture provenance and per-field quotes: content/data/challenges/_captures/apex-trader-funding-2026-10-22.json"
     ]
   },
   {
@@ -165,28 +170,28 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 690,
         "activationFeeUsd": 0,
         "maxLossUsd": 1000,
         "refundable": null
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 490,
         "activationFeeUsd": 0,
         "maxLossUsd": 2000,
         "refundable": null
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 590,
         "activationFeeUsd": 0,
         "maxLossUsd": 3000,
         "refundable": null
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 1890,
         "activationFeeUsd": 0,
         "maxLossUsd": 4000,
         "refundable": null
@@ -217,14 +222,18 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-22",
     "notes": [
+      "LIST PRICES 2026-10-22 (struck-through One Pack price, 25K/50K/100K/150K): $690 / $490 / $590 / $1,890; prices shown on apextraderfunding.com, captured 22.10.2026. Activation $0: help centre \"the total price to activate the PA is set at $0\" (No Activation Fee Evaluations, dateModified 2026-06-05).",
+      "PRICE ORDER ANOMALY (as displayed, not a transcription error): 25K $690 is above 50K $490 and 100K $590. The coupon prices on the same cards ($69 / $49 / $59) and Apex's embedded product data read on 2026-10-20 show the same order. Recheck before quoting the 25K as the entry route.",
       "NO ACTIVATION FEE: Apex states that this path follows the same rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
-      "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
       "The 6% profit targets, $1,000 / $2,000 / $3,000 / $4,000 intraday trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match Intraday Standard.",
       "The no-evaluation-DLL rule, 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match Intraday Standard.",
-      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
+      "RECHECK 2026-10-22 (option (a), EA decision): prices shown on apextraderfunding.com, captured 22.10.2026. US-egress browser render of https://apextraderfunding.com/ product selector; one screenshot per type/size in /workspace/tradersfundhub/evidence/apex-2026-10-22/ (box only). Not checkout-verified.",
+      "Rules re-read 2026-10-22 on the selector cards (Min. Days To Pass 1; Max Contracts 4/6/8/12 mini; Profit Target $1,500/$3,000/$6,000/$9,000; Max Drawdown $1,000/$2,000/$3,000/$4,000; Reset Fee N/A) and via WebFetch on the help centre: intraday evaluations (dateModified 2026-04-28), EOD evaluations (2026-06-05), intraday payouts (2026-04-28), EOD payouts (2026-04-28), prohibited activities (2026-07-31), futures trading times (2026-04-20), No Activation Fee evaluations (2026-06-05). minTradingDays stays 0: the help centre says \"No minimum trading days required, may pass in one trading day\"; the card's \"Min. Days To Pass 1\" is the same one-day pass.",
+      "Card wording 2026-10-22: \"ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS.\"",
+      "TIME-LIMITED PROMO (not used in price math, not in deals.json): every card showed the struck-through list price and a coupon price of exactly 10% of it \"- (with Coupon Code)\" under the banner \"90% OFF ALL EVALS\" with code SAVENOW; the on-page countdown ended about 07:00 23.10.2026 Riga (page config 2026-10-20: expiration \"2026-10-22 23:59\"). Seen from a US IP only.",
+      "Capture provenance and per-field quotes: content/data/challenges/_captures/apex-trader-funding-2026-10-22.json"
     ]
   },
   {
@@ -235,7 +244,7 @@
     "accountSizes": [
       {
         "sizeUsd": 25000,
-        "priceUsd": null,
+        "priceUsd": 1090,
         "activationFeeUsd": 0,
         "dailyLossUsd": 500,
         "maxLossUsd": 1000,
@@ -243,7 +252,7 @@
       },
       {
         "sizeUsd": 50000,
-        "priceUsd": null,
+        "priceUsd": 1190,
         "activationFeeUsd": 0,
         "dailyLossUsd": 1000,
         "maxLossUsd": 2000,
@@ -251,7 +260,7 @@
       },
       {
         "sizeUsd": 100000,
-        "priceUsd": null,
+        "priceUsd": 1590,
         "activationFeeUsd": 0,
         "dailyLossUsd": 1500,
         "maxLossUsd": 3000,
@@ -259,7 +268,7 @@
       },
       {
         "sizeUsd": 150000,
-        "priceUsd": null,
+        "priceUsd": 2490,
         "activationFeeUsd": 0,
         "dailyLossUsd": 2000,
         "maxLossUsd": 4000,
@@ -291,14 +300,17 @@
     "pricingModel": "one-off",
     "assetClass": "futures",
     "sourceUrl": "https://apextraderfunding.com/",
-    "sourceCapturedAt": "2026-09-14",
+    "sourceCapturedAt": "2026-10-22",
     "notes": [
+      "LIST PRICES 2026-10-22 (struck-through One Pack price, 25K/50K/100K/150K): $1,090 / $1,190 / $1,590 / $2,490; prices shown on apextraderfunding.com, captured 22.10.2026. Activation $0: help centre \"the total price to activate the PA is set at $0\" (No Activation Fee Evaluations, dateModified 2026-06-05).",
       "NO ACTIVATION FEE: Apex states that this path follows the same EOD rules, drawdown, 30-day access and qualification process as Standard, but the PA activation price is $0.",
-      "EVALUATION PRICES for all 4 sizes remain null because the dynamic first-party cards could not be independently exposed. No competitor price was copied.",
       "The 6% profit targets, $500 / $1,000 / $1,500 / $2,000 evaluation DLLs, $1,000 / $2,000 / $3,000 / $4,000 EOD trailing caps, one-day pass, 50% funded payout-consistency rule, 5 qualifying payout days, $500 minimum request, 100% split and 6-payout PA lifecycle match EOD Standard.",
       "The 4:59 PM ET flattening deadline, restricted news rule, automation ban, same-user copy restriction and 2-days-at-$50 inactivity rule also match EOD Standard.",
-      "The current 2026-09-14 Intraday/EOD evaluation pages explicitly say no minimum trading days are required; one-day passage is possible when the target and rules are met.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/apex-trader-funding-2026-09-14.json"
+      "RECHECK 2026-10-22 (option (a), EA decision): prices shown on apextraderfunding.com, captured 22.10.2026. US-egress browser render of https://apextraderfunding.com/ product selector; one screenshot per type/size in /workspace/tradersfundhub/evidence/apex-2026-10-22/ (box only). Not checkout-verified.",
+      "Rules re-read 2026-10-22 on the selector cards (Min. Days To Pass 1; Max Contracts 4/6/8/12 mini; Profit Target $1,500/$3,000/$6,000/$9,000; Max Drawdown $1,000/$2,000/$3,000/$4,000; Reset Fee N/A) and via WebFetch on the help centre: intraday evaluations (dateModified 2026-04-28), EOD evaluations (2026-06-05), intraday payouts (2026-04-28), EOD payouts (2026-04-28), prohibited activities (2026-07-31), futures trading times (2026-04-20), No Activation Fee evaluations (2026-06-05). minTradingDays stays 0: the help centre says \"No minimum trading days required, may pass in one trading day\"; the card's \"Min. Days To Pass 1\" is the same one-day pass.",
+      "Card wording 2026-10-22: \"ONE-TIME FEE. NO REBILL. EVAL ACTIVE FOR 30 DAYS. WILL EXPIRE AFTER 30 DAYS. NO RESETS.\"",
+      "TIME-LIMITED PROMO (not used in price math, not in deals.json): every card showed the struck-through list price and a coupon price of exactly 10% of it \"- (with Coupon Code)\" under the banner \"90% OFF ALL EVALS\" with code SAVENOW; the on-page countdown ended about 07:00 23.10.2026 Riga (page config 2026-10-20: expiration \"2026-10-22 23:59\"). Seen from a US IP only.",
+      "Capture provenance and per-field quotes: content/data/challenges/_captures/apex-trader-funding-2026-10-22.json"
     ]
   }
 ]

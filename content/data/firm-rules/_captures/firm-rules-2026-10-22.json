@@ -1,0 +1,49 @@
+{
+  "capturedAt": "2026-10-22",
+  "accessNotes": "FundedNext news-trading help articles re-read 2026-10-22 via WebFetch. 10701447 dated September 8, 2026 (schema dateModified 2026-09-08T09:18:37Z); 11641410 dated February 24, 2026. Added because Dev dropped the '40% news credit' overlay claim for lack of a source quote in firms.json.",
+  "pagesRead": [
+    "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+    "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts"
+  ],
+  "firms": {
+    "fundednext": {
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "note": "News trading is allowed in Challenge and funded accounts. On funded Stellar 1-Step, 2-Step and Lite accounts (and on Stellar Instant), only 40% of the profit from trades executed 5 minutes before to 5 minutes after a listed high-impact news event on a correlated symbol is counted; losses stay in full. Challenge accounts are not subject to the rule. Source pages dated 2026-09-08 (10701447) and 2026-02-24 (11641410), read 2026-10-22.",
+        "byProduct": {
+          "stellar-2-step": "restricted",
+          "stellar-1-step": "restricted",
+          "stellar-lite": "restricted",
+          "stellar-instant": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Time Window: Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window) will be subject to the News Reward Share Rule."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Profit Calculation: 40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Challenge Accounts are not subject to this rule."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+            "quote": "Only 40% of the profit from trades placed during this window will be counted toward your account’s profit."
+          }
+        ]
+      }
+    }
+  }
+}

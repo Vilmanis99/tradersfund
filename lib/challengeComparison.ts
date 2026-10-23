@@ -1,5 +1,6 @@
 import type { ChallengeProfitTargets, ChallengeRules, DrawdownType, PayoutFrequency } from './firms'
 import type { ChallengeProductSignal } from './challengeWatch'
+import type { RussiaStatus } from './russiaStatus'
 
 /** Serializable, shared view model. No filesystem or live firm lookups in clients. */
 export interface GlobalChallengeTier {
@@ -17,7 +18,8 @@ export interface GlobalChallengeTier {
 }
 
 export interface GlobalChallengeRow {
-  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number }
+  /** russiaStatus: set server-side for /ru finder rows (russiaStatusFor), so client finders need no firm data. */
+  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus }
   product: {
     name: string
     slug: string

@@ -5,12 +5,12 @@
       "firmSlug": "ftmo",
       "firmName": "FTMO",
       "accessStatus": "policy-supported",
-      "productSlugs": ["ftmo-challenge-2-step", "ftmo-challenge-1-step"],
+      "productSlugs": ["ftmo-challenge-2-step", "ftmo-challenge-1-step", "ftmo-instant-account"],
       "sourceUrl": "https://ftmo.com/en/faq/who-can-join-ftmo/",
       "sourceCapturedAt": "2026-10-14",
       "evidenceLabel": "Global eligibility policy",
       "evidenceSummary": "FTMO says it accepts clients globally apart from named country, sanctions, conduct, age, and entity exceptions; the United Kingdom is not among the named country exclusions.",
-      "decisionNote": "Both current FTMO products are mapped. Recheck residency, nationality, sanctions screening, identity documents, platform availability, and the EUR checkout before paying."
+      "decisionNote": "All 3 current FTMO products (2-Step, 1-Step and Instant Account) are mapped; the eligibility policy is firm-wide, not product-specific. Recheck residency, nationality, sanctions screening, identity documents, platform availability, and the EUR checkout before paying."
     },
     {
       "firmSlug": "fundednext",

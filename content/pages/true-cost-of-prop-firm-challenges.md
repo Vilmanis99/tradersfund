@@ -68,7 +68,7 @@ type: "page"
 
 <p>Recurring products need elapsed time in the cost basis. Topstep Standard Path at $100K is $99 per month plus a $149 activation after passing. The 1-month floor is $248 and its 90% fee-recovery profit is $275.56. Passing after 2 paid months raises cost to $347 and fee-recovery profit to $385.56. The static calculator intentionally shows the 1-month floor; it cannot predict the user’s paid billing cycles.</p>
 
-<p>Do not turn a published pass-rate percentage into an “average attempts” estimate by taking its reciprocal. Topstep’s 2025 initiation and participant statistics do not provide a cohort-level retry distribution, independence assumption, or the spend per successful participant required for that calculation.</p>
+<p>Do not turn a published pass-rate percentage into an “average attempts” estimate by taking its reciprocal. Topstep’s 2025 initiation and participant statistics do not provide a cohort-level retry distribution, independence assumption, or the spend per successful participant required for that calculation. Tradeify’s disclosure shows the same gap: 17.2% of its evaluation accounts passed between August 2025 and July 2026, while 40.3% of participants passed at least once, after a median of 3 evaluations each (see our <a href="/blog/prop-firm-statistics">prop firm statistics</a>).</p>
 
 <h2>What the cost / loss-room ratio does—and does not—say</h2>
 

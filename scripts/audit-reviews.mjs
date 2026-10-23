@@ -37,6 +37,7 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import { hasNoListedPrice } from '../lib/reviewFreshness.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import { isSourceHoldFirm } from '../lib/reviewStatus.ts'
 import {
@@ -104,7 +105,7 @@ function sourceHasToken(source, token) {
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const POSTS = path.join(ROOT, 'content/posts')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
-const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/page.tsx')
+const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/(index)/page.tsx')
 const GLOBAL_LEGACY_DIRECTORY_FILE = path.join(ROOT, 'app/main-table/page.tsx')
 const GLOBAL_DIRECTORY_COMPONENT_FILE = path.join(ROOT, 'components/FirmTable.tsx')
 const GLOBAL_CHALLENGE_PAGE_FILE = path.join(ROOT, 'app/prop-firm-challenges/page.tsx')
@@ -187,7 +188,7 @@ const INDIA_MATCHUP_SLUGS = [
 const AFFILIATE_REDIRECT_ROUTE_FILE = path.join(ROOT, 'app/go/[firm]/route.ts')
 const ANALYTICS_PROVIDER_FILE = path.join(ROOT, 'components/AnalyticsProvider.tsx')
 const INDIA_MATCHER_COMPONENT_FILE = path.join(ROOT, 'components/IndiaFirmMatcher.tsx')
-const ROOT_LAYOUT_FILE = path.join(ROOT, 'app/layout.tsx')
+const ROOT_LAYOUT_FILE = path.join(ROOT, 'components/SiteDocument.tsx')
 const BLOG_POST_PAGE_FILE = path.join(ROOT, 'app/blog/[slug]/page.tsx')
 const TRADING_TOOL_REVIEW_COMPONENT_FILE = path.join(
   ROOT,
@@ -268,7 +269,7 @@ const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
 const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
 const DISCOUNT_HUB_PAGE_FILE = path.join(
   ROOT,
-  'app/prop-firm-discount-codes/page.tsx',
+  'app/prop-firm-discount-codes/(index)/page.tsx',
 )
 const DEALS_DATA_FILE = path.join(ROOT, 'content/data/deals.json')
 const DEALS_LIBRARY_FILE = path.join(ROOT, 'lib/deals.ts')
@@ -294,10 +295,10 @@ const RELEASE_CRAWL_FILE = path.join(ROOT, 'scripts/release-crawl.mjs')
 const MDX_FILE = path.join(ROOT, 'lib/mdx.ts')
 const RETIRED_CONTENT_FILE = path.join(ROOT, 'lib/retiredContent.ts')
 const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
-const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/page.tsx')
+const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/(index)/page.tsx')
 const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
-const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
+const HOMEPAGE_FILE = path.join(ROOT, 'app/(home)/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
 const COMPARISON_VERDICT_FILE = path.join(ROOT, 'components/ComparisonVerdict.tsx')
 const RELATED_COMPARISONS_FILE = path.join(ROOT, 'components/RelatedComparisons.tsx')
@@ -494,7 +495,7 @@ function loadChallenges(firmSlug) {
   return JSON.parse(fs.readFileSync(file, 'utf-8'))
 }
 
-function checkSourceFreshness(challenges, errors, warnings, allowStale = false) {
+function checkSourceFreshness(challenges, errors, warnings, allowStale = false, { exemptNoListedPrice = false } = {}) {
   const seen = new Map()
   const badUrls = new Set()
   for (const c of challenges) {
@@ -513,6 +514,9 @@ function checkSourceFreshness(challenges, errors, warnings, allowStale = false) 
       errors.push(`challenge "${c.productName}" has no sourceCapturedAt`)
       continue
     }
+    // Same exemption as the rendered surface (lib/reviewFreshness.ts): a product
+    // with no listed price at all (not on sale) shows no price that can go stale.
+    if (exemptNoListedPrice && hasNoListedPrice(c)) continue
     const age = Math.floor((TODAY - new Date(c.sourceCapturedAt)) / 86400000)
     if (age > STALE_DAYS && !seen.has(c.sourceCapturedAt)) {
       seen.set(c.sourceCapturedAt, true)
@@ -1268,7 +1272,7 @@ function checkTrustAndCommercialSurface() {
     rows.push('footer contains placeholder social links')
   }
 
-  const home = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf-8')
+  const home = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf-8')
   for (const phrase of ['best for beginners', 'lowest-risk', 'standing 10%']) {
     if (home.toLowerCase().includes(phrase)) {
       rows.push(`homepage contains unsupported promotional phrase: ${phrase}`)
@@ -1746,7 +1750,7 @@ function checkGlobalDirectorySurface() {
   const rows = []
 
   if (!fs.existsSync(GLOBAL_DIRECTORY_PAGE_FILE)) {
-    rows.push('app/prop-firms/page.tsx is missing')
+    rows.push('app/prop-firms/(index)/page.tsx is missing')
   } else {
     const page = fs.readFileSync(GLOBAL_DIRECTORY_PAGE_FILE, 'utf-8')
     const requiredTokens = [
@@ -2120,7 +2124,7 @@ function checkGlobalChallengeSurface() {
   const changeLedgerInternalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/prop-firm-challenges/page.tsx', 'global challenge page'],
     [
       'app/best-prop-firms-in-india/challenge-comparison/page.tsx',
@@ -2156,7 +2160,7 @@ function checkGlobalChallengeSurface() {
   const internalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/sitemap.ts', 'sitemap'],
     ['app/llms.txt/route.ts', 'llms.txt'],
   ]
@@ -2725,7 +2729,9 @@ function checkIndiaEvidence() {
       }
 
       const freshnessErrors = []
-      checkSourceFreshness(challenges, freshnessErrors)
+      // /best-prop-firms-in-india lists not-on-sale products (lib/indiaMatcher.ts:
+      // isChallengeFresh || hasNoListedPrice), so the audit applies the same exemption.
+      checkSourceFreshness(challenges, freshnessErrors, [], false, { exemptNoListedPrice: true })
       for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
     }
   }
@@ -2803,6 +2809,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/luchshie-prop-firmy', 'russian_ranking'],
     ['/ru/fundednext-vs-bright-funded', 'russian_comparison'],
     ['/ru/fundednext-vs-fundingpips/', 'russian_comparison'],
+    ['/ru/ftmo-vs-fundednext', 'russian_comparison'],
     ['/ru/prop-firmy-s-ctrader', 'russian_comparison'],
     ['/ru/fundingpips-vs-bright-funded', 'russian_comparison'],
     ['/ru/promokody-prop-firm', 'russian_deals'],
@@ -3604,11 +3611,12 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 19',
-      'SOCIAL_CARD_FIRM_COUNT = 7',
-      'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 9',
-      'SOCIAL_CARD_WATCH_COUNT = 10',
+      // Values come from npm run gen:share-cards, which also redraws the card; the page throws on drift.
+      'const SOCIAL_CARD_ENTRY_COUNT = ',
+      'const SOCIAL_CARD_FIRM_COUNT = ',
+      'const SOCIAL_CARD_PRODUCT_COUNT = ',
+      'const SOCIAL_CARD_VERIFIED_COUNT = ',
+      'const SOCIAL_CARD_WATCH_COUNT = ',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -6174,9 +6182,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  if (entries.length !== 8 || mappedProducts.size !== 39) {
+  // 44 = every structured product of the 8 UK firms after FTMO Instant Account (2026-10-21).
+  if (entries.length !== 8 || mappedProducts.size !== 44) {
     rows.push(
-      `UK fixture expects 8 firms and 39 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+      `UK fixture expects 8 firms and 44 mapped products; received ${entries.length} and ${mappedProducts.size}`,
     )
   }
 
@@ -6232,9 +6241,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
+  // Lengths checked at the fixture's upper bound (every evidence entry current).
+  const expectedTitle = `Best Prop Firms UK 2026: ${entries.length} That Accept UK Traders`
   const expectedDescription =
-    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
+    `Prop firms that accept UK traders in 2026: ${entries.length} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -6260,7 +6270,7 @@ function checkUkLandingCluster() {
     }
   }
 
-  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/page.tsx'))
+  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -6477,14 +6487,14 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
+      `Prop firms that accept US traders in 2026: ${expected.size} firms with first-party evidence for ${expectedProductCount} US-resident products, mostly futures, plus CFTC and NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
       'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
-      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
-      'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
+      'metaTitle: `Best Prop Firms for US Traders 2026: ${CURRENT_US_FIRM_COUNT} Firms Checked`',
+      'CURRENT_US_PRODUCT_COUNT} US-resident products, mostly futures',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
       'U.S.-mapped ${products.length === 1',
@@ -6572,7 +6582,7 @@ function checkUsLandingConsolidation() {
     }
   }
 
-  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/page.tsx'))
+  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -7003,7 +7013,9 @@ function checkFuturesLandingCluster() {
     'expectedFuturesFirms',
     'expectedFuturesProductCount',
     "challenge.assetClass === 'futures'",
-    '7 firms and 26 products',
+    'renderedFuturesNames',
+    'renderedFuturesProductCount',
+    'no fresh futures products in the data',
     'Products ${products.length}',
     'missing contextual futures-ranking backlink',
     "'/prop-firm-challenges?market=futures'",
@@ -7125,10 +7137,66 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
+  // Derived pin (same pattern as the futures cluster): the expected ranked / watch / mapped-product counts come
+  // from crypto-market-evidence.json, not literals. What stays asserted: the ranking is non-empty, every mapping
+  // is unique (so the mapped count equals the evidence's productSlugs total), every ranked product is fresh
+  // (validated above), and both rendered pages are held to these same derived counts by the release crawl
+  // (EN card count + per-card product labels; RU product/watch data attributes).
+  const derivedCryptoRanked = ranked.length
+  const derivedCryptoWatch = watch.length
+  const derivedCryptoMapped = ranked.reduce(
+    (total, entry) => total + (Array.isArray(entry.productSlugs) ? entry.productSlugs.length : 0),
+    0,
+  )
+  if (derivedCryptoRanked === 0 || derivedCryptoMapped === 0) {
     rows.push(
-      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms and ${derivedCryptoMapped} mapped products; the ranking cannot be empty`,
     )
+  }
+  if (mappedProducts.size !== derivedCryptoMapped) {
+    rows.push(
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms, ${derivedCryptoWatch} watch firms and ${derivedCryptoMapped} mapped products; ${mappedProducts.size} unique mappings resolved`,
+    )
+  }
+  const cryptoCountSafeguards = [
+    [read(RELEASE_CRAWL_FILE), 'release crawl', [
+      'rendered ${cards.length} firms, expected ${expectedCryptoFirms.length}',
+      'expectedCryptoFirms.length !== cryptoMarketEvidence.ranked.length',
+      'expectedCryptoProductCount !== expectedCryptoMappedProductCount',
+      '`${products.length} crypto-mapped ${products.length === 1 ? \'product\' : \'products\'}`',
+      'data-russian-crypto-product-count="${cryptoMarketEvidence.ranked.reduce((total, evidence) => total + evidence.productSlugs.length, 0)}"',
+      'data-russian-crypto-watch-count="${cryptoMarketEvidence.watch.length}"',
+      'for (const watch of cryptoMarketEvidence.watch)',
+    ]],
+    [read(LANDINGS_CONFIG_FILE), 'EN crypto landing config', [
+      'const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(',
+      'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
+    ]],
+    [read(path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')), 'RU crypto page', [
+      'data-russian-crypto-product-count={productCount}',
+      'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
+    ]],
+  ]
+  for (const [source, label, fragments] of cryptoCountSafeguards) {
+    for (const fragment of fragments) {
+      if (!source.includes(fragment)) {
+        rows.push(`${label} no longer holds the rendered crypto counts to the derived evidence counts: "${fragment}"`)
+      }
+    }
+  }
+  // The EN FAQ "Which crypto pairs can I trade?" says all five FundingPips product pages list BTCUSD and ETHUSD;
+  // hold that sentence to the per-product sources in crypto-market-evidence.json.
+  if (read(LANDINGS_CONFIG_FILE).includes('all five FundingPips product pages list BTCUSD and ETHUSD')) {
+    const fundingPips = ranked.find(entry => entry.firmSlug === 'fundingpips')
+    const productSources = fundingPips?.btcEthEvidence?.productSources ?? []
+    const citing = (fundingPips?.productSlugs ?? []).filter(productSlug => productSources.some(source =>
+      source.productSlug === productSlug
+      && /BTCUSD/.test(source.sourceQuote ?? '')
+      && /ETHUSD/.test(source.sourceQuote ?? '')
+      && isFreshDate(source.sourceCapturedAt)))
+    if (fundingPips?.productSlugs?.length !== 5 || citing.length !== 5) {
+      rows.push(`crypto FAQ claims all five FundingPips product pages list BTCUSD and ETHUSD; evidence maps ${fundingPips?.productSlugs?.length ?? 0} products and ${citing.length} fresh product sources cite both`)
+    }
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
     rows.push('crypto evidence methodology must separate tradable markets from payment and payout rails')
@@ -7142,7 +7210,7 @@ function checkCryptoLandingCluster() {
     rows.push('best-crypto-prop-firms landing config is missing')
   } else {
     for (const fragment of [
-      "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      "} from '@/lib/cryptoMarketEvidence'",
       'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
       'return products.length === productSlugs.length ? products : []',
       'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',
@@ -7783,7 +7851,7 @@ function checkInstantFundingCluster() {
       'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
       'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`',
-      'metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`',
+      'metaTitle: `Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} With No Challenge`',
       'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',
@@ -9665,8 +9733,9 @@ function checkScalingPlanGuide() {
     {
       slug: 'ftmo',
       name: 'FTMO',
-      splitFragments: ['80%', '2-Step', '90%', '1-Step'],
-      countFragments: [[80, 1], [90, 1]],
+      // FTMO Instant Account (captured 2026-10-21) is the second product at 90%.
+      splitFragments: ['80%', '2-Step', '90%', '1-Step', 'Instant Account'],
+      countFragments: [[80, 1], [90, 2]],
       nullCount: 0,
     },
     {
@@ -9834,7 +9903,8 @@ function checkFundedNextComparisonOverlay() {
     }
 
     const expectedFragments = [
-      `${ftmo.length} evaluation products`,
+      // Instant Account (phases 0) is not an evaluation product; the overlay counts evaluations only.
+      `${ftmo.filter(challenge => challenge.phases > 0).length} evaluation products`,
       `${fundedNext.length} product paths`,
       `${ftmoOneStep.profitSplitPct}%`,
       `${stellarInstant.profitSplitPct}%`,
@@ -9873,7 +9943,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
-      reviewedAt: '2026-10-20',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9882,10 +9952,10 @@ function checkFundedNextComparisonOverlay() {
         '5 models',
         '$399.99',
         '$422',
-        '5 days',
+        '5 business days',
         '7 days',
         '12% static',
-        '100% on demand',
+        'On Demand 100%',
         '95% on Zero',
         'fourth reward',
       ],
@@ -9903,20 +9973,21 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fxify',
       nextSlug: 'fundingpips-vs-fxify',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
-        '12 captured products',
+        '14 captured products',
         '4 paths',
-        '8 products',
+        '10 captured products',
+        'pre-approval',
         '$399.99',
         '$399',
-        '5 days',
+        '5 business days',
         '7 days',
         '80%',
         '70%',
         'up to 90%',
-        '40%',
         'DXTrade',
         'TradingView',
       ],
@@ -11158,6 +11229,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/fundednext-vs-bright-funded', path.join(ROOT, 'app/ru/fundednext-vs-bright-funded/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
     ['/ru/fundingpips-vs-bright-funded', path.join(ROOT, 'app/ru/fundingpips-vs-bright-funded/page.tsx')],
+    ['/ru/ftmo-vs-fundednext', path.join(ROOT, 'app/ru/ftmo-vs-fundednext/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
     ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-kyc', path.join(ROOT, 'app/ru/prop-firmy-bez-kyc/page.tsx')],
@@ -12168,6 +12240,8 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' }",
     "{ en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' }",
     "{ en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' }",
+    "{ en: '/compare/bright-funded-vs-fundingpips', ru: '/ru/fundingpips-vs-bright-funded' }",
+    "{ en: '/compare/bright-funded-vs-ftmo', ru: '/ru/ftmo-vs-bright-funded' }",
     "{ en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' }",
     "{ en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
@@ -12446,7 +12520,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(fundedNextInstantEvidenceFile, 'utf8')
     : ''
   for (const token of [
-    '"capturedAt": "2026-08-29"',
+    '"capturedAt": "2026-10-20"',
     'https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost',
     'https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts',
     'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts',
@@ -13308,8 +13382,13 @@ function checkRussianAcquisitionPilot() {
     })
   const currentFtmoPriceCount = currentFtmoProducts.reduce((sum, product) => sum
     + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
-  if (currentFtmoProducts.length !== 2 || currentFtmoPriceCount !== 10) {
-    rows.push(`Russian FTMO fixture expects 2 products and 10 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  // FTMO Instant Account (2026-10-21, 5 EUR tiers) joins 2-Step and 1-Step. The page renders every fresh product's
+  // EUR table, so its price-count heading must come from pricedTiers rather than a literal.
+  if (currentFtmoProducts.length !== 3 || currentFtmoPriceCount !== 15) {
+    rows.push(`Russian FTMO fixture expects 3 products and 15 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  }
+  if (!ftmoRussianPage.includes('Все {pricedTiers.length} цен FTMO') || /Все \d+ цен FTMO/.test(ftmoRussianPage)) {
+    rows.push('Russian FTMO price heading must count pricedTiers, not a fixed number')
   }
   if (!fs.existsSync(path.join(CHALLENGES, '_captures', 'ftmo-2026-08-28.json'))) {
     rows.push('Russian FTMO review is missing its 2026-08-28 first-party capture provenance')

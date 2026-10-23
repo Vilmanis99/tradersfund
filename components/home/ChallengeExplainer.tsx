@@ -234,8 +234,16 @@ export default function ChallengeExplainer(props: ExplainerProps) {
                 ? `${facts.picker.firms.length} ${ruPlural(facts.picker.firms.length, 'фирма', 'фирмы', 'фирм')} с актуальными источниками. Пара открывает сравнение условий бок о бок${Object.values(facts.picker.pairHrefs).some(href => href.startsWith('/ru/')) ? ' — на русском, где страница есть' : ''}.`
                 : `${facts.picker.firms.length} firms with current sources. Each pair opens its side-by-side rules page.`}</p>
               <FirmPairPicker locale={locale} firms={facts.picker.firms} pairHrefs={facts.picker.pairHrefs} fallbackHref={props.pickerFallbackHref} initial={props.pickerInitial} />
+              {/* Crawlable link to the same destination as the picker's no-JS fallback (the form action is not a link). */}
+              <p className="uc-panel__more"><Link href={props.pickerFallbackHref}>{ru ? 'Открыть подбор и рейтинг →' : 'See all comparisons →'}</Link></p>
             </div>
-          ) : null}
+          ) : (
+            // No pair with current sources: keep the comparison entry point as a plain link.
+            <div className="uc-panel" data-home-compare-picker={`${locale}-link-only`}>
+              <h3 className="uc-panel__title"><GitCompareArrows size={18} aria-hidden="true" /> {ru ? 'Сравнить две фирмы' : 'Compare two firms'}</h3>
+              <p className="uc-panel__more"><Link href={props.pickerFallbackHref}>{ru ? 'Открыть подбор и рейтинг →' : 'See all comparisons →'}</Link></p>
+            </div>
+          )}
           {notes.length ? (
             <div className="uc-panel" data-home-rule-notes={notes.length}>
               <h3 className="uc-panel__title"><History size={18} aria-hidden="true" /> {ru ? 'Последние заметки о правилах' : 'Recent rule notes'}</h3>

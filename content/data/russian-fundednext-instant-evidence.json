@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-08-29",
+  "capturedAt": "2026-10-20",
+  "recheckNote": "Prop Firm Tracker full rules recheck 2026-10-20 (US-IP box, curl of 16 live help.fundednext.com articles); all stored values unchanged. Quotes: 11641161 \"$2,000 Account $59.99 10% higher\" and \"No recurring or monthly fees are applied.\"; 11641163 \"There are no Daily Loss Limits in Stellar Instant Accounts. However, there is a Maximum Loss Limit of 6%, which follows the trailing loss limit method.\"; 11641410 \"Only 40% of the profit from trades placed during this window will be counted\" and \"This 1% buffer, the trader will get a maximum of 3 times in one single account.\"; 11641400 \"You can hold up to $20,000 in total allocation at any time in Stellar Instant.\"; 11641516 \"Tier 1–2: 70% Tier 3 and onward: 80% (capped)\"; 11641693 \"If your growth is less than 5% but at least 1% , you can withdraw Rewards 14 days after your cycle’s start date.\"; 11641226 table still shows \"$2000 $59.99 $56.99\"; 11641369 now also lists \"Stock CFDs : 1:2\". The withdrawal block keeps its own 2026-10-01 date (quote re-read unchanged on 2026-10-20; the article also names TC Pay for traders from Iran only). Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only).",
   "firmSlug": "fundednext",
   "productSlug": "stellar-instant",
   "pricing": {
@@ -50,7 +51,8 @@
     "forex": "1:30",
     "commodities": "1:7.5",
     "indices": "1:5",
-    "crypto": "1:1"
+    "crypto": "1:1",
+    "stocks": "1:2"
   },
   "holding": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641232-are-there-restrictions-for-overnight-or-weekend-trading-in-the-stellar-instant-account",
@@ -66,7 +68,7 @@
   },
   "news": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
-    "sourceCapturedAt": "2026-09-08",
+    "sourceCapturedAt": "2026-10-20",
     "windowMinutesBefore": 5,
     "windowMinutesAfter": 5,
     "countedProfitPct": 40,

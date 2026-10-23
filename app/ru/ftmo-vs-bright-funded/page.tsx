@@ -11,6 +11,8 @@ import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/ftmo-vs-bright-funded'
 const TITLE = 'FTMO или BrightFunded: альтернатива FTMO для россиян'
@@ -235,8 +237,8 @@ export default function RussianFtmoVsBrightFundedPage() {
     },
     {
       id: 'trustpilot', field: 'Trustpilot',
-      bright: 'Рейтинг скрыт Trustpilot из-за нарушения правил площадки; 573 отзыва',
-      ftmo: '4.8 из 5, 54 501 отзыв',
+      bright: 'Рейтинг скрыт Trustpilot из-за нарушения правил площадки; отзывов: 573',
+      ftmo: '4.8 из 5, отзывов: 54 501',
       date: TRUSTPILOT_CAPTURE, source: SOURCES.trustpilotBright,
     },
   ]
@@ -262,6 +264,7 @@ export default function RussianFtmoVsBrightFundedPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
+      <RuMobileStickyCTA firms={['ftmo', 'bright-funded']} from="ru-ftmo-vs-bright-mobile-sticky" />
       {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
 
       <section className="ru-hero ru-hero--p1">
@@ -295,6 +298,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       </section>
 
       <RuComparePickVerdict route={PATH} campaign="ftmo-vs-bright" />
+      <RuTelegramBlock placement="ftmo-vs-bright-funded" />
 
       <section className="ru-section">
         <div className="ru-shell">
@@ -314,7 +318,7 @@ export default function RussianFtmoVsBrightFundedPage() {
             <article className="ru-card" data-russian-comparison-firm="ftmo">
               <ShieldAlert size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FTMO <RuAccessBadge firm="ftmo" /></h3>
-              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. 4.8 на Trustpilot по 54 501 отзыву, TradingView в списке платформ, первый запрос выплаты с 14-го дня. Резидентов России FTMO не принимает: кнопка — только для тех, чьей страны нет в списке ограничений.</p>
+              <p className="ru-muted">Программ с актуальной проверкой: {ftmo.length}. Trustpilot: 4.8, отзывов: 54 501; TradingView в списке платформ, первый запрос выплаты с 14-го дня. Резидентов России FTMO не принимает: кнопка — только для тех, чьей страны нет в списке ограничений.</p>
               <Link href="/ru/obzor-ftmo" className="ru-card-link">Русский обзор FTMO →</Link>
               <div className="ru-actions" data-russian-comparison-ftmo-cta="secondary-restricted">
                 <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card" rel={goLinkRel('ftmo')} className="btn-outline">
@@ -457,8 +461,9 @@ export default function RussianFtmoVsBrightFundedPage() {
               Проверить FundingPips <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
             <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-ftmo-vs-bright-fundednext" rel={goLinkRel('fundednext')} className="btn-outline">
-              Проверить FundedNext <ArrowRight size={14} aria-hidden="true" />
+              Сайт FundedNext <ArrowRight size={14} aria-hidden="true" />
             </RuGoLink>
+            <span className="ru-muted" data-russian-comparison-fundednext-cta="restricted-last">для резидентов других стран; резидентам РФ FundedNext недоступна</span>
           </div>
         </div>
       </section>

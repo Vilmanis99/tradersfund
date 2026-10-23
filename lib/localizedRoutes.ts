@@ -5,6 +5,9 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' },
   { en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' },
   { en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' },
+  { en: '/compare/bright-funded-vs-fundingpips', ru: '/ru/fundingpips-vs-bright-funded' },
+  { en: '/compare/bright-funded-vs-ftmo', ru: '/ru/ftmo-vs-bright-funded' },
+  { en: '/compare/ftmo-vs-fundednext', ru: '/ru/ftmo-vs-fundednext' },
   { en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' },
   { en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
@@ -35,8 +38,6 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
-  '/ru/fundingpips-vs-bright-funded',
-  '/ru/ftmo-vs-bright-funded',
 ] as const
 
 /**
@@ -88,11 +89,12 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/fundednext-vs-bright-funded': '2026-10-20',
   '/ru/ftmo-dlya-rossiyan': '2026-10-20',
   '/ru/ftmo-vs-bright-funded': '2026-10-20',
+  '/ru/ftmo-vs-fundednext': '2026-10-21',
   '/ru/fundednext-vs-fundingpips': '2026-10-20',
   '/ru/fundingpips-vs-bright-funded': '2026-10-21',
   '/ru/kak-my-zarabatyvaem': '2026-10-20',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
-  '/ru/luchshie-kripto-prop-firmy': '2026-10-20',
+  '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
   '/ru/luchshie-prop-firmy': '2026-10-20',
   '/ru/obzor-bright-funded': '2026-10-19',
   '/ru/obzor-eratrade': '2026-10-20',

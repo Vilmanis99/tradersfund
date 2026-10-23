@@ -31,7 +31,9 @@ const SITE = 'https://tradersfundhub.com'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Prop Firm Challenge Comparison (2026): Prices & Rules',
+  // Absolute: this page shares its segment with the section's root layout, so the
+  // site title template would not reach it (see components/EnglishRootLayout.tsx).
+  title: { absolute: 'Prop Firm Challenge Comparison (2026): Prices & Rules | TFH' },
   description:
     'Compare source-dated prop-firm challenge products by price, account size, steps, targets, loss limits, drawdown, payout timing and trading rules.',
   alternates: { canonical: PATH },

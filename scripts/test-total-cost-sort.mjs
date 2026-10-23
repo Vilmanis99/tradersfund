@@ -54,7 +54,12 @@ console.log(`$100K by total (data as of ${latest}): ${top3.join(', ')}`)
 // Code Reviewer's expected order holds once TradeDay is on list prices (Tracker data/key-facts-2026-10-20).
 const tradeDayMin = Math.min(...ranked.filter(r => r.row.firm.slug === 'tradeday').map(r => r.totalUsd))
 if (tradeDayMin >= 240) {
-  assert.deepEqual(ranked.slice(0, 3).map(r => [r.row.firm.slug, r.totalUsd]), [['topstep', 149], ['ofp-funding', 200], ['tradeday', 240]], 'Topstep no-activation $149, OFP Instant Lite $200, TradeDay Intraday $240')
+  // Topstep $149 and OFP Instant Lite $200 lead. TradeDay Intraday $240 is no longer pinned third: the 2026-10-20
+  // capture added LucidDaily ($224 at $100K), so TradeDay keeps its $240 total and its place in the data-sorted order.
+  assert.deepEqual(ranked.slice(0, 2).map(r => [r.row.firm.slug, r.totalUsd]), [['topstep', 149], ['ofp-funding', 200]], 'Topstep no-activation $149, OFP Instant Lite $200')
+  const tradeDayIndex = ranked.findIndex(r => r.row.firm.slug === 'tradeday' && r.totalUsd === tradeDayMin)
+  assert.equal(tradeDayMin, 240, 'TradeDay Intraday $100K totals $240')
+  assert(ranked.slice(0, tradeDayIndex).every(r => r.totalUsd <= 240) && ranked.slice(tradeDayIndex + 1).every(r => r.totalUsd >= 240), 'TradeDay $240 sits in total order')
   assert.equal(challengeKey(ranked[0].row), 'topstep:trading-combine-no-activation-fee-path')
   assert.equal(challengeKey(ranked[1].row), 'ofp-funding:instant-lite')
 } else {

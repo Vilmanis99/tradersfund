@@ -803,3 +803,81 @@ html .compare-pick__quick { display: none; }
   html .compare-pick__quick { align-items: stretch; }
   html .compare-pick__quick .btn-primary { flex: 1 1 auto; line-height: 1.2; }
 }
+
+/* ── C5 PriceMatrix (article-format spec §4, P2): size × product fee grid, EN + RU ── */
+.price-matrix { margin: 1.5rem 0; }
+.price-matrix__title { font-weight: 700; font-size: 1.05rem; color: var(--text); margin: 0 0 0.6rem; }
+.price-matrix__scroll,
+.price-matrix .ru-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  margin-top: 0;
+}
+.price-matrix__table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+  background: transparent;
+}
+html .price-matrix__table th,
+html .price-matrix__table td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
+  min-width: 0;
+}
+html .price-matrix__table thead th {
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+  min-width: 6.5rem;
+  vertical-align: bottom;
+}
+html .price-matrix__table th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  background: var(--bg3);
+  min-width: 0;
+  font-weight: 700;
+}
+html .price-matrix__table tbody th:first-child { background: var(--surface); color: var(--text); font-size: 0.9rem; }
+html .price-matrix__table tbody tr:nth-child(even) td,
+html .price-matrix__table tbody tr:nth-child(even) th:first-child { background: color-mix(in srgb, var(--bg3) 45%, var(--surface)); }
+html .price-matrix__table tbody tr:last-child td,
+html .price-matrix__table tbody tr:last-child th { border-bottom: 0; }
+.price-matrix__product { display: block; }
+.price-matrix__meta { display: block; font-weight: 500; font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+.price-matrix__amount { display: block; font-weight: 700; color: var(--text); }
+.price-matrix__amount small { font-weight: 500; color: var(--muted); margin-left: 0.1rem; }
+.price-matrix__extra { display: block; font-size: 0.72rem; color: var(--muted); }
+html .price-matrix__table td.price-matrix__empty { color: var(--muted); font-size: 0.8rem; }
+.price-matrix__note { margin: 0.55rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--muted); }
+.price-matrix__chip {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+.price-matrix__hint { font-weight: 600; }
+@media (min-width: 900px) { .price-matrix__hint { display: none; } }
+@media (max-width: 640px) {
+  html .price-matrix__table th,
+  html .price-matrix__table td { padding: 0.55rem 0.6rem; }
+  html .price-matrix__table thead th { min-width: 5.5rem; }
+  .price-matrix__table { font-size: 0.88rem; }
+}
