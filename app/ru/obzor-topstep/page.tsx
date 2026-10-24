@@ -49,6 +49,13 @@ const PROP_URL = 'https://www.topstep.com/topstep-prop'
 const TERMS_URL = 'https://www.topstep.com/terms-of-use'
 const API_URL = 'https://help.topstep.com/en/articles/11187768-topstepx-api-access'
 const NEWS_URL = 'https://help.topstep.com/en/articles/13613539-risk-adjustments-high-risk-high-volatility'
+// Prop Firm Tracker delta check 23.10.2026 (11:07–11:08 Riga), evidence:
+// /workspace/tradersfundhub/evidence/topstep-delta-2026-10-23/README.md (+ raw/, txt-new/).
+// Eligibility, payout policy 8284233, prices 14289835 and Terms were unchanged vs 20.10;
+// 13613539 changed 21.10 (Live < $3,000: 1 contract on Tier 1 news), 14434175 changed 22.10 (login).
+const DELTA_CHECKED = '2026-10-23'
+const NEWS_CHANGED = '2026-10-21'
+const TOPSTEPX_CHANGED = '2026-10-22'
 
 const CIS_COUNTRIES: Array<[string, string]> = [
   ['Russia', 'Россия'],
@@ -171,6 +178,8 @@ export default function RussianTopstepReviewPage() {
     ...topstepRecheck.pagesRead.map(page => ({ url: page.url, date: RECHECK_DATE })),
     { url: ACCESS_SOURCE.url, date: ACCESS_SOURCE.capturedAt },
     ...topstepGaps.pagesRead.map(page => ({ url: page.url, date: GAPS_DATE })),
+    { url: NEWS_URL, date: DELTA_CHECKED },
+    { url: TOPSTEPX_URL, date: DELTA_CHECKED },
   ].reduce<Array<{ url: string; date: string }>>((list, page) => {
     const existing = list.find(item => item.url === page.url)
     if (!existing) list.push(page)
@@ -193,7 +202,7 @@ export default function RussianTopstepReviewPage() {
     },
     {
       q: 'Какой сплит и как выводить прибыль?',
-      a: `Трейдер получает ${split ?? '—'}% прибыли, заявку можно подать по требованию в часы работы биржи CME после выполнения условий выплаты. Способы выплаты: Prop-to-Brokerage и Aeropay — только США; Wise — только Китай, Канада и Великобритания; ACH — банки США, $30; Wire/SWIFT — международный перевод, 5–10 рабочих дней, $30. Криптовалюты и Rise в списке нет, выплата идёт только на счёт на ваше имя (по данным на ${ruDate(payoutDate)}).`,
+      a: `Трейдер получает ${split ?? '—'}% прибыли, заявку можно подать по требованию в часы работы биржи CME после выполнения условий выплаты. Способы выплаты: Prop-to-Brokerage и Aeropay — только США; Wise — только Китай, Канада и Великобритания; ACH — банки США, $30; Wire/SWIFT — международный перевод, 5–10 рабочих дней, $30. Минимальная заявка — $125. Пример Topstep: заявка $500 через ACH − $50 (10%) − $30 = $420 на руки. Криптовалюты и Rise в списке нет, выплата идёт только на счёт на ваше имя (по данным на ${ruDate(payoutDate)}).`,
     },
     {
       q: 'Есть ли у Topstep правило консистентности?',
@@ -352,6 +361,7 @@ export default function RussianTopstepReviewPage() {
             <h2>Как работает Topstep: Trading Combine → Express Funded Account (XFA) → Live</h2>
             <p>
               Topstep (по-русски иногда пишут «Топстеп») с {firm.founded ?? '—'} года продаёт доступ к оценке на симулированном счёте.
+              Это проп трейдинг фьючерсы: торгуются биржевые контракты, а не CFD.
               Если вы ещё не знаете, как устроены такие проверки, начните с гида{' '}
               <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">как работают челленджи</Link>. У Topstep путь из трёх ступеней:
             </p>
@@ -520,13 +530,35 @@ export default function RussianTopstepReviewPage() {
               Минимальная заявка — $125, максимальная — 50% баланса, но не больше потолка: на XFA Standard $2,000 / $3,000 / $5,000,
               на XFA Consistency $3,000 / $4,000 / $6,000 для счетов 50K / 100K / 150K. Одобрение может занять 1–3 рабочих дня, и это отдельно от срока самого перевода.
             </p>
-            <p data-russian-topstep-payout-methods="official-list">Способы выплаты по политике выплат Topstep (по данным на {ruDate(payoutDate)}):</p>
-            <ul>
-              <li><strong>Prop-to-Brokerage</strong> и <strong>Aeropay</strong> — только США.</li>
-              <li><strong>Wise</strong> — только Китай, Канада и Великобритания.</li>
-              <li><strong>ACH</strong> — банки США, $30.</li>
-              <li><strong>Wire/SWIFT</strong> — международный перевод, 5–10 рабочих дней, $30.</li>
-            </ul>
+            <p data-russian-topstep-payout-methods="official-table">
+              Вывод прибыли — по таблице из политики выплат Topstep (по данным на {ruDate(payoutDate)}, при повторной проверке
+              Prop Firm Tracker {ruDate(DELTA_CHECKED)} текст не изменился). Комиссии указаны так, как их пишет сама Topstep:
+            </p>
+            <div className="ru-table-wrap">
+              <table className="ru-table">
+                <thead><tr><th>Способ</th><th>Где доступен</th><th>Срок</th><th>Комиссия Topstep</th></tr></thead>
+                <tbody>
+                  <tr><td>Prop-to-Brokerage</td><td>только США</td><td>в тот же день*</td><td>нет</td></tr>
+                  <tr><td>Aeropay</td><td>только банки США</td><td>сразу после одобрения</td><td>нет комиссии Topstep**</td></tr>
+                  <tr><td>Wise</td><td>Китай, Канада, Великобритания</td><td>1–3 рабочих дня</td><td>нет комиссии Topstep**</td></tr>
+                  <tr><td>ACH</td><td>только банки США</td><td>1–3 рабочих дня</td><td>$30</td></tr>
+                  <tr><td>Wire/SWIFT</td><td>международный перевод</td><td>5–10 рабочих дней</td><td>$30</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="ru-source-line">
+              * Если заявка подана до 12:00 по Чикаго (CT). ** Topstep не берёт комиссию за Aeropay и Wise, но банк или сам сервис
+              могут взять свою. Сроки ориентировочные, без выходных и праздников; внутреннее одобрение может занять 1–3 рабочих дня.
+            </p>
+            <p>
+              Wise вернули в августе 2026 года только для трейдеров из Китая, Канады и Великобритании; в остальных странах, по словам
+              Topstep, он по-прежнему недоступен. Для русскоязычного трейдера, живущего в допущенной стране вне этих трёх, Wise не вариант.
+            </p>
+            <p data-russian-topstep-payout-example="policy-ach-500">
+              Пример из самой политики выплат (ACH, заявка $500): $500 минус $50 (доля Topstep 10%) минус $30 (комиссия за обработку) = $420 на руки.
+              Для международного перевода Wire/SWIFT арифметика та же: $500 − $50 − $30 = $420, срок 5–10 рабочих дней, плюс возможные
+              комиссии вашего банка и банков-посредников. Это пример, не прогноз. Меньше $125 заявку подать нельзя.
+            </p>
             <p>
               Криптовалюты и Rise в списке нет, а выплата приходит только на банковский счёт на ваше имя. Для трейдера из допущенной
               страны вне США, Китая, Канады и Великобритании это значит, что получать деньги придётся переводом Wire/SWIFT; проверьте
@@ -544,6 +576,7 @@ export default function RussianTopstepReviewPage() {
               TopstepX — торговая платформа самой Topstep, через неё подключаются счета Combine и XFA. Quantower подключается через TopstepX и доступен только на Trading Combine
               и XFA, не на Live-счёте. График TopstepX не подключается к внешним платформам вроде TradingView (по данным на{' '}
               {ruDate(firm.platformEvidence?.sourceCapturedAt ?? GAPS_DATE)}). Совместимость других сторонних платформ в нашей проверке не подтверждена.
+              Логин в TopstepX тот же, что и в Topstep Dashboard (справка обновлена {ruDate(TOPSTEPX_CHANGED)}, проверено {ruDate(DELTA_CHECKED)}).
             </p>
             <p>
               Встроенный копировщик сделок в TopstepX работает только на Combine и XFA, не на Live. Ведущий счёт в группе должен иметь самый
@@ -562,7 +595,7 @@ export default function RussianTopstepReviewPage() {
               <table className="ru-table">
                 <thead><tr><th>Правило</th><th>Статус</th><th>Что именно сказано</th></tr></thead>
                 <tbody>
-                  <tr><td>Торговля на новостях</td><td>{reference?.rules?.news === 'restricted' ? 'ограничена' : reference?.rules?.news ?? '—'}</td><td>Для новостей Tier 1 (CPI, FOMC, NFP, PPI) с 5 минут до выхода и до 5 минут после нельзя открывать новые позиции в мини-контрактах на индексы и металлы, а по микроконтрактам действует лимит размера; открытые позиции держать можно. Отдельно запрещено входить максимальным размером позиции прямо в запланированную важную новость.</td></tr>
+                  <tr><td>Торговля на новостях</td><td>{reference?.rules?.news === 'restricted' ? 'ограничена' : reference?.rules?.news ?? '—'}</td><td>Для новостей Tier 1 (CPI, FOMC, NFP, PPI) с 5 минут до выхода и до 5 минут после нельзя открывать новые позиции в мини-контрактах на индексы и металлы, а по микроконтрактам действует лимит размера; открытые позиции держать можно. Отдельно запрещено входить максимальным размером позиции прямо в запланированную важную новость. С {ruDate(NEWS_CHANGED)} на Live-счёте с балансом ниже $3,000 во время новостей Tier 1 можно торговать не больше чем 1 контрактом.</td></tr>
                   <tr><td>Перенос через ночь</td><td>{reference?.rules?.overnight === false ? 'нельзя' : '—'}</td><td>Все позиции закрываются до 15:10 по Чикаго в будни, торговля возобновляется в 17:00. Свинг-трейдинга нет.</td></tr>
                   <tr><td>Перенос через выходные</td><td>{reference?.rules?.weekend === false ? 'нельзя' : '—'}</td><td>В пятницу счёт должен быть без позиций до открытия в воскресенье.</td></tr>
                   <tr><td>Советники и алгоритмы</td><td>{reference?.rules?.ea === 'restricted' ? 'ограничены' : reference?.rules?.ea ?? '—'}</td><td>Боты разрешены через API TopstepX/ProjectX ($29 в месяц), кроме высокочастотной торговли (HFT). VPS и VPN запрещены, на Live-счёте API нет; при сбое алгоритма исключений не делают.</td></tr>
@@ -576,7 +609,7 @@ export default function RussianTopstepReviewPage() {
               использование несправедливых технологий и эксплуатацию особенностей симулятора.{' '}
               <a href={HOURS_URL} target="_blank" rel="noopener noreferrer">Часы и инструменты</a>{' · '}
               <a href={PROHIBITED_URL} target="_blank" rel="noopener noreferrer">Запрещённые стратегии</a>{' · '}
-              <a href={NEWS_URL} target="_blank" rel="noopener noreferrer">Новости Tier 1</a>{' · '}
+              <a href={NEWS_URL} target="_blank" rel="noopener noreferrer">Новости Tier 1</a> (справка обновлена {ruDate(NEWS_CHANGED)}, проверено {ruDate(DELTA_CHECKED)}){' · '}
               <a href={API_URL} target="_blank" rel="noopener noreferrer">API TopstepX</a> (по данным на {ruDate(GAPS_DATE)}).
             </p>
           </div>
@@ -623,7 +656,7 @@ export default function RussianTopstepReviewPage() {
                 ? 'ни одна из них не отмечена как открытая для резидентов России'
                 : `открытыми для РФ отмечены: ${openFutures.map(item => item.name).join(', ')}`}
               {unverifiedFutures.length > 0 ? `; статус ${unverifiedFutures.map(item => item.name).join(', ')} не проверен` : ''}.
-              Поэтому прямой замены Topstep для резидента РФ мы не знаем. Ниже — фирмы с другими инструментами (CFD и криптовалюта),
+              Поэтому прямой замены Topstep для резидента РФ мы не знаем, и любая альтернатива Topstep из списка ниже — это другой рынок. Ниже — фирмы с другими инструментами (CFD и криптовалюта),
               которые в наших данных Россию не ограничивают. Это не биржевые фьючерсы CME: другая просадка, другие часы торговли и другие
               способы выплаты.
             </p>
@@ -712,6 +745,9 @@ export default function RussianTopstepReviewPage() {
               Tracker {ruDate(latestCapture)}. Условия выплат, часы торговли и ограничения сверены с официальной справкой в ту же дату.
               Список стран, способы выплаты, компания, API, новости, налоги и минимальный срок — по дополнительной проверке Prop Firm Tracker
               {' '}{ruDate(GAPS_DATE)}; страница допуска Topstep датирована {ruDate(ACCESS_SOURCE.pageDated)}.
+              {' '}{ruDate(DELTA_CHECKED)} Prop Firm Tracker перепроверил допуск, политику выплат, цены и условия использования — без изменений.
+              Лимит в 1 контракт на новостях Tier 1 для Live-счетов с балансом ниже $3,000 — по справке о рисках, обновлённой {ruDate(NEWS_CHANGED)};
+              логин TopstepX — по справке, обновлённой {ruDate(TOPSTEPX_CHANGED)}.
               {trustpilotFresh && ` Оценка Trustpilot — на ${ruDate(firm.trustpilotCapturedAt)}.`}
             </p>
             {!recheckFresh && <p className="ru-notice">Детальная проверка правил старше 30 дней: условия выплат и ограничения ниже требуют повторной сверки.</p>}

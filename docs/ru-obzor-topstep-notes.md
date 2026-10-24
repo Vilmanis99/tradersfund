@@ -55,3 +55,19 @@ Evidence: /workspace/tradersfundhub/evidence/topstep-ru-gaps-2026-10-20.md. Page
 - Done: datePublished from RUSSIAN_ROUTE_EDITORIAL_DATES; reading-time line removed; funded-account anchor capitalised («Топстеп»).
 - Resolved 20.10: Tracker's dated capture of 8284116 (921518c) — access block sourced to it; «В карточке фирмы у нас…» sentence dropped.
 - 26.10: Hash Hedge firms.json entry → optional third RuGoLink card; Phase 2 RuArticleLayout → move related links into the R slot.
+
+## 24.10 update — final brief 2026-10-26 + Tracker's 23.10 delta
+Sources: /workspace/ru-seo/briefs/2026-10-26.md (status 23.10, READY) and
+/workspace/tradersfundhub/evidence/topstep-delta-2026-10-23/README.md (checked 23.10 11:07–11:08 Riga).
+- §5 payout methods: list replaced by the full policy table (method / where / time / Topstep fee), fees printed as 8284233 shows
+  them (P2B «нет», Aeropay/Wise «нет комиссии Topstep**», ACH $30, Wire/SWIFT $30), footnotes * (до 12:00 CT) and ** (bank/service
+  fees, times exclude weekends/holidays, approval 1–3 business days). Wise restored Aug 2026 for China/Canada/UK only.
+  Policy example quoted: ACH $500 − $50 − $30 = $420; the same arithmetic for Wire/SWIFT, labelled «пример, не прогноз»; $125 minimum.
+  FAQ 4 adds the $125 minimum and the $420 example. Crawl marker now `payout-methods="official-table"` + `payout-example="policy-ach-500"`.
+- News (13613539, changed 21.10.2026, checked 23.10.2026): table cell adds «Live-счёт с балансом ниже $3,000 — не больше 1 контракта
+  во время новостей Tier 1»; the Tier 1 link is re-dated «справка обновлена 21.10.2026, проверено 23.10.2026»; sources paragraph and
+  source list carry the 23.10 date; verdict JSON sources cite the delta. MCL/MGC limits are not on the page (no change needed).
+- TopstepX (14434175, changed 22.10.2026): one line, login = Topstep Dashboard login. No old «логин из письма» wording existed.
+- §3a terms: added «проп трейдинг фьючерсы», «вывод прибыли», «альтернатива Topstep»; the rest were already present.
+- Still open (page states none of them): CIS/EU VAT amounts, the $85/$129 topstep-prop toggle, Kazakhstan. Sun 25.10 15:00:
+  Tracker re-confirms 8284116; re-merge onto the newest daily before ship (separate routine).
