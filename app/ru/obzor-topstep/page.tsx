@@ -6,6 +6,7 @@ import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import RuPendingLink from '@/components/RuPendingLink'
 import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 import {
   challengeTierEconomics,
   getAllFirms,
@@ -355,6 +356,7 @@ export default function RussianTopstepReviewPage() {
             <p className="ru-source-line">Ссылка на Topstep не партнёрская: Traders Fund Hub не получает комиссию за этот переход.</p>
           </div>
         </section>
+        <RuTelegramBlock placement="obzor-topstep" />
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="kak-rabotaet" data-russian-topstep-path="combine-xfa-live">

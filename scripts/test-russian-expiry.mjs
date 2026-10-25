@@ -1269,7 +1269,7 @@ try {
   const russiaCtaSweep = new Map()
   // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
   // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
-  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext', 'obzor-topstep': 'topstep' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
