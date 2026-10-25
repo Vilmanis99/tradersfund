@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from './SafeLink'
 import type { ComponentProps } from 'react'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RuAccessBadgeView } from './RuAccessBadgeView'
@@ -14,14 +14,16 @@ type RuGoLinkProps = ComponentProps<typeof Link> & { firm: string; hideBadge?: b
 /**
  * Drop-in replacement for <Link href="/go/..."> on /ru pages. Every firm keeps
  * its sign-up CTA; a Russia-access badge (russiaStatus) is rendered next to it.
+ * Never prefetched: /go/ records a click and 302s to the partner, so a prefetch
+ * on view would be a fake click (SafeLink also forces this for /go/ hrefs).
  */
-export function RuGoLink({ firm, hideBadge = false, ...props }: RuGoLinkProps) {
+export function RuGoLink({ firm, hideBadge = false, prefetch = false, ...props }: RuGoLinkProps) {
   if (hideBadge) {
-    return <Link {...props} data-russia-status={russiaStatusFor(firm)} data-russia-badge="column" />
+    return <Link {...props} prefetch={prefetch} data-russia-status={russiaStatusFor(firm)} data-russia-badge="column" />
   }
   return (
     <>
-      <Link {...props} data-russia-status={russiaStatusFor(firm)} />
+      <Link {...props} prefetch={prefetch} data-russia-status={russiaStatusFor(firm)} />
       {' '}
       <RuAccessBadge firm={firm} />
     </>

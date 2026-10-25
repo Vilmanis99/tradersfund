@@ -19,8 +19,13 @@ import {
   type IndiaFirmEvidence,
 } from './india'
 import rawUsAccessEvidence from '@/content/data/us-access-evidence.json'
-import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'
+import {
+  cryptoMarketEvidence as typedCryptoMarketEvidence,
+  type CryptoMarketEvidence,
+  type CryptoMarketWatch,
+} from '@/lib/cryptoMarketEvidence'
 import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
+import { isProductSetFresh } from './reviewFreshness.ts'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -139,29 +144,6 @@ interface UkAccessEvidence {
   decisionNote: string
 }
 
-interface CryptoMarketEvidence {
-  firmSlug: string
-  firmName: string
-  marketModel: 'crypto-native' | 'multi-asset-cfd'
-  productSlugs: string[]
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  evidenceRu?: string
-  scopeNote: string
-  scopeNoteRu?: string
-}
-
-interface CryptoMarketWatch {
-  firmSlug: string
-  firmName: string
-  status: 'product-capture-needed' | 'market-and-product-refresh-needed'
-  sourceUrl: string
-  sourceCapturedAt: string
-  evidence: string
-  nextStep: string
-}
-
 const US_ACCESS_EVIDENCE = rawUsAccessEvidence.firms as UsAccessEvidence[]
 const US_ACCESS_EVIDENCE_BY_SLUG = new Map(
   US_ACCESS_EVIDENCE.map(evidence => [
@@ -175,11 +157,11 @@ const UK_ACCESS_EVIDENCE_BY_SLUG = new Map(
   UK_ACCESS_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
 
-const CRYPTO_MARKET_EVIDENCE = rawCryptoMarketEvidence.ranked as CryptoMarketEvidence[]
+const CRYPTO_MARKET_EVIDENCE: CryptoMarketEvidence[] = typedCryptoMarketEvidence.ranked
 const CRYPTO_MARKET_EVIDENCE_BY_SLUG = new Map(
   CRYPTO_MARKET_EVIDENCE.map(evidence => [evidence.firmSlug, evidence]),
 )
-const CRYPTO_MARKET_WATCH = rawCryptoMarketEvidence.watch as CryptoMarketWatch[]
+const CRYPTO_MARKET_WATCH: CryptoMarketWatch[] = typedCryptoMarketEvidence.watch
 
 function isAccessEvidenceFresh(sourceCapturedAt: string) {
   const captured = new Date(`${sourceCapturedAt}T00:00:00Z`)
@@ -552,9 +534,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-in-uk',
     h1: `Best Prop Firms UK (2026): ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms That Accept UK Traders`,
-    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms UK 2026: ${CURRENT_UK_FIRM_COUNT} That Accept UK Traders`,
     metaDescription:
-      `Compare ${CURRENT_UK_FIRM_COUNT} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
+      `Prop firms that accept UK traders in 2026: ${CURRENT_UK_FIRM_COUNT} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`,
     intro:
       `Looking for a prop firm in the UK? These ${CURRENT_UK_FIRM_COUNT} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${CURRENT_UK_PRODUCT_COUNT} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
     sortDir: 'desc',
@@ -625,9 +607,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-prop-firms-in-us',
     h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`,
-    metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms for US Traders 2026: ${CURRENT_US_FIRM_COUNT} Firms Checked`,
     metaDescription:
-      `Best prop firms for US traders in 2026: ${CURRENT_US_FIRM_COUNT} prop trading firms open to USA residents across ${CURRENT_US_PRODUCT_COUNT} exact futures and CFD products, with CFTC/NFA checks.`,
+      `Prop firms that accept US traders in 2026: ${CURRENT_US_FIRM_COUNT} firms with first-party evidence for ${CURRENT_US_PRODUCT_COUNT} US-resident products, mostly futures, plus CFTC and NFA checks.`,
     intro:
       `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${CURRENT_US_FIRM_COUNT} firms that publish current first-party evidence supporting ${CURRENT_US_PRODUCT_COUNT} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     sortDir: 'desc',
@@ -692,7 +674,7 @@ export const LANDINGS: Landing[] = [
       },
     ],
     snapshotProductCount: CURRENT_US_PRODUCT_COUNT,
-    lastReviewed: '2026-10-01',
+    lastReviewed: '2026-10-22',
   },
   {
     slug: 'best-prop-firms-in-india',
@@ -709,7 +691,7 @@ export const LANDINGS: Landing[] = [
         const evidence = INDIA_EVIDENCE_BY_SLUG[slug]
         if (!evidence || !passesIndiaRegulatoryCountryGate(evidence)) return false
         const challenges = indiaEligibleChallenges(slug, evidence)
-        if (!challenges.length || !challenges.every(challenge => isChallengeFresh(challenge))) {
+        if (!isProductSetFresh(challenges)) {
           return false
         }
         return (firm.payoutMethods || []).some(method =>
@@ -862,9 +844,9 @@ export const LANDINGS: Landing[] = [
   {
     slug: 'best-instant-funding-prop-firms',
     h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`,
-    metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`,
+    metaTitle: `Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} With No Challenge`,
     metaDescription:
-      `Best instant funding prop firms in 2026: ${CURRENT_INSTANT_FIRM_COUNT} firms and ${CURRENT_INSTANT_PRODUCT_COUNT} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`,
+      `Instant funding prop firms with no challenge: ${CURRENT_INSTANT_FIRM_COUNT} firms and ${CURRENT_INSTANT_PRODUCT_COUNT} no-evaluation accounts compared on total cost, loss limit, starting split and payout gates.`,
     intro:
       `Want a prop firm with instant funding, so you can skip the challenge? These ${CURRENT_INSTANT_FIRM_COUNT} firms have ${CURRENT_INSTANT_PRODUCT_COUNT} products captured within 30 days whose structured phase count is 0. That means the product skips an evaluation target; it does not prove that the account uses live firm capital. Every card names each qualifying path and links its distinct first-party sources before comparing the loss line, total known cost, starting split, and payout gate.`,
     sortDir: 'desc',
@@ -1013,7 +995,7 @@ export const LANDINGS: Landing[] = [
     metaDescription:
       `Best crypto prop firms for 2026: ${CURRENT_CRYPTO_FIRM_COUNT} crypto prop trading firms compared on BTC/ETH access, leverage, commission, entry price and payout rules.`,
     intro:
-      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.`,
+      `Looking for the best crypto prop firm? Start with one question: can you actually trade BTC and ETH on the product you buy? Paying or withdrawing in crypto does not count. These ${CURRENT_CRYPTO_FIRM_COUNT} firms have a current first-party source that explicitly names crypto as a tradable market plus ${CURRENT_CRYPTO_PRODUCT_COUNT} exact product records inside the 30-day freshness window. Crypto-native products rank before multi-asset CFD products, then editorial score breaks ties. ${CRYPTO_MARKET_WATCH.length ? `The ${CRYPTO_MARKET_WATCH.length} excluded firms remain visible below as evidence gaps rather than borrowing stale or forex-only prices and rules.` : 'No checked firm is waiting on missing crypto evidence right now; a firm whose sources lapse drops out rather than borrowing stale or forex-only prices and rules.'}`,
     sortDir: 'desc',
     snapshotProductCount: CURRENT_CRYPTO_PRODUCT_COUNT,
     rank: firms => firms
@@ -1083,7 +1065,7 @@ export const LANDINGS: Landing[] = [
       },
       {
         title: 'Which crypto pairs can I trade?',
-        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, the FundingPips 1 Step Flex page listed BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
+        body: 'It depends on the firm and the product, and the lists are often short. On the dates captured here, all five FundingPips product pages list BTCUSD and ETHUSD, and Maven listed BTCEUR, BTCUSD, ETHBTC and ETHUSD. If you need altcoins, confirm the symbol in the platform specification before you pay.',
       },
       {
         title: 'What is the cheapest crypto prop firm?',
@@ -1182,9 +1164,9 @@ function withCurrentAccessCopy(
     return {
       ...landing,
       h1: `Best Prop Firms UK (2026): ${snapshot.firmCount} Prop Trading Firms That Accept UK Traders`,
-      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
+      metaTitle: `Best Prop Firms UK 2026: ${snapshot.firmCount} That Accept UK Traders`,
       metaDescription:
-        `Compare ${snapshot.firmCount} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`,
+        `Prop firms that accept UK traders in 2026: ${snapshot.firmCount} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`,
       intro:
         `Looking for a prop firm in the UK? These ${snapshot.firmCount} prop trading firms currently publish a first-party country policy that does not exclude UK residents or nationals, across ${snapshot.productCount} current product paths. None of them is an FCA-authorised broker for funded accounts: most UK-facing prop firms sell evaluations and pay a share of simulated-account profits, so check FCA status, pricing currency, and the payout route yourself before paying. The table ranks by editorial score; affiliate status adds 0 points. Policy access is not a completed UK checkout, KYC approval, payout test, or legal opinion.`,
       decisionGuide: landing.decisionGuide?.map(item => item.title === 'Does the policy cover every product and platform forever?'
@@ -1200,9 +1182,9 @@ function withCurrentAccessCopy(
   return {
     ...landing,
     h1: `Best Prop Firms for US Traders (2026): ${snapshot.firmCount} Prop Trading Firms in the USA`,
-    metaTitle: `Best Prop Firms USA 2026: ${snapshot.firmCount} Prop Trading Firms Checked`,
+    metaTitle: `Best Prop Firms for US Traders 2026: ${snapshot.firmCount} Firms Checked`,
     metaDescription:
-      `Best prop firms for US traders in 2026: ${snapshot.firmCount} prop trading firms open to USA residents across ${snapshot.productCount} exact futures and CFD products, with CFTC/NFA checks.`,
+      `Prop firms that accept US traders in 2026: ${snapshot.firmCount} firms with first-party evidence for ${snapshot.productCount} US-resident products, mostly futures, plus CFTC and NFA checks.`,
     intro:
       `Looking for a prop firm that accepts US traders? Most forex and CFD prop firms exclude U.S. residents, so this list only includes the ${snapshot.firmCount} firms that publish current first-party evidence supporting ${snapshot.productCount} explicitly mapped product paths for U.S. residents, mostly futures evaluations plus a small number of Match-Trader CFD paths. Access evidence is not legal advice, CFTC or NFA registration, or a guarantee that every state, platform, KYC route, payout method, and product configuration is available. Editorial score sets the order; partnership status contributes 0 points.`,
     decisionGuide: landing.decisionGuide?.map(item => item.title === 'Are futures and CFD paths interchangeable?'

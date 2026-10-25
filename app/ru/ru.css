@@ -1156,3 +1156,219 @@
 
 .ru-access { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; vertical-align: middle; }
 .ru-access-hint { font-size: 0.78rem; text-decoration: underline; }
+
+/* «Похожие материалы» and «Все обзоры» (lib/ruRelatedLinks.ts) */
+.ru-related-grid,
+.ru-all-reviews-list,
+.ru-content .ru-related-grid,
+.ru-content .ru-all-reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ru-related-card,
+.ru-all-reviews-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+}
+
+.ru-related-kind {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ru-related-link,
+.ru-all-reviews-list a {
+  color: var(--accent-light);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ru-related-link svg {
+  display: inline;
+  vertical-align: -2px;
+}
+
+.ru-all-reviews-group {
+  margin: 1.5rem 0 0;
+  font-size: 1rem;
+}
+
+.ru-all-reviews-note {
+  max-width: 720px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .ru-related-grid,
+  .ru-all-reviews-list,
+  .ru-content .ru-related-grid,
+  .ru-content .ru-all-reviews-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── RU Phase 2: Phase 1 article layout (verdict box, rail, pick block) ── */
+.ru-hero--p1 { padding: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(1rem, 2vw, 1.5rem); }
+.ru-hero--p1 h1 { font-size: clamp(1.9rem, 4vw, 2.75rem); margin-bottom: 0.6rem; }
+.ru-hero--p1 .ru-lead { font-size: 1.02rem; margin-bottom: 0.4rem; }
+
+.ru-p1-article { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; padding-top: clamp(1rem, 2vw, 1.5rem); }
+.ru-p1-article .ru-shell { width: 100%; }
+.ru-p1-article > .ru-section { padding: clamp(1.25rem, 2.5vw, 2rem) 0; }
+.ru-p1-article > .ru-p1-verdict-section { padding-top: 0; }
+@media (min-width: 1100px) {
+  .ru-p1-article { display: grid; grid-template-columns: minmax(0, 880px) 250px; column-gap: 2.5rem; justify-content: center; align-items: start; }
+  .ru-p1-article > * { grid-column: 1; min-width: 0; }
+  .ru-p1-article > .ru-p1-rail { grid-column: 2; grid-row: 1 / span 60; align-self: stretch; padding: 0 !important; }
+  .ru-p1-rail .ru-shell { position: sticky; top: 5.5rem; }
+  .ru-p1-rail .ru-review-toc ol { columns: 1; }
+  .ru-p1-rail .ru-review-toc { font-size: 0.88rem; max-height: calc(100vh - 7rem); overflow: auto; }
+  .ru-p1-toc-mobile { display: none; }
+}
+@media (max-width: 1099px) {
+  .ru-p1-rail-inner { display: none; }
+  .ru-p1-article > .ru-p1-rail { padding: 0 0 0.5rem !important; }
+  .ru-p1-toc-mobile { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 0.7rem 1rem; }
+  .ru-p1-toc-mobile summary { cursor: pointer; font-weight: 750; }
+  .ru-p1-toc-mobile .ru-review-toc { margin-top: 0.6rem; border: 0; padding: 0; background: none; }
+  .ru-p1-toc-mobile .ru-review-toc .toc-title { display: none; }
+}
+
+.ru-p1-verdict, .ru-p1-pick {
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); border-radius: 16px;
+  background: var(--bg2); box-shadow: 0 6px 20px rgba(15, 42, 38, 0.06); padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+.ru-p1-verdict__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.ru-p1-verdict__name { margin: 0 0 0.35rem; font-size: 1.15rem; font-weight: 850; color: var(--text); }
+.ru-p1-verdict__score { display: flex; align-items: baseline; gap: 0.15rem; padding: 0.35rem 0.7rem; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--text); white-space: nowrap; }
+.ru-p1-verdict__score strong { font-size: 1.6rem; line-height: 1; }
+.ru-p1-verdict__score span { font-size: 0.85rem; font-weight: 700; }
+.ru-p1-verdict__line, .ru-p1-pick__line { margin: 0.8rem 0 0; font-size: 1.05rem; font-weight: 650; color: var(--text); line-height: 1.5; }
+.ru-p1-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.85rem; margin-top: 0.9rem; }
+.ru-p1-cta .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.ru-p1-cta--compact .btn-primary { padding: 0.55rem 1rem; font-size: 0.92rem; }
+.ru-p1-cta__note { font-size: 0.78rem; color: var(--muted); }
+.ru-p1-verdict__fit, .ru-p1-pick__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem 1.5rem; margin-top: 1rem; }
+.ru-p1-verdict__h, .ru-p1-pick__h { margin: 0 0 0.4rem; font-weight: 800; font-size: 0.95rem; color: var(--text); }
+.ru-p1-verdict__fit ul, .ru-p1-pick__col ul { margin: 0; padding-left: 1.1rem; }
+.ru-p1-verdict__fit li, .ru-p1-pick__col li { margin: 0.3rem 0; font-size: 0.93rem; line-height: 1.5; overflow-wrap: anywhere; hyphens: auto; }
+.ru-p1-verdict__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 0.5rem 1rem; margin: 1rem 0 0; padding: 0.85rem 0 0; border-top: 1px solid var(--border); }
+.ru-p1-verdict__facts div { min-width: 0; }
+.ru-p1-verdict__facts dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.ru-p1-verdict__facts dd { margin: 0.1rem 0 0; font-weight: 700; font-size: 0.92rem; overflow-wrap: anywhere; }
+.ru-p1-verdict__checked, .ru-p1-pick__checked { margin: 0.85rem 0 0; font-size: 0.8rem; color: var(--muted); }
+.ru-p1-pick__checked { margin-top: 0.2rem; }
+.ru-p1-terms { margin-top: 0.85rem; border: 1px solid var(--border); border-radius: 12px; padding: 0.6rem 1rem; background: var(--surface); }
+.ru-p1-terms summary { cursor: pointer; font-weight: 750; font-size: 0.92rem; }
+.ru-p1-terms .ru-stats { margin-top: 0.75rem; }
+
+.ru-p1-pick-section .ru-shell { width: min(880px, calc(100% - 2rem)); }
+.ru-p1-pick__title { margin: 0 !important; font-size: clamp(1.35rem, 3vw, 1.75rem) !important; }
+.ru-p1-pick__col { min-width: 0; padding: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); display: flex; flex-direction: column; gap: 0.4rem; }
+.ru-p1-pick__col .ru-p1-cta { margin-top: auto; padding-top: 0.5rem; }
+.ru-p1-pick__quick { display: none; }
+.ru-p1-pick__note { margin: 0.8rem 0 0; font-size: 0.85rem; color: var(--text2); }
+.ru-p1-pick__facts-wrap { margin-top: 1rem; overflow-x: auto; }
+.ru-p1-pick__facts { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.ru-p1-pick__facts th, .ru-p1-pick__facts td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.ru-p1-pick__facts thead th { font-weight: 800; }
+.ru-p1-pick__facts tbody th { font-weight: 600; color: var(--muted); width: 30%; }
+@media (max-width: 640px) {
+  .ru-p1-pick__quick { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.8rem; align-items: stretch; }
+  .ru-p1-pick__quick .ru-p1-cta { margin: 0; flex-direction: column; align-items: stretch; }
+  .ru-p1-pick__quick .btn-primary { flex: 1 1 auto; line-height: 1.2; padding: 0.55rem 0.5rem; font-size: 0.85rem; }
+  .ru-p1-pick__facts { font-size: 0.8rem; }
+  .ru-p1-pick__facts th, .ru-p1-pick__facts td { padding: 0.4rem 0.35rem; }
+}
+.ru-p1-verdict-section .ru-shell { width: min(880px, calc(100% - 2rem)); }
+.ru-p1-article .ru-p1-verdict-section .ru-shell { width: 100%; }
+.ru-review-article:not(.ru-p1-article) > .ru-p1-verdict-section { padding-top: 0.5rem; }
+.ru-section.ru-p1-pick-section { padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(1.5rem, 3vw, 2.25rem); }
+.ru-hero--p1 + .ru-p1-pick-section { border-top: 0; }
+.ru-hero.ru-hero--p1 { padding-bottom: 0.75rem; }
+.ru-p1-article { padding-top: 0.75rem; }
+.ru-p1-verdict__line { margin-top: 0.6rem; }
+.ru-hero.ru-hero--p1 h1 { font-size: clamp(1.8rem, 3.6vw, 2.35rem); }
+.ru-p1-verdict__line { font-size: 1rem; }
+/* RU Phase 2, mobile: sign-up CTA inside the first screen (390x844 / 360x780). Ordering and spacing only. */
+@media (max-width: 640px) {
+  .ru-hero.ru-hero--p1 { padding-top: 0.75rem; padding-bottom: 0.5rem; }
+  .ru-hero--p1 .ru-source-line { font-size: 0.72rem; line-height: 1.35; margin-bottom: 0.35rem; }
+  .ru-hero--p1 .ru-source-line .ru-source-details summary { font-size: 0.72rem; }
+  .ru-hero--p1 .ru-eyebrow { margin-bottom: 0.35rem; font-size: 0.7rem; }
+  .ru-hero.ru-hero--p1 h1 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 0.45rem; }
+  .ru-hero--p1 .ru-lead { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.3rem; }
+  .ru-hero--p1 .ru-review-meta { margin-top: 0.25rem; font-size: 0.78rem; }
+  .ru-p1-article { padding-top: 0.5rem; }
+  .ru-p1-verdict { display: flex; flex-direction: column; padding: 0.9rem; }
+  .ru-p1-verdict > * { order: 5; }
+  .ru-p1-verdict > .ru-p1-verdict__head { order: 0; }
+  .ru-p1-verdict > .ru-p1-cta { order: 1; margin-top: 0.6rem; }
+  .ru-p1-verdict > .ru-p1-verdict__line { order: 2; }
+  .ru-p1-verdict__head > div:first-child { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; }
+  .ru-p1-verdict__name { margin: 0; }
+}
+@media (max-width: 380px) {
+  .ru-hero.ru-hero--p1 h1 { font-size: 1.5rem; }
+  .ru-hero--p1 .ru-lead { font-size: 0.92rem; line-height: 1.45; }
+}
+/* Article format P2, merged RU notices: a recheck warning is one short callout line;
+   the explanation, the per-source dates and the link stay on the page, collapsed. */
+.ru-notice.ru-notice--compact {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ru-notice--compact .ru-source-details { margin-top: 0.3rem; }
+.ru-notice--compact .ru-source-details summary { font-size: 0.82rem; }
+.ru-notice--compact .ru-source-details p { margin: 0.45rem 0 0; font-size: 0.85rem; color: var(--text); }
+.ru-hero--p1 .ru-notice--compact { margin-top: 0; }
+@media (max-width: 640px) {
+  .ru-notice.ru-notice--compact { font-size: 0.82rem; line-height: 1.42; padding: 0.5rem 0.7rem; margin: 0.25rem 0 0.6rem; }
+  .ru-notice--compact .ru-source-details summary { font-size: 0.78rem; }
+}
+
+/* RU Telegram channel block (components/RuTelegramBlock.tsx): after the verdict section, below the main CTA. */
+section.ru-section.ru-tg-section { padding: 0 0 clamp(0.75rem, 2vw, 1.25rem); border-top: 0; }
+.ru-tg-section .ru-shell { width: min(880px, calc(100% - 2rem)); }
+.ru-p1-article .ru-tg-section .ru-shell { width: 100%; }
+.ru-tg {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.35rem 0.85rem;
+  padding: 0.75rem 0.95rem; border: 1px solid var(--border); border-radius: var(--radius-md, 12px);
+  background: var(--surface); color: var(--text);
+}
+.ru-tg__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #229ed9; color: #fff; flex-shrink: 0; }
+.ru-tg__icon svg { margin-left: -2px; }
+.ru-tg__text { min-width: 0; }
+.ru-tg__title { margin: 0; font-weight: 800; font-size: 0.95rem; line-height: 1.3; color: var(--text); }
+.ru-tg__lead { margin: 0.1rem 0 0; font-size: 0.86rem; line-height: 1.45; color: var(--muted); }
+.ru-tg__btn {
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  padding: 0.5rem 1rem; border-radius: 10px; border: 1px solid #229ed9; color: #0f6a96;
+  font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.ru-tg__btn:hover { background: #229ed9; color: #fff; }
+.ru-tg__btn:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .ru-tg { grid-template-columns: auto minmax(0, 1fr); align-items: start; padding: 0.7rem 0.8rem; }
+  .ru-tg__icon { width: 32px; height: 32px; }
+  .ru-tg__btn { grid-column: 2; justify-self: start; padding: 0.42rem 0.95rem; }
+  .ru-tg__lead { font-size: 0.83rem; }
+}

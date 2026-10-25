@@ -34,6 +34,103 @@ export function extractArticleFaq(source: string, sectionName = 'FAQ') {
     .filter(({ q, a }) => q && a)
 }
 
+// ── Phase 0 article format (design/article-format-spec.md §4 C4, C7; §5) ──
+
+const TABLE_TAGS = /<(table|thead|tbody|tfoot|tr|th|td|caption|col|colgroup)\b([^>]*)>/gi
+const STYLE_ATTR = /\s+style\s*=\s*(?:"[^"]*"|'[^']*')/gi
+const CLASS_ATTR = /\s+class\s*=\s*(?:"([^"]*)"|'([^']*)')/i
+const ROW = /<tr\b[^>]*>[\s\S]*?<\/tr>/gi
+const CELL = /<(td|th)\b([^>]*)>([\s\S]*?)<\/\1>/gi
+// A cell counts as numeric when it is a figure, price, percentage or range of those.
+const FIGURE = String.raw`(?:US\$|[$€£₹])?\s?\d[\d,.]*\s?(?:%|[kK]|x)?`
+const NUMERIC_CELL = new RegExp(String.raw`^[~≈<>]?\s*${FIGURE}(?:\s?(?:[–-]|to)\s?${FIGURE})?$`)
+const EMPTY_CELL = /^(?:[—–-]|n\/a)?$/i
+
+function addClass(attrs: string, name: string) {
+  const match = attrs.match(CLASS_ATTR)
+  if (!match) return `${attrs} class="${name}"`
+  const existing = match[1] ?? match[2] ?? ''
+  return attrs.replace(CLASS_ATTR, ` class="${`${existing} ${name}`.trim()}"`)
+}
+
+/** Drop authored inline styles so the theme controls tables; keep bold emphasis as a class. */
+function stripTableStyles(markup: string) {
+  return markup.replace(TABLE_TAGS, (_tag, name: string, attrs: string) => {
+    const styles = [...attrs.matchAll(/\s+style\s*=\s*(?:"([^"]*)"|'([^']*)')/gi)].map(m => m[1] ?? m[2] ?? '').join(';')
+    let next = attrs.replace(STYLE_ATTR, '')
+    if (/^t[hd]$/i.test(name) && /font-weight\s*:\s*(?:[6-9]00|bold)/i.test(styles)) next = addClass(next, 'cell-strong')
+    if (/^tr$/i.test(name) && /background\s*:\s*var\(--bg3\)/i.test(styles)) next = addClass(next, 'row-shaded')
+    return `<${name}${next}>`
+  })
+}
+
+/**
+ * Table layout data for CSS: column count, a data-label per body cell (taken
+ * from the header row) for the stacked mobile view, and right-aligned numeric
+ * columns. Tables with colspan/rowspan or no header row keep the plain layout.
+ */
+function annotateTable(markup: string) {
+  const rows = [...markup.matchAll(ROW)].map(match => match[0])
+  const theadRow = markup.match(/<thead\b[^>]*>[\s\S]*?(<tr\b[^>]*>[\s\S]*?<\/tr>)/i)?.[1]
+  const firstRow = rows[0]
+  const headerRow = theadRow
+    ?? (firstRow && [...firstRow.matchAll(CELL)].every(cell => cell[1].toLowerCase() === 'th') ? firstRow : undefined)
+  const header = headerRow ? [...headerRow.matchAll(CELL)].map(cell => articlePlainText(cell[3])) : []
+  const hasSpan = /\s(?:colspan|rowspan)\s*=/i.test(markup)
+  const bodyRows = rows.filter(row => row !== headerRow)
+  const columns = header.length || Math.max(0, ...rows.map(row => [...row.matchAll(CELL)].length))
+  const cellsByColumn: string[][] = Array.from({ length: columns }, () => [])
+  for (const row of bodyRows) {
+    [...row.matchAll(CELL)].forEach((cell, index) => cellsByColumn[index]?.push(articlePlainText(cell[3])))
+  }
+  const numericColumns = new Set(cellsByColumn.flatMap((cells, index) => {
+    if (index === 0 || hasSpan) return []
+    const filled = cells.filter(text => !EMPTY_CELL.test(text))
+    return filled.length > 0 && filled.every(text => NUMERIC_CELL.test(text)) ? [index] : []
+  }))
+  const labelled = Boolean(header.length) && !hasSpan
+  let html = markup
+  if (labelled || numericColumns.size) {
+    html = markup.replace(ROW, row => {
+      const isHeader = row === headerRow
+      let index = 0
+      return row.replace(CELL, (_cell, tag: string, attrs: string, content: string) => {
+        let next = attrs
+        if (numericColumns.has(index)) next = addClass(next, 'num')
+        if (labelled && !isHeader && header[index] && !/\sdata-label\s*=/i.test(next)) {
+          next = `${next} data-label="${escapeAttribute(header[index])}"`
+        }
+        index += 1
+        return `<${tag}${next}>${content}</${tag}>`
+      })
+    })
+  }
+  // §5: tables with ≤3 columns stay tables on mobile; wider labelled tables become cards.
+  const layout = labelled && columns > 3 ? 'cards' : 'table'
+  return { html, columns, layout }
+}
+
+const CALLOUTS: Array<{ lead: RegExp; kind: 'warning' | 'info' | 'example' | 'method'; collapsed?: boolean }> = [
+  { lead: /^the gotchas?(?: in that table)?:$/i, kind: 'warning' },
+  { lead: /^converting:$/i, kind: 'info' },
+  { lead: /^worked example\.$/i, kind: 'example' },
+  { lead: /^where these prices come from\.$/i, kind: 'method', collapsed: true },
+]
+
+/** C7: a paragraph that opens with a known bold lead becomes a callout; text is unchanged. */
+function convertCallout(markup: string) {
+  const match = markup.match(/^<p\b([^>]*)>(\s*<strong>([\s\S]*?)<\/strong>)([\s\S]*)<\/p>$/i)
+  if (!match) return markup
+  const [, attrs, leadHtml, leadInner, rest] = match
+  const rule = CALLOUTS.find(callout => callout.lead.test(articlePlainText(leadInner)))
+  if (!rule) return markup
+  const className = `article-callout article-callout--${rule.kind}`
+  if (rule.collapsed) {
+    return `<details class="${className}" data-callout="${rule.kind}"><summary>${leadHtml.trim()}</summary><p${attrs}>${rest.trim()}</p></details>`
+  }
+  return `<div class="${className}" data-callout="${rule.kind}" role="note">${markup}</div>`
+}
+
 /** Enhance trusted repository article HTML, not arbitrary user-supplied markup.
  * Keep authored anchors and table contents; derive navigation from the same pass.
  */
@@ -44,12 +141,14 @@ export function prepareArticleContent(source: string): { html: string; headings:
   const used = new Set([...source.matchAll(/<(?!h2\b)[a-z][^>]*>/gi)].flatMap(match => readIds(match[0])))
   let tableNumber = 0
   let section = 'Article data'
-  const html = source.replace(/<!--[\s\S]*?-->|<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)>|<h2\b([^>]*)>([\s\S]*?)<\/h2>|<table\b[^>]*>[\s\S]*?<\/table>/gi, (markup, attrs: string | undefined, content: string | undefined) => {
+  const html = source.replace(/<!--[\s\S]*?-->|<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)>|<h2\b([^>]*)>([\s\S]*?)<\/h2>|<table\b[^>]*>[\s\S]*?<\/table>|<p\b[^>]*>\s*<strong>[\s\S]*?<\/p>/gi, (markup, attrs: string | undefined, content: string | undefined) => {
     if (/^<table\b/i.test(markup)) {
       tableNumber += 1
       const label = escapeAttribute(`Table ${tableNumber}: ${section}. Scroll horizontally to see all columns.`)
-      return `<div class="article-table-scroll" tabindex="0" role="region" aria-label="${label}">${markup}</div>`
+      const table = annotateTable(stripTableStyles(markup))
+      return `<div class="article-table" data-cols="${table.columns}" data-layout="${table.layout}"><div class="article-table-scroll" tabindex="0" role="region" aria-label="${label}">${table.html}</div><span class="article-table__hint" aria-hidden="true">Scroll →</span></div>`
     }
+    if (/^<p\b/i.test(markup)) return convertCallout(markup)
     if (attrs === undefined || content === undefined) return markup
     const text = articlePlainText(content)
     if (!text) return markup
@@ -66,4 +165,44 @@ export function prepareArticleContent(source: string): { html: string; headings:
     return `<h2${attrs.replace(idAttribute, '')} id="${escapeAttribute(id)}">${content}</h2>`
   })
   return { html, headings }
+}
+
+/** First sentence of the review's own "Verdict" section, unchanged. */
+export function firstVerdictSentence(content: string) {
+  const match = content.match(/<h2\b[^>]*>\s*(?:<strong>)?\s*Verdict\s*(?:<\/strong>)?\s*<\/h2>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i)
+  if (!match) return null
+  const text = articlePlainText(match[1])
+  const sentence = text.match(/^[\s\S]+?[.!?](?=\s+[A-Z]|$)/)
+  const first = (sentence ? sentence[0] : text).trim()
+  // A sentence that describes the article ("This X review covers…") is not a verdict.
+  if (!first || /^this\b[^.]*\breview\b/i.test(first)) return null
+  return first
+}
+
+// ── Phase 3 article diagrams (design/article-format-spec.md §4 C15, §6 P3) ──
+
+export type ArticleDiagramName = 'drawdown-types'
+export type ArticleSegment = { kind: 'html'; html: string } | { kind: 'diagram'; name: ArticleDiagramName }
+
+const DIAGRAM_SLOT = /<div\b[^>]*\sdata-article-diagram\s*=\s*(?:"([a-z-]+)"|'([a-z-]+)')[^>]*>\s*<\/div>/gi
+const KNOWN_DIAGRAMS: ReadonlySet<string> = new Set<ArticleDiagramName>(['drawdown-types'])
+
+/**
+ * Split prepared article HTML at authored `<div data-article-diagram="name"></div>`
+ * slots so the page can render a React diagram component in place. An unknown
+ * name is left in the HTML untouched (an empty div), never guessed at.
+ */
+export function splitArticleDiagrams(html: string): ArticleSegment[] {
+  const segments: ArticleSegment[] = []
+  let last = 0
+  for (const match of html.matchAll(DIAGRAM_SLOT)) {
+    const name = match[1] ?? match[2]
+    if (!KNOWN_DIAGRAMS.has(name)) continue
+    const index = match.index ?? 0
+    if (index > last) segments.push({ kind: 'html', html: html.slice(last, index) })
+    segments.push({ kind: 'diagram', name: name as ArticleDiagramName })
+    last = index + match[0].length
+  }
+  if (last < html.length || segments.length === 0) segments.push({ kind: 'html', html: html.slice(last) })
+  return segments
 }

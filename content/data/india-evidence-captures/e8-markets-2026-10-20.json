@@ -1,0 +1,48 @@
+{
+  "firmSlug": "e8-markets",
+  "capturedAt": "2026-10-20",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "E8 Markets",
+      "E8 Funding"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
+      "quote": "Allocation limits: E8 One only up to $200,000 India VietNam Kenya Indonesia Countries listed above can purchase only E8 Pro (all sizes), E8 Signature accounts (all sizes), E8 Zero (all sizes), and E8 One accounts up to $200,000",
+      "claims": {
+        "country": "India is absent from the 35-name 'Restricted country list (Classic markets + Perpetuals)' (unchanged) and from the Futures list.",
+        "productLimit": "E8 Pro, E8 Signature, E8 Zero all sizes; E8 One capped at $200,000 for India (E8 Zero newly named).",
+        "providerGate": "Payout still depends on WorkMarket or Rise onboarding."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/5515027-how-to-pay-for-our-challenge-accounts",
+      "quote": "Currently, customers can pay using Apple Pay, Google Pay, cryptocurrency through our partner Confirmo, or by card through Nuvei.",
+      "claims": {
+        "checkout": "Major credit cards, debit cards, and cryptocurrencies accepted.",
+        "cryptoFee": "Buyers must account for network transaction fees on crypto purchases."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/6463833-is-verification-required",
+      "quote": "Our relevant team will then manually check your provided KYC information within 24 hours",
+      "claims": {
+        "kyc": "Veriff; acceptable documents Passport, ID Card, Driver Licence, Residence Permit."
+      }
+    },
+    {
+      "url": "https://help.e8markets.com/en/articles/15272556-everything-about-payouts-when-how-how-fast",
+      "quote": "We don’t charge any commissions or fees for payouts, but the processor of the payouts may charge depending on the option you are using.",
+      "claims": {
+        "payout": "WorkMarket bank transfers and Rise cash or crypto; 'There are no direct crypto payment solutions, and all payouts can be processed only through our partners.' Aeoropay is US-only.",
+        "minimum": "Please note that the minimum payout that you can request with every product type is $100."
+      }
+    }
+  ],
+  "rawCopies": "/workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/help.e8markets.com_*.html (box only), curl from a US-IP box"
+}

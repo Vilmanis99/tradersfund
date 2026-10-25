@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuComparePickVerdict } from '@/components/RuVerdict'
 import { fundedNextOneStepPayoutLabel, isFundedNextPayoutSourceFresh } from '@/lib/fundedNextPayout'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
@@ -12,6 +14,8 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ'
@@ -195,9 +199,10 @@ export default function RussianFundedNextVsFundingPipsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['fundednext', 'fundingpips']} from="ru-fn-vs-fp-mobile-sticky" />
       {completeEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />}
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div
           className="ru-shell"
           data-russian-partner-comparison="fundednext-fundingpips"
@@ -227,6 +232,9 @@ export default function RussianFundedNextVsFundingPipsPage() {
           </div>
         </div>
       </section>
+
+      <RuComparePickVerdict route={PATH} campaign="fn-vs-fp" />
+      <RuTelegramBlock placement="fundednext-vs-fundingpips" />
 
       <section className="ru-section">
         <div className="ru-shell">
@@ -293,7 +301,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
             </table>
           </div>
           {!productRows.length && <p className="ru-notice">Нет программ с актуальной проверкой. Цены и числовые рекомендации временно скрыты; используйте список источников ниже для проверки действующих условий.</p>}
-          <p className="ru-source-line">Самая ранняя проверка данных: {latestCapture}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
+          <p className="ru-source-line">Самая ранняя проверка данных: {latestCapture}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; FundedNext против FTMO — в <Link href="/ru/ftmo-vs-fundednext">отдельном сравнении</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
           <RussianFundedNextPayoutNotice />
         </div>
       </section>
@@ -460,9 +468,10 @@ export default function RussianFundedNextVsFundingPipsPage() {
             но она не меняет таблицу, редакционный порядок или проверку доступности.
           </div>
           <div className="ru-actions">
-            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
-            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-primary">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            {/* RU ranking: Russia-open BrightFunded leads this block; the compared pair follows in slug order. */}
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-bright-funded" rel="sponsored nofollow noopener" className="btn-primary">Проверить BrightFunded <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
+            <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-comparison-fundednext-fundingpips" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundingPips <ArrowRight size={15} aria-hidden="true" /></RuGoLink>
           </div>
           <p className="ru-source-line"><ShieldCheck size={14} aria-hidden="true" /> Перед оплатой откройте правила выбранного продукта. Нужна англоязычная версия? <Link href="/compare/fundednext-vs-fundingpips" hrefLang="en">Открыть полное сравнение на английском</Link>.</p>
         </div>
@@ -474,6 +483,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
           <RussianFaq items={faqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </>
   )
 }

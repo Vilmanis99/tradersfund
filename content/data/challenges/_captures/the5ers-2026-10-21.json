@@ -1,0 +1,225 @@
+{
+  "firmSlug": "the5ers",
+  "captureType": "recheck",
+  "capturedAt": "2026-10-21",
+  "capturedAtTimestamp": "2026-10-21T16:25:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/the5ers-2026-10-20.json",
+  "question": "RU SEO Lead (due Thu 22 Oct 12:00): (a) does The5ers sell a futures programme? (b) record the residence vs citizenship clauses verbatim with clause numbers.",
+  "egress": "Box egress is a US IP; global the5ers.com pages, no VPN or proxy.",
+  "method": "curl of live HTML plus headless Chrome (playwright-core, /usr/bin/google-chrome) for rendered text, tab states, list numbering and screenshots. Raw files: /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/ (box only).",
+  "residenceVsCitizenship": {
+    "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "pageLastUpdated": "2026-10-20",
+    "pageLastUpdatedQuote": "Last update – Oct. 20th 2026",
+    "numberedTermsTestResidence": [
+      {
+        "clause": "1 Eligibility, item 3",
+        "quote": "(iv) do not reside in any Forbidden Territory;"
+      },
+      {
+        "clause": "1 Eligibility, item 9",
+        "quote": "You declare that you do not reside in a prohibited jurisdiction or one subject to sanctions."
+      },
+      {
+        "clause": "1 Eligibility, item 10",
+        "quote": "or are a resident of a forbidden/sanctioned territory, the Company is entitled to close your account immediately."
+      }
+    ],
+    "footerDisclaimerTestsCitizenship": {
+      "clause": "'Website disclaimers' footer block, unnumbered",
+      "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to:",
+      "quote2": "Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited."
+    },
+    "numberingMethod": "Rendered DOM: the clause li elements sit at ol positions 1 / 1 / 3, 1 / 1 / 9 and 1 / 1 / 10 under the h2 'Eligibility'; list-style decimal, so the page shows '1. Eligibility' and the item numbers 3, 9, 10. Screenshot terms-eligibility.png.",
+    "textSearch": "'citizen' occurs only in the footer disclaimer, not in the numbered Terms."
+  },
+  "futures": {
+    "answer": "yes",
+    "summary": "The5ers sells CME futures evaluations ('The5ers Futures'): Day Trade and Swing, $25K and $50K, one-time fee, purchase button to hub.the5ers.com/purchase?step=programs&asset=futures (sign-in wall; checkout not reached).",
+    "sources": [
+      {
+        "url": "https://the5ers.com/futures/",
+        "capturedAt": "2026-10-21",
+        "pageDate": null,
+        "quotes": [
+          "Enjoy Futures With Confidence, Together",
+          "The5ers Futures",
+          "Approved by the CME",
+          "Price $59 Refunded on 3rd payout.",
+          "Summer Plan Price $69 Refunded on 3rd payout."
+        ],
+        "tabs": {
+          "dayTrade25k": {
+            "priceUsd": 59,
+            "contracts": "2 Mini, 20 Micro"
+          },
+          "dayTrade50k": {
+            "priceUsd": 100,
+            "contracts": "4 Mini, 40 Micro"
+          },
+          "swing25k": {
+            "priceUsd": 69,
+            "label": "Summer Plan Price",
+            "overnightLimit": "1 Mini, 10 Micro"
+          },
+          "swing50k": {
+            "priceUsd": 120,
+            "label": "Summer Plan Price",
+            "overnightLimit": "1 Mini, 10 Micro"
+          },
+          "common": "Evaluation Phase / Pro Stage: Profit Target 6% / 4%; Max Loss Limit 4% / 4%; Drawdown Type EOD / EOD; Consistency Rule – Per Position 40% / 40%; Activation fee (Upon Passing) None; Pass in one day: evaluation yes; Scale Up to $500K: Pro stage"
+        },
+        "file": "futures-tabs.pw.txt"
+      },
+      {
+        "url": "https://the5ers.com/terms-and-conditions/",
+        "pageLastUpdated": "2026-10-20",
+        "quote": "These services include but are not limited to proprietary trading on Contract for Difference and Futures Contract."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/the5ers-futures-evaluation-programs-explained/",
+        "pageLastUpdated": "2026-07-15",
+        "quote": "We offer two evaluation paths designed for different trading styles:"
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/",
+        "pageLastUpdated": "2026-10-12",
+        "quote": "Evaluation: 6% profit target. Funded stage:  4% profit target. Maximum loss (EOD): 4% in both evaluation and funded stages."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-is-my-maximum-drawdown-loss/",
+        "pageLastUpdated": "2026-07-15",
+        "quote": "Both the Day Trade and Swing programs have a maximum drawdown of 4%, which is calculated from your highest midnight balance or equity."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-is-the-profit-split-in-the5ers-futures/",
+        "pageLastUpdated": "2026-07-15",
+        "quote": "The profit split is 80/20 in your favor across all accounts."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/evaluation-fee-refund/",
+        "pageLastUpdated": "2026-07-20",
+        "quote": "Once you successfully receive your third payout on any funded futures trading account, we will refund the full evaluation fee you originally paid."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-do-i-need-for-a-withdrawal/",
+        "pageLastUpdated": "2026-09-28",
+        "quote": "You’ve reached 4% profit or more, calculated from your initial account balance"
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-payout-methods-are-supported/",
+        "pageLastUpdated": "2026-07-15",
+        "quote": "After that, you will have the possibility to withdraw your profits on a biweekly (14-day period) basis."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/is-there-a-monthly-subscription-during-the-evaluation/",
+        "pageLastUpdated": "2026-08-10",
+        "quote": "You pay a one-time upfront fee when purchasing an evaluation, and there are no recurring monthly payments on either program."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/what-do-i-get-with-the-futures-summer-plan-2/",
+        "pageLastUpdated": "2026-07-23",
+        "quote": "It introduces permanent price drops on Swing accounts"
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/overnight-holding-2/",
+        "pageLastUpdated": "2026-07-15",
+        "quote": "Both programs: No weekend holding allowed. All positions must be closed at least 10 minutes before the Friday close."
+      },
+      {
+        "url": "https://the5ers.com/futures-faqs/is-high-frequency-algorithmic-trading-and-hedging-allowed/",
+        "pageLastUpdated": "2026-10-12",
+        "quote": "No. These practices are strictly forbidden. Any trader found using them will be banned from our programs."
+      }
+    ],
+    "notVerified": [
+      "Checkout price (sign-in wall at hub.the5ers.com)",
+      "Futures-specific country list: none published; the Terms cover 'Futures Contract' and the site-wide footer list applies on /futures/",
+      "Futures platform name (FAQ mentions a 'BlackArrow Demo Account'; not recorded as a platform)"
+    ]
+  },
+  "followUp": {
+    "question": "RU Writer /ru/obzor-the5ers (ships 23.10): Pro Growth daily loss vs 'No daily stop-loss'; consistency scope per programme/stage; Swing futures Summer Plan price status.",
+    "checkedAt": "2026-10-21T17:00:00+03:00",
+    "egress": "US IP, no VPN or proxy",
+    "rawEvidence": "/workspace/tradersfundhub/evidence/the5ers-2026-10-21c/ (box only)",
+    "proGrowthDailyLoss": {
+      "verdict": "Breach. Pro Growth's 3% daily loss terminates the account. 'No daily stop-loss' is the shared Growth header and describes Hyper Growth's non-terminating Daily Pause; it is not a per-trade stop-loss requirement.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-the-drawdown-rule-for-progrowth/",
+          "pageDate": "2026-07-30",
+          "quote": "Daily loss of ProGrowth is 3% of the starting equity of the day OR the starting balance of the day (the highest between them) at MT5 Server Time. (GMT +2 winter time or GMT+3 summer Time) Reaching any of these limits will lead to the termination of the account."
+        },
+        {
+          "url": "https://the5ers.com/hyper-growth/",
+          "pageDate": null,
+          "quote": "No daily stop-loss | Stop Out Level 6% 6% | Daily Loss 3% 3% | The profit target, maximum loss and daily Loss remain the same for the pro stages for Pro Growth Program"
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-hyper-growth-program-work/",
+          "pageDate": "2026-08-10",
+          "quote": "The daily pause does not terminate an account. It only disables the account for the current day."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-daily-pause-work/",
+          "pageDate": "2026-07-30",
+          "quote": "The Daily Pause applies for the Hyper Growth stage in all stages and the Bootcamp funded stage."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-does-the-daily-loss-limit-work-2/",
+          "pageDate": "2026-08-10",
+          "quote": "For both the 1-Step and 2-Step summer plans, the daily loss limit is 3%. ... When the Daily Loss is reached, the account is permanently terminated.",
+          "note": "Summer Plan FAQ, not Pro Growth."
+        },
+        {
+          "url": "https://the5ers.com/terms-and-conditions/",
+          "pageDate": "2026-10-20",
+          "quote": null,
+          "note": "Terms contain no 'daily', 'pause', 'drawdown', 'stop loss' or 'consisten' wording."
+        }
+      ]
+    },
+    "consistency": {
+      "verdict": "CFD High Stakes, Pro Growth, Hyper Growth, Bootcamp: none published on programme pages, programme FAQs or Terms; the general FAQ says 30%/50% on unnamed accounts or regions, so stays null. Summer Plan 1-Step: 50% evaluation and funded; Summer Plan 2-Step: none in evaluation, 50% on the $200K funded. Futures Day Trade and Swing: 40% per position, evaluation and funded.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/faqs/what-is-constancy-rule/",
+          "pageDate": "2026-10-19",
+          "quote": "Depending on your account type or region, the consistency percentage may be different. Some accounts may have a 30% Consistency Rule, while others may have a 50% Consistency Rule or another percentage."
+        },
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "pageDate": null,
+          "quote": "Consistency Requirement: 50% in both evaluation and Pro accounts | Note: There is no consistency rule during the evaluation phases for the 2-Step plan."
+        },
+        {
+          "url": "https://the5ers.com/faqs/how-do-payouts-profit-split-and-consistency-work-on-the-200k-funded-account-2/",
+          "pageDate": "2026-08-11",
+          "quote": "Daily Consistency Rule: A 50% daily consistency requirement applies, meaning no single trading day can account for more than 50% of your total generated profit at the time of a payout request."
+        },
+        {
+          "url": "https://the5ers.com/futures-faqs/what-is-the-consistency-rule/",
+          "pageDate": "2026-07-20",
+          "quote": "The5ers Futures has a 40% consistency rule, which means a single trade can’t account for more than 40% of your total profits. ... This rule applies on funded accounts as well."
+        }
+      ]
+    },
+    "swingSummerPrice": {
+      "verdict": "Promotional label with no published end date, still live on 2026-10-21; the firm's sources conflict ('limited-time offer ... running through the end of summer ... reduced pricing' vs 'permanent price drops on Swing accounts'). Store $69/$120 as the current list price, not a confirmed permanent standard.",
+      "sources": [
+        {
+          "url": "https://the5ers.com/summer-plan/",
+          "pageDate": null,
+          "quote": "It’s a limited-time offer for Swing accounts, running through the end of summer. It includes reduced pricing across account sizes, two new account tiers (100K and 150K), and the Summer Boost Rewards program, which rewards Hub Credits at key milestones."
+        },
+        {
+          "url": "https://the5ers.com/futures-faqs/what-do-i-get-with-the-futures-summer-plan-2/",
+          "pageDate": "2026-07-23",
+          "quote": "It introduces permanent price drops on Swing accounts, brings brand-new account sizes to the platform, and features a limited-time promotional reward ladder for traders who hit key performance milestones during the summer."
+        }
+      ]
+    }
+  }
+}

@@ -33,6 +33,21 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 55,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 55,
+        "scope": "evaluation",
+        "appliesTo": "Trading Combine",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      },
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "XFA Consistency payout path",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -107,6 +122,21 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 55,
+    "consistencyScope": "evaluation",
+    "consistencyRules": [
+      {
+        "percent": 55,
+        "scope": "evaluation",
+        "appliesTo": "Trading Combine",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      },
+      {
+        "percent": 40,
+        "scope": "funded",
+        "appliesTo": "XFA Consistency payout path",
+        "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+      }
+    ],
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",

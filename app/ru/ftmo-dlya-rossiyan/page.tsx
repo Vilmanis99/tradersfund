@@ -153,7 +153,9 @@ export default function FtmoForRussiansPage() {
           <h2>Альтернативы FTMO для трейдеров из России</h2>
           <p>
             Три фирмы на {CHECKED} не ограничивают Россию. Они не копии FTMO: у Upscale и Crypto Fund Trader упор на
-            крипту, у BrightFunded — на форекс и индексы. Сравнивайте правила, а не логотипы.
+            крипту, у BrightFunded — на форекс и индексы, хотя криптопары она тоже предлагает (более 48, по данным справки
+            BrightFunded, проверка 20.10.2026). Сравнивайте правила, а не логотипы.
+            Правила FTMO и FundedNext по пунктам — в сравнении <Link href="/ru/ftmo-vs-fundednext">«FTMO или FundedNext»</Link>.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-ftmo-alternatives="russia">

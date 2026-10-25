@@ -123,6 +123,25 @@ export interface Firm {
    */
   discountCodeCheckoutVerified?: boolean
   /**
+   * Free-text validity of `discountCode` as published by the firm, e.g.
+   * 'limited time (Halloween offer, no end date published)'. Editorial record
+   * only; it is not parsed into an expiry date.
+   */
+  discountCodeValidity?: string
+  /**
+   * Where the code was seen (box screenshot paths, official URL, time seen).
+   * Internal provenance: may name box-only paths, so never render it.
+   */
+  discountCodeEvidence?: string
+  /**
+   * The code `discountCode` replaced (e.g. BrightFunded DOUBLE25 -> HW30 on
+   * 2026-10-22). History only: never render it as a live or usable code
+   * (guarded by scripts/test-previous-discount-code.mjs).
+   */
+  previousDiscountCode?: string
+  /** Free-text status of `previousDiscountCode`, e.g. 'not shown on site since 22.10; expiry unconfirmed'. */
+  previousDiscountCodeStatus?: string
+  /**
    * A code seen only from one region (e.g. a US IP). Kept out of `discountCode`
    * so no global or RU surface renders it as a universal code.
    */
@@ -366,6 +385,13 @@ export interface Challenge {
   consistencyRulePct: number | null
   /** false explicitly confirms no rule; null/absent does not. See notes for stage scope. */
   consistencyRuleApplies?: boolean | null
+  /**
+   * Where consistencyRulePct applies. Optional; without it (or consistencyRules)
+   * generated copy names no consistency rule. See lib/consistencyScope.ts.
+   */
+  consistencyScope?: ConsistencyScope
+  /** Scoped consistency rules; take precedence over consistencyRulePct + consistencyScope when present. */
+  consistencyRules?: ConsistencyRule[]
   /** Profit split this product pays the trader (0–100). */
   profitSplitPct: number | null
   /** Days until the first payout request can be raised on this product. */
@@ -379,6 +405,18 @@ export interface Challenge {
   sourceCapturedAt: string
   /** Free-form notes — gotchas, fine print, scaling specifics, promo codes. */
   notes?: string[]
+}
+
+export type ConsistencyScope = 'evaluation' | 'funded' | 'both'
+
+export interface ConsistencyRule {
+  /** Cap on one day's share of total profit, 0 < percent <= 100. */
+  percent: number
+  scope: ConsistencyScope
+  /** Optional route or product part, e.g. "On-Demand payouts". */
+  appliesTo?: string
+  /** Official page the rule was read from. */
+  sourceUrl: string
 }
 
 /* ── Loaders ───────────────────────────────────────────────────── */
@@ -551,7 +589,11 @@ export type ChallengeCurrency = 'USD' | 'EUR'
 export function challengeCurrency(
   challenge: Pick<Challenge, 'accountSizes'>,
 ): ChallengeCurrency {
-  return challenge.accountSizes.some(t => t.priceUsd != null) ? 'USD' : 'EUR'
+  // EUR only when a EUR price is actually listed and no USD one is. A product
+  // that lists sizes but no price at all (Apex Standard since 2026-10-22: the
+  // activation fee was not shown) is not evidence of EUR pricing.
+  if (challenge.accountSizes.some(t => t.priceUsd != null)) return 'USD'
+  return challenge.accountSizes.some(t => t.priceEur != null) ? 'EUR' : 'USD'
 }
 
 export interface ChallengeTierEconomics {

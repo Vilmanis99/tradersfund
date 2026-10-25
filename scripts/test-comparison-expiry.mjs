@@ -42,7 +42,7 @@ const visible = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').
 const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
 try {
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
-  const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
+  const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, getOverlayIfCurrent, COMPARISON_OVERLAYS_ENABLED, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
   const { isSourceHoldFirm } = require(path.join(root, 'lib/reviewStatus.ts'))
   const { buildChallengeMatchup, freshChallenges } = require(path.join(root, 'lib/challengeMatchup.ts'))
   const hub = require(path.join(root, 'app/compare/page.tsx'))
@@ -60,7 +60,36 @@ try {
       assert(typeof interval === 'number' && interval > 0 && interval <= 3600, `${route}: actual build inherits hourly regeneration`)
     }
   }
-  assert.equal(getOverlay('ftmo-vs-fundednext')?.challengeReviewedAt, '2026-10-01', 'product-by-product editorial recheck restores the current comparison')
+  {
+    // The ftmo-vs-fundednext overlay was last reviewed 2026-10-01, but both firms and
+    // all their products were recaptured on 2026-10-19 (Lite first reward 21 -> 10 days,
+    // FTMO platform list changed). Stale hand-written copy must be dropped, not
+    // re-dated; a genuine product-by-product re-review must restore it.
+    const { COMPARISON_OVERLAYS } = require(path.join(root, 'lib/comparisons.ts'))
+    const overlay = COMPARISON_OVERLAYS['ftmo-vs-fundednext']
+    const pairFirms = firms.filter(firm => ['ftmo', 'fundednext'].includes(firmSlug(firm.name)))
+    const pairProducts = products.filter(product => ['ftmo', 'fundednext'].includes(product.firmSlug))
+    const latestFirmUpdate = pairFirms.map(firm => firm.lastUpdated).sort().at(-1)
+    const latestCapture = pairProducts.map(product => product.sourceCapturedAt).sort().at(-1)
+    const savedClock = clock
+    const saved = { reviewedAt: overlay.reviewedAt, challengeReviewedAt: overlay.challengeReviewedAt }
+    try {
+      clock = `${[latestFirmUpdate, latestCapture, overlay.reviewedAt, overlay.challengeReviewedAt].sort().at(-1)}T12:00:00Z`
+      // The date gates are checked directly (getOverlayIfCurrent); getOverlay adds the off-switch on top.
+      const current = overlay.reviewedAt >= latestFirmUpdate && overlay.challengeReviewedAt >= latestCapture
+      assert.equal(Boolean(getOverlayIfCurrent('ftmo-vs-fundednext')), current, 'an overlay reviewed before the latest firm or product capture is dropped')
+      Object.assign(overlay, { reviewedAt: offset(latestFirmUpdate, -1), challengeReviewedAt: latestCapture })
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext'), undefined, 'a firm update after the review drops the overlay')
+      Object.assign(overlay, { reviewedAt: latestFirmUpdate, challengeReviewedAt: latestCapture })
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext')?.challengeReviewedAt, latestCapture, 'product-by-product editorial recheck restores the current comparison')
+      assert.equal(Boolean(getOverlay('ftmo-vs-fundednext')), COMPARISON_OVERLAYS_ENABLED, 'the hard off-switch wins over a current review')
+      Object.assign(overlay, { challengeReviewedAt: offset(latestCapture, -1) })
+      assert.equal(getOverlayIfCurrent('ftmo-vs-fundednext'), undefined, 'one newer product capture is enough to drop the overlay')
+    } finally {
+      Object.assign(overlay, saved)
+      clock = savedClock
+    }
+  }
   // Deliberately move the clock forward, then back, without reloading modules.
   for (const date of [...dates, '2026-10-01']) {
     clock = `${date}T12:00:00Z`

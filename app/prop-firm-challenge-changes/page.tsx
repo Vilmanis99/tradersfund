@@ -32,15 +32,17 @@ const PATH = '/prop-firm-challenge-changes'
 // change cannot strand the whole site on an older deployment.
 const SOCIAL_CARD_ENTRY_COUNT = 34
 const SOCIAL_CARD_FIRM_COUNT = 15
-const SOCIAL_CARD_VERIFIED_COUNT = 19
-const SOCIAL_CARD_WATCH_COUNT = 15
+const SOCIAL_CARD_VERIFIED_COUNT = 21
+const SOCIAL_CARD_WATCH_COUNT = 13
 
 const TITLE = 'Prop Firm Challenge Changes & Rule Updates (2026)'
 const DESCRIPTION =
   'Track dated prop-firm challenge price, rule and product-lineup changes with first-party sources, verification status and a plain-English trader impact.'
 
 export const metadata: Metadata = {
-  title: TITLE,
+  // Absolute: this page shares its segment with the section's root layout, so the
+  // site title template would not reach it (see components/EnglishRootLayout.tsx).
+  title: { absolute: `${TITLE} | TFH` },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   openGraph: {

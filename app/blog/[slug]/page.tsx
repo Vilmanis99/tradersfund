@@ -2,6 +2,7 @@ import { firmSlug } from '@/lib/firmSlug'
 import { getPostBySlug, getAllPostData, getAllPosts } from '@/lib/mdx'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { postSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { reviewFreshnessBlockers } from '@/lib/reviewFreshness'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -24,12 +25,21 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import { extractArticleFaq, prepareArticleContent } from '@/lib/articleContent'
+import { extractArticleFaq, firstVerdictSentence, prepareArticleContent, splitArticleDiagrams } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
 import { promotableDiscount } from '@/lib/discountDisplay'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import ReviewVerdictBox from '@/components/ReviewVerdictBox'
+import PriceMatrix from '@/components/PriceMatrix'
+import ChallengePath from '@/components/ChallengePath'
+import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
+import { comparisonHref } from '@/lib/relatedComparisons'
+import { getReviewCopy } from '@/lib/verdictCopy'
+import { rankFirmAlternatives } from '@/lib/firmAlternatives'
+import { canonicalMatchupSlug, getCurrentCanonicalPairs } from '@/lib/comparisons'
+import type { Firm } from '@/lib/firms'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -92,6 +102,8 @@ export default async function BlogPostPage({ params }: Props) {
     slug,
   )
 
+  const articleSegments = splitArticleDiagrams(contentWithIds)
+
   const allPosts = getAllPostData()
   const toolReviewLinks = getTradingToolReviewLinks(slug, allPosts)
   const toolReviewSlugs = new Set(toolReviewLinks.map(review => review.slug))
@@ -108,8 +120,17 @@ export default async function BlogPostPage({ params }: Props) {
   const oldestFirmCapture = firmProducts.map(product => product.sourceCapturedAt).sort()[0]
   const hasProductSummary = PRODUCT_SUMMARY_REVIEWS.has(slug)
   const watchEntries = hasProductSummary ? getChallengeWatchEntries() : []
-  const faqLd = hasProductSummary && firmProducts.length > 0 && staleFirmProducts.length === 0
+  const faqLd = hasProductSummary && firmProducts.length > 0 && reviewFreshnessBlockers(firmProducts).length === 0
     ? faqPageSchema(extractArticleFaq(post.content)) : null
+  // Article format Phase 1 preview (design/article-format-spec.md §3.1–3.2):
+  // VerdictBox first, sticky side contents, no generic sidebar. Scoped by slug.
+  // Article format Phase 1 (design/article-format-spec.md §3.1–3.2): every firm
+  // review opens with the VerdictBox and a sticky contents rail.
+  const phase1Preview = Boolean(matchedFirm)
+  const reviewCopy = getReviewCopy(slug)
+  const verdictLine = phase1Preview ? (reviewCopy.verdict === undefined ? firstVerdictSentence(post.content) : reviewCopy.verdict) : null
+  const freshFirmProducts = firmProducts.filter(product => isChallengeFresh(product))
+  const compareFirm = phase1Preview && matchedFirm ? pickCompareFirm(matchedFirm, firms) : undefined
   const postLd = postSchema(post, firms)
   const crumbsLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -124,7 +145,7 @@ export default async function BlogPostPage({ params }: Props) {
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }} />}
 
       {/* ═══════════════════════════════ ARTICLE HERO ═══════════════════════════════ */}
-      <section className="post-hero">
+      <section className={phase1Preview ? 'post-hero post-hero--p1' : 'post-hero'}>
         <div className="post-shell" style={{ position: 'relative', zIndex: 1 }}>
           <Link href="/blog" className="post-back">
             <ArrowLeft size={14} /> Back to all articles
@@ -171,7 +192,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ═══════════════════════════════ BODY ═══════════════════════════════ */}
       <div className="post-shell post-body">
-        <div className="post-layout">
+        <div className={phase1Preview ? 'post-layout post-layout--p1' : 'post-layout'}>
           <article>
             {matchedFirm && staleFirmProducts.length > 0 && (
               <aside className="review-freshness-notice" data-review-source-status="recapture-required" aria-label="Review source freshness">
@@ -181,22 +202,89 @@ export default async function BlogPostPage({ params }: Props) {
                 {oldestFirmCapture && <span> Oldest capture: <time dateTime={oldestFirmCapture}>{oldestFirmCapture}</time>.</span>}
               </aside>
             )}
-            {matchedFirm && (
-              <AffiliateDisclosure
-                firmName={matchedFirm.name}
-                hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
-              />
+            {phase1Preview && matchedFirm ? (
+              <>
+                {freshFirmProducts.length === 0 ? (
+                  // Stale-data guard: with no capture inside the 30-day window the box
+                  // (verdict sentence, fit lines, facts) is held back until Tracker
+                  // recaptures; the firm card shows score, Trustpilot and the CTA only.
+                  <>
+                    <AffiliateDisclosure firmName={matchedFirm.name} hasAffiliate={Boolean(matchedFirm.affiliateUrl)} />
+                    <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />
+                  </>
+                ) : (
+                <ReviewVerdictBox
+                  firm={matchedFirm}
+                  products={freshFirmProducts}
+                  bestForOverride={reviewCopy.bestFor}
+                  notForOverride={reviewCopy.notFor}
+                  verdict={verdictLine}
+                  compare={compareFirm ? { href: comparisonHref(matchedFirm, compareFirm), label: `Compare ${matchedFirm.name} vs ${compareFirm.name}` } : undefined}
+                  sourcesHref="#captured-terms"
+                />
+                )}
+                {freshFirmProducts.length > 0 && (
+                  <PriceMatrix
+                    products={freshFirmProducts}
+                    firmName={matchedFirm.name}
+                    firmSlug={firmSlug(matchedFirm.name)}
+                    locale="en"
+                    id="price-matrix"
+                    title={`${matchedFirm.name} entry fee by account size`}
+                    ariaLabel={`${matchedFirm.name} entry fees by account size (scrollable table)`}
+                  />
+                )}
+                {freshFirmProducts.length > 0 && (
+                  <ChallengePath
+                    products={freshFirmProducts}
+                    firmName={matchedFirm.name}
+                    firmSlug={firmSlug(matchedFirm.name)}
+                    locale="en"
+                    id="path-to-funded"
+                  />
+                )}
+                <details className="p1-collapsible" id="captured-terms">
+                  <summary>Captured product terms and sources</summary>
+                  {hasProductSummary
+                    ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
+                    : <FirmStatPanel firm={matchedFirm} />}
+                </details>
+                <TradingToolReviewStatus post={post} />
+                <details className="p1-collapsible p1-toc-mobile">
+                  <summary>On this page</summary>
+                  <TableOfContents headings={prepared.headings} />
+                </details>
+              </>
+            ) : (
+              <>
+                {matchedFirm && (
+                  <AffiliateDisclosure
+                    firmName={matchedFirm.name}
+                    hasAffiliate={Boolean(matchedFirm.affiliateUrl)}
+                  />
+                )}
+                {matchedFirm && <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />}
+                {matchedFirm && (hasProductSummary
+                  ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
+                  : <FirmStatPanel firm={matchedFirm} />)}
+                <TradingToolReviewStatus post={post} />
+
+                <TableOfContents headings={prepared.headings} />
+              </>
             )}
-            {matchedFirm && <FirmCtaCard firm={matchedFirm} productSpecific={hasProductSummary} />}
-            {matchedFirm && (hasProductSummary
-              ? <ReviewProductSummary firm={matchedFirm} products={firmProducts} watchEntries={watchEntries} />
-              : <FirmStatPanel firm={matchedFirm} />)}
-            <TradingToolReviewStatus post={post} />
 
-            <TableOfContents headings={prepared.headings} />
-
-            <div className="prose post-prose"
-              dangerouslySetInnerHTML={{ __html: contentWithIds }} />
+            {articleSegments.some(segment => segment.kind === 'diagram') ? (
+              // Only articles with an authored diagram slot are segmented; every other
+              // article keeps its single unwrapped prose container.
+              <div className="prose post-prose">
+                {articleSegments.map((segment, index) => segment.kind === 'diagram'
+                  ? <DrawdownTypesDiagram key={`diagram-${index}`} locale="en" />
+                  : <div key={`html-${index}`} className="post-prose__segment" dangerouslySetInnerHTML={{ __html: segment.html }} />)}
+              </div>
+            ) : (
+              <div className="prose post-prose"
+                dangerouslySetInnerHTML={{ __html: contentWithIds }} />
+            )}
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
             {matchedFirm && <IndiaMatchupLinks firmName={matchedFirm.name} />}
@@ -218,6 +306,26 @@ export default async function BlogPostPage({ params }: Props) {
             <RelatedPosts posts={related} />
           </article>
 
+          {phase1Preview && matchedFirm ? (
+            <aside className="post-aside p1-rail" aria-label="Contents and firm summary">
+              <div className="p1-rail__inner">
+                <TableOfContents headings={prepared.headings} />
+                <div className="p1-rail__firm">
+                  <div className="p1-rail__firm-row"><strong>{matchedFirm.name}</strong><b>{matchedFirm.score}</b></div>
+                  <Link
+                    href={`/go/${firmSlug(matchedFirm.name)}?from=review-cta`}
+                    prefetch={false}
+                    rel={matchedFirm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+                    target="_blank"
+                    className="btn-primary"
+                  >
+                    {matchedFirm.affiliateUrl ? `Visit ${matchedFirm.name}` : 'View official plans'}
+                  </Link>
+                  <Link href="/prop-firm-challenges" className="p1-rail__more">Compare all programmes</Link>
+                </div>
+              </div>
+            </aside>
+          ) : (
           <aside className="post-aside">
             <div className="post-sidebar-card">
               <span className="bento-tile-eyebrow">
@@ -247,6 +355,7 @@ export default async function BlogPostPage({ params }: Props) {
               </ul>
             </div>
           </aside>
+          )}
         </div>
       </div>
 
@@ -264,3 +373,16 @@ export default async function BlogPostPage({ params }: Props) {
     </div>
   )
 }
+
+/**
+ * "Compare with…" target: the most relevant alternative (asset and platform
+ * overlap, then score; commercial fields never enter the ranking) that has a
+ * current comparison page.
+ */
+function pickCompareFirm(firm: Firm, firms: Firm[]) {
+  const current = new Set(getCurrentCanonicalPairs().map(pair => pair.matchup))
+  const own = firmSlug(firm.name)
+  return rankFirmAlternatives(firm, firms, firms.length)
+    .find(candidate => current.has(canonicalMatchupSlug(own, firmSlug(candidate.name))))
+}
+

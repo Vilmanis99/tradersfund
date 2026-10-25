@@ -28,8 +28,8 @@
       "Skrill",
       "Crypto"
     ],
-    "drawdownType": "static",
-    "minTradingDays": 4,
+    "drawdownType": null,
+    "minTradingDays": null,
     "consistencyRule": "Product-specific: 50% on FTMO Challenge: 1-Step; no consistency percentage on the remaining product.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -123,10 +123,14 @@
     "trustpilotScore": 4.8,
     "trustpilotCount": 54501,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-21",
     "trustpilotUrl": "https://www.trustpilot.com/review/ftmo.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://ftmo.com/en/faq/who-can-join-ftmo/",
+    "russiaSourceQuote": "Residency-based restrictions Due to business decisions based on risk management considerations, FTMO does not provide FTMO CFDs to clients in the countries and regions listed in the following table. ... Russian Federation",
+    "russiaSourceCapturedAt": "2026-10-21",
+    "russiaSourceNote": "FAQ modified 2026-09-30, read 2026-10-21 from a US IP. The table also names Belarus and Kazakhstan, and Ukraine only for Crimea, Sevastopol, Donetsk, Kherson, Luhansk and Zaporizhzhia. The 75 stored countriesRestricted names match the page (4 names are stored in a longer form, e.g. 'Republic of Belarus').",
     "legalEntity": "FTMO Evaluation Global s.r.o.",
     "headquarters": "Prague, Czech Republic",
     "country": "Czech Republic",
@@ -440,7 +444,7 @@
     "payoutMethodsCapturedAt": "2026-10-20",
     "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20) and USDC (ERC20). Card payout needs at least one card saved on the account from a purchase. Russia is on FundedNext's bank-transfer exclusion list and the Russian Federation and Belarus are on its card exclusion list (help article updated 2026-10-02). Rise lists the Russian Federation as a restricted country it cannot onboard (help.riseworks.io/en/articles/7198515). Iran: TC Pay only.",
     "drawdownType": "static",
-    "minTradingDays": 0,
+    "minTradingDays": 2,
     "consistencyRule": "Product-specific: 40% best-day rule (best day's profit may not exceed 40% of total profit, checked only when an On-Demand Performance Reward is requested) on Stellar 2-Step and Stellar Lite with the On-Demand payout option; none on Stellar Instant. The 40% news-window profit count is a separate news rule (see newsTradingAllowed / rules.newsTrading), not a consistency rule.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
@@ -672,6 +676,7 @@
       "newsTrading": {
         "value": "restricted",
         "summary": "restricted",
+        "note": "News trading is allowed in Challenge and funded accounts. On funded Stellar 1-Step, 2-Step and Lite accounts (and on Stellar Instant), only 40% of the profit from trades executed 5 minutes before to 5 minutes after a listed high-impact news event on a correlated symbol is counted; losses stay in full. Challenge accounts are not subject to the rule. Source pages dated 2026-09-08 (10701447) and 2026-02-24 (11641410), read 2026-10-22.",
         "byProduct": {
           "stellar-2-step": "restricted",
           "stellar-1-step": "restricted",
@@ -681,18 +686,50 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account .",
+            "quote": "FundedNext allows traders to trade during news events in both the Challenge Phase and the FundedNext Account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
-            "quote": "Time Window : Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window ) will be subject to the News Reward Share Rule .",
+            "quote": "Time Window: Trades executed 5 minutes before and 5 minutes after a listed high-impact news event (a total 10-minute window) will be subject to the News Reward Share Rule.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Profit Calculation: 40% of the profit from these profitable trade(s) will be counted toward the trader’s account balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "The News Reward Share Rule applies only to Stellar 1-Step, Stellar 2-Step, and Stellar Lite FundedNext Accounts.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+            "quote": "Challenge Accounts are not subject to this rule.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+            "quote": "Only 40% of the profit from trades placed during this window will be counted toward your account’s profit.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-22",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json",
             "productSlug": null
           }
         ]
@@ -750,7 +787,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
     }
   },
   {
@@ -787,7 +824,7 @@
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
-    "overnightAllowed": true,
+    "overnightAllowed": "restricted",
     "weekendAllowed": "restricted",
     "copyTradingAllowed": "restricted",
     "countriesRestricted": [
@@ -1206,7 +1243,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -1524,8 +1561,16 @@
     "maxAllocation": "$400,000",
     "platforms": [
       "MT5",
-      "cTrader"
+      "cTrader",
+      "DXTrade",
+      "TradeLocker"
     ],
+    "platformEvidence": {
+      "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+      "sourceCapturedAt": "2026-10-23",
+      "sourceQuote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
+      "notes": "Help article dated July 6, 2026. Homepage platform cards (rendered 2026-10-20) also list MetaTrader 5, cTrader, TradeLocker and DX Trade, with Alpha Trader 'Coming Soon'. US residents: no MT5; cTrader closed to new US customers."
+    },
     "score": 8,
     "logo": "/images/wp/2025/07/Alpha-Capital-Logo.png",
     "reviewUrl": "/blog/alpha-capital-review",
@@ -1537,6 +1582,10 @@
       "Rise",
       "Wise"
     ],
+    "payoutMethodsSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933755-how-do-i-get-paid-performance-fees",
+    "payoutMethodsQuote": "We offer multiple methods to pay your performance fees: Rise Wise Bank Transfer (WIRE / ACH / SWIFT) Cryptocurrency We do not facilitate withdrawals directly through cryptocurrency due to its lack of regulatory oversight, which contravenes our compliance standards. However, you may make cryptocurrency withdrawals through Rise, one of our authorised third-party payment service providers.",
+    "payoutMethodsCapturedAt": "2026-10-23",
+    "payoutMethodsNote": "Bank wire = WIRE/ACH/SWIFT. No direct crypto payouts; crypto only through Rise. All requests processed and paid within 2 business days. Minimum: $100 gross on bi-weekly; on-demand 2% of gross profit (Direct: 3% buffer + 1%). Help article dated July 7, 2026.",
     "drawdownType": null,
     "minTradingDays": null,
     "consistencyRule": "Product-specific: 15% on Alpha Direct; 40% on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); no consistency percentage on the other 4 products.",
@@ -1572,6 +1621,7 @@
       "Sanctioned areas of Ukraine (Donetsk, Luhansk, Crimea, Kherson, Zaporizhzhia)",
       "Republic of Congo"
     ],
+    "countriesRestrictedSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -1581,16 +1631,20 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-23",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
+    "russiaSourceQuote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ...",
+    "russiaNote": "Nationals or residents (July 6, 2026 article, read 2026-10-20). KYC article: a national of a restricted country living in a non-restricted country with that country's government ID can be onboarded; a resident of a restricted country cannot, even with another passport. Russia and Belarus are absent from the checkout country dropdown; Kazakhstan and Ukraine are present (sanctioned Ukrainian areas listed).",
     "legalEntity": "Alpha Capital Group Limited",
     "headquarters": "Harpenden, England, United Kingdom",
     "country": "United Kingdom",
     "regulation": null,
     "corporateSourceUrl": "https://alphacapitalgroup.uk/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-10-23",
+    "corporateNote": "ALPHA CAPITAL GROUP LIMITED, company number 13719951, registered office 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (site footer, re-read 2026-10-23).",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -1970,25 +2024,19 @@
       "platforms": {
         "value": [
           "MT5",
-          "cTrader"
+          "cTrader",
+          "DXTrade",
+          "TradeLocker"
         ],
-        "summary": "MT5, cTrader",
+        "summary": "MT5, cTrader, DXTrade, TradeLocker",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://alphacapitalgroup.uk/",
-            "quote": "Summary Discount Code Apply Step Step 1 Account Alpha One Size $5,000 Platform MT5 Total due One-time payment $0.00 By confirming the order: I declare that I have",
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+            "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://alphacapitalgroup.uk/",
-            "quote": "Desktop, web, and mobile access Built for serious traders Learn More Learn More cTrader Clean professional interface Fast order execution Advanced charting features De",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-10-23",
+            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-23.json",
             "productSlug": null
           }
         ]
@@ -1997,7 +2045,13 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
     "trustpilotRatingSuppressed": true,
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
+    "regionalDiscountCode": "MYALPHA",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 30,
+    "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+    "discountCodeCapturedAt": "2026-10-23",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22 and again 2026-10-23 (codes page still \"Last updated 19 October 2026\"); not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
   },
   {
     "name": "BrightFunded",
@@ -2005,7 +2059,8 @@
     "assets": [
       "Forex",
       "Indices",
-      "Commodities"
+      "Commodities",
+      "Crypto"
     ],
     "maxAllocation": "$400,000",
     "platforms": [
@@ -2015,7 +2070,7 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
-      "sourceCapturedAt": "2026-09-08",
+      "sourceCapturedAt": "2026-10-20",
       "sourceQuote": "DXTrade, cTrader and MT5",
       "notes": "Firm-wide platform list only. The source restricts MT5 for U.S./UAE citizenship, residency or location and cTrader for the U.S. profile. Confirm the specific programme, account size and country before payment. This check does not refresh prices or other firm terms."
     },
@@ -2059,7 +2114,8 @@
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "available",
     "legalEntity": "BrightFunded Ltd",
     "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
@@ -2069,12 +2125,16 @@
     "corporateCapturedAt": "2026-10-16",
     "corporateNote": "Physical address of BrightFunded Ltd (Saint Lucia, reg. 2025-00358), which offers the CFD services. Bright Global FZCO (Building A1, Dubai Digital Park, Dubai Silicon Oasis, UAE) is a separate affiliate that the homepage labels 'Dubai HQ' / 'Dubai Headquarter' and lists in the footer address; futures services are offered by affiliate BrightFunded LLC (Wyoming; Austin, TX business address).",
     "affiliateStatus": "active",
-    "discountCode": "DOUBLE25",
+    "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-10-19",
-    "discountCodeNote": "Homepage observation only (2026-10-16): Double Up Offer: 25% off + 15% Evaluation Profit Reward + free account upon payout. No end date or terms shown; plan table marks every 2-Step size -25% (base EUR 5K 47, 10K 87, 25K 187, 50K 277, 100K 477, 200K 947); 1-Step not confirmed. Checkout NOT verified (account login required), so it is kept out of deals.json.",
-    "discountPct": 25,
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Homepage observation 2026-10-22 (box US IP and WebFetch reader both show it; screenshot seen ~09:20 Riga): top banner \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\" and \"15% Evaluation Profit Reward\"; plan cards mark 2-Step Bright struck-through (EUR 5K 47 to 32.90, 10K 87 to 60.90, 25K 187 to 130.90, 50K 277 to 193.90, 100K 477 to 333.90; WebFetch reader also listed 200K 947 to 662.90). No end date, countdown or terms link on the homepage, and help.brightfunded.com (104 articles re-read 2026-10-22) never mentions Halloween, HW30 or DOUBLE25, so the validity is 'limited time (Halloween offer, no end date published)'. Futures T&C 4.6 (updated 9 Oct 2026): codes are personal, single-use unless stated, and may be changed or withdrawn at any time. Checkout NOT verified: step 1 shows the 2-Step Bright 5K at the unchanged EUR 47.00 list price, and the voucher field appears only at the final step after an email is entered (\"Discount voucher can be added at the final step.\"), so neither HW30 nor DOUBLE25 was tested; kept out of deals.json. Previous homepage code DOUBLE25 (Double Up, 25%): not shown on site since 22.10; expiry unconfirmed (no official source says it ended).",
+    "discountPct": 30,
+    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
+    "discountCodeEvidence": "/workspace/tradersfundhub/evidence/brightfunded-codes-2026-10-22/01_homepage_HW30_banner.png (checkout: 03_checkout_step1_5k_eur47.png, 04_checkout_step2_email_required.png); https://brightfunded.com/; seen 22.10.2026 09:20 Riga",
+    "previousDiscountCode": "DOUBLE25",
+    "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
@@ -2369,12 +2429,11 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "assetsEvidence": {
-      "sourceUrl": "https://brightfunded.com/futures-waitlist",
-      "sourceCapturedAt": "2026-10-16",
-      "sourceQuote": "The futures simulated trading and evaluation services featured on www.brightfunded.com are offered solely by BrightFunded LLC, which is the contracting party for those services.",
-      "notes": "Futures NOT added as an offered asset: on 2026-10-16 the homepage nav shows 'Futures New' and the legal footer names BrightFunded LLC for futures, but futures is waitlist-only (https://brightfunded.com/futures-waitlist). Quote is from the brightfunded.com homepage legal footer."
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceQuote": "At BrightFunded, we offer a wide range of cryptocurrency trading pairs. We currently have over 48 cryptocurrency pairs",
+      "notes": "Crypto added 2026-10-20 (Prop Firm Tracker, US-IP box). Article dated May 25, 2026 lists pairs such as BTC/USD and ETH/USD; the assets article https://help.brightfunded.com/en/articles/9268749-what-trading-assets-instruments-offers-brightfunded (dated February 3, 2026) lists 'Cryptocurrencies: In addition to traditional assets, we offer a wide range of the most popular and latest cryptocurrency instruments.' and the leverage article 9268380 lists 'Crypto: 1:5'. Our earlier list omitted crypto. Futures still NOT added: on 2026-10-16 futures was waitlist-only (https://brightfunded.com/futures-waitlist; footer quote: 'The futures simulated trading and evaluation services featured on www.brightfunded.com are offered solely by BrightFunded LLC, which is the contracting party for those services.')."
     }
   },
   {
@@ -2431,7 +2490,8 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
@@ -2717,7 +2777,6 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
@@ -3167,7 +3226,7 @@
     "consistencyRule": "Product-specific: 20% on Instant Funding Lite; 25% on Two Phase Classic, Crypto Instant Funding; 30% on Lightning Challenge; no consistency percentage on the other 6 products.",
     "scalingPlan": true,
     "newsTradingAllowed": true,
-    "eaAllowed": true,
+    "eaAllowed": "restricted",
     "overnightAllowed": null,
     "weekendAllowed": true,
     "copyTradingAllowed": "restricted",
@@ -3209,6 +3268,10 @@
       "Ghana",
       "Haiti"
     ],
+    "countriesRestrictedSourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+    "countriesRestrictedQuote": "The following countries are prohibited from trading with FXIFY™: Zimbabwe, Iran, Iraq, North Korea, Somalia, Vietnam, Belarus, Burundi, Central African Republic, Ivory Coast, Liberia, Libya, Sudan, Cuba, Syria, Afghanistan, Yemen, Palestine, Myanmar, Nicaragua, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Papua New Guinea, South Sudan, Vanuatu, Venezuela, Algeria, Russia, Kenya, Ghana, and Haiti. Please note that this list may change due to political situations and internal policies.",
+    "countriesRestrictedCapturedAt": "2026-10-20",
+    "countriesRestrictedNote": "Rechecked 2026-10-20 from a US IP. The list is the union of two current official FXIFY lists, and Haiti stays. (1) The FAQ \"What Countries are not accepted?\" (schema dateModified 2026-02-12, live 2026-10-20) names 35 countries including Haiti, but not the United States. (2) The site-wide footer, live on every fxify.com page incl. FAQs, Terms of Use (last updated March 2025) and the client agreement, reads \"Restricted Jurisdictions: We do not establish accounts to residents of certain jurisdictions including the United States, Zimbabwe, ... Russia, Belarus, Kenya and Ghana\". That is 35 entries including the United States, but not Haiti. The footer may be the US-region variant, because the site has USA/UK/EU/Canada/AU switches; not verified from a non-US IP. Haiti is also missing from the checkout country selector at https://trader.fxify.com/purchasechallenge (read 2026-10-20), along with every other FAQ-listed country, which supports the FAQ. FXIFY General Terms and Conditions (dated September 29, 2026), clause 1.4, defer to \"countries determined as such by the Provider and published on the Website\". History: Haiti was added 2026-10-17 per the FAQ; footer-only readers count 35 without it.",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -3430,16 +3493,16 @@
       },
       "newsTrading": {
         "value": null,
-        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; not allowed on Instant Funding Standard, Instant Funding Lite, Lightning Challenge; restricted on Crypto Standard (1 Step), Crypto Instant Funding",
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; restricted on Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding",
         "byProduct": {
           "one-phase": true,
           "two-phase-classic": true,
           "two-phase-standard": true,
           "two-phase-pro": true,
           "three-phase": true,
-          "instant-funding-standard": false,
-          "instant-funding-lite": false,
-          "lightning-challenge": false,
+          "instant-funding-standard": "restricted",
+          "instant-funding-lite": "restricted",
+          "lightning-challenge": "restricted",
           "crypto-standard-1-step": "restricted",
           "crypto-instant-funding": "restricted"
         },
@@ -3543,7 +3606,7 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
     "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only).",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only). Rechecked 2026-10-23 (US IP): ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\". AGHHH35 is not checkout-verified, may be US-only and is not in deals.json.",
     "regionalDiscountPct": 35
   },
   {
@@ -3570,6 +3633,10 @@
       "Crypto",
       "Bank wire"
     ],
+    "payoutMethodsSourceUrl": "https://cryptofundtrader.com/faq/",
+    "payoutMethodsQuote": "Payment methods: Directly via bank transfer in EUR or USD . Transfer directly to crypto wallet in these available currencies: USDT (ERC20) USDT (TRC20) Bitcoin (BTC) Ethereum (ETH)",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Crypto = USDT (ERC20/TRC20), BTC, ETH; bank transfer in EUR or USD. KYC and a signed contract are required before any reward; FAQ states ~8 hours average processing, up to 48 business hours. Capture: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture).",
     "drawdownType": null,
     "minTradingDays": null,
     "consistencyRule": "Product-specific: 40% on Break Challenge; no consistency percentage on the other 4 products.",
@@ -3589,10 +3656,10 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/cryptofundtrader.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-19",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "available",
     "affiliateStatus": "none",
     "rules": {
@@ -3869,14 +3936,16 @@
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "countriesRestrictedSourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
     "russiaSourceUrl": "https://cryptofundtrader.com/faq/",
-    "russiaSourceQuote": "Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
+    "russiaSourceQuote": "Which countries are allowed to join Crypto Fund Trader? Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States. Bybit: Crypto Fund Trader does not apply additional country restrictions for traders who choose to use Bybit.",
+    "russiaSourceCapturedAt": "2026-10-21",
+    "russiaSourceNote": "FAQ (schema dateModified 2026-03-30) rechecked 2026-10-21 from a US IP. 'Russia' does not occur on the FAQ, the homepage or the Terms and Conditions; russiaStatus 'available' rests on the platform statement above, not on a Russia-specific confirmation. Bybit users must also follow Bybit's own jurisdiction rules. Checkout and KYC from Russia not tested.",
     "legalEntity": "SWISS RLCRATES AG",
     "headquarters": "Zug, Switzerland",
     "country": "Switzerland",
     "regulation": null,
     "corporateNote": "SWISS RLCRATES AG (CHE-162.567.204) states it is a payment/marketing agent for RLCRATES, S.L., which provides the MT5 service; the footer says it is not authorized or licensed in Switzerland. Offices listed: Zug, Pamplona, Dubai.",
     "corporateSourceUrl": "https://cryptofundtrader.com/",
-    "corporateCapturedAt": "2026-10-19"
+    "corporateCapturedAt": "2026-10-20"
   },
   {
     "name": "Topstep",
@@ -3891,9 +3960,9 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
-      "sourceCapturedAt": "2026-10-20",
-      "sourceQuote": "TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.",
-      "notes": "Rechecked 2026-10-20 (article dateModified 2026-09-25). TopstepX is Topstep's own execution platform; Quantower connects through TopstepX for the Trading Combine and XFA only (help article 8284179). The TopstepX chart \"Cannot connect to external platforms like TradingView\". The built-in Trade Copier is limited to Trading Combine and Express Funded Accounts, not Live. TopstepX API (ProjectX) costs $29/month (50% off with Topstep code), is not available on Live, and VPS/VPN order routing is prohibited (help article 11187768). Platform access does not establish country or personal eligibility."
+      "sourceCapturedAt": "2026-10-22",
+      "sourceQuote": "TopstepX™ is Topstep’s trading platform",
+      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Re-read 2026-10-22 via WebFetch (article shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
     },
     "score": 8.5,
     "logo": "/images/firms/topstep.png",
@@ -4695,7 +4764,10 @@
     "reviewUrl": "/blog/city-traders-imperium-review",
     "officialUrl": "https://citytradersimperium.com/",
     "profitSplitPct": 70,
-    "payoutFrequency": "monthly",
+    "payoutFrequency": null,
+    "payoutFrequencyNote": "Product-specific, so no firm-wide value (checked 2026-10-20): 1-Step and 2-Step publish a first payout \"in as little as 7 days\" with weekly payouts only unlocked at VIP Bronze; Direct Funding is on demand from day 5; Instant Funding publishes no baseline cycle. The earlier firm-level \"monthly\" matched no current product page.",
+    "payoutFrequencySourceUrl": "https://citytradersimperium.com/direct-funding/",
+    "payoutFrequencyQuote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
     "payoutMethods": [
       "Bank wire",
       "Crypto"
@@ -4723,11 +4795,11 @@
       "platform": null
     },
     "trustpilotScore": 4.2,
-    "trustpilotCount": 1631,
+    "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
     "legalEntity": "City Traders Imperium Limited",
     "headquarters": "San José, Costa Rica",
@@ -4916,12 +4988,12 @@
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: weekly on 1-Step Challenge, 2-Step Challenge; not stated on Instant Funding; monthly on Direct Funding",
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
         "byProduct": {
-          "1-step-challenge": "weekly",
-          "2-step-challenge": "weekly",
+          "1-step-challenge": null,
+          "2-step-challenge": null,
           "instant-funding": null,
-          "direct-funding": "monthly"
+          "direct-funding": "on-demand"
         },
         "evidence": [
           {
@@ -4939,6 +5011,14 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-20",
+            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
+            "productSlug": "direct-funding"
           }
         ]
       },
@@ -5038,7 +5118,13 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "regionalDiscountCode": "BREAK15",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 15,
+    "discountCodeSourceUrl": "https://citytradersimperium.com/",
+    "discountCodeCapturedAt": "2026-10-22",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Homepage pop-up: \"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\" Not valid on Direct Funding per that wording."
   },
   {
     "name": "Take Profit Trader",
@@ -5871,17 +5957,16 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-10-22",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "regionalDiscountCode": "SAVENOW",
-    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP (re-seen 2026-10-20, promo expiration \"2026-10-22 23:59\" in the page config); not checkout-verified and may be US-only, so not shown as a universal code. \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\"",
-    "regionalDiscountPct": 90
+    "discountCodeCapturedAt": "2026-10-23",
+    "discountCodeNote": "No public Apex code is live as of 2026-10-23: the expired code SAVENOW (\"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE!\") was seen only from a US IP on 2026-10-20 to 2026-10-22, its on-page countdown ended about 07:00 23.10.2026 Riga, and the banner was no longer on the homepage when rechecked 2026-10-23. It was never checkout-verified and was never in deals.json. The 2026-10-23 homepage instead shows \"Limited-Time Offer — Legacy Accounts Are Back\" (Legacy prices not captured).",
+    "previousDiscountCode": "SAVENOW",
+    "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },
   {
     "name": "Lucid Trading",
@@ -6017,7 +6102,7 @@
     "trustpilotScore": 4.4,
     "trustpilotCount": 7032,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -6467,7 +6552,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 5369,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeify.co",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -6778,6 +6863,151 @@
       },
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+    }
+  },
+  {
+    "name": "The5ers",
+    "founded": "2016",
+    "assets": [
+      "Forex",
+      "Indices",
+      "Commodities",
+      "Crypto",
+      "Futures"
+    ],
+    "maxAllocation": null,
+    "platforms": [
+      "MT5",
+      "cTrader",
+      "TradingView"
+    ],
+    "platformEvidence": {
+      "sourceUrl": "https://the5ers.com/faqs/which-trading-platform-do-you-use/",
+      "sourceCapturedAt": "2026-10-20",
+      "sourceQuote": "Non-US clients can use MetaTrader 5, cTrader, and TradingView. US-based clients can use TradingView.",
+      "notes": "CFD programmes; FAQ last updated 2026-08-13. cTrader adds a $10 fee on top of the programme price and is no longer offered to new US accounts. Platform choice is final once purchased."
+    },
+    "score": 8,
+    "logo": "/images/wp/2025/11/5ers.jpg",
+    "reviewUrl": "/blog/the5ers-review",
+    "officialUrl": "https://the5ers.com/",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Bank wire",
+      "Rise",
+      "Crypto"
+    ],
+    "payoutMethodsQuote": "We currently support the following four payout options: Rise ... Crypto ... Bank Transfer ... Hub Credits",
+    "payoutMethodsSourceUrl": "https://the5ers.com/faqs/withdrawals-everything-you-need-to-know/",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "FAQ last updated 2026-08-24. Each method carries a 3.5% commission per withdrawal (bank transfer also any receiving-bank fees). Crypto = USDT (TRC20), USDC (ERC20), ETH, LTC, capped at $1,500 per withdrawal; larger amounts go via Rise (faqs/crypto-withdrawals). The fourth option, Hub Credits, is non-cash (new accounts only, no commission) and is not listed as a payout method. First withdrawal 14 days after funded activation, then every 2 weeks; minimum $150 on standard CFD programmes, $250 on Summer Plan (faqs/what-are-the-minimum-withdrawal-amounts-and-limits, 2026-10-14).",
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": true,
+    "newsTradingAllowed": "restricted",
+    "eaAllowed": "restricted",
+    "overnightAllowed": true,
+    "weekendAllowed": true,
+    "copyTradingAllowed": false,
+    "countriesRestricted": [
+      "Afghanistan",
+      "Belarus",
+      "Bosnia and Herzegovina",
+      "Burundi",
+      "Central African Republic",
+      "Cuba",
+      "Congo Republic",
+      "Crimea",
+      "Democratic Republic of Congo",
+      "Eritrea",
+      "Guinea",
+      "Guinea-Bissau",
+      "Iraq",
+      "Iran",
+      "Israel",
+      "Laos",
+      "Lebanon",
+      "Liberia",
+      "Libya",
+      "Myanmar",
+      "North Korea",
+      "Palestinian Territory",
+      "Papua New Guinea",
+      "Russia",
+      "South Sudan",
+      "Sudan",
+      "Somalia",
+      "Syria",
+      "Vanuatu",
+      "Venezuela",
+      "Yemen"
+    ],
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": 4.7,
+    "trustpilotCount": 40175,
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-10-20",
+    "trustpilotUrl": "https://www.trustpilot.com/review/the5ers.com",
+    "trustpilotCapturedAt": "2026-10-20",
+    "russiaStatus": "restricted",
+    "countriesRestrictedSourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "countriesRestrictedQuote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "countriesRestrictedCapturedAt": "2026-10-22",
+    "countriesRestrictedNote": "Terms 'Last update – Oct. 20th 2026', rechecked 2026-10-21 and again 2026-10-22 (US IP, curl; evidence/the5ers-2026-10-22/terms.html): Forbidden Territory definition unchanged (31 names). The 'residents or citizens' disclaimer on the same page and in the site footer lists 30 names, without Bosnia and Herzegovina; the definition is stored. Russia, Belarus and Crimea are named; Ukraine outside Crimea and Kazakhstan are not named (text search), which is not a positive availability statement.",
+    "russiaSourceUrl": "https://the5ers.com/terms-and-conditions/",
+    "russiaSourceQuote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen.",
+    "russiaSourceCapturedAt": "2026-10-22",
+    "affiliateStatus": "none",
+    "russiaEligibilityClauses": [
+      {
+        "clauseRef": "Terms section 1 'Eligibility', item 3",
+        "clauseRefNote": "The Terms render nested lists: '1. Eligibility' then items '1.' to '10.' (no compound numbers like 1.3 are shown); this is the 3rd item.",
+        "test": "residence",
+        "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+        "pageLastUpdated": "2026-10-20",
+        "sourceCapturedAt": "2026-10-22",
+        "quote": "If You: (i) are at least eighteen (18) years of age or be of the legal age in your jurisdiction, if higher, (ii) have the legal authority or ability to enter into and be bound by these Terms, (iii)are a retail trader; (iv) do not reside in any Forbidden Territory; and (v) comply with these Terms; You may be eligible for an Account."
+      },
+      {
+        "clauseRef": "Terms section 1 'Eligibility', item 9",
+        "test": "residence",
+        "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+        "pageLastUpdated": "2026-10-20",
+        "sourceCapturedAt": "2026-10-22",
+        "quote": "You agree that circumvention of geographical restrictions (including through the use of VPN or any other technical means) constitutes a fundamental breach of the Terms. You declare that you do not reside in a prohibited jurisdiction or one subject to sanctions."
+      },
+      {
+        "clauseRef": "Terms section 1 'Eligibility', item 10",
+        "test": "residence",
+        "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+        "pageLastUpdated": "2026-10-20",
+        "sourceCapturedAt": "2026-10-22",
+        "quote": "The Company performs KYC procedures as a condition for becoming a “Professional User.” If, at any stage (including during or after the KYC process), it is discovered that you have violated the prohibition against circumvention or are a resident of a forbidden/sanctioned territory, the Company is entitled to close your account immediately."
+      },
+      {
+        "clauseRef": "'Website disclaimers' block in the site-wide footer (unnumbered; not one of the numbered Terms clauses)",
+        "clauseRefNote": "Shown under the Terms on https://the5ers.com/terms-and-conditions/ and in the footer of every the5ers.com page checked on 2026-10-21 (/, /futures/, /futures-faqs/). The word 'citizen' does not occur anywhere in the numbered Terms text.",
+        "test": "residence or citizenship, plus location",
+        "sourceUrl": "https://the5ers.com/terms-and-conditions/",
+        "pageLastUpdated": "2026-10-20",
+        "sourceCapturedAt": "2026-10-22",
+        "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited."
+      }
+    ],
+    "russiaNote": "Conflict on Russian citizens living outside Russia, recorded and not resolved (checked 2026-10-21, US IP; Terms 'Last update – Oct. 20th 2026'). The numbered Terms test residence only: section 1 'Eligibility' item 3 ('(iv) do not reside in any Forbidden Territory'), item 9 ('You declare that you do not reside in a prohibited jurisdiction or one subject to sanctions') and item 10 (closure if you 'are a resident of a forbidden/sanctioned territory'). The unnumbered 'Website disclaimers' footer on the same page says services are 'not available to residents or citizens' of the Forbidden Territories, Russia included, and that 'Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited'. Residents of Russia: restricted under both texts. Russian citizens resident elsewhere: eligible under the numbered Terms, excluded under the footer disclaimer, so no access claim either way; the page should say 'ask The5ers in writing before paying'. Being in Russia while trading: prohibited by the footer's 'from a Forbidden Territory' sentence; VPN use is a 'fundamental breach' (item 9). The footer list has 30 names and omits Bosnia and Herzegovina, which the Forbidden Territory definition (31 names) includes. Evidence: /workspace/tradersfundhub/evidence/the5ers-2026-10-21b/ (terms.html, terms-eligibility.png). Re-read 2026-10-22: Terms still 'Last update – Oct. 20th 2026'; all four clause quotes present verbatim; definition 31 names, footer 30 (no Bosnia and Herzegovina); 'Ukraine' and 'Kazakhstan' 0 matches (evidence/the5ers-2026-10-22/terms.html).",
+    "russiaNoteCapturedAt": "2026-10-22",
+    "assetsEvidence": {
+      "sourceUrl": "https://the5ers.com/futures/",
+      "sourceCapturedAt": "2026-10-21",
+      "sourceQuote": "Enjoy Futures With Confidence, Together The5ers Futures",
+      "notes": "CME futures programme (Day Trade and Swing, $25K/$50K, from $59) sold alongside the CFD programmes; Terms 'Last update – Oct. 20th 2026': 'These services include but are not limited to proprietary trading on Contract for Difference and Futures Contract.' Products: challenges/the5ers.json futures-day-trade, futures-swing."
     }
   }
 ]

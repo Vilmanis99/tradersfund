@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { possessive } from '@/lib/possessive'
 import {
   BadgeCheck,
   CircleAlert,
@@ -45,7 +46,7 @@ function costGap(group: MatchupCostGroup): string | null {
   const gap = rival.minimumCost - winner.minimumCost
   if (gap <= 0) return null
   const pct = Math.round((gap / rival.minimumCost) * 100)
-  return `${formatMoney(gap, winner.currency)} less than ${rival.firmName}'s cheapest route at this tier (${rival.productName}, ${formatMoney(rival.minimumCost, rival.currency)}) — ${pct}% cheaper.`
+  return `${formatMoney(gap, winner.currency)} less than ${possessive(rival.firmName)} cheapest route at this tier (${rival.productName}, ${formatMoney(rival.minimumCost, rival.currency)}) — ${pct}% cheaper.`
 }
 
 function ValueCell({ groups, uniform }: { groups: RuleValueGroup[]; uniform: boolean }) {
@@ -188,6 +189,16 @@ export default function ChallengeMatchup({
       {matchup.hasData && <><h3 className="cm-h3">
         <Scale size={16} aria-hidden="true" /> Cost to funded, matched by account size
       </h3>
+
+      {[a, b].filter(firm => firm.unpricedProducts.length > 0).map(firm => (
+        <p key={firm.slug} className="cm-note" data-comparison-unpriced={firm.slug}>
+          <Info size={14} aria-hidden="true" />
+          <span>
+            Not in the cost tables: {firm.name} {new Intl.ListFormat('en', { type: 'conjunction' }).format(firm.unpricedProducts)}.
+            {' '}The latest capture records no complete entry price for {firm.unpricedProducts.length === 1 ? 'it' : 'them'}, so {firm.unpricedProducts.length === 1 ? 'it is' : 'they are'} not ranked on cost.
+          </span>
+        </p>
+      ))}
 
       {matchup.noSharedSizeNote ? (
         <p className="cm-note">

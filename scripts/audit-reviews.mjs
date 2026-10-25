@@ -37,6 +37,7 @@ import {
 } from '../lib/challengeChangeFocus.ts'
 import { isIndiaCampaign } from '../lib/affiliateCampaign.ts'
 import { challengeTierEconomics, computeTrueCost } from '../lib/firms.ts'
+import { hasNoListedPrice } from '../lib/reviewFreshness.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import { isSourceHoldFirm } from '../lib/reviewStatus.ts'
 import {
@@ -70,6 +71,7 @@ import {
   postBodyCampaign,
 } from '../lib/postOutboundLinks.ts'
 import { rankRelatedPosts, relatedPostScore } from '../lib/relatedPosts.ts'
+import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH } from '../lib/localizedRoutes.ts'
 import { russianPartnerMatcherDecision } from '../lib/russianPartnerMatcher.ts'
 import {
   getRussianDiasporaCountryRows,
@@ -103,7 +105,7 @@ function sourceHasToken(source, token) {
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const POSTS = path.join(ROOT, 'content/posts')
 const CHALLENGES = path.join(ROOT, 'content/data/challenges')
-const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/page.tsx')
+const GLOBAL_DIRECTORY_PAGE_FILE = path.join(ROOT, 'app/prop-firms/(index)/page.tsx')
 const GLOBAL_LEGACY_DIRECTORY_FILE = path.join(ROOT, 'app/main-table/page.tsx')
 const GLOBAL_DIRECTORY_COMPONENT_FILE = path.join(ROOT, 'components/FirmTable.tsx')
 const GLOBAL_CHALLENGE_PAGE_FILE = path.join(ROOT, 'app/prop-firm-challenges/page.tsx')
@@ -186,7 +188,7 @@ const INDIA_MATCHUP_SLUGS = [
 const AFFILIATE_REDIRECT_ROUTE_FILE = path.join(ROOT, 'app/go/[firm]/route.ts')
 const ANALYTICS_PROVIDER_FILE = path.join(ROOT, 'components/AnalyticsProvider.tsx')
 const INDIA_MATCHER_COMPONENT_FILE = path.join(ROOT, 'components/IndiaFirmMatcher.tsx')
-const ROOT_LAYOUT_FILE = path.join(ROOT, 'app/layout.tsx')
+const ROOT_LAYOUT_FILE = path.join(ROOT, 'components/SiteDocument.tsx')
 const BLOG_POST_PAGE_FILE = path.join(ROOT, 'app/blog/[slug]/page.tsx')
 const TRADING_TOOL_REVIEW_COMPONENT_FILE = path.join(
   ROOT,
@@ -267,7 +269,7 @@ const FTMO_FREE_TRIAL_GUIDE_FILE = path.join(
 const FREE_TRIAL_DATA_FILE = path.join(ROOT, 'content/data/free-trials.json')
 const DISCOUNT_HUB_PAGE_FILE = path.join(
   ROOT,
-  'app/prop-firm-discount-codes/page.tsx',
+  'app/prop-firm-discount-codes/(index)/page.tsx',
 )
 const DEALS_DATA_FILE = path.join(ROOT, 'content/data/deals.json')
 const DEALS_LIBRARY_FILE = path.join(ROOT, 'lib/deals.ts')
@@ -293,10 +295,10 @@ const RELEASE_CRAWL_FILE = path.join(ROOT, 'scripts/release-crawl.mjs')
 const MDX_FILE = path.join(ROOT, 'lib/mdx.ts')
 const RETIRED_CONTENT_FILE = path.join(ROOT, 'lib/retiredContent.ts')
 const NEXT_CONFIG_FILE = path.join(ROOT, 'next.config.ts')
-const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/page.tsx')
+const ROOT_SLUG_PAGE_FILE = path.join(ROOT, 'app/[slug]/(index)/page.tsx')
 const SITEMAP_FILE = path.join(ROOT, 'app/sitemap.ts')
 const COST_CALCULATOR_FILE = path.join(ROOT, 'components/v4/CostCalculator.tsx')
-const HOMEPAGE_FILE = path.join(ROOT, 'app/page.tsx')
+const HOMEPAGE_FILE = path.join(ROOT, 'app/(home)/page.tsx')
 const COMPARISON_HERO_FILE = path.join(ROOT, 'components/ComparisonHero.tsx')
 const COMPARISON_VERDICT_FILE = path.join(ROOT, 'components/ComparisonVerdict.tsx')
 const RELATED_COMPARISONS_FILE = path.join(ROOT, 'components/RelatedComparisons.tsx')
@@ -334,6 +336,7 @@ const REVIEW_TO_FIRM = {
   'my-funded-futures': 'my-funded-futures',
   'ofp-funding-review': 'ofp-funding',
   'take-profit-trader-review': 'take-profit-trader',
+  'the5ers-review': 'the5ers',
   'topstep-review': 'topstep',
   'tradeday-review': 'tradeday',
   'tradeify-review': 'tradeify',
@@ -492,7 +495,7 @@ function loadChallenges(firmSlug) {
   return JSON.parse(fs.readFileSync(file, 'utf-8'))
 }
 
-function checkSourceFreshness(challenges, errors, warnings, allowStale = false) {
+function checkSourceFreshness(challenges, errors, warnings, allowStale = false, { exemptNoListedPrice = false } = {}) {
   const seen = new Map()
   const badUrls = new Set()
   for (const c of challenges) {
@@ -511,6 +514,9 @@ function checkSourceFreshness(challenges, errors, warnings, allowStale = false) 
       errors.push(`challenge "${c.productName}" has no sourceCapturedAt`)
       continue
     }
+    // Same exemption as the rendered surface (lib/reviewFreshness.ts): a product
+    // with no listed price at all (not on sale) shows no price that can go stale.
+    if (exemptNoListedPrice && hasNoListedPrice(c)) continue
     const age = Math.floor((TODAY - new Date(c.sourceCapturedAt)) / 86400000)
     if (age > STALE_DAYS && !seen.has(c.sourceCapturedAt)) {
       seen.set(c.sourceCapturedAt, true)
@@ -1266,7 +1272,7 @@ function checkTrustAndCommercialSurface() {
     rows.push('footer contains placeholder social links')
   }
 
-  const home = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf-8')
+  const home = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf-8')
   for (const phrase of ['best for beginners', 'lowest-risk', 'standing 10%']) {
     if (home.toLowerCase().includes(phrase)) {
       rows.push(`homepage contains unsupported promotional phrase: ${phrase}`)
@@ -1744,7 +1750,7 @@ function checkGlobalDirectorySurface() {
   const rows = []
 
   if (!fs.existsSync(GLOBAL_DIRECTORY_PAGE_FILE)) {
-    rows.push('app/prop-firms/page.tsx is missing')
+    rows.push('app/prop-firms/(index)/page.tsx is missing')
   } else {
     const page = fs.readFileSync(GLOBAL_DIRECTORY_PAGE_FILE, 'utf-8')
     const requiredTokens = [
@@ -2118,7 +2124,7 @@ function checkGlobalChallengeSurface() {
   const changeLedgerInternalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/prop-firm-challenges/page.tsx', 'global challenge page'],
     [
       'app/best-prop-firms-in-india/challenge-comparison/page.tsx',
@@ -2154,7 +2160,7 @@ function checkGlobalChallengeSurface() {
   const internalLinks = [
     ['components/navLinks.ts', 'primary navigation'],
     ['components/Footer.tsx', 'footer'],
-    ['app/prop-firms/page.tsx', 'global directory'],
+    ['app/prop-firms/(index)/page.tsx', 'global directory'],
     ['app/sitemap.ts', 'sitemap'],
     ['app/llms.txt/route.ts', 'llms.txt'],
   ]
@@ -2723,7 +2729,9 @@ function checkIndiaEvidence() {
       }
 
       const freshnessErrors = []
-      checkSourceFreshness(challenges, freshnessErrors)
+      // /best-prop-firms-in-india lists not-on-sale products (lib/indiaMatcher.ts:
+      // isChallengeFresh || hasNoListedPrice), so the audit applies the same exemption.
+      checkSourceFreshness(challenges, freshnessErrors, [], false, { exemptNoListedPrice: true })
       for (const error of freshnessErrors) rows.push(`${slug}: ${error}`)
     }
   }
@@ -2801,13 +2809,16 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/luchshie-prop-firmy', 'russian_ranking'],
     ['/ru/fundednext-vs-bright-funded', 'russian_comparison'],
     ['/ru/fundednext-vs-fundingpips/', 'russian_comparison'],
+    ['/ru/ftmo-vs-fundednext', 'russian_comparison'],
     ['/ru/prop-firmy-s-ctrader', 'russian_comparison'],
+    ['/ru/fundingpips-vs-bright-funded', 'russian_comparison'],
     ['/ru/promokody-prop-firm', 'russian_deals'],
     ['/ru/obzor-ftmo', 'russian_review'],
     ['/ru/obzor-topstep', 'russian_review'],
     ['/ru/obzor-fundednext/', 'russian_review'],
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
+    ['/ru/obzor-the5ers', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
@@ -2824,6 +2835,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/chto-takoe-prop-firma', 'russian_education'],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', 'russian_education'],
     ['/ru/otzyvy-prop-firm', 'russian_review'],
+    [RU_CLOSED_FIRMS_PATH, 'russian_education'],
   ])
   for (const [pathname, expected] of stageFixtures) {
     const actual = journeyStage(pathname)
@@ -3601,11 +3613,12 @@ function checkIndiaChallengeChangesSurface() {
       'entry.productSlugs.includes(product.slug)',
       'affectedComparisonUrl(',
       'validateChallengeProductKeys',
-      'SOCIAL_CARD_ENTRY_COUNT = 19',
-      'SOCIAL_CARD_FIRM_COUNT = 7',
-      'SOCIAL_CARD_PRODUCT_COUNT = 35',
-      'SOCIAL_CARD_VERIFIED_COUNT = 9',
-      'SOCIAL_CARD_WATCH_COUNT = 10',
+      // Values come from npm run gen:share-cards, which also redraws the card; the page throws on drift.
+      'const SOCIAL_CARD_ENTRY_COUNT = ',
+      'const SOCIAL_CARD_FIRM_COUNT = ',
+      'const SOCIAL_CARD_PRODUCT_COUNT = ',
+      'const SOCIAL_CARD_VERIFIED_COUNT = ',
+      'const SOCIAL_CARD_WATCH_COUNT = ',
       'Refresh the India challenge-changes social card',
       'Affiliate status contributes 0 points',
       'ChallengeChangeFeed entries={entries}',
@@ -4769,7 +4782,8 @@ function checkOvertradingGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -4858,7 +4872,7 @@ function checkOvertradingGuide() {
         `€${ftmoTier.priceEur}`,
         `${ftmo.dailyLossPct}% daily loss`,
         `${ftmo.maxLossPct}% balance-based end-of-day trailing maximum loss`,
-        `${ftmo.consistencyRulePct}% Best Day rule`,
+        [`${ftmo.consistencyRulePct}% Best Day rule`, `${ftmo.consistencyRulePct}% consistency rule`, `${ftmo.consistencyRulePct}% Consistency rule`],
         ftmo.sourceCapturedAt,
       ],
     )
@@ -5604,7 +5618,8 @@ function checkConsistencyGuide() {
       return
     }
     for (const fragment of fragments) {
-      if (!text.includes(fragment)) rows.push(`${label} is missing "${fragment}"`)
+      // An array lists accepted phrasings (FTMO 1-Step: Best Day Rule before 12 Oct 2026, Consistency rule after).
+      if (Array.isArray(fragment) ? !fragment.some(option => text.includes(option)) : !text.includes(fragment)) rows.push(`${label} is missing "${Array.isArray(fragment) ? fragment.join('" or "') : fragment}"`)
     }
   }
   const money = value => `$${value.toLocaleString('en-US')}`
@@ -5656,7 +5671,7 @@ function checkConsistencyGuide() {
   expectFragments('consistency definition', stripTags(content), [
     'A prop-firm consistency rule measures whether too much of an account\'s result came from its best trading day',
     'The percentage alone is incomplete',
-    'Positive Days\' Profit',
+    ['Positive Days\' Profit', 'more than 50% of your total profit'],
     'fixed Profit Target',
     'There is no safe firm-wide shortcut',
   ])
@@ -5702,9 +5717,9 @@ function checkConsistencyGuide() {
       attributedText('tr', 'data-consistency-example', 'ftmo:ftmo-challenge-1-step'),
       [
         'FTMO 1-Step',
-        `${ftmoOneStep.consistencyRulePct}% Best Day rule`,
+        [`${ftmoOneStep.consistencyRulePct}% Best Day rule`, `${ftmoOneStep.consistencyRulePct}% consistency rule`, `${ftmoOneStep.consistencyRulePct}% Consistency rule`],
         'Challenge and reward',
-        'Positive Days\' Profit',
+        ['Positive Days\' Profit', 'total profit'],
         'Continue earning profit until no single day exceeds 50%',
         ftmoOneStep.sourceCapturedAt,
       ],
@@ -6169,9 +6184,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  if (entries.length !== 8 || mappedProducts.size !== 39) {
+  // 44 = every structured product of the 8 UK firms after FTMO Instant Account (2026-10-21).
+  if (entries.length !== 8 || mappedProducts.size !== 44) {
     rows.push(
-      `UK fixture expects 8 firms and 39 mapped products; received ${entries.length} and ${mappedProducts.size}`,
+      `UK fixture expects 8 firms and 44 mapped products; received ${entries.length} and ${mappedProducts.size}`,
     )
   }
 
@@ -6227,9 +6243,10 @@ function checkUkLandingCluster() {
     }
   }
 
-  const expectedTitle = 'Best Prop Firms UK 2026: 8 Prop Trading Firms Checked'
+  // Lengths checked at the fixture's upper bound (every evidence entry current).
+  const expectedTitle = `Best Prop Firms UK 2026: ${entries.length} That Accept UK Traders`
   const expectedDescription =
-    'Compare 8 prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.'
+    `Prop firms that accept UK traders in 2026: ${entries.length} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`
   if (expectedTitle.length > 54) rows.push('UK meta title leaves no room for the root suffix')
   if (expectedDescription.length < 120 || expectedDescription.length > 160) {
     rows.push('UK meta description must be between 120 and 160 characters')
@@ -6255,7 +6272,7 @@ function checkUkLandingCluster() {
     }
   }
 
-  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/page.tsx'))
+  const ukLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-uk/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -6472,14 +6489,14 @@ function checkUsLandingConsolidation() {
     rows.push('best-prop-firms-in-us landing config is missing')
   } else {
     const expectedDescription =
-      `Best prop firms for US traders in 2026: ${expected.size} prop trading firms open to USA residents across ${expectedProductCount} exact futures and CFD products, with CFTC/NFA checks.`
+      `Prop firms that accept US traders in 2026: ${expected.size} firms with first-party evidence for ${expectedProductCount} US-resident products, mostly futures, plus CFTC and NFA checks.`
     if (expectedDescription.length < 120 || expectedDescription.length > 160) {
       rows.push('U.S. landing meta description must be between 120 and 160 characters')
     }
     const requiredFragments = [
       'h1: `Best Prop Firms for US Traders (2026): ${CURRENT_US_FIRM_COUNT} Prop Trading Firms in the USA`',
-      'metaTitle: `Best Prop Firms USA 2026: ${CURRENT_US_FIRM_COUNT} Prop Trading Firms Checked`',
-      'CURRENT_US_PRODUCT_COUNT} exact futures and CFD products',
+      'metaTitle: `Best Prop Firms for US Traders 2026: ${CURRENT_US_FIRM_COUNT} Firms Checked`',
+      'CURRENT_US_PRODUCT_COUNT} US-resident products, mostly futures',
       'US_ACCESS_EVIDENCE_BY_SLUG.get(slug)',
       'usProductsForEvidence(evidence)',
       'U.S.-mapped ${products.length === 1',
@@ -6567,7 +6584,7 @@ function checkUsLandingConsolidation() {
     }
   }
 
-  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/page.tsx'))
+  const usLandingRoute = read(path.join(ROOT, 'app/best-prop-firms-in-us/(index)/page.tsx'))
   for (const fragment of [
     'export const revalidate = 3600',
     'getLandingForRender(SLUG)',
@@ -6998,7 +7015,9 @@ function checkFuturesLandingCluster() {
     'expectedFuturesFirms',
     'expectedFuturesProductCount',
     "challenge.assetClass === 'futures'",
-    '7 firms and 26 products',
+    'renderedFuturesNames',
+    'renderedFuturesProductCount',
+    'no fresh futures products in the data',
     'Products ${products.length}',
     'missing contextual futures-ranking backlink',
     "'/prop-firm-challenges?market=futures'",
@@ -7120,10 +7139,66 @@ function checkCryptoLandingCluster() {
     }
   }
 
-  if (ranked.length !== 3 || watch.length !== 7 || mappedProducts.size !== 12) {
+  // Derived pin (same pattern as the futures cluster): the expected ranked / watch / mapped-product counts come
+  // from crypto-market-evidence.json, not literals. What stays asserted: the ranking is non-empty, every mapping
+  // is unique (so the mapped count equals the evidence's productSlugs total), every ranked product is fresh
+  // (validated above), and both rendered pages are held to these same derived counts by the release crawl
+  // (EN card count + per-card product labels; RU product/watch data attributes).
+  const derivedCryptoRanked = ranked.length
+  const derivedCryptoWatch = watch.length
+  const derivedCryptoMapped = ranked.reduce(
+    (total, entry) => total + (Array.isArray(entry.productSlugs) ? entry.productSlugs.length : 0),
+    0,
+  )
+  if (derivedCryptoRanked === 0 || derivedCryptoMapped === 0) {
     rows.push(
-      `crypto fixture expects 3 current ranked firms, 7 watch firms and 12 mapped products; received ${ranked.length}, ${watch.length} and ${mappedProducts.size}`,
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms and ${derivedCryptoMapped} mapped products; the ranking cannot be empty`,
     )
+  }
+  if (mappedProducts.size !== derivedCryptoMapped) {
+    rows.push(
+      `crypto fixture derives ${derivedCryptoRanked} ranked firms, ${derivedCryptoWatch} watch firms and ${derivedCryptoMapped} mapped products; ${mappedProducts.size} unique mappings resolved`,
+    )
+  }
+  const cryptoCountSafeguards = [
+    [read(RELEASE_CRAWL_FILE), 'release crawl', [
+      'rendered ${cards.length} firms, expected ${expectedCryptoFirms.length}',
+      'expectedCryptoFirms.length !== cryptoMarketEvidence.ranked.length',
+      'expectedCryptoProductCount !== expectedCryptoMappedProductCount',
+      '`${products.length} crypto-mapped ${products.length === 1 ? \'product\' : \'products\'}`',
+      'data-russian-crypto-product-count="${cryptoMarketEvidence.ranked.reduce((total, evidence) => total + evidence.productSlugs.length, 0)}"',
+      'data-russian-crypto-watch-count="${cryptoMarketEvidence.watch.length}"',
+      'for (const watch of cryptoMarketEvidence.watch)',
+    ]],
+    [read(LANDINGS_CONFIG_FILE), 'EN crypto landing config', [
+      'const CURRENT_CRYPTO_SNAPSHOT = CRYPTO_MARKET_EVIDENCE.flatMap(',
+      'const CURRENT_CRYPTO_FIRM_COUNT = CURRENT_CRYPTO_SNAPSHOT.length',
+    ]],
+    [read(path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')), 'RU crypto page', [
+      'data-russian-crypto-product-count={productCount}',
+      'data-russian-crypto-watch-count={cryptoMarketEvidence.watch.length}',
+    ]],
+  ]
+  for (const [source, label, fragments] of cryptoCountSafeguards) {
+    for (const fragment of fragments) {
+      if (!source.includes(fragment)) {
+        rows.push(`${label} no longer holds the rendered crypto counts to the derived evidence counts: "${fragment}"`)
+      }
+    }
+  }
+  // The EN FAQ "Which crypto pairs can I trade?" says all five FundingPips product pages list BTCUSD and ETHUSD;
+  // hold that sentence to the per-product sources in crypto-market-evidence.json.
+  if (read(LANDINGS_CONFIG_FILE).includes('all five FundingPips product pages list BTCUSD and ETHUSD')) {
+    const fundingPips = ranked.find(entry => entry.firmSlug === 'fundingpips')
+    const productSources = fundingPips?.btcEthEvidence?.productSources ?? []
+    const citing = (fundingPips?.productSlugs ?? []).filter(productSlug => productSources.some(source =>
+      source.productSlug === productSlug
+      && /BTCUSD/.test(source.sourceQuote ?? '')
+      && /ETHUSD/.test(source.sourceQuote ?? '')
+      && isFreshDate(source.sourceCapturedAt)))
+    if (fundingPips?.productSlugs?.length !== 5 || citing.length !== 5) {
+      rows.push(`crypto FAQ claims all five FundingPips product pages list BTCUSD and ETHUSD; evidence maps ${fundingPips?.productSlugs?.length ?? 0} products and ${citing.length} fresh product sources cite both`)
+    }
   }
   if (!String(evidenceData.methodology ?? '').includes('Payment or payout by crypto does not qualify')) {
     rows.push('crypto evidence methodology must separate tradable markets from payment and payout rails')
@@ -7137,7 +7212,7 @@ function checkCryptoLandingCluster() {
     rows.push('best-crypto-prop-firms landing config is missing')
   } else {
     for (const fragment of [
-      "import rawCryptoMarketEvidence from '@/content/data/crypto-market-evidence.json'",
+      "} from '@/lib/cryptoMarketEvidence'",
       'function freshMappedProducts(firmSlugValue: string, productSlugs: string[])',
       'return products.length === productSlugs.length ? products : []',
       'function cryptoProductsForEvidence(evidence: CryptoMarketEvidence): Challenge[]',
@@ -7778,7 +7853,7 @@ function checkInstantFundingCluster() {
       'const CURRENT_INSTANT_PRODUCT_COUNT = CURRENT_INSTANT_SNAPSHOT.reduce',
       'isChallengeFresh(challenge) && challenge.phases === 0',
       'h1: `Best Instant Funding Prop Firms (2026): ${CURRENT_INSTANT_FIRM_COUNT} Firms With No Evaluation`',
-      'metaTitle: `Best Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} Compared`',
+      'metaTitle: `Instant Funding Prop Firms 2026: ${CURRENT_INSTANT_FIRM_COUNT} With No Challenge`',
       'snapshotProductCount: CURRENT_INSTANT_PRODUCT_COUNT',
       'const products = freshInstantProducts(firm)',
       'products.flatMap(product => product.accountSizes.flatMap',
@@ -9660,8 +9735,9 @@ function checkScalingPlanGuide() {
     {
       slug: 'ftmo',
       name: 'FTMO',
-      splitFragments: ['80%', '2-Step', '90%', '1-Step'],
-      countFragments: [[80, 1], [90, 1]],
+      // FTMO Instant Account (captured 2026-10-21) is the second product at 90%.
+      splitFragments: ['80%', '2-Step', '90%', '1-Step', 'Instant Account'],
+      countFragments: [[80, 1], [90, 2]],
       nullCount: 0,
     },
     {
@@ -9829,7 +9905,8 @@ function checkFundedNextComparisonOverlay() {
     }
 
     const expectedFragments = [
-      `${ftmo.length} evaluation products`,
+      // Instant Account (phases 0) is not an evaluation product; the overlay counts evaluations only.
+      `${ftmo.filter(challenge => challenge.phases > 0).length} evaluation products`,
       `${fundedNext.length} product paths`,
       `${ftmoOneStep.profitSplitPct}%`,
       `${stellarInstant.profitSplitPct}%`,
@@ -9868,7 +9945,7 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fundingpips',
       nextSlug: 'ftmo-vs-fxify',
-      reviewedAt: '2026-10-20',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
@@ -9877,10 +9954,10 @@ function checkFundedNextComparisonOverlay() {
         '5 models',
         '$399.99',
         '$422',
-        '5 days',
+        '5 business days',
         '7 days',
         '12% static',
-        '100% on demand',
+        'On Demand 100%',
         '95% on Zero',
         'fourth reward',
       ],
@@ -9898,20 +9975,21 @@ function checkFundedNextComparisonOverlay() {
     {
       slug: 'fundednext-vs-fxify',
       nextSlug: 'fundingpips-vs-fxify',
+      reviewedAt: '2026-10-21',
       categoryCount: 7,
       faqCount: 5,
       expected: [
-        '12 captured products',
+        '14 captured products',
         '4 paths',
-        '8 products',
+        '10 captured products',
+        'pre-approval',
         '$399.99',
         '$399',
-        '5 days',
+        '5 business days',
         '7 days',
         '80%',
         '70%',
         'up to 90%',
-        '40%',
         'DXTrade',
         'TradingView',
       ],
@@ -11152,6 +11230,8 @@ function checkRussianAcquisitionPilot() {
     ['/ru/dlya-russkoyazychnykh-treyderov', path.join(ROOT, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')],
     ['/ru/fundednext-vs-bright-funded', path.join(ROOT, 'app/ru/fundednext-vs-bright-funded/page.tsx')],
     ['/ru/fundednext-vs-fundingpips', path.join(ROOT, 'app/ru/fundednext-vs-fundingpips/page.tsx')],
+    ['/ru/fundingpips-vs-bright-funded', path.join(ROOT, 'app/ru/fundingpips-vs-bright-funded/page.tsx')],
+    ['/ru/ftmo-vs-fundednext', path.join(ROOT, 'app/ru/ftmo-vs-fundednext/page.tsx')],
     ['/ru/promokody-prop-firm', path.join(ROOT, 'app/ru/promokody-prop-firm/page.tsx')],
     ['/ru/vyplaty-prop-firm', path.join(ROOT, 'app/ru/vyplaty-prop-firm/page.tsx')],
     ['/ru/prop-firmy-bez-kyc', path.join(ROOT, 'app/ru/prop-firmy-bez-kyc/page.tsx')],
@@ -11168,13 +11248,15 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
+    ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
     ['/ru/fundednext-mt5', path.join(ROOT, 'app/ru/fundednext-mt5/page.tsx')],
     ['/ru/fundednext-stellar-instant', path.join(ROOT, 'app/ru/fundednext-stellar-instant/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
-    ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
+    // /ru/rossiyskie-prop-kompanii was merged into /ru/dlya-russkoyazychnykh-treyderov#rossiyskie
+    // (RU Week 1) and 301s there; it is deliberately not a route source. The merge is pinned below.
   ])
 
   for (const [route, file] of russianRouteFiles) {
@@ -11245,9 +11327,69 @@ function checkRussianAcquisitionPilot() {
   const indexNowPaths = getRussianIndexNowUrls('https://tradersfundhub.com')
     .map(url => new URL(url).pathname)
     .sort()
-  const expectedIndexNowPaths = [...russianRouteFiles.keys()].sort()
-  if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
-    rows.push('Russian IndexNow inventory disagrees with the route source inventory')
+  const closedFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8'))
+  const closedFirmsRuJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.ru.json'), 'utf8'))
+  const closedFirmsPublished = closedFirmsJson.published === true
+  // The audit's route map is a subset of the live RU routes (pages added since RU Week 1 are not in it), so it is
+  // not the IndexNow expectation. IndexNow is checked against the filesystem and next.config.ts instead (below).
+  {
+    const ruClosedFile = path.join(ROOT, `app${RU_CLOSED_FIRMS_PATH}/page.tsx`)
+    const ruClosedSource = fs.existsSync(ruClosedFile) ? fs.readFileSync(ruClosedFile, 'utf8') : ''
+    if (!ruClosedSource) rows.push(`${RU_CLOSED_FIRMS_PATH}: page folder must match RU_CLOSED_FIRMS_PATH in lib/localizedRoutes.ts`)
+    for (const token of [
+      'CLOSED_FIRMS_PUBLISHED ? undefined : { index: false',
+      'closedFirmsLanguageAlternates()',
+      "getClosedFirmViews('ru'",
+      '<ClosedFirmsList locale="ru"',
+      "inLanguage: 'ru'",
+    ]) {
+      if (ruClosedSource && !ruClosedSource.includes(token)) rows.push(`${RU_CLOSED_FIRMS_PATH}: missing ${token}`)
+    }
+    if (/\/go\/|RuGoLink/.test(ruClosedSource)) rows.push(`${RU_CLOSED_FIRMS_PATH}: closed firms must not carry sign-up CTAs`)
+    const title = ruClosedSource.match(/const TITLE = '([^']+)'/)?.[1] ?? ''
+    const description = ruClosedSource.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+    if (!title || title.length > 60) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO title is missing or over 60 characters`)
+    if (description.length < 120 || description.length > 160) rows.push(`${RU_CLOSED_FIRMS_PATH}: Russian SEO description is ${description.length} characters, expected 120–160`)
+    const enSlugs = closedFirmsJson.firms.map(firm => firm.slug).sort()
+    const ruSlugs = Object.keys(closedFirmsRuJson.firms).sort()
+    if (JSON.stringify(enSlugs) !== JSON.stringify(ruSlugs)) {
+      rows.push(`closed-firms.ru.json slugs [${ruSlugs}] must match closed-firms.json [${enSlugs}] (section ids/anchors are shared)`)
+    }
+    if (CLOSED_FIRMS_ROUTE_PAIR.ru !== RU_CLOSED_FIRMS_PATH) rows.push('closed-firms route pair must use RU_CLOSED_FIRMS_PATH')
+    // Inlinks and the footer link must be gated by the same flag. The client Footer gets the link as the
+    // ruClosedFirmsLink prop, resolved on the server by ruClosedFirmsHref() in components/SiteDocument.tsx
+    // (it must not import lib/closedFirms itself: that bundles closed-firms.json into a client chunk).
+    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/SiteDocument.tsx', 'components/Footer.tsx']) {
+      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+      const via = file === 'components/Footer.tsx' ? 'ruClosedFirmsLink' : 'ruClosedFirmsHref()'
+      if (!source.includes(via)) rows.push(`${file}: RU closed-firms link must go through ${via}`)
+      if (source.includes(`'${RU_CLOSED_FIRMS_PATH}'`)) rows.push(`${file}: hard-coded ${RU_CLOSED_FIRMS_PATH} bypasses the publish flag`)
+    }
+  }
+  {
+    // Stricter than a pinned list, so new RU pages cannot make it stale:
+    //  (a) every announced path is a real page (or the flag-gated closed-firms page);
+    //  (b) no announced path is a redirect source (IndexNow must announce the 301 target, not the old URL);
+    //  (c) every route in the audit's route map is announced, and nothing is announced twice.
+    const nextConfigSource = fs.readFileSync(NEXT_CONFIG_FILE, 'utf8')
+    const redirectSources = new Set([...nextConfigSource.matchAll(/source:\s*'([^':*(]+)'/g)].map(match => match[1]))
+    const announceable = route => route === RU_CLOSED_FIRMS_PATH
+      ? closedFirmsPublished
+      : fs.existsSync(path.join(ROOT, 'app', route, 'page.tsx'))
+    for (const route of indexNowPaths) {
+      if (!announceable(route)) rows.push(`Russian IndexNow inventory announces ${route}, which has no page source${route === RU_CLOSED_FIRMS_PATH ? ' while closed firms are unpublished' : ''}`)
+      if (redirectSources.has(route)) rows.push(`Russian IndexNow inventory announces ${route}, which next.config.ts redirects`)
+    }
+    for (const route of russianRouteFiles.keys()) {
+      if (!indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory is missing ${route}`)
+    }
+    if (new Set(indexNowPaths).size !== indexNowPaths.length) rows.push('Russian IndexNow inventory lists a path twice')
+    if (closedFirmsPublished && !indexNowPaths.includes(RU_CLOSED_FIRMS_PATH)) rows.push(`Russian IndexNow inventory is missing ${RU_CLOSED_FIRMS_PATH} while closed firms are published`)
+    // The merged local-company route must stay a 301 into the Russia hub section.
+    if (!nextConfigSource.includes("{ source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', statusCode: 301 }")) {
+      rows.push('/ru/rossiyskie-prop-kompanii must 301 to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (merged into the Russia hub)')
+    }
+    if (fs.existsSync(path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii'))) rows.push('app/ru/rossiyskie-prop-kompanii must not exist: the route is redirected to the Russia hub')
   }
   if (!/^[a-zA-Z0-9-]{8,128}$/.test(INDEXNOW_KEY)) {
     rows.push('IndexNow ownership key format is invalid')
@@ -11325,7 +11467,7 @@ function checkRussianAcquisitionPilot() {
       'С чего начать',
       '/ru/fundednext-vs-bright-funded',
       '/ru/dlya-russkoyazychnykh-treyderov',
-      '/ru/rossiyskie-prop-kompanii',
+      '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie',
     ]) {
       if (!russianHomeSource.includes(readerMarker)) {
         rows.push(`/ru: reader decision path is missing ${readerMarker}`)
@@ -11351,7 +11493,7 @@ function checkRussianAcquisitionPilot() {
             || !freshnessNotice.includes('!isChallengeFresh({ sourceCapturedAt: item.capturedAt })')) {
             rows.push('Expired Russian market evidence must render a recapture-required notice')
           }
-          for (const route of ['/ru/rossiyskie-prop-kompanii', '/ru/prop-firmy-bez-kyc', '/ru/vyplaty-prop-firm']) {
+          for (const route of ['/ru/prop-firmy-bez-kyc', '/ru/vyplaty-prop-firm']) {
             const sourceFile = russianRouteFiles.get(route)
             const source = sourceFile && fs.existsSync(sourceFile) ? fs.readFileSync(sourceFile, 'utf8') : ''
             if (!source.includes('<RussianEvidenceFreshnessNotice') || !source.includes('capturedAt: marketEvidence.capturedAt')) {
@@ -11681,10 +11823,10 @@ function checkRussianAcquisitionPilot() {
         rows.push('Era Trade operator-claim fixtures are missing from Russian evidence')
       }
       if (
-        localSignals.get('PropLive')?.claims?.traders !== 13_722
+        localSignals.get('PropLive')?.claims?.traders !== 14_993
         || !localSignals.get('PropLive')?.notes?.some(note => note.includes('10,700'))
       ) {
-        rows.push('PropLive 13,722/10,700 first-party conflict is not preserved')
+        rows.push('PropLive 14,993/10,700 first-party conflict is not preserved')
       }
       if (
         localSignals.get('KasCapital')?.claims?.maximumProfitSharePct !== 95
@@ -11708,7 +11850,7 @@ function checkRussianAcquisitionPilot() {
         || localSignals.get('TeamTraders')?.claims?.minimumTradingSessions !== 10
         || localSignals.get('TeamTraders')?.claims?.dailyLossLimitPct !== 2
         || localSignals.get('TeamTraders')?.claims?.maximumLossPct !== 4
-        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 70
+        || localSignals.get('TeamTraders')?.claims?.fundedDemoProfitSharePct !== 50
         || localSignals.get('TeamTraders')?.claims?.profitSharePct !== 95
         || localSignals.get('TeamTraders')?.claims?.maximumCapitalRub !== 2_000_000
         || localSignals.get('TeamTraders')?.sourceCapturedAt !== scopedTeamTradersEvidence?.capturedAt
@@ -11778,8 +11920,8 @@ function checkRussianAcquisitionPilot() {
         rows.push('FTMO Russian Federation restriction evidence is incomplete')
       }
       if (
-        firmAccess.get('fundednext')?.status !== 'conflicting'
-        || firmAccess.get('fundednext')?.sourceUrls?.length !== 4
+        firmAccess.get('fundednext')?.status !== 'restricted'
+        || firmAccess.get('fundednext')?.sourceUrls?.length !== 6
         || !validScopedCapture(firmAccess.get('fundednext')?.sourceCapturedAt)
         || !hasScopedObservations(firmAccess.get('fundednext'))
         || !firmAccess.get('fundednext')?.notes?.some(note => note.includes('card-transfer restrictions'))
@@ -11893,7 +12035,7 @@ function checkRussianAcquisitionPilot() {
         || teamTradersEvidence.evaluation?.minimumTradingDaysTotal !== 10
         || teamTradersEvidence.evaluation?.dailyLossPct !== 2
         || teamTradersEvidence.evaluation?.maximumLossPct !== 4
-        || teamTradersEvidence.fundedDemo?.profitSharePct !== 70
+        || teamTradersEvidence.fundedDemo?.profitSharePct !== 50
         || teamTradersEvidence.fundedDemo?.profitTargetAndCapPct !== 10
         || teamTradersEvidence.realAccount?.profitSharePct !== 95
         || teamTradersEvidence.realAccount?.dailyLossExcessPenaltyPct !== 20
@@ -11903,7 +12045,8 @@ function checkRussianAcquisitionPilot() {
       if (
         teamTradersEvidence.affiliateProgram?.status !== 'not-found'
         || teamTradersEvidence.searchIntent?.queries?.length !== 3
-        || teamTradersEvidence.sourceConflicts?.length !== 3
+        || teamTradersEvidence.sourceConflicts?.length !== 5
+        || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 50 && item.legacyValue === 70 && item.recordedAt === '2026-10-20')
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 10 && item.legacyValue === 15)
         || !teamTradersEvidence.sourceConflicts?.some(item => item.currentValue === 95 && item.legacyValue === 90)
       ) {
@@ -12127,6 +12270,8 @@ function checkRussianAcquisitionPilot() {
     "{ en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' }",
     "{ en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' }",
     "{ en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' }",
+    "{ en: '/compare/bright-funded-vs-fundingpips', ru: '/ru/fundingpips-vs-bright-funded' }",
+    "{ en: '/compare/bright-funded-vs-ftmo', ru: '/ru/ftmo-vs-bright-funded' }",
     "{ en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' }",
     "{ en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' }",
     "{ en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' }",
@@ -12148,7 +12293,6 @@ function checkRussianAcquisitionPilot() {
     "'/ru/obzor-kascapital'",
     "'/ru/obzor-teamtraders'",
     "'/ru/otzyvy-prop-firm'",
-    "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
   if (fs.existsSync(localizedRoutesFile)) {
@@ -12405,7 +12549,7 @@ function checkRussianAcquisitionPilot() {
     ? fs.readFileSync(fundedNextInstantEvidenceFile, 'utf8')
     : ''
   for (const token of [
-    '"capturedAt": "2026-08-29"',
+    '"capturedAt": "2026-10-20"',
     'https://help.fundednext.com/en/articles/11641161-how-much-does-each-stellar-instant-account-cost',
     'https://help.fundednext.com/en/articles/11641163-what-are-the-daily-loss-limit-and-the-maximum-loss-limit-for-the-stellar-instant-accounts',
     'https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts',
@@ -12459,38 +12603,30 @@ function checkRussianAcquisitionPilot() {
     if (!propDefinitionPage.includes(token)) rows.push(`Russian prop-definition funnel is missing ${token}`)
   }
 
-  const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
-    ? fs.readFileSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'), 'utf8')
-    : ''
+  // The former /ru/rossiyskie-prop-kompanii page was merged into the Russia hub's #rossiyskie section.
+  // Pin the merged section where it now lives (these replace the old whole-page pins).
+  const rossiyskieHubFile = russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov')
+  const rossiyskieHubPage = fs.existsSync(rossiyskieHubFile) ? fs.readFileSync(rossiyskieHubFile, 'utf8') : ''
   for (const token of [
-    '6 российских проп-компаний: модели и выплаты по официальным источникам',
-    'data-russian-local-firms="verification-only"',
-    'data-russian-affiliate-opportunity="unactivated"',
-    'data-russian-local-global-funnel="partner-routes"',
-    'data-russian-affiliate-disclosure="local-research-primary-partners"',
-    "campaign: 'ru-local-research-fundednext'",
-    "campaign: 'ru-local-research-bright-funded'",
-    'href="/ru/fundednext-vs-bright-funded"',
-    'Сравнить FundedNext и BrightFunded',
-    'Это не топ и не совет зарегистрироваться.',
-    'многоуровневая Ambassador-схема нам не нужна',
-    'href="/ru/dlya-russkoyazychnykh-treyderov"',
-    'href="/ru/obzor-proplive"',
-    'href="/ru/obzor-teamtraders"',
-    'А-Лаб Групп',
-    'TeamTraders',
-    'Trade System',
+    '<section className="ru-section" id="rossiyskie">',
+    'data-merged-from="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
+    '<h2>Российские проп-компании: шесть проверяемых примеров</h2>',
+    'Это не рейтинг и не совет регистрироваться',
+    "{ name: 'Era Trade', href: '/ru/obzor-eratrade' }",
+    "{ name: 'PropLive', href: '/ru/obzor-proplive' }",
+    "{ name: 'KasCapital', href: '/ru/obzor-kascapital' }",
+    "{ name: 'TeamTraders', href: '/ru/obzor-teamtraders' }",
+    "{ name: 'А-Лаб', href: null }",
+    "{ name: 'Trade System', href: null }",
+    '{localFirms.map(firm => (',
+    'Партнёрские условия:',
   ]) {
-    if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
+    if (!rossiyskieHubPage.includes(token)) rows.push(`Russia hub #rossiyskie section (merged local-company list) is missing ${token}`)
   }
-  // Local-company research may hand readers to a separately labelled global
-  // partner section. Keep the old guard for any unlabelled/unsponsored CTA.
-  const approvedLocalGlobalHandoff =
-    localFirmPage.includes('data-russian-local-global-funnel="partner-routes"') &&
-    (localFirmPage.includes('from=ru-local-research-') || localFirmPage.includes("campaign: 'ru-local-research-")) &&
-    localFirmPage.includes('rel="sponsored nofollow noopener"')
-  if (localFirmPage.includes('/go/') && !approvedLocalGlobalHandoff) {
-    rows.push('local-company verification page contains an unapproved affiliate CTA')
+  {
+    // Local operators are researched, not sold: the merged section must not carry any sign-up CTA.
+    const mergedSection = rossiyskieHubPage.match(/<section className="ru-section" id="rossiyskie">[\s\S]*?<\/section>/)?.[0] ?? ''
+    if (/\/go\/|RuGoLink|sponsored/.test(mergedSection)) rows.push('Russia hub #rossiyskie section must not carry affiliate or sign-up CTAs (local operators are verification-only)')
   }
 
   const russianRankingPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-prop-firmy'))
@@ -12522,7 +12658,7 @@ function checkRussianAcquisitionPilot() {
     'id="top-5"',
     'rel="sponsored nofollow noopener"',
     'Доступность платформы уточняйте для выбранной программы и страны.',
-    'href="/ru/rossiyskie-prop-kompanii"',
+    'href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/otzyvy-prop-firm"',
@@ -12673,7 +12809,6 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/prop-firmy-bez-kyc"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/fundednext-vs-bright-funded"',
-    'href="/ru/rossiyskie-prop-kompanii"',
     'getRussianDiasporaCountryRows()',
     'dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt)',
     'Число доступных строк зависит от свежести источников.',
@@ -13073,7 +13208,7 @@ function checkRussianAcquisitionPilot() {
     'PROP_LIVE_ABOUT',
     'PROP_LIVE_REQUISITES',
     'PROP_LIVE_PARTNERS',
-    'PROP_LIVE_CONTRACT',
+    'data-russian-proplive-contract="unavailable"',
     'ru-proplive-global-',
     'rel="sponsored nofollow noopener"',
   ]) {
@@ -13097,7 +13232,7 @@ function checkRussianAcquisitionPilot() {
     'ERA_PAYOUT',
     'ERA_PAYOUT_SYSTEM',
     'ERA_PROFITABLE_DAYS',
-    'ERA_SPLIT',
+    'data-russian-eratrade-conflicts="three"',
     'ERA_TWO_STAGE',
     'ERA_ONE_STAGE',
     'ru-eratrade-global-',
@@ -13137,7 +13272,7 @@ function checkRussianAcquisitionPilot() {
     'data-russian-teamtraders-pricing="three-rub-tiers"',
     'data-russian-teamtraders-process="five-stages"',
     'data-russian-teamtraders-rules="manual-intraday"',
-    'data-russian-teamtraders-payouts="demo-70-real-95"',
+    'data-russian-teamtraders-payouts="demo-50-real-95"',
     'data-russian-teamtraders-source-conflict="current-vs-legacy"',
     'data-russian-teamtraders-legal="prop-offer-unavailable"',
     'data-russian-affiliate-disclosure="teamtraders-global-options"',
@@ -13154,7 +13289,6 @@ function checkRussianAcquisitionPilot() {
     rows.push('Russian TeamTraders review must not link to unavailable offer or legacy documentation')
   }
   for (const [route, source, staleCampaign] of [
-    ['/ru/rossiyskie-prop-kompanii', localFirmPage, 'ru-local-research-fundingpips'],
     ['/ru/obzor-proplive', russianPropLivePage, 'ru-proplive-global-fundingpips'],
     ['/ru/obzor-eratrade', russianEraTradePage, 'ru-eratrade-global-fundingpips'],
     ['/ru/obzor-kascapital', russianKasCapitalPage, 'ru-kascapital-global-fundingpips'],
@@ -13267,8 +13401,13 @@ function checkRussianAcquisitionPilot() {
     })
   const currentFtmoPriceCount = currentFtmoProducts.reduce((sum, product) => sum
     + product.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
-  if (currentFtmoProducts.length !== 2 || currentFtmoPriceCount !== 10) {
-    rows.push(`Russian FTMO fixture expects 2 products and 10 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  // FTMO Instant Account (2026-10-21, 5 EUR tiers) joins 2-Step and 1-Step. The page renders every fresh product's
+  // EUR table, so its price-count heading must come from pricedTiers rather than a literal.
+  if (currentFtmoProducts.length !== 3 || currentFtmoPriceCount !== 15) {
+    rows.push(`Russian FTMO fixture expects 3 products and 15 EUR prices; received ${currentFtmoProducts.length} and ${currentFtmoPriceCount}`)
+  }
+  if (!ftmoRussianPage.includes('Все {pricedTiers.length} цен FTMO') || /Все \d+ цен FTMO/.test(ftmoRussianPage)) {
+    rows.push('Russian FTMO price heading must count pricedTiers, not a fixed number')
   }
   if (!fs.existsSync(path.join(CHALLENGES, '_captures', 'ftmo-2026-08-28.json'))) {
     rows.push('Russian FTMO review is missing its 2026-08-28 first-party capture provenance')
@@ -13359,7 +13498,7 @@ function checkRussianAcquisitionPilot() {
     "label: 'Гайды'",
     "label: 'Местные компании'",
     "href: '/ru/luchshie-prop-firmy'",
-    "href: '/ru/rossiyskie-prop-kompanii'",
+    "href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     "href: '/ru/fundednext-vs-bright-funded'",
@@ -13400,7 +13539,6 @@ function checkRussianAcquisitionPilot() {
     '/ru/promokody-prop-firm',
     '/ru/vyplaty-prop-firm',
     '/ru/prop-firmy-bez-kyc',
-    '/ru/rossiyskie-prop-kompanii',
     '/ru/chto-takoe-prop-firma',
     '/ru/obzor-fundednext',
     '/ru/obzor-bright-funded',
@@ -13409,6 +13547,9 @@ function checkRussianAcquisitionPilot() {
   ]) {
     if (!footer.includes(`href: '${route}'`)) rows.push(`Russian footer is missing ${route}`)
   }
+  // The merged route is a redirect: navigation must link its live target, never the redirecting URL.
+  if (headerNav.includes("'/ru/rossiyskie-prop-kompanii'")) rows.push('Russian header navigation links the redirecting /ru/rossiyskie-prop-kompanii')
+  if (footer.includes("'/ru/rossiyskie-prop-kompanii'")) rows.push('Russian footer links the redirecting /ru/rossiyskie-prop-kompanii')
   const footerRussianRoutes = new Set(
     [...footer.matchAll(/href: '(\/ru(?:\/[^']*)?)'/g)].map(match => match[1]),
   )
@@ -13440,12 +13581,11 @@ function checkRussianAcquisitionPilot() {
     'predates editorial update ${editorialLastModified}',
     'Article dateModified ${articleSchema.dateModified || \'missing\'} disagrees with sitemap',
     'visible updated date ${visibleUpdatedDate} disagrees with Article dateModified',
-    'Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected 24',
+    'Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}',
     'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
     'rendered Russian language boundary or schema is missing',
     'Content-Language must be ru',
     'controlled affiliate CTA is missing or mislabelled',
-    'unapproved local-firm affiliate action rendered',
     'function affiliateDestinationKey(input)',
     'const russianAffiliateRedirectFixtures = [',
     'Russian affiliate attribution failed',

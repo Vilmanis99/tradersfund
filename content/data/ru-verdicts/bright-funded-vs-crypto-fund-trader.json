@@ -1,0 +1,44 @@
+{
+  "route": "/ru/bright-funded-vs-crypto-fund-trader",
+  "type": "comparison",
+  "a": "BrightFunded",
+  "b": "Crypto Fund Trader",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json (#32 head 7652929: BrightFunded assets incl. Crypto, maxAllocation $400,000, MT5/DXTrade/cTrader; CFT maxAllocation $300,000, Match-Trader/MT5; lastUpdated 2026-10-20; Russia copy only via russiaStatus)",
+    "content/data/challenges/bright-funded.json (7652929, 2026-10-20: refundable, minTradingDays 5, news restricted)",
+    "content/data/challenges/crypto-fund-trader.json (7652929: 2-Phase/1-Phase/Instant 2026-10-20, Break 2026-10-19 — models, news/min-days rules, Break activation fee + on-demand + 40% funded consistency + $3,000 trailing at 100K, Instant 50% start split, refund note; Break note 2026-10-20 'LIMITED TIME ONLY' / 'Break LAST DAY')",
+    "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded (официальная справка BrightFunded «Which Crypto Instruments can you trade at BrightFunded?», дата статьи 25.05.2026, «over 48 cryptocurrency pairs», проверено 20.10.2026)",
+    "No CFT prices in copy: prices are left to the data-driven tables"
+  ],
+  "verdict": "BrightFunded продаёт три CFD-оценки с возвратным взносом и долей 80% и указывает цены в евро, Crypto Fund Trader — в долларах несколько моделей: двух- и одноэтапную оценку, Instant без оценки и Break с отдельной платой за активацию после прохождения; криптовалюту в списке активов указывают обе фирмы, а цены по размерам счёта смотрите в таблицах ниже (по данным на 19.10.2026). Break продаётся как предложение на ограниченное время, поэтому перед покупкой проверьте, что он ещё доступен (по данным на 20.10.2026).",
+  "picks": {
+    "a": [
+      "вы хотите вернуть взнос: у BrightFunded он возвратный во всех программах, у CFT возврат после прохождения не подтверждён — её политика возврата касается отказа в течение 14 дней до начала торговли",
+      "вы планируете крупный счёт: максимальная аллокация BrightFunded — $400 000, CFT — $300 000",
+      "вы торгуете на DXTrade или cTrader: их указывает BrightFunded, но не CFT"
+    ],
+    "b": [
+      "вы торгуете на новостях: в 2-Phase, 1-Phase, Instant и Break CFT это разрешает, BrightFunded ограничивает во всех трёх программах",
+      "вам не нужен минимум торговых дней: в 2-Phase и 1-Phase у CFT его нет, у BrightFunded — 5 дней",
+      "вам нужны выплаты по запросу: в Break они по запросу, на финальном этапе действует правило стабильности 40%, без дневного лимита и с трейлинговой просадкой $3 000 на 100K",
+      "вы хотите начать без оценки: у CFT есть Instant со стартовой долей 50%, у BrightFunded такой модели нет"
+    ]
+  },
+  "russiaPick": {
+    "statusFrom": "russiaStatus",
+    "firms": [
+      "BrightFunded",
+      "Crypto Fund Trader"
+    ],
+    "alternatives": [],
+    "oneOpen": {
+      "text": "вы резидент РФ: у {open} статус «{openBadge}», у {other} — «{otherBadge}»"
+    },
+    "neitherOpen": {
+      "text": "Для резидента РФ ни у одной из двух фирм нет статуса «{altBadge}»: у {a} — «{aBadge}», у {b} — «{bBadge}».",
+      "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+    },
+    "bothOpen": null
+  }
+}

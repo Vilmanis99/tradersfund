@@ -1,5 +1,6 @@
 import type { ChallengeProfitTargets, ChallengeRules, DrawdownType, PayoutFrequency } from './firms'
 import type { ChallengeProductSignal } from './challengeWatch'
+import type { RussiaStatus } from './russiaStatus'
 
 /** Serializable, shared view model. No filesystem or live firm lookups in clients. */
 export interface GlobalChallengeTier {
@@ -8,12 +9,17 @@ export interface GlobalChallengeTier {
   priceEur: number | null
   costToFundedUsd: number | null
   costToFundedEur: number | null
+  /** Amount contractually due after passing (split-payment products). */
+  payLaterUsd?: number | null
+  /** Mandatory activation fee, tier value or the product-wide fallback. */
+  activationFeeUsd?: number | null
   dailyLossUsd: number | null
   maxLossUsd: number | null
 }
 
 export interface GlobalChallengeRow {
-  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number }
+  /** russiaStatus: set server-side for /ru finder rows (russiaStatusFor), so client finders need no firm data. */
+  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus }
   product: {
     name: string
     slug: string
@@ -70,6 +76,64 @@ export function resolveFinderSize(sizes: number[], requested = DEFAULT_FINDER_FI
 export function tierPrice(tier: GlobalChallengeTier, currency: FinderCurrency): number | null {
   return currency === 'USD' ? tier.priceUsd : tier.priceEur
 }
+/** Mandatory USD charges after checkout: the after-pass balance plus any activation fee. */
+export function tierMandatoryExtrasUsd(tier: Pick<GlobalChallengeTier, 'payLaterUsd' | 'activationFeeUsd'>): number {
+  return (tier.payLaterUsd ?? 0) + (tier.activationFeeUsd ?? 0)
+}
+/**
+ * The amount every price sort, "lowest" ranking and budget filter must use:
+ * checkout price plus mandatory pay-later and activation fees
+ * (minimumCostToFundedUsd, already projected as costToFundedUsd), otherwise
+ * the price. A split-payment or activation-fee product is never ranked on its
+ * checkout amount alone (Maven Buy Now, Pay Later $100K is $594, not $5).
+ * Extras are published in USD only, so a EUR tier with extras has no
+ * same-currency total and returns null rather than mixing currencies.
+ */
+export function tierTotalPrice(tier: GlobalChallengeTier, currency: FinderCurrency): number | null {
+  const price = tierPrice(tier, currency)
+  if (price == null || price <= 0) return null
+  if (currency === 'USD') return tier.costToFundedUsd != null && tier.costToFundedUsd > 0 ? tier.costToFundedUsd : price
+  if (tier.costToFundedEur != null && tier.costToFundedEur > 0) return tier.costToFundedEur
+  return tierMandatoryExtrasUsd(tier) > 0 ? null : price
+}
+/** Lowest total entry (see tierTotalPrice) across a product's tiers, optionally at one size. */
+export function minimumTierTotalUsd(product: Pick<GlobalChallengeRow['product'], 'tiers'>, sizeUsd: number | null = null): number | null {
+  const values = product.tiers
+    .filter(tier => sizeUsd == null || tier.sizeUsd === sizeUsd)
+    .flatMap(tier => { const value = tierTotalPrice(tier, 'USD'); return value == null ? [] : [value] })
+  return values.length ? Math.min(...values) : null
+}
+/** USD products at one size, cheapest total first; ties keep firm/product name order. */
+export function rankByTotalUsd(rows: GlobalChallengeRow[], sizeUsd: number): Array<{ row: GlobalChallengeRow; totalUsd: number }> {
+  return rows.flatMap(row => {
+    const totalUsd = minimumTierTotalUsd(row.product, sizeUsd)
+    return totalUsd == null ? [] : [{ row, totalUsd }]
+  }).sort((a, b) => a.totalUsd - b.totalUsd
+    || a.row.firm.name.localeCompare(b.row.firm.name, 'en') || a.row.product.name.localeCompare(b.row.product.name, 'en'))
+}
+export interface TierPriceParts { now: number; afterPassing: number; activation: number; total: number }
+/** Checkout amount and mandatory extras, or null when the total equals the price. */
+export function tierPriceParts(tier: GlobalChallengeTier): TierPriceParts | null {
+  const now = tier.priceUsd
+  if (now == null || now <= 0) return null
+  const afterPassing = tier.payLaterUsd ?? 0
+  const activation = tier.activationFeeUsd ?? 0
+  if (afterPassing <= 0 && activation <= 0) return null
+  return { now, afterPassing, activation, total: now + afterPassing + activation }
+}
+/**
+ * "$5 now + $589 after passing", "$200 + $328 activation";
+ * RU: «$5 сейчас + $589 после прохождения», «$200 + $328 активация».
+ */
+export function priceBreakdownLabel(parts: TierPriceParts, locale: 'en' | 'ru', format: (value: number) => string): string {
+  const words = locale === 'ru'
+    ? { now: 'сейчас', after: 'после прохождения', activation: 'активация' }
+    : { now: 'now', after: 'after passing', activation: 'activation' }
+  const pieces = [`${format(parts.now)}${parts.afterPassing > 0 ? ` ${words.now}` : ''}`]
+  if (parts.afterPassing > 0) pieces.push(`${format(parts.afterPassing)} ${words.after}`)
+  if (parts.activation > 0) pieces.push(`${format(parts.activation)} ${words.activation}`)
+  return pieces.join(' + ')
+}
 export function tierCurrency(tier: GlobalChallengeTier): FinderCurrency | null {
   if (tier.priceUsd != null && tier.priceUsd > 0) return 'USD'
   if (tier.priceEur != null && tier.priceEur > 0) return 'EUR'
@@ -94,13 +158,15 @@ export function filterChallengeRows(rows: GlobalChallengeRow[], filters: Challen
     if (filters.currency !== 'all') {
       const price = tierPrice(tier, filters.currency)
       if (price == null || price <= 0) return false
-      if (filters.budget != null && price > filters.budget) return false
+      // Budget covers checkout plus mandatory after-pass and activation fees.
+      const total = tierTotalPrice(tier, filters.currency)
+      if (filters.budget != null && (total == null || total > filters.budget)) return false
     }
     return true
   }).sort((a, b) => {
     if (filters.sort === 'fee' && filters.currency !== 'all') {
-      const left = tierPrice(finderTier(a, filters.size)!, filters.currency)
-      const right = tierPrice(finderTier(b, filters.size)!, filters.currency)
+      const left = tierTotalPrice(finderTier(a, filters.size)!, filters.currency)
+      const right = tierTotalPrice(finderTier(b, filters.size)!, filters.currency)
       if (left !== right) return (left ?? Infinity) - (right ?? Infinity)
     }
     if (filters.sort === 'payout') {

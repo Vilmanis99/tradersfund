@@ -13,7 +13,7 @@ import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { latestCorrectionDate } from '@/lib/corrections'
 import { HOW_WE_MAKE_MONEY_UPDATED } from '@/lib/trustPages'
-import { CLOSED_FIRMS_CAPTURED_AT, CLOSED_FIRMS_PUBLISHED } from '@/lib/closedFirms'
+import { CLOSED_FIRMS_CAPTURED_AT, CLOSED_FIRMS_PUBLISHED, closedFirmsRoutePair } from '@/lib/closedFirms'
 import { RU_DISCLOSURE } from '@/lib/ruDisclosure'
 import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
@@ -21,6 +21,8 @@ import {
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
   RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES,
+  RU_CLOSED_FIRMS_EDITORIAL_DATE,
+  RU_CLOSED_FIRMS_PATH,
   getLocalizedRoutePair,
   russianRouteLastModified,
 } from '@/lib/localizedRoutes'
@@ -327,6 +329,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
     ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
     ['/ru/obzor-ftmo', russianFtmoLastModified],
+    ['/ru/obzor-the5ers', russianOldestChallengeLastModified('the5ers')],
     ['/ru/obzor-topstep', russianOldestChallengeLastModified('topstep')],
     ['/ru/promokody-prop-firm', russianDealsLastModified],
     ['/ru/fundednext-vs-bright-funded', russianPrimaryComparisonLastModified],
@@ -335,9 +338,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       russianOldestChallengeLastModified('fundednext', 'fundingpips'),
     ],
     ['/ru/ftmo-vs-bright-funded', russianOldestChallengeLastModified('ftmo', 'bright-funded')],
+    ['/ru/ftmo-vs-fundednext', russianOldestChallengeLastModified('ftmo', 'fundednext')],
     ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
     ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
     ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
+    ['/ru/fundingpips-vs-bright-funded', russianOldestChallengeLastModified('bright-funded', 'fundingpips')],
     // RU Writer's own date in the copy file; never earlier than the editorial date.
     ['/ru/kak-my-zarabatyvaem', new Date(`${RU_DISCLOSURE.updated ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/kak-my-zarabatyvaem']}T00:00:00Z`)],
     // The instant guide's Article uses its editorial date; product rows show
@@ -395,8 +400,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }] : []
   })
 
+  // RU closed-firms page: same publish flag as /prop-firms/closed (lib/closedFirms.ts).
+  const russianClosedFirmsRoutes: MetadataRoute.Sitemap = CLOSED_FIRMS_PUBLISHED
+    ? [{
+        url: `${BASE_URL}${RU_CLOSED_FIRMS_PATH}`,
+        lastModified: new Date(`${[RU_CLOSED_FIRMS_EDITORIAL_DATE, CLOSED_FIRMS_CAPTURED_AT].sort().at(-1)}T00:00:00Z`),
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+      }]
+    : []
+
   const uniqueRoutes = new Map<string, MetadataRoute.Sitemap[number]>()
-  for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes]) {
+  for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes, ...russianClosedFirmsRoutes]) {
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)
@@ -414,7 +429,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   return [...uniqueRoutes.values()].map(route => {
-    const pair = getLocalizedRoutePair(new URL(route.url).pathname)
+    const pathname = new URL(route.url).pathname
+    const pair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname)
     if (!pair) return route
 
     return {

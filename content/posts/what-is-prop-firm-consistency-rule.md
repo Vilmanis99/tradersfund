@@ -3,7 +3,7 @@ title: "What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)"
 seoTitle: "Consistency Rule Calculator & Examples: Prop Firms (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
-modified: "2026-10-06 12:00:00"
+modified: "2026-10-20 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
 seoDescription: "Consistency rule calculator: required profit = best day / limit. Lookup table for 15%-50% limits, worked examples, formulas and current prop firm rules."
@@ -20,7 +20,7 @@ type: "post"
     <li><strong>Identify the stage.</strong> The rule may apply during evaluation, after funding, before a payout, or in more than 1 stage.</li>
     <li><strong>Find the denominator.</strong> Total net profit, Positive Days' Profit, and a fixed Profit Target produce different answers.</li>
     <li><strong>Read the consequence.</strong> Exceeding a threshold can extend the target or delay eligibility rather than automatically breach the account.</li>
-    <li><strong>Treat each product separately.</strong> FTMO 1-Step records a 50% Best Day rule, while FTMO 2-Step explicitly does not apply that objective in the current capture.</li>
+    <li><strong>Treat each product separately.</strong> FTMO 1-Step records a 50% Consistency rule, while FTMO 2-Step has no consistency objective in the current capture.</li>
     <li><strong>Do not confuse rule families.</strong> Best-day, lot-size, profitable-day, and strategy-consistency conditions are separate tests.</li>
   </ol>
 </div>
@@ -29,7 +29,7 @@ type: "post"
 
 <p>A best-day consistency rule compares the account's most profitable closed trading day with a named profit base. A product can use that calculation to decide whether the evaluation is complete or whether a reward can be requested. The named day boundary, open-position treatment, reset event, and required inequality can all change the result.</p>
 
-<p>There is no safe firm-wide shortcut. Current captures show a 50% Best Day rule on FTMO 1-Step but no Best Day objective on FTMO 2-Step; FundingPips applies a 35% score only to the On Demand reward cycle on 2-Step Standard; and FXIFY applies its 25% Two Phase Classic percentage only in the funded stage. The exact product and stage matter more than the brand name.</p>
+<p>There is no safe firm-wide shortcut. Current captures show a 50% Consistency rule on FTMO 1-Step but no consistency objective on FTMO 2-Step; FundingPips applies a 35% score only to the On Demand reward cycle on 2-Step Standard; and FXIFY applies its 25% Two Phase Classic percentage only in the funded stage. The exact product and stage matter more than the brand name.</p>
 
 <h2>The 6 fields that define the rule</h2>
 
@@ -52,7 +52,7 @@ type: "post"
 
 <h3>1. Best day divided by an applicable profit total</h3>
 
-<p>When the product explicitly uses a profit-share formula, the calculation is <code>best-day profit / applicable profit total x 100</code>. FTMO 1-Step names Positive Days' Profit as the denominator. Topstep's XFA Consistency payout path instead records total profit and a 40% limit. Those denominators should not be silently treated as identical.</p>
+<p>When the product explicitly uses a profit-share formula, the calculation is <code>best-day profit / applicable profit total x 100</code>. FTMO 1-Step now uses total profit, losing days included, as the denominator for orders created on or after 12 Oct 2026; its legacy Best Day Rule, still applied to older orders, used Positive Days' Profit. Topstep's XFA Consistency payout path instead records total profit and a 40% limit. Those denominators should not be silently treated as identical.</p>
 
 <h3>2. Best day compared with a fixed target</h3>
 
@@ -66,11 +66,13 @@ type: "post"
 
 <h2>Current product examples: 15% to 55% does not mean the same thing</h2>
 
+<p>The rule is the norm in futures and the exception in CFD: across the 96 products in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (captured 14 to 22 Oct 2026), 44 publish a consistency percentage, including 23 of the 28 futures products but only 18 of the 57 CFD products, and 40% is the most common figure.</p>
+
 <table data-consistency-examples="current-products" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Current product-level prop-firm consistency examples</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Product</th><th style="padding: 8px 12px; text-align: left;">Published rule</th><th style="padding: 8px 12px; text-align: left;">Stage and denominator</th><th style="padding: 8px 12px; text-align: left;">Captured consequence or caveat</th><th style="padding: 8px 12px; text-align: left;">Captured</th></tr></thead>
   <tbody>
-    <tr data-consistency-example="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Best Day rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Challenge and reward; Positive Days' Profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Continue earning profit until no single day exceeds 50%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
+    <tr data-consistency-example="ftmo:ftmo-challenge-1-step"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/ftmo-review">FTMO 1-Step</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">50% Consistency rule (replaced the 50% Best Day rule)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Challenge and reward; total profit for orders from 12 Oct 2026 (Positive Days' Profit for older orders)</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Continue earning profit until no single day exceeds 50%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-20</td></tr>
     <tr data-consistency-example="topstep:trading-combine-standard-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep Standard Path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">55% Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Trading Combine; Profit Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">A larger best day can increase the Consistency Target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-20</td></tr>
     <tr data-consistency-example="topstep:xfa-consistency-path"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/topstep-review">Topstep XFA Consistency path</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">40% best-day limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Payout path; total profit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also requires at least 3 trading days with 1 trade per day</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-20</td></tr>
     <tr data-consistency-example="fundingpips:zero"><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><a href="/blog/fundingpips-zero">FundingPips Zero</a></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">15% maximum Consistency Score</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Reward eligibility; full denominator not recorded</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Also records 7 profitable days of at least 0.25% in each rolling 30-day period</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2026-10-19</td></tr>
@@ -153,7 +155,7 @@ type: "post"
 
 <h3>Does exceeding a consistency percentage fail the account?</h3>
 
-<p>Not always. FTMO 1-Step says the trader must continue until the Best Day is no more than 50% of Positive Days' Profit, while Topstep's current Combine guide uses 55% and raises the required profit target after an excess. The product's stated consequence controls.</p>
+<p>Not always. FTMO 1-Step says exceeding 50% "is not treated as a rule breach"; the trader must continue until the Best Day is no more than 50% of total profit, while Topstep's current Combine guide uses 55% and raises the required profit target after an excess. The product's stated consequence controls.</p>
 
 <h3>Can a losing day change the consistency score?</h3>
 
@@ -165,4 +167,4 @@ type: "post"
 
 <h3>Which prop-firm products have no consistency rule?</h3>
 
-<p>Current captures explicitly record no Best Day objective for FTMO 2-Step and no consistency rule for FundedNext Stellar Instant (both captured 2026-10-19). FundedNext's Stellar 2-Step and Lite apply a 40% best-day rule only when you choose the On-Demand payout option. Each finding is product-specific; verify the live rules because another product from either firm can differ.</p>
+<p>Current captures explicitly record no consistency objective for FTMO 2-Step (captured 2026-10-20) and no consistency rule for FundedNext Stellar Instant (captured 2026-10-19). FundedNext's Stellar 2-Step and Lite apply a 40% best-day rule only when you choose the On-Demand payout option. Each finding is product-specific; verify the live rules because another product from either firm can differ.</p>

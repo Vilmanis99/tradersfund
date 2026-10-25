@@ -8,11 +8,15 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { compareRussianRanking } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
-const TITLE = 'Челлендж проп-фирмы: 5 этапов и правила (2026)'
-const DESCRIPTION = 'Как работает челлендж проп-фирмы: оплата, этапы оценки, просадка, правила профинансированного этапа, выплаты и проверка страны на текущих примерах.'
+const TITLE = 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов'
+const DESCRIPTION = 'Челлендж в трейдинге простыми словами: как работает челлендж проп-фирмы — оплата, этапы оценки, просадка, правила funded-счёта, выплата и проверка страны.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -54,7 +58,12 @@ export default function RussianChallengeLifecyclePage() {
       }
     })
     .filter(item => item.firm.affiliateUrl)
-    .sort((a, b) => b.firm.score - a.firm.score)
+    // Russia access first (BrightFunded pin, then open, unclear, restricted), as on the other /ru hubs.
+    .sort((a, b) => compareRussianRanking(
+      { slug: a.slug, name: a.firm.name, score: a.firm.score },
+      { slug: b.slug, name: b.firm.name, score: b.firm.score },
+      russiaStatusFor,
+    ))
   const sourceCount = new Set(products.map(product => product.sourceUrl)).size
   const latestCapture = products.map(product => product.sourceCapturedAt).sort().at(-1)
   const phaseCounts = [0, 1, 2, 3].map(phases => ({
@@ -162,6 +171,7 @@ export default function RussianChallengeLifecyclePage() {
             <article className="ru-card"><Calculator size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Максимальная просадка</h3><p className="ru-muted">Статическая линия не движется; трейлинг-линия следует за максимумом до указанной точки фиксации.</p></article>
             <article className="ru-card"><CheckCircle2 size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Минимальные дни</h3><p className="ru-muted">Достижение цели раньше срока не завершает этап, если продукт требует 2, 5 или больше отдельных торговых дней.</p></article>
           </div>
+          <DrawdownTypesDiagram locale="ru" id="tipy-prosadki" />
         </div>
       </section>
 
@@ -263,11 +273,11 @@ export default function RussianChallengeLifecyclePage() {
                     : item.firm.reviewUrl
               return (
                 <article className="ru-card" key={item.slug} data-russian-education-partner={item.slug}>
-                  <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                  <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Партнёр</span>}</div>
                   <p className="ru-muted">{item.products.length > 0 ? `${item.products.length} свежих продуктов` : 'Свежий продуктовый захват временно отсутствует'}; перед оплатой проверьте этапы, страну, KYC и правило выплаты конкретной модели.</p>
                   <div className="ru-actions">
                     <Link href={reviewHref} className="btn-outline">Открыть обзор</Link>
-                    <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className="btn-primary">
+                    <RuGoLink firm={item.slug} href={`/go/${item.slug}?from=ru-challenge-guide-${item.slug}`} rel="sponsored nofollow noopener" className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}>
                       Проверить условия <ArrowRight size={14} aria-hidden="true" />
                     </RuGoLink>
                   </div>

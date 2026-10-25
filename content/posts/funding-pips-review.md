@@ -3,7 +3,7 @@ title: "FundingPips Review 2026: 5 Models and 27 Verified Fees"
 seoTitle: "FundingPips Review 2026: Fees, Models & Rules"
 slug: "funding-pips-review"
 date: "2025-05-08 18:09:27"
-modified: "2026-10-20"
+modified: "2026-10-22"
 author: "Tara Mohseni"
 excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, the 2 unresolved $2.5K tiers, and India caveats."
 seoDescription: "FundingPips review comparing 27 verified fees across 5 models, true cost, drawdown, payout cycles, two unresolved $2.5K tiers, and India access."
@@ -98,7 +98,7 @@ type: "post"
 
 <p><strong><a href="/blog/fundingpips-zero">FundingPips Zero</a>:</strong> there is no evaluation target, but the funded account uses a 3% daily and 5% trailing maximum loss. The first 3% profit is a safety cushion, reward eligibility needs 7 profitable days of at least 0.25% in a rolling 30-day period, and the largest losing day cannot exceed the largest winning day.</p>
 
-<p><strong>Weekday overnight holding is allowed, but weekend holding is not.</strong> The 4 evaluation products allow ordinary overnight positions; the optional MT5 Swap-Free add-on changes financing charges on Forex and Metals, not permission to hold. Zero also permits weekday overnight holding but treats a weekend position as a hard breach. News, weekend, EA, and copy-trading conditions still require product-specific checks.</p>
+<p><strong>Overnight and weekend holding is allowed during the evaluation, not on the funded Master account unless you bought the Swing add-on.</strong> The evaluation phases of 1 Step Flex, 2 Step Standard, 2 Step Flex and 2 Step Pro allow ordinary overnight and weekend positions. On the Master accounts of those 4 products, FundingPips' News Trading &amp; Weekend Holding help article (updated 8 Oct 2026, checked 21 Oct 2026) says holding trades "overnight and over the weekend is not allowed" and "All open trades will be automatically closed by the system unless you have the Swing add-on." The Swing add-on is a 10% add-on that can only be chosen at purchase. The daily auto-close runs at 20:45–21:00 UTC in summer and 21:45–22:00 UTC in winter, and the article says it "will not result in an account breach", but any trade it closes is gone. The optional MT5 Swap-Free add-on changes financing charges on Forex and Metals, not permission to hold. Zero works differently: it starts at Master, weekday overnight holding is allowed, and the same article warns that "Leaving any position open into the weekend results in immediate account termination." News, EA, and copy-trading conditions still require product-specific checks.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -183,7 +183,7 @@ type: "post"
 
 <p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 0 minimum days per phase for new and reset accounts, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
 
-<p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19).</p>
+<p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19; FTMO rechecked 2026-10-20).</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid FundingPips</strong></h2>
 

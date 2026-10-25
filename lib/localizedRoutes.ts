@@ -5,11 +5,15 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/best-instant-funding-prop-firms', ru: '/ru/prop-firmy-bez-chelendzha' },
   { en: '/compare/bright-funded-vs-fundednext', ru: '/ru/fundednext-vs-bright-funded' },
   { en: '/compare/fundednext-vs-fundingpips', ru: '/ru/fundednext-vs-fundingpips' },
+  { en: '/compare/bright-funded-vs-fundingpips', ru: '/ru/fundingpips-vs-bright-funded' },
+  { en: '/compare/bright-funded-vs-ftmo', ru: '/ru/ftmo-vs-bright-funded' },
+  { en: '/compare/ftmo-vs-fundednext', ru: '/ru/ftmo-vs-fundednext' },
   { en: '/prop-firm-discount-codes', ru: '/ru/promokody-prop-firm' },
   { en: '/blog/ftmo-review', ru: '/ru/obzor-ftmo' },
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
   { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
+  { en: '/blog/the5ers-review', ru: '/ru/obzor-the5ers' },
   { en: '/blog/topstep-review', ru: '/ru/obzor-topstep' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
@@ -36,7 +40,6 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
-  '/ru/ftmo-vs-bright-funded',
 ] as const
 
 /**
@@ -49,6 +52,28 @@ export const RUSSIAN_PLANNED_ROUTES = [
   '/ru/prop-trejding',
   '/ru/funded-account',
 ] as const
+
+/**
+ * RU version of /prop-firms/closed. The slug lives only in this constant (the page folder
+ * app/ru/zakrytye-prop-firmy must match it; a rename is this line plus `git mv` of that folder).
+ * Deliberately NOT in LOCALIZED_ROUTE_PAIRS / RUSSIAN_ONLY_ROUTES: the pair, sitemap entry,
+ * hreflang, footer link and inlinks are gated by CLOSED_FIRMS_PUBLISHED (content/data/closed-firms.json)
+ * through lib/closedFirms.ts, so the RU page stays noindex and unlinked exactly as long as the EN page.
+ */
+export const RU_CLOSED_FIRMS_PATH = '/ru/zakrytye-prop-firmy'
+export const CLOSED_FIRMS_ROUTE_PAIR = { en: '/prop-firms/closed', ru: RU_CLOSED_FIRMS_PATH } as const
+
+/**
+ * The EN<->RU closed-firms pair for `pathname` when the list is `published`, otherwise undefined.
+ * Pure (no data imports) so the client HeaderNav can use it with the flag passed in as a prop;
+ * lib/closedFirms.ts closedFirmsRoutePair() applies it to CLOSED_FIRMS_PUBLISHED.
+ */
+export function closedFirmsPairFor(pathname: string, published: boolean): typeof CLOSED_FIRMS_ROUTE_PAIR | undefined {
+  if (!published) return undefined
+  return pathname === CLOSED_FIRMS_ROUTE_PAIR.en || pathname === CLOSED_FIRMS_ROUTE_PAIR.ru ? CLOSED_FIRMS_ROUTE_PAIR : undefined
+}
+/** Editorial date of the RU closed-firms page (sitemap lastmod floor and Article dateModified). */
+export const RU_CLOSED_FIRMS_EDITORIAL_DATE = '2026-10-20'
 
 export type RussianPlannedRoutePath = (typeof RUSSIAN_PLANNED_ROUTES)[number]
 
@@ -66,37 +91,40 @@ export type RussianRoutePath =
 // that page changes materially; product/evidence freshness is tracked
 // separately in app/sitemap.ts. Never replace these with the deployment date.
 export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
-  '/ru': '2026-10-01',
-  '/ru/chto-takoe-prop-firma': '2026-08-28',
-  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-14',
-  '/ru/forex-prop-firmy': '2026-10-01',
-  '/ru/fundednext-mt5': '2026-09-08',
-  '/ru/funded-account': '2026-10-14',
-  '/ru/fundednext-stellar-instant': '2026-10-01',
-  '/ru/fundednext-vs-bright-funded': '2026-10-01',
-  '/ru/ftmo-dlya-rossiyan': '2026-10-14',
-  '/ru/ftmo-vs-bright-funded': '2026-10-19',
-  '/ru/fundednext-vs-fundingpips': '2026-09-14',
+  '/ru': '2026-10-20',
+  '/ru/chto-takoe-prop-firma': '2026-10-20',
+  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-20',
+  '/ru/forex-prop-firmy': '2026-10-20',
+  '/ru/fundednext-mt5': '2026-10-20',
+  '/ru/funded-account': '2026-10-20',
+  '/ru/fundednext-stellar-instant': '2026-10-20',
+  '/ru/fundednext-vs-bright-funded': '2026-10-20',
+  '/ru/ftmo-dlya-rossiyan': '2026-10-20',
+  '/ru/ftmo-vs-bright-funded': '2026-10-20',
+  '/ru/ftmo-vs-fundednext': '2026-10-21',
+  '/ru/fundednext-vs-fundingpips': '2026-10-20',
+  '/ru/fundingpips-vs-bright-funded': '2026-10-21',
   '/ru/kak-my-zarabatyvaem': '2026-10-20',
-  '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-08-28',
-  '/ru/luchshie-kripto-prop-firmy': '2026-10-14',
-  '/ru/luchshie-prop-firmy': '2026-10-14',
-  '/ru/obzor-bright-funded': '2026-10-01',
-  '/ru/obzor-eratrade': '2026-10-01',
-  '/ru/obzor-ftmo': '2026-10-14',
-  '/ru/obzor-fundednext': '2026-10-14',
-  '/ru/obzor-fundingpips': '2026-10-14',
-  '/ru/obzor-kascapital': '2026-10-01',
-  '/ru/obzor-proplive': '2026-10-01',
-  '/ru/obzor-teamtraders': '2026-10-01',
+  '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
+  '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
+  '/ru/luchshie-prop-firmy': '2026-10-20',
+  '/ru/obzor-bright-funded': '2026-10-19',
+  '/ru/obzor-eratrade': '2026-10-20',
+  '/ru/obzor-ftmo': '2026-10-20',
+  '/ru/obzor-fundednext': '2026-10-20',
+  '/ru/obzor-fundingpips': '2026-10-20',
+  '/ru/obzor-kascapital': '2026-10-20',
+  '/ru/obzor-proplive': '2026-10-20',
+  '/ru/obzor-teamtraders': '2026-10-20',
+  '/ru/obzor-the5ers': '2026-10-23',
   '/ru/obzor-topstep': '2026-10-26',
-  '/ru/otzyvy-prop-firm': '2026-10-01',
-  '/ru/prop-trejding': '2026-10-14',
-  '/ru/promokody-prop-firm': '2026-10-14',
-  '/ru/prop-firmy-bez-chelendzha': '2026-10-01',
-  '/ru/prop-firmy-bez-kyc': '2026-10-01',
-  '/ru/prop-firmy-s-ctrader': '2026-10-01',
-  '/ru/vyplaty-prop-firm': '2026-10-01',
+  '/ru/otzyvy-prop-firm': '2026-10-20',
+  '/ru/prop-trejding': '2026-10-20',
+  '/ru/promokody-prop-firm': '2026-10-20',
+  '/ru/prop-firmy-bez-chelendzha': '2026-10-20',
+  '/ru/prop-firmy-bez-kyc': '2026-10-20',
+  '/ru/prop-firmy-s-ctrader': '2026-10-20',
+  '/ru/vyplaty-prop-firm': '2026-10-20',
 } as const satisfies Record<RussianRoutePath, string>
 
 /** Internal href for a Russian route only once it is registered above; null for unreleased pages. */

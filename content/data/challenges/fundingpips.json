@@ -40,13 +40,22 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
-      "overnight": true,
+      "overnight": "restricted",
       "ea": "restricted",
       "copyTrading": "restricted"
     },
@@ -59,7 +68,9 @@
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
-      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\"",
+      "Overnight/weekend recheck 2026-10-21 (US IP): News Trading & Weekend Holding article https://help.fundingpips.com/hc/en-us/articles/34504137479441 (updated 2026-10-08): \"On the Master Account, holding trades overnight and over the weekend is not allowed on 1 Step Flex, 2 Step Standard, 2 Step Flex, and 2 Step Pro Master Accounts. All open trades will be automatically closed by the system unless you have the Swing add-on.\" Evaluation: \"Overnight and weekend holding are allowed during evaluation phases for all instruments\". Auto-close is daily, 20:45-21:00 UTC (summer) / 21:45-22:00 UTC (winter), and \"will not result in an account breach\". Add-on: \"can be enabled at the time of purchase through a 10% add-on.\" rules.overnight and rules.weekend are therefore 'restricted' (allowed in evaluation; Master only with the paid Swing add-on). Product article https://help.fundingpips.com/hc/en-us/articles/34501697434385 (updated 2026-10-21) agrees: \"Overnight & Weekend Holding : always allowed on Evals. Allowed on Master with Swing Add-on.\" and \"holding trades overnight and over the weekend is not allowed on 1 Step Flex Master Accounts.\"",
+      "Post-edit recheck 2026-10-21 (US IP, Help Center API): product article 34501697434385 updated 2026-10-21T09:41:33Z, after the 2026-10-20 capture, and Compare Account Models 48368490585105 (updated 2026-10-21T09:40:17Z) re-read. No change to prices, profit targets, daily/max loss, drawdown type, minimum days or reward routes. Price table still quotes \"'1step': {5:59,10:99,25:210,50:322,100:566,200:null}\", \"'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}\", \"'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}\", \"'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}\". Evidence: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/."
     ]
   },
   {
@@ -104,13 +115,22 @@
     "minTradingDays": 1,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
-      "overnight": true,
+      "overnight": "restricted",
       "ea": "restricted",
       "copyTrading": "restricted"
     },
@@ -125,7 +145,9 @@
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
       "Recaptured 2026-10-20 from the live help page (EN Writer request): reward-cycle note added; prices, targets (10%/8%), 4% daily and 12% max loss unchanged; log: content/data/challenges/_captures/fundingpips-2026-10-20.json (twoStepFlexRecapture)",
-      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\"",
+      "Overnight/weekend recheck 2026-10-21 (US IP): News Trading & Weekend Holding article https://help.fundingpips.com/hc/en-us/articles/34504137479441 (updated 2026-10-08): \"On the Master Account, holding trades overnight and over the weekend is not allowed on 1 Step Flex, 2 Step Standard, 2 Step Flex, and 2 Step Pro Master Accounts. All open trades will be automatically closed by the system unless you have the Swing add-on.\" Evaluation: \"Overnight and weekend holding are allowed during evaluation phases for all instruments\". Auto-close is daily, 20:45-21:00 UTC (summer) / 21:45-22:00 UTC (winter), and \"will not result in an account breach\". Add-on: \"can be enabled at the time of purchase through a 10% add-on.\" rules.overnight and rules.weekend are therefore 'restricted' (allowed in evaluation; Master only with the paid Swing add-on). Product article https://help.fundingpips.com/hc/en-us/articles/47835196271249 (updated 2026-10-21) agrees: \"Overnight & Weekend Holding : always allowed on Evals. Allowed on Master with Swing Add-on.\" and \"holding trades overnight and over the weekend is not allowed on 2 Step Flex Master Accounts.\"",
+      "Post-edit recheck 2026-10-21 (US IP, Help Center API): product article 47835196271249 updated 2026-10-21T09:40:38Z, after the 2026-10-20 capture, and Compare Account Models 48368490585105 (updated 2026-10-21T09:40:17Z) re-read. No change to prices, profit targets, daily/max loss, drawdown type, minimum days or reward routes. Price table still quotes \"'1step': {5:59,10:99,25:210,50:322,100:566,200:null}\", \"'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}\", \"'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}\", \"'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}\". Evidence: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/."
     ]
   },
   {
@@ -180,13 +202,22 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": null,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model"
+      }
+    ],
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
-      "overnight": true,
+      "overnight": "restricted",
       "ea": "restricted",
       "copyTrading": "restricted"
     },
@@ -201,7 +232,9 @@
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
-      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" The $2.5K tier stays null because its availability is unresolved."
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" The $2.5K tier stays null because its availability is unresolved.",
+      "Overnight/weekend recheck 2026-10-21 (US IP): News Trading & Weekend Holding article https://help.fundingpips.com/hc/en-us/articles/34504137479441 (updated 2026-10-08): \"On the Master Account, holding trades overnight and over the weekend is not allowed on 1 Step Flex, 2 Step Standard, 2 Step Flex, and 2 Step Pro Master Accounts. All open trades will be automatically closed by the system unless you have the Swing add-on.\" Evaluation: \"Overnight and weekend holding are allowed during evaluation phases for all instruments\". Auto-close is daily, 20:45-21:00 UTC (summer) / 21:45-22:00 UTC (winter), and \"will not result in an account breach\". Add-on: \"can be enabled at the time of purchase through a 10% add-on.\" rules.overnight and rules.weekend are therefore 'restricted' (allowed in evaluation; Master only with the paid Swing add-on). Product article https://help.fundingpips.com/hc/en-us/articles/34502027344017 (updated 2026-10-21) agrees: \"Overnight & Weekend Holding : always allowed on Evals. Allowed on Master with Swing Add-on.\" and \"holding trades overnight and over the weekend is not allowed on 2 Step Pro Master Accounts.\"",
+      "Post-edit recheck 2026-10-21 (US IP, Help Center API): product article 34502027344017 updated 2026-10-21T09:40:58Z, after the 2026-10-20 capture, and Compare Account Models 48368490585105 (updated 2026-10-21T09:40:17Z) re-read. No change to prices, profit targets, daily/max loss, drawdown type, minimum days or reward routes. Price table still quotes \"'1step': {5:59,10:99,25:210,50:322,100:566,200:null}\", \"'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}\", \"'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}\", \"'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}\". Evidence: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/."
     ]
   },
   {
@@ -251,13 +284,22 @@
     "minTradingDays": 3,
     "maxTradingDays": null,
     "consistencyRulePct": 35,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 35,
+        "scope": "funded",
+        "appliesTo": "On-Demand 100% payouts",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
+      }
+    ],
     "profitSplitPct": null,
     "payoutFirstDays": null,
     "payoutFrequency": null,
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
-      "overnight": true,
+      "overnight": "restricted",
       "ea": "restricted",
       "copyTrading": "restricted"
     },
@@ -272,7 +314,9 @@
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
-      "Refund (2026-10-20): refundable = true means the registration fee is refunded at the 4th reward on the Master Account (Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\"). FundingPips' Terms (effective 15 May 2026) say \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" and do not mention the 4th-reward refund; conflict recorded in _captures/fundingpips-2026-10-20.json. The $2.5K tier stays null because its availability is unresolved."
+      "Refund (2026-10-20): refundable = true means the registration fee is refunded at the 4th reward on the Master Account (Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\"). FundingPips' Terms (effective 15 May 2026) say \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\" and do not mention the 4th-reward refund; conflict recorded in _captures/fundingpips-2026-10-20.json. The $2.5K tier stays null because its availability is unresolved.",
+      "Overnight/weekend recheck 2026-10-21 (US IP): News Trading & Weekend Holding article https://help.fundingpips.com/hc/en-us/articles/34504137479441 (updated 2026-10-08): \"On the Master Account, holding trades overnight and over the weekend is not allowed on 1 Step Flex, 2 Step Standard, 2 Step Flex, and 2 Step Pro Master Accounts. All open trades will be automatically closed by the system unless you have the Swing add-on.\" Evaluation: \"Overnight and weekend holding are allowed during evaluation phases for all instruments\". Auto-close is daily, 20:45-21:00 UTC (summer) / 21:45-22:00 UTC (winter), and \"will not result in an account breach\". Add-on: \"can be enabled at the time of purchase through a 10% add-on.\" rules.overnight and rules.weekend are therefore 'restricted' (allowed in evaluation; Master only with the paid Swing add-on). Product article https://help.fundingpips.com/hc/en-us/articles/34501809112081 (updated 2026-10-21) agrees: \"Overnight & Weekend Holding : always allowed on Evals. Allowed on Master with Swing Add-on.\" and \"holding trades overnight and over the weekend is not allowed on 2 Step Standard Master Accounts.\"",
+      "Post-edit recheck 2026-10-21 (US IP, Help Center API): product article 34501809112081 updated 2026-10-21T09:41:20Z, after the 2026-10-20 capture, and Compare Account Models 48368490585105 (updated 2026-10-21T09:40:17Z) re-read. No change to prices, profit targets, daily/max loss, drawdown type, minimum days or reward routes. Price table still quotes \"'1step': {5:59,10:99,25:210,50:322,100:566,200:null}\", \"'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}\", \"'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}\", \"'2flex': {5:32,10:59,25:159,50:269,100:555,200:null}\". Evidence: /workspace/tradersfundhub/evidence/fundingpips-overnight-2026-10-21/."
     ]
   },
   {
@@ -319,6 +363,15 @@
     "minTradingDays": null,
     "maxTradingDays": null,
     "consistencyRulePct": 15,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 15,
+        "scope": "funded",
+        "appliesTo": "Reward requests",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero"
+      }
+    ],
     "profitSplitPct": 95,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -338,7 +391,8 @@
       "News-window and weekend holding violations are hard breaches; the account is simulated and begins directly at Master.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fundingpips-2026-10-15.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change to this product, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/fundingpips-2026-10-20.json",
-      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\""
+      "Refund (2026-10-20): not refundable. Get Started help article: \"Registration fee refund: when you reach your 4th reward on a 2 Step Standard Master Account, the original registration fee is refunded. The 4th-reward refund does not apply on 1 Step Flex, 2 Step Pro, 2 Step Flex, or FundingPips Zero.\" Terms: \"The Customer is not entitled to a refund of the registration fees because the service is delivered directly after purchase. No refund applies to the service that FundingPips offers.\"",
+      "Overnight/weekend recheck 2026-10-21 (US IP): https://help.fundingpips.com/hc/en-us/articles/34504137479441 (updated 2026-10-08): \"All instruments (Forex, Metals, Energies, Indices, Crypto): All positions must be closed before market close over the weekend. Leaving any position open into the weekend results in immediate account termination, regardless of instrument.\" rules.weekend stays false (hard breach). Weekday overnight is not restricted on Zero: the Zero article https://help.fundingpips.com/hc/en-us/articles/34502157694865 (updated 2026-10-19) offers a Swap-Free add-on \"to hold positions overnight without incurring swap (interest) fees\" and adds \"Weekend holds remain prohibited on FundingPips Zero regardless of this add-on.\" No auto-close rule is published for Zero, so rules.overnight stays true."
     ]
   }
 ]

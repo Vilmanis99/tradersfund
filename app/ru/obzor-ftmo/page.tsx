@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -27,8 +28,14 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
@@ -79,6 +86,34 @@ function targetLabel(product: Challenge) {
   return values.length ? `${values.join('% / ')}%` : 'не опубликована'
 }
 
+// Trace 2026-10-20: FAQ prices, platforms, payout methods and Trustpilot read from challenges/ftmo.json and firms.json.
+const ruIsoDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
+function ftmoPriceFaqAnswer() {
+  const fresh = getChallengesByFirm('ftmo').filter(product => isChallengeFresh(product))
+  const range = (slug: string) => {
+    const product = fresh.find(item => item.productSlug === slug)
+    const tiers = (product?.accountSizes ?? []).filter(tier => tier.priceEur != null && tier.priceEur > 0)
+    if (!product || !tiers.length) return null
+    const prices = tiers.map(tier => tier.priceEur as number)
+    const sizes = tiers.map(tier => tier.sizeUsd)
+    return { text: `${eur(Math.min(...prices))}–${eur(Math.max(...prices))}`, minSize: Math.min(...sizes), maxSize: Math.max(...sizes), date: product.sourceCapturedAt }
+  }
+  const two = range('ftmo-challenge-2-step')
+  const one = range('ftmo-challenge-1-step')
+  if (!two || !one) return 'Актуальные цены FTMO в наших свежих данных сейчас не подтверждены; проверьте их на официальном сайте. Размер счёта указан в USD, а взнос — в EUR.'
+  const date = ruIsoDate([two.date, one.date].sort()[0])
+  const sizes = `от ${usdAccount(Math.min(two.minSize, one.minSize))} до ${usdAccount(Math.max(two.maxSize, one.maxSize))}`
+  return `По данным на ${date} 2-Step стоит ${two.text}, а 1-Step — ${one.text} для счетов ${sizes}. Размер счёта указан в USD, а взнос — в EUR. В обзоре сохранены исходные валюты без пересчёта по временному курсу.`
+}
+const FTMO_PAYOUT_LABELS: Record<string, string> = {
+  'Bank wire': 'банковским переводом',
+  'Visa Direct / Mastercard Send': 'мгновенным переводом на карту через Visa Direct / Mastercard Send',
+  Skrill: 'через Skrill',
+  Crypto: 'в криптовалюте',
+}
+const listRu = (items: string[]) => items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} или ${items[items.length - 1]}`
+const listRuAnd = (items: string[]) => items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} и ${items[items.length - 1]}`
+
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какой официальный сайт FTMO?',
@@ -94,7 +129,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит FTMO Challenge?',
-    a: 'По данным от 28 августа 2026 года 2-Step стоит €89–€1,080, а 1-Step — €79–€999 для счетов от $10K до $200K. Размер счёта указан в USD, а взнос — в EUR. В обзоре сохранены исходные валюты без пересчёта по временному курсу.',
+    a: ftmoPriceFaqAnswer(),
   },
   {
     q: 'Чем FTMO 1-Step отличается от 2-Step?',
@@ -110,17 +145,28 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Traders Fund Hub получает комиссию от FTMO?',
-    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. FundedNext и BrightFunded показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
+    a: 'Нет. В этой статье ссылка FTMO ведёт на официальный сайт без партнёрского вознаграждения. BrightFunded и FundedNext (последняя недоступна резидентам РФ) показаны отдельно как коммерческие партнёры; регистрация через их помеченные ссылки может принести Traders Fund Hub комиссию.',
   },
 ]
 
 export default function RussianFtmoReviewPage() {
   const firms = getAllFirms()
   const firm = firms.find(candidate => candidate.name === 'FTMO')
+  const ftmoPayoutMethods = (firm?.payoutMethods ?? []).map(method => FTMO_PAYOUT_LABELS[method]).filter((label): label is string => Boolean(label))
+  const ftmoTrustpilot = firm && firm.trustpilotScore != null && firm.trustpilotCount != null && firm.trustpilotCapturedAt
+    && isChallengeFresh({ sourceCapturedAt: firm.trustpilotCapturedAt })
+    ? {
+      score: firm.trustpilotScore.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+      count: firm.trustpilotCount.toLocaleString('ru-RU'),
+      date: ruIsoDate(firm.trustpilotCapturedAt),
+    }
+    : null
   const products = getChallengesByFirm('ftmo')
   const freshProducts = products.filter(product => isChallengeFresh(product))
   const twoStep = freshProducts.find(product => product.productSlug === 'ftmo-challenge-2-step')
   const oneStep = freshProducts.find(product => product.productSlug === 'ftmo-challenge-1-step')
+  const instant = freshProducts.find(product => product.productSlug === 'ftmo-instant-account')
+  const verdictProductCount = [twoStep, oneStep, instant].filter(Boolean).length
   const pricedTiers = freshProducts.flatMap(product => product.accountSizes.flatMap(tier =>
     tier.priceEur != null && tier.priceEur > 0 ? [{ product, tier, price: tier.priceEur }] : []))
   const latestCapture = freshProducts.map(product => product.sourceCapturedAt).sort().at(-1)
@@ -140,6 +186,8 @@ export default function RussianFtmoReviewPage() {
       || (tier.priceEur != null && tier.priceEur > 0)).length, 0)
     return [{ slug, firm: partnerFirm, products: partnerProducts, priceCount }]
   })
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
   const account100k = (product: Challenge | undefined) =>
     product?.accountSizes.find(tier => tier.sizeUsd === 100000)
   const twoStep100k = account100k(twoStep)
@@ -150,6 +198,11 @@ export default function RussianFtmoReviewPage() {
   const oneStep100kEconomics = oneStep && oneStep100k
     ? challengeTierEconomics(oneStep, oneStep100k)
     : null
+  const instant100k = account100k(instant)
+  const instant100kEconomics = instant && instant100k
+    ? challengeTierEconomics(instant, instant100k)
+    : null
+  const instantCapturedRu = instant?.sourceCapturedAt?.split('-').reverse().join('.')
 
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
@@ -175,9 +228,10 @@ export default function RussianFtmoReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
+      <RuMobileStickyCTA firms={['ftmo']} from="ru-obzor-ftmo-mobile-sticky" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faq) }} />
 
-      <section className="ru-hero">
+      <section className="ru-hero ru-hero--p1">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
@@ -192,19 +246,21 @@ export default function RussianFtmoReviewPage() {
             <span>Обновлено: {russianRouteDateModified(PATH, latestCapture)}</span>
             <span>13 минут чтения</span>
           </div>
-          <div className="ru-stats">
+        </div>
+      </section>
+
+      <article className="ru-review-article ru-p1-article" data-russian-ftmo-article="long-form-source-first">
+        <RuReviewVerdictBox route={PATH} campaign="ftmo-review" sourcesHref="#official" terms={<RuCapturedTerms><div className="ru-stats">
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>текущие программы</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>цен в исходной валюте</span></div>
             <div className="ru-stat"><strong>{eur(Math.min(...pricedTiers.map(item => item.price)))}</strong><span>минимальная цена</span></div>
             <div className="ru-stat"><strong>{firm?.affiliateUrl ? 'да' : 'нет'}</strong><span>партнёрская связь с FTMO</span></div>
-          </div>
-        </div>
-      </section>
-
-      <article className="ru-review-article" data-russian-ftmo-article="long-form-source-first">
-        <section className="ru-section ru-review-toc-section">
+          </div></RuCapturedTerms>} />
+        <RuTelegramBlock placement="obzor-ftmo" />
+        <section className="ru-section ru-review-toc-section ru-p1-rail">
           <div className="ru-shell">
-            <nav className="toc ru-review-toc" aria-label="Содержание обзора FTMO">
+            <RuArticleToc>
+<nav className="toc ru-review-toc" aria-label="Содержание обзора FTMO">
               <div className="toc-title">Содержание обзора</div>
               <ol>
                 <li><a href="#country">Страна и русскоязычная аудитория</a></li>
@@ -215,11 +271,12 @@ export default function RussianFtmoReviewPage() {
                 <li><a href="#risk">Просадка и Best Day</a></li>
                 <li><a href="#payout">Возврат взноса и выплаты</a></li>
                 <li><a href="#fit">Кому подходит FTMO</a></li>
-                <li><a href="#alternatives">FundedNext и BrightFunded</a></li>
+                <li><a href="#alternatives">Альтернативы: BrightFunded</a></li>
                 <li><a href="#checklist">Проверка перед оплатой</a></li>
                 <li><a href="#faq">Частые вопросы</a></li>
               </ol>
             </nav>
+</RuArticleToc>
           </div>
         </section>
 
@@ -247,7 +304,7 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="verdict" data-russian-ftmo-verdict="two-products-not-one-brand">
-            <h2>Краткий вывод: выбирать нужно между 2 наборами ограничений</h2>
+            <h2>Краткий вывод: выбирать нужно между {verdictProductCount} наборами ограничений</h2>
             <p>
               2-Step логичнее для трейдера, которому важны статическая граница 10%, дневной лимит 5% и возврат 100% взноса после первой
               выплаты вознаграждения. Цена $100K-счёта составляет {eur(twoStep100k?.priceEur)}, базовая доля — {twoStep?.profitSplitPct ?? '—'}%,
@@ -259,6 +316,15 @@ export default function RussianFtmoReviewPage() {
               Взнос {eur(oneStep100k?.priceEur)} на $100K не возвращается, а для его компенсации при доле {oneStep?.profitSplitPct ?? '—'}%
               нужна валовая прибыль {eur(oneStep100kEconomics?.breakEvenProfit)}. Поэтому более низкая цена не означает более низкую полную стоимость решения.
             </p>
+            {instant && (
+              <p data-russian-ftmo-verdict-instant={instant.sourceCapturedAt}>
+                Instant Account обходится без оценки: доля {instant.profitSplitPct ?? '—'}% с первого счёта, дневной лимит {instant.dailyLossPct ?? '—'}%
+                от начального баланса, общий лимит {instant.maxLossPct ?? '—'}% трейлингует внутри дня от максимального баланса, а Best Day ограничен
+                {' '}{instant.consistencyRulePct ?? '—'}% общей прибыли. Взнос {eur(instant100k?.priceEur)} на $100K невозвратный; для его компенсации при доле
+                {' '}{instant.profitSplitPct ?? '—'}% нужна валовая прибыль {eur(instant100kEconomics?.breakEvenProfit)}. Срок первой выплаты, правила
+                для новостей и советников на странице Instant Account не опубликованы (по данным на {instantCapturedRu}).
+              </p>
+            )}
             <div className="ru-actions">
               <RuGoLink firm="ftmo" href="/go/ftmo?from=ru-ftmo-review-verdict" rel="nofollow noopener" className="btn-outline">
                 Открыть официальный сайт FTMO <ExternalLink size={14} aria-hidden="true" />
@@ -279,7 +345,7 @@ export default function RussianFtmoReviewPage() {
               Похожее название, русский интерфейс или логотип не подтверждают связь сайта с FTMO.
             </p>
             <p>
-              Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step или 2-Step,
+              Перед вводом карты проверьте 3 элемента: адрес начинается с ftmo.com, продукт называется FTMO Challenge: 1-Step, 2-Step или FTMO Instant Account,
               а цена и валюта совпадают с выбранной страницей оплаты. Для США FTMO публикует отдельный переход на ftmo.oanda.com; цифры глобальной версии нельзя
               автоматически переносить на другую сущность или региональный storefront.
             </p>
@@ -291,8 +357,8 @@ export default function RussianFtmoReviewPage() {
             <h2>FTMO проп: что это за проп-компания</h2>
             <p>
               FTMO — проп-компания, основанная в 2015 году. По нашему профилю фирмы: торговля форексом, криптовалютой, индексами, сырьём и
-              акциями на MT4, MT5, cTrader и DXTrade; максимальный капитал с учётом масштабирования — до $2 000 000; выплаты банковским
-              переводом, через Skrill или в криптовалюте. На Trustpilot — 4,8 при 47 019 отзывах (по данным на 27.07.2026).
+              акциями на {listRuAnd(firm?.platforms ?? [])}; максимальный капитал с учётом масштабирования — до $2 000 000{ftmoPayoutMethods.length ? <>; выплаты {listRu(ftmoPayoutMethods)}{firm?.payoutMethodsCapturedAt ? ` (по данным на ${ruIsoDate(firm.payoutMethodsCapturedAt)})` : ''}</> : null}.
+              {ftmoTrustpilot ? <> На Trustpilot — оценка {ftmoTrustpilot.score}, отзывов: {ftmoTrustpilot.count} (по данным на {ftmoTrustpilot.date}).</> : null}
             </p>
             <h3>Проп-трейдинг с FTMO: для кого он доступен</h3>
             <p>
@@ -331,7 +397,7 @@ export default function RussianFtmoReviewPage() {
 
         <section className="ru-section">
           <div className="ru-shell ru-content" id="prices" data-russian-ftmo-price-count={pricedTiers.length} data-russian-ftmo-truecost={pricedTiers.length}>
-            <h2>Все 10 цен FTMO и полная стоимость в EUR</h2>
+            <h2>Все {pricedTiers.length} цен FTMO и полная стоимость в EUR</h2>
             <p>
               FTMO маркирует размер симулируемого счёта в USD, но публикует взнос в EUR. Мы сохраняем обе единицы и не применяем курс дня:
               пересчёт €540 в доллары быстро устареет и скроет комиссию банка. В таблицах ниже использованы базовые цены,
@@ -443,10 +509,10 @@ export default function RussianFtmoReviewPage() {
           <div className="ru-shell ru-content" id="alternatives" data-russian-ftmo-global-funnel="fundednext-bright-funded">
             <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-alternatives">
               <strong>Коммерческое раскрытие.</strong>{' '}
-              FTMO не является нашим партнёром. FundedNext и BrightFunded являются партнёрами: если подходящий читатель зарегистрируется
+              FTMO не является нашим партнёром. BrightFunded и FundedNext являются партнёрами: если подходящий читатель зарегистрируется
               через помеченную ссылку, Traders Fund Hub может получить комиссию. Это не доказывает доступность страны и не меняет продуктовые числа.
             </div>
-            <h2>Если FTMO не подходит: FundedNext и BrightFunded</h2>
+            <h2>Если FTMO не подходит: BrightFunded (FundedNext для РФ недоступна)</h2>
             <p>
               Альтернатива должна решать конкретную проблему FTMO, а не просто вести на другой логотип. Для русскоязычного жителя разрешённой страны
               сначала сравниваются валюта взноса, тип просадки, число фаз и выплата; для резидента России отдельно проверяются правила страны каждой фирмы.
@@ -457,7 +523,7 @@ export default function RussianFtmoReviewPage() {
                 const reviewHref = item.slug === 'fundednext' ? '/ru/obzor-fundednext' : '/ru/obzor-bright-funded'
                 return (
                   <article className="ru-card" key={item.slug} data-russian-ftmo-alternative={item.slug}>
-                    <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3><span className="ru-score">Партнёр</span></div>
+                    <div className="ru-card-head"><h3>{item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Партнёр</span>}</div>
                     <ul className="ru-facts">
                       <li><Database size={14} aria-hidden="true" /> {item.products.length} свежих продуктов</li>
                       <li><BadgeDollarSign size={14} aria-hidden="true" /> {item.priceCount} опубликованных цен</li>
@@ -465,7 +531,7 @@ export default function RussianFtmoReviewPage() {
                     </ul>
                     <p>
                       {item.slug === 'fundednext'
-                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
+                        ? `${FUNDEDNEXT_RU_ACCESS_NOTE} Для трейдеров из других стран начните с выбора между Stellar 2-Step, 1-Step, Lite и Instant.`
                         : 'Начните с выбора между 1-Step, 2-Step Bright и 2-Step Classic; взнос публикуется в EUR, а базовую долю нельзя подменять платным или масштабируемым потолком.'}
                     </p>
                     <div className="ru-actions">
@@ -480,7 +546,7 @@ export default function RussianFtmoReviewPage() {
             </div>
             <div className="ru-actions">
               <Link href="/ru/ftmo-vs-bright-funded" className="btn-primary"><Scale size={15} aria-hidden="true" /> Сравнить FTMO и BrightFunded</Link>
-              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить FundedNext и BrightFunded</Link>
+              <Link href="/ru/fundednext-vs-bright-funded" className="btn-outline"><Scale size={15} aria-hidden="true" /> Сравнить BrightFunded и FundedNext</Link>
               <Link href="/ru/promokody-prop-firm" className="btn-outline">Проверить действующие предложения</Link>
             </div>
           </div>
@@ -513,6 +579,7 @@ export default function RussianFtmoReviewPage() {
             <RussianFaq items={faqs} />
           </div>
         </section>
+        <RuRelatedBlock path={PATH} />
       </article>
     </>
   )

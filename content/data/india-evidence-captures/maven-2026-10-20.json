@@ -1,0 +1,39 @@
+{
+  "firmSlug": "maven",
+  "capturedAt": "2026-10-20",
+  "rbiCheck": {
+    "sourceUrl": "https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235",
+    "sourceListUpdatedAt": "2025-11-19",
+    "result": "not-found",
+    "searchedNames": [
+      "Maven",
+      "Maven Trading"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://maventrading.com/terms-and-conditions",
+      "quote": "Restricted Countries: Afghanistan, Belarus, Burkina Faso, Burundi, Central African Republic, Congo (Republic of the Congo), Cuba, Eritrea, Guinea, Guinea-Bissau, Guyana, Haiti, Iran, Mali, North Korea, Russia, Saint Lucia, Sierra Leone, Somalia, South Sudan, Sudan, Ukraine, Vanuatu, Venezuela, Yemen.",
+      "claims": {
+        "country": "India is absent from the published 25-country restriction list (unchanged since 2026-09-14)."
+      }
+    },
+    {
+      "url": "https://maventrading.com/faqs",
+      "quote": "Available payout methods depend on your country, as listed below. For Nigeria, Kenya, and Ghana: Direct Bank Transfer Digital Currencies (USDT-BSC or USDC-ERC20) For other countries: Digital Currencies (USDT-BSC or USDC-ERC20) Rise Pay",
+      "claims": {
+        "payout": "India falls under other countries: USDT-BSC / USDC-ERC20 or Rise Pay.",
+        "kyc": "Government-Issued ID: Submit a valid identity document, such as a passport, driver's license, residence permit, or national ID card. Payment Card: Use a payment card registered in your own name.",
+        "fee": "No $20 Rise fee (or any payout fee) appears in the 2026-10-20 FAQ; the 2026-09-14 claim is withdrawn.",
+        "checkout": "FAQ requires an own-name payment card; checkout method list not in server-readable output."
+      }
+    },
+    {
+      "url": "https://maventrading.com/pricing",
+      "claims": {
+        "currency": "Account sizes and prices are displayed in USD (e.g. 'Standard 2-Step $5k account $20 * $22 *Price with coupon')."
+      }
+    }
+  ],
+  "rawCopies": "/workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/maventrading.com_*.html (box only), fetched with curl from a US-IP box"
+}

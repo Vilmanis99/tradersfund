@@ -49,6 +49,9 @@ import {
   LOCALIZED_ROUTE_PAIRS,
   RUSSIAN_ROUTE_EDITORIAL_DATES,
   RUSSIAN_ONLY_ROUTES,
+  CLOSED_FIRMS_ROUTE_PAIR,
+  RU_CLOSED_FIRMS_EDITORIAL_DATE,
+  RU_CLOSED_FIRMS_PATH,
 } from '../lib/localizedRoutes.ts'
 import {
   INDEXNOW_KEY,
@@ -57,6 +60,9 @@ import {
 } from '../lib/indexNow.ts'
 
 const args = process.argv.slice(2)
+// /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
+const closedFirmsData = JSON.parse(readFileSync(new URL('../content/data/closed-firms.json', import.meta.url), 'utf8'))
+const closedFirmsPublished = closedFirmsData.published === true
 const baseArg = args.find(value => !value.startsWith('--'))
 const VERBOSE = args.includes('--verbose')
 const STRICT_LENGTHS = args.includes('--strict-lengths')
@@ -71,6 +77,15 @@ const firmRecords = JSON.parse(
 const latestProductCapture = getAllChallenges()
   .map(challenge => challenge.sourceCapturedAt).sort().at(-1)
 const challengeWatchEntries = getChallengeWatchEntries()
+const currentFtmoEurTierCount = getAllChallenges()
+  .filter(challenge => challenge.firmSlug === 'ftmo' && isChallengeFresh(challenge))
+  .reduce((total, challenge) => total + challenge.accountSizes.filter(tier => tier.priceEur != null && tier.priceEur > 0).length, 0)
+// /ru/prop-firmy-bez-chelendzha renders these counts from the same filter (phases === 0 and a fresh capture),
+// so the expected markers are derived here instead of pinned: a pinned 12/9 went stale as products were added
+// or aged out (the page had 20 products from 11 firms on 2026-10-23).
+const instantPhaseZeroProducts = getAllChallenges().filter(challenge => challenge.phases === 0 && isChallengeFresh(challenge))
+const instantPhaseZeroProductCount = instantPhaseZeroProducts.length
+const instantPhaseZeroFirmCount = new Set(instantPhaseZeroProducts.map(challenge => challenge.firmSlug)).size
 const firmReviewPostRecords = new Map(firmRecords.map(firm => {
   const reviewPath = new URL(firm.reviewUrl, PRODUCTION_ORIGIN).pathname
   const reviewSlug = reviewPath.split('/').filter(Boolean).at(-1)
@@ -719,6 +734,8 @@ for (const source of [
 }
 
 const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]
+// Flag-gated pair (same publish flag as /prop-firms/closed).
+if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
 const russianOnlyPaths = [...RUSSIAN_ONLY_ROUTES]
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
@@ -754,6 +771,7 @@ for (const path of russianPaths) {
 
   const actualLastModified = firstMatch(entry, /<lastmod>([\s\S]*?)<\/lastmod>/i)
   const editorialLastModified = RUSSIAN_ROUTE_EDITORIAL_DATES[path]
+    ?? (path === RU_CLOSED_FIRMS_PATH ? RU_CLOSED_FIRMS_EDITORIAL_DATE : undefined)
   const actualTime = new Date(actualLastModified).getTime()
   const editorialTime = new Date(`${editorialLastModified}T00:00:00Z`).getTime()
   if (!actualLastModified || !Number.isFinite(actualTime)) {
@@ -894,6 +912,69 @@ const russianExpectations = new Map([
       'https://brightfunded.com/terms-and-conditions',
     ],
   }],
+  ['/ru/ftmo-vs-fundednext', {
+    title: 'FTMO или FundedNext: сравнение 2026 — обе закрыты для РФ',
+    h1: 'FTMO или FundedNext: что выбрать в 2026 году',
+    markers: [
+      'data-russian-partner-comparison="ftmo-fundednext"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-access-table="ru-by-kz"',
+      'data-russian-comparison-key-fields="10"',
+      'data-russian-comparison-product-count="6"',
+      'data-russian-comparison-verdict="by-trader-type"',
+      'data-russian-comparison-pair="two-step"',
+      'data-russian-comparison-pair="one-step"',
+      'data-russian-comparison-pair="instant-fundednext"',
+      'data-russian-comparison-ftmo-instant="',
+      'data-russian-comparison-ftmo-cta="secondary-restricted"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-risk-disclaimer="comparison"',
+      '/go/ftmo?from=ru-comparison-ftmo-fundednext',
+      'https://ftmo.com/en/faq/who-can-join-ftmo/',
+      'https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds',
+      'https://helpfutures.fundednext.com/en/articles/17228971-are-any-countries-restricted-on-fundednext-futures',
+      'https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits',
+      'data-russian-fundednext-access="footer-restricted"',
+      'data-russian-fundednext-access-conflict="footer-restricted"',
+      'data-russian-comparison-fundednext-cta="secondary-restricted"',
+      'data-russian-alternative-excluded="fundednext"',
+      'https://fundednext.com/api_docs/terms-of-service',
+      'https://help.riseworks.io/en/articles/7198515-unsupported-countries-regions-and-states',
+    ],
+  }],
+  ['/ru/fundingpips-vs-bright-funded', {
+    title: 'FundingPips или BrightFunded: условия и доступ из РФ 2026',
+    h1: 'FundingPips или BrightFunded: что выбрать в 2026 году',
+    markers: [
+      'data-russian-partner-comparison="fundingpips-bright-funded"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-access-table="ru-by-kz-ae"',
+      'data-russian-fundingpips-bright-funded-country-conflict="help-six-terms-five"',
+      'data-russian-fundingpips-payout-methods="reward-methods"',
+      'data-russian-fundingpips-payout-countries="pay-to-card-bank-14"',
+      'https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods',
+      'data-russian-comparison-key-fields="12"',
+      'data-russian-bright-funded-assets="firms-json"',
+      'data-russian-bright-funded-crypto-trading="help-9268229"',
+      'https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded',
+      'data-russian-comparison-product-count="8"',
+      'data-russian-comparison-verdict="by-trader-type"',
+      'data-russian-comparison-pair="classic-standard"',
+      'data-russian-comparison-pair="bright-flex-pro"',
+      'data-russian-comparison-pair="one-step"',
+      'data-russian-comparison-pair="zero-only-fundingpips"',
+      'data-russian-comparison-cta="bright-funded-first"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-country-boundary="comparison-not-access"',
+      'data-russian-affiliate-disclosure="comparison"',
+      'data-russian-risk-disclaimer="comparison"',
+      'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
+      'https://brightfunded.com/terms-and-conditions',
+      'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started',
+    ],
+  }],
   ['/ru/fundednext-vs-fundingpips', {
     title: 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ',
     h1: 'FundedNext или FundingPips: сравнение для русскоязычных трейдеров',
@@ -940,6 +1021,7 @@ const russianExpectations = new Map([
       '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-card',
       '/go/ftmo?from=ru-ftmo-vs-bright-ftmo-verdict',
       '/go/fundednext?from=ru-ftmo-vs-bright-fundednext',
+      'data-russian-comparison-fundednext-cta="restricted-last"',
       '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips',
       'data-russian-comparison-ftmo-cta="secondary-restricted"',
       'https://ftmo.com/en/faq/who-can-join-ftmo/',
@@ -948,7 +1030,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded, FundedNext',
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
@@ -963,7 +1045,7 @@ const russianExpectations = new Map([
   // Batch 1/2 new pages: expectations apply only once app/ru/<slug>/page.tsx exists.
   ...[
     ['/ru/prop-trejding', {
-      title: 'Проп трейдинг: что это и как начать торговать в 2026', h1: 'Проп-трейдинг: торговля на капитал компании',
+      title: 'Проп трейдинг: что это и можно ли начать без вложений (2026)', h1: 'Проп-трейдинг: торговля на капитал компании',
       markers: ['data-russian-prop-trading="guide"', '"@type":"FAQPage"', 'href="/go/bright-funded?'],
     }],
     ['/ru/funded-account', {
@@ -979,8 +1061,8 @@ const russianExpectations = new Map([
       markers: ['id="krasnye-flagi"', 'id="dokazatelstva-vyplat"', 'id="verdikty"'],
     }],
     ['/ru/obzor-the5ers', {
-      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'The5ers: обзор 2026 — программы, правила, доступ из России',
-      markers: ['rel="nofollow noopener noreferrer" class="btn-outline" data-russian-the5ers-official="non-affiliate"', 'data-russian-the5ers-programs="2026-10-14"'],
+      title: 'The5ers: обзор 2026 — программы, правила, доступ из России', h1: 'Обзор The5ers: программы, правила и доступ из России',
+      markers: ['data-russian-the5ers-official="non-affiliate"', 'data-russian-alternatives="bright-funded-first"', 'data-russian-alternative="bright-funded"', 'data-russian-the5ers-bootcamp-drawdown="static"', 'href="/blog/the5ers-review"'],
     }],
   ].filter(([route]) => existsSync(new URL(`../app${route}/page.tsx`, import.meta.url))),
   ['/ru/ftmo-dlya-rossiyan', {
@@ -1001,8 +1083,8 @@ const russianExpectations = new Map([
     h1: 'Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips',
     markers: [
       'data-russian-instant-ranking="long-form-phase-zero"',
-      'data-russian-instant-product-count="12"',
-      'data-russian-instant-firm-count="9"',
+      `data-russian-instant-product-count="${instantPhaseZeroProductCount}"`,
+      `data-russian-instant-firm-count="${instantPhaseZeroFirmCount}"`,
       'data-russian-country-boundary="instant-not-access"',
       'data-russian-affiliate-disclosure="instant-ranking"',
       'data-russian-instant-article="global-partner-decision-guide"',
@@ -1012,9 +1094,11 @@ const russianExpectations = new Map([
       'data-russian-instant-evidence="fundingpips"',
       'data-russian-instant-partner="fundednext"',
       'data-russian-instant-partner="fundingpips"',
-      'data-russian-instant-all-products="12"',
+      `data-russian-instant-all-products="${instantPhaseZeroProductCount}"`,
       'data-russian-instant-product="fundednext:stellar-instant"',
       'data-russian-instant-product="fundingpips:zero"',
+      // Every fresh phase-0 product in the data must be listed on the page, not only the two partner rows.
+      ...instantPhaseZeroProducts.map(challenge => `data-russian-instant-product="${challenge.firmSlug}:${challenge.productSlug}"`),
       'data-russian-instant-risk="drawdown-before-price"',
       'data-russian-instant-diaspora="country-before-checkout"',
       'data-russian-instant-definition="phase-zero-not-label"',
@@ -1029,8 +1113,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/vyplaty-prop-firm', {
-    title: 'Выплаты проп-фирм 2026: FundedNext и BrightFunded',
-    h1: 'Выплаты проп-фирм: FundedNext, BrightFunded и вывод прибыли',
+    title: 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC',
+    h1: 'Выплаты проп-фирм: BrightFunded, FundedNext и вывод прибыли',
     markers: [
       'data-russian-payout-guide="long-form-source-gated"',
       'data-russian-payout-partner-count="3"',
@@ -1104,7 +1188,7 @@ const russianExpectations = new Map([
       'data-russian-ranking-primary-partners="fundednext-bright-funded"',
       'data-russian-ranking-primary-partner="fundednext"',
       'data-russian-ranking-primary-partner="bright-funded"',
-      'FundedNext или BrightFunded: с чего начать сравнение',
+      'BrightFunded или FundedNext: с чего начать сравнение',
       'Проверить BrightFunded',
       'data-russian-affiliate-disclosure="ranking-primary-partners"',
       'data-russian-funnel-intent="ranking-finder"',
@@ -1134,21 +1218,46 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
-    h1: 'Крипто-проп-фирмы 2026: цены, инструменты и правила',
+    title: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
+    h1: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
       'data-russian-country-boundary="crypto-not-access"',
       'data-russian-crypto-ranking="source-gated"',
       'data-russian-affiliate-disclosure="crypto-ranking"',
-      'data-russian-crypto-product-count="12"',
-      'data-russian-crypto-partner-count="2"',
+      // Counts derive from crypto-market-evidence.json + firms.json (every ranked firm current at release).
+      `data-russian-crypto-product-count="${cryptoMarketEvidence.ranked.reduce((total, evidence) => total + evidence.productSlugs.length, 0)}"`,
+      `data-russian-crypto-partner-count="${cryptoMarketEvidence.ranked.filter(evidence => firmRecords.find(firm => firm.name === evidence.firmName)?.affiliateUrl).length}"`,
       'data-russian-crypto-comparison="current-source-mapped-products"',
       'data-russian-crypto-decision-guide="product-not-logo"',
+      `data-russian-crypto-watch-count="${cryptoMarketEvidence.watch.length}"`,
       'data-russian-crypto-payout-boundary="bright-funded-not-ranked"',
-      'data-russian-crypto-watch-count="7"',
+      'data-russian-crypto-firm="bright-funded"',
+      'data-russian-crypto-firm="crypto-fund-trader"',
+      'data-russian-crypto-firm="ftmo"',
+      'data-russian-crypto-firm="city-traders-imperium"',
+      'data-russian-crypto-firm="ofp-funding"',
+      'data-russian-crypto-access-pointer="top"',
+      'data-russian-crypto-shortlist="russia-access-first"',
+      'data-russian-crypto-shortlist-firm="bright-funded"',
+      'data-russian-crypto-shortlist-firm="crypto-fund-trader"',
+      'data-russian-crypto-shortlist-firm="ftmo"',
+      'data-russian-crypto-shortlist-firm="city-traders-imperium"',
+      'data-russian-crypto-shortlist-firm="ofp-funding"',
+      'data-russian-crypto-restricted-cta="fundednext"',
+      'data-russian-crypto-access-ctas="restricted-last"',
       '/go/fundednext?from=ru-crypto-ranking',
+      '/go/fundednext?from=ru-crypto-russia-access-fundednext',
+      'data-russian-crypto-access-table="open-and-closed"',
+      'data-russia-status="restricted" data-russia-firm="ftmo"',
+      'data-russia-status="restricted" data-russia-firm="city-traders-imperium"',
+      'data-russia-status="restricted" data-russia-firm="ofp-funding"',
+      'data-russia-status="restricted" data-russia-firm="fundednext"',
+      'https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded',
+      '/go/bright-funded?from=ru-crypto-top-bright-funded',
+      '/go/crypto-fund-trader?from=ru-crypto-top-crypto-fund-trader',
+      '/go/fundingpips?from=ru-crypto-ranking',
       '/go/bright-funded?from=ru-crypto-ranking-payout-alternative',
     ],
   }],
@@ -1192,8 +1301,9 @@ const russianExpectations = new Map([
       'data-russian-ftmo-verdict="two-products-not-one-brand"',
       'data-russian-ftmo-official-site="non-affiliate"',
       'data-russian-ftmo-product-matrix="two-current-products"',
-      'data-russian-ftmo-price-count="10"',
-      'data-russian-ftmo-truecost="10"',
+      // Fresh FTMO EUR tiers from the data (15 since FTMO Instant Account, 2026-10-21), as the page counts them.
+      `data-russian-ftmo-price-count="${currentFtmoEurTierCount}"`,
+      `data-russian-ftmo-truecost="${currentFtmoEurTierCount}"`,
       'data-russian-ftmo-pricing-product="ftmo-challenge-2-step"',
       'data-russian-ftmo-pricing-product="ftmo-challenge-1-step"',
       'data-russian-ftmo-risk="static-vs-eod-trailing"',
@@ -1211,8 +1321,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-fundednext', {
-    title: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
-    h1: 'FundedNext проп: отзывы и обзор 2026, цены и правила',
+    title: 'FundedNext проп: отзывы, обзор 2026 — недоступна для РФ',
+    h1: 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила',
     markers: [
       'data-russian-fundednext-article="long-form"',
       'data-russian-fundednext-editorial-shell="review-parity"',
@@ -1297,7 +1407,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/chto-takoe-prop-firma', {
-    title: 'Что такое проп-фирма: как это работает в 2026 году',
+    title: 'Что такое проп-фирма (проп-компания) и как она работает',
     h1: 'Что такое проп-фирма и как она работает',
     markers: [
       'data-russian-prop-definition="three-models-not-one-label"',
@@ -1315,7 +1425,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/forex-prop-firmy', {
-    title: 'Форекс проп-фирмы: плечо, цены и правила программ',
+    title: 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила',
     h1: 'Форекс проп-фирмы: цены, плечо и правила для русскоязычных трейдеров',
     markers: [
       'data-russian-forex-article="instrument-to-product"',
@@ -1347,7 +1457,7 @@ const russianExpectations = new Map([
   }],
   ['/ru/prop-firmy-s-ctrader', {
     title: 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot',
-    h1: 'Проп-фирмы с cTrader: FundedNext или BrightFunded',
+    h1: 'Проп-фирмы с cTrader: BrightFunded и FundedNext (не для РФ)',
     markers: [
       'data-russian-ctrader-article="platform-to-firm-rule"',
       'data-russian-platform-intent="ctrader-prop-firms"',
@@ -1471,7 +1581,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/kak-rabotayut-chellendzhi-prop-firm', {
-    title: 'Челлендж проп-фирмы: 5 этапов и правила (2026)',
+    title: 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов',
     h1: 'Как работает челлендж проп-фирмы: от оплаты до выплаты',
     markers: [
       'data-russian-country-boundary="challenge-checkout"',
@@ -1496,7 +1606,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-proplive', {
-    title: 'PropLive: обзор русской проп-компании (2026)',
+    title: 'PropLive: обзор 2026 — русская проп-компания, Мосбиржа',
     h1: 'PropLive: обзор 2026 — Мосбиржа, выплаты и условия',
     markers: [
       'data-russian-local-review="proplive"',
@@ -1544,7 +1654,7 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/obzor-teamtraders', {
-    title: 'TeamTraders: отзывы и обзор условий 2026',
+    title: 'TeamTraders: отзывы и обзор 2026 — стажировка и Мосбиржа',
     h1: 'TeamTraders: отзывы и обзор условий 2026 года',
     markers: [
       'data-russian-local-review="teamtraders"',
@@ -1556,7 +1666,7 @@ const russianExpectations = new Map([
       'data-russian-teamtraders-pricing="three-rub-tiers"',
       'data-russian-teamtraders-process="five-stages"',
       'data-russian-teamtraders-rules="manual-intraday"',
-      'data-russian-teamtraders-payouts="demo-70-real-95"',
+      'data-russian-teamtraders-payouts="demo-50-real-95"',
       'data-russian-teamtraders-source-conflict="current-vs-legacy"',
       'data-russian-teamtraders-legal="prop-offer-unavailable"',
       'data-russian-teamtraders-legal-availability="prop-offer-unavailable"',
@@ -1569,7 +1679,7 @@ const russianExpectations = new Map([
       'https://teamtraders.ru/faq',
       'https://teamtraders.ru/rules',
       '10 торговых дней',
-      '70%',
+      '50%',
       '95%',
     ],
   }],
@@ -1596,6 +1706,20 @@ const russianExpectations = new Map([
       '/go/bright-funded?from=ru-reviews-guide-bright-funded',
     ],
   }],
+  ...(closedFirmsPublished ? [[RU_CLOSED_FIRMS_PATH, {
+    title: 'Закрытые проп-фирмы: какие закрылись, даты и заявления',
+    h1: 'Закрытые проп-фирмы',
+    markers: [
+      'data-trust-page="ru-closed-firms"',
+      'data-ru-closed-firms-risk',
+      'data-ru-closed-firms-updated=',
+      'data-status-as-of=',
+      'data-quote-translation',
+      'href="/ru/luchshie-prop-firmy"',
+      'href="/ru/otzyvy-prop-firm"',
+      ...closedFirmsData.firms.map(firm => `id="${firm.slug}"`),
+    ],
+  }]] : []),
 ])
 
 const russianCampaignSources = new Map()
@@ -1834,8 +1958,32 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'obzor-topstep']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-topstep']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
+  + (closedFirmsPublished ? 1 : 0)
+
+// Outreach links to #<slug> on both closed-firms pages, so the EN and RU anchor sets must match.
+// While unpublished, the RU page must stay noindex, without hreflang, and unlinked.
+{
+  const closedIds = html => [...html.matchAll(/<article\b[^>]*\bid="([^"]+)"[^>]*data-closed-firm=/g)].map(match => match[1]).sort()
+  const [closedEn, closedRu] = await Promise.all([
+    fetchPage(new URL(CLOSED_FIRMS_ROUTE_PAIR.en, BASE)),
+    fetchPage(new URL(RU_CLOSED_FIRMS_PATH, BASE)),
+  ])
+  const enIds = closedIds(closedEn.html)
+  const ruIds = closedIds(closedRu.html)
+  const dataIds = closedFirmsData.firms.map(firm => firm.slug).sort()
+  if (closedRu.status !== 200) errors.push(`${RU_CLOSED_FIRMS_PATH}: RU closed-firms page returned ${closedRu.status}`)
+  if (JSON.stringify(enIds) !== JSON.stringify(dataIds) || JSON.stringify(ruIds) !== JSON.stringify(dataIds)) {
+    errors.push(`closed firms: EN anchors [${enIds}] and RU anchors [${ruIds}] must both equal closed-firms.json slugs [${dataIds}]`)
+  }
+  if (!closedFirmsPublished) {
+    if (!/<meta[^>]+name="robots"[^>]+noindex/i.test(closedRu.html)) errors.push(`${RU_CLOSED_FIRMS_PATH}: must be noindex while closed-firms.json is unpublished`)
+    if (/hreflang=/i.test(firstMatch(closedRu.html, /<head[^>]*>([\s\S]*?)<\/head>/i) ?? '')) errors.push(`${RU_CLOSED_FIRMS_PATH}: hreflang must stay off while unpublished`)
+    const linking = pages.filter(page => page.html?.includes(`href="${RU_CLOSED_FIRMS_PATH}`)).map(page => new URL(page.productionUrl).pathname)
+    if (linking.length) errors.push(`${RU_CLOSED_FIRMS_PATH}: linked while unpublished from ${linking.join(', ')}`)
+  }
+}
 if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
   errors.push(`Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}`)
 }
@@ -1885,7 +2033,8 @@ if (russianBrightPage) {
   const costRows = brightHtml.match(/<table\b[^>]*data-russian-bright-truecost="\d+"[^>]*>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>/)?.[1]
   if (Object.values(counts).some(value => !/^\d+$/.test(value)) || priceRows == null || costRows == null
     || Number(counts.price) !== Number(counts.trueCost)
-    || Number(counts.price) !== [...priceRows.matchAll(/<tr\b/g)].length
+    // C5 PriceMatrix: one priced cell per tier (rows are account sizes, columns are programmes).
+    || Number(counts.price) !== [...priceRows.matchAll(/<td\b[^>]*data-price-cell=/g)].length
     || Number(counts.trueCost) !== [...costRows.matchAll(/<tr\b/g)].length
     || !textContent(brightHtml).includes(`сравнение ${counts.products} программ и ${counts.comparisonPrices} цен в USD/EUR`)) {
     errors.push('/ru/obzor-bright-funded: rendered price and comparison counts must match their visible rows and handoff')
@@ -1972,6 +2121,42 @@ const russianFtmoPage = pages.find(page =>
   if (firstBright < 0 || firstFtmo < 0 || firstBright > firstFtmo) {
     errors.push('/ru/ftmo-vs-bright-funded: BrightFunded CTA must render before any FTMO CTA')
   }
+  // RU rule: FundedNext (restricted for Russia since 20.10) keeps its CTA with badge, but last and labelled for non-RF residents.
+  const fundedNextCta = comparisonHtml.indexOf('/go/fundednext?from=ru-ftmo-vs-bright-fundednext')
+  const otherCtas = [...comparisonHtml.matchAll(/href="\/go\/(?!fundednext)[a-z0-9-]+\?/g)].map(match => match.index)
+  if (fundedNextCta < 0 || otherCtas.some(index => index > fundedNextCta)
+    || !comparisonHtml.slice(fundedNextCta, fundedNextCta + 1500).includes('резидентам РФ FundedNext недоступна')) {
+    errors.push('/ru/ftmo-vs-bright-funded: FundedNext CTA must be the last /go/ link and carry the not-for-RF-residents label')
+  }
+}
+{
+  const cryptoHtml = pages.find(page => new URL(page.productionUrl).pathname === '/ru/luchshie-kripto-prop-firmy')?.html ?? ''
+  // RU rule: restricted firms keep a CTA with badge and a "not for RF residents" label, after every open firm's CTA.
+  const lastOpenCta = Math.max(...['bright-funded', 'crypto-fund-trader', 'fundingpips'].map(slug => cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-`)))
+  for (const slug of ['ftmo', 'city-traders-imperium', 'ofp-funding', 'fundednext']) {
+    const at = cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-${slug}`)
+    if (at < 0 || at < lastOpenCta) errors.push(`/ru/luchshie-kripto-prop-firmy: restricted ${slug} CTA must be present and come after every open firm in the access block`)
+  }
+  const fundedNextAccess = cryptoHtml.indexOf('/go/fundednext?from=ru-crypto-russia-access-fundednext')
+  if (['ftmo', 'city-traders-imperium', 'ofp-funding'].some(slug => cryptoHtml.indexOf(`/go/${slug}?from=ru-crypto-russia-access-${slug}`) > fundedNextAccess)) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: FundedNext CTA must be last in the access block')
+  }
+  const firstBrightTop = cryptoHtml.indexOf('/go/bright-funded?from=ru-crypto-top-bright-funded')
+  const firstFundedNext = cryptoHtml.indexOf('/go/fundednext?')
+  if (firstBrightTop < 0 || (firstFundedNext >= 0 && firstFundedNext < firstBrightTop)) errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded CTA must render before any FundedNext CTA')
+  if (/550 пар|криптофьючерс/i.test(cryptoHtml)) errors.push('/ru/luchshie-kripto-prop-firmy: the CFT 550-pair figure covers only one venue and must not appear')
+  if (/bybit/i.test(cryptoHtml)) errors.push('/ru/luchshie-kripto-prop-firmy: standing RU rule — no Bybit claims on the page')
+  const firstRanked = cryptoHtml.indexOf('data-russian-crypto-firm=')
+  if (firstRanked < 0 || cryptoHtml.indexOf('data-russian-crypto-firm="bright-funded"') !== firstRanked) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded must be the first card in the crypto ranking')
+  }
+  const firstShortlist = cryptoHtml.indexOf('data-russian-crypto-shortlist-firm=')
+  if (firstShortlist < 0 || cryptoHtml.indexOf('data-russian-crypto-shortlist-firm="bright-funded"') !== firstShortlist) {
+    errors.push('/ru/luchshie-kripto-prop-firmy: BrightFunded must be the first firm in the crypto shortlist')
+  }
+  const description = cryptoHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? ''
+  const descriptionLength = [...description.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&#x27;/g, "'")].length
+  if (descriptionLength < 140 || descriptionLength > 160) errors.push(`/ru/luchshie-kripto-prop-firmy: meta description is ${descriptionLength} characters, expected 140–160`)
 }
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
 {
@@ -2008,7 +2193,10 @@ for (const [path, href] of [
   ['/ru/obzor-topstep', '/go/bright-funded?from=ru-topstep-alternative-bright-funded'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-summary'],
   ['/ru/obzor-bright-funded', '/go/bright-funded?from=ru-bright-funded-review-verdict'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundingpips?from=ru-crypto-ranking'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-ranking'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/fundednext?from=ru-crypto-russia-access-fundednext'],
+  ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-top-bright-funded'],
   ['/ru/luchshie-kripto-prop-firmy', '/go/bright-funded?from=ru-crypto-ranking-payout-alternative'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
   ['/ru/dlya-russkoyazychnykh-treyderov', '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards'],
@@ -2031,10 +2219,16 @@ for (const [path, href] of [
   ['/ru/prop-firmy-bez-chelendzha', '/go/fundednext?from=ru-instant-fundednext'],
   ['/ru/prop-firmy-bez-chelendzha', '/go/bright-funded?from=ru-instant-bright-alternative'],
   ['/ru/fundednext-vs-fundingpips', '/go/bright-funded?from=ru-comparison-bright-funded'],
+  ['/ru/fundingpips-vs-bright-funded', '/go/bright-funded?from=ru-comparison-fundingpips-bright-funded'],
+  ['/ru/obzor-the5ers', '/go/bright-funded?from=ru-obzor-the5ers-alt-bright-funded'],
+  ['/ru/fundingpips-vs-bright-funded', '/go/fundingpips?from=ru-comparison-fundingpips-bright-funded'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-hero'],
   ['/ru/ftmo-vs-bright-funded', '/go/bright-funded?from=ru-ftmo-vs-bright-verdict'],
   ['/ru/ftmo-vs-bright-funded', '/go/fundednext?from=ru-ftmo-vs-bright-fundednext'],
   ['/ru/ftmo-vs-bright-funded', '/go/fundingpips?from=ru-ftmo-vs-bright-fundingpips'],
+  ['/ru/ftmo-vs-fundednext', '/go/fundednext?from=ru-comparison-ftmo-fundednext'],
+  ['/ru/ftmo-vs-fundednext', '/go/bright-funded?from=ru-ftmo-vs-fundednext-alt-bright-funded'],
+  ['/ru/ftmo-vs-fundednext', '/go/bright-funded?from=ru-comparison-ftmo-fundednext-bright-funded'],
   ['/ru/obzor-proplive', '/go/fundednext?from=ru-proplive-global-fundednext'],
   ['/ru/obzor-proplive', '/go/bright-funded?from=ru-proplive-global-bright-funded'],
   ['/ru/obzor-eratrade', '/go/fundednext?from=ru-eratrade-global-fundednext'],
@@ -3028,7 +3222,7 @@ if (ukLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Compare ${expectedUkFirms.length} prop firms UK traders can join in 2026: UK access, fees in GBP terms, FCA checks, tax basics and payout rules, with dated sources.`
+    `Prop firms that accept UK traders in 2026: ${expectedUkFirms.length} firms whose own policy does not exclude UK residents, compared on fees, FCA status, UK tax and payouts.`
   const renderedDescription = decodeHtml(firstMatch(
     ukLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3041,7 +3235,7 @@ if (ukLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms UK 2026: ${expectedUkFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms UK 2026: ${expectedUkFirms.length} That Accept UK Traders | TFH`,
     `Best Prop Firms UK (2026): ${expectedUkFirms.length} Prop Trading Firms That Accept UK Traders`,
     `${expectedUkFirms.length} policy-checked firms across ${expectedUkProductCount} mapped products`,
     'Policy-supported UK access is not an FCA status.',
@@ -3177,7 +3371,7 @@ if (usLandingProbe.status !== 200) {
   })
 
   const expectedDescription =
-    `Best prop firms for US traders in 2026: ${expectedUsFirms.length} prop trading firms open to USA residents across ${expectedUsProductCount} exact futures and CFD products, with CFTC/NFA checks.`
+    `Prop firms that accept US traders in 2026: ${expectedUsFirms.length} firms with first-party evidence for ${expectedUsProductCount} US-resident products, mostly futures, plus CFTC and NFA checks.`
   const renderedDescription = decodeHtml(firstMatch(
     usLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -3190,7 +3384,7 @@ if (usLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Prop Firms USA 2026: ${expectedUsFirms.length} Prop Trading Firms Checked | TFH`,
+    `Best Prop Firms for US Traders 2026: ${expectedUsFirms.length} Firms Checked | TFH`,
     `Best Prop Firms for US Traders (2026): ${expectedUsFirms.length} Prop Trading Firms in the USA`,
     `${expectedUsFirms.length} policy-checked firms across ${expectedUsProductCount} mapped products`,
     'U.S. access is not a regulatory badge.',
@@ -3424,9 +3618,30 @@ if (futuresLandingProbe.status !== 200) {
       `${futuresLandingPath}: rendered ${cards.length} firms, expected ${expectedFuturesFirms.length}`,
     )
   }
-  if (expectedFuturesFirms.length !== 7 || expectedFuturesProductCount !== 26) {
+  // Counts come from fresh assetClass === 'futures' captures, never a hardcoded fixture;
+  // the page is checked against them below and here (firm set and summed product badges).
+  if (expectedFuturesFirms.length === 0 || expectedFuturesProductCount === 0) {
     errors.push(
-      `${futuresLandingPath}: current fixture must resolve to 7 firms and 26 products; received ${expectedFuturesFirms.length} and ${expectedFuturesProductCount}`,
+      `${futuresLandingPath}: no fresh futures products in the data (${expectedFuturesFirms.length} firms, ${expectedFuturesProductCount} products); the landing has nothing to rank`,
+    )
+  }
+  const expectedFuturesNames = expectedFuturesFirms.map(entry => entry.firm.name)
+  const renderedFuturesNames = cards.map(card =>
+    firmRecords.map(firm => firm.name).filter(name => card.text.includes(name))
+      .sort((a, b) => b.length - a.length)[0] ?? '(unknown firm)',
+  )
+  if (renderedFuturesNames.join(' | ') !== expectedFuturesNames.join(' | ')) {
+    errors.push(
+      `${futuresLandingPath}: rendered firms [${renderedFuturesNames.join(', ')}], expected [${expectedFuturesNames.join(', ')}]`,
+    )
+  }
+  const renderedFuturesProductCount = cards.reduce((total, card) => {
+    const count = /Products (\d+)/.exec(card.text)
+    return total + (count ? Number(count[1]) : 0)
+  }, 0)
+  if (renderedFuturesProductCount !== expectedFuturesProductCount) {
+    errors.push(
+      `${futuresLandingPath}: rendered cards list ${renderedFuturesProductCount} products, expected ${expectedFuturesProductCount} from fresh futures captures`,
     )
   }
   if (itemListCount !== 1) {
@@ -3728,7 +3943,9 @@ if (cryptoLandingProbe.status !== 200) {
   for (const required of [
     `Best Crypto Prop Firms 2026: ${expectedCryptoFirms.length} Firms Compared | TFH`,
     `${expectedCryptoFirms.length} evidence-backed firms across ${expectedCryptoProductCount} mapped products`,
-    `Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`,
+    // LandingPage renders the evidence-gaps section only for a non-empty watch list;
+    // with watch empty the section must be absent (checked below), not required.
+    ...(cryptoMarketEvidence.watch.length ? [`Not ranked yet: ${cryptoMarketEvidence.watch.length} evidence gaps`] : []),
     'What crypto traders should verify',
     'Can I trade crypto, or only pay and withdraw with it?',
     'Is it a dedicated crypto account or a multi-asset CFD product?',
@@ -3739,6 +3956,9 @@ if (cryptoLandingProbe.status !== 200) {
     if (!cryptoText.includes(required)) {
       errors.push(`${cryptoLandingPath}: missing ${required}`)
     }
+  }
+  if (!cryptoMarketEvidence.watch.length && cryptoText.includes('Not ranked yet:')) {
+    errors.push(`${cryptoLandingPath}: empty watch list still renders a 'Not ranked yet' section`)
   }
   for (const required of [
     'href="/prop-firm-challenges"',
@@ -4102,7 +4322,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   const expectedDescription =
-    `Best instant funding prop firms in 2026: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on cost, drawdown, profit split and payout rules.`
+    `Instant funding prop firms with no challenge: ${expectedInstantFirms.length} firms and ${expectedInstantProductCount} no-evaluation accounts compared on total cost, loss limit, starting split and payout gates.`
   const renderedDescription = decodeHtml(firstMatch(
     instantLandingProbe.html,
     /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["'][^>]*>/i,
@@ -4115,7 +4335,7 @@ if (instantLandingProbe.status !== 200) {
   }
 
   for (const required of [
-    `Best Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} Compared | TFH`,
+    `Instant Funding Prop Firms 2026: ${expectedInstantFirms.length} With No Challenge | TFH`,
     `Best Instant Funding Prop Firms (2026): ${expectedInstantFirms.length} Firms With No Evaluation`,
     `${expectedInstantFirms.length} verified firms across ${expectedInstantProductCount} phase-0 products`,
     'What instant-funding buyers should verify',
@@ -5045,12 +5265,15 @@ if (indiaChangeProbe.status !== 200) {
     errors.push(`${indiaChangePath}: incorrect canonical`)
   }
   const indiaChangeText = textContent(indiaChangeProbe.html)
+  // Counts follow the page's own SOCIAL_CARD_* constants (npm run gen:share-cards; the page throws on drift).
+  const indiaChangeSource = readFileSync(join(PROJECT_ROOT, 'app/best-prop-firms-in-india/challenge-changes/page.tsx'), 'utf8')
+  const indiaCardCount = name => Number(indiaChangeSource.match(new RegExp(`const SOCIAL_CARD_${name}_COUNT = (\\d+)`))?.[1])
   for (const required of [
-    '19 India-screened updates',
-    '7 eligible firms affected',
-    '35 products',
-    '10 open watches',
-    'Showing 19 of 19 dated updates.',
+    `${indiaCardCount('ENTRY')} India-screened updates`,
+    `${indiaCardCount('FIRM')} eligible firms affected`,
+    `${indiaCardCount('PRODUCT')} products`,
+    `${indiaCardCount('WATCH')} open watches`,
+    `Showing ${indiaCardCount('ENTRY')} of ${indiaCardCount('ENTRY')} dated updates.`,
     ...(fundingPipsCurrentWatchTitle ? [fundingPipsCurrentWatchTitle] : []),
     'Tradeify list prices and homepage promotions can diverge',
     'FundingPips separates the current Standard path from legacy 10% resets',

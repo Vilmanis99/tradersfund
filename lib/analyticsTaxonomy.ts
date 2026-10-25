@@ -90,7 +90,9 @@ const RUSSIAN_COMPARISON_PATHS = new Set([
   '/ru/fundednext-vs-bright-funded',
   '/ru/fundednext-vs-fundingpips',
   '/ru/ftmo-vs-bright-funded',
+  '/ru/ftmo-vs-fundednext',
   '/ru/prop-firmy-s-ctrader',
+  '/ru/fundingpips-vs-bright-funded',
 ])
 
 const RUSSIAN_REVIEW_PATHS = new Set([
@@ -98,6 +100,7 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-fundednext',
   '/ru/obzor-fundingpips',
   '/ru/obzor-bright-funded',
+  '/ru/obzor-the5ers',
   '/ru/obzor-topstep',
   '/ru/otzyvy-prop-firm',
 ])

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RuRelatedBlock from '@/components/RuRelatedBlock'
+import { RuReviewVerdictBox } from '@/components/RuVerdict'
 import Link from '@/components/SafeLink'
 import {
   AlertTriangle,
@@ -22,14 +24,23 @@ import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import evidence from '@/content/data/russian-teamtraders-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-teamtraders'
-const TITLE = 'TeamTraders: отзывы и обзор условий 2026'
+const TITLE = 'TeamTraders: отзывы и обзор 2026 — стажировка и Мосбиржа'
 const DESCRIPTION = 'Обзор TeamTraders: месячная стажировка, торговля на Мосбирже, переход с демо на реальный счёт, условия выплат и недоступная оферта проп-программы.'
 const TEAMTRADERS_HOME = 'https://teamtraders.ru/'
 const TEAMTRADERS_FAQ = 'https://teamtraders.ru/faq'
 const TEAMTRADERS_PUBLIC_RULES = 'https://teamtraders.ru/rules'
+// Prop Firm Tracker recheck of /faq and the homepage (data/new-firms-2026-10-20 @4f9a20d, _captures/teamtraders-2026-10-20.json).
+// The scoped evidence file keeps its 2026-10-01 date until the six local signals are re-dated together.
+const TT_RECHECK = '20.10.2026'
+const TT_FUNDED_DEMO_SHARE_PCT = 50
+const TT_WEEKLY_WITHDRAWAL_CAP_PCT = 50
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -57,11 +68,11 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сразу ли после отбора дают реальный счёт?',
-    a: 'Не обязательно. FAQ в разборе описывает промежуточный финансируемый демо-счёт с долей трейдера 70% и целью-пределом прибыли 10% от баланса. Обычный переход на реальный счёт указан после вывода этих 10%, хотя досрочный перевод возможен по решению компании.',
+    a: 'Не обязательно. FAQ описывает промежуточный финансируемый демо-счёт с долей трейдера 50% (по данным на 20.10.2026) и целью-пределом прибыли 10% от баланса. Обычный переход на реальный счёт указан после вывода этих 10%, хотя досрочный перевод возможен по решению компании.',
   },
   {
     q: 'Правда ли, что трейдер получает 95% прибыли?',
-    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта указаны 70%. В сохранённой документации от 28 августа было 90% для реального счёта, но её адрес теперь возвращает 404; запросите действующие условия у поддержки до регистрации.',
+    a: '95% относится к реальному счёту: компания описывает удержание 5% с каждого прибыльного дня. Для финансируемого демо-счёта по данным на 20.10.2026 указаны 50%. В сохранённой документации от 28 августа было 90% для реального счёта, но её адрес теперь возвращает 404; запросите действующие условия у поддержки до регистрации.',
   },
   {
     q: 'Можно ли переносить позиции через ночь или использовать роботов?',
@@ -73,7 +84,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Есть ли у Traders Fund Hub партнёрская ссылка TeamTraders?',
-    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на FundedNext и BrightFunded ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
+    a: 'Нет. На проверенных 28 августа 2026 года главной странице, FAQ и оферте не найдена обычная публичная программа для контент-партнёров. Ссылки на BrightFunded и FundedNext (последняя недоступна резидентам РФ) ниже относятся к отдельным глобальным фирмам и могут принести Traders Fund Hub комиссию.',
   },
 ]
 
@@ -106,7 +117,7 @@ export default function RussianTeamTradersReviewPage() {
   ]
   const hasFreshEvidence = evidence.sources.length > 0 && evidenceDates.every(item => isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const datedFaqs = faqs.map(item => ({ ...item, a: `По разбору источников от ${evidence.capturedAt}: ${item.a}` }))
-  const finderHref = getRussianReviewFinderHref('fundednext')
+  const finderHref = getRussianReviewFinderHref('bright-funded')
   const freshChallenges = getAllChallenges().filter(product => isChallengeFresh(product))
   const globalCards = globalRoutes.map(route => {
     const firm = getAllFirms().find(candidate => outboundSlug(candidate.name) === route.slug)
@@ -116,6 +127,8 @@ export default function RussianTeamTradersReviewPage() {
     ).length, 0)
     return { ...route, firm, products, priceCount }
   }).filter(item => item.firm?.affiliateUrl)
+    // Russia-open firms first (BrightFunded), restricted (FundedNext) last; stable for equal status.
+    .sort((a, b) => RUSSIA_STATUS_ORDER[russiaStatusFor(a.slug)] - RUSSIA_STATUS_ORDER[russiaStatusFor(b.slug)])
 
   const crumbs = breadcrumbSchema([
     { name: 'Traders Fund Hub', url: '/' },
@@ -194,6 +207,9 @@ export default function RussianTeamTradersReviewPage() {
         </div>
       </section>
 
+        <RuReviewVerdictBox route={PATH} campaign="teamtraders-review" sourcesHref="#istochniki" />
+        <RuTelegramBlock placement="obzor-teamtraders" />
+
       <div data-russian-teamtraders-evidence-status={hasFreshEvidence ? 'dated' : 'recapture-required'}>
       <section className="ru-section">
         <div className="ru-shell">
@@ -202,7 +218,7 @@ export default function RussianTeamTradersReviewPage() {
             <strong>Русский язык не делает эту модель глобальной.</strong>{' '}
             TeamTraders описывает локальную инфраструктуру Московской биржи, CScalp и Финам. Русскоязычному трейдеру
             за пределами России нужно отдельно подтвердить договорную допустимость, документы, платежи, доступ к терминалу
-            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на FundedNext или BrightFunded.
+            и порядок выплаты; резиденту России нельзя переносить правила TeamTraders на BrightFunded, а FundedNext резидентам РФ недоступна.
           </div>
           <h2>Короткий вывод: это внутридневная модель Мосбиржи, а не CFD-челлендж</h2>
           <div className="ru-grid" data-russian-teamtraders-verdict="model-first">
@@ -219,7 +235,7 @@ export default function RussianTeamTradersReviewPage() {
             <article className="ru-card">
               <Scale size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Главный риск чтения рекламы</h3>
-              <p className="ru-muted">Заголовок «95%» относится к реальному счёту. Для финансируемого демо-счёта в FAQ указаны 70% и предел прибыли 10%. Эти 2 стадии нельзя объединять в одну обещанную выплату.</p>
+              <p className="ru-muted">Заголовок «95%» относится к реальному счёту. Для финансируемого демо-счёта в FAQ указаны {TT_FUNDED_DEMO_SHARE_PCT}% и предел прибыли 10% (по данным на {TT_RECHECK}). Эти 2 стадии нельзя объединять в одну обещанную выплату.</p>
             </article>
           </div>
         </div>
@@ -264,7 +280,7 @@ export default function RussianTeamTradersReviewPage() {
             <li><strong>Бесплатный демо-счёт.</strong> По FAQ он позволяет проверить CScalp, подключение и стратегию; результат не засчитывается в отбор. До регистрации запросите применимый к проп-программе договор: прежний публичный адрес сейчас недоступен.</li>
             <li><strong>Оплаченный шаг 1.</strong> После активации начинается учёт результата: цель 6%, дневная граница 2%, общий максимум 4% и запрет на ночь.</li>
             <li><strong>Оплаченный шаг 2.</strong> Баланс этапа обновляется, а те же 6%/2%/4% применяются повторно; оба шага вместе должны включать минимум 10 торговых дней.</li>
-            <li><strong>Финансируемый демо-счёт.</strong> По FAQ в разборе это промежуточный этап с долей 70%, максимальной прибылью 10% и возможностью выводить доступную прибыль частями.</li>
+            <li><strong>Финансируемый демо-счёт.</strong> По FAQ это промежуточный этап с долей {TT_FUNDED_DEMO_SHARE_PCT}% (по данным на {TT_RECHECK}), максимальной прибылью 10% и возможностью выводить доступную прибыль частями.</li>
             <li><strong>Реальный счёт.</strong> Обычный переход указан после вывода 10% с финансируемого демо-счёта; только здесь опубликована доля 95%, отсутствие предела прибыли и бессрочная работа при соблюдении правил.</li>
           </ol>
           <p>
@@ -297,19 +313,19 @@ export default function RussianTeamTradersReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section" id="vyplaty" data-russian-teamtraders-payouts="demo-70-real-95">
+      <section className="ru-section" id="vyplaty" data-russian-teamtraders-payouts="demo-50-real-95">
         <div className="ru-shell">
-          <h2>Выплаты: 70% на финансируемом демо-счёте и 95% на реальном</h2>
+          <h2>Выплаты: 50% на финансируемом демо-счёте и 95% на реальном</h2>
           <div className="ru-grid">
             <article className="ru-card">
               <Database size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Финансируемый демо-счёт</h3>
-              <p className="ru-muted">Доля трейдера — {evidence.fundedDemo.profitSharePct}%. Цель и максимальная прибыль этапа — {evidence.fundedDemo.profitTargetAndCapPct}% баланса; заявку можно подать на доступную прибыль, не дожидаясь всех 10%.</p>
+              <p className="ru-muted">Доля трейдера — {TT_FUNDED_DEMO_SHARE_PCT}% (по данным на {TT_RECHECK}). Цель и максимальная прибыль этапа — {evidence.fundedDemo.profitTargetAndCapPct}% баланса; заявку можно подать на доступную прибыль, не дожидаясь всех 10%.</p>
             </article>
             <article className="ru-card">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Реальный счёт</h3>
-              <p className="ru-muted">Доля трейдера — {evidence.realAccount.profitSharePct}%, компании — {evidence.realAccount.companySharePct}% с каждого прибыльного дня. Заявки принимаются ежедневно; максимальный предел прибыли и фиксированный срок не опубликованы.</p>
+              <p className="ru-muted">Доля трейдера — {evidence.realAccount.profitSharePct}%, компании — {evidence.realAccount.companySharePct}% с каждого прибыльного дня. Максимальный предел прибыли и фиксированный срок не опубликованы; частоту вывода официальные страницы описывают по-разному (ниже).</p>
             </article>
             <article className="ru-card">
               <AlertTriangle size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -318,8 +334,11 @@ export default function RussianTeamTradersReviewPage() {
             </article>
           </div>
           <p>
-            «Ежедневная выплата» означает частоту подачи и расчёта по опубликованной странице, а не гарантированный
-            банковский срок. Публичный FAQ не называет минимальную сумму, метод выплаты, комиссию платёжного маршрута или
+            <strong>Частота вывода: официальные страницы противоречат друг другу (по данным на {TT_RECHECK}).</strong>{' '}
+            На главной в условиях выплат указано «Заявка на вывод: Ежедневно» и «Лимит на вывод: Нет ограничений». В FAQ для
+            финансируемого демо- и реального счёта сказано, что заявку можно подавать еженедельно и не больше чем на{' '}
+            {TT_WEEKLY_WITHDRAWAL_CAP_PCT}% текущей доступной прибыли; остаток остаётся на счёте. Какое правило действует для вашего
+            счёта, уточните письменно до оплаты стажировки. Публичный FAQ не называет минимальную сумму, метод выплаты, комиссию платёжного маршрута или
             срок фактического зачисления, поэтому эти 4 поля нужно запросить до оплаты стажировки.
           </p>
           <p className="ru-source-line"><SourceLink href={TEAMTRADERS_HOME}>Главная об условиях выплат</SourceLink> · <SourceLink href={TEAMTRADERS_FAQ}>FAQ о демо- и реальном счёте</SourceLink>.</p>
@@ -361,7 +380,7 @@ export default function RussianTeamTradersReviewPage() {
             В подвале сайта сейчас доступна <SourceLink href={TEAMTRADERS_PUBLIC_RULES}>оферта редакции {evidence.legal.offerRevision}</SourceLink>
             {' '}от {evidence.legal.operatorName}, ОГРНИП {evidence.legal.ogrnip}, ИНН {evidence.legal.inn}.
             Её предмет — платное дистанционное обучение трейдингу на 60 дней; она не описывает явно платный проп-отбор,
-            финансируемый демо-счёт и доли 70%/95%. Подменять ею исчезнувшую оферту проп-программы нельзя.
+            финансируемый демо-счёт и доли на демо- и реальном счёте. Подменять ею исчезнувшую оферту проп-программы нельзя.
           </p>
           <div className="ru-notice" data-russian-teamtraders-checklist="eight-fields">
             <strong>Уточните 8 полей до регистрации:</strong> редакцию оферты, цену тарифа, срок оплаты, условия
@@ -385,7 +404,7 @@ export default function RussianTeamTradersReviewPage() {
           </div>
           <p>
             Ссылки на источники ведут прямо на сайт TeamTraders. В следующем разделе отдельно обозначены
-            FundedNext и BrightFunded, переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
+            BrightFunded и FundedNext (недоступна резидентам РФ), переходы к которым могут принести нам комиссию. Партнёрство с этими фирмами
             не подтверждает качество или условия TeamTraders.
           </p>
         </div>
@@ -396,21 +415,22 @@ export default function RussianTeamTradersReviewPage() {
       <section className="ru-section" id="global-options">
         <div className="ru-shell" data-russian-local-global-funnel="teamtraders">
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="teamtraders-global-options">
-            <strong>FundedNext и BrightFunded — отдельные глобальные партнёры.</strong>{' '}
+            <strong>BrightFunded и FundedNext — отдельные глобальные партнёры; FundedNext резидентам России недоступна.</strong>{' '}
             Мы можем получить комиссию при покупке по партнёрской ссылке. Это не меняет условия сравнения.
             Русский язык не подтверждает доступ: проверьте гражданство, страну проживания, проверку личности (KYC),
             платформу и способ получения денег. Не обходите ограничения через VPN или неверные данные.
           </div>
           <h2>Когда вместо TeamTraders сравнивать глобальную проп-фирму</h2>
           <p className="ru-muted">
-            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы FundedNext и BrightFunded
+            В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы BrightFunded и FundedNext
             с симулированными CFD — другая модель, а не заменяемый тариф на том же рынке. Сопоставляйте их отдельно,
-            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания.
+            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания. Резиденту России из этих двух подходит только BrightFunded: FundedNext россиян не обслуживает.
           </p>
           <div className="ru-grid">
             {globalCards.map(item => (
               <article className="ru-card" key={item.slug} data-russian-teamtraders-global-partner={item.slug}>
-                <div className="ru-card-head"><h3>{item.name}</h3><span className="ru-score">Главный партнёр</span></div>
+                <div className="ru-card-head"><h3>{item.name}</h3>{russiaStatusFor(item.slug) === 'restricted' ? <RuAccessBadgeView firm={item.slug} status="restricted" hint={false} /> : <span className="ru-score">Главный партнёр</span>}</div>
+                {russiaStatusFor(item.slug) === 'restricted' && <p className="ru-source-line" data-russian-restricted-partner-note={item.slug}><strong>Резидентам России недоступна.</strong> Карточка — для русскоязычных трейдеров из других стран.</p>}
                 <p className="ru-muted">
                   Откройте обзор конкретной программы: число этапов, лимиты убытка и условия вознаграждения
                   нужно читать вместе. Торговля на Мосбирже через TeamTraders в это сравнение не входит.
@@ -426,7 +446,7 @@ export default function RussianTeamTradersReviewPage() {
                   <RuGoLink firm={item.slug}
                     href={`/go/${item.slug}?from=ru-teamtraders-global-${item.slug}`}
                     rel="sponsored nofollow noopener"
-                    className="btn-primary"
+                    className={russiaStatusFor(item.slug) === 'restricted' ? 'btn-outline' : 'btn-primary'}
                   >
                     Проверить {item.name} <ArrowRight size={14} aria-hidden="true" />
                   </RuGoLink>
@@ -435,7 +455,7 @@ export default function RussianTeamTradersReviewPage() {
             ))}
           </div>
           <p><Link href={finderHref} className="ru-card-link" data-russian-teamtraders-finder="global-cfd-only">{finderHref.endsWith('#podbor') ? 'Открыть подбор глобальных программ с датами проверки →' : 'Открыть две глобальные двухэтапные программы на одинаковый размер счёта →'}</Link> Это сравнение CFD-программ, не тарифов TeamTraders и не разрешение участвовать из любой страны.</p>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы FundedNext и BrightFunded</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> <Link href="/ru/fundednext-vs-bright-funded">Сравнить программы BrightFunded и FundedNext</Link> · <Link href="/ru/dlya-russkoyazychnykh-treyderov">проверка профиля русскоязычного трейдера</Link>.</p>
         </div>
       </section>
 
@@ -447,7 +467,7 @@ export default function RussianTeamTradersReviewPage() {
             <li><strong>Затем проверьте техническую совместимость:</strong> если договор вам подходит, уточните доступ к демо-счёту, CScalp, Privod Bondar 2.0 и нужному инструменту Мосбиржи. Бесплатный доступ не означает отсутствие договорных обязательств.</li>
             <li><strong>Сопоставьте стратегию с отбором:</strong> в разборе от {evidence.capturedAt} указаны две цели по 6%, минимум 10 торговых дней и лимиты 2%/4%. Исторический результат не гарантирует прохождения.</li>
             <li><strong>Уточните выплату письменно:</strong> отделите долю на финансируемом демо-счёте от доли на реальном и выясните метод, минимальную сумму, комиссии и сроки зачисления.</li>
-            <li><strong>Проверьте собственный профиль:</strong> разрешение TeamTraders не переносится на FundedNext или BrightFunded; рынок, договор и проверка личности у них другие.</li>
+            <li><strong>Проверьте собственный профиль:</strong> разрешение TeamTraders не переносится на BrightFunded или FundedNext; рынок, договор и проверка личности у них другие.</li>
           </ol>
           <p>
             Этот разбор не присваивает оценку «надёжно» или «ненадёжно». У нас нет проверенной истории выплат
@@ -477,6 +497,7 @@ export default function RussianTeamTradersReviewPage() {
           <RussianFaq items={datedFaqs} />
         </div>
       </section>
+      <RuRelatedBlock path={PATH} />
     </article>
   )
 }

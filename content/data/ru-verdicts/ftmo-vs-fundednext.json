@@ -1,0 +1,47 @@
+{
+  "route": "/ru/ftmo-vs-fundednext",
+  "type": "comparison",
+  "a": "FTMO",
+  "b": "FundedNext",
+  "dataAsOf": "2026-10-19",
+  "sources": [
+    "content/data/firms.json",
+    "content/data/challenges/ftmo.json (2026-10-19)",
+    "content/data/challenges/fundednext.json (2026-10-19)",
+    "branch content/ru-ftmo-vs-fundednext @006d8f1",
+    "content/data/challenges/ftmo.json#ftmo-instant-account (sourceCapturedAt 2026-10-21, https://ftmo.com/en/instant-account/)"
+  ],
+  "verdict": "В двухэтапной модели FTMO и FundedNext близки: цели 10% + 5% против 8% + 5%, лимиты 5% в день и 10% статично у обеих, за счёт 100K — €540 и $549,99. Различаются выплаты, удержание позиций и набор моделей: у FTMO есть 1-Step с долей 90%, у FundedNext — ещё Lite (по данным на 19.10.2026); модель без оценки есть у обеих — Stellar Instant и FTMO Instant Account (по данным на 21.10.2026).",
+  "picks": {
+    "a": [
+      "вам нужна доля 90%: FTMO 1-Step платит 90%, у FundedNext в оценках — 80%",
+      "вам нужна выплата по запросу с 14-го дня после двух этапов: у Stellar 2-Step первый запрос — с 21-го дня, дальше раз в две недели",
+      "вы планируете крупный счёт: максимальная аллокация FTMO — $2 000 000, FundedNext — $300 000",
+      "вы торгуете на TradingView: его указывает FTMO, у FundedNext — MT4, MT5, cTrader и Match-Trader"
+    ],
+    "b": [
+      "вы держите позиции через ночь и выходные: FundedNext разрешает, FTMO ограничивает",
+      "вам нужна статичная просадка в одноэтапной оценке: Stellar 1-Step — 6% статично, FTMO 1-Step — EOD-трейлинг 10%",
+      "вы хотите вернуть взнос за одноэтапную оценку: у Stellar 1-Step он возвратный, у FTMO 1-Step — нет",
+      "вы хотите начать без оценки с небольшого счёта: Stellar Instant — от $59,99 за $2K (по данным на 19.10.2026), FTMO Instant Account — от €169 за $5K (по данным на 21.10.2026)"
+    ]
+  },
+  "russiaPick": {
+    "statusFrom": "russiaStatus",
+    "firms": [
+      "FTMO",
+      "FundedNext"
+    ],
+    "alternatives": [
+      "BrightFunded"
+    ],
+    "oneOpen": {
+      "text": "вы резидент РФ: у {open} статус «{openBadge}», у {other} — «{otherBadge}»"
+    },
+    "neitherOpen": {
+      "text": "Для резидента РФ ни у одной из двух фирм нет статуса «{altBadge}»: у {a} — «{aBadge}», у {b} — «{bBadge}».",
+      "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+    },
+    "bothOpen": null
+  }
+}

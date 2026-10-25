@@ -1,4 +1,5 @@
 import { firmSlug } from './firmSlug.ts'
+import { resolveRussiaStatus, russiaStatusesBySlug } from './russiaStatus.ts'
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
 import { getChallengeWatchEntries, productChangeSignals, type ChallengeWatchEntry } from './challengeWatch.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type GlobalChallengeRow } from './challengeComparison.ts'
@@ -19,6 +20,8 @@ export function buildChallengeComparisonRows(
           sizeUsd: tier.sizeUsd, priceUsd: tier.priceUsd, priceEur: tier.priceEur ?? null,
           costToFundedUsd: minimumCostToFundedUsd(challenge, tier),
           costToFundedEur: tier.priceEur != null && tier.priceEur > 0 && (tier.payLaterUsd ?? 0) === 0 && (tier.activationFeeUsd ?? challenge.activationFeeUsd ?? 0) === 0 ? tier.priceEur : null,
+          payLaterUsd: tier.payLaterUsd ?? null,
+          activationFeeUsd: tier.activationFeeUsd ?? challenge.activationFeeUsd ?? null,
           dailyLossUsd: tier.dailyLossUsd ?? null, maxLossUsd: tier.maxLossUsd ?? null,
         })),
         pricingModel: challenge.pricingModel ?? 'one-off', profitTargets: challenge.profitTargets,
@@ -45,9 +48,12 @@ export const RUSSIAN_FINDER_REVIEWS: Record<string, string> = {
 }
 
 export function getRussianFinderRows(now = new Date()): GlobalChallengeRow[] {
-  return buildChallengeComparisonRows(getAllChallenges(), getAllFirms(), getChallengeWatchEntries(), now)
+  const firms = getAllFirms()
+  // Resolved here (server) so client finders get the status as data and never bundle firms.json.
+  const russiaStatuses = russiaStatusesBySlug(firms)
+  return buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now)
     .filter(row => row.firm.slug in RUSSIAN_FINDER_REVIEWS)
-    .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug] } }))
+    .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug], russiaStatus: resolveRussiaStatus(russiaStatuses, row.firm.slug) } }))
 }
 
 /** Editorial starting pairs, not a ranking. Matching phases/size do not make other rules equal. */

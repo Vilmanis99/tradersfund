@@ -29,7 +29,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const [chip, setChip] = useState<Chip>('all')
   const chips: Chip[] = locale === 'ru' ? ['all', 'open', 'cfd', 'futures', 'one', 'two'] : ['all', 'cfd', 'futures', 'one', 'two']
   const visible = rows.filter(row => matches(row, chip))
-  const money = (row: ComparisonRow) => new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
+  const money = (row: ComparisonRow) => row.priceBreakdown ?? new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
   const na = <span className="th-na" title={t.notPublished}><span aria-hidden="true">—</span><span className="sr-only">{t.notPublished}</span></span>
   const pct = (value: number | null) => value == null ? na : `${value}%`
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref
@@ -75,7 +75,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <td className="th-num">{pct(row.profitSplitPct)}</td>
                 <td className="th-col--opt">{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : na}</td>
                 <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{row.checkedOn}</time></td>
-                <td><div className="th-row-actions">{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : official(row)}</div>{badge(row) ? <div className="th-row-badge">{badge(row)}</div> : null}</td>
+                <td><div className="th-row-actions" data-row-badge={badge(row) ? 'after-cta' : undefined}>{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{badge(row)}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : official(row)}</div></td>
               </tr>
             ))}
           </tbody>

@@ -1,0 +1,21 @@
+{
+  "firmSlug": "take-profit-trader",
+  "capturedAt": "2026-10-20",
+  "scope": "Recheck of the three-day Test minimum for watch take-profit-trader-three-day-test-update-2026-09-14. Pages fetched 2026-10-20 ~11:10 Europe/Riga with headless Chrome.",
+  "announcement": {
+    "sourceUrl": "https://takeprofittrader.com/blog/3-day-evals",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "The trading-day minimum consistency requirement on all new test accounts is moving from 5-days to 3-days, that’s it. ... This change applies to new test accounts only. If you're currently working through an evaluation, or you reset an existing one, the five-day minimum still applies on that account.",
+    "effectiveQuote": "This change takes effect August 17th, 2026"
+  },
+  "homepage": {
+    "sourceUrl": "https://takeprofittrader.com/",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "Number of Trading Days to \"PRO Account\" 3 Days Up to 10 Days"
+  },
+  "faq": {
+    "sourceUrl": "https://try.takeprofittrader.com/TPT-FAQs-nf40-4-0725",
+    "sourceCapturedAt": "2026-10-20",
+    "quote": "You pass your test by hitting the specific profit target required on that account and by trading for a minimum of 3 days."
+  }
+}
