@@ -111,6 +111,7 @@ function formatFrequency(value: PayoutFrequency | null): string {
   if (value == null) return 'Not published'
   if (value === 'on-demand') return 'On demand'
   if (value === 'bi-weekly') return 'Bi-weekly'
+  if (value === 'after-qualifying-days') return 'After qualifying trading days'
   return titleCase(value)
 }
 

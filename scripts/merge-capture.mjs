@@ -36,7 +36,7 @@ const CHALLENGES = path.join(ROOT, 'content/data/challenges')
 const DEFAULT_CAPTURE_DIR = path.join(os.tmpdir(), 'tradersfundhub-captures')
 
 const DRAWDOWN_TYPES = ['static', 'trailing', 'eod-trailing', 'balance-based']
-const PAYOUT_FREQUENCIES = ['weekly', 'bi-weekly', 'monthly', 'on-demand']
+const PAYOUT_FREQUENCIES = ['weekly', 'bi-weekly', 'monthly', 'on-demand', 'after-qualifying-days']
 const ASSET_CLASSES = ['cfd', 'futures', 'crypto', 'prediction-markets']
 const PRICING_MODELS = ['one-off', 'monthly-subscription', 'split-payment']
 const CONSISTENCY_SCOPES = ['evaluation', 'funded', 'both']

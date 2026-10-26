@@ -8,9 +8,15 @@ import { getAllDeals, type Deal } from '@/lib/deals'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaBasisDateFor, russiaSourceDateFor } from '@/lib/russiaAvailability'
+import { RU_EXTRA_RUSSIA_BASIS } from '@/lib/ruAccessExtra'
+import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import cftPaymentsCapture from '@/content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
+import { ruAccessDate } from '@/lib/ruAccessLabel'
+import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 
 export const revalidate = 86400
 
@@ -19,8 +25,15 @@ const PATH = '/ru/promokody-prop-firm'
 const MONTH_LABEL = 'октябрь 2026'
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
+// Per-firm Russia-source dates: CFT from firms.json russiaSourceCapturedAt (FAQ/Terms 7.3 re-read 23.10.2026,
+// research/russia-evidence-brightfunded-cft-2026-10-23.md); FundingPips from russian-fundingpips-access-evidence.json.
+// CHECKED stays the page-wide code check (deals.json) and the FTMO line; CFT payment methods are dated from their own capture below.
+const CFT_RU_SOURCE_DATE = ruAccessDate(russiaSourceDateFor('crypto-fund-trader') ?? CHECKED_ISO)
+// CFT payment list (card, PayPal, Apple/Google Pay, crypto): first named in the FAQ on 19.10.2026, last re-read in the 20.10.2026 capture; the 14.10.2026 capture had card + crypto only.
+const CFT_PAYMENTS_CHECKED = ruAccessDate(cftPaymentsCapture.articleSlotRecapture.capturedAt)
+const FP_ACCESS_CHECKED = ruAccessDate(fundingPipsAccessEvidence.sourceCapturedAt)
 const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ'
-const DESCRIPTION = 'Промокоды проп-фирм на октябрь 2026: BrightFunded, Upscale и Crypto Fund Trader для России, FundedNext — для других стран. Дата проверки и почему нет FTMO.'
+const DESCRIPTION = 'Промокоды проп-фирм, октябрь 2026: BrightFunded и Crypto Fund Trader — РФ нет в их списках ограничений. У Upscale статус для РФ неясен. Почему нет FTMO.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -50,14 +63,14 @@ type HubFirm = {
   dealAnchor?: string
 }
 
-// Фирмы, открытые для РФ на 14.10.2026 (ru-availability.csv); FundedNext с 20.10.2026 — недоступна для РФ (подвал сайта; firms.json russiaStatus restricted). Коды подтягиваются из content/data/deals.json;
+// Фирмы без РФ в списке ограничений (BrightFunded/CFT: firms.json russiaBasis); Upscale — статус для РФ неясен (lib/ruAccessExtra.ts russiaStatus, Условия прочитаны 26.10.2026); FundedNext с 20.10.2026 — недоступна для РФ (подвал сайта; firms.json russiaStatus restricted). Коды подтягиваются из content/data/deals.json;
 // пока там нет проверенного кода, карточка показывает плейсхолдер «код ожидается».
-// Порядок: открытые для РФ → доступ неясен → недоступна (FundedNext), BrightFunded первым.
+// Порядок: без РФ в списке ограничений → доступ неясен → недоступна (FundedNext), BrightFunded первым.
 const hubFirms: HubFirm[] = [
   { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', anchor: 'bright-offer-status', dealAnchor: 'bright-funded-promokody', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
-  { slug: 'upscale', name: 'Upscale', review: null, russiaNote: 'Ограничений по странам не заявлено, KYC нет, выплаты в USDT.', external: 'https://upscale.trade/ru/' },
-  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/blog/crypto-fund-trader-review', russiaNote: 'На Match-Trader ограничений по странам нет. Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на 14.10.2026).' },
-  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: 'Доступ для РФ не ясен (проверено 14.10.2026).' },
+  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/ru/obzor-crypto-fund-trader', russiaNote: `На Match-Trader ограничений по странам нет (по данным на ${CFT_RU_SOURCE_DATE}). Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на ${CFT_PAYMENTS_CHECKED}).` },
+  { slug: 'upscale', name: 'Upscale', review: null, russiaNote: `Статус для РФ неясен: Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании; для вывода нужен KYC по паспорту (на ${ruAccessDate(RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt)}). В FAQ сказано иное, но обязывающий текст — Условия. Выплаты в USDT.`, external: 'https://upscale.trade/ru/' },
+  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: `Доступ для РФ не ясен (проверено ${FP_ACCESS_CHECKED}).` },
   { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: FUNDEDNEXT_RU_ACCESS_NOTE },
 ]
 
@@ -119,14 +132,15 @@ export default function RussianPromoHubPage() {
           <h1>Промокоды проп-фирм — {MONTH_LABEL}</h1>
           <p className="ru-lead">
             Большинство «промокодов» в выдаче — это коды без даты, которые давно не работают. Здесь их нет: каждый код
-            стоит рядом с датой, когда мы проверили его на кассе. И только для фирм, которые на {CHECKED} принимают трейдеров из России.
+            стоит рядом с датой, когда мы проверили его на кассе. У каждой фирмы — отметка доступа из РФ: это страница для русскоязычных трейдеров в любой стране.
+            У BrightFunded и Crypto Fund Trader России нет в их списках ограничений (на {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}). У Upscale статус для РФ неясен (на {ruAccessDate(RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt)}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту.
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="promo-hub">
             <strong>Партнёрское раскрытие.</strong> По ссылкам на этой странице Traders Fund Hub может получить комиссию.
             Скидку даёт только действующий механизм фирмы; партнёрская ссылка сама по себе цену не снижает.
           </div>
           <div className="ru-stats">
-            <div className="ru-stat"><strong>{hubFirms.filter(firm => russiaStatusFor(firm.slug) !== 'restricted').length}</strong><span>фирмы, открытые для РФ</span></div>
+            <div className="ru-stat"><strong>{hubFirms.filter(firm => russiaBasisDateFor(firm.slug)).length}</strong><span>фирмы без РФ в списке ограничений</span></div>
             <div className="ru-stat"><strong>{liveCount}</strong><span>проверенных кодов в этом месяце</span></div>
           </div>
         </div>
@@ -167,9 +181,13 @@ export default function RussianPromoHubPage() {
                     {firm.review ? <Link href={firm.review} className="btn-outline">Обзор</Link> : null}
                     {firm.external ? (
                       // TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale
+                      <>
                       <a href={firm.external} target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
-                        Открыть {firm.name} <ArrowRight size={14} aria-hidden="true" />
+                        Перейти в {firm.name} <ArrowRight size={14} aria-hidden="true" />
                       </a>
+                      {' '}
+                      <RuAccessBadgeView firm={firm.slug} status={RU_EXTRA_RUSSIA_BASIS.upscale.russiaStatus} hint={false} />
+                      </>
                     ) : (
                       <RuGoLink firm={firm.slug} href={`/go/${firm.slug}?from=${from}`} rel={goLinkRel(firm.slug)} className={firm.slug === 'fundednext' ? 'btn-outline' : 'btn-primary'}>
                         Перейти в {firm.name} <ArrowRight size={14} aria-hidden="true" />
@@ -190,7 +208,7 @@ export default function RussianPromoHubPage() {
             <li><strong>Выберите продукт до кода.</strong> Резидентам России FundedNext недоступна (подвал сайта; Futures тоже ограничивает Россию, по данным на 20.10.2026); для других стран у FundedNext берите нужный CFD-челлендж.</li>
             <li><strong>Введите код на странице оплаты</strong> в поле купона — или перейдите по ссылке, если скидка применяется автоматически (это указано в карточке).</li>
             <li><strong>Сверьте итоговую сумму до подтверждения.</strong> Если цена не изменилась, код не сработал — не платите в расчёте на скидку.</li>
-            <li><strong>Выбирайте способ оплаты, не зависящий от карты.</strong> У Crypto Fund Trader и Upscale в официальном списке есть криптовалюта; работают ли карты, выпущенные в России, фирмы официально не сообщают.</li>
+            <li><strong>Выбирайте способ оплаты, не зависящий от карты.</strong> У Crypto Fund Trader в официальном списке есть криптовалюта; Upscale тоже принимает криптовалюту, но статус для РФ у неё неясен, а для вывода нужен KYC по паспорту. Работают ли карты, выпущенные в России, фирмы официально не сообщают.</li>
           </ol>
         </div>
       </section>

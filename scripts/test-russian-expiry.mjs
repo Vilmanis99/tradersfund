@@ -64,6 +64,7 @@ try {
   }
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
   const { isProductSetFresh } = require(path.join(root, 'lib/reviewFreshness.ts'))
+  const { ruAccessDate } = require(path.join(root, 'lib/ruAccessLabel.ts'))
   // Render pages at a clock derived from the Russian-surface captures themselves.
   // Literal 2026-09-29 / 2026-10-01 clocks fell behind the 2026-10-14..19
   // recaptures; future-dated captures fail closed by design (asserted below), so
@@ -133,8 +134,8 @@ try {
   assert.equal(isDealCurrent({ verifiedOn: '2026-09-30', expiresOn: '2026-10-01' }, new RealDate('2026-10-02T12:00:00Z')), false, 'a code expires after its stated end day')
   const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.json'), 'utf8'))
   const archivedDeals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals-archive.json'), 'utf8'))
-  // Batch 1 (2026-10-14): HELLO (FundingPips) and STRTN (FundedNext) are active; each needs a code, check date and source.
-  assert.deepEqual(deals.map(deal => [deal.firmSlug, deal.code]), [['fundingpips', 'HELLO'], ['fundednext', 'STRTN']], 'active catalog holds the batch 1 codes only')
+  // Batch 1 (2026-10-14): HELLO (FundingPips) and STRTN (FundedNext); STRTN ended 2026-10-25 (offer article 404) and is now FundedNext previousDiscountCode.
+  assert.deepEqual(deals.map(deal => [deal.firmSlug, deal.code]), [['fundingpips', 'HELLO']], 'active catalog holds the remaining batch 1 code only')
   for (const deal of deals) {
     assert(/^\d{4}-\d{2}-\d{2}$/.test(deal.verifiedOn), `${deal.code}: dated check`)
     assert(deal.sourceUrl && deal.sourceLabel, `${deal.code}: stated source`)
@@ -163,10 +164,11 @@ try {
     const offersHtml = renderToStaticMarkup(React.createElement(offersModule.default))
     assert.match(offersModule.metadata.title.absolute, /^Промокоды проп-фирм — /, 'monthly promo hub title names the month')
     assert(offersHtml.includes('id="kody"'), 'promo hub keeps the #kody deep-link target used by the Bright review')
-    assert(offersHtml.includes('ru-badge ru-badge--open') && offersHtml.includes('ru-badge ru-badge--closed'), 'promo hub shows Russia availability badges')
+    // BrightFunded/CFT carry russiaBasis 'not-on-restricted-list' (firms.json): neutral badge, not «Открыта для РФ».
+    assert(offersHtml.includes('ru-badge ru-badge--neutral') && offersHtml.includes('ru-badge ru-badge--closed'), 'promo hub shows Russia availability badges')
     // PR #6 rule: every firm keeps its CTA; restricted/unclear firms carry a Russia-access badge instead.
     assert(offersHtml.includes('data-russia-status="unclear" data-russia-firm="fundingpips"'), 'promo hub FundingPips CTA carries the unclear Russia-access badge')
-    assert(offersHtml.includes('HELLO') && offersHtml.includes('STRTN'), 'promo hub shows the batch 1 codes')
+    assert(offersHtml.includes('HELLO') && !offersHtml.includes('STRTN'), 'promo hub shows HELLO and no longer advertises the ended STRTN code')
     assert(!offersHtml.includes('SUMMER30') && !offersHtml.includes('SUMMER25') && !offersHtml.includes('SUMMER15'), 'expired Bright codes are not advertised')
     const EnglishOffers = require(path.join(root, 'app/prop-firm-discount-codes/(index)/page.tsx')).default
     const originalClock = clock
@@ -1269,14 +1271,14 @@ try {
   const russiaCtaSweep = new Map()
   // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
   // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
-  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
     const RussianDiasporaPage = require(path.join(root, 'app/ru/dlya-russkoyazychnykh-treyderov/page.tsx')).default
     const html = renderToStaticMarkup(React.createElement(RussianDiasporaPage))
     assert(html.includes('id="rossiyskie"'), 'merged local-firm section keeps the #rossiyskie redirect target')
-    assert(/ru-badge ru-badge--(open|unclear|closed)/.test(html), 'availability matrix uses status badges')
+    assert(/ru-badge ru-badge--(open|neutral|unclear|closed)/.test(html), 'availability matrix uses status badges')
     // Standing rule (RuGoLink, 2026-10-14): every firm keeps its sign-up CTA with a
     // Russia-access badge. A CTA for a firm that is not 'available' must carry the
     // badge for its firms.json russiaStatus and never outrank a Russia-open firm.
@@ -1786,7 +1788,7 @@ try {
           assert(brightCard.includes('<h3>BrightFunded</h3>') && brightCard.includes('Проверить BrightFunded'), 'Russian ranking partner heading and CTA use the first-party brand spelling')
           assert(brightCard.includes(`data-russian-ranking-bright-country-status="${brightCountryCurrent ? 'dated' : 'recapture-required'}"`), 'Bright ranking country warning checks both source ages')
           assert(brightCard.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && brightCard.includes(`href="${brightEvidence.sources.countryTerms.sourceUrl}"`), 'Bright ranking card links both first-party country sources')
-          assert(brightCard.includes(brightEvidence.sources.countries.sourceCapturedAt) && brightCard.includes(brightEvidence.sources.countryTerms.sourceCapturedAt), 'Bright ranking card shows both independently captured dates')
+          assert(brightCard.includes(ruAccessDate(brightEvidence.sources.countries.sourceCapturedAt)) && brightCard.includes(ruAccessDate(brightEvidence.sources.countryTerms.sourceCapturedAt)), 'Bright ranking card shows both independently captured dates (DD.MM.YYYY)')
           if (!brightCountryCurrent && brightCard.includes('<details>')) assert(brightCard.includes('старые списки не подтверждают доступ к покупке или выплате сегодня.'), 'visible Bright partner details become historical when country sources expire')
           assert(html.includes('Проверить программы BrightFunded') && !html.includes('Проверить 3 программы BrightFunded'), 'ranking handoff does not promise three current Bright programmes after expiry')
           assert.match(html, /<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Обзор BrightFunded<\/a>/, 'ranking partner card names the Bright review')
@@ -2048,8 +2050,9 @@ try {
     const found = new Set([...russiaCtaSweep].flatMap(([route, entry]) => [...entry.issues.keys()].map(issue => `${route} :: ${issue}`)))
     assert.deepEqual([...found].sort(), [], 'no Russia-access badge or ranking issue on any /ru page')
     const covered = [...russiaCtaSweep.values()].filter(entry => entry.ctaDates > 0).length
-    // Pages without sign-up CTAs by design: the commission-disclosure page and the closed-firms list.
-    const NO_CTA_PAGES = new Set(['kak-my-zarabatyvaem', 'zakrytye-prop-firmy'])
+    // Pages without sign-up CTAs by design: the commission-disclosure page, the closed-firms list
+    // and the data-driven rules reference pages (RU twins of /prop-firms/<firm>/rules).
+    const NO_CTA_PAGES = new Set(['kak-my-zarabatyvaem', 'zakrytye-prop-firmy', ...pages.filter(slug => fs.readFileSync(path.join(root, 'app/ru', slug, 'page.tsx'), 'utf8').includes("from '@/components/RuRulesRoute'"))])
     for (const slug of NO_CTA_PAGES) assert.equal(russiaCtaSweep.get(`/ru/${slug}`)?.ctaDates, 0, `/ru/${slug} stays free of /go/ sign-up CTAs`)
     assert.equal(covered, pages.filter(slug => !NO_CTA_PAGES.has(slug)).length, 'every other /ru page in the sweep renders firm CTAs on at least one date')
     console.log(`Russia CTA sweep: ${covered} /ru pages with firm CTAs checked; no badge or ranking issues.`)

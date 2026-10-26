@@ -19,7 +19,7 @@ export interface GlobalChallengeTier {
 
 export interface GlobalChallengeRow {
   /** russiaStatus: set server-side for /ru finder rows (russiaStatusFor), so client finders need no firm data. */
-  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus }
+  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus; russiaBasisDate?: string | null }
   product: {
     name: string
     slug: string

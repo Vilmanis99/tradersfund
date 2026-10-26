@@ -14,6 +14,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
   { en: '/blog/the5ers-review', ru: '/ru/obzor-the5ers' },
+  { en: '/blog/crypto-fund-trader-review', ru: '/ru/obzor-crypto-fund-trader' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
@@ -47,10 +48,9 @@ export const RUSSIAN_ONLY_ROUTES = [
  * exists (see lib/russianPlannedRoutes.ts and docs/ru-writer-new-pages.md).
  * To publish one, move it into RUSSIAN_ONLY_ROUTES and RUSSIAN_ROUTE_EDITORIAL_DATES.
  */
-export const RUSSIAN_PLANNED_ROUTES = [
-  '/ru/prop-trejding',
-  '/ru/funded-account',
-] as const
+// Empty since /ru/prop-trejding and /ru/funded-account were published (both are in
+// RUSSIAN_ONLY_ROUTES and RUSSIAN_ROUTE_EDITORIAL_DATES); add new reserved slugs here.
+export const RUSSIAN_PLANNED_ROUTES: readonly `/ru/${string}`[] = []
 
 /**
  * RU version of /prop-firms/closed. The slug lives only in this constant (the page folder
@@ -77,10 +77,7 @@ export const RU_CLOSED_FIRMS_EDITORIAL_DATE = '2026-10-20'
 export type RussianPlannedRoutePath = (typeof RUSSIAN_PLANNED_ROUTES)[number]
 
 /** Editorial date per planned route; null until the writer publishes the page. */
-export const RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES: Record<RussianPlannedRoutePath, string | null> = {
-  '/ru/prop-trejding': null,
-  '/ru/funded-account': null,
-}
+export const RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES: Partial<Record<RussianPlannedRoutePath, string | null>> = {}
 
 export type RussianRoutePath =
   | (typeof LOCALIZED_ROUTE_PAIRS)[number]['ru']
@@ -108,6 +105,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
   '/ru/luchshie-prop-firmy': '2026-10-20',
   '/ru/obzor-bright-funded': '2026-10-19',
+  '/ru/obzor-crypto-fund-trader': '2026-10-26',
   '/ru/obzor-eratrade': '2026-10-20',
   '/ru/obzor-ftmo': '2026-10-20',
   '/ru/obzor-fundednext': '2026-10-20',
@@ -171,8 +169,44 @@ export function getLanguageAlternates(pathname: string) {
   }
 }
 
+/**
+ * Rules pages (lib/rulesPages.ts): EN /prop-firms/<slug>/rules and its RU twin.
+ * Template twins always exist as pages (noindex until complete); hand-written
+ * RU rules pages count only once registered above. Paths only, so the client
+ * language switcher can use them; hreflang/sitemap pairing is data-gated in
+ * lib/rulesPages.ts rulesRoutePair().
+ */
+export const RU_RULES_TEMPLATE_SLUGS = ['bright-funded', 'crypto-fund-trader', 'ftmo', 'fundednext'] as const
+/**
+ * Hand-written RU rules pages that exist on this stack. Every entry must answer
+ * 200 (npm run test:ru-rules-routes). /ru/fundingpips-pravila is drafted on
+ * content/ru-fundingpips-rules (8ffaa3c) but not merged, so it is not listed:
+ * re-add `fundingpips: '/ru/fundingpips-pravila'` in the commit that merges it.
+ */
+export const RU_RULES_HANDWRITTEN: Readonly<Record<string, string>> = {}
+
+function rulesSwitchHref(pathname: string): string | null {
+  const en = /^\/prop-firms\/([a-z0-9-]+)\/rules$/.exec(pathname)
+  if (en) {
+    const slug = en[1]
+    if ((RU_RULES_TEMPLATE_SLUGS as readonly string[]).includes(slug)) return `/ru/${slug}-pravila`
+    const handwritten = RU_RULES_HANDWRITTEN[slug]
+    return handwritten && isRussianRoutePath(handwritten) ? handwritten : null
+  }
+  const ru = /^\/ru\/([a-z0-9-]+)-pravila$/.exec(pathname)
+  if (ru) {
+    const slug = ru[1]
+    const known = (RU_RULES_TEMPLATE_SLUGS as readonly string[]).includes(slug)
+      || RU_RULES_HANDWRITTEN[slug] === pathname
+    return known ? `/prop-firms/${slug}/rules` : null
+  }
+  return null
+}
+
 export function getAlternateLanguageHref(pathname: string): string {
   const pair = getLocalizedRoutePair(pathname)
   if (pair) return pathname === pair.ru ? pair.en : pair.ru
+  const rules = rulesSwitchHref(pathname)
+  if (rules) return rules
   return pathname === '/ru' || pathname.startsWith('/ru/') ? '/' : '/ru'
 }

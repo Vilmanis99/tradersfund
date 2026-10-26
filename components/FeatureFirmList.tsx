@@ -106,7 +106,7 @@ export default function FeatureFirmList({
                     <li>
                       <span className="feature-firm-stat-label">Payouts</span>
                       <span className="feature-firm-stat-value" style={{ textTransform: 'capitalize' }}>
-                        {firm.payoutFrequency.replace('-', ' ')}
+                        {firm.payoutFrequency.replace(/-/g, ' ')}
                       </span>
                     </li>
                   )}

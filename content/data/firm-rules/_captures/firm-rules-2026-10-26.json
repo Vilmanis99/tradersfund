@@ -1,0 +1,124 @@
+{
+  "capturedAt": "2026-10-26",
+  "accessNotes": "Rules-page fixes 2026-10-26 (Riga, UTC+2). Read from the box (egress may geolocate US or Riga; no VPN/proxy). takeprofittrader.com homepage rendered with headless Chrome (puppeteer-core) because the account cards and comparison table are client-rendered; account-size cards captured by clicking each size (the $25K card did not switch and was not captured). takeprofittraderhelp.zendesk.com returned a Cloudflare challenge (HTTP 403 to curl, 'Just a moment...' in headless Chrome) and was not read. help.topstep.com and tradeday.freshdesk.com read with curl. Quotes are verbatim after whitespace normalisation; '...' joins fragments of the same page. Evidence files: /workspace/tradersfundhub/evidence/rules-fixes-2026-10-26/.",
+  "pagesRead": [
+    "https://takeprofittrader.com/",
+    "https://takeprofittrader.com/accounts/api/subscriptions",
+    "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
+  ],
+  "pageDates": {
+    "https://takeprofittrader.com/": "no page date shown",
+    "https://takeprofittrader.com/accounts/api/subscriptions": "no date (JSON API)",
+    "https://help.topstep.com/en/articles/8284233-topstep-payout-policy": "article dateTime 2026-10-13T14:26:14Z ('Updated over a week ago')",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-": "'Modified on Wed, 9 Sep' (2026-09-09)",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy": "'Modified on Tue, 8 Sep' (2026-09-08)"
+  },
+  "firms": {
+    "take-profit-trader": {
+      "dailyLossUsd": {
+        "value": null,
+        "byProduct": {
+          "the-test": null
+        },
+        "summary": "None (removed; the homepage lists no daily loss rule on Test, PRO or PRO+)",
+        "note": "Re-read 2026-10-26. The homepage journey table reads 'Daily loss rule' None for Test, PRO and PRO+, and the 50K/75K/100K/150K account cards show the old figures struck through with a 'Removed' badge ($1100/$1600/$2200/$3300). The raw subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, read 2026-10-26) still returns dailyLossLimit 500/1100/1600/2200/3300 for the $25k-$150k tiers; the cards render those same API numbers marked 'Removed', so they are the removed limit, not a live rule. The API also lists '$ 25k PRO+D' to '$ 150k PRO+D' tiers with dailyLossLimit 500/1000/1250/1500/2000; that variant is not described on the homepage and is not a product in our data. The $25K card and the help centre (Cloudflare-blocked) were not read.",
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Your Take Profit Funded Journey Description Test PRO PRO + ... Daily loss rule None None None"
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 50K $170 / month Profit Target $3000 Max Position Size 6 Contracts / 60 Micros Daily Loss Limit $1100 Removed"
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 150K $360 / month Profit Target $9000 Max Position Size 15 Contracts / 150 Micros Daily Loss Limit $3300 Removed"
+          }
+        ]
+      }
+    },
+    "topstep": {
+      "payoutFrequency": {
+        "value": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
+        "byProduct": {
+          "trading-combine-standard-path": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
+          "trading-combine-no-activation-fee-path": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account"
+        },
+        "summary": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Express Funded Account Standard To request a Payout, you must meet both requirements: 5 winning days of $150+ Net P&L. Days don't need to be consecutive."
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Express Funded Account Consistency To request a Payout, you must meet both requirements: 3 trading days with at least 1 trade per day. Stay at or below the 40% consistency target."
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "After you request a Payout, your winning day count restarts. You'll need 5 new winning days before you're eligible to request your next Payout."
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Once you've earned $150+ Net P&L on 30 non-consecutive days in your Live Funded Account, you unlock daily Payouts"
+          }
+        ]
+      }
+    },
+    "tradeday": {
+      "profitSplitPct": {
+        "value": null,
+        "byProduct": {
+          "quick-pay-intraday": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
+          "quick-pay-end-of-day": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
+          "fast-pass-end-of-day": 80
+        },
+        "summary": "Product-specific: Quick Pay 50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live; Fast Pass 80/20",
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "There will be an 80/20 profit split."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "byProduct": {
+          "quick-pay-intraday": "on-demand",
+          "quick-pay-end-of-day": "on-demand",
+          "fast-pass-end-of-day": "After 5 profitable trading days per payout ($100-$250 minimum per day by account size)"
+        },
+        "summary": "Product-specific: on demand on Quick Pay - Intraday, Quick Pay - End of Day; after 5 profitable trading days per payout ($100-$250 minimum per day by account size) on Fast Pass - End of Day",
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "traders must meet the following conditions before requesting a payout and for subsequent payout requests."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "$25K Account: 5 days with at least $100 profit per day $50K Account: 5 days with at least $150 profit per day $100K Account: 5 days with at least $200 profit per day $150K Account: 5 days with at least $250 profit per day"
+          }
+        ]
+      }
+    }
+  }
+}

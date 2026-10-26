@@ -20,9 +20,10 @@ import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
@@ -166,7 +167,7 @@ export default function RussianCTraderPropFirmsPage() {
           <p className="ru-lead">
             Сравниваем 2 глобальные проп-фирмы не по логотипу cTrader, а по ограничениям покупки:
             размер счёта, дополнительная комиссия, cBot, страна профиля, устройства и вход в аккаунт.
-            Резидентам России подходит BrightFunded (с отдельным подтверждением автоматизации); ручной маршрут FundedNext — только для трейдеров из других стран.
+            Для резидентов России из двух остаётся BrightFunded: России нет в её списке ограничений (на {ruNotListedDate('bright-funded')}), автоматизацию уточните у фирмы отдельно; ручной маршрут FundedNext — только для трейдеров из других стран.
           </p>
           <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {russianRouteDateModified(PATH, cTraderEvidence.capturedAt)}.</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
@@ -217,7 +218,7 @@ export default function RussianCTraderPropFirmsPage() {
               <caption>Правила платформы по проверке от {cTraderEvidence.capturedAt}; доступность для вашего профиля требует отдельного подтверждения.</caption>
               <thead><tr><th>Поле</th><th>BrightFunded</th><th>FundedNext</th></tr></thead>
               <tbody>
-                <tr data-russian-ctrader-russia-row="fundednext-restricted"><td><strong>Резиденты России</strong></td><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} hint={false} /> Проверьте свой профиль до оплаты</td><td><RuAccessBadgeView firm="fundednext" status={russiaStatusFor('fundednext')} hint={false} /> Подвал fundednext.com, по данным на 20.10.2026</td></tr>
+                <tr data-russian-ctrader-russia-row="fundednext-restricted"><td><strong>Резиденты России</strong></td><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} basisDate={russiaBasisDateFor('bright-funded')} hint={false} /> Проверьте свой профиль до оплаты</td><td><RuAccessBadgeView firm="fundednext" status={russiaStatusFor('fundednext')} basisDate={russiaBasisDateFor('fundednext')} hint={false} /> Подвал fundednext.com, по данным на 20.10.2026</td></tr>
                 <tr><td><strong>Статус cTrader</strong></td><td>Доступен с ограничениями профиля</td><td>Доступен с лимитами продукта и профиля</td></tr>
                 <tr><td><strong>Размер счёта</strong></td><td>Не опубликован в проверенной справке</td><td>Оценочная программа до $50 000</td></tr>
                 <tr><td><strong>Доплата</strong></td><td>Не опубликована в проверенной справке</td><td>$25; стандартно не возвращается, в справке есть исключение для клиентов из США</td></tr>

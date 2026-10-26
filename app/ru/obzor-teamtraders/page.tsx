@@ -29,6 +29,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/obzor-teamtraders'
 const TITLE = 'TeamTraders: отзывы и обзор 2026 — стажировка и Мосбиржа'
@@ -424,7 +425,7 @@ export default function RussianTeamTradersReviewPage() {
           <p className="ru-muted">
             В описании TeamTraders речь о Мосбирже и ручной внутридневной торговле. Программы BrightFunded и FundedNext
             с симулированными CFD — другая модель, а не заменяемый тариф на том же рынке. Сопоставляйте их отдельно,
-            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания. Резиденту России из этих двух подходит только BrightFunded: FundedNext россиян не обслуживает.
+            если вам нужны такие инструменты и фирма разрешает участие с вашим гражданством и местом проживания. Резиденту России из этих двух остаётся только BrightFunded (России нет в её списке ограничений на {ruNotListedDate('bright-funded')}): FundedNext россиян не обслуживает.
           </p>
           <div className="ru-grid">
             {globalCards.map(item => (

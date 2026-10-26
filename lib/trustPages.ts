@@ -12,5 +12,5 @@ export const HOW_WE_MAKE_MONEY_UPDATED = '2026-10-20'
  */
 export const PARTNERSHIP_POLICY = {
   en: 'Partnerships never change our scores. Partner firms may get more prominent placement and sign-up buttons. Partner links are tagged as sponsored, and the page says we may earn a commission. On Russian pages, firms open to Russian residents are usually listed first, and the Russian home table and ranking hub always put them first.',
-  ru: 'Партнёрство никогда не влияет на наши оценки. Фирмы-партнёры могут получать более заметное место и кнопки регистрации. Партнёрские ссылки размечены как рекламные, а на странице сказано, что мы можем получить комиссию. На русскоязычных страницах фирмы, доступные резидентам России, обычно идут первыми, а в таблице на главной и в русскоязычном рейтинге — всегда.',
+  ru: 'Партнёрство никогда не влияет на наши оценки. Фирмы-партнёры могут получать более заметное место и кнопки регистрации. Партнёрские ссылки размечены как рекламные, а на странице сказано, что мы можем получить комиссию. На русскоязычных страницах фирмы, у которых России нет в списке ограничений, обычно идут первыми, а в таблице на главной и в русскоязычном рейтинге — всегда.',
 } as const

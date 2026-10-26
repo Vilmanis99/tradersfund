@@ -3,6 +3,7 @@ import type React from 'react'
 import Link from '@/components/SafeLink'
 import RuPendingLink from '@/components/RuPendingLink'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -11,7 +12,7 @@ import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { ArrowRight, ShieldAlert } from 'lucide-react'
 import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
-import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
 import { ruClosedFirmsHref } from '@/lib/closedFirms'
@@ -253,7 +254,7 @@ export default function RussianThe5ersReviewPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-the5ers="restricted" data-russian-review-editorial-date={dateModified}>
           <RussianDataFreshnessNotice firmSlugs={['the5ers']} />
-          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} /> · условия проверены {RUSSIA_CHECKED}</div>
+          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} /> · условия проверены {RUSSIA_CHECKED}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
             The5ers — форекс-проп-фирма, основанная в {firm?.founded ?? '2016'} году, с четырьмя CFD-программами — двухэтапной High Stakes,
@@ -273,7 +274,7 @@ export default function RussianThe5ersReviewPage() {
             <a href={firm?.officialUrl ?? 'https://the5ers.com/'} target="_blank" rel="nofollow noopener noreferrer" className="btn-outline" data-russia-status={russiaStatusFor('the5ers')}>
               Официальный сайт The5ers <ArrowRight size={14} aria-hidden="true" />
             </a>{' '}
-            <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} />
+            <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} />
           </div>
         </div>
       </section>
@@ -497,7 +498,7 @@ export default function RussianThe5ersReviewPage() {
             (EOD: от наибольшего баланса или эквити на полночь, то есть граница подтягивается за прибылью), доля 80/20. Правило согласованности: одна сделка не может дать больше 40% общей прибыли, на оценке и на финансируемом счёте; нарушением это
             не считается, но мешает выплате (<S href={SRC.futuresConsistency}>FAQ</S>, 20.07.2026). Взнос возвращается после
             третьей выплаты в обоих вариантах. Перенос через выходные запрещён, алгоритмическая и высокочастотная торговля — тоже. Ограничение для России
-            действует и здесь: условия The5ers общие для всех услуг. <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} hint={false} />
+            действует и здесь: условия The5ers общие для всех услуг. <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} />
           </p>
           <p className="ru-source-line">Источники: <S href={SRC.futures}>the5ers.com/futures</S>, <S href="https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/">общие правила фьючерсной программы</S> — по данным the5ers.com/futures, {FUTURES_CHECKED}.</p>
         </div>
@@ -585,7 +586,7 @@ export default function RussianThe5ersReviewPage() {
       <section className="ru-section" id="alternativy">
         <div className="ru-shell" data-russian-alternatives="bright-funded-first">
           <h2>Альтернативы The5ers для трейдеров из России</h2>
-          <p className="ru-muted">Порядок редакционный: сначала фирмы, открытые для РФ по нашим данным. Бейдж — статус доступа для резидентов России.</p>
+          <p className="ru-muted">Порядок редакционный: сначала фирмы, которые по нашим данным не ограничивают РФ. Бейдж — статус доступа для резидентов России.</p>
           <div className="ru-grid">
             {alternatives.map(item => {
               const notes = ALT_NOTES[item.firm]
@@ -642,6 +643,8 @@ export default function RussianThe5ersReviewPage() {
           </ul>
         </div>
       </section>
+
+      <RuFirmRelatedLinks firm="the5ers" path={PATH} />
 
       <RuRelatedBlock path={PATH} />
     </>

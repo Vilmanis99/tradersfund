@@ -23,6 +23,8 @@ export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   reviewHref: string
   /** Resolved on the server (russiaStatusFor); the client never reads firms.json. */
   russiaStatus?: RussiaStatus
+  /** russiaBasis evidence date (YYYY-MM-DD) for 'not-on-restricted-list' firms; resolved on the server. */
+  russiaBasisDate?: string | null
 }
 
 const accessOptions: { value: RussianMatcherAccess; label: string }[] = [
@@ -197,6 +199,7 @@ export default function RussianPartnerMatcher({
                       <Link href={profile.reviewHref} className="btn-outline">Сначала прочитать обзор</Link>
                       <RuGoLinkView firm={profile.slug}
                         status={profile.russiaStatus ?? 'unverified'}
+                        basisDate={profile.russiaBasisDate ?? null}
                         href={`/go/${profile.slug}?from=ru-ranking-matcher-${profile.slug}`}
                         prefetch={false}
                         rel="sponsored nofollow noopener"

@@ -1,6 +1,9 @@
 import firms from '@/content/data/firms.json'
+import firmsPending from '@/content/data/firms-pending.json'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { resolveRussiaStatus, russiaStatusesBySlug, type RussiaStatus, type RussiaStatusFirm } from './russiaStatus.ts'
+import { firmSlug } from './firmSlug.ts'
+import { resolvePendingNotListed, resolveRussiaBasisDate, resolveRussiaStatus, russiaBasisDatesBySlug, russiaPendingNotListedBySlug, russiaStatusesWithPending, type RussiaStatus, type RussiaStatusFirm } from './russiaStatus.ts'
+import { ruAccessBadge, type RuAccessBadgeInfo, type RuPendingNotListed } from './ruAccessLabel.ts'
 
 /**
  * Russia availability gate for /ru pages.
@@ -12,10 +15,40 @@ import { resolveRussiaStatus, russiaStatusesBySlug, type RussiaStatus, type Russ
  */
 export type { RussiaStatus } from './russiaStatus.ts'
 
-const STATUS_BY_SLUG = russiaStatusesBySlug(firms as RussiaStatusFirm[])
+// firms.json first; firms-pending.json russiaStatus only for firms not in firms.json yet (lib/russiaStatus.ts).
+const STATUS_BY_SLUG = russiaStatusesWithPending(firms as RussiaStatusFirm[], firmsPending.firms as RussiaStatusFirm[])
 
 export function russiaStatusFor(slugOrName: string): RussiaStatus {
   return resolveRussiaStatus(STATUS_BY_SLUG, slugOrName)
+}
+
+const BASIS_DATE_BY_SLUG = russiaBasisDatesBySlug(firms as RussiaStatusFirm[])
+const PENDING_NOT_LISTED_BY_SLUG = russiaPendingNotListedBySlug(firms as RussiaStatusFirm[], firmsPending.firms as RussiaStatusFirm[])
+
+/** Pending 'available' firm (firms-pending.json only): { date, basis } for the neutral badge (date null = undated); else null. Status stays 'unverified'. */
+export function russiaPendingNotListedFor(slugOrName: string): RuPendingNotListed | null {
+  return resolvePendingNotListed(PENDING_NOT_LISTED_BY_SLUG, slugOrName)
+}
+
+/** Evidence date (YYYY-MM-DD) when the firm is 'available' only because Russia is not on its restricted list; else null. */
+export function russiaBasisDateFor(slugOrName: string): string | null {
+  return resolveRussiaBasisDate(BASIS_DATE_BY_SLUG, slugOrName)
+}
+
+const SOURCE_DATE_BY_SLUG: Record<string, string> = Object.fromEntries(
+  (firms as RussiaStatusFirm[])
+    .filter(firm => typeof firm.russiaSourceCapturedAt === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(firm.russiaSourceCapturedAt))
+    .map(firm => [firmSlug(firm.name), firm.russiaSourceCapturedAt as string]),
+)
+
+/** firms.json russiaSourceCapturedAt (YYYY-MM-DD): the date the firm's country/Russia source was last read; null when not recorded. */
+export function russiaSourceDateFor(slugOrName: string): string | null {
+  return resolveRussiaBasisDate(SOURCE_DATE_BY_SLUG, slugOrName)
+}
+
+/** Central Russia-access label for a firms.json firm (status + basis). Every RU label of a firm goes through this. */
+export function ruAccessBadgeFor(slugOrName: string): RuAccessBadgeInfo {
+  return ruAccessBadge(russiaStatusFor(slugOrName), russiaBasisDateFor(slugOrName), russiaPendingNotListedFor(slugOrName))
 }
 
 /** One `firmAccess[]` record from content/data/russian-market-evidence.json. */

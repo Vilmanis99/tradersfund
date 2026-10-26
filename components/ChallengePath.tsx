@@ -40,7 +40,7 @@ const COPY = {
     moreSummary: (n: number) => `${n} more ${n === 1 ? 'product' : 'products'} with different terms`,
     checked: 'Checked',
     note: 'Figures are the firm’s published terms for each product, not converted or rounded. “Not published” means we could not verify it on the firm’s own pages.',
-    frequency: { weekly: 'weekly', 'bi-weekly': 'every 2 weeks', monthly: 'monthly', 'on-demand': 'on request' } as Record<PayoutFrequency, string>,
+    frequency: { weekly: 'weekly', 'bi-weekly': 'every 2 weeks', monthly: 'monthly', 'on-demand': 'on request', 'after-qualifying-days': 'after qualifying trading days' } as Record<PayoutFrequency, string>,
     drawdownLabel: { static: 'static', trailing: 'trailing', 'eod-trailing': 'end-of-day trailing', 'balance-based': 'balance-based' } as Record<DrawdownType, string>,
   },
   ru: {
@@ -68,7 +68,7 @@ const COPY = {
     moreSummary: (n: number) => `Ещё ${n} ${n === 1 ? 'продукт' : 'продукта(ов)'} с другими условиями`,
     checked: 'Проверено',
     note: 'Цифры — опубликованные условия фирмы по каждому продукту, без конвертации и округления. «Не опубликовано» значит, что на собственных страницах фирмы подтвердить значение не удалось.',
-    frequency: { weekly: 'еженедельно', 'bi-weekly': 'каждые 2 недели', monthly: 'ежемесячно', 'on-demand': 'по запросу' } as Record<PayoutFrequency, string>,
+    frequency: { weekly: 'еженедельно', 'bi-weekly': 'каждые 2 недели', monthly: 'ежемесячно', 'on-demand': 'по запросу', 'after-qualifying-days': 'после квалификационных торговых дней' } as Record<PayoutFrequency, string>,
     drawdownLabel: { static: 'статическая', trailing: 'трейлинг', 'eod-trailing': 'трейлинг по концу дня', 'balance-based': 'по балансу' } as Record<DrawdownType, string>,
   },
 } as const

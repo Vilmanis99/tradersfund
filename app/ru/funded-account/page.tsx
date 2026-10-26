@@ -9,6 +9,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/funded-account'
 const UPDATED = '14.10.2026'
@@ -55,7 +56,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Где получить финансируемый аккаунт из России?',
-    a: `На ${UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader); FundedNext резидентам России недоступна: так сказано в подвале её сайта, хотя список в условиях (п. 5.3, CFD) Россию не называет (по данным на 20.10.2026). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен.`,
+    a: `На ${ruNotListedDates(['bright-funded', 'crypto-fund-trader'])} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader); FundedNext резидентам России недоступна: так сказано в подвале её сайта, хотя список в условиях (п. 5.3, CFD) Россию не называет (по данным на 20.10.2026). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен.`,
   },
   {
     q: 'Можно ли потерять funded account?',
@@ -249,11 +250,11 @@ export default function RussianFundedAccountPage() {
           <h2>Выплаты с funded account</h2>
           <p>
             Пример: на счёте $10 000 вы заработали 5% — $500. При доле 80% вам причитается $400, из которых ещё вычтутся комиссия
-            сети или провайдера. Способы вывода у фирм, открытых для России:
+            сети или провайдера. Способы вывода у фирм из этого гида:
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-funded-payouts="russia-open">
-              <caption className="hidden-caption">Способы выплаты у проп-фирм, открытых для России</caption>
+              <caption className="hidden-caption">Способы выплаты у проп-фирм из этого гида</caption>
               <thead><tr><th>Фирма</th><th>Доля трейдера</th><th>Способы выплаты</th></tr></thead>
               <tbody>
                 {payouts.map(row => <tr key={row.firm}><td><strong>{row.firm}</strong></td><td>{row.split}</td><td>{row.methods}</td></tr>)}
@@ -268,7 +269,7 @@ export default function RussianFundedAccountPage() {
         <div className="ru-shell">
           <h2>Где получить funded account из России</h2>
           <p className="ru-muted">
-            На {UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader. FundedNext резидентам России недоступна (см. ниже),
+            На {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])} Россию не ограничивают BrightFunded и Crypto Fund Trader. FundedNext резидентам России недоступна (см. ниже),
             направление Futures Россию тоже ограничивает. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
           </p>
           <div className="ru-actions">

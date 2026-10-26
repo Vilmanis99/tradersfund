@@ -62,6 +62,7 @@ const drawdownLabels: Record<string, string> = {
 const payoutLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые две недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу при выполнении условий',
 }

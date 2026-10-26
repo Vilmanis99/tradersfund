@@ -1,6 +1,6 @@
 import Link from '@/components/SafeLink'
 import { RU_ACCESS_BADGE, RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaPendingNotListedFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { ruAllReviews } from '@/lib/ruRelatedLinks'
 
 /**
@@ -25,7 +25,7 @@ export default function RuAllReviews({ marker, sectionClassName = 'ru-section', 
       {items.map(item => (
         <li key={item.path} data-ru-review={item.path}>
           <Link href={item.path}>Обзор {item.name}</Link>
-          {item.local ? null : <RuAccessBadgeView firm={item.firm} status={item.status} hint={false} />}
+          {item.local ? null : <RuAccessBadgeView firm={item.firm} status={item.status} basisDate={russiaBasisDateFor(item.firm)} pendingNotListed={russiaPendingNotListedFor(item.firm)} hint={false} />}
         </li>
       ))}
     </ul>
@@ -34,7 +34,7 @@ export default function RuAllReviews({ marker, sectionClassName = 'ru-section', 
     <section className={sectionClassName} aria-labelledby={headingId} data-ru-all-reviews={marker} data-ru-all-reviews-count={reviews.length}>
       <div className={wrapClassName}>
         <h2 id={headingId}>Все обзоры на русском</h2>
-        <p className="ru-muted ru-all-reviews-note">{reviewCount(reviews.length)}. Отметка у названия — итог нашей проверки условий фирмы («{RU_ACCESS_BADGE.available.label}», «{RU_ACCESS_BADGE.restricted.label}» и т. д.). Она не заменяет проверку вашего гражданства, резидентства и способа оплаты.</p>
+        <p className="ru-muted ru-all-reviews-note">{reviewCount(reviews.length)}. Отметка у названия — итог нашей проверки условий фирмы («{RU_ACCESS_BADGE.available.label}» — есть прямое подтверждение доступа из России; «нет в списке ограничений (на дату)» — Россия не названа в списке ограничений фирмы на дату проверки; «ограничений по странам не опубликовано (на дату)» — фирма не публикует список стран на дату проверки; «{RU_ACCESS_BADGE.restricted.label}» и т. д.). Она не заменяет проверку вашего гражданства, резидентства и способа оплаты.</p>
         {global.length > 0 ? <><h3 className="ru-all-reviews-group">Международные проп-фирмы</h3>{list(global)}</> : null}
         {local.length > 0 ? <><h3 className="ru-all-reviews-group">Российские проп-компании</h3>{list(local)}</> : null}
       </div>

@@ -278,12 +278,12 @@
     },
     "currency": {
       "status": "partial",
-      "summary": "FundingPips says all accounts are issued in USD regardless of the currency selected for payment. Whether INR is offered at checkout, the final conversion cost, and 2 disputed $2.5K purchase tiers remain unresolved.",
+      "summary": "FundingPips says all accounts are issued in USD regardless of the currency selected for payment. Whether INR is offered at checkout and the final conversion cost remain unresolved. FundingPips data lists only the account sizes shown on official FundingPips pages ($5K to $200K); the former $2.5K rows were removed on 2026-10-23 because no official FundingPips page lists that size.",
       "sourceUrls": [
         "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
       ]
     },
-    "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; the 2 disputed $2.5K tiers and Indian bank, card, or Rise payout availability remain unresolved."
+    "unresolved": "No completed Indian checkout, KYC approval, or payout receipt is verified; Indian bank, card, or Rise payout availability remains unresolved."
   },
   {
     "firmSlug": "bright-funded",

@@ -3,7 +3,7 @@ title: "What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)"
 seoTitle: "Consistency Rule Calculator & Examples: Prop Firms (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-25 10:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
 seoDescription: "Consistency rule calculator: required profit = best day / limit. Lookup table for 15%-50% limits, worked examples, formulas and current prop firm rules."
@@ -66,7 +66,7 @@ type: "post"
 
 <h2>Current product examples: 15% to 55% does not mean the same thing</h2>
 
-<p>The rule is the norm in futures and the exception in CFD: across the 96 products in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (captured 14 to 22 Oct 2026), 44 publish a consistency percentage, including 23 of the 28 futures products but only 18 of the 57 CFD products, and 40% is the most common figure.</p>
+<p>The rule is the norm in futures and the exception in CFD: across the 96 products in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (captured 14 to 23 Oct 2026), 44 publish a consistency percentage, including 23 of the 28 futures products but only 18 of the 57 CFD products, and 40% is the most common figure.</p>
 
 <table data-consistency-examples="current-products" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">Current product-level prop-firm consistency examples</caption>

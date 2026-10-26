@@ -58,7 +58,7 @@ type: "page"
 
 <p>That example proves why fee-recovery profit and refund-adjusted cash break-even are different measures. The actual lower cash-positive threshold depends on first-payout eligibility, minimum reward, KYC, rule compliance, and the refund’s named conditions. FundedNext’s current first standard eligibility is 21 days; a 1-day standardized growth result does not override it.</p>
 
-<p>FundedNext Stellar Instant is different: its $299.99 fee is non-refundable. At $428.56 gross profit and a 70% split, the trader share is $299.99, so the fee-recovery calculation is also the cash break-even before processing costs. The <a href="/blog/fundingpips-zero">FundingPips Zero guide</a> documents another non-refundable phase-0 model, while FundingPips 2 Step Standard creates a third case because its captured refund arrives only at the 4th reward.</p>
+<p>FundedNext Stellar Instant is different: its $299.99 fee is non-refundable. At $428.56 gross profit and a 70% split, the trader share is $299.99, so the fee-recovery calculation is also the cash break-even before processing costs. The <a href="/blog/fundingpips-zero">FundingPips Zero guide</a> documents another non-refundable phase-0 model, while FundingPips 2 Step Standard is a third case: its help centre (updated 24 Sep 2026) puts a fee refund at the 4th reward, but its Terms (effective 15 May 2026) say registration fees are not refunded, so leave that refund out of the cost until FundingPips confirms it.</p>
 
 <h2>Failed attempts and recurring billing belong in total cost</h2>
 

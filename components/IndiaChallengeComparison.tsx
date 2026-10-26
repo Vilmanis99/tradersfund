@@ -212,7 +212,7 @@ function payoutLabel(product: IndiaMatcherProduct) {
     ? 'First payout unverified'
     : `First request: day ${product.payoutFirstDays}`
   const frequency = product.payoutFrequency
-    ? product.payoutFrequency.replace('-', ' ')
+    ? product.payoutFrequency.replace(/-/g, ' ')
     : 'frequency unverified'
   return `${first} · ${frequency}`
 }

@@ -25,7 +25,7 @@ type: "post"
     <li>Maximum Loss Limit $2,000 / $3,000 / $4,500 — end-of-day trailing, monitored intraday, and it locks permanently once it reaches your starting balance.</li>
     <li>There is no mandatory daily loss limit. The $1,000 / $2,000 / $3,000 figures are an opt-in feature that buys a monthly discount and doubles payout caps.</li>
     <li>The Combine's best-day target is 55%, rechecked on 2026-10-20; the published minimum-day descriptions conflict. We leave the minimum unverified, not zero.</li>
-    <li>90/10 split, on-demand payouts, $125 minimum, 50% of account balance per request.</li>
+    <li>90/10 split, payout requests after 5 winning days of $150+ (or 3 days within the 40% consistency target), $125 minimum, 50% of account balance per request.</li>
     <li>Topstep reports that 16.8% of Combines initiated in 2025 were completed. This historical cohort is not a forecast of your results.</li>
     <li>Trustpilot showed 3.7 from 14,945 reviews on 2026-10-15.</li>
   </ul>
@@ -43,7 +43,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Largest account</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$150,000 buying power</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">90/10 in the trader's favour</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">End-of-day trailing, locks at starting balance</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On demand, $125 minimum, 50% of balance per request</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">After 5 winning days of $150+ (or 3 days within the 40% consistency target); $125 minimum, 50% of balance per request</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">TopstepX — confirmed in the official platform guide, checked 2026-09-08. Do not assume third-party execution compatibility.</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Instruments</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Futures only — CME, COMEX, NYMEX, CBOT</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: none;"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: none;"><a href="https://www.trustpilot.com/review/topstep.com">3.7 from 14,945 reviews</a> (verified 2026-10-15)</td></tr>
@@ -199,7 +199,7 @@ type: "post"
   <li><strong>Publishes its own pass rates.</strong> The 2025 disclosure gives four figures — 16.8% of Combines completed, 51.8% of participants advancing at least once, 33.3% of funded participants receiving a payout, 0.71% called up to Live. No other firm in our covered set publishes anything at this granularity.</li>
   <li><strong>The loss limit locks permanently</strong> once it reaches your starting balance — $2,000 of end-of-day profit at $50K, $3,000 at $100K, $4,500 at $150K. Most trailing-drawdown competitors trail indefinitely.</li>
   <li><strong>No mandatory daily loss limit.</strong> The daily figures are opt-in, and opting in pays you back with a recurring discount and doubled payout caps rather than costing you anything.</li>
-  <li><strong>90/10 split with a $125 payout minimum</strong> and on-demand requests during the whole CME week, not a fixed fortnightly cycle.</li>
+  <li><strong>90/10 split with a $125 payout minimum</strong> and requests during CME market hours once the qualifying days are met, not a fixed fortnightly cycle.</li>
   <li><strong>Three trading days to a first payout request</strong> via the Consistency route, against five winning days on the Standard route.</li>
   <li><strong>Free Reset Credit on every rebill</strong> — a trader who breaches once inside a billing month pays $0 rather than the $49–$199 reset price.</li>
   <li><strong>Trade copiers and automated strategies are permitted</strong> on Combine and Express Funded Accounts, and there is no blanket news ban — only full-size entries into scheduled major news are prohibited.</li>

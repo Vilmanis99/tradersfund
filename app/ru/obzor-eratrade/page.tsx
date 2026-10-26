@@ -155,7 +155,7 @@ export default function RussianEraTradeReviewPage() {
                 <tr><td>Сплит</td><td>{localSignal?.claims.baseProfitSplitPct}% в пользу трейдера</td><td>Условие зависит от продукта и правил выплаты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат (сплит)</SourceLink></td></tr>
                 <tr><td>2 этапа</td><td>Цель 8%, дневной лимит 5%, общий лимит 10%</td><td>Отдельный продукт; не переносим на 1-этапный</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
                 <tr><td>1 этап</td><td>Цель 11%, дневной лимит 4%, общий лимит 8%</td><td>Отдельный продукт; проверяйте актуальную версию</td><td><SourceLink href={ERA_ONE_STAGE}>Правила 1 этапа</SourceLink></td></tr>
-                <tr><td>Платформы</td><td>Bybit, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
+                <tr><td>Платформы</td><td>Сторонняя криптобиржа, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
                 <tr><td>Выплата</td><td>Каждые 15 или 30 дней; 3 прибыльных дня; минимум 1%; максимум 10% за период; до 5 рабочих дней</td><td>Заявленное правило; сделки и ордера должны быть закрыты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат</SourceLink></td></tr>
                 <tr><td>Партнёрство</td><td>{affiliateSignal?.baseCommissionPct}% по умолчанию, уровни до {affiliateSignal?.maximumPublishedCommissionPct}%, минимум ${affiliateSignal?.minimumPayoutUsd}</td><td>Публичная программа; Ambassador активируется отдельно</td><td><SourceLink href={ERA_AFFILIATE}>Условия партнёров</SourceLink></td></tr>
               </tbody>
@@ -195,7 +195,7 @@ export default function RussianEraTradeReviewPage() {
           <h2>Как не смешать два разных продукта</h2>
           <ol>
             <li><strong>Выберите модель:</strong> в двухэтапной схеме цели 8% и 5%, а в одноэтапной заявлена цель 11%; дневные и общие лимиты тоже различаются.</li>
-            <li><strong>Проверьте платформу:</strong> Bybit, MT5 и TradeLocker требуют разных аккаунтов, сетей и ограничений; не переносите правило одного терминала на другой.</li>
+            <li><strong>Проверьте платформу:</strong> счёт через стороннюю криптобиржу, MT5 и TradeLocker требуют разных аккаунтов, сетей и ограничений; не переносите правило одного терминала на другой.</li>
             <li><strong>Пройдите проверку:</strong> после цели оператор описывает ручную проверку команды по рискам и KYC; до этого не считайте funded-аккаунт окончательно подтверждённым.</li>
             <li><strong>Подайте выплату корректно:</strong> выберите 15- или 30-дневный период, закройте позиции и ордера, подтвердите 3 прибыльных дня и сохраните дату заявки.</li>
           </ol>

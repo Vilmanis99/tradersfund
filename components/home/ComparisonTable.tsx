@@ -43,7 +43,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const partnerPill = (row: ComparisonRow) => row.goHref
     ? <span className="partner-pill" data-partner-label={row.firmSlug} title={t.partnerTitle}>{t.partner}</span>
     : null
-  const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} hint={false} /> : null
+  const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} basisDate={row.russiaBasisDate} hint={false} /> : null
 
   return (
     <div className="th-compare" data-home-comparison={locale}>

@@ -6,7 +6,9 @@ import { ArrowRight, Briefcase } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaBasisDateFor } from '@/lib/russiaAvailability'
+import { ruAccessDate } from '@/lib/ruAccessLabel'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
@@ -56,7 +58,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы доступны трейдерам из России?',
-    a: `На ${UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
+    a: `На ${ruNotListedDates(['bright-funded', 'crypto-fund-trader'])} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader). На ${UPDATED} FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
   },
   {
     q: 'Сколько зарабатывает проп-трейдер?',
@@ -363,7 +365,7 @@ export default function RussianPropTradingPage() {
       <section className="ru-section" id="nachat">
         <div className="ru-shell">
           <h2>С чего начать</h2>
-          <p className="ru-muted">Универсальные фирмы — BrightFunded и Crypto Fund Trader открыты и для России, и для большинства других стран. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
+          <p className="ru-muted">Универсальные фирмы — BrightFunded и Crypto Fund Trader: они работают с большинством стран{russiaBasisDateFor('bright-funded') ? `, а Россию в своих списках ограничений не называют (на ${ruAccessDate(russiaBasisDateFor('bright-funded')!)})` : ' и открыты для России'}. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
           <RuFundedNextAccessCaveat />
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-trejding-start-1" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>

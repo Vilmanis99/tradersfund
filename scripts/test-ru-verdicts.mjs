@@ -5,7 +5,7 @@ import { join } from 'node:path'
 const dir = 'content/data/ru-verdicts'
 const firms = JSON.parse(readFileSync('content/data/firms.json', 'utf8')).map(f => f.name)
 const STATUSES = ['available', 'restricted', 'unclear', 'unverified']
-const LABELS = ['Открыта для РФ', 'Недоступно для РФ', 'Доступ для РФ', 'РФ: неясно', 'РФ: не проверено']
+const LABELS = ['Открыта для РФ', 'открыта для РФ', 'нет в списке ограничений', 'Недоступно для РФ', 'Доступ для РФ', 'РФ: неясно', 'РФ: не проверено']
 const FORBIDDEN = [/\bМир\b/, /карт[аыу]? «?Мир/i, /bybit/i, /российск\w+ карт/i]
 const failures = []
 const fail = (file, msg) => failures.push(`${file}: ${msg}`)
