@@ -13,6 +13,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/fundednext-review', ru: '/ru/obzor-fundednext' },
   { en: '/blog/funding-pips-review', ru: '/ru/obzor-fundingpips' },
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
+  { en: '/blog/the5ers-review', ru: '/ru/obzor-the5ers' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
@@ -60,6 +61,16 @@ export const RUSSIAN_PLANNED_ROUTES = [
  */
 export const RU_CLOSED_FIRMS_PATH = '/ru/zakrytye-prop-firmy'
 export const CLOSED_FIRMS_ROUTE_PAIR = { en: '/prop-firms/closed', ru: RU_CLOSED_FIRMS_PATH } as const
+
+/**
+ * The EN<->RU closed-firms pair for `pathname` when the list is `published`, otherwise undefined.
+ * Pure (no data imports) so the client HeaderNav can use it with the flag passed in as a prop;
+ * lib/closedFirms.ts closedFirmsRoutePair() applies it to CLOSED_FIRMS_PUBLISHED.
+ */
+export function closedFirmsPairFor(pathname: string, published: boolean): typeof CLOSED_FIRMS_ROUTE_PAIR | undefined {
+  if (!published) return undefined
+  return pathname === CLOSED_FIRMS_ROUTE_PAIR.en || pathname === CLOSED_FIRMS_ROUTE_PAIR.ru ? CLOSED_FIRMS_ROUTE_PAIR : undefined
+}
 /** Editorial date of the RU closed-firms page (sitemap lastmod floor and Article dateModified). */
 export const RU_CLOSED_FIRMS_EDITORIAL_DATE = '2026-10-20'
 
@@ -104,6 +115,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-kascapital': '2026-10-20',
   '/ru/obzor-proplive': '2026-10-20',
   '/ru/obzor-teamtraders': '2026-10-20',
+  '/ru/obzor-the5ers': '2026-10-23',
   '/ru/otzyvy-prop-firm': '2026-10-20',
   '/ru/prop-trejding': '2026-10-20',
   '/ru/promokody-prop-firm': '2026-10-20',

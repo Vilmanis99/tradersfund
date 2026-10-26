@@ -25,6 +25,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import PriceMatrix from '@/components/PriceMatrix'
+import ChallengePath from '@/components/ChallengePath'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
@@ -414,6 +415,7 @@ export default function RussianBrightFundedReviewPage() {
                 ariaLabel="Цены программ BrightFunded — таблицу можно прокрутить"
                 data-russian-bright-price-count={pricedTiers.length}
               />
+              <ChallengePath products={freshProducts} firmName="BrightFunded" firmSlug="bright-funded" locale="ru" />
             </div>
           </div>
         </section>

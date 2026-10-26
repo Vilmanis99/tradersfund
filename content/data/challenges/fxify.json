@@ -718,7 +718,7 @@
       "Leverage: '5:1 BTC, ETH and Sol other 2:1'. Minimum payout $50.",
       "payoutFirstDays left null: no first-payout day count stated beyond the funded 7-trading-day minimum.",
       "Overnight is left null (no separate rule; crypto trades 24/7).",
-      "Site-wide promos on 2026-10-14: ONESTEP35 (35% off 1-phase, new traders) and REWARD25 (25% off, to 31 Oct 2026); not projected.",
+      "Site-wide promos, not projected, not checkout-verified and possibly US-only (https://fxify.com/, US IP): on 2026-10-14 ONESTEP35 (35% off 1-phase, new traders) and REWARD25 (25% off, to 31 Oct 2026). Rechecked 2026-10-23: ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\", so REWARD25 is no longer the live offer. AGHHH35 is not in deals.json.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/fxify-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/fxify-2026-10-20.json"
     ]

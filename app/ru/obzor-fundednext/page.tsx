@@ -27,7 +27,9 @@ import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/obzor-fundednext'
-const TITLE = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
+const TITLE = 'FundedNext проп: отзывы, обзор 2026 — недоступна для РФ'
+// H1 keeps the Cyrillic brand spelling («Фандед Некст», Google RU 150/mo, Ahrefs 19.10.2026) that the search title no longer carries.
+const H1 = 'FundedNext проп (Фандед Некст): отзывы, обзор 2026, правила'
 const DESCRIPTION = 'FundedNext (Funded Next) проп-компания: обзор и отзывы на русском — цены Stellar, просадка, выплаты. Резидентам РФ недоступна, альтернатива — BrightFunded.'
 // Preserve existing sharing copy until its separate update is approved.
 const SOCIAL_DESCRIPTION = 'Отзывы о FundedNext и обзор на русском: 4 модели Stellar, 22 цены, просадка, выплаты, Free Trial и проверка ограничений по стране.'
@@ -243,7 +245,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianDataFreshnessNotice firmSlugs={['fundednext']} />
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestProductCapture ? formatRuDate(latestProductCapture) : 'не подтверждена'}</div>
-          <h1>{TITLE}</h1>
+          <h1>{H1}</h1>
           <p className="ru-lead">
             Модели Stellar различаются числом этапов, просадкой, долей трейдера и условиями первой выплаты.
             Выбирать нужно по ограничивающему правилу, а не по максимальному рекламному проценту.

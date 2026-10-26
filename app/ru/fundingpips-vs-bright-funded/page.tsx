@@ -14,6 +14,7 @@ import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/sch
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
@@ -25,6 +26,11 @@ const CHECKED = '20.10.2026'
 // Prop Firm Tracker, content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (help centre 4th-reward refund vs Terms «ALL PAYMENTS ARE FINAL»).
 // Prop Firm Tracker, /workspace/ru-data/2026-10-20-fundingpips-checkout-rules.md + branch data/daily-check-2026-10-20 (FundingPips reward routes, checkout, EA/copy, Prime).
 const TRACKER_FP = '20.10.2026'
+// FundingPips country-access sources (Prop Firm Tracker recapture 3b133ed): the Help Center Get Started article (updated 24.09.2026)
+// names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and footer, not in the help article.
+const FP_HELP_UPDATED = '24.09.2026'
+const FP_ACCESS_CHECKED = fpAccessEvidence.sourceCapturedAt.split('-').reverse().join('.')
+const FP_TERMS_EFFECTIVE = fpAccessEvidence.termsEffective.split('-').reverse().join('.')
 // Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (BrightFunded checkout and payout cycle).
 const TRACKER_BRIGHT = '19.10.2026'
 // Prop Firm Tracker recapture of FundingPips Reward Methods (article last edited 28.09.2026):
@@ -68,11 +74,11 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Что лучше: FundingPips или BrightFunded?',
-    a: `Единого ответа нет. Сначала страна: у BrightFunded Россия не названа ни в справке, ни в условиях; у FundingPips Россия тоже не названа, но фирма не обслуживает жителей стран из санкционных списков FATF и ЕС/ООН, поэтому доступ для РФ неясен (по данным на ${CHECKED}). Затем выбирайте продукт: число этапов, тип просадки, валюту взноса и цикл выплат.`,
+    a: `Единого ответа нет. Сначала страна: у BrightFunded Россия не названа ни в справке, ни в условиях; у FundingPips Россия тоже не названа, но условия исключают жителей стран из санкционных списков FATF и ЕС/ООН, поэтому доступ для РФ неясен (по данным на ${CHECKED}; условия и справка FundingPips — на ${FP_ACCESS_CHECKED}). Затем выбирайте продукт: число этапов, тип просадки, валюту взноса и цикл выплат.`,
   },
   {
     q: 'Работает ли FundingPips в России?',
-    a: `Не подтверждено. FundingPips прямо не принимает резидентов Ирана, Вьетнама и ОАЭ, а также ссылается на страны из санкционных списков FATF и ЕС/ООН (по данным на ${CHECKED}). Россию фирма не называет, регистрацию с российскими документами мы не проверяли. Прежде чем платить, получите письменный ответ поддержки. VPN и неверные данные не используйте.`,
+    a: `Не подтверждено. Справка FundingPips (обновлена ${FP_HELP_UPDATED}) прямо называет Иран, Вьетнам и ОАЭ, а условия (действуют с ${FP_TERMS_EFFECTIVE}) добавляют страны из санкционных списков FATF и ЕС/ООН (по данным на ${FP_ACCESS_CHECKED}). Россию фирма не называет, регистрацию с российскими документами мы не проверяли. Прежде чем платить, получите письменный ответ поддержки. VPN и неверные данные не используйте.`,
   },
   {
     q: 'Можно ли пройти BrightFunded из России?',
@@ -253,12 +259,12 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     {
       field: 'Доступ для резидентов РФ',
       bf: <>Россия не названа ни в справке, ни в условиях <RuAccessBadge firm="bright-funded" /></>,
-      fp: <>Россия не названа, но есть оговорка о санкционных списках FATF и ЕС/ООН <RuAccessBadge firm="fundingpips" /></>,
+      fp: <>Россия не названа, но в условиях есть оговорка о санкционных списках FATF и ЕС/ООН <RuAccessBadge firm="fundingpips" /></>,
     },
     {
       field: 'Страны в опубликованных ограничениях',
       bf: `справка: ${bfFirm?.countriesRestricted?.join(', ') ?? '—'}; условия (п. 2): те же без Пакистана`,
-      fp: `${fpFirm?.countriesRestricted?.join(', ') ?? '—'} + страны из санкционных списков FATF и ЕС/ООН`,
+      fp: `справка: ${fpFirm?.countriesRestricted?.join(', ') ?? '—'}; условия: страны из санкционных списков FATF и ЕС/ООН, Вьетнам и ОАЭ`,
     },
     { field: 'Основана / юрлицо', bf: corporate(bfFirm, 'Сент-Люсия'), fp: corporate(fpFirm, 'Коморы; адрес в Дубае') },
     { field: 'Платформы', bf: bfFirm?.platforms.join(', ') ?? '—', fp: fpFirm?.platforms.join(', ') ?? '—' },
@@ -314,7 +320,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <strong>Коротко о доступе (по данным на {CHECKED}):</strong>
             <ul>
               <li>BrightFunded <RuAccessBadge firm="bright-funded" /> — России нет ни в справке (6 стран, включая Пакистан), ни в условиях (5 стран, без Пакистана).</li>
-              <li>FundingPips <RuAccessBadge firm="fundingpips" /> — закрыта для Ирана, Вьетнама и ОАЭ; Россия не названа, но фирма ссылается на страны из санкционных списков FATF и ЕС/ООН.</li>
+              <li>FundingPips <RuAccessBadge firm="fundingpips" /> — справка называет Иран, Вьетнам и ОАЭ, а условия добавляют страны из санкционных списков FATF и ЕС/ООН (по данным на {FP_ACCESS_CHECKED}); Россия не названа ни там, ни там.</li>
               <li>Живёте в Дубае или другом эмирате — FundingPips вам недоступна, хотя сама зарегистрирована в Дубае.</li>
             </ul>
           </div>
@@ -353,7 +359,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           <h2>Короткий вердикт: для резидента РФ выбор решает доступ</h2>
           <p>
             <strong>Живёте в России.</strong> Начните с BrightFunded: Россия не названа ни в одном из её списков. У FundingPips
-            прямого запрета нет, но есть оговорка о санкционных списках, а значит, ясности тоже нет. Платить за челлендж, не
+            прямого запрета нет, но в условиях есть оговорка о санкционных списках, а значит, ясности тоже нет. Платить за челлендж, не
             получив от поддержки письменного «да», мы бы не стали.
           </p>
           <p>
@@ -383,7 +389,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <table className="ru-table" data-russian-access-table="ru-by-kz-ae">
               <thead><tr><th>Страна</th><th>BrightFunded</th><th>FundingPips</th></tr></thead>
               <tbody>
-                <tr><td><strong>Россия</strong></td><td>не названа</td><td>не названа; оговорка о санкционных списках FATF и ЕС/ООН — неясно</td></tr>
+                <tr><td><strong>Россия</strong></td><td>не названа</td><td>не названа; оговорка в условиях о санкционных списках FATF и ЕС/ООН — неясно</td></tr>
                 <tr><td><strong>Беларусь</strong></td><td>не названа</td><td>не названа; та же оговорка — неясно</td></tr>
                 <tr><td><strong>Казахстан</strong></td><td>не назван</td><td>не назван</td></tr>
                 <tr><td><strong>ОАЭ</strong></td><td>не названы; MT5 для жителей ОАЭ недоступен</td><td>закрыта для резидентов</td></tr>
@@ -398,7 +404,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             Россию не называет ни один.
           </div>
           <p className="ru-source-line">
-            Источники: <a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">справка BrightFunded</a>; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips Get Started</a>.
+            Источники: <a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">справка BrightFunded</a>; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">справка FundingPips Get Started</a> (обновлена {FP_HELP_UPDATED}; Иран, Вьетнам, ОАЭ); <a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">условия FundingPips</a> (с {FP_TERMS_EFFECTIVE}; санкционные списки FATF и ЕС/ООН) — оба источника проверены {FP_ACCESS_CHECKED}.
             Подробнее — в разделе <Link href="/ru/obzor-fundingpips#dostup-iz-rossii">доступ к FundingPips из России</Link> обзора и на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">для русскоязычных трейдеров</Link>.
           </p>
         </div>
@@ -677,7 +683,8 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {CHECKED}.</li>
             <li><a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">BrightFunded: условия, п. 2</a> — {CHECKED}.</li>
             <li><a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: какие криптопары можно торговать (справка, статья от 25.05.2026)</a> — {BF_CRYPTO_PAIRS_CHECKED}.</li>
-            <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (страны, оплата, HELLO)</a> — {CHECKED}.</li>
+            <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (справка обновлена {FP_HELP_UPDATED}): страны — Иран, Вьетнам, ОАЭ</a> — проверено {FP_ACCESS_CHECKED}; оплата и HELLO — {CHECKED}.</li>
+            <li><a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">FundingPips: условия (действуют с {FP_TERMS_EFFECTIVE}) — оговорка о санкционных списках FATF и ЕС/ООН</a> — проверено {FP_ACCESS_CHECKED}.</li>
             <li><a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods (способы, минимумы и сроки выплат, страны Pay to Card и банковского перевода)</a> — Prop Firm Tracker, {FP_REWARD_METHODS}.</li>
             <li><a href={SRC.fpStandard} target="_blank" rel="noopener noreferrer">FundingPips: 2 Step Standard (циклы выплат)</a>, <a href={SRC.fpConduct} target="_blank" rel="noopener noreferrer">правила советников и копирования</a> и <a href={SRC.fpPrime} target="_blank" rel="noopener noreferrer">счёт Prime</a> — Prop Firm Tracker, {TRACKER_FP}.</li>
           </ul>

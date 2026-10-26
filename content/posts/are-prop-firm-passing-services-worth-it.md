@@ -40,7 +40,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Education is not the same as account management. A coach can explain position sizing while the trader retains control; a managed service needs credentials and executes on the trader’s behalf. The <a href="/blog/what-is-copy-trading">copy-trading guide</a> separately explains self-mirroring, third-party signals, and trade-copier mechanics. The source-checked <a href="/blog/traders-connect-trade-copier">Traders Connect review</a> also shows why a dedicated IP or changed order label cannot grant permission under a firm’s contract.</p>
+<p>Education is not the same as account management. A coach can explain position sizing while the trader retains control; a managed service needs credentials and executes on the trader’s behalf. The <a href="/blog/what-is-copy-trading">copy-trading guide</a> separately explains self-mirroring, third-party signals, and trade-copier mechanics. The source-checked <a href="/blog/traders-connect-trade-copier">Traders Connect review</a> also shows why a dedicated IP or changed order label cannot grant permission under a firm’s contract. For signals from outside traders, the <a href="/blog/zulutrade-review">ZuluTrade review</a> documents the orphan-trade risk: a copy can stay open in the follower’s account after the Leader has closed, which matters when a firm’s rules govern that account.</p>
 
 <h2>Why passing the evaluation is not the final outcome</h2>
 

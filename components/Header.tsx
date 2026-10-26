@@ -3,6 +3,7 @@ import { getAllChallenges, getAllFirms } from '@/lib/firms'
 import HeaderBrand from './HeaderBrand'
 import HeaderNav from './HeaderNav'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { CLOSED_FIRMS_PUBLISHED } from '@/lib/closedFirms'
 
 // Re-export so existing call-sites that did `import { navLinks } from
 // '@/components/Header'` still work. New code should import from
@@ -29,7 +30,7 @@ export default function Header() {
       <div className="site-header__inner">
         <HeaderBrand />
 
-        <HeaderNav dataStatus={dataStatus} />
+        <HeaderNav dataStatus={dataStatus} closedFirmsPublished={CLOSED_FIRMS_PUBLISHED} />
       </div>
       <div className="site-header__aurora-line" aria-hidden="true" />
     </header>

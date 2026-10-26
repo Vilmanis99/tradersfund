@@ -417,7 +417,8 @@
     "sourceCapturedAt": "2026-10-19",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Funded drawdown after a withdrawal (Maven FAQ \"How Does Drawdown Work After a Withdrawal?\", https://maventrading.com/faqs, rechecked 2026-10-23; changed from the 2026-10-22 wording that kept the 8% trailing rule after a withdrawal): \"Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance.\" Maven's example: \"If you have a $10,000 account that has grown to $10,800, you decide to withdraw $600, your new drawdown is $200.\" fundedDrawdownType stays \"trailing\" because that is the rule until the first withdrawal."
     ]
   },
   {

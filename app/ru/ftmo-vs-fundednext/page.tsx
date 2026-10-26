@@ -17,7 +17,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 
 const PATH = '/ru/ftmo-vs-fundednext'
-const TITLE = 'FTMO или FundedNext: что выбрать трейдеру из России в 2026'
+const TITLE = 'FTMO или FundedNext: сравнение 2026 — обе закрыты для РФ'
 const DESCRIPTION = 'FTMO или FundedNext: 2-Step и 1-Step, взносы в EUR и USD, просадка, сплит и выплаты. Обе фирмы закрыты для резидентов РФ — сравнение для других стран.'
 
 // Official pages re-read by the RU Writer on this date (country lists, payment and withdrawal methods and fees, news rule,

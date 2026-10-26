@@ -2817,6 +2817,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-fundednext/', 'russian_review'],
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
+    ['/ru/obzor-the5ers', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
@@ -11245,13 +11246,15 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
+    ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
     ['/ru/fundednext-mt5', path.join(ROOT, 'app/ru/fundednext-mt5/page.tsx')],
     ['/ru/fundednext-stellar-instant', path.join(ROOT, 'app/ru/fundednext-stellar-instant/page.tsx')],
     ['/ru/kak-rabotayut-chellendzhi-prop-firm', path.join(ROOT, 'app/ru/kak-rabotayut-chellendzhi-prop-firm/page.tsx')],
-    ['/ru/rossiyskie-prop-kompanii', path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii/page.tsx')],
+    // /ru/rossiyskie-prop-kompanii was merged into /ru/dlya-russkoyazychnykh-treyderov#rossiyskie
+    // (RU Week 1) and 301s there; it is deliberately not a route source. The merge is pinned below.
   ])
 
   for (const [route, file] of russianRouteFiles) {
@@ -11325,8 +11328,8 @@ function checkRussianAcquisitionPilot() {
   const closedFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8'))
   const closedFirmsRuJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.ru.json'), 'utf8'))
   const closedFirmsPublished = closedFirmsJson.published === true
-  // The RU closed-firms page is flag-gated (same flag as /prop-firms/closed), not an acquisition-pilot route.
-  const expectedIndexNowPaths = [...russianRouteFiles.keys(), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
+  // The audit's route map is a subset of the live RU routes (pages added since RU Week 1 are not in it), so it is
+  // not the IndexNow expectation. IndexNow is checked against the filesystem and next.config.ts instead (below).
   {
     const ruClosedFile = path.join(ROOT, `app${RU_CLOSED_FIRMS_PATH}/page.tsx`)
     const ruClosedSource = fs.existsSync(ruClosedFile) ? fs.readFileSync(ruClosedFile, 'utf8') : ''
@@ -11351,15 +11354,40 @@ function checkRussianAcquisitionPilot() {
       rows.push(`closed-firms.ru.json slugs [${ruSlugs}] must match closed-firms.json [${enSlugs}] (section ids/anchors are shared)`)
     }
     if (CLOSED_FIRMS_ROUTE_PAIR.ru !== RU_CLOSED_FIRMS_PATH) rows.push('closed-firms route pair must use RU_CLOSED_FIRMS_PATH')
-    // Inlinks and the footer link must be gated by the same flag.
-    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/Footer.tsx']) {
+    // Inlinks and the footer link must be gated by the same flag. The client Footer gets the link as the
+    // ruClosedFirmsLink prop, resolved on the server by ruClosedFirmsHref() in components/SiteDocument.tsx
+    // (it must not import lib/closedFirms itself: that bundles closed-firms.json into a client chunk).
+    for (const file of ['app/ru/page.tsx', 'app/ru/otzyvy-prop-firm/page.tsx', 'app/ru/vyplaty-prop-firm/page.tsx', 'app/ru/chto-takoe-prop-firma/page.tsx', 'components/SiteDocument.tsx', 'components/Footer.tsx']) {
       const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
-      if (!source.includes('ruClosedFirmsHref()')) rows.push(`${file}: RU closed-firms link must go through ruClosedFirmsHref()`)
+      const via = file === 'components/Footer.tsx' ? 'ruClosedFirmsLink' : 'ruClosedFirmsHref()'
+      if (!source.includes(via)) rows.push(`${file}: RU closed-firms link must go through ${via}`)
       if (source.includes(`'${RU_CLOSED_FIRMS_PATH}'`)) rows.push(`${file}: hard-coded ${RU_CLOSED_FIRMS_PATH} bypasses the publish flag`)
     }
   }
-  if (JSON.stringify(indexNowPaths) !== JSON.stringify(expectedIndexNowPaths)) {
-    rows.push('Russian IndexNow inventory disagrees with the route source inventory')
+  {
+    // Stricter than a pinned list, so new RU pages cannot make it stale:
+    //  (a) every announced path is a real page (or the flag-gated closed-firms page);
+    //  (b) no announced path is a redirect source (IndexNow must announce the 301 target, not the old URL);
+    //  (c) every route in the audit's route map is announced, and nothing is announced twice.
+    const nextConfigSource = fs.readFileSync(NEXT_CONFIG_FILE, 'utf8')
+    const redirectSources = new Set([...nextConfigSource.matchAll(/source:\s*'([^':*(]+)'/g)].map(match => match[1]))
+    const announceable = route => route === RU_CLOSED_FIRMS_PATH
+      ? closedFirmsPublished
+      : fs.existsSync(path.join(ROOT, 'app', route, 'page.tsx'))
+    for (const route of indexNowPaths) {
+      if (!announceable(route)) rows.push(`Russian IndexNow inventory announces ${route}, which has no page source${route === RU_CLOSED_FIRMS_PATH ? ' while closed firms are unpublished' : ''}`)
+      if (redirectSources.has(route)) rows.push(`Russian IndexNow inventory announces ${route}, which next.config.ts redirects`)
+    }
+    for (const route of russianRouteFiles.keys()) {
+      if (!indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory is missing ${route}`)
+    }
+    if (new Set(indexNowPaths).size !== indexNowPaths.length) rows.push('Russian IndexNow inventory lists a path twice')
+    if (closedFirmsPublished && !indexNowPaths.includes(RU_CLOSED_FIRMS_PATH)) rows.push(`Russian IndexNow inventory is missing ${RU_CLOSED_FIRMS_PATH} while closed firms are published`)
+    // The merged local-company route must stay a 301 into the Russia hub section.
+    if (!nextConfigSource.includes("{ source: '/ru/rossiyskie-prop-kompanii', destination: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie', statusCode: 301 }")) {
+      rows.push('/ru/rossiyskie-prop-kompanii must 301 to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (merged into the Russia hub)')
+    }
+    if (fs.existsSync(path.join(ROOT, 'app/ru/rossiyskie-prop-kompanii'))) rows.push('app/ru/rossiyskie-prop-kompanii must not exist: the route is redirected to the Russia hub')
   }
   if (!/^[a-zA-Z0-9-]{8,128}$/.test(INDEXNOW_KEY)) {
     rows.push('IndexNow ownership key format is invalid')
@@ -11437,7 +11465,7 @@ function checkRussianAcquisitionPilot() {
       'С чего начать',
       '/ru/fundednext-vs-bright-funded',
       '/ru/dlya-russkoyazychnykh-treyderov',
-      '/ru/rossiyskie-prop-kompanii',
+      '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie',
     ]) {
       if (!russianHomeSource.includes(readerMarker)) {
         rows.push(`/ru: reader decision path is missing ${readerMarker}`)
@@ -11463,7 +11491,7 @@ function checkRussianAcquisitionPilot() {
             || !freshnessNotice.includes('!isChallengeFresh({ sourceCapturedAt: item.capturedAt })')) {
             rows.push('Expired Russian market evidence must render a recapture-required notice')
           }
-          for (const route of ['/ru/rossiyskie-prop-kompanii', '/ru/prop-firmy-bez-kyc', '/ru/vyplaty-prop-firm']) {
+          for (const route of ['/ru/prop-firmy-bez-kyc', '/ru/vyplaty-prop-firm']) {
             const sourceFile = russianRouteFiles.get(route)
             const source = sourceFile && fs.existsSync(sourceFile) ? fs.readFileSync(sourceFile, 'utf8') : ''
             if (!source.includes('<RussianEvidenceFreshnessNotice') || !source.includes('capturedAt: marketEvidence.capturedAt')) {
@@ -12263,7 +12291,6 @@ function checkRussianAcquisitionPilot() {
     "'/ru/obzor-kascapital'",
     "'/ru/obzor-teamtraders'",
     "'/ru/otzyvy-prop-firm'",
-    "'/ru/rossiyskie-prop-kompanii'",
     "'x-default': pair.en",
   ]
   if (fs.existsSync(localizedRoutesFile)) {
@@ -12574,38 +12601,30 @@ function checkRussianAcquisitionPilot() {
     if (!propDefinitionPage.includes(token)) rows.push(`Russian prop-definition funnel is missing ${token}`)
   }
 
-  const localFirmPage = fs.existsSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'))
-    ? fs.readFileSync(russianRouteFiles.get('/ru/rossiyskie-prop-kompanii'), 'utf8')
-    : ''
+  // The former /ru/rossiyskie-prop-kompanii page was merged into the Russia hub's #rossiyskie section.
+  // Pin the merged section where it now lives (these replace the old whole-page pins).
+  const rossiyskieHubFile = russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov')
+  const rossiyskieHubPage = fs.existsSync(rossiyskieHubFile) ? fs.readFileSync(rossiyskieHubFile, 'utf8') : ''
   for (const token of [
-    '6 российских проп-компаний: модели и выплаты по официальным источникам',
-    'data-russian-local-firms="verification-only"',
-    'data-russian-affiliate-opportunity="unactivated"',
-    'data-russian-local-global-funnel="partner-routes"',
-    'data-russian-affiliate-disclosure="local-research-primary-partners"',
-    "campaign: 'ru-local-research-fundednext'",
-    "campaign: 'ru-local-research-bright-funded'",
-    'href="/ru/fundednext-vs-bright-funded"',
-    'Сравнить FundedNext и BrightFunded',
-    'Это не топ и не совет зарегистрироваться.',
-    'многоуровневая Ambassador-схема нам не нужна',
-    'href="/ru/dlya-russkoyazychnykh-treyderov"',
-    'href="/ru/obzor-proplive"',
-    'href="/ru/obzor-teamtraders"',
-    'А-Лаб Групп',
-    'TeamTraders',
-    'Trade System',
+    '<section className="ru-section" id="rossiyskie">',
+    'data-merged-from="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
+    '<h2>Российские проп-компании: шесть проверяемых примеров</h2>',
+    'Это не рейтинг и не совет регистрироваться',
+    "{ name: 'Era Trade', href: '/ru/obzor-eratrade' }",
+    "{ name: 'PropLive', href: '/ru/obzor-proplive' }",
+    "{ name: 'KasCapital', href: '/ru/obzor-kascapital' }",
+    "{ name: 'TeamTraders', href: '/ru/obzor-teamtraders' }",
+    "{ name: 'А-Лаб', href: null }",
+    "{ name: 'Trade System', href: null }",
+    '{localFirms.map(firm => (',
+    'Партнёрские условия:',
   ]) {
-    if (!localFirmPage.includes(token)) rows.push(`local-company verification page is missing ${token}`)
+    if (!rossiyskieHubPage.includes(token)) rows.push(`Russia hub #rossiyskie section (merged local-company list) is missing ${token}`)
   }
-  // Local-company research may hand readers to a separately labelled global
-  // partner section. Keep the old guard for any unlabelled/unsponsored CTA.
-  const approvedLocalGlobalHandoff =
-    localFirmPage.includes('data-russian-local-global-funnel="partner-routes"') &&
-    (localFirmPage.includes('from=ru-local-research-') || localFirmPage.includes("campaign: 'ru-local-research-")) &&
-    localFirmPage.includes('rel="sponsored nofollow noopener"')
-  if (localFirmPage.includes('/go/') && !approvedLocalGlobalHandoff) {
-    rows.push('local-company verification page contains an unapproved affiliate CTA')
+  {
+    // Local operators are researched, not sold: the merged section must not carry any sign-up CTA.
+    const mergedSection = rossiyskieHubPage.match(/<section className="ru-section" id="rossiyskie">[\s\S]*?<\/section>/)?.[0] ?? ''
+    if (/\/go\/|RuGoLink|sponsored/.test(mergedSection)) rows.push('Russia hub #rossiyskie section must not carry affiliate or sign-up CTAs (local operators are verification-only)')
   }
 
   const russianRankingPage = fs.existsSync(russianRouteFiles.get('/ru/luchshie-prop-firmy'))
@@ -12637,7 +12656,7 @@ function checkRussianAcquisitionPilot() {
     'id="top-5"',
     'rel="sponsored nofollow noopener"',
     'Доступность платформы уточняйте для выбранной программы и страны.',
-    'href="/ru/rossiyskie-prop-kompanii"',
+    'href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
     'href="/ru/prop-firmy-bez-chelendzha"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/otzyvy-prop-firm"',
@@ -12788,7 +12807,6 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/prop-firmy-bez-kyc"',
     'href="/ru/vyplaty-prop-firm"',
     'href="/ru/fundednext-vs-bright-funded"',
-    'href="/ru/rossiyskie-prop-kompanii"',
     'getRussianDiasporaCountryRows()',
     'dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt)',
     'Число доступных строк зависит от свежести источников.',
@@ -13269,7 +13287,6 @@ function checkRussianAcquisitionPilot() {
     rows.push('Russian TeamTraders review must not link to unavailable offer or legacy documentation')
   }
   for (const [route, source, staleCampaign] of [
-    ['/ru/rossiyskie-prop-kompanii', localFirmPage, 'ru-local-research-fundingpips'],
     ['/ru/obzor-proplive', russianPropLivePage, 'ru-proplive-global-fundingpips'],
     ['/ru/obzor-eratrade', russianEraTradePage, 'ru-eratrade-global-fundingpips'],
     ['/ru/obzor-kascapital', russianKasCapitalPage, 'ru-kascapital-global-fundingpips'],
@@ -13479,7 +13496,7 @@ function checkRussianAcquisitionPilot() {
     "label: 'Гайды'",
     "label: 'Местные компании'",
     "href: '/ru/luchshie-prop-firmy'",
-    "href: '/ru/rossiyskie-prop-kompanii'",
+    "href: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie'",
     "href: '/ru/luchshie-kripto-prop-firmy'",
     "href: '/ru/dlya-russkoyazychnykh-treyderov'",
     "href: '/ru/fundednext-vs-bright-funded'",
@@ -13520,7 +13537,6 @@ function checkRussianAcquisitionPilot() {
     '/ru/promokody-prop-firm',
     '/ru/vyplaty-prop-firm',
     '/ru/prop-firmy-bez-kyc',
-    '/ru/rossiyskie-prop-kompanii',
     '/ru/chto-takoe-prop-firma',
     '/ru/obzor-fundednext',
     '/ru/obzor-bright-funded',
@@ -13529,6 +13545,9 @@ function checkRussianAcquisitionPilot() {
   ]) {
     if (!footer.includes(`href: '${route}'`)) rows.push(`Russian footer is missing ${route}`)
   }
+  // The merged route is a redirect: navigation must link its live target, never the redirecting URL.
+  if (headerNav.includes("'/ru/rossiyskie-prop-kompanii'")) rows.push('Russian header navigation links the redirecting /ru/rossiyskie-prop-kompanii')
+  if (footer.includes("'/ru/rossiyskie-prop-kompanii'")) rows.push('Russian footer links the redirecting /ru/rossiyskie-prop-kompanii')
   const footerRussianRoutes = new Set(
     [...footer.matchAll(/href: '(\/ru(?:\/[^']*)?)'/g)].map(match => match[1]),
   )
@@ -13560,12 +13579,11 @@ function checkRussianAcquisitionPilot() {
     'predates editorial update ${editorialLastModified}',
     'Article dateModified ${articleSchema.dateModified || \'missing\'} disagrees with sitemap',
     'visible updated date ${visibleUpdatedDate} disagrees with Article dateModified',
-    'Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected 24',
+    'Russian acquisition pilot rendered ${russianArticleSchemaCount} Article schemas, expected ${expectedRussianArticleSchemaCount}',
     'Russian sitemap routes disagree with the ${russianPaths.length}-page acquisition pilot',
     'rendered Russian language boundary or schema is missing',
     'Content-Language must be ru',
     'controlled affiliate CTA is missing or mislabelled',
-    'unapproved local-firm affiliate action rendered',
     'function affiliateDestinationKey(input)',
     'const russianAffiliateRedirectFixtures = [',
     'Russian affiliate attribution failed',

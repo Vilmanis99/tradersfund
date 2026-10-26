@@ -58,6 +58,11 @@ function proMinDaysFacts() {
 // Trace 2026-10-20: Trustpilot, rule cards, rules table and the recheck note read from data (firms.json, challenges/fundingpips.json)
 // instead of hardcoded copy. Trustpilot is hidden when trustpilotCapturedAt is missing or older than 30 days.
 const ruDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
+// Country-access sources (Prop Firm Tracker recapture 3b133ed, evidence date in russian-fundingpips-access-evidence.json):
+// the Help Center Get Started article (updated 24.09.2026) names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and site footer, not in the help article.
+const HELP_UPDATED = '24.09.2026'
+const ACCESS_CHECKED = ruDate(accessEvidence.sourceCapturedAt)
+const TERMS_EFFECTIVE = ruDate(accessEvidence.termsEffective)
 const pct = (value?: number | null) => value == null ? '—' : `${value}%`
 function fundingPipsTrustpilot() {
   const firm = getAllFirms().find(item => item.name === 'FundingPips')
@@ -124,11 +129,12 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="dostup-iz-rossii">
         <div className="ru-shell ru-content" data-russian-fundingpips-russia="unclear">
           <h2>Доступна ли FundingPips из России</h2>
-          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {RU_CHECKED}</span></p>
+          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {ACCESS_CHECKED}</span></p>
           <p>
-            Россия в списках FundingPips прямо не названа. Но <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">условия</a> исключают
-            резидентов стран из санкционных списков FATF и ЕС/ООН, а также Вьетнама и ОАЭ; <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">справка</a>{' '}
-            от {accessEvidence.sourceCapturedAt} добавляет Иран. Попадает ли под эту формулировку резидент России — из текста не следует. Кроме того, выплата через
+            Россия в списках FundingPips прямо не названа ни в условиях, ни в справке. <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">Условия</a>{' '}
+            (действуют с {TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН, а также Вьетнама и ОАЭ;{' '}
+            <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">справка Get Started</a> (обновлена {HELP_UPDATED}) называет только Иран, Вьетнам и ОАЭ.
+            Обе страницы перечитаны {ACCESS_CHECKED}. Попадает ли под эту формулировку резидент России — из текста не следует. Кроме того, выплата через
             Rise требует KYC, а Pay to Card и банковский перевод работают только в перечисленных регионах.
           </p>
           <p>
@@ -204,7 +210,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             <h3>Что это значит для русскоязычной диаспоры</h3>
             <p>Pay to Card и банковский перевод прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех вариантов выплаты, но требует проверки криптовалюты или Rise внутри верифицированного профиля. {accessCurrent ? 'Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.' : 'Ограничение для резидентов ОАЭ отмечено в прежней проверке; актуальные условия нужно подтвердить заново.'}</p>
             <p>Все счета FundingPips номинированы в USD, даже если на странице оплаты выбрана другая валюта. Если вы платите в EUR, GBP, KZT или ILS, учитывайте банковскую конвертацию. Для выплаты отдельно проверьте комиссии сети и платёжного сервиса.</p>
-            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · проверено {REWARD_METHODS_CAPTURED_AT}; <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {accessEvidence.sourceCapturedAt}.</p>
+            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · проверено {REWARD_METHODS_CAPTURED_AT}; <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {ACCESS_CHECKED}.</p>
           </div>
         </div>
       </section>
@@ -261,7 +267,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
             <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
             <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {HOLDING_CHECKED}).</li>
-            <li>ОАЭ и Вьетнам прямо ограничены, дополнительно действуют списки FATF и санкционные списки ЕС/ООН; VPN или чужой адрес не создают допустимый профиль.</li>
+            <li>Вьетнам и ОАЭ ограничены и в условиях, и в справке (справка называет ещё Иран); условия дополнительно исключают страны из санкционных списков FATF и ЕС/ООН. VPN или чужой адрес не создают допустимый профиль.</li>
             <li>Возврат комиссии указан только для 2 Step Standard после четвёртой выплаты — так пишет Help Centre, но Условия (Terms) этого не подтверждают; 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero возврат не получают.</li>
           </ul>
         </div>
@@ -331,7 +337,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             </article>
             <article className="ru-card">
               <h3>{accessCurrent ? 'Не подходит резиденту ОАЭ' : 'ОАЭ: перепроверьте доступ'}</h3>
-              <p>{accessCurrent ? 'Официальный справочный центр FundingPips прямо включает ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.' : `Последняя проверка справки от ${accessEvidence.sourceCapturedAt} включала резидентов ОАЭ в ограничения. Источник устарел; подтвердите текущую политику до регистрации и оплаты.`}</p>
+              <p>{accessCurrent ? 'Справочный центр и условия FundingPips прямо включают ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.' : `Последняя проверка страновых источников (${ACCESS_CHECKED}) включала резидентов ОАЭ в ограничения. Источник устарел; подтвердите текущую политику до регистрации и оплаты.`}</p>
             </article>
           </div>
           <p className="ru-muted">Standard сохраняет {standard?.minTradingDays ?? '—'} дня на фазу, а Zero не имеет оценки, но сочетает плавающий лимит {zero?.maxLossPct ?? '—'}%, правило стабильности {zero?.consistencyRulePct ?? '—'}% и семь прибыльных дней. Это пять разных контрактов, а не единый «челлендж FundingPips».</p>
@@ -375,9 +381,9 @@ export default function RussianFundingPipsReviewPage() {
       englishReviewHref="/blog/funding-pips-review"
       lead={<>FundingPips публикует пять разных наборов правил и несколько циклов выплат. После обновлений 15 и 26 августа 2026 года сравнивать нужно не только цену и рекламный процент, но также минимальные дни, правило стабильности, Striking System и дату создания аккаунта.</>}
       countryNote={<span data-russian-fundingpips-country-source-status={accessCurrent ? 'dated' : 'recapture-required'}>
-        <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a>, проверена {accessEvidence.sourceCapturedAt}:{' '}
+        <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a> (обновлена {HELP_UPDATED}) и <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">условия</a> (действуют с {TERMS_EFFECTIVE}), проверены {ACCESS_CHECKED}:{' '}
         {accessCurrent
-          ? 'фирма не принимает резидентов ОАЭ и Вьетнама и применяет ограничения по санкционным спискам. Русскоязычному трейдеру в Дубае этот маршрут не подходит; для любой другой страны отдельно подтвердите резидентство, KYC, оплату и вывод.'
+          ? 'справка называет Иран, Вьетнам и ОАЭ, а условия исключают резидентов стран из санкционных списков FATF и ЕС/ООН, Вьетнама и ОАЭ. Россия не названа ни там, ни там. Русскоязычному трейдеру в Дубае этот маршрут не подходит; для любой другой страны отдельно подтвердите резидентство, KYC, оплату и вывод.'
           : 'ранее справка ограничивала резидентов ОАЭ и Вьетнама. Страновые условия требуют повторной проверки; этот старый список не подтверждает доступ сегодня. До оплаты уточните резидентство, KYC и выплату напрямую у фирмы.'}
       </span>}
       verdict={verdictCards}
@@ -433,14 +439,14 @@ export default function RussianFundingPipsReviewPage() {
         {
           q: 'Можно ли использовать FundingPips из ОАЭ?',
           a: accessCurrent
-            ? `Нет для резидента ОАЭ по справке FundingPips, проверенной ${accessEvidence.sourceCapturedAt}: ОАЭ включены в ограничения. Русскоязычному трейдеру в Дубае следует выбрать другую фирму; не обходите ограничение через VPN или неверный адрес.`
-            : `По справке от ${accessEvidence.sourceCapturedAt} резиденты ОАЭ были ограничены, но страновой источник требует повторной проверки. Старое наблюдение не подтверждает доступ сегодня; уточните условия у FundingPips и не используйте VPN или неверный адрес.`,
+            ? `Нет для резидента ОАЭ по справке и условиям FundingPips, проверенным ${ACCESS_CHECKED}: ОАЭ включены в ограничения. Русскоязычному трейдеру в Дубае следует выбрать другую фирму; не обходите ограничение через VPN или неверный адрес.`
+            : `По страновым источникам, проверенным ${ACCESS_CHECKED}, резиденты ОАЭ были ограничены, но страновой источник требует повторной проверки. Старое наблюдение не подтверждает доступ сегодня; уточните условия у FundingPips и не используйте VPN или неверный адрес.`,
         },
         {
           q: 'Можно ли зарегистрироваться из России?',
           a: accessCurrent
-            ? `Доступ нужно подтвердить для конкретного трейдера. По справке FundingPips от ${accessEvidence.sourceCapturedAt} ограничены резиденты Ирана, Вьетнама, ОАЭ и юрисдикций из применимых списков FATF и санкционных списков ЕС/ООН. Это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
-            : `Страновая справка FundingPips от ${accessEvidence.sourceCapturedAt} требует повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
+            ? `Доступ нужно подтвердить для конкретного трейдера. Справка FundingPips (обновлена ${HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ; условия (действуют с ${TERMS_EFFECTIVE}) исключают также резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены ${ACCESS_CHECKED}). Россия в них не названа, и это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
+            : `Страновые источники FundingPips (справка и условия), проверенные ${ACCESS_CHECKED}, требуют повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
         },
         {
           q: 'Есть ли рабочий промокод FundingPips?',

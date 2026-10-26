@@ -25,7 +25,7 @@ import TradingToolReviewCluster, {
 import { getTradingToolReviewLinks } from '@/lib/tradingToolReviews'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
-import { extractArticleFaq, firstVerdictSentence, prepareArticleContent } from '@/lib/articleContent'
+import { extractArticleFaq, firstVerdictSentence, prepareArticleContent, splitArticleDiagrams } from '@/lib/articleContent'
 import { getAuthorByName } from '@/lib/authors'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import ReviewProductSummary, { PRODUCT_SUMMARY_REVIEWS } from '@/components/ReviewProductSummary'
@@ -33,6 +33,8 @@ import { promotableDiscount } from '@/lib/discountDisplay'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReviewVerdictBox from '@/components/ReviewVerdictBox'
 import PriceMatrix from '@/components/PriceMatrix'
+import ChallengePath from '@/components/ChallengePath'
+import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
 import { comparisonHref } from '@/lib/relatedComparisons'
 import { getReviewCopy } from '@/lib/verdictCopy'
 import { rankFirmAlternatives } from '@/lib/firmAlternatives'
@@ -99,6 +101,8 @@ export default async function BlogPostPage({ params }: Props) {
     outboundRelationships,
     slug,
   )
+
+  const articleSegments = splitArticleDiagrams(contentWithIds)
 
   const allPosts = getAllPostData()
   const toolReviewLinks = getTradingToolReviewLinks(slug, allPosts)
@@ -230,6 +234,15 @@ export default async function BlogPostPage({ params }: Props) {
                     ariaLabel={`${matchedFirm.name} entry fees by account size (scrollable table)`}
                   />
                 )}
+                {freshFirmProducts.length > 0 && (
+                  <ChallengePath
+                    products={freshFirmProducts}
+                    firmName={matchedFirm.name}
+                    firmSlug={firmSlug(matchedFirm.name)}
+                    locale="en"
+                    id="path-to-funded"
+                  />
+                )}
                 <details className="p1-collapsible" id="captured-terms">
                   <summary>Captured product terms and sources</summary>
                   {hasProductSummary
@@ -260,8 +273,18 @@ export default async function BlogPostPage({ params }: Props) {
               </>
             )}
 
-            <div className="prose post-prose"
-              dangerouslySetInnerHTML={{ __html: contentWithIds }} />
+            {articleSegments.some(segment => segment.kind === 'diagram') ? (
+              // Only articles with an authored diagram slot are segmented; every other
+              // article keeps its single unwrapped prose container.
+              <div className="prose post-prose">
+                {articleSegments.map((segment, index) => segment.kind === 'diagram'
+                  ? <DrawdownTypesDiagram key={`diagram-${index}`} locale="en" />
+                  : <div key={`html-${index}`} className="post-prose__segment" dangerouslySetInnerHTML={{ __html: segment.html }} />)}
+              </div>
+            ) : (
+              <div className="prose post-prose"
+                dangerouslySetInnerHTML={{ __html: contentWithIds }} />
+            )}
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
             {matchedFirm && <IndiaMatchupLinks firmName={matchedFirm.name} />}

@@ -68,7 +68,19 @@ try {
   // Literal 2026-09-29 / 2026-10-01 clocks fell behind the 2026-10-14..19
   // recaptures; future-dated captures fail closed by design (asserted below), so
   // fresh data rendered as expired. Pure date-validation unit checks keep literals.
-  const RU_PAGE_CLOCK = `${getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug)).map(product => product.sourceCapturedAt).sort().at(-1)}T12:00:00Z`
+  // The page clock is the newest capture the Russian surfaces can read: the four
+  // challenge-comparison firms plus every top-level capture date in the
+  // content/data/russian-*.json evidence files (the FundingPips country-access check
+  // is one). Derived from data, so a recapture needs no edit here; a capture newer than
+  // the clock would be future-dated and correctly fail closed.
+  const RU_PAGE_CAPTURE_DATES = [
+    ...getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug)).map(product => product.sourceCapturedAt),
+    ...fs.readdirSync(path.join(root, 'content/data')).filter(name => /^russian-.*\.json$/.test(name)).flatMap(name => {
+      const evidence = JSON.parse(fs.readFileSync(path.join(root, 'content/data', name), 'utf8'))
+      return [evidence.sourceCapturedAt, evidence.capturedAt].filter(value => /^\d{4}-\d{2}-\d{2}$/.test(value ?? ''))
+    }),
+  ]
+  const RU_PAGE_CLOCK = `${RU_PAGE_CAPTURE_DATES.sort().at(-1)}T12:00:00Z`
   const ruDaysBefore = days => new RealDate(new RealDate(RU_PAGE_CLOCK).getTime() - days * 86_400_000).toISOString().slice(0, 10)
   assert.equal(isChallengeFresh({ sourceCapturedAt: '2026-09-31' }, new RealDate('2026-10-01T12:00:00Z')), false, 'an impossible challenge capture cannot normalize into a fresh day')
   assert.equal(isChallengeFresh({ sourceCapturedAt: '2026-02-29' }, new RealDate('2026-03-01T12:00:00Z')), false, 'an invalid leap day cannot qualify as recent source evidence')
@@ -526,9 +538,11 @@ try {
     const rankingReference = renderToStaticMarkup(React.createElement(RussianRanking))
     assert(rankingReference.includes('data-russian-ranking-faq-status="recheck-required"'), 'ranking visibly qualifies old KYC and payout evidence')
     assert(!cryptoSchemas(rankingReference).some(item => item['@type'] === 'FAQPage'), 'stale partner evidence cannot publish current ranking FAQ schema')
-    marketEvidence.capturedAt = '2026-10-01'
-    rankingKyc.sourceCapturedAt = '2026-10-01'
-    rankingPayout.sourceCapturedAt = '2026-10-01'
+    // 'Current' fixture dates are relative to the page clock (30-day freshness window), never literals.
+    const rankingFreshDate = ruDaysBefore(1)
+    marketEvidence.capturedAt = rankingFreshDate
+    rankingKyc.sourceCapturedAt = rankingFreshDate
+    rankingPayout.sourceCapturedAt = rankingFreshDate
     const refreshedRanking = renderToStaticMarkup(React.createElement(RussianRanking))
     assert(refreshedRanking.includes('data-russian-ranking-faq-status="source-checked"'), 'FAQ status recovers when every required source is current')
     assert(cryptoSchemas(refreshedRanking).some(item => item['@type'] === 'FAQPage'), 'complete scoped source fixture restores ranking FAQ schema')
@@ -1283,7 +1297,8 @@ try {
   const broadMarketCapture = marketEvidence.capturedAt
   try {
     clock = RU_PAGE_CLOCK
-    marketEvidence.capturedAt = '2026-10-20'
+    const localFaqFreshDate = ruDaysBefore(1)
+    marketEvidence.capturedAt = localFaqFreshDate
     for (const slug of localFaqSlugs) {
       const Page = require(path.join(root, 'app/ru', slug, 'page.tsx')).default
       const html = renderToStaticMarkup(React.createElement(Page))
@@ -1300,8 +1315,8 @@ try {
         const EraPage = require(path.join(root, 'app/ru/obzor-eratrade/page.tsx')).default
         const html = renderToStaticMarkup(React.createElement(EraPage))
         assert(html.includes('data-russian-local-faq-status="recapture-required"') && !cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), 'each scoped Era source independently expires its FAQ schema')
-        assert(html.includes('Как минимум один источник требует повторной проверки') && !html.includes('Общий снимок рынка от 2026-10-20 требует повторной проверки'), 'scoped expiry cannot mislabel a fresh broad snapshot')
-        source.sourceCapturedAt = '2026-10-20'
+        assert(html.includes('Как минимум один источник требует повторной проверки') && !html.includes(`Общий снимок рынка от ${localFaqFreshDate} требует повторной проверки`), 'scoped expiry cannot mislabel a fresh broad snapshot')
+        source.sourceCapturedAt = localFaqFreshDate
       }
     } finally {
       eraSignal.sourceCapturedAt = eraSignalDate

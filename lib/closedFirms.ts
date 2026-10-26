@@ -1,6 +1,6 @@
 import data from '../content/data/closed-firms.json'
 import ruData from '../content/data/closed-firms.ru.json'
-import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH } from './localizedRoutes'
+import { CLOSED_FIRMS_ROUTE_PAIR, RU_CLOSED_FIRMS_PATH, closedFirmsPairFor } from './localizedRoutes'
 
 export type ClosedFirmSection = 'closed' | 'offline'
 export type SourceType = 'primary' | 'secondary'
@@ -141,8 +141,7 @@ export function ruClosedFirmsHref(): string | null {
 
 /** The EN<->RU pair while published; undefined otherwise or for any other path. */
 export function closedFirmsRoutePair(pathname: string): typeof CLOSED_FIRMS_ROUTE_PAIR | undefined {
-  if (!CLOSED_FIRMS_PUBLISHED) return undefined
-  return pathname === CLOSED_FIRMS_ROUTE_PAIR.en || pathname === CLOSED_FIRMS_ROUTE_PAIR.ru ? CLOSED_FIRMS_ROUTE_PAIR : undefined
+  return closedFirmsPairFor(pathname, CLOSED_FIRMS_PUBLISHED)
 }
 
 /** hreflang alternates for metadata, only while published. */
