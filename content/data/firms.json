@@ -497,10 +497,11 @@
     "corporateCapturedAt": "2026-10-14",
     "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
     "affiliateStatus": "active",
-    "discountCode": "STRTN",
-    "discountCodeSourceUrl": "https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer",
-    "discountCodeCapturedAt": "2026-10-19",
-    "discountCodeNote": "Global: Stellar 2-Step 6K, 1-Step 6K, Lite 5K and Instant 2K only (up to 33% off; up to 20% in the USA); max 5 uses; no end date.",
+    "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+    "discountCodeCapturedAt": "2026-10-25",
+    "discountCodeNote": "No public FundedNext CFD code is live as of 2026-10-25: the help-centre article for the Stellar October Returns offer (code STRTN), which said \"This offer has no set closing date and may end at any time\", returned 404 on 2026-10-25 (it was live on 2026-10-24), STRTN is no longer attached to any plan on https://fundednext.com/ and https://fundednext.com/cfds/stellar-2-step now shows the $6K Stellar 2-Step at its list price \"$59.99\" with no code (checked from a US IP and from a non-US fetch on 2026-10-25).",
+    "previousDiscountCode": "STRTN",
+    "previousDiscountCodeStatus": "ended: the official offer article https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer returned 404 on 2026-10-25 (live 2026-10-24) and STRTN no longer appears on fundednext.com plan cards (Stellar 2-Step $6K back to $59.99); FundedNext had said the offer \"may end at any time\"",
     "rules": {
       "capturedAt": "2026-10-15",
       "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
@@ -2050,8 +2051,8 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "regionalDiscountPct": 30,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-10-23",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-22 and again 2026-10-23 (codes page still \"Last updated 19 October 2026\"); not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
+    "discountCodeCapturedAt": "2026-10-26",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-22, 2026-10-23 and again 2026-10-26 (codes page still \"Last updated 19 October 2026\" and still lists MYALPHA as Active on 2026-10-26, its last valid day); not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
   },
   {
     "name": "BrightFunded",
@@ -2117,6 +2118,11 @@
     "trustpilotCapturedAt": "2026-10-20",
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "available",
+    "russiaBasis": "not-on-restricted-list",
+    "russiaSourceUrl": "https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions",
+    "russiaSourceQuote": "You are eligible to buy a challenge unless you reside in one of the following restricted countries: Cuba, Iran, North Korea, Pakistan, Syria, or Vietnam.",
+    "russiaSourceCapturedAt": "2026-10-23",
+    "russiaSourceNote": "FAQ Q5 updated 2026-04-24; Help Centre list (updated 2026-09-15) and Terms list differ (Pakistan); Terms reserve the right to add jurisdictions. Russia not named. Affiliate programme excludes Russia (help article 9662025, updated 2026-03-17). No Russia-specific positive evidence.",
     "legalEntity": "BrightFunded Ltd",
     "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
     "country": "Saint Lucia",
@@ -3661,6 +3667,7 @@
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "available",
+    "russiaBasis": "not-on-restricted-list",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -3937,8 +3944,8 @@
     "countriesRestrictedSourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
     "russiaSourceUrl": "https://cryptofundtrader.com/faq/",
     "russiaSourceQuote": "Which countries are allowed to join Crypto Fund Trader? Country availability may depend on the trading platform selected. Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States. Bybit: Crypto Fund Trader does not apply additional country restrictions for traders who choose to use Bybit.",
-    "russiaSourceCapturedAt": "2026-10-21",
-    "russiaSourceNote": "FAQ (schema dateModified 2026-03-30) rechecked 2026-10-21 from a US IP. 'Russia' does not occur on the FAQ, the homepage or the Terms and Conditions; russiaStatus 'available' rests on the platform statement above, not on a Russia-specific confirmation. Bybit users must also follow Bybit's own jurisdiction rules. Checkout and KYC from Russia not tested.",
+    "russiaSourceCapturedAt": "2026-10-23",
+    "russiaSourceNote": "FAQ (schema dateModified 2026-03-30) rechecked 2026-10-21 from a US IP; FAQ and Terms 7.3 re-read 2026-10-23 (Prop Firm Tracker, research/russia-evidence-brightfunded-cft-2026-10-23.md), wording unchanged. 'Russia' does not occur on the FAQ, the homepage or the Terms and Conditions; russiaStatus 'available' rests on the platform statement above, not on a Russia-specific confirmation. Bybit users must also follow Bybit's own jurisdiction rules. Checkout and KYC from Russia not tested.",
     "legalEntity": "SWISS RLCRATES AG",
     "headquarters": "Zug, Switzerland",
     "country": "Switzerland",
@@ -3969,7 +3976,7 @@
     "reviewUrl": "/blog/topstep-review",
     "officialUrl": "https://www.topstep.com/",
     "profitSplitPct": 90,
-    "payoutFrequency": "on-demand",
+    "payoutFrequency": "after-qualifying-days",
     "payoutMethods": [
       "ACH",
       "Bank wire"
@@ -4102,13 +4109,45 @@
         ]
       },
       "payoutFrequency": {
-        "value": "on-demand",
-        "summary": "on-demand",
+        "value": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
+        "summary": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
         "byProduct": {
-          "trading-combine-standard-path": "on-demand",
-          "trading-combine-no-activation-fee-path": "on-demand"
+          "trading-combine-standard-path": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account",
+          "trading-combine-no-activation-fee-path": "After 5 winning days of $150+ net P&L (XFA Standard path) or 3 trading days within the 40% consistency target (XFA Consistency path); daily after 30 winning days in the Live Funded Account"
         },
         "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Express Funded Account Standard To request a Payout, you must meet both requirements: 5 winning days of $150+ Net P&L. Days don't need to be consecutive.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Express Funded Account Consistency To request a Payout, you must meet both requirements: 3 trading days with at least 1 trade per day. Stay at or below the 40% consistency target.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "After you request a Payout, your winning day count restarts. You'll need 5 new winning days before you're eligible to request your next Payout.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+            "quote": "Once you've earned $150+ Net P&L on 30 non-consecutive days in your Live Funded Account, you unlock daily Payouts",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
             "quote": "CME market hours",
@@ -4238,7 +4277,7 @@
         ]
       },
       "lossLimitUnit": "usd",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
     }
   },
   {
@@ -5102,12 +5141,11 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
-    "regionalDiscountCode": "BREAK15",
-    "discountCodeRegion": "us-only-unconfirmed",
-    "regionalDiscountPct": 15,
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-10-22",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-22; not checkout-verified and may be US-only, so not shown as a universal code. Homepage pop-up: \"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\" Not valid on Direct Funding per that wording."
+    "discountCodeCapturedAt": "2026-10-26",
+    "discountCodeNote": "No public City Traders Imperium code is live as of 2026-10-26: the homepage pop-up code BREAK15 (\"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\") has passed its stated end date, and the pop-up script on https://citytradersimperium.com/ sets its expiry at 2026-10-25 23:59 UTC and removes the pop-up after it. It was only ever seen from a US IP and never checkout-verified.",
+    "previousDiscountCode": "BREAK15",
+    "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified"
   },
   {
     "name": "Take Profit Trader",
@@ -5152,7 +5190,131 @@
     "overnightAllowed": false,
     "weekendAllowed": false,
     "copyTradingAllowed": "restricted",
-    "countriesRestricted": [],
+    "countriesRestricted": [
+      "Afghanistan",
+      "Albania",
+      "Algeria",
+      "Angola",
+      "Barbados",
+      "Belarus",
+      "Belize",
+      "Benin",
+      "Bosnia and Herzegovina",
+      "Botswana",
+      "Bulgaria",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroon",
+      "Cape Verde",
+      "Chad",
+      "Christmas Island",
+      "Cocos (Keeling) Islands",
+      "Comoros",
+      "Congo",
+      "Cook Islands",
+      "Croatia",
+      "Cuba",
+      "Democratic Republic of Congo",
+      "Djibouti",
+      "Dominica",
+      "East Timor ( Timor-Leste )",
+      "Equatorial Guinea",
+      "Eritrea",
+      "Ethiopia",
+      "Falkland Islands (Malvinas)",
+      "Fiji",
+      "Gabon",
+      "Gambia",
+      "Ghana",
+      "Guinea",
+      "Guinea-Bissau",
+      "Guyana",
+      "Haiti",
+      "Heard and Mc Donald Islands",
+      "Iran",
+      "Iraq",
+      "Ivory Coast",
+      "Jamaica",
+      "Jordan",
+      "Kazakhstan",
+      "Kenya",
+      "Kiribati",
+      "Kosovo",
+      "Lao People's Democratic Republic",
+      "Lebanon",
+      "Lesotho",
+      "Liberia",
+      "Libya",
+      "Malawi",
+      "Mali",
+      "Malta",
+      "Mauritania",
+      "Mauritius",
+      "Mayotte",
+      "Micronesia",
+      "Monaco",
+      "Mongolia",
+      "Montenegro",
+      "Montserrat",
+      "Morocco",
+      "Mozambique",
+      "Myanmar",
+      "Namibia",
+      "Nauru",
+      "Nepal",
+      "Nicaragua",
+      "Niger",
+      "Nigeria",
+      "North Korea",
+      "North Macedonia",
+      "Northern Mariana Islands",
+      "Pakistan",
+      "Palestinian Territories",
+      "Panama",
+      "Papua New Guinea",
+      "Peru",
+      "Philippines",
+      "Qatar",
+      "Romania",
+      "Russia",
+      "Rwanda",
+      "Saint Vincent and the Grenadines",
+      "Sao Tome and Principe",
+      "Senegal",
+      "Serbia",
+      "Seychelles",
+      "Sierra Leone",
+      "Slovenia",
+      "Somalia",
+      "South Africa",
+      "South Sudan",
+      "South Georgia South Sandwich Islands",
+      "Sri Lanka",
+      "Sudan",
+      "Suriname",
+      "Svalbarn and Jan Mayen Islands",
+      "Syria",
+      "Tajikistan",
+      "Tanzania",
+      "Togo",
+      "Trinidad and Tobago",
+      "Tunisia",
+      "Turkey",
+      "Turkmenistan",
+      "Tuvalu",
+      "Uganda",
+      "Ukraine",
+      "Venezuela",
+      "Vietnam",
+      "Western Sahara",
+      "Yemen",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "countriesRestrictedSourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/22447557656477-Restricted-Countries",
+    "countriesRestrictedQuote": "Access to our platform - including trading accounts and market data - is strictly prohibited from restricted countries.",
+    "countriesRestrictedCapturedAt": "2026-10-26",
+    "countriesRestrictedNote": "Official TPT help-centre article \"Restricted Countries\" (Zendesk API updated_at 2026-08-25T18:46:53Z, edited_at 2026-04-20T17:44:52Z), read 2026-10-26 from a US IP. The 119 names are the article's A-C / D-K / L-P / Q-T / U-Z table, copied with the article's spelling (incl. \"Svalbarn and Jan Mayen Islands\"). The article also says: \"This list is subject to change based on regulatory or brokerage updates.\" Evidence: research evidence/verdict-gaps-2026-10-26/tpt/article.json.",
     "ratings": {
       "conditions": null,
       "support": null,
@@ -5165,7 +5327,11 @@
     "lastUpdated": "2026-10-19",
     "trustpilotUrl": "https://www.trustpilot.com/review/takeprofittrader.com",
     "trustpilotCapturedAt": "2026-10-15",
-    "russiaStatus": "unverified",
+    "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/22447557656477-Restricted-Countries",
+    "russiaSourceQuote": "Access to our platform - including trading accounts and market data - is strictly prohibited from restricted countries.",
+    "russiaSourceCapturedAt": "2026-10-26",
+    "russiaSourceNote": "\"Russia\" is listed in the Q - T: column of the restricted-countries table in the same article (read 2026-10-26, Zendesk updated_at 2026-08-25T18:46:53Z). The article also prohibits access through \"VPNs, remote connections, or shared networks that may route activity through a restricted country.\" Previous value was unverified.",
     "affiliateStatus": "none",
     "regionalDiscountCode": "NOFEE40",
     "discountCodeRegion": "us-only-unconfirmed",
@@ -5299,30 +5465,35 @@
         ]
       },
       "dailyLossUsd": {
-        "value": {
-          "25000": 500,
-          "50000": 1100,
-          "75000": 1600,
-          "100000": 2200,
-          "150000": 3300
-        },
-        "summary": "$500 (25K) / $1,100 (50K) / $1,600 (75K) / $2,200 (100K) / $3,300 (150K)",
+        "value": null,
+        "summary": "None (removed; the homepage lists no daily loss rule on Test, PRO or PRO+)",
+        "note": "Re-read 2026-10-26. The homepage journey table reads 'Daily loss rule' None for Test, PRO and PRO+, and the 50K/75K/100K/150K account cards show the old figures struck through with a 'Removed' badge ($1100/$1600/$2200/$3300). The raw subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, read 2026-10-26) still returns dailyLossLimit 500/1100/1600/2200/3300 for the $25k-$150k tiers; the cards render those same API numbers marked 'Removed', so they are the removed limit, not a live rule. The API also lists '$ 25k PRO+D' to '$ 150k PRO+D' tiers with dailyLossLimit 500/1000/1250/1500/2000; that variant is not described on the homepage and is not a product in our data. The $25K card and the help centre (Cloudflare-blocked) were not read.",
         "byProduct": {
-          "the-test": {
-            "25000": 500,
-            "50000": 1100,
-            "75000": 1600,
-            "100000": 2200,
-            "150000": 3300
-          }
+          "the-test": null
         },
         "evidence": [
           {
-            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
-            "quote": "{\"name\":\"$ 25k\",...,\"dailyLossLimit\":500,...},{\"name\":\"$ 50k\",...,\"dailyLossLimit\":1100},{\"name\":\"$ 75k\",...,\"dailyLossLimit\":1600},{\"name\":\"$ 100k\",...,\"dailyLossLimit\":2200},{\"name\":\"$ 150k\",...,\"dailyLossLimit\":3300}",
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Your Take Profit Funded Journey Description Test PRO PRO + ... Daily loss rule None None None",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 50K $170 / month Profit Target $3000 Max Position Size 6 Contracts / 60 Micros Daily Loss Limit $1100 Removed",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 150K $360 / month Profit Target $9000 Max Position Size 15 Contracts / 150 Micros Daily Loss Limit $3300 Removed",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           }
         ]
@@ -5387,7 +5558,7 @@
         ]
       },
       "lossLimitUnit": "usd",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
     }
   },
   {
@@ -5609,62 +5780,78 @@
       },
       "profitSplitPct": {
         "value": null,
-        "summary": "Product-specific: 50% on Quick Pay - Intraday, Quick Pay - End of Day; 80% on Fast Pass - End of Day",
+        "summary": "Product-specific: Quick Pay 50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live; Fast Pass 80/20",
         "byProduct": {
-          "quick-pay-intraday": 50,
-          "quick-pay-end-of-day": 50,
+          "quick-pay-intraday": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
+          "quick-pay-end-of-day": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
           "fast-pass-end-of-day": 80
         },
         "evidence": [
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
-            "quote": "Below the $4,000 current profit level, payouts are split 50/50.",
+            "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
-            "quote": "Above $4,000, the split improves to 80/20 in your favour",
+            "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "There will be an 80/20 profit split.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
-        "value": "on-demand",
-        "summary": "on-demand",
+        "value": null,
+        "summary": "Product-specific: on demand on Quick Pay - Intraday, Quick Pay - End of Day; after 5 profitable trading days per payout ($100-$250 minimum per day by account size) on Fast Pass - End of Day",
         "byProduct": {
           "quick-pay-intraday": "on-demand",
           "quick-pay-end-of-day": "on-demand",
-          "fast-pass-end-of-day": "on-demand"
+          "fast-pass-end-of-day": "After 5 profitable trading days per payout ($100-$250 minimum per day by account size)"
         },
         "evidence": [
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "traders must meet the following conditions before requesting a payout and for subsequent payout requests.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "$25K Account: 5 days with at least $100 profit per day $50K Account: 5 days with at least $150 profit per day $100K Account: 5 days with at least $200 profit per day $150K Account: 5 days with at least $250 profit per day",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
             "productSlug": null
           }
         ]
@@ -5806,7 +5993,7 @@
         ]
       },
       "lossLimitUnit": "usd",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
     }
   },
   {

@@ -35,6 +35,7 @@ import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import CompareRulesLinks from '@/components/CompareRulesLinks'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -338,6 +339,7 @@ export default async function ComparePage({ params }: Props) {
             </section>
           ) : null}
 
+          <CompareRulesLinks firmA={firmA} firmB={firmB} />
           <RelatedComparisons firmA={firmA} firmB={firmB} allFirms={allFirms} />
         </div>
       </section>

@@ -35,7 +35,7 @@ export const revalidate = 3600
 const RU_HOME_BASICS = [
   { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
   { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
-  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
+  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы не ограничивают РФ и как платят.' },
   { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
@@ -130,7 +130,7 @@ export default function RussianHomePage() {
         id="ru-home-heading"
         eyebrow={<><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</>}
         title="Проп-фирмы и проп-компании 2026: сравнение условий"
-        lead="Стоимость участия, допустимый убыток и правила выплат. У каждой цифры есть дата источника, а отметка показывает, открыта ли фирма для резидентов РФ."
+        lead="Стоимость участия, допустимый убыток и правила выплат. У каждой цифры есть дата источника, а отметка показывает статус доступа для резидентов РФ."
         actions={[{ href: '#ru-home-compare', label: 'Сравнить фирмы' }, { href: '/ru/promokody-prop-firm', label: 'Промокоды', variant: 'secondary' }]}
         counters={[
           { value: String(counters.firms), label: 'фирм в базе' },
@@ -164,7 +164,7 @@ export default function RussianHomePage() {
           <div className="th-section__head">
             <div>
               <h2 id="ru-home-compare-heading">Сравнение программ</h2>
-              <p>Счёт $50 000 · самая дешёвая программа фирмы с актуальным источником · сначала фирмы, открытые для РФ. Валюты не пересчитываем.</p>
+              <p>Счёт $50 000 · самая дешёвая программа фирмы с актуальным источником · сначала фирмы, не ограничивающие РФ. Валюты не пересчитываем.</p>
             </div>
             <Link href="/ru/luchshie-prop-firmy" className="th-link">Посмотреть все фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
           </div>
@@ -260,7 +260,7 @@ export default function RussianHomePage() {
           pickerFallbackHref="/ru/luchshie-prop-firmy"
           pickerInitial={pickerInitial}
           firmBadge={slug => <RuAccessBadge firm={slug} />}
-          country={{ lead: 'Из России?', label: 'Кто принимает трейдеров из РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
+          country={{ lead: 'Из России?', label: 'Какие фирмы не ограничивают РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
           extra={{
             label: 'Ещё по теме:',
             data: { 'data-russian-home-guides': 'selected-three' },

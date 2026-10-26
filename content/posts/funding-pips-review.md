@@ -3,10 +3,10 @@ title: "FundingPips Review 2026: 5 Models and 27 Verified Fees"
 seoTitle: "FundingPips Review 2026: Fees, Models & Rules"
 slug: "funding-pips-review"
 date: "2025-05-08 18:09:27"
-modified: "2026-10-22"
+modified: "2026-10-25"
 author: "Tara Mohseni"
-excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, the 2 unresolved $2.5K tiers, and India caveats."
-seoDescription: "FundingPips review comparing 27 verified fees across 5 models, true cost, drawdown, payout cycles, two unresolved $2.5K tiers, and India access."
+excerpt: "FundingPips has 27 first-party fees across 5 models. Compare true cost, drawdowns, payout cycles, $5K–$200K sizes, and India caveats."
+seoDescription: "FundingPips review comparing 27 verified fees across 5 models, true cost, drawdown, payout cycles, $5K–$200K sizes, and India access."
 categories: ["Prop Firms"]
 tags: ["FundingPips", "Prop Firm"]
 type: "post"
@@ -19,8 +19,8 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>The 2026-09-29 capture contains 5 products and 29 product-size combinations, not a single 2-Step challenge.</li>
-    <li>FundingPips publishes 27 USD fees in its first-party comparison table; only the disputed $2.5K Pro and Standard rows remain unpriced.</li>
+    <li>The current challenge file (prices rechecked 2026-10-20) contains 5 products and 27 product-size combinations, not a single 2-Step challenge.</li>
+    <li>FundingPips publishes a USD fee for all 27 combinations in its first-party comparison table. Sizes run from $5K to $200K; we removed the old $2.5K Pro and Standard rows on 2026-10-23 because no FundingPips page lists that size.</li>
     <li>Static maximum-loss limits range from 6% to 12% on the 4 evaluation products; FundingPips Zero instead uses a 5% trailing limit.</li>
     <li>The standard cycles pay 80% bi-weekly on 1 Step Flex, 80% weekly on 2 Step Pro, and 95% bi-weekly on Zero. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard offer 100% only on demand, with added conditions; the old monthly 100% and on-demand 90% routes are gone.</li>
     <li>New 2 Step Flex accounts require 1 minimum day on the 80% route. 2 Step Pro has 0 minimum trading days for new and reset accounts; accounts bought before 26 Aug 2026 keep 1 day.</li>
@@ -33,9 +33,9 @@ type: "post"
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
   <caption class="hidden-caption">FundingPips at a glance</caption>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured products</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 products across 29 account-size rows</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Published sizes</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K to $200K verified; 2 disputed $2.5K rows retained as unknown</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Verified fees</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">27 of 29 rows</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured products</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5 products across 27 account-size rows</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Published sizes</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K to $200K (no $2.5K size on FundingPips’ own pages, checked 2026-10-23)</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Verified fees</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">27 of 27 rows</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 static products; 1 trailing product</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Captured platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT5, cTrader, Match-Trader</td></tr>
     <tr><td style="padding: 8px 12px;"><strong>India evidence</strong></td><td style="padding: 8px 12px;">Captured, but end-to-end checkout and payout access remain unproven</td></tr>
@@ -44,7 +44,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The 2026-09-29 challenge file verifies 27 USD fees across 29 retained rows. “—” appears only on the disputed $2.5K Pro and Standard tiers and means unresolved, not free; confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
+<p>The challenge file verifies a USD fee for all 27 rows (prices rechecked 2026-10-20). Confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">FundingPips products and account sizes</caption>
@@ -60,14 +60,12 @@ type: "post"
     <tr><td>2 Step Flex</td><td>2</td><td>$25K</td><td>$159</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
     <tr><td>2 Step Flex</td><td>2</td><td>$50K</td><td>$269</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
     <tr><td>2 Step Flex</td><td>2</td><td>$100K</td><td>$555</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$2.5K</td><td>—</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$5K</td><td>$29</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$10K</td><td>$55</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$134</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$224</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$422</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$2.5K</td><td>—</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$5K</td><td>$36</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$10K</td><td>$66</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$25K</td><td>$177</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
@@ -82,7 +80,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Pricing and rules are current as of 2026-09-29 and come from FundingPips-owned Help Center pages. The 27 listed fees do not reuse temporary coupons or competitor data; the 2 unresolved $2.5K rows remain blank because FundingPips’ own pages conflict.</p>
+<p>Prices were rechecked on 2026-10-20 and come from FundingPips-owned Help Center pages. The 27 listed fees do not reuse temporary coupons or competitor data. We used to carry 2 unpriced $2.5K rows (2 Step Pro and 2 Step Standard). On 2026-10-23 FundingPips’ Get Started article said “Sizes from $5,000 up to $200K”, its Compare Account Models price table started at $5K, and its Free Trial article no longer described a $2,500 size, so those rows were removed.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places FundingPips Zero’s 6 priced tiers, 95% split, 5% trailing maximum loss, and 14-day first-payout field beside all other current no-evaluation products.</p>
 
@@ -102,7 +100,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
-<p>The following 17 rows come directly from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> using the 2026-09-29 first-party fees and the shorter 80%, 80%, and 95% stored routes. Break-even profit means gross Master Account profit needed for the trader’s split to recover the fee; the R-multiple compares that amount with the product’s maximum-loss allowance.</p>
+<p>The following 17 rows come directly from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> using the first-party fees rechecked on 2026-10-20 and the shorter 80%, 80%, and 95% stored routes. Break-even profit means gross Master Account profit needed for the trader’s split to recover the fee; the R-multiple compares that amount with the product’s maximum-loss allowance.</p>
 
 <!-- 1 Step Flex — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
@@ -171,7 +169,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Cons</strong></h2>
 
 <ul class="wp-block-list">
-  <li><strong>2 of 29 fee rows remain unresolved</strong>: FundingPips’ current Pro and Standard pages omit $2.5K while an older first-party article still calls it a paid-evaluation size.</li>
+  <li><strong>No entry size below $5K</strong>: FundingPips’ Get Started article says “Sizes from $5,000 up to $200K” (read 2026-10-23), so the cheapest way in is the $29 2 Step Pro $5K.</li>
   <li><strong>Zero’s 5% trailing cap</strong> is materially tighter than the 12% static limits on both Flex products.</li>
   <li><strong>Zero requires 7 profitable days in a rolling 30-day period</strong> plus a 15% consistency score and 3% safety cushion.</li>
   <li><strong>100% on demand is not a free upgrade</strong>: it adds a 35% consistency score, 7 profitable days at 0.5%, and a 1% Striking System trigger.</li>
@@ -187,15 +185,15 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid FundingPips</strong></h2>
 
-<p>A trader who needs a verified $2.5K entry tier should avoid FundingPips because both retained $2.5K rows remain unresolved. An Indian trader who needs a proven local checkout-to-payout route should use our <a href="/best-prop-firms-in-india">India shortlist</a>, which includes only firms that clear those evidence gates.</p>
+<p>A trader who wants an account smaller than $5K should look elsewhere: FundingPips’ own pages list sizes from $5,000 to $200K (checked 2026-10-23). An Indian trader who needs a proven local checkout-to-payout route should use our <a href="/best-prop-firms-in-india">India shortlist</a>, which includes only firms that clear those evidence gates.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How many FundingPips products are current?</strong></h3>
-<p>The 2026-09-29 source file contains 5 products: 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard, and FundingPips Zero. Together they cover 29 retained account-size rows, including 2 unresolved $2.5K rows.</p>
+<p>The current source file (prices rechecked 2026-10-20) contains 5 products: 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard, and FundingPips Zero. Together they cover 27 account-size rows, all priced, from $5K to $200K.</p>
 
 <h3 class="wp-block-heading"><strong>What is the cheapest FundingPips challenge?</strong></h3>
-<p>The cheapest verified fee is $29 for the $5K 2 Step Pro. The $2.5K Pro and Standard rows remain unpriced because FundingPips’ current product pages conflict with an older first-party reference, so $29 is the cheapest verified fee, not a claim about an unresolved tier.</p>
+<p>The cheapest fee is $29 for the $5K 2 Step Pro (rechecked 2026-10-20). FundingPips’ pages list no size below $5K (checked 2026-10-23), so there is no cheaper tier to set against it.</p>
 
 <h3 class="wp-block-heading"><strong>Does FundingPips pay a 100% split?</strong></h3>
 <p>Only on demand, and only with conditions. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard Master Accounts can choose a 100% on-demand route (the old monthly 100% route is gone). It needs a 35% consistency score and 7 profitable days at 0.5%, and puts the account under a 1% Striking System trigger, so 100% is not a universal starting split.</p>

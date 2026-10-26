@@ -45,6 +45,7 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
@@ -98,13 +99,14 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какая фирма удобнее русскоязычному трейдеру за рубежом?',
-    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции (не России) с подходящим кошельком — один из криптомаршрутов FundedNext. Резиденту России подходит только BrightFunded. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
+    a: `Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции (не России) с подходящим кошельком — один из криптомаршрутов FundedNext. Резиденту России из двух остаётся только BrightFunded: России нет в её списке ограничений (на ${ruNotListedDate('bright-funded')}), но это не письменный ответ фирмы. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.`,
   },
 ]
 
 const frequencyLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые 14 дней',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу',
 }

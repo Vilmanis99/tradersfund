@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import Image from 'next/image'
@@ -53,6 +54,7 @@ const drawdownLabels: Record<string, string> = {
 const payoutLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые две недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу при выполнении условий',
 }
@@ -815,6 +817,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianFaq items={pageFaqs} />
         </div>
       </section>
+        <RuFirmRelatedLinks firm="fundednext" path={PATH} />
         <RuRelatedBlock path={PATH} />
       </article>
     </>

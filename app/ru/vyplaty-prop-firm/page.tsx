@@ -33,6 +33,7 @@ import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC'
@@ -119,6 +120,7 @@ const partnerRoutes = [
 const frequencyLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые 2 недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу',
 }
@@ -560,7 +562,7 @@ export default function RussianPayoutsPage() {
             </ol>
             <div className="ru-notice">
               <CheckCircle2 size={16} aria-hidden="true" />{' '}
-              <strong>Если профиль подходит:</strong> откройте русский обзор BrightFunded (резидентам России) или FundedNext (только вне России), сравните конкретный
+              <strong>Если профиль подходит:</strong> откройте русский обзор BrightFunded (России нет в её списке ограничений на {ruNotListedDate('bright-funded')}) или FundedNext (только вне России), сравните конкретный
               продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">

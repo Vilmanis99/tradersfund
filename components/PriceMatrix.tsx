@@ -22,6 +22,7 @@ const COPY = {
     refundYes: 'Fee refunded',
     refundNo: 'No refund',
     refundUnknown: 'Refund not stated',
+    refundConflict: 'Refund: sources conflict, checked',
     refundCellYes: 'refunded',
     refundCellNo: 'no refund',
     checked: 'Checked',
@@ -38,6 +39,7 @@ const COPY = {
     refundYes: 'Взнос возвращается',
     refundNo: 'Без возврата',
     refundUnknown: 'Возврат не указан',
+    refundConflict: 'Возврат: источники расходятся, проверено',
     refundCellYes: 'возврат',
     refundCellNo: 'без возврата',
     checked: 'Проверено',
@@ -119,7 +121,9 @@ export default function PriceMatrix({ products, firmName, firmSlug, locale, aria
               {matrix.columns.map(column => (
                 <th scope="col" key={column.product.productSlug} data-price-matrix-product={column.product.productSlug}>
                   <span className="price-matrix__product">{column.label}</span>
-                  {column.refundUniform && <span className="price-matrix__meta">{refundLabel(column.refundable, locale)}</span>}
+                  {column.refundConflictCheckedAt
+                    ? <span className="price-matrix__meta" data-price-matrix-refund-conflict={column.refundConflictCheckedAt}>{copy.refundConflict} <time dateTime={column.refundConflictCheckedAt}>{formatMatrixDate(column.refundConflictCheckedAt, locale)}</time></span>
+                    : column.refundUniform && <span className="price-matrix__meta">{refundLabel(column.refundable, locale)}</span>}
                   {!singleDate && <span className="price-matrix__meta"><time dateTime={column.capturedAt}>{formatMatrixDate(column.capturedAt, locale)}</time></span>}
                 </th>
               ))}

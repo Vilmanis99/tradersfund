@@ -59,10 +59,20 @@ function proMinDaysFacts() {
 // instead of hardcoded copy. Trustpilot is hidden when trustpilotCapturedAt is missing or older than 30 days.
 const ruDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
 // Country-access sources (Prop Firm Tracker recapture 3b133ed, evidence date in russian-fundingpips-access-evidence.json):
-// the Help Center Get Started article (updated 24.09.2026) names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and site footer, not in the help article.
-const HELP_UPDATED = '24.09.2026'
+// the Help Center Get Started article names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms and site footer, not in the help article.
+// All three dates come from russian-fundingpips-access-evidence.json (sourceUpdatedAt = help article date, termsEffective = Terms date, sourceCapturedAt = re-read date).
+const HELP_UPDATED = ruDate(accessEvidence.sourceUpdatedAt)
 const ACCESS_CHECKED = ruDate(accessEvidence.sourceCapturedAt)
 const TERMS_EFFECTIVE = ruDate(accessEvidence.termsEffective)
+// Tier counts come from the firm's challenge data with the same logic as scripts/challenge-freshness.mjs
+// (tiers = every accountSizes row; priced = priceUsd > 0 or priceEur > 0), restricted to the products this page shows (fresh ones).
+function fundingPipsTierCounts() {
+  const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
+  const tiers = products.flatMap(product => product.accountSizes)
+  const priced = tiers.filter(tier => (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0)).length
+  const sizes = tiers.map(tier => tier.sizeUsd).filter(size => Number.isFinite(size))
+  return { products: products.length, variants: tiers.length, priced, minSizeUsd: sizes.length ? Math.min(...sizes) : null }
+}
 const pct = (value?: number | null) => value == null ? '—' : `${value}%`
 function fundingPipsTrustpilot() {
   const firm = getAllFirms().find(item => item.name === 'FundingPips')
@@ -117,9 +127,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       return economics ? [{ product, tier, economics }] : []
     })
   })
-  const pricedTierCount = products.reduce((count, product) => count + product.accountSizes.filter(tier =>
-    tier.priceUsd != null && tier.priceUsd > 0,
-  ).length, 0)
+  const tierCounts = fundingPipsTierCounts()
   const money = (value: number | null | undefined) => value == null
     ? '—'
     : `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
@@ -140,7 +148,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <p>
             {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
             Фирмы, которые на{' '}
-            {RU_CHECKED} Россию не ограничивают: BrightFunded, Crypto Fund Trader (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
+            {RU_CHECKED} Россию не ограничивают: BrightFunded, <Link href="/ru/obzor-crypto-fund-trader">Crypto Fund Trader</Link> (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
           </p>
         </div>
@@ -257,14 +265,15 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2>Сильные стороны FundingPips</h2>
           <ul>
             <li>{products.length} текущих продуктов дают маршруты 1-Step, 2-Step и без оценочной фазы вместо одного универсального челленджа.</li>
-            <li>{pricedTierCount} из 29 уровней имеют подтверждённую цену; минимальный опубликованный вход — {money(proFiveKPrice)} за 2 Step Pro $5K.</li>
+            <li>{tierCounts.priced === tierCounts.variants
+              ? `У всех ${tierCounts.variants} вариантов размера счёта (${tierCounts.products} программ) есть подтверждённая цена`
+              : `${tierCounts.priced} из ${tierCounts.variants} вариантов размера счёта имеют подтверждённую цену`}; минимальный опубликованный вход — {money(proFiveKPrice)} за 2 Step Pro $5K.</li>
             <li>2 Step Flex расширяет статический максимальный убыток до {twoStepFlex?.maxLossPct ?? '—'}%, а Standard оставляет {standard?.maxLossPct ?? '—'}% — трейдер может выбирать точку нарушения, а не только число фаз.</li>
             <li>Официальный процесс выплаты публикует 4 маршрута: карта, криптовалюта, Rise и банковский перевод, плюс отдельные сроки, минимумы и KYC.</li>
           </ul>
 
           <h2 className="ru-review-secondary-heading">Ограничения и причины отказаться</h2>
           <ul>
-            <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
             <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
             <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {HOLDING_CHECKED}).</li>
             <li>Вьетнам и ОАЭ ограничены и в условиях, и в справке (справка называет ещё Иран); условия дополнительно исключают страны из санкционных списков FATF и ЕС/ООН. VPN или чужой адрес не создают допустимый профиль.</li>
@@ -353,6 +362,7 @@ export default function RussianFundingPipsReviewPage() {
   const proDays = proMinDaysFacts()
   const trustpilot = fundingPipsTrustpilot()
   const rules = fundingPipsRuleFacts()
+  const tierCounts = fundingPipsTierCounts()
   const oneStep = rules.bySlug('1-step-flex')
   const twoStepFlex = rules.bySlug('2-step-flex')
   const pro = rules.bySlug('2-step-pro')
@@ -390,7 +400,7 @@ export default function RussianFundingPipsReviewPage() {
       editorialNotes={[
         'Комиссия за 1 Step Flex не возвращается: Help Centre (Get Started) прямо исключает этот продукт из возврата после четвёртой выплаты.',
         'У 2 Step Standard нет одной доли или единой частоты: еженедельно 60%, раз в 2 недели 80% и 100% по запросу (On Demand) имеют разные сроки и условия.',
-        `Цены и правила сверены с официальными страницами${asOf}. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.`,
+        `Цены и правила сверены с официальными страницами${asOf}.${tierCounts.priced === tierCounts.variants ? ` Цена подтверждена у всех ${tierCounts.variants} вариантов размера счёта${tierCounts.minSizeUsd != null ? `; самый маленький счёт — $${tierCounts.minSizeUsd.toLocaleString('en-US')}` : ''}.` : ` Цена подтверждена у ${tierCounts.priced} из ${tierCounts.variants} вариантов размера счёта; остальные не указаны.`}`,
       ]}
       decisionGuide={{
         title: 'Как читать линейку FundingPips без ловушки одного сплита',
@@ -426,7 +436,7 @@ export default function RussianFundingPipsReviewPage() {
       faqs={[
         {
           q: 'Какой продукт FundingPips самый дешёвый?',
-          a: 'Самая низкая подтверждённая цена — $29 для 2 Step Pro на $5K. Для счетов $2.5K у Pro и Standard цена не указана, потому что официальные страницы противоречат друг другу. Это не бесплатные предложения.',
+          a: 'Самая низкая подтверждённая цена — $29 для 2 Step Pro на $5K. Это комиссия за оценочный счёт, а не бесплатное предложение.',
         },
         {
           q: 'У FundingPips теперь всегда сплит 100%?',
@@ -461,8 +471,10 @@ export default function RussianFundingPipsReviewPage() {
           a: 'Официальная страница перечисляет карту, криптовалюту, Rise и банковский перевод. Криптовалюта использует USDT/USDC ERC-20 с минимумом 1% размера мастер-счёта; Rise и банковский перевод требуют минимум $500. Конкретный банк, карта или провайдер зависят от страны и профиля.',
         },
         {
-          q: 'Почему указано 27 цен, если в данных 29 размеров?',
-          a: 'У пяти программ 29 вариантов размера счёта. Для двух вариантов на $2.5K — у 2 Step Pro и 2 Step Standard — цена не подтверждена из-за конфликта официальных страниц. Поэтому обзор показывает 27 цен, а две оставшиеся помечены как неопределённые.',
+          q: 'Сколько вариантов размера счёта у FundingPips?',
+          a: tierCounts.priced === tierCounts.variants
+            ? `У ${tierCounts.products} программ ${tierCounts.variants} вариантов размера счёта, и у каждого есть подтверждённая цена в USD (${tierCounts.priced} цен)${tierCounts.minSizeUsd != null ? `; самый маленький счёт — $${tierCounts.minSizeUsd.toLocaleString('en-US')}` : ''}.`
+            : `У ${tierCounts.products} программ ${tierCounts.variants} вариантов размера счёта; цена подтверждена у ${tierCounts.priced}, остальные не указаны.`,
         },
         {
           q: 'FundingPips выдаёт реальный брокерский счёт?',

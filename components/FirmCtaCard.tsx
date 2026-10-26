@@ -78,7 +78,7 @@ export default function FirmCtaCard({ firm, productSpecific = false }: { firm: F
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 6, color: 'var(--muted)', fontSize: '0.82rem' }}>
             {productSpecific ? <span>Fees, splits and payout gates differ by product. See the captured terms below.</span> : <>
               {firm.profitSplitPct != null && <span><strong style={{ color: 'var(--text)' }}>{firm.profitSplitPct}%</strong> split</span>}
-              {firm.payoutFrequency && <span style={{ textTransform: 'capitalize' }}>{firm.payoutFrequency.replace('-', ' ')} payouts</span>}
+              {firm.payoutFrequency && <span style={{ textTransform: 'capitalize' }}>{firm.payoutFrequency.replace(/-/g, ' ')} payouts</span>}
               {firm.maxAllocation && <span>Up to {firm.maxAllocation}</span>}
             </>}
           </div>

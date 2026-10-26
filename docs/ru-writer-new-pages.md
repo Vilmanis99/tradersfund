@@ -1,6 +1,6 @@
 # Adding a new Russian page (for the RU Writer)
 
-Reserved routes: `/ru/prop-trejding`, `/ru/funded-account` (see `RUSSIAN_PLANNED_ROUTES` in `lib/localizedRoutes.ts`).
+Reserved routes: none at the moment (`/ru/prop-trejding` and `/ru/funded-account` are published; see `RUSSIAN_PLANNED_ROUTES` in `lib/localizedRoutes.ts`).
 Until a page file exists, a reserved route is **not** in the sitemap and must not be linked.
 
 ## Publish a reserved route

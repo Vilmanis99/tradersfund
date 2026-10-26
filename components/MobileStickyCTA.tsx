@@ -26,6 +26,8 @@ export interface MobileStickyCTAProps {
   /** RU pages: Russian labels and the Russia-access badge (firms.json russiaStatus) on the CTA row. */
   locale?: 'en' | 'ru'
   russiaStatus?: RussiaStatus
+  /** russiaBasis evidence date (YYYY-MM-DD) or null; resolved on the server. */
+  russiaBasisDate?: string | null
   /** RU only: click-tracking placement for /go/, starting with 'ru-' (EN keeps 'mobile-sticky'). */
   from?: string
 }
@@ -38,7 +40,7 @@ export interface MobileStickyCTAProps {
  * no h1 is found, but that shouldn't happen on review pages.
  */
 export default function MobileStickyCTA(props: MobileStickyCTAProps) {
-  const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct, locale = 'en', russiaStatus, from } = props
+  const { name, logo, score, affiliateUrl, affiliateSlug, discountCode, discountPct, locale = 'en', russiaStatus, russiaBasisDate = null, from } = props
   const ru = locale === 'ru'
 
   const [visible, setVisible] = useState(false)
@@ -120,7 +122,7 @@ export default function MobileStickyCTA(props: MobileStickyCTAProps) {
             <span className="mobile-cta-bar-score">
               <Star size={10} aria-hidden="true" /> {ru ? score.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : score}
             </span>
-            {ru && russiaStatus && <RuAccessBadgeView firm={affiliateSlug} status={russiaStatus} hint={false} />}
+            {ru && russiaStatus && <RuAccessBadgeView firm={affiliateSlug} status={russiaStatus} basisDate={russiaBasisDate} hint={false} />}
           </div>
         </div>
 

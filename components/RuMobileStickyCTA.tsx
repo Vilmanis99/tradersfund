@@ -1,7 +1,7 @@
 import MobileStickyCTA from './MobileStickyCTA'
 import { getAllFirms } from '@/lib/firms'
 import { firmSlug } from '@/lib/firmSlug'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { compareRussianRanking } from '@/lib/russianRanking'
 
 /**
@@ -32,6 +32,7 @@ export default function RuMobileStickyCTA({ firms, from }: { firms: string[]; fr
       affiliateUrl={top.firm.affiliateUrl || undefined}
       affiliateSlug={top.slug}
       russiaStatus={russiaStatusFor(top.slug)}
+      russiaBasisDate={russiaBasisDateFor(top.slug)}
       from={from}
     />
   )

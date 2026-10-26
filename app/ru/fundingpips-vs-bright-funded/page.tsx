@@ -18,7 +18,7 @@ import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
-const DESCRIPTION = 'FundingPips или BrightFunded: сравнение 1-Step, 2-Step и Zero, цен в USD и EUR, просадки, сплита и выплат. BrightFunded открыта для РФ, FundingPips — неясно.'
+const DESCRIPTION = 'FundingPips или BrightFunded: сравнение 1-Step, 2-Step и Zero, цен в USD и EUR, просадки, сплита, выплат. BrightFunded РФ не ограничивает, FundingPips — неясно.'
 
 // Official pages re-read by the RU Writer on this date: FundingPips Get Started (countries, checkout, HELLO, refund),
 // BrightFunded help country list + Terms §2, payout methods, news rule, platforms.
@@ -26,9 +26,10 @@ const CHECKED = '20.10.2026'
 // Prop Firm Tracker, content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (help centre 4th-reward refund vs Terms «ALL PAYMENTS ARE FINAL»).
 // Prop Firm Tracker, /workspace/ru-data/2026-10-20-fundingpips-checkout-rules.md + branch data/daily-check-2026-10-20 (FundingPips reward routes, checkout, EA/copy, Prime).
 const TRACKER_FP = '20.10.2026'
-// FundingPips country-access sources (Prop Firm Tracker recapture 3b133ed): the Help Center Get Started article (updated 24.09.2026)
-// names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and footer, not in the help article.
-const FP_HELP_UPDATED = '24.09.2026'
+// FundingPips country-access sources (Prop Firm Tracker recapture 3b133ed): the Help Center Get Started article names Iran, Vietnam and the UAE;
+// the FATF and EU/UN sanctions-list sentence is in the Terms and footer, not in the help article. Dates come from russian-fundingpips-access-evidence.json
+// (sourceUpdatedAt = help article date, termsEffective = Terms date, sourceCapturedAt = re-read date).
+const FP_HELP_UPDATED = fpAccessEvidence.sourceUpdatedAt.split('-').reverse().join('.')
 const FP_ACCESS_CHECKED = fpAccessEvidence.sourceCapturedAt.split('-').reverse().join('.')
 const FP_TERMS_EFFECTIVE = fpAccessEvidence.termsEffective.split('-').reverse().join('.')
 // Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (BrightFunded checkout and payout cycle).
@@ -192,6 +193,7 @@ function payoutLabel(product: Challenge) {
   const frequency = ({
     weekly: 'еженедельно',
     'bi-weekly': 'далее раз в две недели',
+    'after-qualifying-days': 'после квалификационных торговых дней',
     monthly: 'ежемесячно',
     'on-demand': 'по запросу',
   } as Record<string, string>)[product.payoutFrequency ?? ''] ?? 'цикл не указан'
@@ -223,6 +225,11 @@ export default function RussianFundingPipsVsBrightFundedPage() {
   const bfProducts = getChallengesByFirm('bright-funded')
   const fpProducts = getChallengesByFirm('fundingpips')
   const relevantProducts = [...bfProducts, ...fpProducts]
+  // Same logic as scripts/challenge-freshness.mjs (tiers = every accountSizes row; priced = priceUsd > 0 or priceEur > 0), over the fresh FundingPips products shown here.
+  const fpTiers = fpProducts.filter(freshProduct).flatMap(product => product.accountSizes)
+  const fpTierCount = fpTiers.length
+  const fpPricedTiers = fpTiers.filter(tier => (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0)).length
+  const fpMinSize = Math.min(...fpTiers.map(tier => tier.sizeUsd))
   const productRows: ProductRow[] = [
     ...bfProducts.filter(freshProduct).map(product => ({ firm: 'BrightFunded' as const, product, price: priceRange(product) })),
     ...fpProducts.filter(freshProduct).map(product => ({ firm: 'FundingPips' as const, product, price: priceRange(product) })),
@@ -532,7 +539,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               })}</tbody>
             </table>
           </div>
-          <p>Счёт $200K есть у всех продуктов BrightFunded и у FundingPips 2 Step Pro и Zero. Размер $2.5K у Pro и Standard в наших данных без подтверждённой цены, поэтому в таблицу не попал.</p>
+          <p>Счёт $200K есть у всех продуктов BrightFunded и у FundingPips 2 Step Pro и Zero. Самый маленький счёт FundingPips в наших данных — ${fpMinSize.toLocaleString('en-US')}; цена подтверждена у {fpPricedTiers} из {fpTierCount} вариантов размера счёта.</p>
         </div>
       </section>
 

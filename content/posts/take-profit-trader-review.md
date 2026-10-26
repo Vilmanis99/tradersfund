@@ -3,7 +3,7 @@ title: "Take Profit Trader Review 2026: Fees, Drawdown & Payouts"
 seoTitle: "Take Profit Trader Review 2026: Test Fees, Funding & Payouts"
 slug: "take-profit-trader-review"
 date: "2026-06-15"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-26 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Take Profit Trader pairs a 3-day path for new tests with day-one payouts — then attaches an end-of-day trailing drawdown and an 80% starting split. Here's the math and who it beats."
 seoDescription: "Take Profit Trader review 2026: monthly Test fees from $150 (25K) to $360 (150K), 6% target, 3 minimum days, EOD trailing drawdown, 50% consistency, 80% split."
@@ -30,7 +30,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Account sizes</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K, $50K, $75K, $100K, $150K</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Profit split</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on PRO, 90% on PRO+</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Drawdown</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">End-of-day trailing, fixed USD per tier ($1,500–$4,500)</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Daily loss limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Official sources conflict: homepage says none; captured API exposes tier values</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Daily loss limit</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">None (removed). The homepage rule table listed "Daily loss rule" as "None" for the Test, PRO and PRO+ on 2026-10-26</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Min trading days</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3 for new Tests from 17 Aug 2026; 5 for existing/reset Tests</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Payouts</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">On-demand once funded — typically ~1 business day via ACH/Plaid, PayPal, or Wise</td></tr>
     <tr><td style="padding: 8px 12px; font-weight: 700;">Trustpilot</td><td style="padding: 8px 12px;">4.4 / 5 from 10,902 reviews (checked 2026-10-15)</td></tr>
@@ -59,7 +59,7 @@ type: "post"
 
 <p><strong>End-of-day trailing drawdown — fixed in dollars, not percent.</strong> On the $50K Test, your loss line starts at $50,000 − $2,000 = $48,000. It trails your <em>closing</em> balance, updating once at 5 PM ET. Close a day at $51,200 and the line ratchets up to $49,200 — and it stays there. It never trails back down. The "end-of-day" part is the trader-friendly bit: intraday spikes don't move the line, so a green afternoon you give back before the close doesn't cost you. That's softer than Topstep's intraday trailing, where the line tracks your unrealised high tick by tick.</p>
 
-<p><strong>Daily-loss field is unresolved.</strong> Take Profit Trader's current homepage and its 17 August update say there is no daily loss limit (on 2026-10-20 the homepage 50K card read "Daily Loss Limit $1100 Removed"), but the firm's public subscriptions data captured for the same product exposes tier-specific values such as $1,100 on the $50K Test. Because those first-party representations conflict, this review does not publish a daily-loss number; use the end-of-day trailing line as the confirmed boundary and ask support for the account-specific rule before relying on a large intraday loss.</p>
+<p><strong>No daily loss limit.</strong> On 2026-10-26 Take Profit Trader's homepage rule table listed "Daily loss rule" as "None" for the Test, PRO and PRO+, and the $50K card showed "Daily Loss Limit $1100 Removed" ($150K: "$3300 Removed"). The firm's public pricing API still returns the old tier values, but the site marks them removed, so this review treats the Test as having no daily loss limit. The end-of-day trailing drawdown is the evaluation boundary that remains.</p>
 
 <p><strong>Consistency rule (Test only): 50%.</strong> No single day may be worth half or more of your total profit target. On the $50K Test the target is $3,000, so no day can contribute $1,500 or more. Make $1,800 in one session and that day is "too good" — you'll need to keep trading and grow the denominator until that day is under 50% of the total. The rule exists to stop a single lucky print from funding you. The good news: it <strong>disappears completely</strong> on PRO and PRO+. Once funded, there is no consistency rule at all.</p>
 
@@ -95,7 +95,7 @@ type: "post"
 <!-- SECTION 7 — Pros / Cons -->
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
-  <li>The current homepage says no daily loss limit; the conflicting public API field is disclosed instead of being hidden.</li>
+  <li>No daily loss limit on the Test, PRO or PRO+: the homepage marks it removed (checked 2026-10-26).</li>
   <li>End-of-day trailing drawdown on the Test, so intraday give-back doesn't move your loss line — softer than Topstep's intraday trail.</li>
   <li>Same-day payouts once funded: request on day one, no minimum days, no maximum cap.</li>
   <li>Consistency rule (50%) applies only to the Test and is removed entirely on PRO/PRO+.</li>
@@ -116,7 +116,7 @@ type: "post"
 
 <!-- SECTION 8 — Who should pick / avoid -->
 <h2 class="wp-block-heading"><strong>Who should pick Take Profit Trader</strong></h2>
-<p>The intraday futures trader who scalps or day-trades the ES, NQ, or micros and wants a 3-day new-account path without an intraday evaluation trail. If you've been knocked out of a Topstep or Apex evaluation by a daily-loss breach rather than a real drawdown, the current homepage's no-daily-limit claim may appeal — but ask support about the conflicting Test API field first. Start on the $50K Test ($170/month, $2,000 trailing) — it's the sweet spot where the drawdown is workable for index futures and the cost stays low while you prove the process.</p>
+<p>The intraday futures trader who scalps or day-trades the ES, NQ, or micros and wants a 3-day new-account path without an intraday evaluation trail. If you've been knocked out of a Topstep or Apex evaluation by a daily-loss breach rather than a real drawdown, Take Profit Trader's lack of a daily loss limit (removed, per the homepage on 2026-10-26) will appeal. Start on the $50K Test ($170/month, $2,000 trailing) — it's the sweet spot where the drawdown is workable for index futures and the cost stays low while you prove the process.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Take Profit Trader</strong></h2>
 <p>Swing traders and anyone who needs to hold through the close — futures positions must be flat by 5 PM ET, so overnight-gap strategies are out. If you want a static drawdown that doesn't trail at all, a CFD firm like <a href="/blog/ftmo-review">FTMO</a> fits better. And if the 80%-until-PRO+ split bothers you, <a href="/blog/my-funded-futures">My Funded Futures</a> and <a href="/blog/topstep-review">Topstep</a> are the two futures alternatives worth pricing against it — compare them directly on our <a href="/best-futures-prop-firms">best futures prop firms</a> page.</p>
@@ -131,7 +131,7 @@ type: "post"
 <p>80% on the PRO funded account, rising to 90% on PRO+ after your first payout clears the buffer. The headline "up to 90%" is the PRO+ number — most traders earn 80% on their first cycle.</p>
 
 <h3 class="wp-block-heading"><strong>Does Take Profit Trader have a daily loss limit?</strong></h3>
-<p>The current homepage says no daily loss limit, but the public subscriptions API captured for the same Test exposes tier-specific daily-loss values. Because the first-party sources conflict, treat the daily-loss field as unresolved and confirm your account agreement. The confirmed evaluation boundary is the end-of-day trailing drawdown — a fixed dollar amount ($1,500 on the $25K up to $4,500 on the $150K).</p>
+<p>No. On 2026-10-26 the homepage rule table listed "Daily loss rule" as "None" for the Test, PRO and PRO+, and the $50K card showed "Daily Loss Limit $1100 Removed". The pricing API still returns old tier values, but the site marks them removed. The evaluation boundary is the end-of-day trailing drawdown — a fixed dollar amount ($1,500 on the $25K up to $4,500 on the $150K).</p>
 
 <h3 class="wp-block-heading"><strong>How fast does Take Profit Trader pay out?</strong></h3>
 <p>Once funded and past the buffer, you can request a payout on day one and any day after. The account-to-wallet step is now automated in roughly 1–5 seconds when the account is flat; ACH/Plaid, PayPal and Wise bank delivery varies. There is no minimum profitable-days rule and no cap on withdrawal size.</p>
@@ -143,4 +143,4 @@ type: "post"
 <p>It's a one-step Test: hit a 6% profit target, trade at least 3 days on a new account (5 on an existing/reset account), keep no single day at 50%+ of the target, and stay above the trailing drawdown. Pass, pay the $130 activation, and you're on a PRO funded account — no second phase.</p>
 
 <h3 class="wp-block-heading"><strong>Take Profit Trader vs Topstep — which is better?</strong></h3>
-<p>Take Profit Trader's homepage says no daily loss limit and confirms end-of-day trailing on the Test; the public API field conflicts, so verify the account rule before relying on that distinction. Topstep imposes a daily limit but is a longer-established name with published payout totals. If daily-loss breaches have ended your evaluations, Take Profit Trader is the more forgiving structure; if you value track record, Topstep edges it. See the full <a href="/best-futures-prop-firms">futures comparison</a>.</p>
+<p>Take Profit Trader has no daily loss limit (removed, per its homepage on 2026-10-26) and uses end-of-day trailing on the Test. Topstep imposes a daily limit but is a longer-established name with published payout totals. If daily-loss breaches have ended your evaluations, Take Profit Trader is the more forgiving structure; if you value track record, Topstep edges it. See the full <a href="/best-futures-prop-firms">futures comparison</a>.</p>

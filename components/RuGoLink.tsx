@@ -1,11 +1,11 @@
 import Link from './SafeLink'
 import type { ComponentProps } from 'react'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaPendingNotListedFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { RuAccessBadgeView } from './RuAccessBadgeView'
 
 /** Russia-access badge driven by firms.json russiaStatus. Inline markup only. */
 export function RuAccessBadge({ firm }: { firm: string }) {
-  return <RuAccessBadgeView firm={firm} status={russiaStatusFor(firm)} />
+  return <RuAccessBadgeView firm={firm} status={russiaStatusFor(firm)} basisDate={russiaBasisDateFor(firm)} pendingNotListed={russiaPendingNotListedFor(firm)} />
 }
 
 /** hideBadge: skip the badge where the surrounding table already has a Russia-status column. */

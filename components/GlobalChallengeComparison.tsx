@@ -243,7 +243,7 @@ function payoutLabel(product: GlobalChallengeRow['product']) {
       ? 'On request'
       : `First request day ${product.payoutFirstDays}`
   const frequency = product.payoutFrequency
-    ? product.payoutFrequency.replace('-', ' ')
+    ? product.payoutFrequency.replace(/-/g, ' ')
     : 'frequency unverified'
   return `${first} · ${frequency}`
 }

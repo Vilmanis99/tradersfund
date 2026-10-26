@@ -91,7 +91,7 @@ type: "page"
 
 <h2>Stage 5 — First payout and scaling</h2>
 
-<p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while FundingPips 2 Step Standard records its refund only at the 4th reward, and FundingPips says that refund does not apply to 1 Step Flex, 2 Step Pro, 2 Step Flex or Zero (checked 2026-10-20). Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
+<p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while a FundingPips 2 Step Standard refund is unconfirmed: its help centre (updated 24 Sep 2026) places it at the 4th reward, but its Terms (effective 15 May 2026) say “The Customer is not entitled to a refund of the registration fees”. The same help centre says that refund does not apply to 1 Step Flex, 2 Step Pro, 2 Step Flex or Zero (checked 2026-10-20). Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
 
 <p>The <a href="/blog/is-prop-firm-trading-profitable">net-cash profitability guide</a> turns those gates into a trader ledger: approved payouts and refunds received minus every attempt, subscription, activation, reset, platform, and withdrawal cost.</p>
 

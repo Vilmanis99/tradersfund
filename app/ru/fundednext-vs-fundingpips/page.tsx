@@ -128,6 +128,7 @@ function payoutLabel(product: Challenge) {
   const frequency = ({
     weekly: 'еженедельно',
     'bi-weekly': 'каждые две недели',
+    'after-qualifying-days': 'после квалификационных торговых дней',
     monthly: 'ежемесячно',
     'on-demand': 'по запросу',
   } as Record<string, string>)[product.payoutFrequency ?? ''] ?? 'цикл не указан'

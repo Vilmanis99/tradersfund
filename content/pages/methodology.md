@@ -1,9 +1,11 @@
 ---
 title: How We Score Prop Firms
+seoTitle: "Prop Firm Review Methodology: Sources, Freshness, Scores"
 slug: methodology
 date: 2026-06-04
 modified: 2026-07-29
 description: What the Traders Fund Hub score means, how product terms are verified, and how affiliate relationships are separated from rankings.
+seoDescription: "How we check prop firm data: a firm-owned source for every challenge figure, a 30-day freshness rule, True-Cost maths, and scores kept apart from affiliates."
 type: page
 ---
 

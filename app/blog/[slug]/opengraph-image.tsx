@@ -61,6 +61,7 @@ function buildFirmTagline(firm: Firm, postExcerpt?: string): string {
     firm.payoutFrequency === 'on-demand' ? 'on-demand payouts'
     : firm.payoutFrequency === 'weekly' ? 'weekly payouts'
     : firm.payoutFrequency === 'bi-weekly' ? 'bi-weekly payouts'
+    : firm.payoutFrequency === 'after-qualifying-days' ? 'payouts after qualifying days'
     : null
   const parts: string[] = []
   if (split) parts.push(`${split} split`)

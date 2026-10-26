@@ -38,9 +38,10 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_CHECKED } from '@/components/RuFundedNextAccessCaveat'
 import RuRussiaOpenCtas from '@/components/RuRussiaOpenCtas'
 import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
-const TITLE = 'Крипто проп-компании 2026: открытые и закрытые для РФ'
+const TITLE = 'Крипто проп-компании 2026: кто ограничивает РФ, а кто нет'
 // Firm names per Russia status come from firms.json russiaStatus (russiaStatusFor), never hard-coded.
 // Restricted firms keep a CTA per the RU rule, after every open firm; FundedNext goes last.
 const RESTRICTED_ACCESS_CTAS = ['ftmo', 'city-traders-imperium', 'ofp-funding', 'fundednext'] as const
@@ -60,9 +61,11 @@ function ruJoin(items: string[]) {
   return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} и ${items.at(-1)}`
 }
 const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
+// Evidence date(s) of the open names: firms.json russiaSourceCapturedAt for russiaBasis 'not-on-restricted-list'.
+const OPEN_BASIS_DATE = ruNotListedDates(ACCESS_LIST_SLUGS.filter(slug => russiaStatusFor(slug) === 'available'))
 const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
-const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader открыты для РФ, FTMO, CTI, OFP и FundedNext — нет. Криптопары, плечо, комиссии, цены и выплаты.'
+const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader не ограничивают РФ, а FTMO, CTI, OFP и FundedNext ограничивают. Криптопары, плечо, комиссии, цены.'
 // RU SEO Lead approved 22.10, numberless by design
 const SOCIAL_TITLE = 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ'
 const SOCIAL_DESCRIPTION = 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.'
@@ -201,7 +204,7 @@ const FP_CRYPTO_TERMS = `BTCUSD и ETHUSD — единственные 2 кри�
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какая крипто-проп-фирма лучшая в 2026 году?',
-    a: 'Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. Для резидентов РФ из открытых фирм в рейтинге — BrightFunded (более 48 криптопар, плечо 1:5) и Crypto Fund Trader (556 криптовалют на Match-Trader и MetaTrader 5 по FAQ CFT), по данным на 21.10.2026. FTMO, CTI, OFP и FundedNext для резидентов РФ закрыты. В таблицу попадают только программы с актуальными источниками и известными ценами.',
+    a: `Единого победителя нет: сравнивайте конкретную программу, инструмент и этап. Из фирм рейтинга, у которых РФ нет в списке ограничений (на ${OPEN_BASIS_DATE}), — BrightFunded (более 48 криптопар, плечо 1:5) и Crypto Fund Trader (556 криптовалют на Match-Trader и MetaTrader 5 по FAQ CFT), по данным на 21.10.2026. FTMO, CTI, OFP и FundedNext для резидентов РФ закрыты. В таблицу попадают только программы с актуальными источниками и известными ценами.`,
   },
   {
     q: 'Крипто-проп-фирма даёт реальные BTC или ETH?',
@@ -217,7 +220,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Можно ли зарегистрироваться из России?',
-    a: `Не во всех фирмах на этой странице. Мы показываем и открытые, и закрытые для РФ фирмы, чтобы было видно, почему известное имя не подходит. Россию в своих ограничениях не называют ${ruJoin(OPEN_NAMES)}; ${ruJoin(CLOSED_NAMES)} резидентов России не обслуживают (по данным на 20.10.2026). У FundingPips статус неясен. Даже у открытой фирмы до оплаты проверьте платформу, документы для KYC, способ платежа и будущей выплаты; при неясных условиях получите письменный ответ фирмы.`,
+    a: `Не во всех фирмах на этой странице. Мы показываем и фирмы без РФ в списке ограничений, и закрытые для РФ, чтобы было видно, почему известное имя не подходит. Россию в своих ограничениях не называют ${ruJoin(OPEN_NAMES)} (на ${OPEN_BASIS_DATE}); ${ruJoin(CLOSED_NAMES)} резидентов России не обслуживают (по данным на 20.10.2026). У FundingPips статус неясен. Даже если РФ нет в списке ограничений фирмы, до оплаты проверьте платформу, документы для KYC, способ платежа и будущей выплаты; при неясных условиях получите письменный ответ фирмы.`,
   },
   {
     q: 'Подходит ли FundingPips для криптотрейдинга?',
@@ -338,7 +341,7 @@ export default function RussianCryptoPropFirmsPage() {
             Сравниваем программы для торговли криптоинструментами: стоимость участия, комиссии, кредитное плечо
             и ограничения риска. Отдельно разбираем выплаты в криптовалюте и доступ из своей страны — это разные вопросы.
           </p>
-          <p className="ru-source-line" data-russian-crypto-access-pointer="top">Кто из этих фирм открыт для резидентов РФ, а кто закрыт, — в разделе <a href="#dostup-iz-rossii">«Крипто проп-компании и Россия»</a>.</p>
+          <p className="ru-source-line" data-russian-crypto-access-pointer="top">Какие из этих фирм не называют РФ в списке ограничений, а какие её ограничивают, — в разделе <a href="#dostup-iz-rossii">«Крипто проп-компании и Россия»</a>.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные рейтинга крипто-проп-фирм">
             <span>Автор: Edris Derakhshi</span>
             <span>Обновлено: {lastModified}</span>
@@ -368,7 +371,7 @@ export default function RussianCryptoPropFirmsPage() {
             <nav className="toc ru-review-toc" aria-label="Содержание рейтинга крипто-проп-фирм">
               <div className="toc-title">Содержание</div>
               <ol>
-                <li><a href="#crypto-shortlist">Открытые для РФ сначала</a></li>
+                <li><a href="#crypto-shortlist">Сначала — без РФ в ограничениях</a></li>
                 <li><a href="#country-check">Страна и KYC</a></li>
                 <li><a href="#ranking">Фирмы с актуальными источниками</a></li>
                 <li><a href="#comparison">Цены и условия программ</a></li>
@@ -388,7 +391,7 @@ export default function RussianCryptoPropFirmsPage() {
         <section className="ru-section" id="crypto-shortlist">
           <div className="ru-shell" data-russian-crypto-shortlist="russia-access-first">
             <div className="ru-content">
-              <h2>Крипто-проп-фирмы: сначала открытые для РФ, затем закрытые</h2>
+              <h2>Крипто-проп-фирмы: сначала не ограничивающие РФ, затем закрытые</h2>
               <p>Порядок — по доступу для резидентов России (бейдж берётся из нашей базы), затем редакционный. Закрытые фирмы мы оставили в списке, потому что их часто ищут: бейдж показывает, почему они не подходят трейдеру из РФ. Ссылки на их сайты идут последними, с пометкой «резидентам РФ недоступна»; резидентам России мы их не рекомендуем.</p>
             </div>
             <div className="ru-grid">
@@ -611,6 +614,7 @@ export default function RussianCryptoPropFirmsPage() {
               <p data-russian-crypto-cft-ascend="not-purchasable">Ascend завершается фиксированным вознаграждением после оценки, а не обычным счётом с постоянной долей прибыли. Ascend сейчас не продаётся: по данным на 19.10.2026 все шесть позиций Ascend ($5K–$200K) в магазине CFT недоступны к покупке, и проверка магазина 20.10.2026 это подтвердила. Поэтому цены Ascend мы не показываем и в расчётах не используем. Цены Break по данным на 14.10.2026: $70 / $140 / $200 за $25K / $50K / $100K плюс обязательный сбор за активацию $138 / $198 / $328 после прохождения; по данным на 19.10.2026 позиции Break в магазине доступны, хотя на странице Break стоит надпись «sold out». Поэтому самый дешёвый доступный к покупке вход у CFT — Accelerated $5K за $40. Наличие размера и итоговую цену проверьте в корзине. Это не вывод о закрытии программ и не подтверждение регистрации из какой-либо страны.</p>
               <p className="ru-source-line">Это датированное исправление нашего материала, не установленная дата изменения правил фирмы. Цены Break — <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">условия CFT</a> и <a href="https://cryptofundtrader.com/shop/" target="_blank" rel="nofollow noopener noreferrer">магазин CFT</a>, по данным на 14.10.2026; доступность Break к покупке — <a href="https://cryptofundtrader.com/" target="_blank" rel="nofollow noopener noreferrer">главная страница</a> и магазин, по данным на 19.10.2026; Ascend не продаётся — магазин CFT, по данным на 19.10.2026, с проверкой магазина 20.10.2026 (Prop Firm Tracker). Официальные источники и нерешённые вопросы перечислены в журнале; перед оплатой проверьте условия заново.</p>
               <div className="ru-actions">
+                <Link href="/ru/obzor-crypto-fund-trader" className="btn-outline">Обзор Crypto Fund Trader на русском</Link>
                 <Link href="/blog/crypto-fund-trader-review" hrefLang="en" className="btn-outline">Полный обзор CFT — на английском</Link>
                 <Link href="/prop-firm-challenge-changes?products=crypto-fund-trader%3Ainstant%2Ccrypto-fund-trader%3Aascend%2Ccrypto-fund-trader%3Abreak#change-ledger" hrefLang="en" className="ru-card-link">Источники исправлений — на английском →</Link>
               </div>
@@ -620,10 +624,10 @@ export default function RussianCryptoPropFirmsPage() {
 
         <section className="ru-section" id="dostup-iz-rossii">
           <div className="ru-shell ru-content" data-russian-crypto-russia-access="open-and-closed">
-            <h2>Крипто проп-компании и Россия: кто открыт, а кто закрыт</h2>
+            <h2>Крипто проп-компании и Россия: кто ограничивает РФ, а кто нет</h2>
             <p>
               На этой странице есть и фирмы, закрытые для резидентов России: мы их не прячем, но и регистрироваться не предлагаем.
-              Россию в своих ограничениях не называют {ruJoin(OPEN_NAMES)}. Закрыты для РФ {ruJoin(CLOSED_NAMES)} (по данным на 20.10.2026).
+              Россию в своих ограничениях не называют {ruJoin(OPEN_NAMES)} (на {OPEN_BASIS_DATE}). Закрыты для РФ {ruJoin(CLOSED_NAMES)} (по данным на 20.10.2026).
               У FundingPips статус неясен — подробности в таблице.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ крипто-проп-фирм для резидентов РФ">

@@ -52,6 +52,29 @@
       }
     ],
     "profitSplitPct": 50,
+    "profitSplitTiers": [
+      {
+        "traderPct": 50,
+        "appliesTo": "Funded Sim, below $4,000 current profit",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
+        "capturedAt": "2026-10-26"
+      },
+      {
+        "traderPct": 80,
+        "appliesTo": "Funded Sim, above $4,000 current profit and the payout leaves more than $4,000",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
+        "capturedAt": "2026-10-26"
+      },
+      {
+        "traderPct": 90,
+        "appliesTo": "Funded Live",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%.",
+        "capturedAt": "2026-10-26"
+      }
+    ],
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
     "rules": {
@@ -76,7 +99,7 @@
       "INTRADAY DRAWNDOWN: the line follows unrealized intraday equity highs, then freezes at the starting balance once caught up. The funded Quick Pay account also uses intraday trailing drawdown regardless of evaluation choice.",
       "EVALUATION RULES: 5 minimum trading days and 30% consistency are stated on both the live cards and the current Quick Pay article.",
       "PAYOUT: Quick Pay permits its first request after 1 trading day from a positive balance, has no buffer, and requires at least $250. Requests before 5:30 pm CT are targeted for processing within 24 business-day hours.",
-      "TIERED SPLIT: below $4,000 current profit the payout is 50/50. A full 80/20 split requires current profit above $4,000 and the payout to leave more than $4,000; a crossing request is blended. Funded Live pays 90/10.",
+      "TIERED SPLIT: below $4,000 current profit the payout is 50/50. A full 80/20 split requires current profit above $4,000 and the payout to leave more than $4,000; a crossing request is blended. Funded Live pays 90/10. profitSplitPct holds 50 (the lowest tier); profitSplitTiers carries 50 / 80 / 90 with the Quick Pay article's wording (re-read 2026-10-26, article modified 2026-09-09).",
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ permits copying from a personal account and across eligible TradeDay accounts, but bars simultaneous/copy trading between Funded Live and Funded Sim and limits linked Funded Sim copying to 2 or 3 accounts. This supports restricted instead of the prior null.",
       "INDIA ELIGIBILITY EVIDENCE: India is absent from TradeDay's current named prohibited-country list. The list applies to both citizenship and residence, while Funded Live is limited for Germany and Canada outside Ontario. No Indian checkout or funded onboarding was performed.",
       "KYC AND PAYOUT RAILS: funded onboarding requires KYC/AML through TradeDay's broker, clearing firm and Rise, with a government-issued ID plus bank statement or utility bill. Rise supports bank wire and crypto; international bank wire is stated as $15, L1 crypto as $2.50 plus gas, and L2 crypto as free. Indian bank acceptance and INR settlement remain unverified.",
@@ -137,6 +160,29 @@
       }
     ],
     "profitSplitPct": 50,
+    "profitSplitTiers": [
+      {
+        "traderPct": 50,
+        "appliesTo": "Funded Sim, below $4,000 current profit",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
+        "capturedAt": "2026-10-26"
+      },
+      {
+        "traderPct": 80,
+        "appliesTo": "Funded Sim, above $4,000 current profit and the payout leaves more than $4,000",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
+        "capturedAt": "2026-10-26"
+      },
+      {
+        "traderPct": 90,
+        "appliesTo": "Funded Live",
+        "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+        "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%.",
+        "capturedAt": "2026-10-26"
+      }
+    ],
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
     "rules": {
@@ -160,7 +206,8 @@
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ supports restricted instead of the prior null.",
       "India is absent from the named prohibited-country list, but checkout, KYC success, Indian bank acceptance, and INR settlement were not tested. KYC requires government ID and proof of address; Rise payout methods are bank wire and crypto.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
-      "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $120 → $54, $175 → $79, $285 → $129, $400 → $180. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $120 / $175 / $285 / $395. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json"
+      "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $120 → $54, $175 → $79, $285 → $129, $400 → $180. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $120 / $175 / $285 / $395. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json",
+      "TIERED SPLIT: same as Quick Pay Intraday. profitSplitPct holds 50 (the lowest tier); profitSplitTiers carries 50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim) and 90/10 in Funded Live, from the Quick Pay article (re-read 2026-10-26, modified 2026-09-09)."
     ]
   },
   {
@@ -223,7 +270,7 @@
     ],
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
-    "payoutFrequency": "on-demand",
+    "payoutFrequency": "after-qualifying-days",
     "rules": {
       "news": "restricted",
       "weekend": false,
@@ -242,8 +289,8 @@
       "MINIMUM-DAYS SOURCE CONFLICT: the homepage republished 2026-08-10 states 'Min trading days 3'. The Fast Pass article modified 2026-08-09 and the evaluation-objectives article explicitly state there are no minimum trading days, while also marketing a 3-day pass route. minTradingDays is null because the actual minimum rule is unresolved.",
       "EVALUATION: targets are $3,000 / $6,000 / $9,000; EOD trailing dollar loss caps are $2,000 / $3,000 / $4,500; 45% consistency applies to evaluation profit; no activation fee is stated.",
       "FUNDED SIM UPDATE FOR NEW ACCOUNTS: accounts opened on or after 2026-07-26 must satisfy 45% consistency on gross profits for every payout; older accounts have no Funded Sim consistency objective. The support article was modified 2026-08-09.",
-      "FUNDED-CONSISTENCY MARKUP CONFLICT: the duplicated 100K Fast Pass homepage cards disagree, with one Funded Sim block showing 45% consistency and the other showing None. The dated support policy resolves the rule by account-open date: 45% on/after 2026-07-26, none before that date.",
-      "PAYOUT: positive balance, new profit since the prior request, 5 nonconsecutive qualifying profitable days, and a $250 minimum are required. Qualifying days are at least $150 / $200 / $250 on $50K / $100K / $150K. Split is 80/20.",
+      "FUNDED CONSISTENCY, resolved 2026-10-26: the earlier homepage markup clash (duplicated 100K Fast Pass cards, one Funded Sim block showing None) is resolved and no longer on the page. Rechecked 2026-10-26 at https://tradeday.com/ with Fast Pass selected: there is one card per size (25K/50K/100K/150K) and every Funded Sim block reads \"Consistency: 45%\". The Fast Pass Funded Sim payout policy (https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy, modified 2026-09-08) reads \"For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits\" and \"For accounts opened before July 26 2026, there is no consistency objective in the Funded Sim account.\" Both official sources agree for accounts bought now (45%); the support article only adds that pre-2026-07-26 accounts have no Funded Sim objective.",
+      "PAYOUT: positive balance, new profit since the prior request, 5 nonconsecutive qualifying profitable days, and a $250 minimum are required. Qualifying days are at least $150 / $200 / $250 on $50K / $100K / $150K. Split is 80/20. payoutFrequency is 'after-qualifying-days' (re-read 2026-10-26, payout policy modified 2026-09-08): \"The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)\"; \"$25K Account: 5 days with at least $100 profit per day $50K Account: 5 days with at least $150 profit per day $100K Account: 5 days with at least $200 profit per day $150K Account: 5 days with at least $250 profit per day\"; the count restarts after each payout (\"post five more qualifying days before requesting again\", What is Fast Pass, modified 2026-09-09).",
       "PAYOUT-CAP CONFLICT: the current Fast Pass support pages state post-2026-07-26 caps of $1,500 / $1,850 / $2,250 and a 50%-of-balance ceiling. The homepage states $1,500 / $1,875 / $2,250. The 100K cap is unresolved and should remain on the public change watch. Pre-2026-07-26 caps are $2,000 / $2,500 / $3,000.",
       "FUNDED DRAWDOWN: Fast Pass Funded Sim remains EOD trailing. On the first payout, a line below starting balance moves up to starting balance and then stays fixed.",
       "COPY TRADING NOW VERIFIED WITH CONDITIONS: the public FAQ supports restricted instead of the prior null.",

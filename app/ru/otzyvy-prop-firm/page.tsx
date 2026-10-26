@@ -38,6 +38,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -115,6 +116,7 @@ const drawdownLabels: Record<string, string> = {
 const payoutFrequencyLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые 14 дней',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу',
 }
@@ -322,7 +324,7 @@ export default function RussianPropFirmReviewsPage() {
           <div className="ru-shell" data-russian-reviews-featured-partners="fundednext-bright-funded">
             <div className="ru-content">
               <h2>Главные партнёрские маршруты после проверки отзывов</h2>
-              <p>BrightFunded и FundedNext стоят рядом как коммерческие варианты, а не как одинаковые продукты. Резидентам России подходит только BrightFunded: FundedNext россиян не обслуживает. Актуальные модели с ценами в USD и EUR показаны ниже только при свежих источниках; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
+              <p>BrightFunded и FundedNext стоят рядом как коммерческие варианты, а не как одинаковые продукты. Для резидентов России из двух остаётся только BrightFunded (России нет в её списке ограничений на {ruNotListedDate('bright-funded')}): FundedNext россиян не обслуживает. Актуальные модели с ценами в USD и EUR показаны ниже только при свежих источниках; решение должно начинаться с подходящего правила просадки, этапов и условия выплаты.</p>
             </div>
             <div className="ru-grid">
               {featuredCards.map(card => (

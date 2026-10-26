@@ -26,4 +26,6 @@ export interface ComparisonRow {
   /** First-party site, shown as a non-sponsored link when there is no affiliate link. */
   officialUrl: string | null
   russiaStatus: RussiaStatus | null
+  /** russiaBasis evidence date (YYYY-MM-DD) for 'not-on-restricted-list' firms, else null. */
+  russiaBasisDate: string | null
 }

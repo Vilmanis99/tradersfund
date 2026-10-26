@@ -857,8 +857,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/dlya-russkoyazychnykh-treyderov', {
-    title: 'Проп-фирмы для россиян 2026: кто принимает трейдеров из РФ',
-    h1: 'Проп-фирмы для россиян в 2026: кто принимает трейдеров из РФ',
+    title: 'Проп-фирмы для россиян 2026: кто не ограничивает РФ',
+    h1: 'Проп-фирмы для россиян в 2026: кто не ограничивает РФ',
     markers: [
       'data-russia-availability-hub="2026-10"',
       'data-russia-availability-table="15-firms"',
@@ -1036,7 +1036,7 @@ const russianExpectations = new Map([
       'id="kody"',
       'data-russian-affiliate-disclosure="promo-hub"',
       'data-russian-risk-disclaimer="promo-hub"',
-      'ru-badge ru-badge--open',
+      'ru-badge ru-badge--neutral',
       'ru-badge ru-badge--closed',
       '/go/bright-funded?from=ru-promokody-prop-firm-card-1',
       '/go/fundednext?from=ru-promokody-prop-firm-card-5',
@@ -1218,8 +1218,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/luchshie-kripto-prop-firmy', {
-    title: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
-    h1: 'Крипто проп-компании 2026: открытые и закрытые для РФ',
+    title: 'Крипто проп-компании 2026: кто ограничивает РФ, а кто нет',
+    h1: 'Крипто проп-компании 2026: кто ограничивает РФ, а кто нет',
     markers: [
       'data-russian-crypto-article="long-form"',
       'data-russian-crypto-hero="search-and-product-evidence"',
@@ -1310,6 +1310,40 @@ const russianExpectations = new Map([
       'data-fundednext-russian-products="',
       'data-fundednext-russian-truecost="true"',
       'data-russian-affiliate-disclosure="fundednext"',
+    ],
+  }],
+  ['/ru/obzor-crypto-fund-trader', {
+    title: 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России',
+    h1: 'Crypto Fund Trader (CFT): обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="crypto-fund-trader"',
+      'data-russian-cft-verdict="summary"',
+      'data-russian-cft-access="match-trader-no-restrictions"',
+      'data-russian-cft-access-table="platforms"',
+      'data-russian-cft-product-count="5"',
+      'data-russian-cft-trustpilot="suppressed"',
+      'data-russian-cft-alternatives="bright-funded-first"',
+      'data-russian-cft-cta="summary"',
+      'data-russian-cft-cta="programs"',
+      'data-russian-cft-cta="final"',
+      'data-russian-affiliate-disclosure="crypto-fund-trader-review"',
+      'data-russian-risk-disclaimer="crypto-fund-trader-review"',
+      'href="/go/crypto-fund-trader?from=ru-review-crypto-fund-trader"',
+      'data-russia-status="available" data-russia-firm="crypto-fund-trader"',
+      'по данным на 20.10.2026',
+      'Доступ через Match-Trader. Источник:',
+      'Match-Trader: No country',
+      'data-russian-cft-price-conflict="2026-10-20"',
+      'data-russian-cft-break-offer="2026-10-20"',
+      'data-russian-cft-break-limited="true"',
+      'data-russian-cft-break-min-days="conflict"',
+      'на главной странице — $199, в условиях (разд. 5.6) и в магазине — $200',
+      '$528',
+      'data-russian-cft-cheapest="accelerated-5k"',
+      'data-russian-cft-max-allocation="300000"',
+      'data-russian-cft-ascend-conflict="2026-10-20"',
+      '1 104',
     ],
   }],
   ['/ru/obzor-fundingpips', {
@@ -1928,7 +1962,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
   + (closedFirmsPublished ? 1 : 0)
 
@@ -1960,7 +1994,7 @@ if (russianArticleSchemaCount !== expectedRussianArticleSchemaCount) {
 
 const russianDiasporaPage = pages.find(page =>
   new URL(page.productionUrl).pathname === '/ru/dlya-russkoyazychnykh-treyderov')
-if (!/ru-badge ru-badge--(open|unclear|closed)/.test(russianDiasporaPage?.html ?? '')) {
+if (!/ru-badge ru-badge--(open|neutral|unclear|closed)/.test(russianDiasporaPage?.html ?? '')) {
   errors.push('/ru/dlya-russkoyazychnykh-treyderov: Russia availability table with status badges did not render')
 }
 
