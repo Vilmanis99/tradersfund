@@ -12656,7 +12656,10 @@ function checkRussianAcquisitionPilot() {
     'data-russian-partner={item.slug}',
     'id="partner-matrix"',
     'id="top-5"',
-    'rel="sponsored nofollow noopener"',
+    // Since 9596463 (15 Oct) the ranking derives rel from firms.json via goLinkRel(): affiliates render
+    // rel="sponsored nofollow noopener", non-affiliates "nofollow noopener". Pin the helper, not the old literal.
+    "import { goLinkRel } from '@/lib/russiaAvailability'",
+    'rel={goLinkRel(item.slug)}',
     'Доступность платформы уточняйте для выбранной программы и страны.',
     'href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
     'href="/ru/prop-firmy-bez-chelendzha"',
