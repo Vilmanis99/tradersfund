@@ -2258,6 +2258,29 @@ for (const [path, href] of [
   }
 }
 // /ru/rossiyskie-prop-kompanii was merged into /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (301 in next.config.ts).
+// Live check: the old URL must answer 301 straight to the hub anchor, and the hub must keep id="rossiyskie".
+{
+  const localFirmsRedirect = await fetchPage(new URL('/ru/rossiyskie-prop-kompanii', BASE), 'manual')
+  let localFirmsTarget = null
+  try {
+    localFirmsTarget = new URL(localFirmsRedirect.location, BASE)
+  } catch {
+    // Reported below.
+  }
+  if (
+    localFirmsRedirect.status !== 301
+    || !localFirmsTarget
+    || localFirmsTarget.origin !== BASE.origin
+    || localFirmsTarget.pathname !== '/ru/dlya-russkoyazychnykh-treyderov'
+    || localFirmsTarget.hash !== '#rossiyskie'
+  ) {
+    errors.push(`/ru/rossiyskie-prop-kompanii: expected 301 to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie, got ${localFirmsRedirect.status} ${localFirmsRedirect.location || '(no Location)'}`)
+  }
+  const russiaHub = pages.find(probe => new URL(probe.productionUrl).pathname === '/ru/dlya-russkoyazychnykh-treyderov')
+  if (!russiaHub?.html.includes('id="rossiyskie"')) {
+    errors.push('/ru/dlya-russkoyazychnykh-treyderov: #rossiyskie anchor (301 target of /ru/rossiyskie-prop-kompanii) is missing')
+  }
+}
 
 // Local-company intent hands off to the two explicitly declared primary
 // partners. FundingPips remains available in broader comparisons, but must not
