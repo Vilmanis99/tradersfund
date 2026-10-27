@@ -16,7 +16,17 @@
  *  - the value of an internal field (notes, *Note, *Evidence, capture files, previous,
  *    regional and partner-support codes, code validity/status) from those data files;
  *  - box markers 'box IP', 'Latvia (non-US)', 'Box egress', '/home/box' anywhere, and the paths
- *    '/workspace/', '_captures/' unless printed as visible text (then a warning; STRICT_VISIBLE=1 fails).
+ *    '/workspace/', '_captures/' in the payload unless printed as visible text on some page;
+ *  - RENDERED-TEXT LEAKS: the visible text (scripts/styles stripped) or the JSON-LD that search engines
+ *    read containing a box path ('/workspace'), a capture path ('_captures/'), a data field name
+ *    (russiaStatus, pricingModel), Node runtime output (MODULE_TYPELESS, '(node:<pid>)', node:internal,
+ *    ExperimentalWarning/DeprecationWarning) or a generation log ('[generated N table…').
+ *    Each hit prints the page, the rule and a text snippet. These are editorial fixes in the page's
+ *    copy or data, so the page owner fixes them; the test does not allowlist them.
+ * Watch-entry evidence references (ruleEvidenceRefs, sourceConflictEvidenceRefs) are forbidden keys too:
+ * the change feeds receive booleans (lib/challengeWatch.ts challengeChangeCardEntry).
+ * Besides the sitemap it checks noindex pages not in the sitemap (RU rules redirects targets) and the
+ * EN/RU 404 pages, which render site chrome.
  * Names that double as React/CSS props (flex, scope, value, note, summary, currency) are only value-checked.
  */
 import assert from 'node:assert/strict'
@@ -26,7 +36,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import ts from 'typescript'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const base = (process.argv[2] || process.env.BASE_URL || '').replace(/\/$/, '')
+const base = (process.argv[2] || process.env.BASE_URL || (process.env.TFH_PREVIEW_PORT ? `http://127.0.0.1:${process.env.TFH_PREVIEW_PORT}` : '')).replace(/\/$/, '')
 assert(base, 'usage: node scripts/test-no-firm-internals-html.mjs <base-url>')
 
 const { CLIENT_PAYLOAD_FIRM_KEYS, PUBLIC_FIRM_FIELDS } = await import(pathToFileURL(path.join(root, 'lib/publicFirm.ts')).href)
@@ -69,8 +79,10 @@ const isInternalValueKey = key => INTERNAL_VALUE_KEY.test(key) && !CLIENT_PAYLOA
  * checked below.
  */
 const AMBIGUOUS_NAMES = new Set(['flex', 'scope', 'value', 'note', 'summary', 'currency'])
-const forbiddenKeys = [...new Set([...typeKeys, ...dataKeys])].filter(key => !CLIENT_PAYLOAD_FIRM_KEYS.has(key) && !AMBIGUOUS_NAMES.has(key)).sort()
-for (const key of ['notes', 'discountCodeEvidence', 'previousDiscountCode', 'captureFile', 'quote', 'corporateNote']) {
+/** Watch-entry evidence references (internal evidence file names); the change feed gets booleans instead. */
+const WATCH_INTERNAL_KEYS = ['ruleEvidenceRefs', 'sourceConflictEvidenceRefs']
+const forbiddenKeys = [...new Set([...typeKeys, ...dataKeys, ...WATCH_INTERNAL_KEYS])].filter(key => !CLIENT_PAYLOAD_FIRM_KEYS.has(key) && !AMBIGUOUS_NAMES.has(key)).sort()
+for (const key of ['notes', 'discountCodeEvidence', 'previousDiscountCode', 'captureFile', 'quote', 'corporateNote', ...WATCH_INTERNAL_KEYS]) {
   assert(forbiddenKeys.includes(key), `${key} must be forbidden in client payloads`)
 }
 for (const key of PUBLIC_FIRM_FIELDS) assert(!forbiddenKeys.includes(key))
@@ -105,24 +117,52 @@ assert.equal(sitemap.status, 200, 'sitemap.xml')
 const paths = [...sitemap.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname)
 assert(paths.length > 100, `sitemap has only ${paths.length} URLs`)
 const DIRECTORY_STATES = ['?news=allowed&ea=allowed', '?phase=2-step&size=100000&sort=profitSplitPct', '?selected=ftmo,fundednext&sort=trustpilotScore&direction=asc']
-const targets = [...paths, ...DIRECTORY_STATES.map(query => `/prop-firms${query}`)]
+/** Rendered pages outside the sitemap: noindex RU rules pages and the EN/RU 404 pages (expected status). */
+const EXTRA_PAGES = [
+  ['/ru/ftmo-pravila', 200], ['/ru/bright-funded-pravila', 200], ['/ru/crypto-fund-trader-pravila', 200], ['/ru/fundednext-pravila', 200],
+  ['/render-leak-guard-missing-page', 404], ['/ru/render-leak-guard-missing-page', 404],
+].filter(([target]) => !paths.includes(target))
+const expectedStatus = new Map(EXTRA_PAGES)
+const targets = [...paths, ...DIRECTORY_STATES.map(query => `/prop-firms${query}`), ...EXTRA_PAGES.map(([target]) => target)]
+
+/*
+ * Rendered-text leak rules. Applied to the visible text and to JSON-LD (FAQ/Article schema is
+ * published copy too), never to the raw payload, where field names are covered above.
+ */
+const RENDERED_TEXT_RULES = [
+  ['box path /workspace', /\/workspace\b/],
+  ['capture path _captures/', /_captures\//],
+  ['field name russiaStatus', /\brussiaStatus\b/],
+  ['field name pricingModel', /\bpricingModel\b/],
+  ['Node warning MODULE_TYPELESS', /MODULE_TYPELESS/],
+  ['Node process output', /\(node:\d+\)|\bnode:internal\b|\b(?:Experimental|Deprecation)Warning\b/],
+  ['generation log', /\[generated \d+ table/i],
+]
 
 /** Visible text of an HTML page: no scripts, tags or entities. */
 function visibleText(html) {
   return decode(html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<!-- -->/g, '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ')
 }
 
+/** JSON-LD blocks (decoded), which search engines read as page copy. */
+function jsonLdText(html) {
+  return [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => decode(match[1])).join('\n')
+}
+
 const pages = []
 const failures = []
+const renderedLeaks = []
 let index = 0
 async function worker() {
   while (index < targets.length) {
     const target = targets[index++]
     const html = await get(`${base}${target}`)
     const rsc = await get(`${base}${target}`, { RSC: '1' })
-    if (html.status !== 200) { failures.push(`${target}: HTML ${html.status}`); continue }
-    if (rsc.status !== 200 || !/text\/x-component/.test(rsc.type)) { failures.push(`${target}: RSC ${rsc.status} ${rsc.type}`); continue }
-    pages.push({ target, html: html.text, rsc: rsc.text, visible: visibleText(html.text) })
+    const want = expectedStatus.get(target) || 200
+    if (html.status !== want) { failures.push(`${target}: HTML ${html.status}, expected ${want}`); continue }
+    // A 404 page's RSC request may answer 200 (the RU catch-all renders notFound() inside the tree).
+    if (![want, 200].includes(rsc.status) || !/text\/x-component/.test(rsc.type)) { failures.push(`${target}: RSC ${rsc.status} ${rsc.type}`); continue }
+    pages.push({ target, html: html.text, rsc: rsc.text, visible: visibleText(html.text), jsonLd: jsonLdText(html.text) })
   }
 }
 await Promise.all(Array.from({ length: 6 }, worker))
@@ -136,6 +176,15 @@ const published = pages.map(page => page.visible).join('\n')
 const warnings = new Map()
 const sizes = {}
 for (const page of pages) {
+  for (const [where, text] of [['visible text', page.visible], ['JSON-LD', page.jsonLd]]) {
+    for (const [label, pattern] of RENDERED_TEXT_RULES) {
+      const matches = [...text.matchAll(new RegExp(pattern.source, `${pattern.flags}g`))]
+      if (!matches.length) continue
+      const snippets = [...new Set(matches.map(match => text.slice(Math.max(0, match.index - 70), match.index + match[0].length + 70).replace(/\s+/g, ' ').trim()))]
+      const count = matches.length > 1 ? ` (${matches.length} hits)` : ''
+      for (const snippet of snippets.slice(0, 3)) renderedLeaks.push({ target: page.target, line: `${page.target} ${where}: ${label}${count} … ${snippet} …` })
+    }
+  }
   if (page.target === '/prop-firms') sizes['/prop-firms'] = { html: Buffer.byteLength(page.html), rsc: Buffer.byteLength(page.rsc) }
   for (const [kind, raw] of [['HTML', page.html], ['RSC', page.rsc]]) {
     const text = decode(raw)
@@ -156,15 +205,21 @@ for (const page of pages) {
 }
 
 console.log(`forbidden field names: ${forbiddenKeys.length} (from lib/firms.ts: ${typeKeys.size}, data files: ${dataKeys.size}); client-allowed: ${CLIENT_PAYLOAD_FIRM_KEYS.size}; internal values: ${internalValues.size}`)
-console.log(`checked ${pages.length}/${targets.length} URLs (${paths.length} sitemap + ${DIRECTORY_STATES.length} directory states), HTML + RSC payload each`)
+console.log(`checked ${pages.length}/${targets.length} URLs (${paths.length} sitemap + ${DIRECTORY_STATES.length} directory states + ${EXTRA_PAGES.length} non-sitemap), HTML + RSC payload each; rendered-text rules: ${RENDERED_TEXT_RULES.length}`)
 if (warnings.size) {
   console.log(`\nwarning: internal values/paths printed as visible page text (editorial copy, not a payload leak):`)
   for (const [label, where] of warnings) console.log(`  - ${label}: ${where.size} page(s), e.g. ${[...where].slice(0, 3).join(', ')}`)
   if (process.env.STRICT_VISIBLE === '1') failures.push(`${warnings.size} visible internal value(s) (STRICT_VISIBLE=1)`)
+}
+if (renderedLeaks.length) {
+  const leakPages = [...new Set(renderedLeaks.map(leak => leak.target))].sort()
+  console.error(`\nrendered-text leaks on ${leakPages.length} page(s) (fix the page copy or data; see RENDERED_TEXT_RULES):`)
+  for (const leak of renderedLeaks.sort((a, b) => a.line.localeCompare(b.line))) console.error(`  - ${leak.line}`)
+  failures.push(`${renderedLeaks.length} rendered-text leak snippet(s) on ${leakPages.length} page(s): ${leakPages.slice(0, 10).join(', ')}${leakPages.length > 10 ? ` (+${leakPages.length - 10})` : ''}`)
 }
 if (sizes['/prop-firms']) console.log(`/prop-firms: HTML ${sizes['/prop-firms'].html} bytes, RSC ${sizes['/prop-firms'].rsc} bytes`)
 if (failures.length) {
   console.error(`\n${failures.length} failure(s):\n${failures.sort().map(line => `  - ${line}`).join('\n')}`)
   process.exit(1)
 }
-console.log('no firm internals in any page HTML or RSC payload')
+console.log('no firm internals in any page HTML or RSC payload, and no internal text rendered on any page')
