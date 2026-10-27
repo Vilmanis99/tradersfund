@@ -24,6 +24,7 @@ import ProductChangeSignals from '@/components/ProductChangeSignals'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import type { DrawdownType, RuleAvailability } from '@/lib/firms'
 import type { IndiaMatcherFirm, IndiaMatcherProduct } from '@/lib/indiaMatcher'
+import { hasTieredSplit, profitSplitText } from '@/lib/profitSplitDisplay'
 
 type ProgramFilter = 'all' | 'instant' | 'one-step' | 'two-step' | 'three-step'
 type MarketFilter = 'all' | IndiaMatcherProduct['assetClass']
@@ -858,7 +859,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
     },
     {
       label: 'Profit split',
-      valueFor: (row: ProductRow) => pct(row.product.profitSplitPct),
+      valueFor: (row: ProductRow) => profitSplitText(row.product, 'en') ?? 'Unverified',
     },
     {
       label: 'EA rule',
@@ -1170,7 +1171,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </div>
                         <div>
                           <dt>Profit split</dt>
-                          <dd>{pct(product.profitSplitPct)}</dd>
+                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{profitSplitText(product, 'en') ?? 'Unverified'}</dd>
                         </div>
                       </dl>
 
@@ -1510,7 +1511,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                           {payoutLabel(product)}
                         </span>
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.25rem' }}>
-                          Split {pct(product.profitSplitPct)}
+                          Split {profitSplitText(product, 'en') ?? 'Unverified'}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>

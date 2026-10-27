@@ -27,11 +27,12 @@ import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
 import { getRussianInstantFinderHref } from '@/lib/challengeComparisonData'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import RuFundedNextRussiaRedirect from '@/components/RuFundedNextRussiaRedirect'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
@@ -165,7 +166,7 @@ export default function RussianFundedNextInstantPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'FundedNext Stellar Instant' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -200,7 +201,7 @@ export default function RussianFundedNextInstantPage() {
             Не нужно проходить челлендж, но оплаченный счёт остаётся симулированным и подчиняется правилам риска.
             Разбираем, как растёт граница допустимого убытка, когда можно запросить вознаграждение и почему вывод всей прибыли способен нарушить условия счёта.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi" hrefLang="en">Edris Derakhshi</Link> · Обновлено: {EDITORIAL_DATE}</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi" hrefLang="en">Edris Derakhshi</Link> · Обновлено: {formatRuDate(EDITORIAL_DATE)}</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-stats" aria-label="Параметры Stellar Instant по указанным датам проверки">
             <div className="ru-stat"><strong>{hasFreshProduct ? pricedTiers.length : '—'}</strong><span>свежих цен</span></div>
@@ -283,7 +284,7 @@ export default function RussianFundedNextInstantPage() {
             <div className="ru-content">
               <h2>Стоимость участия: стандартный счёт и дополнительные расходы</h2>
               <p>
-                {hasFreshProduct ? `Ниже указаны ${pricedTiers.length} стандартные цены по проверке от ${instant!.sourceCapturedAt}, без акций и дополнительных опций.` : 'Числовая таблица скрыта: последняя проверка цен старше 30 дней либо данные отсутствуют.'}
+                {hasFreshProduct ? `Ниже указаны ${pricedTiers.length} стандартные цены по проверке от ${formatRuDate(instant!.sourceCapturedAt)}, без акций и дополнительных опций.` : 'Числовая таблица скрыта: последняя проверка цен старше 30 дней либо данные отсутствуют.'}
                 {' '}В отдельной статье о стоимости FundedNext указывает доплату {instantEvidence.pricing.swapFreeSurchargePct}% за счёт без свопов и отсутствие ежемесячного взноса.
               </p>
             </div>
@@ -353,7 +354,7 @@ export default function RussianFundedNextInstantPage() {
               <article className="ru-card"><ChartNoAxesCombined size={22} color="var(--accent-light)" aria-hidden="true" /><h3>После убытка запас сокращается</h3><p>Во втором и третьем шагах граница остаётся $9,600. Убыток $100 уменьшает запас с $600 до $500, хотя дневного ограничения нет.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Граница останавливается на старте</h3><p>Когда MLL достиг $10,000, запас для дальнейших убытков создаёт только прибыль сверх этой суммы. Вывод денег уменьшает этот запас.</p></article>
             </div>
-            <p className="ru-source-line"><a href={instantEvidence.lossLimits.sourceUrl} target="_blank" rel="nofollow noopener">Официальный расчёт лимита убытка</a> · проверено {instantEvidence.capturedAt}.</p>
+            <p className="ru-source-line"><a href={instantEvidence.lossLimits.sourceUrl} target="_blank" rel="nofollow noopener">Официальный расчёт лимита убытка</a> · проверено {formatRuDate(instantEvidence.capturedAt)}.</p>
           </div>
         </section>
 
@@ -379,7 +380,7 @@ export default function RussianFundedNextInstantPage() {
               FundedNext заявляет обработку корректно оформленной заявки в течение {instantEvidence.withdrawal.processingHours} часов; это заявление фирмы, а не наш подтверждённый срок получения выплаты. Комиссию платёжного посредника оплачивает трейдер.
               Опубликованы {instantEvidence.withdrawal.methods.map(method => withdrawalMethodLabels[method] ?? method).join(', ')}. Для выплаты на карту нужна карта, уже сохранённая в аккаунте. Доступность конкретного способа для своей страны нужно проверить в личном кабинете.
             </p>
-            <p className="ru-source-line">Способы вывода Stellar Instant выборочно проверены {instantEvidence.withdrawal.sourceCapturedAt}; остальные правила программы сохраняют собственные даты проверки.</p>
+            <p className="ru-source-line">Способы вывода Stellar Instant выборочно проверены {formatRuDate(instantEvidence.withdrawal.sourceCapturedAt)}; остальные правила программы сохраняют собственные даты проверки.</p>
             <div className="ru-actions" data-russian-affiliate-disclosure="fundednext-instant-payout">
               <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-payout" rel="sponsored nofollow noopener" className="btn-outline">Проверить Stellar Instant <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
               <Link href="/ru/vyplaty-prop-firm" className="btn-outline">Сравнить способы выплаты</Link>
@@ -402,7 +403,7 @@ export default function RussianFundedNextInstantPage() {
               <article className="ru-card"><Scale size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Убытки не сокращаются</h3><p>Ограничение 40% относится к прибыли, а не к убыткам. Убыточная сделка продолжает полностью влиять на счёт.</p></article>
               <article className="ru-card"><ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Корректировка лимита: максимум {instantEvidence.news.newsMllEquityBufferMaximumUses} раза</h3><p>При техническом нарушении из-за списания новостной прибыли фирма описывает дополнительный запас {instantEvidence.news.newsMllEquityBufferPct}% к MLL — не более {instantEvidence.news.newsMllEquityBufferMaximumUses} раз на одном счёте. Это специальная корректировка, а не постоянное увеличение допустимого торгового убытка.</p></article>
             </div>
-            <p className="ru-source-line"><a href={instantEvidence.news.sourceUrl} target="_blank" rel="nofollow noopener">Официальное правило торговли на новостях</a> · повторно проверено {instantEvidence.news.sourceCapturedAt}, включая ограничение числа корректировок.</p>
+            <p className="ru-source-line"><a href={instantEvidence.news.sourceUrl} target="_blank" rel="nofollow noopener">Официальное правило торговли на новостях</a> · повторно проверено {formatRuDate(instantEvidence.news.sourceCapturedAt)}, включая ограничение числа корректировок.</p>
           </div>
         </section>
 
@@ -502,7 +503,7 @@ export default function RussianFundedNextInstantPage() {
             </div>
             <div className="ru-notice">
               <strong>Резидентам России FundedNext недоступна.</strong>{' '}
-              Подвал fundednext.com и раскрытие информации компании говорят, что российские резиденты не обслуживаются (по данным на 20.10.2026); справка CFD по проверке от {accessCapturedAt} Россию не называет, но действующим мы считаем более строгий источник. Резидент РФ рискует получить отказ в обслуживании или в выплате. Общая справка о выплатах отдельно ограничивает банковский перевод в Россию и относит Российскую Федерацию к списку ограничений для карт. Общий снимок рынка от {marketEvidence.capturedAt} остаётся старым.
+              Подвал fundednext.com и раскрытие информации компании говорят, что российские резиденты не обслуживаются (по данным на 20.10.2026); справка CFD по проверке от {formatRuDate(accessCapturedAt)} Россию не называет, но действующим мы считаем более строгий источник. Резидент РФ рискует получить отказ в обслуживании или в выплате. Общая справка о выплатах отдельно ограничивает банковский перевод в Россию и относит Российскую Федерацию к списку ограничений для карт. Общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} остаётся старым.
             </div>
             <div className="ru-actions">
               {accessEvidence?.sourceUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="nofollow noopener" className="btn-outline">Источник доступа {index + 1}</a>)}
@@ -524,7 +525,7 @@ export default function RussianFundedNextInstantPage() {
             <div className="ru-grid">
               <article className="ru-card" data-russian-fundednext-instant-primary-partner="fundednext">
                 <h3>FundedNext Stellar Instant</h3>
-                <p>{hasFreshProduct ? `Сравните ${pricedTiers.length} размера счёта по ценам от ${instant!.sourceCapturedAt}` : 'Цены требуют повторной проверки'}. До оплаты проверьте не только взнос, но и оба варианта запроса выплаты, платформу и доступность для своего профиля.</p>
+                <p>{hasFreshProduct ? `Сравните ${pricedTiers.length} размера счёта по ценам от ${formatRuDate(instant!.sourceCapturedAt)}` : 'Цены требуют повторной проверки'}. До оплаты проверьте не только взнос, но и оба варианта запроса выплаты, платформу и доступность для своего профиля.</p>
                 <div className="ru-actions">
                   <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-instant-verdict" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
                   <Link href="/ru/obzor-fundednext" className="btn-outline">Полный обзор</Link>

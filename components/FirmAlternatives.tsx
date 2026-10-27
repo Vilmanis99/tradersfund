@@ -6,6 +6,7 @@ import { rankCurrentFirmAlternatives } from '@/lib/firmAlternatives'
 import { firmSlug } from '@/lib/comparisons'
 import {
   comparisonHref,
+  hasComparisonPage,
   getFreshComparisonEvidence,
   getFreshFirmEvidence,
 } from '@/lib/relatedComparisons'
@@ -38,10 +39,12 @@ export default function FirmAlternatives({
   current: Firm
   allFirms: Firm[]
 }) {
-  const allRanked = rankCurrentFirmAlternatives(current, allFirms, allFirms.length)
-  const ranked = allRanked.slice(0, 3)
+  const rankedAlternatives = rankCurrentFirmAlternatives(current, allFirms, allFirms.length)
+  const ranked = rankedAlternatives.slice(0, 3)
+  // Only pairs with a /compare page (lib/compareAllowlist.ts) get a compare link.
+  const allRanked = rankedAlternatives.filter(firm => hasComparisonPage(current, firm))
 
-  if (!allRanked.length) return null
+  if (!rankedAlternatives.length) return null
 
   return (
     <section
@@ -139,6 +142,7 @@ export default function FirmAlternatives({
                     Read review <ArrowRight size={12} />
                   </Link>
                 )}
+                {hasComparisonPage(current, firm) && (
                 <Link
                   href={compareHref}
                   className="btn-outline"
@@ -147,12 +151,14 @@ export default function FirmAlternatives({
                 >
                   Compare <ArrowRight size={12} aria-hidden="true" />
                 </Link>
+                )}
               </div>
             </div>
           )
         })}
       </div>
 
+      {allRanked.length > 0 && (
       <details
         data-firm-comparison-index={firmSlug(current.name)}
         style={{
@@ -221,6 +227,7 @@ export default function FirmAlternatives({
           })}
         </ul>
       </details>
+      )}
     </section>
   )
 }

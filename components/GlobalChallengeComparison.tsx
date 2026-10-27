@@ -28,6 +28,7 @@ import type {
   RuleAvailability,
 } from '@/lib/firms'
 import { minimumTierTotalUsd, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
+import { hasTieredSplit, profitSplitText } from '@/lib/profitSplitDisplay'
 import type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 export type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 
@@ -857,7 +858,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
     {
       label: 'Starting profit split',
       valueFor: (row: GlobalChallengeRow) => (
-        row.product.profitSplitPct == null ? 'Unverified' : `${row.product.profitSplitPct}%`
+        profitSplitText(row.product, 'en') ?? 'Unverified'
       ),
     },
     {
@@ -1186,7 +1187,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </div>
                         <div>
                           <dt>Profit split</dt>
-                          <dd>{product.profitSplitPct == null ? 'Unverified' : `${product.profitSplitPct}%`}</dd>
+                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{profitSplitText(product, 'en') ?? 'Unverified'}</dd>
                         </div>
                       </dl>
 
@@ -1474,7 +1475,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                           {payoutLabel(product)}
                         </span>
                         <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
-                          Profit split {product.profitSplitPct == null ? 'unverified' : `${product.profitSplitPct}%`}
+                          Profit split {profitSplitText(product, 'en') ?? 'unverified'}
                         </span>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 150 }}>

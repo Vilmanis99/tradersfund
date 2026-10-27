@@ -5,6 +5,7 @@ import type { PostMeta } from './mdx'
 import { getAuthorByName } from './authors'
 import { getChallengeWatchEntries } from './challengeWatch'
 import { challengeSourceDestination } from './challengeSources'
+import { ruDatesInText } from './ruDate'
 import {
   isRussianRoutePath,
   russianRouteDateModified,
@@ -246,6 +247,17 @@ export function faqPageSchema(faqs: Array<{ q: string; a: string }>) {
       acceptedAnswer: { '@type': 'Answer', text: a },
     })),
   }
+}
+
+/**
+ * FAQPage schema for /ru/ pages. Visible RU FAQ text formats dates at render
+ * time (RussianFaq → ruDatesInText), so the JSON-LD question names and answer
+ * text get the same DD.MM.YYYY treatment and mirror the visible FAQ word for
+ * word. Only the q/a strings change; date-typed JSON-LD fields elsewhere
+ * (datePublished, dateModified, …) keep ISO.
+ */
+export function ruFaqPageSchema(faqs: Array<{ q: string; a: string }>) {
+  return faqPageSchema(faqs.map(({ q, a }) => ({ q: ruDatesInText(q), a: ruDatesInText(a) })))
 }
 
 /**

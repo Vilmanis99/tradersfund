@@ -8,6 +8,7 @@ import {
   GitCompareArrows,
 } from 'lucide-react'
 import { getFeatureCounts } from '@/lib/features'
+import { firmSlug, getUnlistedComparePairs } from '@/lib/comparisons'
 import {
   getAllChallenges,
   getAllFirms,
@@ -49,6 +50,8 @@ export default async function PropFirmsHubPage({
   // Reading the request keeps the directory's URL state available during SSR.
   await searchParams
   const firms = getAllFirms()
+  // Pairs without a /compare page (new firms); passed only when there are any.
+  const unlistedComparePairs = getUnlistedComparePairs(firms.map(firm => firmSlug(firm.name)))
   const challenges = getAllChallenges()
   const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
   const tiles = getFeatureCounts()
@@ -197,6 +200,7 @@ export default async function PropFirmsHubPage({
           <FirmTable
             firms={firms}
             challenges={freshChallenges}
+            {...(unlistedComparePairs.length ? { unlistedComparePairs } : {})}
           />
         </div>
       </section>

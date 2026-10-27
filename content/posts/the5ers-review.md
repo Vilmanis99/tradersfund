@@ -3,7 +3,7 @@ title: "The5ers Review 2026: 22 Prices Across High Stakes, Growth and Bootcamp"
 seoTitle: "The5ers Review 2026: Fees, Rules, Payouts & Bootcamp"
 slug: "the5ers-review"
 date: "2026-10-21 09:00:00"
-modified: "2026-10-21 09:00:00"
+modified: "2026-10-27 09:00:00"
 author: "Tara Mohseni"
 excerpt: "The5ers sells 4 programs with 22 list prices. Compare High Stakes New vs Classic, the 4%/8% limits on $50K+, static drawdown, refunds and the 3.5% payout fee."
 seoDescription: "The5ers review: 22 fees across High Stakes, Growth and Bootcamp, 4%/8% loss limits on $50K+, static drawdown, 14-day payouts with a 3.5% fee, and refunds."
@@ -86,10 +86,10 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>Summer Plan: advertised list prices</strong></h3>
 
-<p>The Summer Plan is a separate, limited-time offer with no published end date. The prices below are The5ers' advertised list prices from The5ers' Summer Plan page (the5ers.com/summer-plan/), read on 2026-10-20. <strong>Checkout not verified:</strong> the checkout sits behind a sign-in, so we could not see what it actually charges. The homepage banner's "$100K For $149" refers to the 2-Step 10%/5% $100K account: the page's "$100k-10/5" tab shows "Price $149" and its "$100k- 8/5" tab shows "$179". We keep these rows out of our comparisons and true-cost tables until a checkout price is confirmed.</p>
+<p>The Summer Plan is a separate, limited-time offer with no published end date. The prices below are The5ers' advertised list prices from The5ers' Summer Plan page (the5ers.com/summer-plan/), read on 2026-10-20 and rechecked unchanged on 2026-10-27. <strong>Checkout not verified:</strong> the checkout sits behind a sign-in, so we could not see what it actually charges. The homepage banner now reads "$200K Only For $249" (checked 2026-10-27) and links to the Summer Plan page, where $249 is the price on the "$200k- 10/5" tab, the 2-Step 10%/5% $200K account; its "$200k- 8/5" tab shows "$279". The Summer Plan page's own header still reads "$100K Only $149", the price on its "$100k-10/5" tab. We keep these rows out of our comparisons and true-cost tables until a checkout price is confirmed.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
-  <caption class="hidden-caption">The5ers Summer Plan advertised list prices, 2026-10-20, checkout not verified</caption>
+  <caption class="hidden-caption">The5ers Summer Plan advertised list prices, 2026-10-20, rechecked 2026-10-27, checkout not verified</caption>
   <thead><tr style="background: var(--bg3);"><th>Summer Plan</th><th>Account</th><th>Advertised list price</th><th>Targets</th><th>Daily / Max loss</th><th>Split</th><th>Payout cap per cycle</th></tr></thead>
   <tbody>
     <tr><td>1-Step</td><td>$100K</td><td>$249</td><td>10%</td><td>3% / 6%</td><td>75%</td><td>$2,000</td></tr>

@@ -8,7 +8,7 @@ import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnes
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -16,6 +16,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-kascapital'
 export const revalidate = 3600
@@ -108,7 +109,7 @@ export default function RussianKasCapitalReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="kascapital" data-russian-local-review-status="verification-only">
@@ -120,13 +121,13 @@ export default function RussianKasCapitalReviewPage() {
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>KasCapital: обзор 2026 — капитал, выплаты и правила</h1>
           <p className="ru-lead" data-russian-kascapital-model="deposit-leverage-not-challenge"><strong>KasCapital — не челлендж-фирма.</strong> По описанию на сайте трейдер вносит собственный депозит (в примере — 50 000 ₽) и торгует акциями с плечом до ×100; платы за челлендж, целей прибыли и лимитов просадки для оценки на сайте нет (по данным на {KAS_RECHECK}). Ниже — заявления KasCapital о доле прибыли и выплатах по понедельникам. Это отдельная российская модель, её нельзя приравнивать к CFD-челленджу или считать подтверждённо безопасной.</p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {formatRuDate(marketEvidence.capturedAt)}; заявления на главной: {ruDatesInText(localSignalCapturedAt || 'дата не подтверждена')}.</p>
           <div className="ru-actions"><Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link></div>
           <div className="ru-stats">
             <div className="ru-stat"><strong>до 95% / 20%</strong><span>«до 95%» трейдеру и «максимум 20%» компании — обе формулировки на главной</span></div>
             <div className="ru-stat"><strong>Пн</strong><span>заявленный день обработки выплат</span></div>
             <div className="ru-stat"><strong>{Number(localSignal?.claims.minimumPayoutRub).toLocaleString('ru-RU')} ₽</strong><span>минимум одной заявки</span></div>
-            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
+            <div className="ru-stat"><strong>{ruDatesInText(localSignalCapturedAt || 'нет даты')}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -150,7 +151,7 @@ export default function RussianKasCapitalReviewPage() {
               </tbody>
             </table>
           </div>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}; партнёрская проверка: {affiliateCapturedAt || 'дата не подтверждена'}. Числа выше являются заявлениями KasCapital и требуют повторной проверки после изменения регламента.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок рынка: {formatRuDate(marketEvidence.capturedAt)}; заявления на главной: {ruDatesInText(localSignalCapturedAt || 'дата не подтверждена')}; партнёрская проверка: {ruDatesInText(affiliateCapturedAt || 'дата не подтверждена')}. Числа выше являются заявлениями KasCapital и требуют повторной проверки после изменения регламента.</p>
         </div>
       </section>
 
@@ -234,7 +235,7 @@ export default function RussianKasCapitalReviewPage() {
         </div>
       </section>
 
-      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}><div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки KasCapital. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего порядка выплат.</p>}<RussianFaq items={faqs} /></div></section>
+      <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}><div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} и отдельные проверки KasCapital. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего порядка выплат.</p>}<RussianFaq items={faqs} /></div></section>
       <RuRelatedBlock path={PATH} />
     </>
   )

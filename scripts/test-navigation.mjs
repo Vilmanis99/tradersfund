@@ -108,6 +108,12 @@ const russianMobile = render({ path: '/ru', mobile: true })
 const localFirmsRedirect = readFileSync(new URL('../next.config.ts', import.meta.url), 'utf8')
   .match(/source: '\/ru\/rossiyskie-prop-kompanii', destination: '([^']+)'/)?.[1]
 assert(localFirmsRedirect, 'local-firms redirect target is declared in next.config.ts')
+// RU Writer (27 Oct): the merge is permanent and the target is the hub's #rossiyskie anchor, not the ranking page.
+assert(
+  /\{ source: '\/ru\/rossiyskie-prop-kompanii', destination: '\/ru\/dlya-russkoyazychnykh-treyderov#rossiyskie', statusCode: 301 \}/
+    .test(readFileSync(new URL('../next.config.ts', import.meta.url), 'utf8')),
+  'local-firms route 301s to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie',
+)
 for (const href of ['/ru', '/ru/obzor-fundednext', '/ru/obzor-bright-funded', '/ru/luchshie-prop-firmy', localFirmsRedirect]) {
   assert(hrefs(russianMobile).has(href), `Russian mobile entry retained: ${href}`)
 }

@@ -15,6 +15,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/bright-funded-prop-firm', ru: '/ru/obzor-bright-funded' },
   { en: '/blog/the5ers-review', ru: '/ru/obzor-the5ers' },
   { en: '/blog/crypto-fund-trader-review', ru: '/ru/obzor-crypto-fund-trader' },
+  { en: '/blog/hash-hedge-review', ru: '/ru/obzor-hash-hedge' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
@@ -110,6 +111,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-ftmo': '2026-10-20',
   '/ru/obzor-fundednext': '2026-10-20',
   '/ru/obzor-fundingpips': '2026-10-20',
+  '/ru/obzor-hash-hedge': '2026-10-27',
   '/ru/obzor-kascapital': '2026-10-20',
   '/ru/obzor-proplive': '2026-10-20',
   '/ru/obzor-teamtraders': '2026-10-20',

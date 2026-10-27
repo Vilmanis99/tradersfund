@@ -19,13 +19,15 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { ruHashHedgeReviewHref } from '@/lib/ruHashHedgeLink'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/prop-firmy-bez-kyc'
 const TITLE = 'Проп-фирмы без KYC: есть ли они и когда нужна верификация'
@@ -126,6 +128,7 @@ function publishedPriceCount(products: Challenge[]) {
 
 export default function RussianNoKycPage() {
   const firms = getAllFirms()
+  const hashHedgeReviewHref = ruHashHedgeReviewHref('/ru/obzor-hash-hedge', firms)
   const allChallenges = getAllChallenges()
   const freshChallenges = allChallenges.filter(product => isChallengeFresh(product))
   const evidenceBySlug = new Map(marketEvidence.kycEvidence.map(item => [item.firmSlug, item]))
@@ -167,7 +170,7 @@ export default function RussianNoKycPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'KYC в проп-фирмах' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const list = itemListSchema(
     featuredCards.flatMap(card => card.firm ? [{ ...card.firm, name: card.name, reviewUrl: card.reviewHref }] : []),
     'Основные глобальные партнёры: проверка KYC',
@@ -224,7 +227,7 @@ export default function RussianNoKycPage() {
             <Link href="#kyc-matrix" className="btn-outline">Сравнить KYC</Link>
             <Link href="/ru/dlya-russkoyazychnykh-treyderov" className="btn-outline">Проверить страну</Link>
           </div>
-          <p className="ru-source-line">Даты проверки KYC указаны по каждой фирме в таблице; страновые и локальные сведения сохранены от {marketEvidence.capturedAt}. Условия нужно перепроверить перед оплатой.</p>
+          <p className="ru-source-line">Даты проверки KYC указаны по каждой фирме в таблице; страновые и локальные сведения сохранены от {formatRuDate(marketEvidence.capturedAt)}. Условия нужно перепроверить перед оплатой.</p>
         </div>
       </section>
 
@@ -324,7 +327,7 @@ export default function RussianNoKycPage() {
                               {index > 0 ? ' · ' : ''}<a href={sourceUrl} target="_blank" rel="noopener noreferrer">Источник {index + 1}</a>
                             </span>
                           ))}
-                          <br /><span>Проверено {card.evidence?.sourceCapturedAt ?? 'дата неизвестна'}{card.evidence && !isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }) ? ' · требуется повторная проверка' : ''}</span>
+                          <br /><span>Проверено {ruDatesInText(card.evidence?.sourceCapturedAt ?? 'дата неизвестна')}{card.evidence && !isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }) ? ' · требуется повторная проверка' : ''}</span>
                         </td>
                       </tr>
                     )
@@ -332,7 +335,7 @@ export default function RussianNoKycPage() {
                 </tbody>
               </table>
             </div>
-            <p className="ru-source-line">Даты KYC различаются по фирмам; общий страновой снимок — {marketEvidence.capturedAt}. Число продуктов и цен берётся только из записей не старше 30 дней.</p>
+            <p className="ru-source-line">Даты KYC различаются по фирмам; общий страновой снимок — {formatRuDate(marketEvidence.capturedAt)}. Число продуктов и цен берётся только из записей не старше 30 дней.</p>
           </div>
         </section>
 
@@ -419,6 +422,12 @@ export default function RussianNoKycPage() {
               Профинансированный аккаунт подтверждает завершение процесса фирмы, но не гарантирует автоматическую выплату через любой канал.
               Банк, криптопроцессор или Rise может проверить имя получателя, документ, кошелёк, страну и санкционные списки по собственной процедуре.
               Поэтому вопрос «можно ли вывести в криптовалюте?» не равен вопросу «можно ли пройти KYC?».
+              {hashHedgeReviewHref ? (
+                <>
+                  {' '}Пример — Hash Hedge: при покупке челленджа KYC нет, но проверка личности обязательна перед реальным счётом и может
+                  понадобиться повторно перед выплатой (по данным на 19.10.2026, <Link href={hashHedgeReviewHref}>обзор Hash Hedge</Link>).
+                </>
+              ) : null}
             </p>
             <p>
               У BrightFunded USDC ERC-20 и перевод EUR на банк являются опубликованными способами выплаты, а KYC проводит SumSub до договора.
@@ -488,7 +497,7 @@ export default function RussianNoKycPage() {
               </article>
               <article className="ru-card">
                 <h3>TeamTraders</h3>
-                <p className="ru-muted">В FAQ, сохранённом {teamTraders?.sourceCapturedAt ?? 'без даты'}, указаны {teamTraders?.claims.minimumTradingSessions ?? 'неподтверждённое число'} торговых дней, дневной лимит убытка {teamTraders?.claims.dailyLossLimitPct ?? '—'}% и доля прибыли {teamTraders?.claims.profitSharePct ?? '—'}% на реальном счёте. Эти исторические правила не подтверждают текущий KYC-статус.</p>
+                <p className="ru-muted">В FAQ, сохранённом {ruDatesInText(teamTraders?.sourceCapturedAt ?? 'без даты')}, указаны {teamTraders?.claims.minimumTradingSessions ?? 'неподтверждённое число'} торговых дней, дневной лимит убытка {teamTraders?.claims.dailyLossLimitPct ?? '—'}% и доля прибыли {teamTraders?.claims.profitSharePct ?? '—'}% на реальном счёте. Эти исторические правила не подтверждают текущий KYC-статус.</p>
                 <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie" className="ru-card-link">Смотреть первичный снимок →</Link>
               </article>
               <article className="ru-card">
@@ -548,7 +557,7 @@ export default function RussianNoKycPage() {
                 <strong>Проверка источников: Edris Derakhshi</strong>
                 <p>
                   Сопоставлены {partnerCards.length} KYC-процесса, {sourceCount} официальных страниц, {productCount} свежих продуктов и {priceCount} опубликованных цен.
-                  Даты KYC указаны по каждой фирме; страновые и локальные сведения сохранены от {marketEvidence.capturedAt}. Этот разбор не гарантирует решение службы проверки по индивидуальному профилю.
+                  Даты KYC указаны по каждой фирме; страновые и локальные сведения сохранены от {formatRuDate(marketEvidence.capturedAt)}. Этот разбор не гарантирует решение службы проверки по индивидуальному профилю.
                 </p>
                 <Link href="/authors/edris-derakhshi">Редакционный профиль и методология →</Link>
               </div>

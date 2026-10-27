@@ -23,6 +23,7 @@
  */
 
 import { possessive } from '@/lib/possessive'
+import { hasTieredSplit, profitSplitText, profitSplitValue } from '@/lib/profitSplitDisplay'
 import {
   challengeCurrency,
   challengeTierEconomics,
@@ -143,7 +144,12 @@ export interface MatchupCostRow {
   minimumCost: number
   /** What `minimumCost` is made of — never left implicit. */
   costBasis: string
+  /** Lowest tier when tiered: the break-even input. Display uses `profitSplitDisplay`. */
   profitSplitPct: number
+  /** "50–80%" (tiered) or "80%" (flat), from lib/profitSplitDisplay. */
+  profitSplitDisplay: string
+  /** True when the product publishes two or more applicable split tiers. */
+  profitSplitTiered: boolean
   breakEvenProfit: number
   /** Null on EUR rows and where no loss cap is published. */
   rMultiple: number | null
@@ -228,6 +234,8 @@ function buildCostRows(
       // Non-null by construction: challengeTierEconomics() returns null
       // when the split is missing, so any row reaching here has one.
       profitSplitPct: challenge.profitSplitPct as number,
+      profitSplitDisplay: profitSplitValue(challenge) ?? `${challenge.profitSplitPct}%`,
+      profitSplitTiered: hasTieredSplit(challenge),
       breakEvenProfit: economics.breakEvenProfit,
       rMultiple: economics.rMultiple,
       dayCount: economics.dayCount,
@@ -370,7 +378,7 @@ interface RuleDef {
 
 const RULE_DEFS: RuleDef[] = [
   { label: 'Evaluation steps', get: c => formatPhases(c.phases) },
-  { label: 'Profit split', get: c => formatPct(c.profitSplitPct) },
+  { label: 'Profit split', get: c => (hasTieredSplit(c) ? profitSplitText(c, 'en')! : formatPct(c.profitSplitPct)) },
   { label: 'Drawdown method', get: c => formatDrawdown(c.drawdownType) },
   {
     label: 'Daily loss cap',
@@ -674,7 +682,7 @@ export function describeMatchup(matchup: ChallengeMatchup): string[] {
       + `${sample.cheapest!.productName} at ${formatMoney(sample.cheapest!.minimumCost, sample.cheapest!.currency)} `
       + `(${sample.cheapest!.costBasis}), which needs `
       + `${formatMoney(sample.cheapest!.breakEvenProfit, sample.cheapest!.currency)} of profit at a `
-      + `${sample.cheapest!.profitSplitPct}% split before the fee is back in your pocket.`,
+      + `${sample.cheapest!.profitSplitPct}% split${sample.cheapest!.profitSplitTiered ? ` (the lowest tier of its ${sample.cheapest!.profitSplitDisplay} tiered split)` : ''} before the fee is back in your pocket.`,
     )
   } else if (tied.length) {
     const sample = tied[0]

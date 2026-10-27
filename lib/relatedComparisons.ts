@@ -2,7 +2,7 @@
 // scripts as well as from the Next.js bundle.
 import type { Firm } from './firms.ts'
 import { getChallengesByFirm, isChallengeFresh } from './firms.ts'
-import { canonicalMatchupSlug, firmSlug } from './comparisons.ts'
+import { canonicalMatchupSlug, firmSlug, isComparePairAllowed } from './comparisons.ts'
 import { rankFirmAlternatives } from './firmAlternatives.ts'
 
 export interface FreshFirmEvidence {
@@ -53,6 +53,11 @@ export function getFreshComparisonEvidence(
   }
 }
 
+/** Whether a /compare page exists for this pair (see lib/compareAllowlist.ts). */
+export function hasComparisonPage(left: Pick<Firm, 'name'>, right: Pick<Firm, 'name'>) {
+  return isComparePairAllowed(firmSlug(left.name), firmSlug(right.name))
+}
+
 export function comparisonHref(left: Pick<Firm, 'name'>, right: Pick<Firm, 'name'>) {
   return `/compare/${canonicalMatchupSlug(firmSlug(left.name), firmSlug(right.name))}`
 }
@@ -97,6 +102,7 @@ export function buildRelatedComparisons(
 
       const matchup = canonicalMatchupSlug(firmSlug(anchor.name), firmSlug(candidate.name))
       if (seen.has(matchup)) continue
+      if (!isComparePairAllowed(firmSlug(anchor.name), firmSlug(candidate.name))) continue
 
       const candidateEvidence = evidence.get(candidate.name)
       if (!candidateEvidence?.productCount) continue

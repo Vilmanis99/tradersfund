@@ -8,9 +8,11 @@ import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, minimumCostToFundedUsd, type Challenge } from '@/lib/firms'
 import { firmSlug } from '@/lib/firmSlug'
-import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { ruHashHedgeReviewHref } from '@/lib/ruHashHedgeLink'
 import cftCapture from '@/content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-crypto-fund-trader'
 const TITLE = 'Crypto Fund Trader: обзор 2026, отзывы и доступ из России'
@@ -131,6 +133,7 @@ export default function RussianCryptoFundTraderReviewPage() {
   const complete = Boolean(evaluation && ascend && accelerated && instant && breakChallenge) && isChallengeFresh({ sourceCapturedAt: ACCESS_CHECKED })
   const firm = getAllFirms().find(item => firmSlug(item.name) === 'crypto-fund-trader')
   const status = russiaStatusFor('crypto-fund-trader')
+  const hashHedgeReviewHref = ruHashHedgeReviewHref('/ru/obzor-hash-hedge')
   const captureDates = all.map(product => product.sourceCapturedAt).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()
   // The 2026-10-20 recapture covers every programme (prices, availability, rules); stored rows may still carry 2026-10-19.
   const earliestCapture = captureDates[0] && captureDates[0] > CHECKED ? captureDates[0] : CHECKED
@@ -182,7 +185,7 @@ export default function RussianCryptoFundTraderReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['crypto-fund-trader']} /></div>
@@ -521,6 +524,13 @@ export default function RussianCryptoFundTraderReviewPage() {
                 </div>
               </article>
             </div>
+            {hashHedgeReviewHref && (
+              <p data-russian-cft-hash-hedge="related">
+                Если нужна крипта в браузере, а не на Match-Trader или MT5, посмотрите{' '}
+                <Link href={hashHedgeReviewHref}>обзор Hash Hedge</Link>: у этой фирмы свой веб-терминал. Статус доступа для РФ
+                и расхождения официальных источников в способах оплаты разобраны там.
+              </p>
+            )}
             <p>Полное сравнение крипто-направления — в <Link href="/ru/luchshie-kripto-prop-firmy">рейтинге крипто-проп фирм</Link>.</p>
           </div>
         </section>
@@ -530,7 +540,7 @@ export default function RussianCryptoFundTraderReviewPage() {
             <h2>Источники и дата проверки</h2>
             <ul>
               {all.map(product => (
-                <li key={product.productSlug}><a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{product.productName}</a> — {isChallengeFresh(product) ? asOf(shownDate(product)) : `проверка ${product.sourceCapturedAt} устарела`}.</li>
+                <li key={product.productSlug}><a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{product.productName}</a> — {isChallengeFresh(product) ? asOf(shownDate(product)) : `проверка ${formatRuDate(product.sourceCapturedAt)} устарела`}.</li>
               ))}
               <li><a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a>: платформы, оплата, правила и выплаты — {asOf(ACCESS_CHECKED)}.</li>
               <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены (разд. 5.6), сбор за активацию Break, оплата — {asOf(ACCESS_CHECKED)}; ограничения по странам (п. 7.3) — {asOf(RUSSIA_CHECKED)}.</li>

@@ -91,6 +91,13 @@ for (const slug of [...new Set(challenges.map(product => product.firmSlug))]) {
     if (locale === 'ru') assert.match(visible, /\d\d\.\d\d\.20\d\d/, `${firm.name}: RU date is DD.MM.YYYY`)
     else assert.match(visible, /\d{1,2} [A-Z][a-z]{2} 20\d\d/, `${firm.name}: EN date is D Mon YYYY`)
     if (expected.some(({ tier }) => !positive(tier.priceUsd))) assert(html.includes('€'), `${firm.name}: EUR fees keep the euro sign`)
+    // A conditional refund (refundAfterPayouts) is labelled with its condition, never a flat "Fee refunded".
+    const conditional = matrix.columns.filter(column => column.refundUniform && column.refundable === true && column.refundAfterPayouts && !column.refundConflictCheckedAt)
+    assert.equal((html.match(/data-price-matrix-refund-after=/g) ?? []).length, conditional.length, `${firm.name} ${locale}: one conditional-refund label per conditional product`)
+    for (const column of conditional) {
+      const label = locale === 'en' ? `Refunded after ${column.refundAfterPayouts}` : `Возврат после ${column.refundAfterPayouts}-й выплаты`
+      assert(html.includes(label), `${firm.name} ${locale} ${column.product.productSlug}: refund condition shown`)
+    }
   }
   checkedFirms += 1
 }

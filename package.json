@@ -21,6 +21,7 @@
     "indexnow:russian": "node scripts/submit-indexnow-russian.mjs",
     "capture:preview": "node scripts/merge-capture.mjs",
     "test:capture-merge": "node scripts/test-capture-merge.mjs",
+    "test:ru-visible-dates": "node scripts/test-ru-visible-dates.mjs",
     "test:cft-correction": "node scripts/test-cft-correction.mjs",
     "test:null-price-products": "node scripts/test-null-price-products.mjs",
     "test:previous-discount-code": "node scripts/test-previous-discount-code.mjs",
@@ -61,9 +62,11 @@
     "test:ru-access-basis": "node scripts/test-ru-access-basis.mjs",
     "test:russia-status-pending": "node scripts/test-russia-status-pending.mjs",
     "test:rules-pages": "node scripts/test-rules-pages.mjs",
+    "test:split-tiers-display": "node scripts/test-split-tiers-display.mjs",
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",
     "test:ru-rules-routes": "node scripts/test-ru-rules-routes.mjs",
-    "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs"
+    "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs",
+    "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

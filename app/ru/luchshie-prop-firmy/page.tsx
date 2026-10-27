@@ -8,8 +8,9 @@ import RussianChallengeFinder from '@/components/RussianChallengeFinder'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianPublishedHref } from '@/lib/localizedRoutes'
+import { ruHashHedgeReviewHref } from '@/lib/ruHashHedgeLink'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
@@ -25,6 +26,8 @@ import { isProductSetFresh } from '@/lib/reviewFreshness'
 import { ruNotListedDates } from '@/lib/ruBasisWording'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { getAllDeals } from '@/lib/deals'
+import hhLatestCapture from '@/content/data/challenges/_captures/hash-hedge-2026-10-26.json'
+import { formatRuDate } from '@/lib/ruDate'
 
 // Trace 2026-10-20: BrightFunded entry price reads from challenges/bright-funded.json (cheapest fresh $5K tier and its capture date).
 function brightFundedFiveKFrom() {
@@ -72,13 +75,16 @@ const RU_ACCESS_STATUS_ORDER: RuAccessRow['status'][] = ['available', 'unclear',
 function buildRuAccessRows(): RuAccessRow[] {
   const firms = getAllFirms()
   const firmNames = new Set(firms.map(firm => firm.name.toLowerCase()))
-  const extraNote = new Map(RU_ACCESS_EXTRA.map(extra => [extra.name.toLowerCase(), extra.note]))
+  // An extra's note is reused for a firm that has since entered firms.json only when the extra's status equals the
+  // firms.json russiaStatus. A note written for a different status (e.g. an 'available' extra against a firms.json
+  // 'unclear') would otherwise leak a stale claim past the firms.json row; RU_ACCESS_NOTES is the place for the new note.
+  const extraByName = new Map(RU_ACCESS_EXTRA.map(extra => [extra.name.toLowerCase(), extra]))
   const firmRows = firms
     .map(firm => ({ firm, slug: outboundSlug(firm.name), score: firm.score, name: firm.name }))
     .sort((a, b) => compareRussianRanking(a, b, russiaStatusFor))
     .map(({ firm, slug }) => {
     const status = ((firm as { russiaStatus?: RuAccessRow['status'] }).russiaStatus ?? 'unverified')
-    return { name: slug === 'bright-funded' ? 'BrightFunded' : firm.name, status, basisDate: russiaBasisDateFor(slug), slug, review: russianReviewRoutes[slug] ?? firm.reviewUrl, note: RU_ACCESS_NOTES[slug] ?? extraNote.get(firm.name.toLowerCase()) }
+    return { name: slug === 'bright-funded' ? 'BrightFunded' : firm.name, status, basisDate: russiaBasisDateFor(slug), slug, review: russianReviewRoutes[slug] ?? firm.reviewUrl, note: RU_ACCESS_NOTES[slug] ?? (extraByName.get(firm.name.toLowerCase())?.status === status ? extraByName.get(firm.name.toLowerCase())?.note : undefined) }
     })
   const extras = RU_ACCESS_EXTRA.filter(extra => !firmNames.has(extra.name.toLowerCase()))
   const rank = (row: RuAccessRow) => RU_ACCESS_STATUS_ORDER.indexOf(row.status)
@@ -96,11 +102,17 @@ const RU_ACCESS_NOTES: Record<string, string> = {
   'bright-funded': 'Россия не в списке ограничений; исключены лица из санкционных списков',
   'crypto-fund-trader': 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на ' + CFT_RU_SOURCE_DATE + ')',
   fundingpips: 'Россия прямо не названа; исключены юрисдикции из санкционных списков FATF и ЕС/ООН',
+  // Shown only once Hash Hedge is in firms.json (status and badge come from russiaStatus there, 'unclear' on 2026-10-23, EA rule).
+  // Sources: Terms 4.3 ('Last Updated: October 8, 2026'); date = the latest Prop Firm Tracker capture that re-read the Terms for Russia
+  // (hash-hedge-2026-10-26.json 'russia': Terms text identical, 4.3 still does not name Russia). No payment claim: Terms 10.2 and the guide/FAQ disagree.
+  'hash-hedge': `Россия в условиях от 08.10.2026 не названа ни среди исключённых, ни среди принятых; регистрацию и KYC не проверяли (Prop Firm Tracker, ${ruAccessDate(hhLatestCapture.russia ? hhLatestCapture.capturedAt : '2026-10-23')})`,
   topstep: 'Недоступно для РФ по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
 }
 
-// The count equals the Russia-access table rows (firms.json + RU_ACCESS_EXTRA, no duplicates); test-russian-expiry checks it.
-const DESCRIPTION = 'Рейтинг проп-компаний 2026: 23 фирмы с отметкой доступа из России, ценами, просадкой и выплатами. РФ нет в списке ограничений BrightFunded и Crypto Fund Trader.'
+// No firm count in the search description: the audit reads DESCRIPTION as a static single-quoted string (120–160 chars), so a
+// count derived from the rendered list cannot live here, and a hard-coded one drifts whenever firms.json changes. The live
+// count stays in the page (data-russian-ranking-russia-access); test-russian-expiry checks the description has no number of firms.
+const DESCRIPTION = 'Рейтинг проп-компаний 2026: фирмы с отметкой доступа из России, ценами, просадкой и выплатами. РФ нет в списке ограничений BrightFunded и Crypto Fund Trader.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -188,6 +200,8 @@ const russianReviewRoutes: Record<string, string> = {
     'crypto-fund-trader': '/ru/obzor-crypto-fund-trader',
     the5ers: '/ru/obzor-the5ers',
   }),
+  // Hash Hedge (ships with EN Writer's HH review, Tue 27.10.2026): shared RU gate — firms.json entry + registered route.
+  ...(ruHashHedgeReviewHref('/ru/obzor-hash-hedge') ? { 'hash-hedge': '/ru/obzor-hash-hedge' } : {}),
 }
 
 function publishedRussianReviewRoutes(routes: Record<string, string>): Record<string, string> {
@@ -352,7 +366,7 @@ export default function RussianBestPropFirmsPage() {
     { name: 'Лучшие проп-фирмы 2026' },
   ])
   const faqItems = faqs(instantFaqAnswer, fundingPipsAccessCurrent, brightCountryCurrent)
-  const faq = faqPageSchema(faqItems)
+  const faq = ruFaqPageSchema(faqItems)
   const list = itemListSchema(ranked.map(item => ({
     ...item.firm,
     name: item.slug === 'bright-funded' ? 'BrightFunded' : item.firm.name,
@@ -615,7 +629,7 @@ export default function RussianBestPropFirmsPage() {
             Если вы живёте в Испании, Италии или другой стране ЕС, решает страна проживания в KYC, а не язык. Универсальные фирмы
             BrightFunded и FundedNext не называют Италию и Испанию в своих списках ограничений, а на официальных страницах Crypto Fund Trader
             мы не нашли ограничений ни для ЕС, ни для России: на Match-Trader ограничений по странам нет, MT5 закрыт только для резидентов США
-            (по данным на {CFT_RU_SOURCE_DATE}); BrightFunded к тому же
+            (по данным на {formatRuDate(CFT_RU_SOURCE_DATE)}); BrightFunded к тому же
             указывает цены в евро{brightFundedFrom ? ` (от €${brightFundedFrom.price} за $5K, данные на ${brightFundedFrom.date})` : ''} и платит банковским переводом в EUR. Перед оплатой сверьте адрес и
             документ: они должны совпадать с данными профиля. Подробно о разных странах — <RuPendingLink href="/ru/prop-trejding#drugie-strany">проп-трейдинг из других стран</RuPendingLink>.
           </p>

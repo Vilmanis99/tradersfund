@@ -30,7 +30,7 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -39,6 +39,7 @@ import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
 import { ruNotListedDate } from '@/lib/ruBasisWording'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/otzyvy-prop-firm'
 const TITLE = 'Отзывы о проп-фирмах 2026: как проверить выплаты'
@@ -233,7 +234,7 @@ export default function RussianPropFirmReviewsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListSchema(featuredCards.map(card => ({ ...card.firm, name: card.name, reviewUrl: card.reviewHref })), TITLE)) }} />
-      {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {hasFreshResearch && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
@@ -246,7 +247,7 @@ export default function RussianPropFirmReviewsPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные руководства по отзывам">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {lastModified}</span>
+            <span>Обновлено: {formatRuDate(lastModified)}</span>
             <span>15 минут чтения</span>
           </div>
           <div className="ru-actions" data-russian-reviews-finder-handoff="neutral-selector">
@@ -333,7 +334,7 @@ export default function RussianPropFirmReviewsPage() {
                   <ul className="ru-facts">
                     <li><Database size={14} aria-hidden="true" /> Актуальные продукты: {card.products.length}</li>
                     <li><BadgeDollarSign size={14} aria-hidden="true" /> Опубликованные цены: {card.priceCount}</li>
-                    <li><ShieldCheck size={14} aria-hidden="true" /> Источники до: {card.products.map(product => product.sourceCapturedAt).sort().at(-1)}</li>
+                    <li><ShieldCheck size={14} aria-hidden="true" /> Источники до: {ruDatesInText(card.products.map(product => product.sourceCapturedAt).sort().at(-1))}</li>
                   </ul>
                   <p>{card.slug === 'fundednext'
                     ? 'Резидентам России недоступна (подвал fundednext.com, по данным на 20.10.2026). Трейдеру из другой страны: сначала выберите между 0, 1 и 2 этапами; затем проверьте возврат взноса, тип просадки и первую заявку.'
@@ -366,7 +367,7 @@ export default function RussianPropFirmReviewsPage() {
                       <td>{phaseLabel(product)}; {profitTargetLabel(product)}</td>
                       <td>{lossLabel(product)}</td>
                       <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{product.profitSplitPct == null ? 'сплит —' : `${product.profitSplitPct}% базовый`}; {payoutLabel(product)}</td>
-                      <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt} <ExternalLink size={12} aria-hidden="true" /></a></td>
+                      <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{formatRuDate(product.sourceCapturedAt)} <ExternalLink size={12} aria-hidden="true" /></a></td>
                     </tr>
                   )))}
                 </tbody>

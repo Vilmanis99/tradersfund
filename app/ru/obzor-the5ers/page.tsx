@@ -11,13 +11,14 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { ArrowRight, ShieldAlert } from 'lucide-react'
-import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { goLinkRel, russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
 import { ruClosedFirmsHref } from '@/lib/closedFirms'
 import { RU_NOT_A_RUSSIA_OPTION, RU_RELATED, ruPublishedLinks, ruReviewFirmFor, ruReviewRank } from '@/lib/ruRelatedLinks'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-the5ers'
 export const revalidate = 86400
@@ -135,7 +136,7 @@ function priceLabel(product: Challenge) {
 const ALT_NOTES: Record<string, { note: string; sourceHref?: string; fallbackHref?: string; fallbackLabel?: string }> = {
   'bright-funded': {
     sourceHref: SRC.brightCountries,
-    note: `Россия не названа в списке ограниченных стран справки BrightFunded (Куба, Иран, КНДР, Сирия, Вьетнам, Пакистан; по данным на ${CHECKED}).`,
+    note: `Россия не названа в списке ограниченных стран справки BrightFunded (Куба, Иран, КНДР, Сирия, Вьетнам, Пакистан; по данным на ${formatRuDate(CHECKED)}).`,
   },
   'crypto-fund-trader': {
     note: `По FAQ и условиям (п. 7.3) Crypto Fund Trader на Match-Trader ограничений по странам нет; MT5 недоступен резидентам США (по данным на ${CFT_ACCESS}).`,
@@ -249,12 +250,12 @@ export default function RussianThe5ersReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      {allFresh && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {allFresh && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-the5ers="restricted" data-russian-review-editorial-date={dateModified}>
           <RussianDataFreshnessNotice firmSlugs={['the5ers']} />
-          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} /> · условия проверены {RUSSIA_CHECKED}</div>
+          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} /> · условия проверены {formatRuDate(RUSSIA_CHECKED)}</div>
           <h1>{H1}</h1>
           <p className="ru-lead">
             The5ers — форекс-проп-фирма, основанная в {firm?.founded ?? '2016'} году, с четырьмя CFD-программами — двухэтапной High Stakes,
@@ -264,7 +265,7 @@ export default function RussianThe5ersReviewPage() {
           </p>
           <p className="ru-source-line">Автор: редакция Traders Fund Hub · Обновлено: {ruDate(dateModified)}</p>
           <p className="ru-source-line" data-russian-the5ers-verified={LAST_CHECKED_ISO}>
-            Проверено {ruDate(latestCapture)}–{FUTURES_CHECKED} по официальным страницам: <S href={SRC.terms}>условия</S>, <S href={SRC.highStakes}>High Stakes</S>,{' '}
+            Проверено {ruDate(latestCapture)}–{formatRuDate(FUTURES_CHECKED)} по официальным страницам: <S href={SRC.terms}>условия</S>, <S href={SRC.highStakes}>High Stakes</S>,{' '}
             <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>. Полный список — в разделе «Источники».
           </p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="the5ers">
@@ -292,7 +293,7 @@ export default function RussianThe5ersReviewPage() {
           <p>
             Наша оценка в базе — {firm?.score ?? '—'}/10.{' '}
             {firm?.trustpilotScore != null && firm?.trustpilotCount != null
-              ? <>На <a href={firm.trustpilotUrl ?? 'https://www.trustpilot.com/review/the5ers.com'} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> — {firm.trustpilotScore.toLocaleString('ru-RU')} при {firm.trustpilotCount.toLocaleString('ru-RU')} отзывах{trustpilotDate ? ` (по данным на ${trustpilotDate})` : ''}. Отзывы не проверяют страну автора и не гарантируют выплату конкретному трейдеру.</>
+              ? <>На <a href={firm.trustpilotUrl ?? 'https://www.trustpilot.com/review/the5ers.com'} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> — {firm.trustpilotScore.toLocaleString('ru-RU')} при {firm.trustpilotCount.toLocaleString('ru-RU')} отзывах{trustpilotDate ? ` (по данным на ${formatRuDate(trustpilotDate)})` : ''}. Отзывы не проверяют страну автора и не гарантируют выплату конкретному трейдеру.</>
               : null}
           </p>
           <p>
@@ -302,7 +303,7 @@ export default function RussianThe5ersReviewPage() {
           </p>
           <p className="ru-source-line">
             Источники чисел: цена — <S href={SRC.highStakes}>High Stakes</S>; 3,5% и 14 дней — <S href={SRC.withdrawals}>FAQ о выплатах</S>; новости — <S href={SRC.highStakes}>High Stakes</S>;
-            согласованность — <S href={SRC.consistency}>FAQ</S> (по данным на {CHECKED}); год основания и оценка — наша база по фирмам; Trustpilot — данные <S href={SRC.trustpilot}>Trustpilot</S>{trustpilotDate ? ` на ${trustpilotDate}` : ''}.
+            согласованность — <S href={SRC.consistency}>FAQ</S> (по данным на {formatRuDate(CHECKED)}); год основания и оценка — наша база по фирмам; Trustpilot — данные <S href={SRC.trustpilot}>Trustpilot</S>{trustpilotDate ? ` на ${formatRuDate(trustpilotDate)}` : ''}.
           </p>
         </div>
       </section>
@@ -317,7 +318,7 @@ export default function RussianThe5ersReviewPage() {
           <blockquote lang="en">{firm?.russiaSourceQuote ?? '“Forbidden Territory” means any jurisdiction where Our Services are not available…'}</blockquote>
           <div className="ru-table-wrap">
             <table className="ru-table">
-              <thead><tr><th>Страна</th><th>В списке The5ers (по данным на {RUSSIA_CHECKED})</th></tr></thead>
+              <thead><tr><th>Страна</th><th>В списке The5ers (по данным на {formatRuDate(RUSSIA_CHECKED)})</th></tr></thead>
               <tbody>
                 <tr><td><strong>Россия</strong></td><td>Да</td></tr>
                 <tr><td><strong>Беларусь</strong></td><td>Да</td></tr>
@@ -349,7 +350,7 @@ export default function RussianThe5ersReviewPage() {
             Отдельно условия предупреждают, что платежи с криптобирж и платёжных сервисов, зарегистрированных в России, не обрабатываются и
             автоматически замораживаются платёжным провайдером.
           </p>
-          <p className="ru-source-line">Источник: <S href={SRC.terms}>Terms and Conditions</S> и подвал сайта the5ers.com — по данным на {RUSSIA_CHECKED}.</p>
+          <p className="ru-source-line">Источник: <S href={SRC.terms}>Terms and Conditions</S> и подвал сайта the5ers.com — по данным на {formatRuDate(RUSSIA_CHECKED)}.</p>
           <p>
             Какие фирмы открыты для русскоязычных трейдеров и как проверить свою страну — в руководстве для русскоязычных трейдеров в блоке
             «Похожие материалы» в конце статьи{closedHref ? <>; фирмы, которые закрылись или прекратили приём, — в списке <Link href={closedHref}>закрытых проп-фирм</Link></> : null}.
@@ -390,7 +391,7 @@ export default function RussianThe5ersReviewPage() {
             <p className="ru-content ru-muted">Свежих данных о программах The5ers сейчас нет: цены скрыты до повторной проверки.</p>
           )}
           <p className="ru-content ru-muted">
-            Цены по всем вкладкам мы дополнительно сверили с официальными страницами программ {CHECKED}. «Мин. дни» в High Stakes и Pro Growth —
+            Цены по всем вкладкам мы дополнительно сверили с официальными страницами программ {formatRuDate(CHECKED)}. «Мин. дни» в High Stakes и Pro Growth —
             прибыльные дни, а не торговые. В Bootcamp размер счёта — итоговый финансируемый баланс: этапы оценки идут на меньших счетах.
             Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>.
           </p>
@@ -414,7 +415,7 @@ export default function RussianThe5ersReviewPage() {
             <li><strong>Рост.</strong> Счёт увеличивается после каждой цели 10%. Доля 80% растёт до 85% от $175 000, до 90% от $250 000 и до 100% плюс фиксированная выплата от $350 000; потолок — $500 000.</li>
           </ul>
           <p className="ru-source-line">
-            Источники: <a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">правило просадки High Stakes</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">выплаты и Hub Credit в High Stakes</a> — по данным на {CHECKED}.
+            Источники: <a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">правило просадки High Stakes</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">выплаты и Hub Credit в High Stakes</a> — по данным на {formatRuDate(CHECKED)}.
           </p>
         </div>
       </section>
@@ -423,7 +424,7 @@ export default function RussianThe5ersReviewPage() {
         <section className="ru-section" id="primer">
           <div className="ru-shell ru-content" data-russian-the5ers-worked-example="high-stakes-new-10k">
             <h2>Пример: High Stakes New $10K от оплаты до первой выплаты</h2>
-            <p className="ru-muted">Пример, не прогноз. Все входные данные — со страницы <S href={SRC.highStakes}>High Stakes</S> (по данным на {ruDate(hsNew?.sourceCapturedAt ?? latestCapture)}) и <S href={SRC.hsPayout}>FAQ о Hub Credit</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S> (по данным на {CHECKED}).</p>
+            <p className="ru-muted">Пример, не прогноз. Все входные данные — со страницы <S href={SRC.highStakes}>High Stakes</S> (по данным на {ruDate(hsNew?.sourceCapturedAt ?? latestCapture)}) и <S href={SRC.hsPayout}>FAQ о Hub Credit</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S> (по данным на {formatRuDate(CHECKED)}).</p>
             <ol>
               <li><strong>Взнос:</strong> {money2(exFee)}.</li>
               <li><strong>Этап 1:</strong> цель {hsNew?.profitTargets?.phase1}% = {money2(exT1)}. Нужно минимум 3 прибыльных дня, каждый — закрытая прибыль не меньше 0,5% = {money2(exProfitDay)}. Награда за этап на странице — $10; в Hub начисляется 10% взноса = {money2(pct(exFee, 10))} (Hub Credits, не деньги).</li>
@@ -458,7 +459,7 @@ export default function RussianThe5ersReviewPage() {
             <li><strong>Новости.</strong> Разрешены, кроме стратегий-«вилок» вокруг новостей и практик из условий.</li>
           </ul>
           <p className="ru-source-line">
-            Источники: <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.hyperFaq} target="_blank" rel="nofollow noopener noreferrer">как работает Hyper Growth</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">правило просадки Pro Growth</a> — по данным на {CHECKED}.
+            Источники: <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.hyperFaq} target="_blank" rel="nofollow noopener noreferrer">как работает Hyper Growth</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">правило просадки Pro Growth</a> — по данным на {formatRuDate(CHECKED)}.
           </p>
         </div>
       </section>
@@ -473,13 +474,13 @@ export default function RussianThe5ersReviewPage() {
           </p>
           <ul>
             <li><strong>Финансируемый счёт.</strong> Цель 5% для роста, максимальный убыток {bootcamp?.fundedMaxLossPct ?? '—'}% и пауза при {bootcamp?.fundedDailyLossPct ?? '—'}% за день. Рост — на каждой цели 5%, до $4 млн.</li>
-            <li><strong>Просадка статическая.</strong> Максимальный убыток — 5% от начального баланса. Пример из FAQ The5ers: при балансе $10 000 счёт закрывается ниже $9 500 по эквити; если эквити выросло до $10 300, допустимая просадка становится $800, то есть граница закрытия остаётся на $9 500 и вслед за прибылью не поднимается. Выплаты уменьшают баланс и вместе с ним этот запас (<S href={SRC.drawdown}>FAQ о просадке</S>, обновлён 22.07.2026, проверено {CHECKED}).</li>
+            <li><strong>Просадка статическая.</strong> Максимальный убыток — 5% от начального баланса. Пример из FAQ The5ers: при балансе $10 000 счёт закрывается ниже $9 500 по эквити; если эквити выросло до $10 300, допустимая просадка становится $800, то есть граница закрытия остаётся на $9 500 и вслед за прибылью не поднимается. Выплаты уменьшают баланс и вместе с ним этот запас (<S href={SRC.drawdown}>FAQ о просадке</S>, обновлён 22.07.2026, проверено {formatRuDate(CHECKED)}).</li>
             <li><strong>Доля.</strong> До 100% (по данным The5ers); стартовый процент на странице не опубликован, поэтому в таблице числа нет.</li>
             {bootcampTotals.length ? <li data-russian-the5ers-bootcamp-cost="entry-plus-funded"><strong>Полная стоимость до финансирования:</strong> {bootcampTotals.map(row => `${sizeLabel(row.size)} — ${usd(row.entry)} + ${usd(row.funded)} = ${usd(row.total)}`).join('; ')}. Вторую часть платите, только если прошли все три этапа; при провале теряете лишь первый взнос, а новая попытка — это новая покупка.</li> : null}
             <li><strong>Ограничения.</strong> Не больше 4 активных счетов (1 × $250K, 1 × $100K, 2 × $20K), и на каждом должна быть своя стратегия. Взнос за Bootcamp не возвращается.</li>
           </ul>
           <p className="ru-source-line">
-            Источники: <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a>, <a href={SRC.bootcampFaq} target="_blank" rel="nofollow noopener noreferrer">как работает Bootcamp</a>, <a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">как считается просадка</a> — по данным на {CHECKED}.
+            Источники: <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a>, <a href={SRC.bootcampFaq} target="_blank" rel="nofollow noopener noreferrer">как работает Bootcamp</a>, <a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">как считается просадка</a> — по данным на {formatRuDate(CHECKED)}.
           </p>
         </div>
       </section>
@@ -489,7 +490,7 @@ export default function RussianThe5ersReviewPage() {
           <h2>The5ers Futures: фьючерсы CME</h2>
           <p>
             Кроме CFD-программ, The5ers продаёт отдельный фьючерсный продукт на контрактах CME с двумя вариантами. Day Trade: $25K — $59,
-            $50K — $100; позиции нужно закрывать до конца сессии. Swing (Summer Plan): $25K — $69, $50K — $120 (на вкладке Swing — «Summer Plan Price», на странице Summer Plan — «Limited Time Only»; текущая цена по данным на {SWING_CHECKED});
+            $50K — $100; позиции нужно закрывать до конца сессии. Swing (Summer Plan): $25K — $69, $50K — $120 (на вкладке Swing — «Summer Plan Price», на странице Summer Plan — «Limited Time Only»; текущая цена по данным на {formatRuDate(SWING_CHECKED)});
             можно держать через ночь 1 мини- или 10 микроконтрактов. Статус цены Swing фирма описывает по-разному: <S href={SRC.summerPlan}>страница Summer Plan</S> называет
             её ограниченным предложением «до конца лета» без даты окончания, а <S href={SRC.futuresSummerFaq}>FAQ</S> (23.07.2026) — постоянным снижением. На кассе цены мы не проверяли.
           </p>
@@ -500,7 +501,7 @@ export default function RussianThe5ersReviewPage() {
             третьей выплаты в обоих вариантах. Перенос через выходные запрещён, алгоритмическая и высокочастотная торговля — тоже. Ограничение для России
             действует и здесь: условия The5ers общие для всех услуг. <RuAccessBadgeView firm="the5ers" status={russiaStatusFor('the5ers')} basisDate={russiaBasisDateFor('the5ers')} hint={false} />
           </p>
-          <p className="ru-source-line">Источники: <S href={SRC.futures}>the5ers.com/futures</S>, <S href="https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/">общие правила фьючерсной программы</S> — по данным the5ers.com/futures, {FUTURES_CHECKED}.</p>
+          <p className="ru-source-line">Источники: <S href={SRC.futures}>the5ers.com/futures</S>, <S href="https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/">общие правила фьючерсной программы</S> — по данным the5ers.com/futures, {formatRuDate(FUTURES_CHECKED)}.</p>
         </div>
       </section>
 
@@ -529,7 +530,7 @@ export default function RussianThe5ersReviewPage() {
             <Link href="/ru/vyplaty-prop-firm">выплаты проп-фирм</Link>.
           </p>
           <p className="ru-source-line">
-            Источники: <a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">выплаты: всё, что нужно знать</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимальные суммы</a> — по данным на {CHECKED}.
+            Источники: <a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">выплаты: всё, что нужно знать</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимальные суммы</a> — по данным на {formatRuDate(CHECKED)}.
           </p>
           <div className="ru-notice" data-russian-the5ers-payout-risks="firm-rules">
             <strong>Что может пойти не так на выплате.</strong>
@@ -540,7 +541,7 @@ export default function RussianThe5ersReviewPage() {
               <li><strong>Новости в High Stakes.</strong> Сделки за 2 минуты до и после важных новостей запрещены (<S href={SRC.highStakes}>High Stakes</S>).</li>
               <li><strong>Страна.</strong> Если при KYC выяснится проживание в запрещённой стране или обход через VPN, счёт закрывают без возврата взносов и с аннулированием прибыли (<S href={SRC.terms}>условия</S>).</li>
             </ul>
-            <p className="ru-source-line">По данным на {CHECKED}.</p>
+            <p className="ru-source-line">По данным на {formatRuDate(CHECKED)}.</p>
           </div>
         </div>
       </section>
@@ -557,7 +558,7 @@ export default function RussianThe5ersReviewPage() {
             <li><strong>Правило согласованности.</strong> Для High Stakes, Pro Growth, Hyper Growth и Bootcamp правило не опубликовано, но в FAQ The5ers (19.10.2026) сказано, что на части счетов процент зависит от типа счёта или региона — 30%, 50% или другой. Лучший день не должен превышать этот процент от общей прибыли при запросе выплаты или роста счёта. Какие счета затронуты, фирма не уточняет: спросите поддержку для своего счёта.</li>
           </ul>
           <p className="ru-source-line">
-            Источники: <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы для CFD</a>, <a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">условия</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a> — по данным на {CHECKED}.
+            Источники: <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы для CFD</a>, <a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">условия</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a> — по данным на {formatRuDate(CHECKED)}.
           </p>
         </div>
       </section>
@@ -579,7 +580,7 @@ export default function RussianThe5ersReviewPage() {
             <li>Правило согласованности для CFD-программ не опубликовано, хотя FAQ допускает 30% или 50% в зависимости от счёта или региона.</li>
             <li>В Pro Growth дневной убыток 3% закрывает счёт, а пометка «No daily stop-loss» на странице Growth относится только к Hyper Growth — их легко перепутать.</li>
           </ul>
-          <p className="ru-source-line">Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>, <S href={SRC.consistency}>правило согласованности</S>, <S href={SRC.pgDrawdown}>просадка Pro Growth</S>, <S href={SRC.drawdown}>как считается просадка</S> — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источники: <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.withdrawals}>FAQ о выплатах</S>, <S href={SRC.consistency}>правило согласованности</S>, <S href={SRC.pgDrawdown}>просадка Pro Growth</S>, <S href={SRC.drawdown}>как считается просадка</S> — по данным на {formatRuDate(CHECKED)}.</p>
         </div>
       </section>
 
@@ -620,7 +621,7 @@ export default function RussianThe5ersReviewPage() {
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
-          <p className="ru-source-line">Источники ответов: <S href={SRC.terms}>условия</S>, <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.drawdown}>просадка</S>, <S href={SRC.withdrawals}>выплаты</S>, <S href={SRC.minWithdrawal}>минимумы</S> — по данным на {CHECKED}.</p>
+          <p className="ru-source-line">Источники ответов: <S href={SRC.terms}>условия</S>, <S href={SRC.highStakes}>High Stakes</S>, <S href={SRC.growth}>Growth</S>, <S href={SRC.bootcamp}>Bootcamp</S>, <S href={SRC.drawdown}>просадка</S>, <S href={SRC.withdrawals}>выплаты</S>, <S href={SRC.minWithdrawal}>минимумы</S> — по данным на {formatRuDate(CHECKED)}.</p>
         </div>
       </section>
 
@@ -629,17 +630,17 @@ export default function RussianThe5ersReviewPage() {
           <h2>Источники и дата проверки</h2>
           <p>
             Цены, цели, лимиты и доли — из наших датированных данных по программам (по данным на {ruDate(latestCapture)}), сверенных с
-            официальными страницами {CHECKED}. Условия, страны, выплаты, платформы и правила перечитаны на сайте The5ers {CHECKED}.
+            официальными страницами {formatRuDate(CHECKED)}. Условия, страны, выплаты, платформы и правила перечитаны на сайте The5ers {formatRuDate(CHECKED)}.
             Регистрацию, KYC и оплату с российскими документами мы не тестировали. Английская версия обзора —{' '}
             <Link href="/blog/the5ers-review" hrefLang="en">The5ers review</Link>.
           </p>
           <ul>
-            <li><a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions (Forbidden Territory, возврат, VPN, KYC)</a> — {RUSSIA_CHECKED}</li>
-            <li><a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a> — {CHECKED}</li>
-            <li><a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">FAQ: выплаты</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимумы</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">Hub Credit в High Stakes</a> — {CHECKED}</li>
-            <li><a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">FAQ: просадка</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">Pro Growth</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a>, <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы</a> — {CHECKED}</li>
-            <li><a href={SRC.futures} target="_blank" rel="nofollow noopener noreferrer">The5ers Futures</a>, <a href={SRC.futuresConsistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности фьючерсов</a>, <a href={SRC.futuresSummerFaq} target="_blank" rel="nofollow noopener noreferrer">FAQ о Summer Plan для фьючерсов</a>, <a href={SRC.summerPlan} target="_blank" rel="nofollow noopener noreferrer">Summer Plan</a>, <a href={SRC.hyperFaq} target="_blank" rel="nofollow noopener noreferrer">Hyper Growth FAQ</a> — {FUTURES_CHECKED}</li>
-            <li><a href={SRC.brightCountries} target="_blank" rel="nofollow noopener noreferrer">BrightFunded: ограниченные страны</a> — {CHECKED}</li>
+            <li><a href={SRC.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions (Forbidden Territory, возврат, VPN, KYC)</a> — {formatRuDate(RUSSIA_CHECKED)}</li>
+            <li><a href={SRC.highStakes} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.growth} target="_blank" rel="nofollow noopener noreferrer">Growth</a>, <a href={SRC.bootcamp} target="_blank" rel="nofollow noopener noreferrer">Bootcamp</a> — {formatRuDate(CHECKED)}</li>
+            <li><a href={SRC.withdrawals} target="_blank" rel="nofollow noopener noreferrer">FAQ: выплаты</a>, <a href={SRC.minWithdrawal} target="_blank" rel="nofollow noopener noreferrer">минимумы</a>, <a href={SRC.hsPayout} target="_blank" rel="nofollow noopener noreferrer">Hub Credit в High Stakes</a> — {formatRuDate(CHECKED)}</li>
+            <li><a href={SRC.drawdown} target="_blank" rel="nofollow noopener noreferrer">FAQ: просадка</a>, <a href={SRC.hsDrawdown} target="_blank" rel="nofollow noopener noreferrer">High Stakes</a>, <a href={SRC.pgDrawdown} target="_blank" rel="nofollow noopener noreferrer">Pro Growth</a>, <a href={SRC.consistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности</a>, <a href={SRC.platforms} target="_blank" rel="nofollow noopener noreferrer">платформы</a> — {formatRuDate(CHECKED)}</li>
+            <li><a href={SRC.futures} target="_blank" rel="nofollow noopener noreferrer">The5ers Futures</a>, <a href={SRC.futuresConsistency} target="_blank" rel="nofollow noopener noreferrer">правило согласованности фьючерсов</a>, <a href={SRC.futuresSummerFaq} target="_blank" rel="nofollow noopener noreferrer">FAQ о Summer Plan для фьючерсов</a>, <a href={SRC.summerPlan} target="_blank" rel="nofollow noopener noreferrer">Summer Plan</a>, <a href={SRC.hyperFaq} target="_blank" rel="nofollow noopener noreferrer">Hyper Growth FAQ</a> — {formatRuDate(FUTURES_CHECKED)}</li>
+            <li><a href={SRC.brightCountries} target="_blank" rel="nofollow noopener noreferrer">BrightFunded: ограниченные страны</a> — {formatRuDate(CHECKED)}</li>
           </ul>
         </div>
       </section>

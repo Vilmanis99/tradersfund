@@ -3,6 +3,8 @@ export { firmSlug }
 import type { Firm } from './firms.ts'
 import type { RuleEvidence } from './firms.ts'
 import { getAllFirms, getAllChallenges, getChallengesByFirm, isChallengeFresh, minimumCostToFundedUsd } from './firms.ts'
+import { COMPARE_PAIRS } from './compareAllowlist.ts'
+import { isPostFreezeFirm } from './postFreezeFirms.ts'
 
 export const COMPARISON_EDITORIAL_DATE = '2026-09-08'
 
@@ -25,8 +27,35 @@ export function parseMatchup(matchup: string): { a: string; b: string } | null {
 /* ── Pair enumeration ─────────────────────────────────────────── */
 
 /**
- * Every unordered pair of firms in firms.json, canonicalised alphabetically.
- * Used by `generateStaticParams` so we ship one static page per pair (not two).
+ * Explicit allowlist of canonical /compare pairs (lib/compareAllowlist.ts).
+ * New firms in firms.json do not get auto-generated matchups: a pair only
+ * exists (static params, sitemap, hub, compare links) once it is listed here.
+ */
+const COMPARE_PAIR_ALLOWLIST: ReadonlySet<string> = new Set(COMPARE_PAIRS)
+
+/** True when the canonical pair for these two firm slugs is an allowlisted /compare page. */
+export function isComparePairAllowed(slugA: string, slugB: string): boolean {
+  return slugA !== slugB
+    && !isPostFreezeFirm(slugA)
+    && !isPostFreezeFirm(slugB)
+    && COMPARE_PAIR_ALLOWLIST.has(canonicalMatchupSlug(slugA, slugB))
+}
+
+/** Canonical pairs among these firm slugs that have no /compare page. */
+export function getUnlistedComparePairs(slugs: readonly string[]): string[] {
+  const out: string[] = []
+  for (let i = 0; i < slugs.length; i++) {
+    for (let j = i + 1; j < slugs.length; j++) {
+      if (!isComparePairAllowed(slugs[i], slugs[j])) out.push(canonicalMatchupSlug(slugs[i], slugs[j]))
+    }
+  }
+  return out
+}
+
+/**
+ * Every allowlisted unordered pair of firms in firms.json, canonicalised
+ * alphabetically. Used by `generateStaticParams` so we ship one static page
+ * per pair (not two).
  */
 export function getAllCanonicalPairs(): Array<{ matchup: string; firmA: Firm; firmB: Firm }> {
   const firms = getAllFirms()
@@ -36,6 +65,7 @@ export function getAllCanonicalPairs(): Array<{ matchup: string; firmA: Firm; fi
       const a = firmSlug(firms[i].name)
       const b = firmSlug(firms[j].name)
       const [sa, sb] = [a, b].sort()
+      if (!isComparePairAllowed(sa, sb)) continue
       // firmA/firmB stays in canonical (alphabetical) order so downstream
       // code can rely on it.
       const firmA = firmSlug(firms[i].name) === sa ? firms[i] : firms[j]

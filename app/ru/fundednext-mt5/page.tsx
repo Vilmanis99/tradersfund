@@ -19,12 +19,13 @@ import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getDealsByFirm } from '@/lib/deals'
 import { getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundednext-mt5'
 const TITLE = 'FundedNext MT5: скачать, войти и проверить правила EA'
@@ -177,7 +178,7 @@ export default function RussianFundedNextMt5Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <article
         className="ru-review-article"
@@ -189,7 +190,7 @@ export default function RussianFundedNextMt5Page() {
           <div className="ru-shell">
             <div className="ru-eyebrow"><MonitorCog size={14} aria-hidden="true" /> Установка, вход и условия автоматизации</div>
             <h1>FundedNext MT5: как скачать, войти и проверить правила EA</h1>
-            <p className="ru-review-meta">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Текст обновлён <time dateTime={russianRouteDateModified(PATH)}>{russianRouteDateModified(PATH)}</time></p>
+            <p className="ru-review-meta">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Текст обновлён <time dateTime={russianRouteDateModified(PATH)}>{ruDatesInText(russianRouteDateModified(PATH))}</time></p>
             <p className="ru-lead">
               Если счёт уже открыт, начните с номера счёта и сервера в личном кабинете. Если только выбираете программу,
               сначала проверьте доступность MT5 для своего профиля и ограничения советников: оплата дополнения EA сама по себе не разрешает автоматизацию на любом размере счёта.
@@ -251,7 +252,7 @@ export default function RussianFundedNextMt5Page() {
             <h2>Короткий ответ: MT5 поддерживается, но правила зависят от профиля и режима</h2>
             <p>
               Официальная страница FundedNext перечисляет MT5 как торговую платформу наряду с MT4, cTrader и Match-Trader.
-              Однако пользователь из США получает только Match-Trader, а TradingView на дату {mt5Evidence.capturedAt} указан только для анализа, не исполнения.
+              Однако пользователь из США получает только Match-Trader, а TradingView на дату {formatRuDate(mt5Evidence.capturedAt)} указан только для анализа, не исполнения.
             </p>
             <div className="ru-table-wrap">
               <table className="ru-table" data-russian-fundednext-mt5-facts="six-gates">
@@ -267,7 +268,7 @@ export default function RussianFundedNextMt5Page() {
               </table>
             </div>
             <p className="ru-source-line">
-              <a href={mt5Evidence.platformAvailability.sourceUrl} target="_blank" rel="nofollow noopener">Официальный список платформ</a> · проверено {mt5Evidence.platformAvailability.sourceCapturedAt}.
+              <a href={mt5Evidence.platformAvailability.sourceUrl} target="_blank" rel="nofollow noopener">Официальный список платформ</a> · проверено {formatRuDate(mt5Evidence.platformAvailability.sourceCapturedAt)}.
             </p>
           </div>
         </section>
@@ -277,7 +278,7 @@ export default function RussianFundedNextMt5Page() {
             <div className="ru-content">
               <h2>Где скачать FundedNext MT5 и как войти в счёт</h2>
               <p>
-                Инструкция для компьютера от {mt5Evidence.desktopLogin.publishedAt} требует три поля: номер счёта, пароль и имя сервера.
+                Инструкция для компьютера от {ruDatesInText(mt5Evidence.desktopLogin.publishedAt)} требует три поля: номер счёта, пароль и имя сервера.
                 Сначала откройте письмо с данными счёта или личный кабинет FundedNext. Сам установщик не создаёт торговый счёт и не выбирает за вас правильный сервер.
               </p>
             </div>
@@ -285,7 +286,7 @@ export default function RussianFundedNextMt5Page() {
               <article className="ru-card">
                 <MonitorCog size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>1. Скачайте официальный терминал</h3>
-                <p>В личном кабинете откройте Utilities и выберите версию для {mt5Evidence.utilities.mt5Downloads.join(', ')}. В справке от {mt5Evidence.utilities.publishedAt} этот раздел заменяет прежний Toolkit.</p>
+                <p>В личном кабинете откройте Utilities и выберите версию для {mt5Evidence.utilities.mt5Downloads.join(', ')}. В справке от {ruDatesInText(mt5Evidence.utilities.publishedAt)} этот раздел заменяет прежний Toolkit.</p>
               </article>
               <article className="ru-card">
                 <KeyRound size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -300,7 +301,7 @@ export default function RussianFundedNextMt5Page() {
               <article className="ru-card">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
                 <h3>4. Не передавайте торговый пароль</h3>
-                <p>Правило от {mt5Evidence.password.publishedAt} запрещает делиться паролем. Новый пароль MT4/MT5 создаётся в личном кабинете и приходит на зарегистрированный адрес электронной почты.</p>
+                <p>Правило от {ruDatesInText(mt5Evidence.password.publishedAt)} запрещает делиться паролем. Новый пароль MT4/MT5 создаётся в личном кабинете и приходит на зарегистрированный адрес электронной почты.</p>
               </article>
             </div>
             <div className="ru-content">
@@ -321,7 +322,7 @@ export default function RussianFundedNextMt5Page() {
             <div className="ru-content">
               <h2>Сначала выберите модель FundedNext, затем MT5</h2>
               <p>
-                {products.length ? `Ниже — ${products.length} программы и ${priceCount} базовых цен в долларах США; самая ранняя проверка этих цен — ${oldestProductCapture}.` : 'Проверка цен вышла за 30-дневное окно, поэтому числовые предложения временно скрыты.'}
+                {products.length ? `Ниже — ${products.length} программы и ${priceCount} базовых цен в долларах США; самая ранняя проверка этих цен — ${formatRuDate(oldestProductCapture)}.` : 'Проверка цен вышла за 30-дневное окно, поэтому числовые предложения временно скрыты.'}
                 {' '}Количество этапов, лимит убытка и условия первой заявки на вознаграждение относятся к программе, а не к терминалу MT5.
               </p>
             </div>
@@ -375,8 +376,8 @@ export default function RussianFundedNextMt5Page() {
               <article className="ru-card"><WalletCards size={22} color="var(--accent-light)" aria-hidden="true" /><h3>Купон появляется после цели</h3><p>{currentDeal ? `В проверенном предложении указан персональный купон ${currentDeal.pct}% после достижения цели. Срок — ${mt5Evidence.freeTrial.couponValidityDays} дней; только для новых пользователей и подходящих CFD-программ, без сброса счёта. Применимость к выбранной покупке нужно проверить отдельно.` : 'Предложение или правила теста требуют повторной проверки; купон не показывается как действующий.'}</p></article>
             </div>
             <p className="ru-source-line">
-              <a href={mt5Evidence.freeTrial.sourceUrl} target="_blank" rel="nofollow noopener">Официальные Free Trial Rules</a> · проверено {mt5Evidence.freeTrial.sourceCapturedAt}.
-              {currentDeal ? <> Предложение проверено {currentDeal.verifiedOn}.</> : null}
+              <a href={mt5Evidence.freeTrial.sourceUrl} target="_blank" rel="nofollow noopener">Официальные Free Trial Rules</a> · проверено {formatRuDate(mt5Evidence.freeTrial.sourceCapturedAt)}.
+              {currentDeal ? <> Предложение проверено {ruDatesInText(currentDeal.verifiedOn)}.</> : null}
             </p>
             <div className="ru-actions">
               {currentDeal ? <RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fundednext-mt5-free-trial" rel="sponsored nofollow noopener" className="btn-outline">Начать Free Trial <ArrowRight size={15} aria-hidden="true" /></RuGoLink> : null}
@@ -392,7 +393,7 @@ export default function RussianFundedNextMt5Page() {
             <div className="ru-content">
               <h2>Советники в FundedNext MT5: ограничения важнее доплаты</h2>
               <p>
-                В проверке от {mt5Evidence.ea.sourceCapturedAt} платное дополнение доступно для допустимого использования EA на счетах меньше {money(mt5Evidence.ea.manualOnlyFromAccountSizeUsd)}.
+                В проверке от {formatRuDate(mt5Evidence.ea.sourceCapturedAt)} платное дополнение доступно для допустимого использования EA на счетах меньше {money(mt5Evidence.ea.manualOnlyFromAccountSizeUsd)}.
                 На этой сумме и выше требуется ручная торговля. Источник не указывает дату вступления ограничения в силу или исключение для ранее открытых счетов — не предполагайте такое исключение без письменного ответа фирмы.
               </p>
             </div>
@@ -405,7 +406,7 @@ export default function RussianFundedNextMt5Page() {
               <article className="ru-card"><CircleAlert size={22} color="var(--accent-light)" aria-hidden="true" /><h3>6. Нет ботов для прохождения оценки</h3><p>Советники, специально предназначенные для прохождения испытаний проп-фирм, запрещены. Отсутствие названия бота в списке примеров не означает разрешения.</p></article>
               <article className="ru-card"><KeyRound size={22} color="var(--accent-light)" aria-hidden="true" /><h3>7. Помощник управления риском тоже может быть EA</h3><p>Изменение стоп-лосса, тейк-профита или объёма позиции инструментом считается автоматизацией. То, что он не открывает сделку самостоятельно, не освобождает от ограничений EA.</p></article>
             </div>
-            <p className="ru-source-line"><a href={mt5Evidence.ea.sourceUrl} target="_blank" rel="nofollow noopener">Официальное правило EA</a> · проверено {mt5Evidence.ea.sourceCapturedAt}.</p>
+            <p className="ru-source-line"><a href={mt5Evidence.ea.sourceUrl} target="_blank" rel="nofollow noopener">Официальное правило EA</a> · проверено {formatRuDate(mt5Evidence.ea.sourceCapturedAt)}.</p>
           </div>
         </section>
 
@@ -478,7 +479,7 @@ export default function RussianFundedNextMt5Page() {
             </div>
             <div className="ru-notice">
               <strong>Резидентам России FundedNext недоступна.</strong>{' '}
-              Корпоративная страница и подвал fundednext.com говорят, что компания не обслуживает резидентов России (по данным на 20.10.2026); статья об ограничениях CFD по проверке от {accessCapturedAt} Россию не называет, но действующим мы считаем более строгий источник.
+              Корпоративная страница и подвал fundednext.com говорят, что компания не обслуживает резидентов России (по данным на 20.10.2026); статья об ограничениях CFD по проверке от {formatRuDate(accessCapturedAt)} Россию не называет, но действующим мы считаем более строгий источник.
               Установка MT5 этого не меняет: резидент РФ рискует получить отказ в обслуживании или в выплате.
             </div>
             <div className="ru-actions">
@@ -531,7 +532,7 @@ export default function RussianFundedNextMt5Page() {
                 <li key={url}><a href={url} target="_blank" rel="nofollow noopener">Источник {index + 1}</a></li>
               ))}
             </ol>
-            <p className="ru-source-line">Установка и исходные правила: {mt5Evidence.capturedAt}. Правило EA: {mt5Evidence.ea.sourceCapturedAt}. Доступ по стране: {accessCapturedAt}. Самая ранняя проверка текущих цен: {oldestProductCapture ?? 'нужна повторная проверка'}. Предложение: {currentDeal?.verifiedOn ?? 'не показывается как действующее'}.</p>
+            <p className="ru-source-line">Установка и исходные правила: {formatRuDate(mt5Evidence.capturedAt)}. Правило EA: {formatRuDate(mt5Evidence.ea.sourceCapturedAt)}. Доступ по стране: {formatRuDate(accessCapturedAt)}. Самая ранняя проверка текущих цен: {ruDatesInText(oldestProductCapture ?? 'нужна повторная проверка')}. Предложение: {ruDatesInText(currentDeal?.verifiedOn ?? 'не показывается как действующее')}.</p>
           </div>
         </section>
 

@@ -57,11 +57,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
-    ]
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -122,11 +127,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
-    ]
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -188,11 +198,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
-    ]
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -251,7 +266,7 @@
     "payoutFirstDays": null,
     "payoutFrequency": null,
     "rules": {
-      "news": true,
+      "news": null,
       "weekend": true,
       "overnight": null,
       "ea": false,
@@ -259,11 +274,18 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
-    ]
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "News-trading conflict recorded 2026-10-27, not resolved: the FAQ (https://maventrading.com/faqs, no page date) says \"Is News Trading Allowed in Instant Funding Account? News trading is fully permitted with no restrictions.\", while the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory.\" rules.news is null until Maven reconciles the two pages. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Instant payout cadence rechecked 2026-10-27, conflict still unresolved, payoutFrequency stays null: FAQ (https://maventrading.com/faqs) \"Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below.\"; /pricing Instant card \"Payout frequency Funded When Requirements are met\"; Terms (\"Last Amended: 22/10/2025\") \"Maven Instant: ... It offers an 80% profit split with payouts available every 10 business days.\" Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -320,9 +342,9 @@
     ],
     "profitSplitPct": 70,
     "payoutFirstDays": 1,
-    "payoutFrequency": "on-demand",
+    "payoutFrequency": null,
     "rules": {
-      "news": "restricted",
+      "news": null,
       "weekend": true,
       "overnight": null,
       "ea": false,
@@ -330,11 +352,17 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
-      "Rechecked 2026-10-20 (https://maventrading.com/faqs, FAQPage data). maxTradingDays 1 is kept: \"You have 24 hours to trade on your Instant Mini Funding Account. The timer starts when you place your first trade. You must meet the payout requirements and submit your withdrawal request within the 24-hour period.\" (24 hours from the first trade, so it can span two calendar dates). refundable null -> false: \"Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. ... The refund policy applies to the following programs: 1 Step Simulated Funded Account, 2 Step Simulated Funded Account, 2 Step OMO Simulated Funded Account, 3 Step Simulated Funded Account, Buy Now, Pay Later Simulated Funded Account, Instant Funding\" (Mini is not listed), and Mini is a single-payout model (\"Only one - it's a single payout model. After your first withdrawal, your account will be closed.\"), so a third reward cannot occur. The Mini pricing card (https://maventrading.com/challenges/mini) shows no \"Refundable\" line."
+      "Rechecked 2026-10-20 (https://maventrading.com/faqs, FAQPage data). maxTradingDays 1 is kept: \"You have 24 hours to trade on your Instant Mini Funding Account. The timer starts when you place your first trade. You must meet the payout requirements and submit your withdrawal request within the 24-hour period.\" (24 hours from the first trade, so it can span two calendar dates). refundable null -> false: \"Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. ... The refund policy applies to the following programs: 1 Step Simulated Funded Account, 2 Step Simulated Funded Account, 2 Step OMO Simulated Funded Account, 3 Step Simulated Funded Account, Buy Now, Pay Later Simulated Funded Account, Instant Funding\" (Mini is not listed), and Mini is a single-payout model (\"Only one - it's a single payout model. After your first withdrawal, your account will be closed.\"), so a third reward cannot occur. The Mini pricing card (https://maventrading.com/challenges/mini) shows no \"Refundable\" line.",
+      "News-trading conflict recorded 2026-10-27, not resolved: the FAQ (https://maventrading.com/faqs, no page date) says \"Is News Trading Allowed in Instant Mini Funding Account? News trading is fully permitted with no restrictions.\", while the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory.\" rules.news is null until Maven reconciles the two pages. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "payoutFrequency \"on-demand\" -> null on 2026-10-27: Mini allows one payout only, which no PayoutFrequency value describes. FAQ (https://maventrading.com/faqs): \"You are eligible to request only one withdrawal per Instant Mini Funding Account. This is a one-time payout, not a recurring withdrawal option.\" Mini card (https://maventrading.com/challenges/mini): \"Payout frequency Funded 24 hours\". payoutFirstDays 1 is kept. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable stays false; the Mini card shows no refund line, the FAQ refund list (https://maventrading.com/faqs) omits Instant Mini, Mini allows one payout only, and the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\"",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
     ]
   },
   {
@@ -405,7 +433,7 @@
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
-      "news": true,
+      "news": null,
       "weekend": true,
       "overnight": null,
       "ea": false,
@@ -414,12 +442,19 @@
     "pricingModel": "split-payment",
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
-      "Funded drawdown after a withdrawal (Maven FAQ \"How Does Drawdown Work After a Withdrawal?\", https://maventrading.com/faqs, rechecked 2026-10-23; changed from the 2026-10-22 wording that kept the 8% trailing rule after a withdrawal): \"Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance.\" Maven's example: \"If you have a $10,000 account that has grown to $10,800, you decide to withdraw $600, your new drawdown is $200.\" fundedDrawdownType stays \"trailing\" because that is the rule until the first withdrawal."
-    ]
+      "Funded drawdown after a withdrawal (Maven FAQ \"How Does Drawdown Work After a Withdrawal?\", https://maventrading.com/faqs, rechecked 2026-10-23; changed from the 2026-10-22 wording that kept the 8% trailing rule after a withdrawal): \"Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance.\" Maven's example: \"If you have a $10,000 account that has grown to $10,800, you decide to withdraw $600, your new drawdown is $200.\" fundedDrawdownType stays \"trailing\" because that is the rule until the first withdrawal.",
+      "News-trading conflict recorded 2026-10-27, not resolved: the FAQ (https://maventrading.com/faqs, no page date) says \"Is News Trading Allowed in the Buy Now Pay Later Simulated Funded Account? News trading is fully permitted during the evaluation and funded phase with no restrictions.\", while the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory.\" rules.news is null until Maven reconciles the two pages. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Rechecked 2026-10-27, unchanged: funded stage 4% daily / 8% trailing (fundedDailyLossPct/fundedMaxLossPct/fundedDrawdownType); evaluation 10% static, no daily limit. FAQ: \"The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)\"; /pricing card \"Max loss Phase 1 10% Funded 8% Daily loss Phase 1 N/A Funded 4%\". Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -480,11 +515,16 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json"
-    ]
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3); Terms, FAQ and pricing agree. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" FAQ (https://maventrading.com/faqs): \"Your initial challenge fee is refunded after your third reward\". /pricing card (https://maventrading.com/pricing): \"Refundable on the third withdrawal\". The general Terms line \"we do not offer refunds for evaluation programs or accessed content\" is qualified by that specific clause (decision recorded in content/data/challenges/_captures/maven-2026-10-27.json).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -532,7 +572,7 @@
     "payoutFirstDays": 10,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
+      "news": null,
       "weekend": true,
       "overnight": null,
       "ea": false,
@@ -540,13 +580,20 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
       "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json",
-      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json."
-    ]
+      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json.",
+      "News-trading conflict recorded 2026-10-27, not resolved: the FAQ (https://maventrading.com/faqs, no page date) says \"However, there is no news trading restriction specific to the Prediction Markets challenge.\", while the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory.\" rules.news is null until Maven reconciles the two pages. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Rechecked 2026-10-27, unchanged: maxLossPct 5 (Phase 1), fundedMaxLossPct 8, no daily limit. FAQ: \"One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded\"; /pricing cards \"Max loss Phase 1 5% Funded 8%\". Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3), on the pricing card alone: /pricing (https://maventrading.com/pricing) shows \"Refundable on the third withdrawal\" on every Prediction Markets size. The FAQ refund list (https://maventrading.com/faqs: \"Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. The refund is processed and sent separately from your rewards. The refund policy applies to the following programs: 1 Step Simulated Funded Account2 Step Simulated Funded Account2 Step OMO Simulated Funded Account3 Step Simulated Funded AccountBuy Now, Pay Later Simulated Funded AccountInstant Funding\") omits the Prediction Markets products. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" (this specific clause qualifies the general \"we do not offer refunds for evaluation programs\" line).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   },
   {
     "firmSlug": "maven",
@@ -594,7 +641,7 @@
     "payoutFirstDays": 10,
     "payoutFrequency": "bi-weekly",
     "rules": {
-      "news": true,
+      "news": null,
       "weekend": true,
       "overnight": null,
       "ea": false,
@@ -602,12 +649,19 @@
     },
     "assetClass": "prediction-markets",
     "sourceUrl": "https://maventrading.com/pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-27",
     "notes": [
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/maven-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/maven-2026-10-20.json",
       "Key-facts recheck 2026-10-20: the earlier max-loss conflict is resolved. /faqs now reads \"One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded\" and the /pricing $100k card reads \"Max loss Phase 1 5% Funded 8%\"; maxLossPct 5 (evaluation), fundedMaxLossPct 8. /faqs also states \"No daily drawdown limits\", so dailyLossPct stays null (the schema has no 'none' value). Log: content/data/challenges/_captures/maven-key-facts-2026-10-20.json",
-      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json."
-    ]
+      "sourceCapturedAt stays 2026-10-19 (the full Maven capture date shared by all 9 products, which the passing-rules audit requires); only maxLossPct/fundedMaxLossPct were rechecked on 2026-10-20, see _captures/maven-key-facts-2026-10-20.json.",
+      "News-trading conflict recorded 2026-10-27, not resolved: the FAQ (https://maventrading.com/faqs, no page date) says \"However, there is no news trading restriction specific to the Prediction Markets challenge.\", while the Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\") say \"For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory.\" rules.news is null until Maven reconciles the two pages. Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Rechecked 2026-10-27, unchanged: maxLossPct 5 (Phase 1), fundedMaxLossPct 8, no daily limit. FAQ: \"One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded\"; /pricing cards \"Max loss Phase 1 5% Funded 8%\". Capture: content/data/challenges/_captures/maven-2026-10-27.json",
+      "Full recheck 2026-10-27 (curl of /pricing, /faqs, /challenges/mini, /challenges/instant, /terms-and-conditions from a US IP; /pricing shows \"Sorry, this product is not available in your region.\" but still renders the global list prices): every list price and pricing-card rule matches; log content/data/challenges/_captures/maven-2026-10-27.json",
+      "Refund (rechecked 2026-10-27): refundable true, conditional on the third payout (refundAfterPayouts 3), on the pricing card alone: /pricing (https://maventrading.com/pricing) shows \"Refundable on the third withdrawal\" on every Prediction Markets size. The FAQ refund list (https://maventrading.com/faqs: \"Your initial challenge fee is refunded after your third reward from your Simulated Funded Account. The refund is processed and sent separately from your rewards. The refund policy applies to the following programs: 1 Step Simulated Funded Account2 Step Simulated Funded Account2 Step OMO Simulated Funded Account3 Step Simulated Funded AccountBuy Now, Pay Later Simulated Funded AccountInstant Funding\") omits the Prediction Markets products. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"There are no hidden fees or charges, and evaluation fees are nonrefundable except after receiving three payouts.\" (this specific clause qualifies the general \"we do not offer refunds for evaluation programs\" line).",
+      "Expert advisors (rechecked 2026-10-27): rules.ea stays false. FAQ (https://maventrading.com/faqs): \"Expert Advisors (EAs): EAs and automated trading are prohibited across all Maven platforms. All trades must be executed manually.\" Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"EA: EAs are not permitted under any circumstances across all our platforms.\" The Terms also say \"Automated Trading: Using Expert Advisors (EAs), bots, or other automated systems is prohibited unless you have received prior approval from us.\" No public approval route is published, so the stored value is false.",
+      "Copy trading (rechecked 2026-10-27): rules.copyTrading stays false; the stricter Terms wording is used, resolved 2026-10-27. Terms (https://maventrading.com/terms-and-conditions, \"Last Amended: 22/10/2025\"): \"You cannot copy trade from another individual, if found, both users will be breached.\" The FAQ (https://maventrading.com/faqs) is softer: \"Copy Trading: Copying trades from another individual. If detected, both accounts may be breached.\""
+    ],
+    "refundAfterPayouts": 3
   }
 ]

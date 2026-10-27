@@ -22,7 +22,8 @@ import {
   type Challenge,
   type ChallengeAccountSize,
 } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, itemListSchema, jsonLd } from '@/lib/schema'
+import { HASH_HEDGE_TERMS_DATE_RU, ruHashHedgeReviewHref } from '@/lib/ruHashHedgeLink'
 import {
   getLanguageAlternates,
   getLocalizedRoutePair,
@@ -39,6 +40,7 @@ import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_CHECKED } from '@/compon
 import RuRussiaOpenCtas from '@/components/RuRussiaOpenCtas'
 import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { ruNotListedDates } from '@/lib/ruBasisWording'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/luchshie-kripto-prop-firmy'
 const TITLE = 'Крипто проп-компании 2026: кто ограничивает РФ, а кто нет'
@@ -238,6 +240,8 @@ const faqs: RussianFaqItem[] = [
 
 export default function RussianCryptoPropFirmsPage() {
   const firms = getAllFirms()
+  // Hash Hedge sentence ships with the review: shared gate (firms.json entry AND registered route), see lib/ruHashHedgeLink.ts.
+  const hashHedgeReviewHref = ruHashHedgeReviewHref('/ru/obzor-hash-hedge', firms)
   const mapped = cryptoMarketEvidence.ranked.map(evidence => ({
     evidence,
     firm: firms.find(candidate => candidate.name === evidence.firmName),
@@ -313,7 +317,7 @@ export default function RussianCryptoPropFirmsPage() {
     { name: 'Крипто-проп-фирмы' },
   ])
   const list = itemListSchema(snapshots.map(snapshot => ({ ...snapshot.firm, reviewUrl: localizedReviewHref(snapshot.firm.reviewUrl) })), TITLE)
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -344,7 +348,7 @@ export default function RussianCryptoPropFirmsPage() {
           <p className="ru-source-line" data-russian-crypto-access-pointer="top">Какие из этих фирм не называют РФ в списке ограничений, а какие её ограничивают, — в разделе <a href="#dostup-iz-rossii">«Крипто проп-компании и Россия»</a>.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные рейтинга крипто-проп-фирм">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {lastModified}</span>
+            <span>Обновлено: {formatRuDate(lastModified)}</span>
           </div>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-stats">
@@ -542,7 +546,7 @@ export default function RussianCryptoPropFirmsPage() {
               </article>
               <article className="ru-card">
                 <h3 data-russian-crypto-fundingpips-products={FP_PRODUCTS.length}>FundingPips: BTCUSD и ETHUSD во {FP_MODELS_LABEL}</h3>
-                <p>Справочные статьи о каждой модели ({ruJoin(FP_PRODUCTS)}) указывают одно и то же: {FP_CRYPTO_TERMS} (по данным на {FP_CRYPTO_DATE}). Выбор в крипте здесь узкий — две пары, поэтому FundingPips скорее подходит тому, кто торгует BTC и ETH наряду с форексом, чем трейдеру, которому нужны альткоины.</p>
+                <p>Справочные статьи о каждой модели ({ruJoin(FP_PRODUCTS)}) указывают одно и то же: {FP_CRYPTO_TERMS} (по данным на {formatRuDate(FP_CRYPTO_DATE)}). Выбор в крипте здесь узкий — две пары, поэтому FundingPips скорее подходит тому, кто торгует BTC и ETH наряду с форексом, чем трейдеру, которому нужны альткоины.</p>
                 <Link href="/ru/obzor-fundingpips" className="ru-card-link">Открыть полный русский обзор →</Link>
               </article>
               <article className="ru-card">
@@ -558,7 +562,7 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell ru-content">
             <h2>Комиссия, плечо, выходные и просадка важнее числа пар</h2>
             <p><strong>Комиссия.</strong> В примере FundingPips один лот ETH/USD при цене $2 600 даёт комиссию $1,04 по формуле «объём × цена × 0,04%». Это опубликованный пример расчёта, не результат торговли. Уточните, как учитываются открытие и закрытие сделки, спред и перенос позиции; одна цифра комиссии не описывает все расходы стратегии.</p>
-            <p><strong>Плечо.</strong> Большее плечо уменьшает требуемую маржу для той же позиции, но не увеличивает разрешённый убыток. У FundingPips плечо по криптовалютам на оценке 1:2, а на счёте Master Account 1:1 (по данным на {FP_CRYPTO_DATE}), поэтому расчёт позиции нужно проверить заново после перехода. Размер условного счёта также не является личным капиталом трейдера.</p>
+            <p><strong>Плечо.</strong> Большее плечо уменьшает требуемую маржу для той же позиции, но не увеличивает разрешённый убыток. У FundingPips плечо по криптовалютам на оценке 1:2, а на счёте Master Account 1:1 (по данным на {formatRuDate(FP_CRYPTO_DATE)}), поэтому расчёт позиции нужно проверить заново после перехода. Размер условного счёта также не является личным капиталом трейдера.</p>
             <p><strong>Выходные.</strong> Работа базового крипторынка не гарантирует непрерывную работу терминала. Проверьте обслуживание, спред, перенос открытых позиций и требования закрыться перед выходными. У разрешения торговать BTCUSD и разрешения держать сделку до понедельника разные основания.</p>
             <p><strong>Просадка.</strong> При статическом лимите общий порог привязан к исходной базе; при следящем лимите он может подниматься за результатом счёта. Узнайте, используется баланс или стоимость счёта с открытой прибылью и убытком, когда пересчитывается порог и что происходит после выплаты. Сам процент без этой механики недостаточен для выбора.</p>
           </div>
@@ -569,7 +573,7 @@ export default function RussianCryptoPropFirmsPage() {
           <div className="ru-shell ru-content" data-russian-crypto-payout-boundary="bright-funded-not-ranked">
             <h2>Торговля криптовалютой и выплата в USDC — разные маршруты</h2>
             <p>У BrightFunded это два отдельных факта из двух справок. Торговля: {brightCryptoFresh && brightCrypto ? <>более 48 криптовалютных пар (по данным на {ruDate(brightCrypto.sourceCapturedAt)})</> : 'список криптоинструментов требует повторной проверки'}. Выплата: USDC по сети ERC-20 или банковский перевод в EUR. Сама по себе выплата в USDC фирму крипто-проп-компанией не делает: место в списке выше BrightFunded получила за криптопары, а не за способ перевода.</p>
-            <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
+            <p className="ru-source-line" data-russian-crypto-payout-status={freshEvidence(payoutEvidence) ? 'dated' : 'recapture-required'}>Источник по способам выплаты: {ruDatesInText(payoutEvidence.sourceCapturedAt || 'дата не подтверждена')}. {!freshEvidence(payoutEvidence) && 'Проверка устарела или дата недостоверна: описание выше является датированным разбором, а не подтверждением действующих способов перевода.'}</p>
             <div className="ru-notice ru-disclosure">
               <strong>Партнёрская ссылка.</strong> Переход ниже может принести нам комиссию. Это не подтверждает возможность получить USDC в каждой стране. До оплаты проверьте доступность метода для своих документов и места проживания.
             </div>
@@ -598,7 +602,7 @@ export default function RussianCryptoPropFirmsPage() {
                     <tr key={item.firmSlug}>
                       <td><strong>{item.firmName}</strong></td>
                       <td>{item.status === 'product-capture-needed' ? 'нужна проверка отдельных криптопрограмм' : 'нужно обновить рынок или продукты'}</td>
-                      <td><a href={item.sourceUrl} target="_blank" rel="nofollow noopener">{item.sourceCapturedAt}</a></td>
+                      <td><a href={item.sourceUrl} target="_blank" rel="nofollow noopener">{formatRuDate(item.sourceCapturedAt)}</a></td>
                       <td>{item.nextStepRu ? item.nextStepRu : item.status === 'product-capture-needed'
                         ? 'Отдельные криптопрограммы нельзя оценивать по ценам и правилам валютных счетов.'
                         : 'Нужна повторная проверка первичных источников, прежде чем использовать старые условия в сравнении.'}</td>
@@ -627,8 +631,14 @@ export default function RussianCryptoPropFirmsPage() {
             <h2>Крипто проп-компании и Россия: кто ограничивает РФ, а кто нет</h2>
             <p>
               На этой странице есть и фирмы, закрытые для резидентов России: мы их не прячем, но и регистрироваться не предлагаем.
-              Россию в своих ограничениях не называют {ruJoin(OPEN_NAMES)} (на {OPEN_BASIS_DATE}). Закрыты для РФ {ruJoin(CLOSED_NAMES)} (по данным на 20.10.2026).
+              Россию в своих ограничениях не называют {ruJoin(OPEN_NAMES)} (на {formatRuDate(OPEN_BASIS_DATE)}). Закрыты для РФ {ruJoin(CLOSED_NAMES)} (по данным на 20.10.2026).
               У FundingPips статус неясен — подробности в таблице.
+              {hashHedgeReviewHref ? (
+                <>
+                  {' '}Вне этого списка — Hash Hedge: Россия не названа в списке ограничений условий от {HASH_HEDGE_TERMS_DATE_RU}; способ оплаты официальные страницы описывают по-разному, поэтому подтвердите его у поддержки до покупки —{' '}
+                  <Link href={hashHedgeReviewHref} data-russian-crypto-hash-hedge-link="gated">обзор Hash Hedge</Link>.
+                </>
+              ) : null}
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ крипто-проп-фирм для резидентов РФ">
               <table className="ru-table" data-russian-crypto-access-table="open-and-closed">
@@ -644,7 +654,7 @@ export default function RussianCryptoPropFirmsPage() {
                   <tr data-russian-crypto-access-row="fundednext">
                     <td><strong>FundedNext</strong></td>
                     <td><RuAccessBadge firm="fundednext" /></td>
-                    <td>подвал сайта fundednext.com исключает резидентов России (по данным на {FUNDEDNEXT_RU_ACCESS_CHECKED}); резидентам РФ не рекомендуем</td>
+                    <td>подвал сайта fundednext.com исключает резидентов России (по данным на {formatRuDate(FUNDEDNEXT_RU_ACCESS_CHECKED)}); резидентам РФ не рекомендуем</td>
                   </tr>
                   <tr data-russian-crypto-access-row="fundingpips">
                     <td><strong>FundingPips</strong></td>
@@ -706,10 +716,10 @@ export default function RussianCryptoPropFirmsPage() {
             <p>Даты по инструментам и способам выплаты ниже независимы от дат ценовых записей. Новая проверка справки о криптовалюте не означает повторную проверку стоимости челленджа, всех его правил или доступа по стране.</p>
             <ul>
               {mapped.map(({ evidence, products }) => <li key={evidence.firmSlug}>
-                <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener">{evidence.firmName}: справка об инструментах</a> — {evidence.sourceCapturedAt || 'дата не подтверждена'}.
-                {' '}Проверки программ: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}.
+                <a href={evidence.sourceUrl} target="_blank" rel="nofollow noopener">{evidence.firmName}: справка об инструментах</a> — {ruDatesInText(evidence.sourceCapturedAt || 'дата не подтверждена')}.
+                {' '}Проверки программ: {ruDatesInText([...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют')}.
               </li>)}
-              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: способы выплаты</a> — {payoutEvidence.sourceCapturedAt || 'дата не подтверждена'}. Доступность конкретного метода для читателя не подтверждена.</li>
+              <li><a href={payoutEvidence.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: способы выплаты</a> — {ruDatesInText(payoutEvidence.sourceCapturedAt || 'дата не подтверждена')}. Доступность конкретного метода для читателя не подтверждена.</li>
               <li>CFT: <a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener">FAQ</a> и <a href="https://cryptofundtrader.com/terms-and-conditions/" target="_blank" rel="nofollow noopener">условия программ</a>. Основания исправления от 8 сентября разобраны выше; полные проверки Ascend и Break остаются незавершёнными.</li>
             </ul>
           </div>

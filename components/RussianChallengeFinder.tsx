@@ -14,6 +14,7 @@ import { russianPayoutRequestLabel } from '@/lib/russianProgrammeLabels'
 import RussianFundedNextPayoutNotice from '@/components/RussianFundedNextPayoutNotice'
 import { minimumTradingDaysLabel, maximumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { RuGoLinkView } from '@/components/RuGoLinkView'
+import { formatRuDate } from '@/lib/ruDate'
 
 const UNKNOWN = 'Нет подтверждённых данных'
 const firmLabel = (row: GlobalChallengeRow) => row.firm.slug === 'bright-funded' ? 'BrightFunded' : row.firm.name
@@ -203,19 +204,19 @@ export default function RussianChallengeFinder({ initialRows, brightCountrySourc
                 <p>Минимальные учтённые обязательные платежи{row.product.phases > 0 ? ' до счёта после оценки' : ' для начала участия'}: <strong>{fundedCostLabel(tier)}</strong>. Повторные попытки, дополнительные месяцы и необязательные опции не включены. Это не средний расход и не гарантия выплаты.</p>
                 <ul><li>Новости: {ruleLabel(row.product.rules.news)}</li><li>Советники: {ruleLabel(row.product.rules.ea)}</li><li>Выходные: {ruleLabel(row.product.rules.weekend)}</li></ul>
                 <ProgrammeCaveat row={row} />
-                <p>Цены и правила: <a href={row.product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">официальный источник</a> · {row.product.capturedAt}.</p>
+                <p>Цены и правила: <a href={row.product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">официальный источник</a> · {formatRuDate(row.product.capturedAt)}.</p>
               </details>
               {row.firm.slug === 'bright-funded' && <div className="ru-notice ru-finder-bright-country" data-russian-country-boundary="ranking-finder-bright-not-access" data-russian-finder-bright-country-status={brightCountrySources.current ? 'dated' : 'recapture-required'}>
                 <strong>Доступ по стране не подтверждён.</strong>{' '}
-                <a href={brightCountrySources.helpUrl} target="_blank" rel="nofollow noopener noreferrer">Справка BrightFunded</a> от {brightCountrySources.helpCapturedAt} включает Пакистан;{' '}
-                <a href={brightCountrySources.termsUrl} target="_blank" rel="nofollow noopener noreferrer">условия</a> от {brightCountrySources.termsCapturedAt} его не называют.{' '}
+                <a href={brightCountrySources.helpUrl} target="_blank" rel="nofollow noopener noreferrer">Справка BrightFunded</a> от {formatRuDate(brightCountrySources.helpCapturedAt)} включает Пакистан;{' '}
+                <a href={brightCountrySources.termsUrl} target="_blank" rel="nofollow noopener noreferrer">условия</a> от {formatRuDate(brightCountrySources.termsCapturedAt)} его не называют.{' '}
                 {brightCountrySources.current
                   ? 'Россия не названа в обоих списках, но это не одобрение вашего профиля. До оплаты уточните гражданство, резидентство, местонахождение, KYC, оплату и выплату.'
                   : 'Страновые источники требуют повторной проверки. Прежнее отсутствие России в списках не подтверждает доступ сегодня; запросите ответ поддержки до оплаты.'}
               </div>}
               <div className="ru-finder-card-actions"><button type="button" aria-pressed={isSelected} aria-label={`${isSelected ? 'Убрать из сравнения' : 'Сравнить'} ${firmLabel(row)} ${productLabel(row)}`} disabled={!isSelected && selected.length >= 3} onClick={() => toggle(row)}>{isSelected ? <Check size={15} aria-hidden="true" /> : <Plus size={15} aria-hidden="true" />}{isSelected ? 'В сравнении' : 'Сравнить'}</button><Link href={row.firm.reviewUrl}>Разбор правил <ArrowRight size={14} aria-hidden="true" /></Link></div>
               <RuGoLinkView firm={row.firm.slug} status={row.firm.russiaStatus ?? 'unverified'} basisDate={row.firm.russiaBasisDate ?? null} className="ru-finder-visit" href={`/go/${row.firm.slug}?from=ru-challenge-finder-${row.product.slug}`} prefetch={false} rel={row.firm.isPartner ? 'sponsored nofollow noopener' : 'nofollow noopener'}>Проверить условия у {firmLabel(row)} ↗</RuGoLinkView>
-              <span className="ru-source-line">Данные проверены: {row.product.capturedAt}{row.firm.isPartner ? ' · Партнёрская ссылка' : ' · Без партнёрской комиссии'}</span>
+              <span className="ru-source-line">Данные проверены: {formatRuDate(row.product.capturedAt)}{row.firm.isPartner ? ' · Партнёрская ссылка' : ' · Без партнёрской комиссии'}</span>
             </article>
           })}
         </div>

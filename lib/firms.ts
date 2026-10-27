@@ -406,7 +406,7 @@ export interface Challenge {
    * can be paid at (conservative input for true-cost math); display code should
    * prefer these tiers when present.
    */
-  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string; sourceUrl: string; quote: string; capturedAt: string }>
+  profitSplitTiers?: Array<{ traderPct: number; /** Account stage the tier applies to, from the firm's own wording. */ stage?: 'funded-sim' | 'funded-live'; appliesTo: string; /** Russian rendering of appliesTo for RU surfaces. */ appliesToRu?: string; sourceUrl: string; quote: string; capturedAt: string }>
   /** Days until the first payout request can be raised on this product. */
   payoutFirstDays: number | null
   payoutFrequency: PayoutFrequency | null
@@ -422,6 +422,13 @@ export interface Challenge {
    * conflict" with the date of that check instead of "Refund not stated".
    */
   refundConflict?: { checkedAt: string; conflictId: string; captureFile: string }
+  /**
+   * The official sources attach a condition to the fee refund: it is paid
+   * after this many payouts (3 = "after the third payout"). Use only when every
+   * tier's `refundable` is true; the price matrix then says "Refunded after 3rd
+   * payout" instead of a flat "Fee refunded".
+   */
+  refundAfterPayouts?: number
   /** Free-form notes — gotchas, fine print, scaling specifics, promo codes. */
   notes?: string[]
 }
