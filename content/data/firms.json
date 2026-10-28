@@ -498,8 +498,11 @@
     "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "discountCodeCapturedAt": "2026-10-25",
-    "discountCodeNote": "No public FundedNext CFD code is live as of 2026-10-25: the help-centre article for the Stellar October Returns offer (code STRTN), which said \"This offer has no set closing date and may end at any time\", returned 404 on 2026-10-25 (it was live on 2026-10-24), STRTN is no longer attached to any plan on https://fundednext.com/ and https://fundednext.com/cfds/stellar-2-step now shows the $6K Stellar 2-Step at its list price \"$59.99\" with no code (checked from a US IP and from a non-US fetch on 2026-10-25).",
+    "discountCodeCapturedAt": "2026-10-28",
+    "discountCodeNote": "FNTRICK is shown on official FundedNext plan cards on 2026-10-28: https://fundednext.com/cfds/stellar-2-step shows \"Stellar 2-Step $6K $34.99 $59.99 SAVE UP TO 41% WITH CODE FNTRICK\" and \"20% OFF\" on the $15K, $25K and $50K cards ($95.99/$119.99, $159.99/$199.99, $239.99/$299.99); the $100K and $200K cards show list price only. No end date published. Availability outside the region it was read from is not confirmed and checkout is NOT verified, so it is kept as a regional code and out of deals.json. STRTN remains previousDiscountCode.",
+    "regionalDiscountCode": "FNTRICK",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 20,
     "previousDiscountCode": "STRTN",
     "previousDiscountCodeStatus": "ended: the official offer article https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer returned 404 on 2026-10-25 (live 2026-10-24) and STRTN no longer appears on fundednext.com plan cards (Stellar 2-Step $6K back to $59.99); FundedNext had said the offer \"may end at any time\"",
     "rules": {
