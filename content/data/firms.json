@@ -856,7 +856,7 @@
     "discountCode": "HELLO",
     "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
     "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Official Get Started article https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started and homepage were unreachable from this IP on 2026-10-28 (homepage HTTP 429, help centre HTTP 403, reader HTTP 403); HELLO left unchanged and still the deals.json checkout-verified code (verifiedOn 2026-10-16). regionalDiscountCode FP (us-only-unconfirmed, 20%) also unchanged.",
+    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Official Get Started article https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started and homepage could not be read on 2026-10-28; HELLO left unchanged and still the deals.json checkout-verified code (verifiedOn 2026-10-16). regionalDiscountCode FP (us-only-unconfirmed, 20%) also unchanged.",
     "rules": {
       "capturedAt": "2026-10-15",
       "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
@@ -6387,7 +6387,7 @@
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "No public Apex code is live as of 2026-10-28: homepage via reader shows no promo code (Legacy Accounts Are Back limited-time banner has no code); plain curl from this IP still gets Cloudflare HTTP 403. SAVENOW remains previousDiscountCode (expired ~23.10.2026).",
+    "discountCodeNote": "No public Apex code is live as of 2026-10-28: homepage shows no promo code (Legacy Accounts Are Back limited-time banner has no code) (checked 2026-10-28). SAVENOW remains previousDiscountCode (expired ~23.10.2026).",
     "previousDiscountCode": "SAVENOW",
     "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },
