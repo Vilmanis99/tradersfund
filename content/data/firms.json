@@ -1545,7 +1545,7 @@
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts and homepage, read 2026-10-28 from a Latvia (non-US) box IP: E8 One tiers show \"30% OFF\" with struck-through list prices (e.g. \"$100K One phase $488 $342 Save $146 with code E8 on first order\"). First order only; no end date shown. Previously held as regionalDiscountCode us-only-unconfirmed (seen only from a US IP on 2026-10-20); now confirmed from a non-US IP, so moved to discountCode. Checkout NOT verified; not in deals.json.",
+    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts and homepage, read 2026-10-28 (EU visitor view): E8 One tiers show \"30% OFF\" with struck-through list prices (e.g. \"$100K One phase $488 $342 Save $146 with code E8 on first order\"). First order only; no end date shown. Previously held as regionalDiscountCode us-only-unconfirmed (seen only on the US view on 2026-10-20); now confirmed on the EU view of the site, so moved to discountCode. Checkout NOT verified; not in deals.json.",
     "discountCode": "E8",
     "discountPct": 30,
     "discountCodeCheckoutVerified": false
@@ -2052,7 +2052,7 @@
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 2026-10-28 from a Latvia (non-US) box IP: still \"Active 45% off 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October. HALLOWEEN45\"; homepage banner \"45% Off · Use code HALLOWEEN45 · Doesn't apply to Alpha Pro 8% and 10% Bi-weekly\". Checkout NOT verified; not in deals.json. Other active codes on the same page: FUNDED40 (40% Alpha Direct only, 1–31 Oct), ALPHA20 (20% all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). MYALPHA remains previousDiscountCode.",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 2026-10-28 (EU visitor view): still \"Active 45% off 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October. HALLOWEEN45\"; homepage banner \"45% Off · Use code HALLOWEEN45 · Doesn't apply to Alpha Pro 8% and 10% Bi-weekly\". Checkout NOT verified; not in deals.json. Other active codes on the same page: FUNDED40 (40% Alpha Direct only, 1–31 Oct), ALPHA20 (20% all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). MYALPHA remains previousDiscountCode.",
     "discountCodeValidity": "26 Oct 2026 – 31 Oct 2026, live until midnight UK time on 31 October (official codes page); remove after 31.10.2026",
     "previousDiscountCode": "MYALPHA",
     "previousDiscountCodeStatus": "ended: the official codes page listed it \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October\"; on 2026-10-27 the page (\"Last updated 26 October 2026\", \"Codes are removed when their published end date passes.\") no longer lists it and the homepage banner now shows HALLOWEEN45; it was only ever seen from a US IP and never checkout-verified"
@@ -2138,7 +2138,7 @@
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://brightfunded.com/, read 2026-10-28 from a Latvia (non-US) box IP: top banner still \"Halloween Offer: 30% Off Code: HW30\". Checkout NOT verified; not in deals.json. No published end date. DOUBLE25 remains previousDiscountCode (not shown on site since 22.10; expiry unconfirmed). FAQ restricted list unchanged: Cuba, Iran, North Korea, Pakistan, Syria, Vietnam.",
+    "discountCodeNote": "Homepage https://brightfunded.com/, read 2026-10-28 (EU visitor view): top banner still \"Halloween Offer: 30% Off Code: HW30\". Checkout NOT verified; not in deals.json. No published end date. DOUBLE25 remains previousDiscountCode (not shown on site since 22.10; expiry unconfirmed). FAQ restricted list unchanged: Cuba, Iran, North Korea, Pakistan, Syria, Vietnam.",
     "discountPct": 30,
     "discountCodeValidity": "limited time (Halloween offer, no end date published)",
     "previousDiscountCode": "DOUBLE25",
@@ -2867,7 +2867,7 @@
     "discountCode": "OMO",
     "discountCodeSourceUrl": "https://maventrading.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage and pricing https://maventrading.com/, read 2026-10-28 from a Latvia (non-US) box IP: Omo 2-Step still shows \"40% OFF Omo Challenges with code CODE: OMO\" (e.g. \"$10k account 40% OFF with code OMO $38 * $62 *Price with coupon. Refundable on the third withdrawal\"). Sitewide banner is an A/B test (PostHog): control \"Trade like a Diamond. 5% off\" coupon DIAMOND, test \"Rocket to funded. 10% off\" coupon ROCKET — not recorded as the firm discountCode. Checkout NOT verified; not in deals.json.",
+    "discountCodeNote": "Homepage and pricing https://maventrading.com/, read 2026-10-28 (EU visitor view): Omo 2-Step still shows \"40% OFF Omo Challenges with code CODE: OMO\" (e.g. \"$10k account 40% OFF with code OMO $38 * $62 *Price with coupon. Refundable on the third withdrawal\"). Sitewide banner is an A/B test: control \"Trade like a Diamond. 5% off\" coupon DIAMOND, test \"Rocket to funded. 10% off\" coupon ROCKET — not recorded as the firm discountCode. Checkout NOT verified; not in deals.json.",
     "rules": {
       "capturedAt": "2026-10-27",
       "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
@@ -3794,7 +3794,7 @@
     },
     "discountCodeSourceUrl": "https://fxify.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://fxify.com/, read 2026-10-28 from a Latvia (non-US) box IP: \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\"; also \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\"; HTML comments also name Halloween \"AGHHH35 Expires: 2 November\" (-35% excl. Instant Lite). Primary public new-trader code recorded as ONESTEP35. Previously held as regionalDiscountCode us-only-unconfirmed (US IP 2026-10-20); now confirmed from a non-US IP. Checkout NOT verified; not in deals.json.",
+    "discountCodeNote": "Homepage https://fxify.com/, read 2026-10-28 (EU visitor view): \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\"; also \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\"; the page also names a Halloween code \"AGHHH35 Expires: 2 November\" (-35% excl. Instant Lite). Primary public new-trader code recorded as ONESTEP35. Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-20); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json.",
     "discountCode": "ONESTEP35",
     "discountPct": 35,
     "discountCodeCheckoutVerified": false,
@@ -4143,7 +4143,7 @@
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://cryptofundtrader.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 2026-10-28 from a Latvia (non-US) box IP: \"Find the exit to reveal your discount code! FREE DISCOUNT CODE\" / \"Copy code: BOO20\" and win HUD \"Congratulations! 20% DISCOUNT\" with \"Not applicable to Ascend Challenge\". Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay.",
+    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 2026-10-28 (EU visitor view): \"Find the exit to reveal your discount code! FREE DISCOUNT CODE\" / \"Copy code: BOO20\" and win HUD \"Congratulations! 20% DISCOUNT\" with \"Not applicable to Ascend Challenge\". Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay.",
     "discountCodeValidity": "Halloween overlay, no published end date (checked 2026-10-28); recheck after Halloween"
   },
   {
@@ -4621,7 +4621,7 @@
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage and plan pages (rapid / rapid-eod / pro / builder) on https://myfundedfutures.com/, read 2026-10-28 from a Latvia (non-US) box IP: \"Save 40% On Any Plan With Code CLUB.\" Same banner also says \"New to MFFU? Get 50% off your first eval\" (no separate code named for the 50%). Previously held as regionalDiscountCode us-only-unconfirmed (US IP 2026-10-15/26); now confirmed from a non-US IP. Checkout NOT verified; not in deals.json. Schema list prices unchanged vs 2026-10-22 capture (Rapid 145/209/356/463; Rapid EOD 145/225; Pro 265/401/557; Builder 105/153/282/398).",
+    "discountCodeNote": "Homepage and plan pages (rapid / rapid-eod / pro / builder) on https://myfundedfutures.com/, read 2026-10-28 (EU visitor view): \"Save 40% On Any Plan With Code CLUB.\" Same banner also says \"New to MFFU? Get 50% off your first eval\" (no separate code named for the 50%). Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-15/26); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json. Schema list prices unchanged vs 2026-10-22 capture (Rapid 145/209/356/463; Rapid EOD 145/225; Pro 265/401/557; Builder 105/153/282/398).",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
@@ -5371,7 +5371,7 @@
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 2026-10-28 from a Latvia (non-US) box IP: still \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" ... \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Checkout NOT verified; not in deals.json. BREAK15 remains previousDiscountCode.",
+    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 2026-10-28 (EU visitor view): still \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" ... \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Checkout NOT verified; not in deals.json. BREAK15 remains previousDiscountCode.",
     "previousDiscountCode": "BREAK15",
     "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified",
     "discountCodeValidity": "until 31 Oct 2026, 23:59 UK time (official homepage pop-up); remove after 31.10.2026"
@@ -5564,7 +5564,7 @@
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://www.takeprofittrader.com/, read 2026-10-28 from a Latvia (non-US) box IP: \"Get 40% Off For Life + Never Pay An Activation Fee!\" with \"Use Code: NOFEE40\". Previously held as regionalDiscountCode us-only-unconfirmed (US IP 2026-10-15); now confirmed from a non-US IP. Checkout NOT verified; not in deals.json. Restricted-countries Zendesk article returned HTTP 403 from this IP on 2026-10-28 (list not re-verified today).",
+    "discountCodeNote": "Homepage https://www.takeprofittrader.com/, read 2026-10-28 (EU visitor view): \"Get 40% Off For Life + Never Pay An Activation Fee!\" with \"Use Code: NOFEE40\". Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-15); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json. Restricted-countries Zendesk article could not be read on 2026-10-28 (list not re-verified today).",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
@@ -5959,7 +5959,7 @@
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
     "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://www.tradeday.com/, read 2026-10-28 from a Latvia (non-US) box IP: navbar and hero buttons \"USE CODE \\\"TDNEW\\\"\"; hero \"Now up to 55% OFF! Accounts from just $45!\". The 55% / $45 figures are sale pricing on the page, not a published percent attached to TDNEW itself, so discountPct is omitted. Previously held as regionalDiscountCode us-only-unconfirmed; now confirmed from a non-US IP. Checkout NOT verified; not in deals.json.",
+    "discountCodeNote": "Homepage https://www.tradeday.com/, read 2026-10-28 (EU visitor view): navbar and hero buttons \"USE CODE \\\"TDNEW\\\"\"; hero \"Now up to 55% OFF! Accounts from just $45!\". The 55% / $45 figures are sale pricing on the page, not a published percent attached to TDNEW itself, so discountPct is omitted. Previously held as regionalDiscountCode us-only-unconfirmed; now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json.",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
