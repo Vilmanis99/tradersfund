@@ -670,7 +670,7 @@
         }
       },
       "notes": [
-        "2026-10-20 article-slot capture: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'available'.",
+        "Rechecked 2026-10-20 on cryptofundtrader.com (article-slot pages). Matches firms.json russiaStatus 'available'.",
         "Unverified: Russian-issued cards (incl. Mir) at checkout; KYC outcome for Russian/Belarusian documents; payout to Russian banks. Bank transfer is EUR/USD; crypto payouts USDT (ERC20/TRC20), BTC, ETH."
       ]
     },
@@ -742,7 +742,7 @@
         }
       },
       "notes": [
-        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20. Capture: content/data/challenges/_captures/alpha-capital-2026-10-20.json (articleSlotRecapture). Matches firms.json russiaStatus 'restricted'."
+        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20 on alphacapitalgroup.uk. Matches firms.json russiaStatus 'restricted'."
       ]
     }
   ],
