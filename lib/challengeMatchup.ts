@@ -23,7 +23,7 @@
  */
 
 import { possessive } from '@/lib/possessive'
-import { displaySplitTiers, hasTieredSplit, profitSplitText, profitSplitValue, type SplitTier } from '@/lib/profitSplitDisplay'
+import { displaySplitTiers, hasTieredSplit, profitSplitText, profitSplitValue } from '@/lib/profitSplitDisplay'
 import {
   challengeCurrency,
   challengeTierEconomics,
@@ -150,8 +150,8 @@ export interface MatchupCostRow {
   profitSplitDisplay: string
   /** True when the product publishes two or more applicable split tiers. */
   profitSplitTiered: boolean
-  /** Display-only tiers for the tier disclosure (no quotes or URLs). */
-  profitSplitTiers?: SplitTier[]
+  /** Lang-resolved display rows for the tier disclosure; omit when flat. */
+  splitTierRows?: import('@/lib/profitSplitDisplay').SplitTierDisplayRow[]
   breakEvenProfit: number
   /** Null on EUR rows and where no loss cap is published. */
   rMultiple: number | null
@@ -238,7 +238,7 @@ function buildCostRows(
       profitSplitPct: challenge.profitSplitPct as number,
       profitSplitDisplay: profitSplitValue(challenge) ?? `${challenge.profitSplitPct}%`,
       profitSplitTiered: hasTieredSplit(challenge),
-      profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
+      ...((rows => rows ? { splitTierRows: rows } : {})(displaySplitTiers(challenge.profitSplitTiers, 'en'))),
       breakEvenProfit: economics.breakEvenProfit,
       rMultiple: economics.rMultiple,
       dayCount: economics.dayCount,

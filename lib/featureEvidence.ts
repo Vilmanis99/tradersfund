@@ -23,7 +23,7 @@ export { firmSlug }
  */
 
 import { freshChallenges } from './challengeMatchup'
-import { displaySplitTiers, hasTieredSplit, profitSplitValue, type SplitTier } from './profitSplitDisplay'
+import { displaySplitTiers, hasTieredSplit, profitSplitValue } from './profitSplitDisplay'
 import type { Challenge, Firm, RuleAvailability } from './firms'
 import { getAllFirms } from './firms'
 
@@ -49,8 +49,8 @@ export interface FeatureProductRow {
   verdict: ProductVerdict
   /** Extra context for mechanic features, e.g. the actual drawdown type. */
   detail: string | null
-  /** Display-only split tiers behind a tiered `detail` (the tier disclosure); split features only. */
-  splitTiers?: SplitTier[]
+  /** Lang-resolved display rows behind a tiered `detail` (the tier disclosure); split features only. */
+  splitTiers?: import('./profitSplitDisplay').SplitTierDisplayRow[]
   sourceUrl: string
   capturedAt: string
 }
@@ -279,7 +279,7 @@ export function buildFeatureEvidence(slug: string): FeatureEvidence {
         productSlug: challenge.productSlug,
         verdict: spec.test(challenge),
         detail: spec.detail?.(challenge) ?? null,
-        ...(spec.splitTiers && hasTieredSplit(challenge) ? { splitTiers: displaySplitTiers(challenge.profitSplitTiers) } : {}),
+        ...(spec.splitTiers && hasTieredSplit(challenge) ? { splitTiers: displaySplitTiers(challenge.profitSplitTiers, 'en') } : {}),
         sourceUrl: challenge.sourceUrl,
         capturedAt: challenge.sourceCapturedAt,
       }

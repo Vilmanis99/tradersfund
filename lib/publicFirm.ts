@@ -14,7 +14,12 @@ import type { Challenge, ChallengeAccountSize, ChallengeRules, Firm } from './fi
  * publishes it on every page that uses the projection; it must be page-safe.
  * scripts/test-no-firm-internals-html.mjs fails if any other lib/firms.ts field name, or
  * an internal value, appears in a sitemap page's HTML or RSC payload.
+ *
+ * Tiered profit splits cross the client boundary as `splitTierRows` (lib/profitSplitDisplay
+ * displaySplitTiers): already-formatted {pctLabel, whenText, tierLive}. Raw names
+ * profitSplitTiers / traderPct / stage / appliesTo / appliesToRu are never allowlisted here.
  */
+
 
 export const PUBLIC_FIRM_FIELDS = [
   'name', 'logo', 'score', 'founded', 'assets', 'maxAllocation', 'platforms',

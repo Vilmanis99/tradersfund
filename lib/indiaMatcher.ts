@@ -60,8 +60,8 @@ export interface IndiaMatcherProduct {
   payoutFirstDays: number | null
   payoutFrequency: PayoutFrequency | null
   profitSplitPct: number | null
-  /** Display-only split tiers; sorting uses profitSplitPct. */
-  profitSplitTiers?: import('./profitSplitDisplay').SplitTier[]
+  /** Lang-resolved display rows for the tier disclosure; omit when flat. */
+  splitTierRows?: import('./profitSplitDisplay').SplitTierDisplayRow[]
   minTradingDays: number | null
   pricingModel: 'one-off' | 'monthly-subscription' | 'split-payment'
   capturedAt: string
@@ -159,7 +159,7 @@ export function buildIndiaMatcherFirms(firms: Firm[]): IndiaMatcherFirm[] {
           payoutFirstDays: challenge.payoutFirstDays,
           payoutFrequency: challenge.payoutFrequency,
           profitSplitPct: challenge.profitSplitPct,
-          profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
+          ...((rows => rows ? { splitTierRows: rows } : {})(displaySplitTiers(challenge.profitSplitTiers, 'en'))),
           minTradingDays: challenge.minTradingDays,
           pricingModel: challenge.pricingModel ?? 'one-off',
           capturedAt: challenge.sourceCapturedAt,

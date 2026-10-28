@@ -1172,7 +1172,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </div>
                         <div>
                           <dt>Profit split</dt>
-                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}</dd>
+                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.splitTierRows ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}</dd>
                         </div>
                       </dl>
 
@@ -1512,7 +1512,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                           {payoutLabel(product)}
                         </span>
                         <div style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.25rem' }}>
-                          Split {hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}
+                          Split {hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.splitTierRows ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}
                         </div>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>

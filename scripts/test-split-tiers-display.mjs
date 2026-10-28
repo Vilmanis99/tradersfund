@@ -8,7 +8,8 @@
  *    Funded Live tiers appear only with stage 'all'. Funded Live is detected from the tier's
  *    `stage` field; the "Funded Live" text prefix decides only when `stage` is missing.
  *    RU conditions come from `appliesToRu`, falling back to the EN text (fallbacks are listed).
- *    displaySplitTiers keeps stage/appliesToRu and drops quotes and source URLs.
+ *    displaySplitTiers projects to display-only rows {pctLabel, whenText, tierLive} in the
+ *    page language and drops raw field names, quotes and source URLs.
  * 2. Live (needs a running server): no display surface renders a flat split for
  *    a product with tiers. Pages: /, /ru, /prop-firm-challenges,
  *    /prop-firms/high-profit-split, /best-prop-firms-in-india/challenge-comparison,
@@ -67,10 +68,13 @@ assert.equal(splitTierCondition({ traderPct: 50, appliesTo: 'Below $4,000', appl
 assert.equal(splitTierCondition({ traderPct: 50, appliesTo: 'Below $4,000' }, 'ru'), 'Below $4,000', 'RU falls back to EN when appliesToRu is missing')
 assert.equal(splitTierCondition({ traderPct: 50, appliesTo: 'Below $4,000', appliesToRu: '  ' }, 'ru'), 'Below $4,000', 'blank appliesToRu falls back too')
 
-// display props: stage + appliesToRu survive, quotes and URLs do not
-const shown = displaySplitTiers([{ traderPct: 50, stage: 'funded-sim', appliesTo: 'A', appliesToRu: 'А', sourceUrl: 'https://x', quote: 'q', capturedAt: '2026-10-26' }])
-assert.deepEqual(shown, [{ traderPct: 50, stage: 'funded-sim', appliesTo: 'A', appliesToRu: 'А' }])
-assert.deepEqual(displaySplitTiers([{ traderPct: 50, appliesTo: 'A' }]), [{ traderPct: 50, appliesTo: 'A' }])
+// display props: lang-resolved strings only; raw field names, quotes and URLs do not
+const shown = displaySplitTiers([{ traderPct: 50, stage: 'funded-sim', appliesTo: 'A', appliesToRu: 'А', sourceUrl: 'https://x', quote: 'q', capturedAt: '2026-10-26' }], 'en')
+assert.deepEqual(shown, [{ pctLabel: '50%', whenText: 'A', tierLive: false }])
+assert.deepEqual(displaySplitTiers([{ traderPct: 50, appliesTo: 'A', appliesToRu: 'А' }], 'ru'), [{ pctLabel: '50%', whenText: 'А', tierLive: false }])
+assert.deepEqual(displaySplitTiers([{ traderPct: 90, stage: 'funded-live', appliesTo: 'Live capital' }], 'en'), [{ pctLabel: '90%', whenText: 'Live capital', tierLive: true }])
+assert.equal(displaySplitTiers([]), undefined)
+assert.equal(displaySplitTiers(null), undefined)
 
 const firms = new Map(getAllFirms().map(f => [firmSlug(f.name), f]))
 const challenges = getAllChallenges()

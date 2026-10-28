@@ -96,7 +96,7 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
                 <div className="cm-meta">
                   {row.firmName} · {formatBillingModel(row.pricingModel)} ·{' '}
                   {row.profitSplitTiered
-                    ? <SplitTiersDisclosure tiers={row.profitSplitTiers ?? []} splitProduct={`${row.firmSlug}:${row.productSlug}`}>{`${row.profitSplitDisplay} split (tiered)`}</SplitTiersDisclosure>
+                    ? <SplitTiersDisclosure tiers={row.splitTierRows ?? []} splitProduct={`${row.firmSlug}:${row.productSlug}`}>{`${row.profitSplitDisplay} split (tiered)`}</SplitTiersDisclosure>
                     : <span data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display="flat">{`${row.profitSplitPct}% split`}</span>}
                 </div>
               </th>

@@ -12,12 +12,36 @@
  * decide. Challenge and funded-sim surfaces exclude Funded Live tiers by default;
  * pass `{ stage: 'all' }` only on a surface about every stage (the rules-page product table
  * lists every tier with its own wording).
+ *
+ * Client payloads never carry the raw field names (`profitSplitTiers`, `traderPct`, `stage`,
+ * `appliesTo`, `appliesToRu`). Server code calls `displaySplitTiers(tiers, lang)` and passes
+ * the result as `splitTierRows` (omit the key when undefined — React Flight still serialises
+ * `key: undefined` as `"key":"$undefined"`).
  */
 export type SplitTierStage = 'funded-sim' | 'funded-live'
 export type SplitTier = { traderPct: number; stage?: SplitTierStage; appliesTo: string; appliesToRu?: string }
-export type SplitProduct = { profitSplitPct: number | null; profitSplitTiers?: SplitTier[] | null }
+export type SplitProduct = {
+  profitSplitPct: number | null
+  /** Raw tiers from challenge data (server-only). Prefer splitTierRows on client view models. */
+  profitSplitTiers?: SplitTier[] | null
+  /** Lang-resolved display rows for client components (no raw field names). */
+  splitTierRows?: SplitTierDisplayRow[] | null
+}
 export type SplitLang = 'en' | 'ru'
 export type SplitStage = 'evaluation-and-sim' | 'all'
+
+/**
+ * One tier as already-formatted strings for the disclosure popover.
+ * Neutral keys only — none of these names appear in lib/firms.ts or challenge JSON.
+ */
+export type SplitTierDisplayRow = {
+  /** Already-formatted percentage, e.g. "50%". */
+  pctLabel: string
+  /** Condition text already in the page language. */
+  whenText: string
+  /** True when this tier is the Funded Live / live-capital stage. */
+  tierLive: boolean
+}
 
 const FUNDED_LIVE = /^funded live\b/i
 
@@ -43,13 +67,25 @@ export function applicableSplitTiers(product: SplitProduct, stage: SplitStage = 
   return stage === 'all' ? tiers : tiers.filter(tier => !isFundedLiveTier(tier))
 }
 
+function applicableDisplayRows(rows: SplitTierDisplayRow[], stage: SplitStage = 'evaluation-and-sim'): SplitTierDisplayRow[] {
+  return stage === 'all' ? rows : rows.filter(row => !row.tierLive)
+}
+
 /** True when the product's split is tiered (two or more different applicable tier values). */
 export function hasTieredSplit(product: SplitProduct, stage: SplitStage = 'evaluation-and-sim'): boolean {
+  if (product.splitTierRows?.length) {
+    return new Set(applicableDisplayRows(product.splitTierRows, stage).map(row => row.pctLabel)).size > 1
+  }
   return new Set(applicableSplitTiers(product, stage).map(tier => tier.traderPct)).size > 1
 }
 
 /** Lowest and highest applicable tier; null when the product has no tiers. */
 export function splitTierRange(product: SplitProduct, stage: SplitStage = 'evaluation-and-sim'): { min: number; max: number } | null {
+  if (product.splitTierRows?.length) {
+    const values = applicableDisplayRows(product.splitTierRows, stage).map(row => parseInt(row.pctLabel, 10))
+    if (!values.length) return null
+    return { min: Math.min(...values), max: Math.max(...values) }
+  }
   const values = applicableSplitTiers(product, stage).map(tier => tier.traderPct)
   if (!values.length) return null
   return { min: Math.min(...values), max: Math.max(...values) }
@@ -79,14 +115,20 @@ export function profitSplitText(product: SplitProduct, lang: SplitLang = 'en', s
   return value && hasTieredSplit(product, stage) ? `${value} (${TIERED_LABEL[lang]})` : value
 }
 
-/** Strip a tier list to the display fields (no quotes or source URLs reach client props). */
-export function displaySplitTiers(tiers: SplitTier[] | null | undefined): SplitTier[] | undefined {
+/**
+ * Project raw tiers to display-only rows for client props.
+ * Conditions are resolved in `lang` so raw appliesTo / appliesToRu / traderPct / stage never cross the wire.
+ * Returns undefined when there are no tiers — callers must omit the prop key (not assign undefined).
+ */
+export function displaySplitTiers(
+  tiers: SplitTier[] | null | undefined,
+  lang: SplitLang = 'en',
+): SplitTierDisplayRow[] | undefined {
   return tiers?.length
     ? tiers.map(tier => ({
-        traderPct: tier.traderPct,
-        ...(tier.stage ? { stage: tier.stage } : {}),
-        appliesTo: tier.appliesTo,
-        ...(tier.appliesToRu ? { appliesToRu: tier.appliesToRu } : {}),
+        pctLabel: `${tier.traderPct}%`,
+        whenText: splitTierCondition(tier, lang),
+        tierLive: isFundedLiveTier(tier),
       }))
     : undefined
 }

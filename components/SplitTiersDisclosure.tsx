@@ -1,11 +1,11 @@
 import { useId, type CSSProperties, type ReactNode } from 'react'
 import { Info } from 'lucide-react'
-import { isFundedLiveTier, splitTierCondition, SPLIT_TIERS_COPY, type SplitLang, type SplitTier } from '@/lib/profitSplitDisplay'
+import { SPLIT_TIERS_COPY, type SplitLang, type SplitTierDisplayRow } from '@/lib/profitSplitDisplay'
 
 /**
  * The tiered split label ("50–80% (tiered)" / «50–80% (по уровням)») as a button that opens a
  * popover listing every published tier with its condition in the page language (Funded Live
- * included, RU from appliesToRu).
+ * included). Conditions are resolved server-side into SplitTierDisplayRow.whenText.
  *
  * No JS needed: the HTML popover API (`popovertarget`) toggles it on click, tap, Enter or Space,
  * Esc and an outside tap close it, and the browser exposes the expanded state. The panel is in the
@@ -15,7 +15,7 @@ import { isFundedLiveTier, splitTierCondition, SPLIT_TIERS_COPY, type SplitLang,
  * (app/globals.css .split-tiers). Browsers without popover support show the panel inline.
  */
 export default function SplitTiersDisclosure({ tiers, lang = 'en', splitProduct, children }: {
-  tiers: SplitTier[]
+  tiers: SplitTierDisplayRow[]
   lang?: SplitLang
   /** "<firm>:<product>" when the disclosure itself carries the data-split-product marker. */
   splitProduct?: string
@@ -36,12 +36,12 @@ export default function SplitTiersDisclosure({ tiers, lang = 'en', splitProduct,
         <p className="split-tiers__heading">{copy.heading}</p>
         <ul className="split-tiers__list">
           {tiers.map(tier => (
-            <li key={`${tier.traderPct}-${tier.appliesTo}`} data-split-tier-stage={isFundedLiveTier(tier) ? 'funded-live' : 'before-live'}>
-              <b>{tier.traderPct}%</b> <span>{splitTierCondition(tier, lang)}</span>
+            <li key={`${tier.pctLabel}-${tier.whenText}`} data-split-tier-stage={tier.tierLive ? 'funded-live' : 'before-live'}>
+              <b>{tier.pctLabel}</b> <span>{tier.whenText}</span>
             </li>
           ))}
         </ul>
-        {tiers.some(isFundedLiveTier) ? <p className="split-tiers__note">{copy.liveNote}</p> : null}
+        {tiers.some(tier => tier.tierLive) ? <p className="split-tiers__note">{copy.liveNote}</p> : null}
       </div>
     </div>
   )
