@@ -965,104 +965,184 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": "Product-specific: not stated on 1 Step Flex, 2 Step Flex, 2 Step Pro; 35% on 2 Step Standard; 15% on FundingPips Zero",
+        "summary": "Product-specific: 35% on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard for the On Demand 100% reward only (2 Step Flex and 2 Step Standard state that their Bi-Weekly / Weekly rewards have no consistency score); 15% on FundingPips Zero for every reward request",
         "byProduct": {
-          "1-step-flex": null,
-          "2-step-flex": null,
-          "2-step-pro": null,
+          "1-step-flex": 35,
+          "2-step-flex": 35,
+          "2-step-pro": 35,
           "2-step-standard": 35,
           "zero": 15
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "A 35% consistency score must be achieved",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-20",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "There is no Consistency Score on either Bi-Weekly split.",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "For 2 Step Standard, the 35% Consistency Score applies only on the On Demand reward cycle.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "Consistency Score 15% or below .",
+            "quote": "To request a reward, the biggest winning day must not exceed 15% of total accumulated profit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           }
         ]
       },
       "profitSplitPct": {
         "value": null,
-        "summary": "Product-specific: 80% on 1 Step Flex, 2 Step Pro; not stated on 2 Step Flex, 2 Step Standard; 95% on FundingPips Zero",
+        "summary": "Product-specific: 80% on 1 Step Flex (Bi-Weekly) and 2 Step Pro (Weekly); 80% or 95% on 2 Step Flex (Bi-Weekly split chosen at purchase); 60% Weekly or 80% Bi-Weekly on 2 Step Standard (cycle selected at Master); 95% on FundingPips Zero. 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard also offer On Demand 100% after a 35% consistency score and 7 profitable days",
         "byProduct": {
           "1-step-flex": 80,
-          "2-step-flex": null,
+          "2-step-flex": "80% or 95% (Bi-Weekly, split chosen at purchase)",
           "2-step-pro": 80,
-          "2-step-standard": null,
+          "2-step-standard": "60% Weekly or 80% Bi-Weekly (cycle selected at Master)",
           "zero": 95
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Get an 80% split with 1 minimum trading day, or 95% on 3 profitable days.",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Bi-Weekly pays an 80% split every 14 calendar days once the 1% minimum is cleared. On Demand pays a 100% split on demand and requires a 35% consistency score plus 7 profitable days at 0.5%+ each; both of those reset after a successfully processed reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "No. The 80% or 95% split is chosen at purchase, and the choice is locked for the life of the account. Both cost the same.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Every 7 calendar days after the first executed trade on the Master Account. 80% split on every reward.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "95% profit split .",
+            "quote": "Every 14 calendar days after the first executed trade on the Master Account. 95% profit split on every reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
-            "quote": "80% Bi-Weekly reward .",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero (1 Step Flex and 2 Step Flex also offer On Demand 100% with eligibility conditions); weekly on 2 Step Pro; trader-selected (weekly, bi-weekly or on-demand) on 2 Step Standard",
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; Weekly (60%), Bi-Weekly (80%) or On Demand (100%) on 2 Step Standard, cycle selected at Master; 1 Step Flex, 2 Step Flex and 2 Step Pro also offer On Demand 100% after a 35% consistency score and 7 profitable days",
         "byProduct": {
           "1-step-flex": "bi-weekly",
           "2-step-flex": "bi-weekly",
           "2-step-pro": "weekly",
-          "2-step-standard": null,
+          "2-step-standard": "Weekly (60%), Bi-Weekly (80%) or On Demand (100%), cycle selected at Master",
           "zero": "bi-weekly"
         },
         "evidence": [
           {
-            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.",
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Bi-Weekly pays an 80% split every 14 calendar days once the 1% minimum is cleared. On Demand pays a 100% split on demand and requires a 35% consistency score plus 7 profitable days at 0.5%+ each; both of those reset after a successfully processed reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-20",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-20",
-            "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
-            "productSlug": "2-step-flex"
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Every 7 calendar days after the first executed trade on the Master Account. 80% split on every reward.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "The reward cycle can be selected once the evaluation account reaches the Master Account.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Every 14 calendar days after the first executed trade on the Master Account. 95% profit split on every reward.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
           }
         ]
       },
@@ -1156,7 +1236,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
     },
     "regionalDiscountCode": "FP",
     "discountCodeRegion": "us-only-unconfirmed",
