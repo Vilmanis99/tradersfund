@@ -5672,16 +5672,41 @@
       "weekendHolding": {
         "value": false,
         "summary": "not allowed",
+        "note": "Applies to Test, PRO and PRO+: the Universal Trading Policies (updated 6 Mar 2026) apply to all accounts and say positions may not be held from one session to the next; Test Rule 4 (updated 6 May 2026) says open positions are closed automatically at 4:55 PM Eastern. A position held over the weekend would be carried from Friday's session into Sunday's.",
         "byProduct": {
           "the-test": false
         },
         "evidence": [
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
-            "quote": "Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next.",
+            "quote": "The Universal Trading Policies (UTP) establish the core standards that apply to all TakeProfitTrader accounts, including Test, PRO, and PRO+.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "#6: Trade Approved Products, During Approved Times. Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
+            "quote": "Positions cannot be carried from one trading day into the next. All positions must be opened and closed within the approved daily window: ... TPT will automatically close any open position at 4:55 PM Eastern.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
+            "quote": "You may only trade approved instruments during the permitted trading hours.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
             "productSlug": null
           }
         ]
@@ -5804,7 +5829,7 @@
         ]
       },
       "lossLimitUnit": "usd",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
     }
   },
   {
