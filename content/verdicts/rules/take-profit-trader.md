@@ -8,11 +8,11 @@ author: Tara Mohseni
 sources:
   - title: 'PRO Account Rules (help centre, updated September 22, 2026; read 2026-10-26)'
     url: 'https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules'
-  - title: 'Take Profit Trader homepage (PRO "One Time $130 Fee" and "no withdrawal restrictions on your profits above the buffer" read 2026-10-26; daily loss rule "None" for Test/PRO/PRO+ and 50K "Daily Loss Limit $1100 Removed" read 2026-10-26, as in Tracker 709ced4; prices captured 2026-10-19/20)'
+  - title: 'Take Profit Trader homepage (PRO "One Time $130 Fee" and "no withdrawal restrictions on your profits above the buffer" read 26 October 2026; daily loss rule "None" for Test/PRO/PRO+ and 50K "Daily Loss Limit $1100 Removed" read 26 October 2026; prices captured 2026-10-19/20)'
     url: 'https://takeprofittrader.com/'
-  - title: 'Rule 3: Do Not Hit End Of Day (EOD) Maximum Trailing Drawdown (help centre; Tracker capture 2026-10-15)'
+  - title: 'Rule 3: Do Not Hit End Of Day (EOD) Maximum Trailing Drawdown (help centre; read 15 October 2026)'
     url: 'https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown'
-  - title: 'Rule 5: Be Consistent (help centre; Tracker capture 2026-10-15)'
+  - title: 'Rule 5: Be Consistent (help centre; read 15 October 2026)'
     url: 'https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent'
 fieldsUsed:
   - rules.drawdownType

@@ -7,18 +7,18 @@ dataAsOf: '2026-10-19'
 author: Tara Mohseni
 sources:
   - title: >-
-      Is News Trading Allowed at FundedNext? (help centre, dateModified
-      2026-09-08; read 2026-10-26)
+      Is News Trading Allowed at FundedNext? (help centre, last updated
+      8 September 2026; read 26 October 2026)
     url: >-
       https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext
   - title: >-
       What are the Risk Limits on a FundedNext Account? (help centre,
-      dateModified 2026-07-06; read 2026-10-26)
+      last updated 6 July 2026; read 26 October 2026)
     url: >-
       https://help.fundednext.com/en/articles/14702245-what-are-the-risk-limits-on-a-fundednext-account
   - title: >-
-      How often will I receive my Performance Reward? (help centre, dateModified
-      2026-10-16; read 2026-10-26)
+      How often will I receive my Performance Reward? (help centre, last updated
+      16 October 2026; read 26 October 2026)
     url: >-
       https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward
   - title: >-

@@ -12,9 +12,9 @@ sources:
     url: 'https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account'
   - title: FXIFY Two Phase program page (payouts, add-ons; read 2026-10-27)
     url: 'https://fxify.com/programs/two-phase/'
-  - title: FXIFY Instant Funding program page (Tracker capture 2026-10-20)
+  - title: FXIFY Instant Funding program page (read 20 October 2026)
     url: 'https://fxify.com/programs/instant-funding/'
-  - title: FXIFY Lightning Challenge program page (Tracker capture 2026-10-20)
+  - title: FXIFY Lightning Challenge program page (read 20 October 2026)
     url: 'https://fxify.com/programs/lightning-challenge/'
 fieldsUsed:
   - rules.drawdownType.byProduct
