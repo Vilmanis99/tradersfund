@@ -32,6 +32,8 @@ export type PriceMatrixColumn = {
   refundUniform: boolean
   /** Date (YYYY-MM-DD) of the check that found official refund sources in conflict, when recorded. */
   refundConflictCheckedAt: string | null
+  /** Payout count the refund is conditional on (product.refundAfterPayouts), when recorded. */
+  refundAfterPayouts: number | null
 }
 
 export type PriceMatrixData = {
@@ -82,6 +84,8 @@ export function buildPriceMatrix(products: Challenge[], firmName: string): Price
       refundable: refundUniform ? statuses[0] : null,
       refundUniform,
       refundConflictCheckedAt: product.refundConflict?.checkedAt ?? null,
+      refundAfterPayouts: product.refundAfterPayouts != null && Number.isInteger(product.refundAfterPayouts) && product.refundAfterPayouts > 0
+        ? product.refundAfterPayouts : null,
     }
   })
   const rows = sizes

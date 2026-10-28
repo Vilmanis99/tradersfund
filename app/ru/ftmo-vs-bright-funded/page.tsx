@@ -10,7 +10,7 @@ import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
@@ -266,7 +266,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <RuMobileStickyCTA firms={['ftmo', 'bright-funded']} from="ru-ftmo-vs-bright-mobile-sticky" />
-      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero ru-hero--p1">
         <div

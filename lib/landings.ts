@@ -26,6 +26,7 @@ import {
 } from '@/lib/cryptoMarketEvidence'
 import rawUkAccessEvidence from '@/content/data/uk-access-evidence.json'
 import { isProductSetFresh } from './reviewFreshness.ts'
+import { FROZEN_COUNT_LANDINGS, isPostFreezeFirm } from './postFreezeFirms.ts'
 
 /**
  * Long-tail landing pages — "best prop firms in UK", "cheapest", "best
@@ -342,6 +343,7 @@ const CURRENT_US_PRODUCT_COUNT = CURRENT_US_SNAPSHOT.reduce(
 )
 
 const CURRENT_OVERALL_SNAPSHOT = getAllFirms().flatMap(firm => {
+  if (isPostFreezeFirm(firmSlug(firm.name))) return []
   const products = freshProductsForFirm(firm)
   return products.length ? [{ firm, products }] : []
 })
@@ -379,6 +381,7 @@ const CURRENT_FUTURES_PRODUCT_COUNT = CURRENT_FUTURES_SNAPSHOT.reduce(
 )
 
 const CURRENT_SWING_SNAPSHOT = getAllFirms().flatMap(firm => {
+  if (isPostFreezeFirm(firmSlug(firm.name))) return []
   const products = swingCompatibleProducts(firm)
   return products.length ? [{ firm, products }] : []
 })
@@ -1224,7 +1227,9 @@ export function getLandingSourceLastModified(slug: string): Date | undefined {
 }
 
 export function buildLandingPayload(landing: Landing) {
-  const firms = getAllFirms()
+  const firms = FROZEN_COUNT_LANDINGS.has(landing.slug)
+    ? getAllFirms().filter(firm => !isPostFreezeFirm(firmSlug(firm.name)))
+    : getAllFirms()
   const ranked = landing.rank(firms)
   const count = new Set(ranked.map(item => item.firm.name)).size
   return { ranked, count, allFirms: firms }

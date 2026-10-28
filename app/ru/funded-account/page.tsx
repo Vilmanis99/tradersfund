@@ -3,7 +3,7 @@ import Link from '@/components/SafeLink'
 import RuPendingLink from '@/components/RuPendingLink'
 import { ArrowRight, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { goLinkRel } from '@/lib/russiaAvailability'
@@ -81,7 +81,7 @@ export default function RussianFundedAccountPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-funded-account="guide">

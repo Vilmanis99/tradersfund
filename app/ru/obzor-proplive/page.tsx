@@ -8,7 +8,7 @@ import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnes
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -16,6 +16,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-proplive'
 export const revalidate = 3600
@@ -99,7 +100,7 @@ export default function RussianPropLiveReviewPage() {
     { name: 'Российские проп-компании', url: '/ru/dlya-russkoyazychnykh-treyderov#rossiyskie' },
     { name: 'Обзор PropLive' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -132,7 +133,7 @@ export default function RussianPropLiveReviewPage() {
             заявленный срок вывода, договор и отдельную партнёрскую программу. Это локальный обзор для
             русскоязычного поиска, а не подтверждение доступности или платёжеспособности.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {formatRuDate(marketEvidence.capturedAt)}; заявления на главной: {ruDatesInText(localSignalCapturedAt || 'дата не подтверждена')}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
@@ -141,7 +142,7 @@ export default function RussianPropLiveReviewPage() {
             <div className="ru-stat"><strong>{PROP_LIVE_TRADERS.toLocaleString('ru-RU')}</strong><span>трейдеров по заявлению оператора, по данным на {PROP_LIVE_RECHECK}</span></div>
             <div className="ru-stat"><strong>1 день</strong><span>заявленный срок вывода</span></div>
             <div className="ru-stat"><strong>MOEX</strong><span>рынок в опубликованной модели</span></div>
-            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
+            <div className="ru-stat"><strong>{ruDatesInText(localSignalCapturedAt || 'нет даты')}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -285,7 +286,7 @@ export default function RussianPropLiveReviewPage() {
       <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
         <div className="ru-shell ru-content">
           <h2>Частые вопросы</h2>
-          {!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки PropLive. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего договора или выплаты.</p>}
+          {!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} и отдельные проверки PropLive. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующего договора или выплаты.</p>}
           <RussianFaq items={faqs} />
         </div>
       </section>

@@ -5,7 +5,7 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge, type ChallengeAccountSize } from '@/lib/firms'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import forexEvidence from '@/content/data/russian-forex-evidence.json'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
@@ -15,6 +15,7 @@ import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import { russianGenitiveDate } from '@/lib/russianDates'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/forex-prop-firmy'
 const TITLE = 'Форекс проп-фирмы и проп-компании 2026: плечо, цены, правила'
@@ -170,7 +171,7 @@ export default function RussianForexPropFirmsPage() {
     <article className="ru-review-article" data-russian-forex-article="instrument-to-product" data-russian-search-intent="prop-forex">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqItems)) }} />}
+      {hasFreshEvidence && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqItems)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell">
@@ -181,7 +182,7 @@ export default function RussianForexPropFirmsPage() {
             FundedNext и BrightFunded: стоимость участия, кредитное плечо, лимиты убытка и
             доступность терминала. Отдельно разбираем, что проверить перед оплатой из своей страны.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {updatedAt}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {formatRuDate(updatedAt)}.</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-stats" aria-label="Выборка с датированными источниками">
             <div className="ru-stat"><strong>{products.length}</strong><span>программ с актуальными ценовыми записями</span></div>
@@ -244,7 +245,7 @@ export default function RussianForexPropFirmsPage() {
                   <td data-russian-forex-leverage-product={`${product.firmSlug}:${product.productSlug}`}>{leverageFor(product)}</td>
                   <td>{tier ? formatRiskRoom(product, tier) : 'Лимиты в деньгах не рассчитаны'}</td>
                   <td>{formatDrawdown(product)}</td>
-                  <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt}</a></td>
+                  <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{formatRuDate(product.sourceCapturedAt)}</a></td>
                 </tr>
               })}</tbody>
             </table>
@@ -281,8 +282,8 @@ export default function RussianForexPropFirmsPage() {
                 : 'Форекс-справки требуют повторной проверки. Цены, цели и ограничения сравнивайте по отдельным программам, а не по общему максимуму фирмы.'}</p>
               <p className="ru-muted">Проверяйте конкретную программу и валюту взноса. Перечень платформ не является подтверждением, что любая из них доступна вашему профилю.</p>
               <p className="ru-source-line" data-russian-forex-bright-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
-                <a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">Справка</a> от {brightCountry.sourceCapturedAt} включала Пакистан;{' '}
-                <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightTerms.sourceCapturedAt} его не называли.{' '}
+                <a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">Справка</a> от {formatRuDate(brightCountry.sourceCapturedAt)} включала Пакистан;{' '}
+                <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {formatRuDate(brightTerms.sourceCapturedAt)} его не называли.{' '}
                 {brightCountryCurrent
                   ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
                   : 'Страновые источники требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'}
@@ -348,7 +349,7 @@ export default function RussianForexPropFirmsPage() {
           <h2>Валютные пары и платформы: общий список не равен доступу счёта</h2>
           <p>
             В <a href={fundedNextEvidence.sourceUrls[0]} target="_blank" rel="nofollow noopener">справке FundedNext об инструментах</a>,
-            проверенной {fundedNextEvidence.sourceCapturedAt}, перечислены основные, кросс- и экзотические пары.
+            проверенной {formatRuDate(fundedNextEvidence.sourceCapturedAt)}, перечислены основные, кросс- и экзотические пары.
             Примеры — EURUSD, GBPUSD, USDJPY и EURGBP. Золото XAUUSD относится к отдельной категории,
             а не добавляет ещё одну валютную пару.
           </p>
@@ -365,7 +366,7 @@ export default function RussianForexPropFirmsPage() {
           </p>
           <p>
             По <a href={brightEvidence.sourceUrls[2]} target="_blank" rel="nofollow noopener">платформенной справке BrightFunded</a>,
-            проверенной {brightEvidence.sourceCapturedAt}, MT5 недоступен гражданам, резидентам и проживающим
+            проверенной {formatRuDate(brightEvidence.sourceCapturedAt)}, MT5 недоступен гражданам, резидентам и проживающим
             в США или ОАЭ, а cTrader — соответствующим профилям США. Применяются также ограничения по другим
             запрещённым странам. Наличие DXTrade, cTrader или MT5 в общем перечне не отменяет эти условия.
           </p>
@@ -428,9 +429,9 @@ export default function RussianForexPropFirmsPage() {
           <p className="ru-source-line">Резидентам России FundedNext недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет{asOf(fundedNextAccessObservedOn)}.</p>
           <div className="ru-notice" data-russian-forex-country-conflict="help-six-terms-five" data-russian-forex-country-status={brightCountryCurrent ? 'dated' : 'recapture-required'}>
             <strong>{brightCountryCurrent ? 'Списки стран BrightFunded расходятся.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
-            По записи от {brightCountry.sourceCapturedAt}{' '}
+            По записи от {formatRuDate(brightCountry.sourceCapturedAt)}{' '}
             <a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан среди шести ограниченных стран;{' '}
-            <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightTerms.sourceCapturedAt} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
+            <a href={brightTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {formatRuDate(brightTerms.sourceCapturedAt)} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
             {brightCountryCurrent
               ? 'Россия не названа ни там, ни там, но это не индивидуальное разрешение на покупку или выплату. До оплаты подтвердите гражданство, резидентство и фактическое местонахождение у фирмы.'
               : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. До оплаты подтвердите гражданство, резидентство и фактическое местонахождение у фирмы.'}
@@ -495,11 +496,11 @@ export default function RussianForexPropFirmsPage() {
           <h2>Первичные источники и даты проверки</h2>
           <p>Форекс-справки проверяются отдельно от цен и доступа по стране. Дата обновления статьи не обновляет эти записи автоматически.</p>
           {forexEvidence.firms.map(firm => <div key={firm.firmSlug}>
-            <h3>{firm.firmSlug === 'bright-funded' ? 'BrightFunded' : firm.firmName} · {firm.sourceCapturedAt}</h3>
+            <h3>{firm.firmSlug === 'bright-funded' ? 'BrightFunded' : firm.firmName} · {formatRuDate(firm.sourceCapturedAt)}</h3>
             <ul>{firm.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">{firm.firmName}: {index === 0 ? 'инструменты' : index === 1 ? 'кредитное плечо' : index === 2 && firm.firmSlug === 'fundednext' ? 'плечо Stellar Instant' : index === 2 ? 'платформы и ограничения' : 'описание CFD-программ'}</a></li>)}</ul>
           </div>)}
           <h3>Ограничения по стране</h3>
-          <p>FundedNext: {fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt}; BrightFunded: справка {brightCountry.sourceCapturedAt}, условия {brightTerms.sourceCapturedAt}. Общий снимок рынка от {marketEvidence.capturedAt} не обновлён этой выборочной проверкой.</p>
+          <p>FundedNext: {ruDatesInText(fundedNextAccess?.sourceCapturedAt ?? marketEvidence.capturedAt)}; BrightFunded: справка {formatRuDate(brightCountry.sourceCapturedAt)}, условия {formatRuDate(brightTerms.sourceCapturedAt)}. Общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} не обновлён этой выборочной проверкой.</p>
           <ul>
             {fundedNextAccess?.sourceUrls.map((url, index) => <li key={url}><a href={url} target="_blank" rel="nofollow noopener">FundedNext: источник доступа {index + 1}</a></li>)}
             <li><a href={brightCountry.sourceUrl} target="_blank" rel="nofollow noopener">BrightFunded: ограничения по стране</a></li>

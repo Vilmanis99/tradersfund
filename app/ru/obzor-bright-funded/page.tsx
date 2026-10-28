@@ -18,7 +18,7 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { getDealsByFirm } from '@/lib/deals'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
@@ -27,6 +27,7 @@ import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import PriceMatrix from '@/components/PriceMatrix'
 import ChallengePath from '@/components/ChallengePath'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-bright-funded'
 const TITLE = 'BrightFunded: отзывы и обзор 2026 — цены, правила, выплаты'
@@ -186,7 +187,7 @@ export default function RussianBrightFundedReviewPage() {
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор BrightFunded' },
   ])
-  const faq = faqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Почему у BrightFunded нет средней оценки Trustpilot?'))
+  const faq = ruFaqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Почему у BrightFunded нет средней оценки Trustpilot?'))
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -215,12 +216,12 @@ export default function RussianBrightFundedReviewPage() {
       <section className="ru-hero ru-hero--p1">
         <div className="ru-shell"><RussianDataFreshnessNotice firmSlugs={['bright-funded']} /><RussianEvidenceFreshnessNotice evidence={evidenceSources.map(source => ({ label: source.labelRu, capturedAt: source.sourceCapturedAt }))} /></div>
         <div className="ru-shell" data-russian-partner-review="bright-funded">
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {latestCapture}</div>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Самая ранняя проверка программ: {formatRuDate(latestCapture)}</div>
           <h1>{TITLE}</h1>
           <p className="ru-lead">BrightFunded (на официальном сайте — BrightFunded) указывает стоимость участия в евро, а размер симулированного счёта — в долларах. Разбираем различия программ оценки: когда граница убытка остаётся фиксированной, когда движется за прибылью и какие условия нужно выполнить до запроса выплаты.</p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {lastModified}</span>
+            <span>Обновлено: {formatRuDate(lastModified)}</span>
           </div>
         </div>
       </section>
@@ -268,8 +269,8 @@ export default function RussianBrightFundedReviewPage() {
             <div className="ru-notice" data-russian-bright-summary-cta="qualified-country-first">
               <strong>Что проверить до оплаты.</strong> Сопоставьте 5 условий: гражданство, страну проживания, фактическое местонахождение, способ оплаты и способ получения выплаты. Отсутствие страны в опубликованных списках не заменяет проверку документов конкретного трейдера.
               <p className="ru-source-line" data-russian-bright-summary-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
-                <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">Справка BrightFunded</a> от {brightEvidence.sources.countries.sourceCapturedAt} включает Пакистан;{' '}
-                <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt} его не называют.{' '}
+                <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">Справка BrightFunded</a> от {formatRuDate(brightEvidence.sources.countries.sourceCapturedAt)} включает Пакистан;{' '}
+                <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия</a> от {formatRuDate(brightEvidence.sources.countryTerms.sourceCapturedAt)} его не называют.{' '}
                 {countrySourcesCurrent
                   ? 'Россия не названа в обоих списках, но условия допускают дополнительные ограничения. Уточните доступ своего профиля до оплаты.'
                   : 'Эти страновые источники требуют повторной проверки; прежнее отсутствие России в списках не подтверждает доступ сегодня.'}
@@ -298,14 +299,14 @@ export default function RussianBrightFundedReviewPage() {
               <h2 id="reviews">Отзывы о BrightFunded: почему мы не показываем среднюю оценку</h2>
               {!hasFreshTrustpilot && <p className="ru-notice">Наблюдение Trustpilot требует повторной проверки. Ниже сохранён статус на указанную дату, не подтверждение текущего состояния профиля.</p>}
               <p>
-                При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка BrightFunded была скрыта после отметки
+                При проверке профиля Trustpilot от {ruDatesInText(firm.trustpilotCapturedAt ?? 'неуказанной даты')} средняя оценка BrightFunded была скрыта после отметки
                 о нарушении правил платформы. Это <strong>не 0/5</strong>, а скрытая средняя оценка без отображения среднего балла
                 и количества: ноль, отсутствие данных и снятый агрегат означают три разные вещи.
               </p>
               <div className="ru-grid">
                 <article className="ru-card">
                   <h3>Что подтверждено</h3>
-                  <p>На дату {firm.trustpilotCapturedAt ?? 'без даты'} публичный агрегат нельзя было использовать как числовой сигнал. Мы не восстанавливаем прежний балл из кеша и не заменяем его редакционными {firm.score.toFixed(1)}/10.</p>
+                  <p>На дату {ruDatesInText(firm.trustpilotCapturedAt ?? 'без даты')} публичный агрегат нельзя было использовать как числовой сигнал. Мы не восстанавливаем прежний балл из кеша и не заменяем его редакционными {firm.score.toFixed(1)}/10.</p>
                 </article>
                 <article className="ru-card">
                   <h3>Чего скрытая оценка не доказывает</h3>
@@ -317,7 +318,7 @@ export default function RussianBrightFundedReviewPage() {
                 </article>
               </div>
               <p className="ru-source-line">
-                Статус проверен {firm.trustpilotCapturedAt ?? 'без даты'} ·{' '}
+                Статус проверен {ruDatesInText(firm.trustpilotCapturedAt ?? 'без даты')} ·{' '}
                 {firm.trustpilotUrl ? <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Открыть профиль Trustpilot</a> : 'ссылка на профиль не сохранена'}.
                 {' '}Для продуктовой проверки используйте чек-лист из 7 полей, а не старый агрегат.
               </p>
@@ -337,7 +338,7 @@ export default function RussianBrightFundedReviewPage() {
                 ? 'Россия не названа в опубликованном списке, но это не персональная гарантия.'
                 : 'Прежний список не подтверждает доступ из России сегодня.'}</strong>{' '}
               {countrySourcesCurrent
-                ? `В справке, проверенной ${brightEvidence.sources.countries.sourceCapturedAt}, запрет новой покупки и регистрации относится к гражданам или резидентам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Для уже активных счетов трейдеров из Пакистана указано исключение: торговлю можно продолжать. Это не разрешение новой регистрации.`
+                ? `В справке, проверенной ${formatRuDate(brightEvidence.sources.countries.sourceCapturedAt)}, запрет новой покупки и регистрации относится к гражданам или резидентам Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана. Для уже активных счетов трейдеров из Пакистана указано исключение: торговлю можно продолжать. Это не разрешение новой регистрации.`
                 : `Набор страновых источников (справка: ${brightEvidence.sources.countries.sourceCapturedAt || 'дата не указана'}; условия: ${brightEvidence.sources.countryTerms.sourceCapturedAt || 'дата не указана'}) требует повторной проверки. Старый список стран и исключение для уже активных счетов не разрешают новую регистрацию; запросите ответ фирмы для своего профиля до оплаты.`}
             </div>
             <div className="ru-notice" data-russian-bright-country-conflict="help-six-terms-five">
@@ -350,9 +351,9 @@ export default function RussianBrightFundedReviewPage() {
                 </>
               ) : (
                 <>
-                  В записи от {brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты'}{' '}
+                  В записи от {ruDatesInText(brightEvidence.sources.countries.sourceCapturedAt || 'неуказанной даты')}{' '}
                   <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="noopener noreferrer">справка</a> включала Пакистан, а{' '}
-                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты'} называли пять стран без Пакистана.{' '}
+                  <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="noopener noreferrer">условия BrightFunded</a> от {ruDatesInText(brightEvidence.sources.countryTerms.sourceCapturedAt || 'неуказанной даты')} называли пять стран без Пакистана.{' '}
                 </>
               )}
               {countrySourcesCurrent
@@ -455,7 +456,7 @@ export default function RussianBrightFundedReviewPage() {
         <section className="ru-section">
           <div className="ru-shell ru-content" data-russian-bright-payouts="eur-usdc">
             <h2 id="payouts">Выплаты: сроки, способы и условный бонус</h2>
-            <p className="ru-source-line">Справка проверена {brightEvidence.sources.reward.sourceCapturedAt}. Это дата проверки правил, а не цен программ.</p>
+            <p className="ru-source-line">Справка проверена {formatRuDate(brightEvidence.sources.reward.sourceCapturedAt)}. Это дата проверки правил, а не цен программ.</p>
             <div className="ru-prose-stack">
               <section><h3>Неясность вокруг последующих выплат</h3><p>Проверенная справка указывает первый запрос через 30 дней после первой сделки на счёте после оценки, затем каждые 14 дней. Но на той же странице 14-дневный режим перечислен среди платных дополнений. До покупки получите письменное подтверждение базового цикла выбранной конфигурации: мы не выбираем более выгодную формулировку за фирму.</p></section>
               <section><h3>Банковский перевод или USDC</h3><p>По датированной справке банковский перевод обрабатывается в EUR, криптовыплата — в USDC по сети ERC-20. Минимальная сумма не установлена; указан даже запрос при $0.01. Это не отменяет сроки и остальные условия, а комиссии банка, сети и обмена могут уменьшить полученную сумму.</p></section>
@@ -470,11 +471,11 @@ export default function RussianBrightFundedReviewPage() {
           <div className="ru-shell ru-content">
             <h2 id="rules">Новости, удержание, автоматизация и возвраты</h2>
             <div className="ru-prose-stack">
-              <section><h3>Новостное окно после оценки</h3><p>По справке от {brightEvidence.sources.news.sourceCapturedAt} на этапах оценки новостная торговля не ограничена. После оценки исполнение за 5 минут до и 5 минут после важной новости, затрагивающей инструмент, приводит к вычету прибыли; убыток остаётся. Само это нарушение не закрывает счёт. Исключение относится к тейк-профиту сделки длительностью не менее 48 часов, а не ко всем старым позициям.</p></section>
-              <section data-russian-bright-platforms="dated-source"><h3>Платформы зависят от страны</h3><p>В <a href={brightEvidence.sources.platforms.sourceUrl} target="_blank" rel="noopener noreferrer">справке BrightFunded</a>, проверенной {brightEvidence.sources.platforms.sourceCapturedAt}, перечислены DXTrade, cTrader и MT5. MT5 недоступна при гражданстве, резидентстве или проживании в США либо ОАЭ; cTrader — при тех же связях с США. Общие ограничения регистрации действуют отдельно. Подтвердите доступность выбранной платформы для своего профиля до оплаты.</p></section>
+              <section><h3>Новостное окно после оценки</h3><p>По справке от {formatRuDate(brightEvidence.sources.news.sourceCapturedAt)} на этапах оценки новостная торговля не ограничена. После оценки исполнение за 5 минут до и 5 минут после важной новости, затрагивающей инструмент, приводит к вычету прибыли; убыток остаётся. Само это нарушение не закрывает счёт. Исключение относится к тейк-профиту сделки длительностью не менее 48 часов, а не ко всем старым позициям.</p></section>
+              <section data-russian-bright-platforms="dated-source"><h3>Платформы зависят от страны</h3><p>В <a href={brightEvidence.sources.platforms.sourceUrl} target="_blank" rel="noopener noreferrer">справке BrightFunded</a>, проверенной {formatRuDate(brightEvidence.sources.platforms.sourceCapturedAt)}, перечислены DXTrade, cTrader и MT5. MT5 недоступна при гражданстве, резидентстве или проживании в США либо ОАЭ; cTrader — при тех же связях с США. Общие ограничения регистрации действуют отдельно. Подтвердите доступность выбранной платформы для своего профиля до оплаты.</p></section>
               <section><h3>Перенос позиции не отменяет риск</h3><p>В датированных записях программ разрешён перенос ночью и через выходные. Это не отменяет своп, ценовой разрыв при открытии рынка и лимиты убытка. До торговли проверьте актуальные условия выбранного счёта; статическая граница и граница вслед за открытой прибылью работают по-разному.</p></section>
               <section><h3>Советники и копирование требуют отдельной проверки</h3><p>В записях программ автоматизация и копирование отмечены как ограниченные. Уточните платформу, владельца копируемых счетов и разрешённый сценарий. Наличие поддержки советников не является разрешением копировать сделки чужого трейдера или сигнального сервиса.</p></section>
-              <section><h3>Отмена покупки и возврат за прохождение — разные условия</h3><p>Политика, проверенная {brightEvidence.sources.refund.sourceCapturedAt}, разрешает отмену в течение 30 дней после покупки, если не совершено ни одной сделки. Обработка заявлена за 48 часов, зачисление — за 3–10 рабочих дней. Это не обещание вернуть взнос за успешное прохождение; условия такого дополнения нужно проверить отдельно при покупке.</p></section>
+              <section><h3>Отмена покупки и возврат за прохождение — разные условия</h3><p>Политика, проверенная {formatRuDate(brightEvidence.sources.refund.sourceCapturedAt)}, разрешает отмену в течение 30 дней после покупки, если не совершено ни одной сделки. Обработка заявлена за 48 часов, зачисление — за 3–10 рабочих дней. Это не обещание вернуть взнос за успешное прохождение; условия такого дополнения нужно проверить отдельно при покупке.</p></section>
             </div>
             <p><a href={RULES_URL} target="_blank" rel="noopener noreferrer">Правила оценки</a>{' · '}<a href={NEWS_URL} target="_blank" rel="noopener noreferrer">Правило новостей</a>{' · '}<a href={REFUND_URL} target="_blank" rel="noopener noreferrer">Политика возврата</a></p>
           </div>
@@ -566,8 +567,8 @@ export default function RussianBrightFundedReviewPage() {
           <div className="ru-shell ru-content" data-russian-bright-evidence-status={hasFreshEvidence ? 'dated' : 'recapture-required'}>
             <h2 id="sources">Источники и даты проверки</h2>
             <p>Проверка справки о выплатах или стране не обновляет цены программ. Ниже эти даты разделены. Описания остаются датированным разбором; доступ конкретного трейдера и получение выплаты не проверялись.</p>
-            <ul>{evidenceSources.map(source => <li key={source.sourceUrl}><a href={source.sourceUrl} target="_blank" rel="noopener noreferrer">{source.labelRu}</a> — {source.sourceCapturedAt || 'дата не подтверждена'}.</li>)}</ul>
-            <p>Проверки цен и правил программ: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}. Ссылки на страницы программ сохранены выше даже после истечения срока проверки.</p>
+            <ul>{evidenceSources.map(source => <li key={source.sourceUrl}><a href={source.sourceUrl} target="_blank" rel="noopener noreferrer">{source.labelRu}</a> — {ruDatesInText(source.sourceCapturedAt || 'дата не подтверждена')}.</li>)}</ul>
+            <p>Проверки цен и правил программ: {ruDatesInText([...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют')}. Ссылки на страницы программ сохранены выше даже после истечения срока проверки.</p>
           </div>
         </section>
 

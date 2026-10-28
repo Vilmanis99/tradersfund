@@ -7,6 +7,9 @@ import { challengeKey, DEFAULT_FINDER_FILTERS, filterChallengeRows } from '../li
 import { getAllChallenges, isChallengeFresh } from '../lib/firms.ts'
 import { getAuthorBySlug } from '../lib/authors.ts'
 
+// Visible RU dates render as DD.MM.YYYY (see lib/ruDate.ts); evidence files keep ISO.
+const ruDay = iso => typeof iso === 'string' ? iso.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3.$2.$1') : iso
+
 const args = process.argv.slice(2)
 const base = new URL(localPreviewUrl(args.find(arg => !arg.startsWith('--'))))
 const dev = args.includes('--dev')
@@ -51,7 +54,7 @@ for (const [slug, capturedAt] of [
   const countryFresh = isChallengeFresh({ sourceCapturedAt: capturedAt })
   assert(card.includes(`data-russian-partner-country-warning="${slug}"`), `${slug}: country warning is visible`)
   assert(card.includes(`data-russian-partner-country-source-status="${countryFresh ? 'dated' : 'recapture-required'}"`), `${slug}: country warning reflects its source age`)
-  assert(card.includes(capturedAt), `${slug}: country warning names its source date`)
+  assert(card.includes(ruDay(capturedAt)), `${slug}: country warning names its source date`)
   if (!countryFresh) assert(card.includes('не подтверждает доступ сегодня'), `${slug}: old country evidence does not imply current access`)
 }
 assert(ranking.includes('data-russian-challenge-finder="product-first"'))
@@ -124,7 +127,7 @@ assert(teamTraders.includes('class="ru-review-article"') && teamTraders.includes
 assert(teamTraders.includes('У нас нет проверенной истории выплат'))
 for (const id of ['tarify', 'etapy', 'pravila', 'vyplaty', 'raskhozhdeniya', 'oferta', 'istochniki', 'global-options']) assert(teamTraders.includes(`id="${id}"`), `TeamTraders section ${id}`)
 assert(teamTraders.includes(getRussianReviewFinderHref('bright-funded').replace(/&/g, '&amp;')), 'TeamTraders global comparison handoff (BrightFunded-first preset)')
-assert(teamTradersText.includes(`Обновлено ${RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']}`), 'visible TeamTraders update date matches its sitemap date')
+assert(teamTradersText.includes(`Обновлено ${ruDay(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders'])}`), 'visible TeamTraders update date matches its sitemap date')
 const teamTradersSitemap = sitemap.split('<url>').find(entry => entry.includes(`<loc>${production}/ru/obzor-teamtraders</loc>`))
 assert(teamTradersSitemap?.includes(RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders']), 'TeamTraders editorial lastmod')
 const authorResponse = await fetch(new URL(`/authors/${edris.slug}`, base))

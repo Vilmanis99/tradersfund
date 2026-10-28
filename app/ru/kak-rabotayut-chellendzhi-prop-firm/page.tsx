@@ -5,7 +5,7 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -13,6 +13,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { compareRussianRanking } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
+import { ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/kak-rabotayut-chellendzhi-prop-firm'
 const TITLE = 'Челлендж в трейдинге: как работает у проп-фирм — 5 этапов'
@@ -75,7 +76,7 @@ export default function RussianChallengeLifecyclePage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'Как работают челленджи' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -118,7 +119,7 @@ export default function RussianChallengeLifecyclePage() {
             <div className="ru-stat"><strong>{products.length}</strong><span>свежих продуктов в примерах</span></div>
             <div className="ru-stat"><strong>{sourceCount}</strong><span>первичных страниц</span></div>
             <div className="ru-stat"><strong>{phaseCounts.find(item => item.phases === 0)?.count ?? 0}</strong><span>продуктов без оценки</span></div>
-            <div className="ru-stat"><strong>{latestCapture ?? '—'}</strong><span>последний захват</span></div>
+            <div className="ru-stat"><strong>{ruDatesInText(latestCapture ?? '—')}</strong><span>последний захват</span></div>
           </div>
           <div className="ru-actions">
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-primary btn-glow">Сравнить фирмы <ArrowRight size={15} aria-hidden="true" /></Link>

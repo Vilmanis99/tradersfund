@@ -3,7 +3,7 @@ title: "Take Profit Trader Review 2026: Fees, Drawdown & Payouts"
 seoTitle: "Take Profit Trader Review 2026: Test Fees, Funding & Payouts"
 slug: "take-profit-trader-review"
 date: "2026-06-15"
-modified: "2026-10-26 12:00:00"
+modified: "2026-10-27 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Take Profit Trader pairs a 3-day path for new tests with day-one payouts — then attaches an end-of-day trailing drawdown and an 80% starting split. Here's the math and who it beats."
 seoDescription: "Take Profit Trader review 2026: monthly Test fees from $150 (25K) to $360 (150K), 6% target, 3 minimum days, EOD trailing drawdown, 50% consistency, 80% split."
@@ -116,7 +116,7 @@ type: "post"
 
 <!-- SECTION 8 — Who should pick / avoid -->
 <h2 class="wp-block-heading"><strong>Who should pick Take Profit Trader</strong></h2>
-<p>The intraday futures trader who scalps or day-trades the ES, NQ, or micros and wants a 3-day new-account path without an intraday evaluation trail. If you've been knocked out of a Topstep or Apex evaluation by a daily-loss breach rather than a real drawdown, Take Profit Trader's lack of a daily loss limit (removed, per the homepage on 2026-10-26) will appeal. Start on the $50K Test ($170/month, $2,000 trailing) — it's the sweet spot where the drawdown is workable for index futures and the cost stays low while you prove the process.</p>
+<p>The intraday futures trader who scalps or day-trades the ES, NQ, or micros and wants a 3-day new-account path without an intraday evaluation trail. If a daily loss limit has cut your trading days short elsewhere, Take Profit Trader's lack of one will appeal: its homepage rule table reads "Daily loss rule None None None" for the Test, PRO and PRO+ (checked 2026-10-26 and 2026-10-27). Start on the $50K Test ($170/month, $2,000 trailing) — it's the sweet spot where the drawdown is workable for index futures and the cost stays low while you prove the process.</p>
 
 <h2 class="wp-block-heading"><strong>Who should avoid Take Profit Trader</strong></h2>
 <p>Swing traders and anyone who needs to hold through the close — futures positions must be flat by 5 PM ET, so overnight-gap strategies are out. If you want a static drawdown that doesn't trail at all, a CFD firm like <a href="/blog/ftmo-review">FTMO</a> fits better. And if the 80%-until-PRO+ split bothers you, <a href="/blog/my-funded-futures">My Funded Futures</a> and <a href="/blog/topstep-review">Topstep</a> are the two futures alternatives worth pricing against it — compare them directly on our <a href="/best-futures-prop-firms">best futures prop firms</a> page.</p>
@@ -143,4 +143,4 @@ type: "post"
 <p>It's a one-step Test: hit a 6% profit target, trade at least 3 days on a new account (5 on an existing/reset account), keep no single day at 50%+ of the target, and stay above the trailing drawdown. Pass, pay the $130 activation, and you're on a PRO funded account — no second phase.</p>
 
 <h3 class="wp-block-heading"><strong>Take Profit Trader vs Topstep — which is better?</strong></h3>
-<p>Take Profit Trader has no daily loss limit (removed, per its homepage on 2026-10-26) and uses end-of-day trailing on the Test. Topstep imposes a daily limit but is a longer-established name with published payout totals. If daily-loss breaches have ended your evaluations, Take Profit Trader is the more forgiving structure; if you value track record, Topstep edges it. See the full <a href="/best-futures-prop-firms">futures comparison</a>.</p>
+<p>Take Profit Trader has no daily loss limit: its homepage rule table reads "Daily loss rule None None None" for the Test, PRO and PRO+ (checked 2026-10-26 and 2026-10-27), and it uses end-of-day trailing on the Test. Topstep has no mandatory daily loss limit either: its $1,000 / $2,000 / $3,000 daily limits are opt-in at checkout in exchange for a recurring monthly discount (our Topstep data, captured 2026-10-20). So a daily limit is not the deciding difference. Topstep is the longer-established name with published payout totals; if you value track record, Topstep edges it. See the full <a href="/best-futures-prop-firms">futures comparison</a>.</p>

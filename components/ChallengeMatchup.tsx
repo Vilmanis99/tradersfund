@@ -94,7 +94,9 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
                 <span className="cm-product">{row.productName}</span>
                 <small>
                   {row.firmName} · {formatBillingModel(row.pricingModel)} ·{' '}
-                  {row.profitSplitPct}% split
+                  <span data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={row.profitSplitTiered ? 'tiered' : 'flat'}>
+                    {row.profitSplitTiered ? `${row.profitSplitDisplay} split (tiered)` : `${row.profitSplitPct}% split`}
+                  </span>
                 </small>
               </th>
               <td>
@@ -103,7 +105,7 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
               </td>
               <td>
                 <span className="cm-figure">{formatMoney(row.breakEvenProfit, row.currency)}</span>
-                <small>at {row.profitSplitPct}% split</small>
+                <small>at {row.profitSplitPct}% split{row.profitSplitTiered ? ' (lowest tier)' : ''}</small>
               </td>
               {showR && (
                 <td>

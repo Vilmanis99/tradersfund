@@ -2047,12 +2047,15 @@
     },
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
-    "regionalDiscountCode": "MYALPHA",
-    "discountCodeRegion": "us-only-unconfirmed",
-    "regionalDiscountPct": 30,
+    "discountCode": "HALLOWEEN45",
+    "discountPct": 45,
+    "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-10-26",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-22, 2026-10-23 and again 2026-10-26 (codes page still \"Last updated 19 October 2026\" and still lists MYALPHA as Active on 2026-10-26, its last valid day); not checkout-verified and may be US-only, so not shown as a universal code. Official codes page (last updated 19 October 2026): \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October. Use code at checkout. MYALPHA\"; homepage banner \"My Alpha is now live · 30% off · Use code MYALPHA\". ALPHA30 (2026-10-20) is no longer listed among the 4 active codes. Other active codes on the same page: FUNDED40 (40% off Alpha Direct, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct)."
+    "discountCodeCapturedAt": "2026-10-27",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 26 October 2026\"), read 2026-10-27 from a Latvia (non-US) box IP and confirmed by a second non-US fetch: \"45% off all accounts 26 Oct 2026 – 31 Oct 2026 · Applies to all accounts. Live until midnight UK time on 31 October. HALLOWEEN45\"; homepage banner \"45% Off All Accounts · Use code HALLOWEEN45\". Checkout NOT verified, so it is not promoted and is kept out of deals.json. Other active codes on the same page: FUNDED40 (40% off Alpha Direct only, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). MYALPHA (30% off all, 19–26 Oct) is no longer listed (see previousDiscountCode).",
+    "discountCodeValidity": "26 Oct 2026 – 31 Oct 2026, live until midnight UK time on 31 October (official codes page); remove after 31.10.2026",
+    "previousDiscountCode": "MYALPHA",
+    "previousDiscountCodeStatus": "ended: the official codes page listed it \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October\"; on 2026-10-27 the page (\"Last updated 26 October 2026\", \"Codes are removed when their published end date passes.\") no longer lists it and the homepage banner now shows HALLOWEEN45; it was only ever seen from a US IP and never checkout-verified"
   },
   {
     "name": "BrightFunded",
@@ -2808,7 +2811,7 @@
     "profitSplitPct": null,
     "payoutFrequency": null,
     "payoutMethods": [
-      "Bank wire",
+      "Crypto",
       "Rise"
     ],
     "drawdownType": null,
@@ -2856,7 +2859,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-27",
     "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -2867,11 +2870,11 @@
     "discountCodeCapturedAt": "2026-10-15",
     "discountCodeNote": "Omo 2-Step challenges only (40% off from $10K; flat $ off on $2K/$5K).",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/maven-2026-10-14.json",
+      "capturedAt": "2026-10-27",
+      "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
       "drawdownType": {
         "value": null,
-        "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, Buy Now, Pay Later, OMO 2-Step, Prediction Markets One-Step Elite",
+        "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Elite; Buy Now, Pay Later static in evaluation, trailing when funded (fixed at the initial balance after the first withdrawal)",
         "byProduct": {
           "standard-1-step": "trailing",
           "standard-2-step": "static",
@@ -2888,31 +2891,55 @@
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "The Standard 3 Step Challenge and Simulated Funded Account use the same loss limits: 2% daily loss and 3% static maximum drawdown.",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           }
         ]
       },
       "dailyLossPct": {
         "value": null,
-        "summary": "Product-specific: 3% on Standard 1-Step; 4% on Standard 2-Step, OMO 2-Step; 2% on Standard 3-Step, Instant, Mini; not stated on Buy Now, Pay Later, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "summary": "Product-specific: 3% on Standard 1-Step; 4% on Standard 2-Step, OMO 2-Step; 2% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later none in evaluation, 4% when funded; no daily limit on Prediction Markets One-Step Essential and Elite",
         "byProduct": {
           "standard-1-step": 3,
           "standard-2-step": 4,
@@ -2929,31 +2956,55 @@
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based)",
+            "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based) ... Maximum Drawdown: 3% (Trailing)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "There are: No daily drawdown limits No minimum trading days",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
           }
         ]
       },
       "maxLossPct": {
         "value": null,
-        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; 10% on Buy Now, Pay Later; not stated on Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later 10% in evaluation, 8% when funded; Prediction Markets One-Step Essential and Elite 5% in Phase 1, 8% when funded",
         "byProduct": {
           "standard-1-step": 5,
           "standard-2-step": 8,
@@ -2962,31 +3013,63 @@
           "mini": 3,
           "buy-now-pay-later": 10,
           "omo-2-step": 8,
-          "predictions-1-step": null,
-          "predictions-elite-1-step": null
+          "predictions-1-step": 5,
+          "predictions-elite-1-step": 5
         },
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": "Product-specific: not stated on Standard 1-Step, Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite; 20% on Instant, Buy Now, Pay Later; 15% on Mini",
+        "summary": "Product-specific: 20% on Instant, Buy Now, Pay Later (funded); 15% on Mini; none on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets",
         "byProduct": {
           "standard-1-step": null,
           "standard-2-step": null,
@@ -3001,33 +3084,49 @@
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "There is no Consistency Score requirement for the Standard 2 Step Challenge or Simulated Funded Account.",
+            "quote": "In Instant Funding Account, a 20% Consistency Score is required.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "In Instant Funding Account , a 20% Consistency Score is required",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In Instant Funding Account, a 20% Consistency Score is required.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "instant"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "mini"
           }
         ]
       },
       "profitSplitPct": {
         "value": null,
-        "summary": "Product-specific: 80% on Standard 1-Step, Standard 2-Step, Standard 3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on the forex products)",
         "byProduct": {
           "standard-1-step": 80,
           "standard-2-step": 80,
@@ -3042,31 +3141,56 @@
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "The standard reward split is 80%.",
+            "quote": "The standard reward split is 80%. With the applicable add-on, the reward split increases to 90%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "The profit split is 70%.",
+            "quote": "The standard reward split is 70%. With the applicable add-on, the reward split increases to 90%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 80%. With the applicable add-on, the reward split increases to 90%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 70%. With the applicable add-on, the reward split increases to 90%.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "mini"
           }
         ]
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: bi-weekly on Standard 1-Step, Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite; not stated on Instant; on-demand on Mini, Buy Now, Pay Later",
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets; Buy Now, Pay Later on request once its gates are met; Mini one single payout within its 24-hour window; Instant sources conflict (FAQ \"on demand\", Terms every 10 business days)",
+        "note": "Instant payout cadence conflict (FAQ/pricing vs Terms Last Amended 22/10/2025), recorded 2026-10-27; not resolved.",
         "byProduct": {
           "standard-1-step": "bi-weekly",
           "standard-2-step": "bi-weekly",
           "standard-3-step": "bi-weekly",
           "instant": null,
-          "mini": "on-demand",
+          "mini": null,
           "buy-now-pay-later": "on-demand",
           "omo-2-step": "bi-weekly",
           "predictions-1-step": "bi-weekly",
@@ -3075,68 +3199,117 @@
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account.",
+            "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account. Each subsequent 10-business-day period starts with your first trade after the previous payout.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Payouts for Instant Funding Accounts are available on demand .",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period",
+            "quote": "You are eligible to request only one withdrawal per Instant Mini Funding Account. This is a one-time payout, not a recurring withdrawal option.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Maven Instant: This program has a 3% minimum payout requirement, a trailing 3% maximum loss from the highest equity, and a maximum daily loss of 2% based on the higher of equity or balance at 00:00 UTC+0. It offers an 80% profit split with payouts available every 10 business days.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account. Each subsequent 10-business-day period starts with your first trade after the previous payout.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
           }
         ]
       },
       "newsTrading": {
         "value": null,
-        "summary": "Product-specific: restricted on Standard 1-Step, Standard 2-Step, Standard 3-Step, Mini, OMO 2-Step; allowed on Instant, Buy Now, Pay Later, Prediction Markets One-Step Essential, Prediction Markets One-Step Elite",
+        "summary": "Product-specific: restricted (2-minute Red Folder window) on Standard 1/2/3-Step; OMO 2-Step allowed in evaluation, funded news profit capped at 0.50%; Instant, Mini, Buy Now, Pay Later and Prediction Markets: sources conflict (FAQ allows news trading, Terms restrict all accounts)",
+        "note": "FAQ vs Terms (Last Amended 22/10/2025) conflict on news trading for Instant, Mini, Buy Now, Pay Later and Prediction Markets, recorded 2026-10-27; not resolved.",
         "byProduct": {
           "standard-1-step": "restricted",
           "standard-2-step": "restricted",
           "standard-3-step": "restricted",
-          "instant": true,
-          "mini": "restricted",
-          "buy-now-pay-later": true,
+          "instant": null,
+          "mini": null,
+          "buy-now-pay-later": null,
           "omo-2-step": "restricted",
-          "predictions-1-step": true,
-          "predictions-elite-1-step": true
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
         },
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Standard 1 Step Do not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release.",
+            "quote": "2 Step OMOYes, but profit from any single news event is capped at 0.50% of your account balance. Any profit above the cap will not count toward your balance. (Applicable in Funded Stage only)Buy Now Pay LaterYes, without restrictionInstant FundingYes, without restrictionInstant MiniYes, without restriction",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "2 Step OMO Yes, but profit from any single news event is capped at 0.50% of your account balance .",
+            "quote": "Is News Trading Allowed in Instant Mini Funding Account? News trading is fully permitted with no restrictions.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Buy Now Pay Later Yes, without restriction Instant Funding Yes, without restriction Instant Mini Yes, without restriction",
+            "quote": "However, there is no news trading restriction specific to the Prediction Markets challenge.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Prohibitions Against News Trading: For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory. You may hold positions that were opened more than 2 minutes before a news event.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Standard 1 StepDo not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Standard 1 StepDo not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
           }
         ]
       },
@@ -3157,11 +3330,19 @@
         "evidence": [
           {
             "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "You may trade and hold positions overnight or over the weekend.",
+            "quote": "Yes. You may trade and hold positions overnight or over the weekend. Maven also offers 24/7 gold trading.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Yes. You may trade and hold positions overnight or over the weekend. Maven also offers 24/7 gold trading.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
+            "productSlug": "standard-1-step"
           }
         ]
       },
@@ -3189,16 +3370,20 @@
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "Which Platforms can I use for simulated trading at Maven? Maven Trading offers MT5 and Match Trader",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json"
     },
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines."
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
+    "payoutMethodsSourceUrl": "https://maventrading.com/faqs",
+    "payoutMethodsQuote": "Available payout methods depend on your country, as listed below. For Nigeria, Kenya, and Ghana: Direct Bank TransferDigital Currencies (USDT-BSC or USDC-ERC20) For other countries: Digital Currencies (USDT-BSC or USDC-ERC20)Rise Pay",
+    "payoutMethodsCapturedAt": "2026-10-27",
+    "payoutMethodsNote": "Direct bank transfer is listed only for Nigeria, Kenya and Ghana; every other country gets USDT-BSC/USDC-ERC20 or Rise Pay."
   },
   {
     "name": "FXIFY",
@@ -5141,11 +5326,15 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
+    "discountCode": "FEARLESS15",
+    "discountPct": 15,
+    "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-10-26",
-    "discountCodeNote": "No public City Traders Imperium code is live as of 2026-10-26: the homepage pop-up code BREAK15 (\"15% off 1-Step, 2-Step and Instant Funding with code BREAK15 ... Valid until 25 Oct 2026.\") has passed its stated end date, and the pop-up script on https://citytradersimperium.com/ sets its expiry at 2026-10-25 23:59 UTC and removes the pop-up after it. It was only ever seen from a US IP and never checkout-verified.",
+    "discountCodeCapturedAt": "2026-10-27",
+    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 2026-10-27 from a Latvia (non-US) box IP: \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" ... \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" (image alt: \"15% off 2-Step, 1-Step and Instant Funding with code FEARLESS15. Valid till 31 October, 23:59 UK time.\"); pop-up script EXPIRES = 1793491140000 (2026-10-31 23:59 UTC = 23:59 UK time). Not valid on Direct Funding per that wording. Checkout NOT verified, so it is not promoted and is kept out of deals.json. Previous pop-up code BREAK15 expired 25 Oct 2026 (see previousDiscountCode).",
     "previousDiscountCode": "BREAK15",
-    "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified"
+    "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified",
+    "discountCodeValidity": "until 31 Oct 2026, 23:59 UK time (official homepage pop-up); remove after 31.10.2026"
   },
   {
     "name": "Take Profit Trader",
@@ -5467,7 +5656,7 @@
       "dailyLossUsd": {
         "value": null,
         "summary": "None (removed; the homepage lists no daily loss rule on Test, PRO or PRO+)",
-        "note": "Re-read 2026-10-26. The homepage journey table reads 'Daily loss rule' None for Test, PRO and PRO+, and the 50K/75K/100K/150K account cards show the old figures struck through with a 'Removed' badge ($1100/$1600/$2200/$3300). The raw subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, read 2026-10-26) still returns dailyLossLimit 500/1100/1600/2200/3300 for the $25k-$150k tiers; the cards render those same API numbers marked 'Removed', so they are the removed limit, not a live rule. The API also lists '$ 25k PRO+D' to '$ 150k PRO+D' tiers with dailyLossLimit 500/1000/1250/1500/2000; that variant is not described on the homepage and is not a product in our data. The $25K card and the help centre (Cloudflare-blocked) were not read.",
+        "note": "Re-read 2026-10-26 and 2026-10-27; the firm's homepage is taken as the current source. The homepage journey table reads 'Daily loss rule' None for Test, PRO and PRO+, and the 50K/75K/100K/150K account cards show the old figures with a 'Removed' badge ($1100/$1600/$2200/$3300) on both dates. Earlier disagreement, now settled: older help-centre articles and the raw subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, read 2026-10-26), which still returns dailyLossLimit 500/1100/1600/2200/3300 for the $25k-$150k tiers; the cards render those same API numbers marked 'Removed', so they are the removed limit, not a live rule. The API also lists '$ 25k PRO+D' to '$ 150k PRO+D' tiers with dailyLossLimit 500/1000/1250/1500/2000; that variant is not described on the homepage and is not a product in our data. The $25K card and the help centre (Cloudflare-blocked) were not read.",
         "byProduct": {
           "the-test": null
         },
@@ -5494,6 +5683,30 @@
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-26",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Your Take Profit Funded Journey ... Daily loss rule None None None",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 50K $170 / month Profit Target $3000 Max Position Size 6 Contracts / 60 Micros Daily Loss Limit $1100 Removed",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "$ 150K $360 / month Profit Target $9000 Max Position Size 15 Contracts / 150 Micros Daily Loss Limit $3300 Removed",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-27",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-27.json",
             "productSlug": null
           }
         ]
@@ -7179,5 +7392,69 @@
       "sourceQuote": "Enjoy Futures With Confidence, Together The5ers Futures",
       "notes": "CME futures programme (Day Trade and Swing, $25K/$50K, from $59) sold alongside the CFD programmes; Terms 'Last update – Oct. 20th 2026': 'These services include but are not limited to proprietary trading on Contract for Difference and Futures Contract.' Products: challenges/the5ers.json futures-day-trade, futures-swing."
     }
+  },
+  {
+    "name": "Hash Hedge",
+    "founded": null,
+    "assets": [
+      "Crypto",
+      "Indices",
+      "Commodities",
+      "Stocks"
+    ],
+    "maxAllocation": null,
+    "platforms": [
+      "Hash Hedge web terminal"
+    ],
+    "score": 7.0,
+    "logo": "/images/firms/hash-hedge.png",
+    "reviewUrl": "/blog/hash-hedge-review",
+    "officialUrl": "https://hashhedge.com/",
+    "affiliateStatus": "none",
+    "profitSplitPct": 80,
+    "payoutFrequency": "bi-weekly",
+    "payoutMethods": [
+      "Crypto"
+    ],
+    "drawdownType": null,
+    "minTradingDays": null,
+    "consistencyRule": null,
+    "scalingPlan": null,
+    "newsTradingAllowed": true,
+    "eaAllowed": false,
+    "overnightAllowed": "restricted",
+    "weekendAllowed": "restricted",
+    "copyTradingAllowed": null,
+    "countriesRestricted": [
+      "Cuba",
+      "Iran",
+      "North Korea",
+      "Syria",
+      "Yemen"
+    ],
+    "countriesRestrictedSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+    "russiaStatus": "unclear",
+    "russiaSourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+    "russiaSourceQuote": "…residents, citizens, or entities located in or incorporated under the laws of any country, territory, or jurisdiction that is subject to an embargo, has been designated as a terrorist-supporting country, or is otherwise under comprehensive economic sanctions by the United Nations, the European Union, the UK Treasury, or the U.S. Government. This includes, but is not limited to, countries and regions such as Cuba, Iran, North Korea, Syria, Yemen.",
+    "legalEntity": "Empower Academy Ltd",
+    "headquarters": "Ras Al Khaimah, United Arab Emirates",
+    "country": "United Arab Emirates",
+    "regulation": null,
+    "corporateNote": "Empower Academy Ltd (UAE, reg. 01010596) operates the platform and evaluations; FinSmart Solution Ltd (Seychelles, reg. 246832) owes profit allocation and payouts under the Commercial Terms. Ras Al Khaimah address is from the company-written Trustpilot profile, not hashhedge.com. hashhedge.ru says it is not the official site.",
+    "corporateSourceUrl": "https://www.hashhedge.com/commercial-terms",
+    "corporateCapturedAt": "2026-10-19",
+    "ratings": {
+      "conditions": null,
+      "support": null,
+      "payouts": null,
+      "platform": null
+    },
+    "trustpilotScore": 4.4,
+    "trustpilotCount": 114,
+    "trustpilotUrl": "https://www.trustpilot.com/review/hashhedge.com",
+    "trustpilotCapturedAt": "2026-10-26",
+    "verifiedPayoutBadge": false,
+    "lastUpdated": "2026-10-26",
+    "russiaNote": "Unclear, not available (EA rule 2026-10-23: 'available' needs positive evidence that Russia is accepted, i.e. named or confirmed at checkout/KYC). Terms 4.3 does not name Russia (re-read 2026-10-23, 'Last Updated: October 8, 2026'): it excludes sanctioned persons and residents of countries under embargo or comprehensive sanctions, 'countries and regions such as Cuba, Iran, North Korea, Syria, Yemen'. Russia is neither named as excluded nor named as accepted, and signup/KYC was not tested. Hash Hedge's Moscow 2026 affiliate events and RU site version show a Russian market presence but are not an eligibility statement. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-23.json (russia)."
   }
 ]

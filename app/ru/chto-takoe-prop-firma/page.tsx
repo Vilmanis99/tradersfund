@@ -16,7 +16,7 @@ import {
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -24,6 +24,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/chto-takoe-prop-firma'
 const TITLE = 'Что такое проп-фирма (проп-компания) и как она работает'
@@ -140,7 +141,7 @@ export default function RussianWhatIsPropFirmPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'Что такое проп-фирма' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -184,7 +185,7 @@ export default function RussianWhatIsPropFirmPage() {
             <div className="ru-stat"><strong>3</strong><span>разные модели слова «проп»</span></div>
             <div className="ru-stat"><strong>{products.length}</strong><span>продуктов 2 главных партнёров</span></div>
             <div className="ru-stat"><strong>{pricedTierCount}</strong><span>опубликованных ценовых уровней</span></div>
-            <div className="ru-stat"><strong>{latestCapture ?? '—'}</strong><span>последняя проверка продуктов</span></div>
+            <div className="ru-stat"><strong>{ruDatesInText(latestCapture ?? '—')}</strong><span>последняя проверка продуктов</span></div>
           </div>
           <div className="ru-actions">
             <Link href="#tri-modeli" className="btn-primary btn-glow">Понять 3 модели <ArrowRight size={15} aria-hidden="true" /></Link>
@@ -311,7 +312,7 @@ export default function RussianWhatIsPropFirmPage() {
                     <td>{formatTargets(product)}</td>
                     <td>{formatLoss(product)}</td>
                     <td>{product.profitSplitPct == null ? 'не подтверждён' : `${product.profitSplitPct}%`}</td>
-                    <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt}</a></td>
+                    <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{formatRuDate(product.sourceCapturedAt)}</a></td>
                   </tr>
                 ))}
               </tbody>
@@ -475,7 +476,7 @@ export default function RussianWhatIsPropFirmPage() {
           <RussianFaq items={faqs} />
           <div className="ru-notice">
             <Scale size={18} aria-hidden="true" /> Материал объясняет продуктовую модель и не является финансовой или юридической рекомендацией.
-            Правила {products.length} продуктов проверены {latestCapture ?? 'без текущей даты'}; перед оплатой откройте первичный источник ещё раз.
+            Правила {products.length} продуктов проверены {ruDatesInText(latestCapture ?? 'без текущей даты')}; перед оплатой откройте первичный источник ещё раз.
           </div>
         </div>
       </section>

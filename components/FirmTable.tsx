@@ -76,9 +76,12 @@ function captureDateLabel(value: string) {
 export default function FirmTable({
   firms,
   challenges = [],
+  unlistedComparePairs,
 }: {
   firms: Firm[]
   challenges?: Challenge[]
+  /** Canonical pairs with no /compare page; "Compare selected" is hidden for them. */
+  unlistedComparePairs?: string[]
 }) {
   const query = useSearchParams()
   const [filtersOpen, setFiltersOpen] = useState(false)
@@ -204,8 +207,9 @@ export default function FirmTable({
     { active: overnightOnly, label: 'Overnight allowed', clear: () => setOvernightOnly(false) },
     { active: weekendOnly, label: 'Weekend allowed', clear: () => setWeekendOnly(false) },
   ].filter(filter => filter.active)
-  const compareHref = selectedSlugs.length === 2
-    ? `/compare/${[...selectedSlugs].sort().join('-vs-')}`
+  const selectedMatchup = selectedSlugs.length === 2 ? [...selectedSlugs].sort().join('-vs-') : null
+  const compareHref = selectedMatchup && !unlistedComparePairs?.includes(selectedMatchup)
+    ? `/compare/${selectedMatchup}`
     : null
   const selectedFirms = firms.filter(firm => selectedSlugs.includes(firmSlug(firm.name)))
 

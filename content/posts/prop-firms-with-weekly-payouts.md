@@ -112,7 +112,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>What "weekly payouts" doesn't promise</strong></h2>
 
-<p>Every cycle above is a request window. After you click "request," each firm runs its own review: KYC, a rule check and, at several firms, a consistency test or a minimum amount. CFT says it averages about 8 hours and allows up to 48 business hours for review and payment; most others publish no standard. A weekly cycle also doesn't help if a consistency rule holds back your best day. Run your numbers through the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> first. And all of these are simulated accounts: the money you're paid is a reward from the firm, not a withdrawal from a funded brokerage account.</p>
+<p>Every cycle above is a request window. After you click "request," each firm runs its own review: KYC, a rule check and, at several firms, a consistency test or a minimum amount. CFT says it averages about 8 hours and allows up to 48 business hours for review and payment; most others publish no standard. Hash Hedge is a 14-day-cycle example: it states a 72-hour ceiling after the request and no average (<a href="/blog/hash-hedge-review">Hash Hedge review</a>). A weekly cycle also doesn't help if a consistency rule holds back your best day. Run your numbers through the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> first. And all of these are simulated accounts: the money you're paid is a reward from the firm, not a withdrawal from a funded brokerage account.</p>
 
 <h2 class="wp-block-heading"><strong>Which weekly payout should you pick?</strong></h2>
 

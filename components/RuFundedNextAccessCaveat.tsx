@@ -1,3 +1,4 @@
+import { formatRuDate } from '@/lib/ruDate'
 /**
  * FundedNext Russia-access caveat for /ru pages. The badge itself stays driven by firms.json
  * (russiaStatus 'restricted' since Prop Firm Tracker data/daily-check-2026-10-20 @ 41f3c05).
@@ -11,7 +12,7 @@ export const FUNDEDNEXT_FOOTER_URL = 'https://fundednext.com/'
 export const FUNDEDNEXT_TERMS_URL = 'https://fundednext.com/api_docs/terms-of-service'
 
 /** Plain-text version for FAQ answers, table cells and other string contexts. */
-export const FUNDEDNEXT_RU_ACCESS_NOTE = `FundedNext недоступна для резидентов РФ: в подвале сайта fundednext.com сказано, что компании FundedNext не оказывают услуги резидентам России; список в условиях (п. 5.3, CFD) Россию не называет, но мы считаем действующим более строгий источник. FundedNext Futures также запрещает покупку из России (по данным на ${FUNDEDNEXT_RU_ACCESS_CHECKED}). Резидент РФ рискует получить отказ в обслуживании или в выплате.`
+export const FUNDEDNEXT_RU_ACCESS_NOTE = `FundedNext недоступна для резидентов РФ: в подвале сайта fundednext.com сказано, что компании FundedNext не оказывают услуги резидентам России; список в условиях (п. 5.3, CFD) Россию не называет, но мы считаем действующим более строгий источник. FundedNext Futures также запрещает покупку из России (по данным на ${formatRuDate(FUNDEDNEXT_RU_ACCESS_CHECKED)}). Резидент РФ рискует получить отказ в обслуживании или в выплате.`
 
 export default function RuFundedNextAccessCaveat({ className = 'ru-source-line' }: { className?: string }) {
   return (
@@ -21,7 +22,7 @@ export default function RuFundedNextAccessCaveat({ className = 'ru-source-line' 
       компании FundedNext не оказывают услуги резидентам России. Список в{' '}
       <a href={FUNDEDNEXT_TERMS_URL} target="_blank" rel="noopener noreferrer">условиях FundedNext</a> (п. 5.3, CFD) Россию не
       называет, но мы считаем действующим более строгий источник; FundedNext Futures также запрещает покупку из России (по
-      данным на {FUNDEDNEXT_RU_ACCESS_CHECKED}). Резидент РФ рискует получить отказ в обслуживании или в выплате. Резидентам
+      данным на {formatRuDate(FUNDEDNEXT_RU_ACCESS_CHECKED)}). Резидент РФ рискует получить отказ в обслуживании или в выплате. Резидентам
       России мы рекомендуем BrightFunded.
     </p>
   )

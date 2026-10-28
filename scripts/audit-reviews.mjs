@@ -45,6 +45,7 @@ import {
   comparisonHref,
   getFreshComparisonEvidence,
   getFreshFirmEvidence,
+  hasComparisonPage,
 } from '../lib/relatedComparisons.ts'
 import {
   campaignLocale,
@@ -331,6 +332,7 @@ const REVIEW_TO_FIRM = {
   'fundednext-review': 'fundednext',
   'funding-pips-review': 'fundingpips',
   'fxify-review': 'fxify',
+  'hash-hedge-review': 'hash-hedge',
   'lucid-trading-review': 'lucid-trading',
   'maven-prop-firm-review': 'maven',
   'my-funded-futures': 'my-funded-futures',
@@ -1336,11 +1338,15 @@ function checkFirmAlternativeNeutrality() {
     if (!evidence.productCount || !evidence.sourceCount || !evidence.latestCapture) {
       rows.push(`${firm.name}: review alternative evidence is not current and attributable`)
     }
+    // Only pairs on the frozen /compare allowlist have a page (lib/compareAllowlist.ts, lib/postFreezeFirms.ts).
     const comparisonFirms = rankCurrentFirmAlternatives(firm, firms, firms.length)
+      .filter(candidate => hasComparisonPage(firm, candidate))
     const comparisonHrefs = comparisonFirms.map(candidate => comparisonHref(firm, candidate))
+    const expectedComparisonCount = currentFirms
+      .filter(candidate => candidate.name !== firm.name && hasComparisonPage(firm, candidate)).length
     if (
-      comparisonFirms.length !== currentFirms.length - 1
-      || new Set(comparisonHrefs).size !== currentFirms.length - 1
+      comparisonFirms.length !== expectedComparisonCount
+      || new Set(comparisonHrefs).size !== expectedComparisonCount
     ) {
       rows.push(`${firm.name}: review comparison index must cover every other firm once`)
     }
@@ -1356,6 +1362,7 @@ function checkFirmAlternativeNeutrality() {
     for (let rightIndex = leftIndex + 1; rightIndex < currentFirms.length; rightIndex += 1) {
       const firmA = currentFirms[leftIndex]
       const firmB = currentFirms[rightIndex]
+      if (!hasComparisonPage(firmA, firmB)) continue
       const label = `${firmA.name} vs ${firmB.name}`
       const selected = buildRelatedComparisons(firmA, firmB, firms)
       const reversed = buildRelatedComparisons(firmA, firmB, [...firms].reverse())
@@ -2819,6 +2826,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-bright-funded/', 'russian_review'],
     ['/ru/obzor-the5ers', 'russian_review'],
     ['/ru/obzor-crypto-fund-trader', 'russian_review'],
+    ['/ru/obzor-hash-hedge', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
@@ -11249,6 +11257,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
     ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/obzor-crypto-fund-trader', path.join(ROOT, 'app/ru/obzor-crypto-fund-trader/page.tsx')],
+    ['/ru/obzor-hash-hedge', path.join(ROOT, 'app/ru/obzor-hash-hedge/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],
@@ -12656,7 +12665,10 @@ function checkRussianAcquisitionPilot() {
     'data-russian-partner={item.slug}',
     'id="partner-matrix"',
     'id="top-5"',
-    'rel="sponsored nofollow noopener"',
+    // Since 9596463 (15 Oct) the ranking derives rel from firms.json via goLinkRel(): affiliates render
+    // rel="sponsored nofollow noopener", non-affiliates "nofollow noopener". Pin the helper, not the old literal.
+    "import { goLinkRel } from '@/lib/russiaAvailability'",
+    'rel={goLinkRel(item.slug)}',
     'Доступность платформы уточняйте для выбранной программы и страны.',
     'href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
     'href="/ru/prop-firmy-bez-chelendzha"',

@@ -1,0 +1,446 @@
+{
+  "firmSlug": "hash-hedge",
+  "captureType": "refresh-and-gap-close",
+  "capturedAt": "2026-10-23",
+  "capturedAtTimestamp": "2026-10-23T08:13:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/hash-hedge-2026-10-19.json",
+  "requestedBy": "EN Writer source plan /workspace/tradersfundhub/research/hash-hedge-review-source-plan.md section 6 (relayed by Prop Firm Tracker)",
+  "egress": "Box egress is a US IP. No registration, checkout, payment or KYC attempted. No VPN/proxy.",
+  "method": "Headless Chrome render of hashhedge.com, Terms, Commercial Terms, FAQ and affiliate pages; Playwright clicks through the pricing selector (Crypto + TradFi / US Stocks x 1-stage / 2-stage); GitBook user guide via public llms-full.txt; Trustpilot via headless Chrome render (plain curl = 403).",
+  "rawEvidence": "/workspace/tradersfundhub/evidence/hash-hedge-2026-10-23/ (box path, not in repo)",
+  "pageDates": {
+    "terms": "Last Updated: October 8, 2026",
+    "commercialTerms": "Last Updated: October 8, 2026",
+    "userGuide": "no page date published in the export",
+    "homepage": "no page date"
+  },
+  "pricing": {
+    "status": "unchanged vs 2026-10-19",
+    "sourceUrl": "https://hashhedge.com/",
+    "twoStageCryptoTradfi": {
+      "5000": 79,
+      "10000": 99,
+      "25000": 249,
+      "50000": 499,
+      "100000": 799,
+      "200000": 1393
+    },
+    "oneStageCryptoTradfi": {
+      "5000": 99,
+      "10000": 159,
+      "25000": 349,
+      "50000": 599,
+      "100000": 999
+    },
+    "twoStageUsStocks": {
+      "5000": 79,
+      "10000": 99,
+      "25000": 249,
+      "50000": 499,
+      "100000": 799
+    },
+    "quote": "ACCOUNT $5,000 $79 one-time +5% Cashback ... ACCOUNT $200,000 $1393 one-time +5% Cashback (2-STAGE · LOWER TARGETS tab)",
+    "rawFile": "pricing-selector3.json"
+  },
+  "items": {
+    "1_reviewUrl": {
+      "status": "data change",
+      "detail": "firms.json reviewUrl set to /blog/hash-hedge-review. RU review is reached through RU page maps (russianReviewRoutes / RUSSIAN_FINDER_REVIEWS), not through reviewUrl; no new field needed."
+    },
+    "2_overnightWeekend": {
+      "status": "sourced, per product",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "Can I keep positions open for several days? On a Crypto + TradFi account, yes: just watch the loss limits, because open positions count toward them. On a US Stocks account, no: every position is closed automatically at the end of the trading day.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "Can I trade on weekends or during major news? Yes. We don't restrict trading during news events or on weekends.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+          "quote": "You cannot hold a stock position overnight, over a weekend, or for several days: the platform closes everything at the end of the trading day, and each day starts flat.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+          "quote": "23:55 UTC+4 opening new positions is blocked. 23:59 UTC+4 every open position is closed automatically.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Trade every available Hash Hedge market 24/7, including weekends: oil, metals, equities, indices, and 160+ crypto markets.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "Homepage 'equities' on the 24/7 desk vs US Stocks product (weekdays only): different products."
+        }
+      ],
+      "firmLevelFieldNote": "lib/firms.ts: 'restricted = conditional/product-dependent'. firms.json overnightAllowed/weekendAllowed 'restricted' is the schema's encoding of 'allowed on Crypto + TradFi, barred on US Stocks'. Per-product truth is in challenges/hash-hedge.json rules."
+    },
+    "3_fundedMaxAndDrawdown": {
+      "status": "conflict (unresolved)",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Pass a clear 1-Stage or 2-Stage Challenge, qualify for up to $200,000 in funded capital, and keep up to 90% of eligible profit.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "homepage hero and homepage footer both say $200,000"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "ACCOUNT $200,000 $1393 one-time (2-stage tab)",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "a $200K product is on sale at $1,393"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/welcome",
+          "quote": "$5,000–$200,000 account sizes to choose from",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "Hash Hedge is a 24/7 RWA and crypto prop trading platform where traders prove their edge and qualify for up to $150,000 in funded capital.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23",
+          "note": "same footer sentence reads $150,000 on Terms, Commercial Terms, /faq and /affiliateprogram"
+        }
+      ],
+      "reading": "Homepage + user guide + the $200K price tier say $200,000; the site-wide footer on the legal, FAQ and affiliate pages still says $150,000 (a $150K size is not sold: sizes are 5K/10K/25K/50K/100K/200K). Inference only: the $150,000 footer is stale. No official page settles it, so firms.json maxAllocation stays null.",
+      "drawdownBasis": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Max Overall Drawdown Peak-to-trough loss limit across the full challenge.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules",
+          "quote": "All percentages are measured against your account size. For example, on a $25,000 account the Stage 1 target is $1,250 (5%), the daily loss limit is $1,250 (5%), and the max. total loss is $2,500 (10%).",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/daily-loss-calculation",
+          "quote": "The limit is a fixed 5% of your Challenge's starting balance. It never changes, not even if your current balance is higher or lower than where you started.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "daily limit only"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules",
+          "quote": "Total loss limit: the overall account loss level that, once reached, ends the Challenge.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "no formula for the total-loss base"
+        }
+      ],
+      "drawdownStatus": "conflict: homepage label says peak-to-trough, guide measures against account size and gives no total-loss formula; drawdownType stays null; EN article must not name static or trailing."
+    },
+    "4a_refundTerms": {
+      "status": "sourced",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "10.1. FEES FOR PARTICIPATION ... Fees are non-refundable except as explicitly stated in these Terms. Payment of fees confirms a user's registration in the selected Challenge Plan.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "10.6. REFUND POLICY Refunds may be issued under the following circumstances: If we cancel a Challenge before its commencement, users will be eligible for a refund of the amount actually paid through an accepted external payment method. In cases of technical errors resulting in duplicate payments, users may request a refund by contacting our support team at support@hashhedge.com within seven (7) calendar days of the transaction.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/cashback-balance",
+          "quote": "A refund is possible if Hash Hedge cancels a Challenge before it starts, or you're charged twice by mistake. In either case, everything is refunded, including any HH Coins spent.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "5.1. REFUNDS Challenge and Add-On fees, refunds and related purchase matters are governed by the Terms and Conditions and administered by the Platform Operator. The Company does not collect Challenge fees and is not responsible for processing refunds of Challenge or Add-On purchases.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        }
+      ],
+      "paymentConflict": [
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "10.2. PAYMENT METHODS We accept payments through the following methods: Credit or debit cards issued by internationally recognized financial institutions. Online payment solutions integrated into the Platform.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/buy-challenge",
+          "quote": "Hash Hedge accepts USDT or USDC: no cards or bank transfers.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Pay with TRC20 ERC20 BEP20 Solana Arbitrum Optimism (selector); homepage FAQ: \"...USDT only, on the following networks\"",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "third wording: homepage FAQ says USDT only"
+        }
+      ],
+      "resetOrRetry": "GAP: no official page found that sells or describes a reset/retry of a failed Challenge. Terms 1.2 defines 'Add-On' generically as 'any optional paid feature, upgrade, enhancement, protection, reset, additional functionality...', but the checkout add-ons documented in the guide are only +10% Profit Split and Daily Loss Protection. The guide says a breached Challenge 'is permanently failed'."
+    },
+    "4b_72hGuaranteeExclusions": {
+      "status": "sourced",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "Payout processing guarantee (72 hours). Where the User has submitted a valid and complete payout request in respect of an eligible profitable trading cycle, and that request is not processed and paid within seventy-two (72) hours of its submission, the User shall be entitled to receive an amount equal to three (3) times the payout to which the User was otherwise entitled in respect of that request",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "This guarantee applies only to payout requests that are valid, complete, and not subject to any Hold, investigation, Re-Verification or enhanced identity verification requirement, or other suspension or cancellation under the Terms and Conditions or these Commercial Terms.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "Where any such event arises after submission, the running of the seventy-two (72) hour period shall cease, and a fresh seventy-two (72) hour period shall commence in full from the date on which the payout request again becomes valid, complete, and free of any such requirement or suspension. ... processing is delayed for reasons outside the reasonable control of the Company (including Force Majeure Events, banking or payment-network processing times, or the User's provision of incorrect, incomplete, or unverified payout details), the running of the seventy-two (72) hour period shall likewise cease",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "The additional amount payable under this guarantee shall not count towards the maximum payout amount specified above.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        }
+      ]
+    },
+    "4c_160PlusCryptoPairs": {
+      "status": "sourced, with count conflict",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "160+ trading pairs · 24/7 trading · Perpetual futures (Crypto + TradFi tab)",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Trade every available Hash Hedge market 24/7, including weekends: oil, metals, equities, indices, and 160+ crypto markets.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/coins-limit",
+          "quote": "This keeps risk in check across the more than 170 instruments available to trade. ... Crypto: 135 instruments ... TradFi: 31 instruments (stocks, indices and energy) ... Metals: 5 instruments",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23",
+          "note": "135+31+5 = 171 instruments in the guide list"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "Is spot trading available? Not for crypto. On a Crypto + TradFi account you trade futures; on a US Stocks account you trade US stocks with leverage.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        }
+      ],
+      "reading": "Homepage '160+ crypto markets' vs guide list 'Crypto: 135 instruments' (guide total 171 incl. TradFi and metals). Write '170+ instruments per the guide' or '160+ pairs per the homepage'; do not combine them."
+    },
+    "4d_cashbackHHCoins": {
+      "status": "sourced",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/cashback-balance",
+          "quote": "For purchases, or as part of a promotion, Hash Hedge credits your account with Cashback, called HH Coins in the app. A promotional balance, not money. It has no cash value, and can't be withdrawn or exchanged for money or crypto. How much you get and how you can use it are set case by case and shown to you on the platform when it's credited: there's no fixed rate.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/cashback-balance",
+          "quote": "HH Coins are credited only on the part of a purchase paid in USDT or USDC. ... How to spend it: On a new Challenge purchase. On add-ons (+10% Profit Split, Daily Loss Protection), if bought in the same order as the Challenge.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "10.8. CASHBACK BALANCE ... Cashback Balance ... may be applied solely toward the purchase of a subsequent eligible Challenge ... (a) has no cash or monetary redemption value and may not be withdrawn, transferred, exchanged for cash or cryptocurrency, or paid out to the User; (b) may only be used as a credit toward eligible Challenge purchases on the Platform",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "In the event of any refund, cancellation, reversal, chargeback, or other reimbursement relating to a Challenge purchase, any Cashback Balance credited in connection with, or applied toward, that purchase shall be deemed used and permanently forfeited",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-23",
+          "note": "10.8 continues; the guide Refunds line says HH Coins spent are refunded on a cancelled or duplicate order: guide vs Terms differ in wording, not tested"
+        }
+      ]
+    },
+    "5_neverCaptured": {
+      "tradingCosts": {
+        "status": "sourced (Crypto + TradFi and US Stocks)",
+        "evidence": [
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/fees-funding",
+            "quote": "Maker 0.01% Orders that add liquidity ... Taker 0.03% Orders that remove liquidity ... Trading fees are charged on the total position size, including leverage, both when you open and when you close a position.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/fees-funding",
+            "quote": "Funding rate: Variable ... It's exchanged between traders, not paid to the platform.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+            "quote": "Fees 0.04% of the trade, with a minimum of $1.00.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          },
+          "Spreads: GAP (perpetual order book terminal; no spread figure published). Per-instrument position limits: guide coins-limit page."
+        ]
+      },
+      "copyTrading": {
+        "status": "gap",
+        "detail": "No official page states a copy-trading rule. Terms section 11 (Prohibited Hedging) mentions 'sharing trading signals, strategies, timing parameters' only for coordinated opposing positions. The guide says 'any trading strategy is allowed' except arbitrage and manipulation; Terms 12.2 bars bots/scripts/APIs. firms.json copyTradingAllowed stays null."
+      },
+      "scalingPlan": {
+        "status": "gap (negative capture)",
+        "detail": "No scaling plan, account upgrade or capital-increase path found in the guide (all pages), Terms, Commercial Terms, FAQ or homepage on 23.10.2026. Not confirmed absent. scalingPlan stays null."
+      },
+      "addOnPrices": {
+        "status": "gap (checkout only)",
+        "evidence": [
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/profit-split",
+            "quote": "Both cost extra, both are optional, and are added at checkout. ... Option prices scale with your account size.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          }
+        ],
+        "detail": "Dollar prices are not published; the selector shows 'Profit split 90 / 10' as a default row but no add-on price. No checkout attempted."
+      },
+      "companyAge": {
+        "status": "gap",
+        "detail": "No founding or launch year on hashhedge.com, Terms, Commercial Terms or the guide (there is no About page: /about-us 404). Trustpilot shows 'Claimed profile • Mar 2025' (profile date only). Homepage payout-certificate cards carry dates from 26 May 2026. firms.json founded stays null."
+      },
+      "regulation": {
+        "status": "negative capture",
+        "evidence": [
+          {
+            "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+            "quote": "3. NOT INVESTMENT ADVICE OR SERVICES The services offered by the Company are evaluation and informational in nature and should not be construed as financial or investment advice. ... The Company, its employees, agents, and representatives are not licensed financial advisors",
+            "pageDate": "Last Updated: October 8, 2026",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://hashhedge.com/",
+            "quote": "All information provided on this website is intended solely for the purpose of learning about trading in the financial markets and in no way constitutes specific investment advice",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          }
+        ],
+        "detail": "No regulator, licence or registration other than the company numbers (Empower Academy Ltd UAE 01010596; FinSmart Solution Ltd Seychelles 246832) is named on the Terms, Commercial Terms, FAQ or homepage. regulation stays null; write 'no regulator is named on its site'."
+      },
+      "payoutTiming": {
+        "status": "sourced (ceiling, not an average)",
+        "evidence": [
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/profit-payouts",
+            "quote": "Funds are transferred to your wallet within 72 hours of submitting your withdrawal request.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/profit-payouts",
+            "quote": "A new request can be made no earlier than 14 days after your previous request was completed.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+            "quote": "Within 24 hours of successfully completing an applicable Evaluation Stage, the relevant Account will be reviewed for compliance",
+            "pageDate": "Last Updated: October 8, 2026",
+            "checkedAt": "2026-10-23"
+          },
+          {
+            "sourceUrl": "https://hashhedge.com/",
+            "quote": "Hash Hedge sends the exact amount and covers the network fee.",
+            "pageDate": "no page date",
+            "checkedAt": "2026-10-23"
+          }
+        ],
+        "detail": "No average payout time or payout statistics are published; the checkout 'Your order' panel shows an 'average payout' for the account (guide, buy-challenge) but its value is only visible logged in."
+      }
+    },
+    "6_trustpilot": {
+      "status": "refreshed",
+      "sourceUrl": "https://www.trustpilot.com/review/hashhedge.com",
+      "checkedAt": "2026-10-23",
+      "score": 4.4,
+      "reviewCount": 110,
+      "reviewsLast12Months": 94,
+      "quote": "Hash Hedge Reviews 110 • 4.4 Excellent ... Claimed profile • Mar 2025 Paid Trustpilot subscription ... Asks customers to review This company invites their customers to review, whether positive or negative",
+      "previous": {
+        "capturedAt": "2026-10-19",
+        "score": 4.5,
+        "reviewCount": 116
+      },
+      "note": "Homepage still shows '4.5 · Trustpilot' next to '5,814 funded traders' (19 Oct: 5,792). Use Trustpilot's own 4.4 / 110."
+    }
+  },
+  "newConflictsFound": [
+    {
+      "topic": "Leverage",
+      "detail": "Homepage banner 'LEVERAGE X10 ON ALL CRYPTO CHALLENGES At every stage, including Funded. Sale ends in: 33 hours : 46 minutes' (read 23 Oct 08:13 Riga, so about Sat 24 Oct 18:00 Riga) and the selector shows Max Leverage 1:10 on every Crypto + TradFi stage; the same table's tooltip says 'Capped at 1:5 across all stages and all assets', and guide/FAQ say 1:5 ('Leverage of up to 1:5 is available', 'Leverage is still up to 1:5' on funded). US Stocks tab shows 1:5. Time-limited promo; recheck Mon 26 Oct and do not publish 1:10 without that."
+    },
+    {
+      "topic": "Payment methods",
+      "detail": "Terms 10.2 lists credit/debit cards; guide and homepage FAQ say USDT/USDC (FAQ: USDT only) with no cards. Not tested at checkout."
+    },
+    {
+      "topic": "Funded maximum",
+      "detail": "$200,000 (homepage, guide sizes) vs $150,000 (footer on Terms, Commercial Terms, FAQ, affiliate)."
+    },
+    {
+      "topic": "Stage-1 card",
+      "detail": "Homepage feature card still reads '+8% STAGE 1 +6% STAGE 2' and 'Max drawdown 8–10%' vs table 5%/6% and 10%/8%."
+    }
+  ],
+  "russia": {
+    "status": "unclear",
+    "previousStatus": "available (2026-10-19 capture)",
+    "changedAt": "2026-10-23",
+    "reason": "EA decision 2026-10-23: 'available' requires positive evidence that Russia is accepted (named in the terms or confirmed at checkout/KYC). A Terms clause that does not name Russia is 'unclear'. Consistent with FundingPips (unclear).",
+    "evidence": [
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "pageDate": "Last Updated: October 8, 2026",
+        "checkedAt": "2026-10-23",
+        "quote": "4.3. SANCTIONED TERRITORIES The Services are not available to: Individuals or entities (including those owned or controlled by individuals) that are subject to economic or trade sanctions enforced by any governmental authority, or that are designated on any list of prohibited or restricted parties. ... or residents, citizens, or entities located in or incorporated under the laws of any country, territory, or jurisdiction that is subject to an embargo, has been designated as a terrorist-supporting country, or is otherwise under comprehensive economic sanctions by the United Nations, the European Union, the UK Treasury, or the U.S. Government. This includes, but is not limited to, countries and regions such as Cuba, Iran, North Korea, Syria, Yemen.",
+        "note": "Russia is not named anywhere on the Terms page (0 occurrences of 'Russia', rendered text 2026-10-23); neither an exclusion nor an acceptance."
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "pageDate": "Last Updated: October 8, 2026",
+        "checkedAt": "2026-10-23",
+        "quote": "4.1. ELIGIBILITY TO USE SERVICES To engage with the Services offered by us, you represent and warrant that you: ... Reside in a jurisdiction where the use of the Services is permitted under applicable laws, regulations, and ordinances. Are not subject to any restrictions that would prohibit or limit your access to the Services under international sanctions or local regulations."
+      }
+    ],
+    "unverified": "Signup/KYC and checkout acceptance of a Russian resident were not tested (no registration or checkout by policy). The 2026-10-19 capture's Moscow events and RU site version corroborate market presence only.",
+    "rawEvidence": "/workspace/tradersfundhub/evidence/hash-hedge-russia-2026-10-23/terms.render.html (headless Chrome render 2026-10-23 08:37 Riga) and terms.txt"
+  }
+}

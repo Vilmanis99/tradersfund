@@ -4,7 +4,7 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import RuPendingLink from '@/components/RuPendingLink'
 import { ArrowRight, Briefcase } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaBasisDateFor } from '@/lib/russiaAvailability'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
@@ -12,6 +12,7 @@ import { ruNotListedDates } from '@/lib/ruBasisWording'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/prop-trejding'
 const UPDATED = '14.10.2026'
@@ -97,7 +98,7 @@ export default function RussianPropTradingPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-prop-trading="guide">
@@ -141,7 +142,7 @@ export default function RussianPropTradingPage() {
             цели, получаете счёт и долю прибыли.
           </p>
           <p>
-            Пример на FundingPips 2 Step Pro (данные на {PRICES_CHECKED}): счёт $5 000 стоит $29. Цель — 6% в каждой из двух фаз, то есть
+            Пример на FundingPips 2 Step Pro (данные на {formatRuDate(PRICES_CHECKED)}): счёт $5 000 стоит $29. Цель — 6% в каждой из двух фаз, то есть
             $300; дневной лимит 3% — $150; общий статический лимит 6% — те же $300. Один плохой день на $150 съедает половину
             допустимого убытка. Поэтому цена в $29 — не главная цифра: главная — лимит убытка.
           </p>
@@ -151,7 +152,7 @@ export default function RussianPropTradingPage() {
       <section className="ru-section" id="poshagovo">
         <div className="ru-shell ru-content">
           <h2>От взноса до выплаты: пошаговый пример</h2>
-          <p>Возьмём BrightFunded 2-Step Classic на $10 000 (данные на {PRICES_CHECKED}):</p>
+          <p>Возьмём BrightFunded 2-Step Classic на $10 000 (данные на {formatRuDate(PRICES_CHECKED)}):</p>
           <ol>
             <li><strong>Оплата:</strong> €97.</li>
             <li><strong>Фаза 1:</strong> заработать 10% — $1 000, не потеряв за день больше 5% ($500) и за всё время больше 10% ($1 000). Минимум 5 торговых дней.</li>

@@ -43,6 +43,14 @@
       "localPath": "/images/firms/tradeify.png",
       "sourceUrl": "https://tradeify.co/",
       "assetUrl": "https://cdn.prod.website-files.com/679b064a680c614548672a06/6a846285e316b302197e16d4_icon.png"
+    },
+    {
+      "firmSlug": "hash-hedge",
+      "localPath": "/images/firms/hash-hedge.png",
+      "sourceUrl": "https://hashhedge.com/",
+      "assetUrl": "https://static.tildacdn.com/tild3661-3038-4664-a164-363137633261/Vector.svg",
+      "capturedAt": "2026-10-19",
+      "notes": "Official favicon SVG (<link rel=\"icon\" type=\"image/svg+xml\">), rendered unmodified to a 192x192 RGBA PNG (yellow #FFDD2D mark on transparent; FirmLogo puts it on a dark surface). Source record: content/data/challenges/_captures/hash-hedge-2026-10-19.json logo."
     }
   ],
   "unresolved": [

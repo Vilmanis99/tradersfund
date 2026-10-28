@@ -23,6 +23,7 @@ export { firmSlug }
  */
 
 import { freshChallenges } from './challengeMatchup'
+import { hasTieredSplit, profitSplitValue } from './profitSplitDisplay'
 import type { Challenge, Firm, RuleAvailability } from './firms'
 import { getAllFirms } from './firms'
 
@@ -163,7 +164,11 @@ const FEATURE_TESTS: Record<string, FeatureTest> = {
   },
   'high-profit-split': {
     claim: 'pay 90% or more',
-    detail: c => (c.profitSplitPct == null ? null : `${c.profitSplitPct}% split`),
+    // Detail shows the tier range when the product is tiered (TradeDay Quick Pay: 50–80% on
+    // Funded Sim). The qualifying test still reads profitSplitPct (lowest tier), so a product
+    // that reaches 90% only on a later stage (Funded Live) does not qualify; how tiers should
+    // count here is an open editorial question, not decided in code.
+    detail: c => (hasTieredSplit(c) ? `${profitSplitValue(c)} split (tiered)` : c.profitSplitPct == null ? null : `${c.profitSplitPct}% split`),
     test: c => {
       if (c.profitSplitPct == null) return 'unverified'
       return c.profitSplitPct >= 90 ? 'allows' : 'blocks'

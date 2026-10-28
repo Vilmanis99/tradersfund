@@ -28,6 +28,7 @@ function load(file) {
       if (specifier === 'next/link') return { __esModule: true, default: 'a' }
       if (specifier === '@/lib/clientAnalytics') return { trackSiteEvent: (...args) => events.push(args) }
       if (specifier === '@/lib/challengeComparison') return load('lib/challengeComparison.ts')
+      if (specifier === '@/lib/ruDate') return load('lib/ruDate.ts')
       return require(specifier)
     },
   }, { filename: file })

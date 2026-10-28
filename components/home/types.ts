@@ -8,6 +8,7 @@ export interface ComparisonRow {
   score: number
   trustpilot: number | null
   product: string
+  productSlug: string
   phases: number
   assetClass: string
   price: number
@@ -19,6 +20,8 @@ export interface ComparisonRow {
   dailyLossPct: number | null
   maxLossPct: number | null
   profitSplitPct: number | null
+  /** Display-only split tiers (lib/profitSplitDisplay); profitSplitPct stays the lowest tier. */
+  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
   payoutFrequency: string | null
   checkedOn: string
   /** /go/<slug> without campaign; the table appends ?from=<placement>-table|-cards. */

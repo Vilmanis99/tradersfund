@@ -17,6 +17,7 @@ import {
 } from '@/lib/rulesPages'
 import { RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
 import { RU_REVIEW_FIRMS, isRuRegisteredPath } from '@/lib/ruRelatedLinks'
+import { ruDatesInText } from '@/lib/ruDate'
 
 const SITE = 'https://tradersfundhub.com'
 
@@ -109,7 +110,7 @@ function RowValue({ row, lang }: { row: RuleRow; lang: RulesLang }) {
       {row.summary && headline !== row.summary && !row.summary.startsWith('Product-specific') && !(lang === 'ru' && isHiddenExchange(row.summary)) && (
         <p className="rules-summary">{lang === 'ru' ? <>Дословно в данных: <span lang="en">{ruRedactExchanges(row.summary)}</span></> : row.summary}</p>
       )}
-      {row.note && <p className="rules-note"><span lang="en">{lang === 'ru' ? ruRedactExchanges(row.note) : row.note}</span></p>}
+      {row.note && <p className="rules-note"><span lang="en">{lang === 'ru' ? ruDatesInText(ruRedactExchanges(row.note)) : row.note}</span></p>}
       {row.issues.length > 0 && (
         <p className="rules-issue" data-rules-issue={row.issues.join(' ')}>
           {lang === 'ru' ? 'Не подтверждено: ' : 'Not fully confirmed: '}{issueText(row.issues, lang)}

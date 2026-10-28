@@ -77,7 +77,9 @@ const cmp = (href: string, anchor: string): RuRelatedLink => ({ href, anchor, sl
 const alt = (href: string, anchor: string): RuRelatedLink => ({ href, anchor, slot: 'alternatives' })
 const rel = (href: string, anchor: string): RuRelatedLink => ({ href, anchor, slot: 'related' })
 
-/** BrightFunded first, then Crypto Fund Trader (plan §0, §4.2). */
+/** BrightFunded first, then Crypto Fund Trader (plan §0, §4.2).
+ *  Hash Hedge is deliberately NOT an 'alternatives' (= Russia option) entry while its russiaStatus is not 'available' (currently 'unclear');
+ *  test:ru-related-links (c) enforces that. It is linked as a plain 'related' review instead. */
 const RUSSIA_ALTERNATIVES = [
   alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),
   alt('/ru/obzor-crypto-fund-trader', 'Crypto Fund Trader отзывы'),
@@ -89,7 +91,7 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     cmp('/ru/fundednext-vs-bright-funded', 'BrightFunded или FundedNext: сравнение'),
     cmp('/ru/ftmo-vs-bright-funded', 'BrightFunded как альтернатива FTMO'),
     alt('/ru/obzor-crypto-fund-trader', 'Crypto Fund Trader отзывы'),
-    alt('/ru/obzor-hash-hedge', 'Крипто-проп Hash Hedge'),
+    rel('/ru/obzor-hash-hedge', 'Крипто-проп Hash Hedge'),
     rel('/ru/fundingpips-vs-bright-funded', 'FundingPips или BrightFunded'),
     rel('/ru/luchshie-kripto-prop-firmy', 'Проп-трейдинг криптовалют'),
     rel('/ru/prop-firmy-s-ctrader', 'Проп-фирмы с cTrader'),
@@ -223,7 +225,7 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
   '/ru/obzor-crypto-fund-trader': [
     cmp('/ru/bright-funded-vs-crypto-fund-trader', 'BrightFunded или Crypto Fund Trader'),
     alt('/ru/obzor-bright-funded', 'BrightFunded'),
-    alt('/ru/obzor-hash-hedge', 'Hash Hedge отзывы'),
+    rel('/ru/obzor-hash-hedge', 'Hash Hedge отзывы'),
     rel('/ru/luchshie-kripto-prop-firmy', 'Крипто проп компании'),
     rel('/ru/prop-firmy-bez-kyc', 'Проп-фирмы и KYC'),
   ],

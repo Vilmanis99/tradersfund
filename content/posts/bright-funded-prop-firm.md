@@ -173,7 +173,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid Bright Funded</strong></h2>
 
-<p>A news scalper should avoid the funded 10-minute blackout, and a trader who routinely gives back floating profit should avoid the 1-Step’s real-time 6% trail. Anyone needing a first payout before day 30 without buying an add-on should compare a 14-day or on-demand base cycle elsewhere.</p>
+<p>A news scalper should avoid the funded 10-minute blackout, and a trader who routinely gives back floating profit should avoid the 1-Step’s real-time 6% trail. Anyone needing a first payout before day 30 without buying an add-on should compare a 14-day or on-demand base cycle elsewhere. Hash Hedge states a 14-day payout period (see our <a href="/blog/hash-hedge-review">Hash Hedge review</a>), but it trades crypto perpetuals on its own terminal rather than MT5.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 

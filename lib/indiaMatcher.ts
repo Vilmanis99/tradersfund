@@ -1,6 +1,7 @@
 import { firmSlug } from './firmSlug.ts'
 import 'server-only'
 import { hasNoListedPrice } from './reviewFreshness.ts'
+import { displaySplitTiers } from './profitSplitDisplay.ts'
 
 import {
   getChallengeWatchEntries,
@@ -59,6 +60,8 @@ export interface IndiaMatcherProduct {
   payoutFirstDays: number | null
   payoutFrequency: PayoutFrequency | null
   profitSplitPct: number | null
+  /** Display-only split tiers; sorting uses profitSplitPct. */
+  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
   minTradingDays: number | null
   pricingModel: 'one-off' | 'monthly-subscription' | 'split-payment'
   capturedAt: string
@@ -156,6 +159,7 @@ export function buildIndiaMatcherFirms(firms: Firm[]): IndiaMatcherFirm[] {
           payoutFirstDays: challenge.payoutFirstDays,
           payoutFrequency: challenge.payoutFrequency,
           profitSplitPct: challenge.profitSplitPct,
+          profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
           minTradingDays: challenge.minTradingDays,
           pricingModel: challenge.pricingModel ?? 'one-off',
           capturedAt: challenge.sourceCapturedAt,

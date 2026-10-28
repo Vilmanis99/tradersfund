@@ -1,0 +1,317 @@
+{
+ "capturedAt": "2026-10-27",
+ "accessNotes": "Fresh official reads for Maven only, 2026-10-27 08:14 Riga, curl from the box (US IP, no VPN/proxy); FAQ text from the server-rendered FAQPage JSON-LD; quotes verbatim, \"...\" joins flattened table cells or omitted text. Raw files: /workspace/tradersfundhub/evidence/maven-recheck-2026-10-27/. Notes flag unresolved conflicts between the FAQ and the Terms. Take Profit Trader homepage re-read 2026-10-27 10:44 Riga with headless Chrome (puppeteer-core) from the box, account cards captured by clicking each size; raw files: /workspace/tradersfundhub/evidence/rules-fixes-2026-10-27/ (tpt-home.rendered.*, tpt-home-account-sizes-all.txt, tpt-home-card-*.png). Help centre not read (Cloudflare).",
+ "pagesRead": [
+  "https://maventrading.com/faqs",
+  "https://maventrading.com/pricing",
+  "https://maventrading.com/challenges/mini",
+  "https://maventrading.com/terms-and-conditions",
+  "https://takeprofittrader.com/"
+ ],
+ "pageDates": {
+  "https://maventrading.com/faqs": "no editorial date published; HTTP Last-Modified Mon, 26 Oct 2026 22:42:43 GMT (deploy timestamp, not an editorial date)",
+  "https://maventrading.com/pricing": "no editorial date; HTTP Last-Modified Tue, 27 Oct 2026 03:06:19 GMT",
+  "https://maventrading.com/challenges/mini": "no editorial date; HTTP Last-Modified Tue, 27 Oct 2026 00:04:43 GMT",
+  "https://maventrading.com/terms-and-conditions": "\"Last Amended: 22/10/2025\"",
+  "https://takeprofittrader.com/": "no page date shown"
+ },
+ "firms": {
+  "maven": {
+   "platforms": {
+    "value": [
+     "MT5",
+     "Match-Trader"
+    ],
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Which Platforms can I use for simulated trading at Maven? Maven Trading offers MT5 and Match Trader"
+     }
+    ]
+   },
+   "drawdownType": {
+    "byProduct": {
+     "standard-1-step": "trailing",
+     "standard-2-step": "static",
+     "standard-3-step": "static",
+     "instant": "trailing",
+     "mini": "trailing",
+     "buy-now-pay-later": "static",
+     "omo-2-step": "static",
+     "predictions-1-step": "trailing",
+     "predictions-elite-1-step": "static"
+    },
+    "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Elite; Buy Now, Pay Later static in evaluation, trailing when funded (fixed at the initial balance after the first withdrawal)",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+     }
+    ]
+   },
+   "dailyLossPct": {
+    "byProduct": {
+     "standard-1-step": 3,
+     "standard-2-step": 4,
+     "standard-3-step": 2,
+     "instant": 2,
+     "mini": 2,
+     "buy-now-pay-later": null,
+     "omo-2-step": 4,
+     "predictions-1-step": null,
+     "predictions-elite-1-step": null
+    },
+    "summary": "Product-specific: 3% on Standard 1-Step; 4% on Standard 2-Step, OMO 2-Step; 2% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later none in evaluation, 4% when funded; no daily limit on Prediction Markets One-Step Essential and Elite",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based) ... Maximum Drawdown: 3% (Trailing)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "There are: No daily drawdown limits No minimum trading days"
+     }
+    ]
+   },
+   "maxLossPct": {
+    "byProduct": {
+     "standard-1-step": 5,
+     "standard-2-step": 8,
+     "standard-3-step": 3,
+     "instant": 3,
+     "mini": 3,
+     "buy-now-pay-later": 10,
+     "omo-2-step": 8,
+     "predictions-1-step": 5,
+     "predictions-elite-1-step": 5
+    },
+    "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later 10% in evaluation, 8% when funded; Prediction Markets One-Step Essential and Elite 5% in Phase 1, 8% when funded",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/pricing",
+      "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%"
+     }
+    ]
+   },
+   "consistencyPct": {
+    "byProduct": {
+     "standard-1-step": null,
+     "standard-2-step": null,
+     "standard-3-step": null,
+     "instant": 20,
+     "mini": 15,
+     "buy-now-pay-later": 20,
+     "omo-2-step": null,
+     "predictions-1-step": null,
+     "predictions-elite-1-step": null
+    },
+    "summary": "Product-specific: 20% on Instant, Buy Now, Pay Later (funded); 15% on Mini; none on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "In Instant Funding Account, a 20% Consistency Score is required."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements."
+     }
+    ]
+   },
+   "profitSplitPct": {
+    "byProduct": {
+     "standard-1-step": 80,
+     "standard-2-step": 80,
+     "standard-3-step": 80,
+     "instant": 80,
+     "mini": 70,
+     "buy-now-pay-later": 80,
+     "omo-2-step": 80,
+     "predictions-1-step": 70,
+     "predictions-elite-1-step": 70
+    },
+    "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on the forex products)",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The standard reward split is 80%. With the applicable add-on, the reward split increases to 90%."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "The standard reward split is 70%. With the applicable add-on, the reward split increases to 90%."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/pricing",
+      "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%"
+     }
+    ]
+   },
+   "payoutFrequency": {
+    "byProduct": {
+     "standard-1-step": "bi-weekly",
+     "standard-2-step": "bi-weekly",
+     "standard-3-step": "bi-weekly",
+     "instant": null,
+     "mini": null,
+     "buy-now-pay-later": "on-demand",
+     "omo-2-step": "bi-weekly",
+     "predictions-1-step": "bi-weekly",
+     "predictions-elite-1-step": "bi-weekly"
+    },
+    "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets; Buy Now, Pay Later on request once its gates are met; Mini one single payout within its 24-hour window; Instant sources conflict (FAQ \"on demand\", Terms every 10 business days)",
+    "note": "Instant payout cadence conflict (FAQ/pricing vs Terms Last Amended 22/10/2025), recorded 2026-10-27; not resolved.",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Your first payout is available 10 business days after your first trade on the Simulated Funded Account. Each subsequent 10-business-day period starts with your first trade after the previous payout."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "You are eligible to request only one withdrawal per Instant Mini Funding Account. This is a one-time payout, not a recurring withdrawal option."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/terms-and-conditions",
+      "quote": "Maven Instant: This program has a 3% minimum payout requirement, a trailing 3% maximum loss from the highest equity, and a maximum daily loss of 2% based on the higher of equity or balance at 00:00 UTC+0. It offers an 80% profit split with payouts available every 10 business days."
+     }
+    ]
+   },
+   "newsTrading": {
+    "byProduct": {
+     "standard-1-step": "restricted",
+     "standard-2-step": "restricted",
+     "standard-3-step": "restricted",
+     "instant": null,
+     "mini": null,
+     "buy-now-pay-later": null,
+     "omo-2-step": "restricted",
+     "predictions-1-step": null,
+     "predictions-elite-1-step": null
+    },
+    "summary": "Product-specific: restricted (2-minute Red Folder window) on Standard 1/2/3-Step; OMO 2-Step allowed in evaluation, funded news profit capped at 0.50%; Instant, Mini, Buy Now, Pay Later and Prediction Markets: sources conflict (FAQ allows news trading, Terms restrict all accounts)",
+    "note": "FAQ vs Terms (Last Amended 22/10/2025) conflict on news trading for Instant, Mini, Buy Now, Pay Later and Prediction Markets, recorded 2026-10-27; not resolved.",
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "2 Step OMOYes, but profit from any single news event is capped at 0.50% of your account balance. Any profit above the cap will not count toward your balance. (Applicable in Funded Stage only)Buy Now Pay LaterYes, without restrictionInstant FundingYes, without restrictionInstant MiniYes, without restriction"
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Is News Trading Allowed in Instant Mini Funding Account? News trading is fully permitted with no restrictions."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "However, there is no news trading restriction specific to the Prediction Markets challenge."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/terms-and-conditions",
+      "quote": "Prohibitions Against News Trading: For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events listed on Forex Factory. You may hold positions that were opened more than 2 minutes before a news event."
+     },
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Standard 1 StepDo not open or close trades on affected instruments from 2 minutes before until 2 minutes after an applicable Red Folder release."
+     }
+    ]
+   },
+   "weekendHolding": {
+    "value": true,
+    "evidence": [
+     {
+      "sourceUrl": "https://maventrading.com/faqs",
+      "quote": "Yes. You may trade and hold positions overnight or over the weekend. Maven also offers 24/7 gold trading."
+     }
+    ]
+   }
+  },
+  "take-profit-trader": {
+   "dailyLossUsd": {
+    "value": null,
+    "byProduct": {
+     "the-test": null
+    },
+    "summary": "None (removed; the homepage lists no daily loss rule on Test, PRO or PRO+)",
+    "note": "Re-read 2026-10-27: unchanged from 2026-10-26. Journey table 'Daily loss rule None None None'; cards $50K/$75K/$100K/$150K 'Daily Loss Limit $1100/$1600/$2200/$3300 Removed'.",
+    "evidence": [
+     {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "Your Take Profit Funded Journey ... Daily loss rule None None None"
+     },
+     {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "$ 50K $170 / month Profit Target $3000 Max Position Size 6 Contracts / 60 Micros Daily Loss Limit $1100 Removed"
+     },
+     {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "$ 75K $245 / month Profit Target $4500 Max Position Size 9 Contracts / 90 Micros Daily Loss Limit $1600 Removed"
+     },
+     {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "$ 100K $330 / month Profit Target $6000 Max Position Size 12 Contracts / 120 Micros Daily Loss Limit $2200 Removed"
+     },
+     {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "$ 150K $360 / month Profit Target $9000 Max Position Size 15 Contracts / 150 Micros Daily Loss Limit $3300 Removed"
+     }
+    ]
+   }
+  }
+ }
+}

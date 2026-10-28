@@ -11,6 +11,7 @@ import {
 import { freshChallenges } from '@/lib/challengeMatchup'
 import { getAllFirms } from '@/lib/firms'
 import { isSourceHoldFirm } from '@/lib/reviewStatus'
+import { isPostFreezeFirm } from '@/lib/postFreezeFirms'
 import { breadcrumbSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -20,7 +21,9 @@ import TiltCard from '@/components/TiltCard'
 
 function hubEvidence() {
   const allPairs = getCurrentCanonicalPairs()
-  const hubFirms = getAllFirms().map(firm => ({ firm, products: freshChallenges(firmSlug(firm.name)) }))
+  const hubFirms = getAllFirms()
+    .filter(firm => !isPostFreezeFirm(firmSlug(firm.name)))
+    .map(firm => ({ firm, products: freshChallenges(firmSlug(firm.name)) }))
     .filter(entry => entry.products.length)
   const currentProductCount = hubFirms.reduce((total, entry) => total + entry.products.length, 0)
   const description =

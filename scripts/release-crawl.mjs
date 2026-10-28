@@ -12,6 +12,7 @@ import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 import { localPreviewUrl } from './local-preview-url.mjs'
+import { execFileSync } from 'node:child_process'
 import { isFinderStateFragment } from '../lib/challengeComparison.ts'
 import { getRussianFinderRows } from '../lib/challengeComparisonData.ts'
 import {
@@ -29,13 +30,15 @@ import { getAllDeals, rankDeals } from '../lib/deals.ts'
 import { getChallengeWatchEntries } from '../lib/challengeWatch.ts'
 import { challengeSourceDestination } from '../lib/challengeSources.ts'
 import { filterComparisonRows } from '../lib/comparisonDirectory.ts'
-import { getOverlay } from '../lib/comparisons.ts'
+import { getOverlay, isComparePairAllowed } from '../lib/comparisons.ts'
+import { isPostFreezeFirm } from '../lib/postFreezeFirms.ts'
 import { rankCurrentFirmAlternatives } from '../lib/firmAlternatives.ts'
 import {
   buildRelatedComparisons,
   comparisonHref,
   getFreshComparisonEvidence,
   getFreshFirmEvidence,
+  hasComparisonPage,
 } from '../lib/relatedComparisons.ts'
 import {
   getTradingToolReviewLinks,
@@ -1346,6 +1349,34 @@ const russianExpectations = new Map([
       '1 104',
     ],
   }],
+  ['/ru/obzor-hash-hedge', {
+    title: 'Hash Hedge: отзывы и обзор крипто-проп-компании 2026',
+    h1: 'Hash Hedge: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="hash-hedge"',
+      'data-russian-hh-verdict="summary"',
+      'data-russian-hh-access="not-in-restricted-list"',
+      'Россия не названа в списке ограничений',
+      'data-russian-hh-product-count="3"',
+      'data-russian-hh-drawdown-basis="unconfirmed"',
+      'data-russian-hh-guarantee="official"',
+      'data-russian-hh-payment="sources-conflict"',
+      'по данным на 26.10.2026',
+      '"datePublished":"2026-10-27"',
+      'data-russian-hh-alternatives="bright-funded-first"',
+      'data-russian-hh-cta="summary"',
+      'data-russian-hh-cta="programs"',
+      'data-russian-hh-cta="final"',
+      'data-russian-hh-official="non-affiliate"',
+      'data-russia-firm="hash-hedge"',
+      'data-russian-affiliate-disclosure="hash-hedge-review"',
+      'data-russian-risk-disclaimer="hash-hedge-review"',
+      'Empower Academy Ltd',
+      'FinSmart Solution Ltd',
+      'по данным на 19.10.2026',
+    ],
+  }],
   ['/ru/obzor-fundingpips', {
     title: 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
@@ -1962,7 +1993,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
   + (closedFirmsPublished ? 1 : 0)
 
@@ -2258,6 +2289,29 @@ for (const [path, href] of [
   }
 }
 // /ru/rossiyskie-prop-kompanii was merged into /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (301 in next.config.ts).
+// Live check: the old URL must answer 301 straight to the hub anchor, and the hub must keep id="rossiyskie".
+{
+  const localFirmsRedirect = await fetchPage(new URL('/ru/rossiyskie-prop-kompanii', BASE), 'manual')
+  let localFirmsTarget = null
+  try {
+    localFirmsTarget = new URL(localFirmsRedirect.location, BASE)
+  } catch {
+    // Reported below.
+  }
+  if (
+    localFirmsRedirect.status !== 301
+    || !localFirmsTarget
+    || localFirmsTarget.origin !== BASE.origin
+    || localFirmsTarget.pathname !== '/ru/dlya-russkoyazychnykh-treyderov'
+    || localFirmsTarget.hash !== '#rossiyskie'
+  ) {
+    errors.push(`/ru/rossiyskie-prop-kompanii: expected 301 to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie, got ${localFirmsRedirect.status} ${localFirmsRedirect.location || '(no Location)'}`)
+  }
+  const russiaHub = pages.find(probe => new URL(probe.productionUrl).pathname === '/ru/dlya-russkoyazychnykh-treyderov')
+  if (!russiaHub?.html.includes('id="rossiyskie"')) {
+    errors.push('/ru/dlya-russkoyazychnykh-treyderov: #rossiyskie anchor (301 target of /ru/rossiyskie-prop-kompanii) is missing')
+  }
+}
 
 // Local-company intent hands off to the two explicitly declared primary
 // partners. FundingPips remains available in broader comparisons, but must not
@@ -2281,6 +2335,16 @@ for (const paths of descriptions.values()) {
     errors.push(`duplicate description on ${paths.join(', ')}`)
   }
 }
+
+// /compare pairs are frozen to lib/compareAllowlist.ts; nothing may link to any other pair.
+const nonAllowlistedCompareLinks = [...internalTargets]
+  .map(target => /^\/compare\/([a-z0-9-]+)-vs-([a-z0-9-]+)$/.exec(target.split('?')[0]))
+  .filter(match => match && !isComparePairAllowed(match[1], match[2]))
+  .map(match => match[0])
+for (const target of nonAllowlistedCompareLinks) {
+  errors.push(`${target}: internal link to a non-allowlisted /compare pair`)
+}
+console.log(`${nonAllowlistedCompareLinks.length} internal link(s) to non-allowlisted /compare pairs`)
 
 const internalResults = await mapConcurrent(
   [...internalTargets],
@@ -2810,6 +2874,7 @@ if (comparisonHubProbe.status !== 200) {
   )
 } else {
   const comparisonHubText = textContent(comparisonHubProbe.html)
+  // Post-freeze firms (lib/postFreezeFirms.ts) have no /compare pairs.
   const eligibleFirms = firmRecords.map(firm => {
     const slug = outboundSlug(firm.name)
     return {
@@ -2817,8 +2882,10 @@ if (comparisonHubProbe.status !== 200) {
       slug,
       products: getChallengesByFirm(slug).filter(challenge => isChallengeFresh(challenge)),
     }
-  }).filter(entry => entry.products.length)
-  const expectedPairCount = eligibleFirms.length * (eligibleFirms.length - 1) / 2
+  }).filter(entry => entry.products.length && !isPostFreezeFirm(entry.slug))
+  const expectedPairCount = eligibleFirms.flatMap((left, index) =>
+    eligibleFirms.slice(index + 1).filter(right => isComparePairAllowed(left.slug, right.slug)),
+  ).length
   const expectedProductCount = eligibleFirms.reduce(
     (total, entry) => total + entry.products.length,
     0,
@@ -2968,13 +3035,17 @@ if (indiaLandingProbe.status !== 200) {
   )
 } else {
   const indiaLandingText = textContent(indiaLandingProbe.html)
+  // Derived with the page's own logic (scripts/india-landing-counts.mjs: buildLandingPayload +
+  // buildIndiaMatcherFirms), so a new tracked firm in firms.json never needs a pin edit here.
+  const india = JSON.parse(execFileSync(process.execPath, [fileURLToPath(new URL('./india-landing-counts.mjs', import.meta.url))], { encoding: 'utf8' }))
+  console.log(`${indiaLandingPath}: expecting ${india.qualifying}/${india.tracked} tracked firms, ${india.products} products, ${india.changes} changes`)
   for (const required of [
     'Best Prop Firms in India 2026: RBI Alert-List Checked | TFH',
-    '9/19 tracked firms pass every India publication gate',
-    '49 fresh India-eligible products with first-party sources',
+    `${india.qualifying}/${india.tracked} tracked firms pass every India publication gate`,
+    `${india.products} fresh India-eligible products with first-party sources`,
     'lowest published entry, keeping USD and EUR separate',
-    '19 current verified changes and open source watches',
-    'Compare 49 products',
+    `${india.changes} current verified changes and open source watches`,
+    `Compare ${india.products} products`,
     'Ranking order uses India evidence completeness first and editorial score second.',
     'Affiliate status and coupon size add 0 points.',
     'India evidence',
@@ -2996,6 +3067,7 @@ if (indiaLandingProbe.status !== 200) {
 
 const overallLandingPath = '/best-prop-firms-2026'
 const expectedOverallFirms = firmRecords.flatMap(firm => {
+  if (isPostFreezeFirm(outboundSlug(firm.name))) return []
   const products = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
     isChallengeFresh(challenge),
   )
@@ -3432,6 +3504,7 @@ for (const backlinkPath of [
 
 const swingLandingPath = '/best-swing-trading-prop-firms'
 const expectedSwingFirms = firmRecords.flatMap(firm => {
+  if (isPostFreezeFirm(outboundSlug(firm.name))) return []
   const freshProducts = getChallengesByFirm(outboundSlug(firm.name)).filter(challenge =>
     isChallengeFresh(challenge),
   )
@@ -4714,8 +4787,9 @@ if (fundedNextReviewProbe.status !== 200) {
     if (
       !card.includes(`data-alternative-products="${evidence.productCount}"`)
       || !card.includes(`data-alternative-sources="${evidence.sourceCount}"`)
-      || !card.includes(`data-alternative-comparison="${href}"`)
-      || !card.includes(`href="${href}"`)
+      || (hasComparisonPage(fundedNextFirm, alternative)
+        ? !card.includes(`data-alternative-comparison="${href}"`) || !card.includes(`href="${href}"`)
+        : card.includes(`href="${href}"`))
     ) {
       errors.push(`${fundedNextReviewPath}: review alternatives do not link to their exact comparisons`)
     }
@@ -4733,6 +4807,7 @@ if (fundedNextReviewProbe.status !== 200) {
 
   const expectedComparisonFirms = fundedNextFirm
     ? rankCurrentFirmAlternatives(fundedNextFirm, firmRecords, firmRecords.length)
+      .filter(firm => hasComparisonPage(fundedNextFirm, firm))
     : []
   const comparisonIndexTags = [...alternativeSection.matchAll(
     /<a\b[^>]*\bdata-firm-comparison-link=["'][^"']+["'][^>]*>/gi,

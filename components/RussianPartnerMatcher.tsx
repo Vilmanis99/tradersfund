@@ -13,6 +13,7 @@ import {
 } from '@/lib/russianPartnerMatcher'
 import { RuGoLinkView } from '@/components/RuGoLinkView'
 import type { RussiaStatus } from '@/lib/russiaStatus'
+import { formatRuDate } from '@/lib/ruDate'
 
 export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   slug: RussianMatcherPartnerSlug
@@ -193,7 +194,7 @@ export default function RussianPartnerMatcher({
                     </div>
                     <ul className="ru-facts">
                       <li><ShieldCheck size={14} aria-hidden="true" /> {profile.priceCount} цен; диапазон {profile.priceRange}</li>
-                      <li>Самая ранняя дата проверки продукта: {profile.captureDate}</li>
+                      <li>Самая ранняя дата проверки продукта: {formatRuDate(profile.captureDate)}</li>
                     </ul>
                     <div className="ru-actions">
                       <Link href={profile.reviewHref} className="btn-outline">Сначала прочитать обзор</Link>

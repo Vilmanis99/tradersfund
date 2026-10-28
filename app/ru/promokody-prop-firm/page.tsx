@@ -5,7 +5,7 @@ import { ArrowRight, BadgePercent, CalendarCheck, ShieldAlert } from 'lucide-rea
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import CopyableCodePill from '@/components/CopyableCodePill'
 import { getAllDeals, type Deal } from '@/lib/deals'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel, russiaBasisDateFor, russiaSourceDateFor } from '@/lib/russiaAvailability'
@@ -17,6 +17,7 @@ import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat
 import { ruNotListedDates } from '@/lib/ruBasisWording'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 export const revalidate = 86400
 
@@ -68,9 +69,9 @@ type HubFirm = {
 // Порядок: без РФ в списке ограничений → доступ неясен → недоступна (FundedNext), BrightFunded первым.
 const hubFirms: HubFirm[] = [
   { slug: 'bright-funded', name: 'BrightFunded', review: '/ru/obzor-bright-funded', anchor: 'bright-offer-status', dealAnchor: 'bright-funded-promokody', russiaNote: 'Россия не в списке ограничений; исключены лица из санкционных списков.' },
-  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/ru/obzor-crypto-fund-trader', russiaNote: `На Match-Trader ограничений по странам нет (по данным на ${CFT_RU_SOURCE_DATE}). Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на ${CFT_PAYMENTS_CHECKED}).` },
+  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', review: '/ru/obzor-crypto-fund-trader', russiaNote: `На Match-Trader ограничений по странам нет (по данным на ${formatRuDate(CFT_RU_SOURCE_DATE)}). Оплата: карта, PayPal, Apple/Google Pay, криптовалюта (по данным на ${formatRuDate(CFT_PAYMENTS_CHECKED)}).` },
   { slug: 'upscale', name: 'Upscale', review: null, russiaNote: `Статус для РФ неясен: Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании; для вывода нужен KYC по паспорту (на ${ruAccessDate(RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt)}). В FAQ сказано иное, но обязывающий текст — Условия. Выплаты в USDT.`, external: 'https://upscale.trade/ru/' },
-  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: `Доступ для РФ не ясен (проверено ${FP_ACCESS_CHECKED}).` },
+  { slug: 'fundingpips', name: 'FundingPips', review: '/ru/obzor-fundingpips', russiaNote: `Доступ для РФ не ясен (проверено ${formatRuDate(FP_ACCESS_CHECKED)}).` },
   { slug: 'fundednext', name: 'FundedNext (CFD)', review: '/ru/obzor-fundednext', russiaNote: FUNDEDNEXT_RU_ACCESS_NOTE },
 ]
 
@@ -124,11 +125,11 @@ export default function RussianPromoHubPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-promo-hub={CHECKED_ISO}>
-          <div className="ru-eyebrow"><CalendarCheck size={14} aria-hidden="true" /> Выпуск: {MONTH_LABEL} · проверено {CHECKED}</div>
+          <div className="ru-eyebrow"><CalendarCheck size={14} aria-hidden="true" /> Выпуск: {MONTH_LABEL} · проверено {formatRuDate(CHECKED)}</div>
           <h1>Промокоды проп-фирм — {MONTH_LABEL}</h1>
           <p className="ru-lead">
             Большинство «промокодов» в выдаче — это коды без даты, которые давно не работают. Здесь их нет: каждый код
@@ -165,15 +166,15 @@ export default function RussianPromoHubPage() {
                       {deal.code ? <CopyableCodePill code={deal.code} pct={deal.pctIsUpTo ? undefined : deal.pct} locale="ru" analyticsFirm={firm.slug} /> : <p><strong>Скидка применяется по ссылке, код вводить не нужно.</strong></p>}
                       <p><strong>{deal.amountLabel}</strong>{deal.scope ? ` · ${deal.scope}` : ''}</p>
                       <p className="ru-source-line">
-                        Проверено {deal.verifiedOn}{deal.expiresOn ? ` · действует до ${deal.expiresOn}` : ''} ·{' '}
-                        <a href={deal.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{deal.sourceLabel}</a>
+                        Проверено {ruDatesInText(deal.verifiedOn)}{ruDatesInText(deal.expiresOn ? ` · действует до ${deal.expiresOn}` : '')} ·{' '}
+                        <a href={deal.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{ruDatesInText(deal.sourceLabel)}</a>
                       </p>
                       {deal.note ? <p className="ru-muted">{deal.note}</p> : null}
                     </div>
                   ) : (
                     <div className="ru-notice" data-russian-promo-placeholder={firm.slug}>
                       {/* TODO(Karlis): получить код у аффилиат-менеджера, проверить на кассе и добавить в content/data/deals.json */}
-                      <strong>Код ожидается.</strong> На {CHECKED} проверенного промокода {firm.name} у нас нет. Мы добавим его
+                      <strong>Код ожидается.</strong> На {formatRuDate(CHECKED)} проверенного промокода {firm.name} у нас нет. Мы добавим его
                       сюда с датой проверки, как только подтвердим на кассе.
                     </div>
                   )}
@@ -218,7 +219,7 @@ export default function RussianPromoHubPage() {
           <h2>Какие коды суммируются</h2>
           <p>
             {/* TODO(Karlis): заполнить после проверки совместимости кодов с распродажами у каждой фирмы */}
-            Данных о совместимости кодов на {CHECKED} нет: мы не проверяли сложение кода с сезонной распродажей ни у одной
+            Данных о совместимости кодов на {formatRuDate(CHECKED)} нет: мы не проверяли сложение кода с сезонной распродажей ни у одной
             из четырёх фирм. Таблица появится здесь вместе с первыми проверенными кодами.
           </p>
         </div>
@@ -228,7 +229,7 @@ export default function RussianPromoHubPage() {
         <div className="ru-shell ru-content">
           <h2><ShieldAlert size={20} aria-hidden="true" /> Промокод FTMO: почему его здесь нет</h2>
           <p>
-            <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {CHECKED}</span>{' '}
+            <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {formatRuDate(CHECKED)}</span>{' '}
             Россия, Беларусь и Казахстан — в официальном списке стран, где FTMO не оказывает услуги. Скидка на челлендж
             ничего не даст: до профинансированного этапа FTMO проверяет личность. Подробнее — в разборе{' '}
             <Link href="/ru/ftmo-dlya-rossiyan">«FTMO для россиян»</Link>, полная таблица — на странице{' '}

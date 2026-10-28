@@ -1,3 +1,4 @@
+import { displaySplitTiers } from './profitSplitDisplay.ts'
 import { firmSlug } from './firmSlug.ts'
 import { resolveRussiaBasisDate, resolveRussiaStatus, russiaBasisDatesBySlug, russiaStatusesBySlug } from './russiaStatus.ts'
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
@@ -33,6 +34,7 @@ export function buildChallengeComparisonRows(
         maxTradingDaysUnlimited: challenge.maxTradingDaysUnlimited ?? null,
         consistencyRuleApplies: challenge.consistencyRuleApplies ?? null,
         consistencyRulePct: challenge.consistencyRulePct, profitSplitPct: challenge.profitSplitPct,
+        profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
         payoutFirstDays: challenge.payoutFirstDays, payoutFrequency: challenge.payoutFrequency,
         rules: challenge.rules, assetClass: challenge.assetClass,
         sourceUrl: challenge.sourceUrl, capturedAt: challenge.sourceCapturedAt,
