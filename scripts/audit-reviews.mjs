@@ -83,6 +83,7 @@ import {
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
 } from '../lib/indexNow.ts'
+import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
 import {
   getTradingToolReviewLinks,
   TRADING_TOOL_REVIEWS,
@@ -1764,7 +1765,9 @@ function checkGlobalDirectorySurface() {
       "alternates: { canonical: '/prop-firms' }",
       'itemListSchema',
       'freshChallenges',
-      'challenges={freshChallenges}',
+      // Public-field projections only: the table's props are serialised into the page payload.
+      'firms={firms.map(toPublicFirm)}',
+      'challenges={freshChallenges.map(toPublicChallenge)}',
       'await searchParams',
       'global-prop-firm-directory',
       'focused-rule-lists',
@@ -2829,6 +2832,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-hash-hedge', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
+    ['/ru/fundingpips-pravila', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
     ['/ru/forex-prop-firmy', 'russian_ranking'],
     ['/ru/vyplaty-prop-firm', 'russian_ranking'],
@@ -4215,6 +4219,29 @@ function checkChallengePassingPillar() {
   return rows.length
 }
 
+/**
+ * FXIFY Lightning's firm-level profitSplitPct is null, so the true-cost pillar must say so in
+ * reader wording. One block (paragraph or list item) that names Lightning must carry both:
+ *  - a statement that the base / firm-level profit split is null, unpublished or unverified
+ *    (the legacy "<code>profitSplitPct</code> is null" is still accepted, but no field name is required);
+ *  - a statement that fee-recovery profit is undefined or cannot be calculated.
+ */
+function statesLightningSplitUnpublished(content) {
+  const SPLIT = String.raw`(?:(?:base|firm-level|fixed|headline)\s+)?(?:profit\s+)?split`
+  const splitUnpublished = [
+    /\bprofitSplitPct\s+is\s+null\b/i,
+    new RegExp(String.raw`\bno\s+(?:verified|published|fixed|confirmed)\s+${SPLIT}\b`, 'i'),
+    new RegExp(String.raw`\b${SPLIT}\b[^.;]{0,60}?\b(?:is|stays|remains)\s+(?:null|not\s+(?:published|disclosed|verified|confirmed)|unpublished|undisclosed|unverified|unconfirmed)\b`, 'i'),
+    new RegExp(String.raw`\b(?:does\s+not|doesn['’]t)\s+publish\s+(?:a|an|its|any)\s+(?:verified\s+|exact\s+)?${SPLIT}\b`, 'i'),
+  ]
+  const recoveryUndefined = /\bfee-recovery\s+profit\s+(?:is|stays|remains)\s+(?:undefined|not\s+calculated|uncalculated|not\s+calculable)\b|\bfee-recovery\s+profit\s+(?:cannot|can['’]t|can\s+not)\s+be\s+calculated\b/i
+  const blocks = content.split(/<\/li>|<\/p>|\n\s*\n/)
+    .map(block => block.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' '))
+  return blocks.some(block => /\bLightning\b/.test(block)
+    && splitUnpublished.some(pattern => pattern.test(block))
+    && recoveryUndefined.test(block))
+}
+
 /** True-cost copy must preserve the calculator's scope and captured inputs. */
 function checkTrueCostPillar() {
   const rows = []
@@ -4344,12 +4371,8 @@ function checkTrueCostPillar() {
   }
 
   const lightning = product('fxify', 'lightning-challenge')
-  if (
-    lightning?.profitSplitPct !== null ||
-    !content.includes('<code>profitSplitPct</code> is null') ||
-    !content.includes('fee-recovery profit is undefined')
-  ) {
-    rows.push('FXIFY Lightning must remain uncalculated while its base split is null')
+  if (lightning?.profitSplitPct !== null || !statesLightningSplitUnpublished(content)) {
+    rows.push('FXIFY Lightning must remain uncalculated while its base split is null: one paragraph or list item naming Lightning must say its base/firm-level split is null, not published or unverified (e.g. "No verified base split", "its base split is not published") and that fee-recovery profit is undefined / cannot be calculated')
   }
 
   const requiredLinks = [
@@ -6950,12 +6973,12 @@ function checkFuturesLandingCluster() {
   const { data: mff, content: mffContent } = matter(mffFile)
   const expectedMffSeoTitle = 'My Funded Futures Review 2026: MFF Funded Account Rules'
   const expectedMffDescription =
-    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, funded drawdown, payout buffers and minimums.'
+    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, payout buffers, minimums and caps, and what a first payout costs.'
   if (
     mff.seoTitle !== expectedMffSeoTitle
     || mff.seoDescription !== expectedMffDescription
-    || mff.modified !== '2026-09-14 12:00:00'
-    || mff.sourceCapturedAt !== '2026-09-14'
+    || mff.modified !== '2026-10-28 10:00:00'
+    || mff.sourceCapturedAt !== '2026-10-26'
   ) {
     rows.push('My Funded Futures SEO or evidence metadata is stale')
   }
@@ -11254,6 +11277,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-ftmo', path.join(ROOT, 'app/ru/obzor-ftmo/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
+    ['/ru/fundingpips-pravila', path.join(ROOT, 'app/ru/fundingpips-pravila/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
     ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/obzor-crypto-fund-trader', path.join(ROOT, 'app/ru/obzor-crypto-fund-trader/page.tsx')],
@@ -11389,7 +11413,13 @@ function checkRussianAcquisitionPilot() {
       if (!announceable(route)) rows.push(`Russian IndexNow inventory announces ${route}, which has no page source${route === RU_CLOSED_FIRMS_PATH ? ' while closed firms are unpublished' : ''}`)
       if (redirectSources.has(route)) rows.push(`Russian IndexNow inventory announces ${route}, which next.config.ts redirects`)
     }
+    // A hand-written RU rules page held noindex by the rules gate is deliberately not announced.
+    const gatedRulesPaths = new Set(gatedRuRulesHandwrittenPaths())
     for (const route of russianRouteFiles.keys()) {
+      if (gatedRulesPaths.has(route)) {
+        if (indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory announces ${route}, which the rules gate keeps noindex`)
+        continue
+      }
       if (!indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory is missing ${route}`)
     }
     if (new Set(indexNowPaths).size !== indexNowPaths.length) rows.push('Russian IndexNow inventory lists a path twice')

@@ -238,7 +238,7 @@ export default function RussianPropFirmReviewsPage() {
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-reviews-guide="long-form-source-gated">
-          <RussianEvidenceFreshnessNotice evidence={[{ label: 'рынок и доступность', capturedAt: marketEvidence.capturedAt }, ...featuredProducts.map(product => ({ label: `${product.firmSlug}: ${product.productName}`, capturedAt: product.sourceCapturedAt }))]} />
+          <RussianEvidenceFreshnessNotice evidence={[{ label: 'рынок и доступность', capturedAt: marketEvidence.capturedAt }, ...featuredCards.flatMap(card => card.products.map(product => ({ label: product.productName.startsWith(card.name) ? product.productName : `${card.name}: ${product.productName}`, capturedAt: product.sourceCapturedAt })))]} />
           <div className="ru-eyebrow"><FileSearch size={14} aria-hidden="true" /> Проверка кейса до регистрации</div>
           <h1>Отзывы о проп-фирмах: проверка выплат, правил и KYC</h1>
           <p className="ru-lead">

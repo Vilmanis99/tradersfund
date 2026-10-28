@@ -59,7 +59,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы доступны трейдерам из России?',
-    a: `На ${ruNotListedDates(['bright-funded', 'crypto-fund-trader'])} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader). На ${UPDATED} FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
+    a: `У BrightFunded и Crypto Fund Trader (на Match-Trader) России нет в списке ограничений (на ${ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}). На ${UPDATED} FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
   },
   {
     q: 'Сколько зарабатывает проп-трейдер?',
@@ -339,8 +339,8 @@ export default function RussianPropTradingPage() {
         <div className="ru-shell ru-content">
           <h2>Проп-трейдинг из других стран: ЕС, Казахстан, Израиль</h2>
           <p>
-            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. BrightFunded
-            и Crypto Fund Trader не ограничивают Россию — и, по нашим данным, не называют в ограничениях и большинство стран ЕС; у
+            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. У BrightFunded
+            и Crypto Fund Trader России нет в списке ограничений (на {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}) — и они, по нашим данным, не называют в ограничениях и большинство стран ЕС; у
             FundedNext Россию теперь исключает (см. ниже). Казахстан ограничивают FTMO и Lucid Trading; у FundedNext CFD и BrightFunded он не в списке ограничений. Для Израиля
             и других стран проверьте список ограничений выбранной фирмы. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
           </p>

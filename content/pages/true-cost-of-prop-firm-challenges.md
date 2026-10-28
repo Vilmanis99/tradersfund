@@ -3,7 +3,7 @@ title: "True Cost of Prop Firm Challenges: Fee-Recovery Math (2026)"
 seoTitle: "Prop Firm Challenge True Cost: Fee-Recovery Math"
 slug: "true-cost-of-prop-firm-challenges"
 date: "2026-05-20 12:00:00"
-modified: "2026-10-06"
+modified: "2026-10-27"
 author: "Traders Fund Hub"
 description: "Calculate fee-recovery profit, refund-adjusted cash cost, retry cost, and the ratio between checkout cost and a challenge's starting loss room."
 seoDescription: "Calculate prop-firm fee-recovery profit, refund-adjusted cash cost, retry cost, loss-room ratio, and standardized growth days."
@@ -25,7 +25,7 @@ type: "page"
 
 <h2>What “break-even profit” means on TradersFundHub</h2>
 
-<p>The codebase retains the field name <code>breakEvenProfit</code> for compatibility with existing review tables. Its precise meaning is <strong>fee-recovery profit before counting a refund</strong>:</p>
+<p>Review tables label this figure "break-even profit". Its precise meaning is <strong>fee-recovery profit before counting a refund</strong>:</p>
 
 <pre style="background: var(--bg3); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>fee_recovery_profit = minimum_cost_to_funded / (base_profit_split_pct / 100)</code></pre>
 
@@ -90,7 +90,7 @@ assumed_daily_growth = min(1%, captured_daily_loss_pct)</code></pre>
 <h2>When the model must not calculate a number</h2>
 
 <ul class="wp-block-list">
-  <li><strong>No verified base split:</strong> FXIFY Lightning publishes only “up to 90%,” so its structured <code>profitSplitPct</code> is null and fee-recovery profit is undefined. Any exact calculation using an assumed base split would be unsupported.</li>
+  <li><strong>No verified base split:</strong> FXIFY Lightning publishes only “up to 90%,” so its base split is not published and fee-recovery profit is undefined. Any exact calculation using an assumed base split would be unsupported.</li>
   <li><strong>No verified fee:</strong> a null tier price cannot be replaced with a coupon, neighbouring tier, or remembered checkout value.</li>
   <li><strong>Mixed currencies:</strong> a euro fee against a USD notional account supports euro fee-recovery math, but not an honest cost / dollar-loss ratio without a dated FX rate.</li>
   <li><strong>Recurring or split billing:</strong> “minimum cost to funded” must state the assumed billing cycles and required after-pass payments.</li>

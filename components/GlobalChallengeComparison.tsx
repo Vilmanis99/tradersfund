@@ -29,6 +29,7 @@ import type {
 } from '@/lib/firms'
 import { minimumTierTotalUsd, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import { hasTieredSplit, profitSplitText } from '@/lib/profitSplitDisplay'
+import SplitTiersDisclosure from '@/components/SplitTiersDisclosure'
 import type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 export type { GlobalChallengeRow, GlobalChallengeTier } from '@/lib/challengeComparison'
 
@@ -1187,7 +1188,7 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         </div>
                         <div>
                           <dt>Profit split</dt>
-                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{profitSplitText(product, 'en') ?? 'Unverified'}</dd>
+                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}</dd>
                         </div>
                       </dl>
 
@@ -1474,9 +1475,9 @@ export default function GlobalChallengeComparison({ rows: initialRows }: { rows:
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.875rem', fontWeight: 800, textTransform: 'capitalize' }}>
                           {payoutLabel(product)}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
-                          Profit split {profitSplitText(product, 'en') ?? 'unverified'}
-                        </span>
+                        <div style={{ display: 'block', color: 'var(--muted)', fontSize: '0.875rem', marginTop: '0.35rem' }}>
+                          Profit split {hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'unverified'}
+                        </div>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top', minWidth: 150 }}>
                         {[

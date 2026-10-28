@@ -21,7 +21,7 @@ export interface ComparisonRow {
   maxLossPct: number | null
   profitSplitPct: number | null
   /** Display-only split tiers (lib/profitSplitDisplay); profitSplitPct stays the lowest tier. */
-  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
+  profitSplitTiers?: import('@/lib/profitSplitDisplay').SplitTier[]
   payoutFrequency: string | null
   checkedOn: string
   /** /go/<slug> without campaign; the table appends ?from=<placement>-table|-cards. */

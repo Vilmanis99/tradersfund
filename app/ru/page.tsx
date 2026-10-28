@@ -171,7 +171,7 @@ export default function RussianHomePage() {
           </div>
           <ComparisonTable rows={tableRows} locale="ru" placement="ru-home-comparison" />
           <DisclosureNote summary={<>Часть ссылок партнёрские. Порядок — не реклама. Размер счёта — не цена. Доступность для РФ проверяйте перед оплатой.</>}>
-            <p>Отметка доступа основана на поле russiaStatus и проверке условий фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
+            <p>Отметка «Доступ из РФ» основана на официальных списках ограничений и условиях фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
           </DisclosureNote>
         </div>
       </section>

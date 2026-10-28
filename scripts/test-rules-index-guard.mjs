@@ -34,14 +34,15 @@ const hasVerdictFile = (slug, lang) => fs.existsSync(path.join(process.cwd(), ve
 for (const model of models) {
   assert.equal(model.en.indexable, model.dataEligible && hasVerdictFile(model.slug, 'en'),
     `${model.en.path}: indexable must equal data gate (${model.dataEligible}) AND ${verdictPath(model.slug, 'en')} exists`)
-  if (model.ru?.template && model.ru.indexable) {
+  // Template twins and hand-written RU rules pages share the gate (Code Reviewer 27.10.2026).
+  if (model.ru?.indexable) {
     assert.ok(model.dataEligible && hasVerdictFile(model.slug, 'ru'), `${model.ru.path}: indexable without data gate or ${verdictPath(model.slug, 'ru')}`)
   }
-  if (model.ru?.template && !hasVerdictFile(model.slug, 'ru')) assert.equal(model.ru.indexable, false, `${model.ru.path}: no RU verdict file but indexable`)
+  if (model.ru && !hasVerdictFile(model.slug, 'ru')) assert.equal(model.ru.indexable, false, `${model.ru.path}: no RU verdict file but indexable`)
 }
 const pages = models.flatMap(model => [
   { path: model.en.path, indexable: model.en.indexable },
-  ...(model.ru?.template ? [{ path: model.ru.path, indexable: model.ru.indexable }] : []),
+  ...(model.ru ? [{ path: model.ru.path, indexable: model.ru.indexable }] : []),
 ])
 let noindexCount = 0
 for (const page of pages) {

@@ -200,9 +200,10 @@ try {
   const { getRussianReviewFinderHref, getRussianFinderRows, getRussianInstantFinderHref, buildChallengeComparisonRows } = require(path.join(root, 'lib/challengeComparisonData.ts'))
   const GlobalComparison = require(path.join(root, 'components/GlobalChallengeComparison.tsx')).default
   const CftChangeFeed = require(path.join(root, 'components/ChallengeChangeFeed.tsx')).default
+  const { challengeChangeCardEntry } = require(path.join(root, 'lib/challengeWatch.ts'))
   const cftChanges = require(path.join(root, 'content/data/challenge-watch.json'))
     .filter(entry => entry.firmSlug === 'crypto-fund-trader')
-    .map(entry => ({ ...entry, reviewUrl: '/blog/crypto-fund-trader-review', indiaScreened: false,
+    .map(entry => ({ ...challengeChangeCardEntry(entry), reviewUrl: '/blog/crypto-fund-trader-review', indiaScreened: false,
       productKeys: entry.productSlugs.map(slug => `crypto-fund-trader:${slug}`) }))
   const cftFeedHtml = renderToStaticMarkup(React.createElement(CftChangeFeed, {
     entries: cftChanges, surface: 'global', validProductKeys: cftChanges.flatMap(entry => entry.productKeys),
@@ -369,7 +370,7 @@ try {
   assert(emptyEnglish.includes('href="/prop-firm-challenges"') && !emptyEnglish.includes('<select'), 'English empty preview retains its comparison link')
   const ChangeFeed = require(path.join(root, 'components/ChallengeChangeFeed.tsx')).default
   const ruleEntries = require(path.join(root, 'content/data/challenge-watch.json')).filter(entry => entry.ruleEvidenceRefs)
-  const changeHtml = renderToStaticMarkup(React.createElement(ChangeFeed, { entries: ruleEntries.map(entry => ({ ...entry, reviewUrl: '/ru/obzor-fundednext', indiaScreened: false, productKeys: entry.productSlugs.map(slug => `fundednext:${slug}`) })), surface: 'global', validProductKeys: [] }))
+  const changeHtml = renderToStaticMarkup(React.createElement(ChangeFeed, { entries: ruleEntries.map(entry => ({ ...challengeChangeCardEntry(entry), reviewUrl: '/ru/obzor-fundednext', indiaScreened: false, productKeys: entry.productSlugs.map(slug => `fundednext:${slug}`) })), surface: 'global', validProductKeys: [] }))
   assert.equal((changeHtml.match(/Rule sources checked separately; prices were not refreshed\./g) ?? []).length, ruleEntries.length, 'each rule-only card explains its capture scope')
   for (const [captures, needsCheck] of [
     [[], true], [[ruDaysBefore(21)], false], [[ruDaysBefore(30)], false], [[ruDaysBefore(31)], true], [[ruDaysBefore(46)], true],
@@ -1207,6 +1208,7 @@ try {
    * (c) on /ru/obzor-<firm> pages only the reviewed firm's own CTAs are exempt from (b); alternatives are
    *     ranked like everywhere else, so an available BrightFunded leads them. The two single-product FundedNext
    *     guides (fundednext-mt5, fundednext-stellar-instant) are treated the same way: their subject is FundedNext.
+   *     The FundingPips rules page (fundingpips-pravila, 2026-10-27) is treated the same way: its subject is FundingPips.
    * Returns issues instead of throwing so the all-pages sweep can report every page at once.
    */
   const russiaCtaIssues = (html, { ranking = true, reviewedFirm = null, comparePage = false } = {}) => {
@@ -1273,7 +1275,7 @@ try {
   const russiaCtaSweep = new Map()
   // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
   // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
-  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundingpips-pravila': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {

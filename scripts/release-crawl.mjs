@@ -61,6 +61,7 @@ import {
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
 } from '../lib/indexNow.ts'
+import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
 
 const args = process.argv.slice(2)
 // /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
@@ -739,7 +740,10 @@ for (const source of [
 const russianRoutePairs = [...LOCALIZED_ROUTE_PAIRS]
 // Flag-gated pair (same publish flag as /prop-firms/closed).
 if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
-const russianOnlyPaths = [...RUSSIAN_ONLY_ROUTES]
+// Hand-written RU rules pages held noindex by the rules gate (lib/rulesPages.ts) are not acquisition
+// pages until the gate opens: checked below as 200 + noindex + no hreflang + out of the sitemap.
+const gatedRuRulesPaths = new Set(gatedRuRulesHandwrittenPaths())
+const russianOnlyPaths = RUSSIAN_ONLY_ROUTES.filter(path => !gatedRuRulesPaths.has(path))
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
   ...russianOnlyPaths,
@@ -1081,6 +1085,27 @@ const russianExpectations = new Map([
       '/ru/obzor-ftmo',
     ],
   }],
+  ['/ru/fundingpips-pravila', {
+    title: 'Правила FundingPips на русском 2026: лимиты, дни и выплаты',
+    h1: 'Правила FundingPips на русском: все программы 2026',
+    markers: [
+      'data-russian-fundingpips-rules-page="all-products"',
+      'data-russian-access-answer="first-screen"',
+      'data-russian-fundingpips-rules-table="all-products"',
+      'data-russian-fundingpips-rules-product-count="5"',
+      'data-russian-fundingpips-news-rule="eval-hold-master-deduct"',
+      'data-russian-fundingpips-holding-table="three-cases"',
+      'data-russian-fundingpips-worked-example="2-step-standard-10k"',
+      'data-russian-fundingpips-refund-conflict="help-vs-terms"',
+      'data-russian-alternatives="bright-funded-first"',
+      'data-russian-affiliate-disclosure="fundingpips-rules"',
+      'data-russian-risk-disclaimer="fundingpips-rules"',
+      '/go/bright-funded?from=ru-rules-fundingpips-hero',
+      '/go/fundingpips?from=ru-rules-fundingpips',
+      'https://help.fundingpips.com/hc/en-us/articles/34504137479441-News-Trading-Weekend-Holding',
+      '/ru/obzor-fundingpips',
+    ],
+  }],
   ['/ru/prop-firmy-bez-chelendzha', {
     title: 'Проп-фирмы без челленджа 2026: мгновенное финансирование',
     h1: 'Проп-фирмы без челленджа: мгновенное финансирование FundedNext и FundingPips',
@@ -1385,7 +1410,8 @@ const russianExpectations = new Map([
       'data-russian-fundingpips-russia',
       'data-russian-fundingpips-reviews',
       'data-russian-fundingpips-promo',
-      'data-russian-fundingpips-rules',
+      'data-russian-fundingpips-rules="summary"',
+      'data-russian-rules-inlink="obzor-fundingpips"',
       'data-russian-partner-article="fundingpips"',
       'data-russian-partner-editorial-shell="fundingpips"',
       'data-russian-partner-country-access="unconfirmed"',
@@ -1757,6 +1783,14 @@ const russianExpectations = new Map([
   }]] : []),
 ])
 
+for (const path of gatedRuRulesPaths) {
+  russianExpectations.delete(path)
+  const gatedPage = await fetchPage(new URL(path, BASE))
+  if (gatedPage.status !== 200) errors.push(`${path}: gated RU rules page returned ${gatedPage.status}`)
+  if (!/<meta[^>]+name="robots"[^>]+noindex/i.test(gatedPage.html)) errors.push(`${path}: rules gate is closed, page must be noindex`)
+  if (/hreflang=/i.test(firstMatch(gatedPage.html, /<head[^>]*>([\s\S]*?)<\/head>/i) ?? '')) errors.push(`${path}: rules gate is closed, hreflang must stay off`)
+  if (uniqueSitemapUrls.some(url => new URL(url).pathname === path)) errors.push(`${path}: rules gate is closed, page must stay out of the sitemap`)
+}
 const russianCampaignSources = new Map()
 const russianAffiliatePlacements = new Set()
 let russianArticleSchemaCount = 0
@@ -1993,8 +2027,8 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge']
-  .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url))).length
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila']
+  .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 
 // Outreach links to #<slug> on both closed-firms pages, so the EN and RU anchor sets must match.
@@ -2171,6 +2205,22 @@ const russianFtmoPage = pages.find(page =>
   const description = cryptoHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? ''
   const descriptionLength = [...description.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&#x27;/g, "'")].length
   if (descriptionLength < 140 || descriptionLength > 160) errors.push(`/ru/luchshie-kripto-prop-firmy: meta description is ${descriptionLength} characters, expected 140–160`)
+}
+// RU visible text never shows internal data field names (EA 27.10.2026 render scan: 'russiaStatus' printed on /ru and
+// /ru/luchshie-prop-firmy). Scripts, styles, comments and attributes are stripped first, so data-* attributes and
+// analytics keys stay allowed.
+{
+  const RU_RAW_FIELD = /\b(?:russiaStatus|russiaBasis|russiaSource\w*|firmSlug|productSlug|sourceCapturedAt|affiliateStatus|not-on-restricted-list|no-published-country-list)\b/
+  for (const page of pages) {
+    const pagePath = new URL(page.productionUrl).pathname
+    if (pagePath !== '/ru' && !pagePath.startsWith('/ru/')) continue
+    const visible = page.html
+      .replace(/<(script|style|noscript)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
+      .replace(/<!--[\s\S]*?-->/g, ' ')
+      .replace(/<[^>]+>/g, ' ')
+    const leak = visible.match(RU_RAW_FIELD)
+    if (leak) errors.push(`${pagePath}: internal field name "${leak[0]}" is visible text`)
+  }
 }
 // Every /go/ CTA on /ru pages carries a Russia-access badge matching firms.json russiaStatus.
 {
@@ -3823,7 +3873,7 @@ if (mffReviewProbe.status !== 200) {
   }
   if (mffDescription !== (
     'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, '
-    + 'funded drawdown, payout buffers and minimums.'
+    + 'payout buffers, minimums and caps, and what a first payout costs.'
   )) {
     errors.push(`${mffReviewPath}: search description does not use the decision-specific metadata`)
   }
@@ -3860,7 +3910,7 @@ if (mffReviewProbe.status !== 200) {
   })
   const mffReview = mffJsonLd.find(value => value['@type'] === 'Review')
   if (
-    mffReview?.dateModified !== '2026-09-14 12:00:00'
+    mffReview?.dateModified !== '2026-10-28 10:00:00'
     || mffReview?.name !== mffH1
     || mffReview?.reviewBody !== (
       'MFFU now separates one-time Rapid, Rapid EOD, Builder and Pro plans from legacy Flex accounts; compare the rule gates before you pay.'

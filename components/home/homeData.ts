@@ -5,6 +5,7 @@ import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { russiaBasisDateFor, russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 import { getAllDeals } from '@/lib/deals'
+import { displaySplitTiers } from '@/lib/profitSplitDisplay'
 import type { ComparisonRow } from './types'
 
 /** Preferred comparison size. Falls back to the closest published tier. */
@@ -57,7 +58,7 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       dailyLossPct: row.product.dailyLossPct,
       maxLossPct: row.product.maxLossPct,
       profitSplitPct: row.product.profitSplitPct,
-      profitSplitTiers: row.product.profitSplitTiers,
+      profitSplitTiers: displaySplitTiers(row.product.profitSplitTiers),
       payoutFrequency: row.product.payoutFrequency,
       checkedOn: row.product.capturedAt,
       goHref: firm?.affiliateUrl ? `/go/${row.firm.slug}` : null,

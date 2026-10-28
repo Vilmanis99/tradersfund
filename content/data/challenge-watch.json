@@ -110,7 +110,7 @@
     "lastCheckedAt": "2026-10-20",
     "title": "Correction: CFT reward shares and payout timing depend on the programme",
     "summary": "The three selected Instant starting tiers show a 50% reward share, while the 1-Phase and 2-Phase programmes show 80%. General reward requests require 15 traded days or 30 calendar days. Instant's no-minimum-days withdrawal/upgrade path requires 10% simulated profit; it is not unconditional immediate payment.",
-    "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified. Rechecked 2026-10-14: the product capture re-confirmed the 50% starting share on all three Instant tiers, and the FAQ read on 2026-10-15 still states 15 traded days or 30 calendar days for general reward requests. The 80% figures for the 1-Phase and 2-Phase programmes were carried forward from the earlier capture, not re-read field by field. The correction stands; no new policy change was observed. Rechecked 2026-10-20 (article-slot recapture, content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json, articleSlotRecapture): the homepage Instant tables still read \"Profit Split 50% 60% 70% 80% 90%\", the 1-Phase and 2-Phase tables still show 80% Live Stage splits, the FAQ still states the 15 traded days or 30 calendar days reward-request rule, and the Evaluation, Accelerated and Instant product captures were re-dated 2026-10-20. No policy change observed.",
+    "traderImpact": "This corrects TFH's blanket 80% and bi-weekly descriptions, not a proven September policy change. The regenerated Instant fee-recovery model uses the 50% starting share. Numeric payout timing is left unverified where the calendar field cannot express the conditions; no actual customer payout was independently verified. Rechecked 2026-10-14: the product capture re-confirmed the 50% starting share on all three Instant tiers, and the FAQ read on 2026-10-15 still states 15 traded days or 30 calendar days for general reward requests. The 80% figures for the 1-Phase and 2-Phase programmes were carried forward from the earlier capture, not re-read field by field. The correction stands; no new policy change was observed. Rechecked 2026-10-20 on cryptofundtrader.com (homepage and FAQ): the homepage Instant tables still read \"Profit Split 50% 60% 70% 80% 90%\", the 1-Phase and 2-Phase tables still show 80% Live Stage splits, the FAQ still states the 15 traded days or 30 calendar days reward-request rule, and the Evaluation, Accelerated and Instant product captures were re-dated 2026-10-20. No policy change observed.",
     "sourceUrls": [
       "https://cryptofundtrader.com/",
       "https://cryptofundtrader.com/faq/"
@@ -130,7 +130,7 @@
     "lastCheckedAt": "2026-10-19",
     "title": "CFT Ascend and Break prices follow the current terms; the homepage still shows different prices",
     "summary": "Rechecked 2026-10-19: the Terms and Conditions (section 5.6.5) still list Ascend at $39 / $78 / $195 / $390 / $780 / $1,560 for $5K through $200K, and the purchasable store items list Break at $70 / $140 / $200 for $25K / $50K / $100K, with activation fees of $138 / $198 / $328. The homepage, however, embeds Ascend store items at $45 / $90 / $225 / $450 / $899 / $1,798 and Break buttons at $70 / $139 / $199; the store API marks all of those homepage items as not purchasable. Our data keeps the Terms ladder for Ascend and the purchasable store prices for Break.",
-    "traderImpact": "The first-party pages still disagree, so treat Ascend prices as unconfirmed until checkout: the Terms ladder is what we show, but CFT's own homepage items are higher and cannot currently be bought, and Ascend availability is not confirmed. Ascend pays fixed scholarships rather than an ongoing percentage split, and Break requires a separate activation fee after review. The homepage-versus-terms disagreement first logged on 2026-10-06 is tracked in its own watch entry. Evidence: content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json (conflicts).",
+    "traderImpact": "The first-party pages still disagree, so treat Ascend prices as unconfirmed until checkout: the Terms ladder is what we show, but CFT's own homepage items are higher and cannot currently be bought, and Ascend availability is not confirmed. Ascend pays fixed scholarships rather than an ongoing percentage split, and Break requires a separate activation fee after review. The homepage-versus-terms disagreement first logged on 2026-10-06 is tracked in its own watch entry. Checked 2026-10-19 on cryptofundtrader.com (homepage, Terms and the Break challenge page).",
     "sourceUrls": [
       "https://cryptofundtrader.com/",
       "https://cryptofundtrader.com/terms-and-conditions/",
@@ -699,10 +699,10 @@
     "kind": "lineup-change",
     "status": "verified",
     "observedAt": "2026-09-14",
-    "lastCheckedAt": "2026-10-22",
+    "lastCheckedAt": "2026-10-26",
     "effectiveAt": "2026-08-20",
     "title": "MFFU moved new purchases to one-time plans and added Rapid EOD",
-    "summary": "Current MFFU plan pages describe Rapid, Rapid EOD, Builder and Pro as one-time purchases with no renewals. The official Flex article labels Flex legacy and no longer offered to new buyers. Current plan pages expose only selected-tier prices in server-readable text, so this refresh retains only unambiguous first-party prices and leaves the other current tier prices unverified.",
+    "summary": "Current MFFU plan pages describe Rapid, Rapid EOD, Builder and Pro as one-time purchases with no renewals. The official Flex article labels Flex legacy and no longer offered to new buyers. As of 2026-10-26, every current tier's list price is in the plan pages' Product schema, including the new Builder 100K ($282) and 150K ($398). MFFU also sells limited-time Studio plans (#001 $140, #002 $280, #003 $75) from myfundedfutures.com/studio, which are not tracked as a product yet.",
     "traderImpact": "Do not compare the old monthly subscription figures with a new MFFU checkout. Russia is on MFFU's restricted-country list and cannot purchase a new account. For current buyers, verify the selected size, one-time total, plan variant, payout buffer and any promotion in checkout; legacy subscriptions bought before the migration follow their original billing terms.",
     "sourceUrls": [
       "https://myfundedfutures.com/plans/rapid",
@@ -714,7 +714,9 @@
       "https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look",
       "https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan",
       "https://marketing.myfundedfutures.com/terms",
-      "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy"
+      "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
+      "https://myfundedfutures.com/studio",
+      "https://help.myfundedfutures.com/en/articles/17589665-studio-plans-a-comprehensive-guide"
     ]
   },
   {

@@ -40,7 +40,7 @@ export interface GlobalChallengeRow {
     consistencyRuleApplies?: boolean | null
     profitSplitPct: number | null
     /** Display-only split tiers (traderPct + appliesTo; no quotes or URLs). Sorting and maths use profitSplitPct. */
-    profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
+    profitSplitTiers?: import('./profitSplitDisplay').SplitTier[]
     payoutFirstDays: number | null
     payoutFrequency: PayoutFrequency | null
     rules: ChallengeRules

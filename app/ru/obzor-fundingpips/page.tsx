@@ -7,6 +7,7 @@ import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFr
 import type { Challenge } from '@/lib/firms'
 import type { ReactNode } from 'react'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { formatRuDate } from '@/lib/ruDate'
@@ -148,8 +149,8 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           </p>
           <p>
             {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
-            Фирмы, которые на{' '}
-            {formatRuDate(RU_CHECKED)} Россию не ограничивают: BrightFunded, <Link href="/ru/obzor-crypto-fund-trader">Crypto Fund Trader</Link> (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
+            Фирмы, у которых России нет в списке ограничений (на{' '}
+            {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}): BrightFunded, <Link href="/ru/obzor-crypto-fund-trader">Crypto Fund Trader</Link> (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
           </p>
         </div>
@@ -284,9 +285,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       </section>
 
       <section className="ru-section" id="pravila">
-        <div className="ru-shell ru-content" data-russian-fundingpips-rules="verified">
+        <div className="ru-shell ru-content" data-russian-fundingpips-rules="summary">
           <h2>Правила FundingPips</h2>
-          <p>Цели и лимиты по продуктам{rules.asOf ? ` (по данным на ${formatRuDate(rules.asOf)})` : ''}:</p>
+          <p className="ru-notice" data-russian-rules-inlink="obzor-fundingpips"><strong>Полный разбор всех пяти программ:</strong> <Link href="/ru/fundingpips-pravila">правила FundingPips</Link> — новости, перенос позиций, советники, выплата по запросу, расхождения источников и расчёт на примере.</p>
+          <p>Коротко — цели и лимиты{rules.asOf ? ` (по данным на ${formatRuDate(rules.asOf)})` : ''}:</p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-fundingpips-rules-table="products">
               <caption className="hidden-caption">Правила FundingPips по продуктам</caption>
@@ -307,15 +309,8 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
               </tbody>
             </table>
           </div>
-          <ul>
-            <li><strong>Правило стабильности:</strong> от 15% до 35% в зависимости от продукта; у части программ есть минимум прибыльных дней (у Zero — 7 дней).</li>
-            <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
-            <li><strong>Перенос позиций:</strong> на оценке всех четырёх оценочных моделей через ночь и выходные разрешён; на мастер-счёте без опции Swing все позиции закрываются автоматически каждый день (это не нарушение); у Zero позиция на выходных — немедленное закрытие счёта (по данным на {formatRuDate(HOLDING_CHECKED)}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</li>
-            <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
-            <li data-russian-fundingpips-pro-min-days={proDays.days ?? 'unconfirmed'}><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {proDays.short} для новых и сброшенных счетов{proDays.dated}; купленные до 26.08.2026 сохраняют 1 день.</li>
-            <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
-            <li><strong>Платформы:</strong> MT5, cTrader, Match-Trader; MT5 недоступен в США и Канаде.</li>
-          </ul>
+          <p>Доля трейдера: 80% у 1 Step Flex и 2 Step Pro, 80% или 95% у 2 Step Flex, 60%, 80% или 100% по запросу у 2 Step Standard (выбор при покупке), 95% у Zero; подробности — в разделе <Link href="#reward-routes">о маршрутах выплат</Link>.</p>
+          <p>Новости: на мастер-счёте прибыль сделок в окне ±5 минут вокруг важной новости вычитается, а у Zero окно ±10 минут — грубое нарушение. Перенос: на оценке через ночь и выходные можно, на мастер-счёте без опции Swing позиции закрываются автоматически каждый день, у Zero позиция на выходных — немедленное закрытие счёта (по данным на {formatRuDate(HOLDING_CHECKED)}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</p>
         </div>
       </section>
 

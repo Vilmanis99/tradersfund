@@ -19,7 +19,7 @@ import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
-const DESCRIPTION = 'FundingPips или BrightFunded: сравнение 1-Step, 2-Step и Zero, цен в USD и EUR, просадки, сплита, выплат. BrightFunded РФ не ограничивает, FundingPips — неясно.'
+const DESCRIPTION = 'FundingPips или BrightFunded: 1-Step, 2-Step и Zero, цены и выплаты. У BrightFunded РФ нет в списке ограничений (на 23.10.2026), у FundingPips статус неясен.'
 
 // Official pages re-read by the RU Writer on this date: FundingPips Get Started (countries, checkout, HELLO, refund),
 // BrightFunded help country list + Terms §2, payout methods, news rule, platforms.
@@ -468,7 +468,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               </p>
               <p>
                 После оценки у 2 Step Standard нет единой доли: еженедельно 60%, раз в две недели 80% или по запросу 100%, причём для
-                выплаты по запросу действует правило стабильности 35%. Прежних маршрутов «ежемесячно 100%» и «по запросу 90%» больше нет (по данным на 20.10.2026).
+                выплаты по запросу действует правило стабильности 35%. Прежних маршрутов «ежемесячно 100%» и «по запросу 90%» больше нет (по данным на 20.10.2026). Новости, перенос и выплаты по каждой модели — в <Link href="/ru/fundingpips-pravila">полных правилах FundingPips</Link>.
               </p>
               <p data-russian-fundingpips-refund-conflict="help-vs-terms">
                 <strong>Возврат взноса: источники FundingPips расходятся.</strong> По справке FundingPips (Get Started и Reward Methods) взнос за 2 Step Standard

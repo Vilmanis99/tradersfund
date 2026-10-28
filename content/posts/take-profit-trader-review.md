@@ -3,7 +3,7 @@ title: "Take Profit Trader Review 2026: Fees, Drawdown & Payouts"
 seoTitle: "Take Profit Trader Review 2026: Test Fees, Funding & Payouts"
 slug: "take-profit-trader-review"
 date: "2026-06-15"
-modified: "2026-10-27 12:00:00"
+modified: "2026-10-28 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Take Profit Trader pairs a 3-day path for new tests with day-one payouts — then attaches an end-of-day trailing drawdown and an 80% starting split. Here's the math and who it beats."
 seoDescription: "Take Profit Trader review 2026: monthly Test fees from $150 (25K) to $360 (150K), 6% target, 3 minimum days, EOD trailing drawdown, 50% consistency, 80% split."
@@ -57,7 +57,7 @@ type: "post"
 <!-- SECTION 4 — Rule mechanics -->
 <h2 class="wp-block-heading"><strong>How the rules actually work</strong></h2>
 
-<p><strong>End-of-day trailing drawdown — fixed in dollars, not percent.</strong> On the $50K Test, your loss line starts at $50,000 − $2,000 = $48,000. It trails your <em>closing</em> balance, updating once at 5 PM ET. Close a day at $51,200 and the line ratchets up to $49,200 — and it stays there. It never trails back down. The "end-of-day" part is the trader-friendly bit: intraday spikes don't move the line, so a green afternoon you give back before the close doesn't cost you. That's softer than Topstep's intraday trailing, where the line tracks your unrealised high tick by tick.</p>
+<p><strong>End-of-day trailing drawdown — fixed in dollars, not percent.</strong> On the $50K Test, your loss line starts at $50,000 − $2,000 = $48,000. It trails your <em>closing</em> balance, updating once at 5 PM ET. Close a day at $51,200 and the line ratchets up to $49,200 — and it stays there. It never trails back down. The "end-of-day" part is the trader-friendly bit: intraday spikes don't move the line, so a green afternoon you give back before the close doesn't cost you. Topstep's Maximum Loss Limit uses the same end-of-day ratchet: help article 8284204 (checked 2026-10-28) says "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down." So both firms trail on the closing balance, not tick by tick.</p>
 
 <p><strong>No daily loss limit.</strong> On 2026-10-26 Take Profit Trader's homepage rule table listed "Daily loss rule" as "None" for the Test, PRO and PRO+, and the $50K card showed "Daily Loss Limit $1100 Removed" ($150K: "$3300 Removed"). The firm's public pricing API still returns the old tier values, but the site marks them removed, so this review treats the Test as having no daily loss limit. The end-of-day trailing drawdown is the evaluation boundary that remains.</p>
 
@@ -96,7 +96,7 @@ type: "post"
 <h2 class="wp-block-heading"><strong>Pros</strong></h2>
 <ul class="wp-block-list">
   <li>No daily loss limit on the Test, PRO or PRO+: the homepage marks it removed (checked 2026-10-26).</li>
-  <li>End-of-day trailing drawdown on the Test, so intraday give-back doesn't move your loss line — softer than Topstep's intraday trail.</li>
+  <li>End-of-day trailing drawdown on the Test, so intraday give-back doesn't move your loss line — the same end-of-day ratchet Topstep's help article 8284204 describes (checked 2026-10-28).</li>
   <li>Same-day payouts once funded: request on day one, no minimum days, no maximum cap.</li>
   <li>Consistency rule (50%) applies only to the Test and is removed entirely on PRO/PRO+.</li>
   <li>New Test accounts can pass in 3 trading days; existing or reset Tests retain the 5-day minimum.</li>

@@ -5,6 +5,7 @@ import type {
   FeatureFirmEvidence,
   ProductVerdict,
 } from '@/lib/featureEvidence'
+import SplitTiersDisclosure from '@/components/SplitTiersDisclosure'
 
 function dateLabel(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -45,7 +46,9 @@ function EvidenceCards({ rows }: { rows: FeatureFirmEvidence[] }) {
               <li key={product.productSlug} className={`fe-v fe-v--${product.verdict}`}>
                 <span className="fe-v-tag">{VERDICT_LABEL[product.verdict]}</span>
                 <span className="fe-v-name">{product.productName}</span>
-                {product.detail && <span className="fe-v-detail">{product.detail}</span>}
+                {product.detail && (product.splitTiers?.length
+                  ? <div className="fe-v-detail" data-split-product={`${row.slug}:${product.productSlug}`} data-split-display="tiered"><SplitTiersDisclosure tiers={product.splitTiers}>{product.detail}</SplitTiersDisclosure></div>
+                  : <span className="fe-v-detail">{product.detail}</span>)}
                 <span className="fe-v-source">
                   <a
                     href={product.sourceUrl}

@@ -30,6 +30,47 @@ export interface ChallengeWatchEntry {
   sourceUrls: string[]
 }
 
+/**
+ * The watch-entry fields the client change feed renders. Evidence references name internal
+ * evidence files and sections; the feed only shows whether a rule-only or conflict path was
+ * used, so it receives booleans, not the references (props are serialised into the page).
+ */
+export interface ChallengeChangeCardEntry {
+  id: string
+  firmSlug: string
+  firmName: string
+  kind: ChallengeWatchKind
+  status: ChallengeWatchStatus
+  observedAt: string
+  lastCheckedAt: string
+  ruleSourcesCheckedSeparately?: true
+  conflictObservedSeparately?: true
+  effectiveAt?: string
+  title: string
+  summary: string
+  traderImpact: string
+  sourceUrls: string[]
+}
+
+export function challengeChangeCardEntry(entry: ChallengeWatchEntry): ChallengeChangeCardEntry {
+  return {
+    id: entry.id,
+    firmSlug: entry.firmSlug,
+    firmName: entry.firmName,
+    kind: entry.kind,
+    status: entry.status,
+    observedAt: entry.observedAt,
+    lastCheckedAt: entry.lastCheckedAt,
+    ...(entry.ruleEvidenceRefs?.length ? { ruleSourcesCheckedSeparately: true as const } : {}),
+    ...(entry.sourceConflictEvidenceRefs?.length ? { conflictObservedSeparately: true as const } : {}),
+    ...(entry.effectiveAt ? { effectiveAt: entry.effectiveAt } : {}),
+    title: entry.title,
+    summary: entry.summary,
+    traderImpact: entry.traderImpact,
+    sourceUrls: entry.sourceUrls,
+  }
+}
+
 export interface ChallengeProductSignal {
   id: string
   kind: ChallengeWatchKind

@@ -24,6 +24,7 @@ const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.jso
 const HISTORY = /\b(previous(ly)?|former(ly)?|expired|replaced|no longer|old code|was the code|ended|superseded)\b|прежн|предыдущ|ранее|истёк|истек|больше не|заменён|заменен/i
 
 const PENDING = {
+  // Empty: luchshie-prop-firmy no longer presents STRTN as current (cleared 2026-10-28 CR).
 }
 
 const withPrevious = firms.filter(firm => firm.previousDiscountCode)

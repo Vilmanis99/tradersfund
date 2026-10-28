@@ -23,7 +23,7 @@ export { firmSlug }
  */
 
 import { freshChallenges } from './challengeMatchup'
-import { hasTieredSplit, profitSplitValue } from './profitSplitDisplay'
+import { displaySplitTiers, hasTieredSplit, profitSplitValue, type SplitTier } from './profitSplitDisplay'
 import type { Challenge, Firm, RuleAvailability } from './firms'
 import { getAllFirms } from './firms'
 
@@ -49,6 +49,8 @@ export interface FeatureProductRow {
   verdict: ProductVerdict
   /** Extra context for mechanic features, e.g. the actual drawdown type. */
   detail: string | null
+  /** Display-only split tiers behind a tiered `detail` (the tier disclosure); split features only. */
+  splitTiers?: SplitTier[]
   sourceUrl: string
   capturedAt: string
 }
@@ -109,6 +111,8 @@ function drawdownLabel(challenge: Challenge): string | null {
 interface FeatureTest {
   test: ProductTest
   detail?: DetailFn
+  /** The detail is a split label: tiered products also get their tiers for the tier disclosure. */
+  splitTiers?: boolean
   /** Positive verb phrase, e.g. "allow EAs". */
   claim: string
 }
@@ -169,6 +173,7 @@ const FEATURE_TESTS: Record<string, FeatureTest> = {
     // that reaches 90% only on a later stage (Funded Live) does not qualify; how tiers should
     // count here is an open editorial question, not decided in code.
     detail: c => (hasTieredSplit(c) ? `${profitSplitValue(c)} split (tiered)` : c.profitSplitPct == null ? null : `${c.profitSplitPct}% split`),
+    splitTiers: true,
     test: c => {
       if (c.profitSplitPct == null) return 'unverified'
       return c.profitSplitPct >= 90 ? 'allows' : 'blocks'
@@ -274,6 +279,7 @@ export function buildFeatureEvidence(slug: string): FeatureEvidence {
         productSlug: challenge.productSlug,
         verdict: spec.test(challenge),
         detail: spec.detail?.(challenge) ?? null,
+        ...(spec.splitTiers && hasTieredSplit(challenge) ? { splitTiers: displaySplitTiers(challenge.profitSplitTiers) } : {}),
         sourceUrl: challenge.sourceUrl,
         capturedAt: challenge.sourceCapturedAt,
       }

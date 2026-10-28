@@ -264,7 +264,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   const nonIndexableRulesPaths = new Set(rulesModels.flatMap(model => [
     ...(model.en.indexable ? [] : [model.en.path]),
-    ...(model.ru?.template && !model.ru.indexable ? [model.ru.path] : []),
+    // Template twins and hand-written RU rules pages alike (hand-written ones are also in RUSSIAN_ONLY_ROUTES).
+    ...(model.ru && !model.ru.indexable ? [model.ru.path] : []),
   ]))
 
   const baseRoutes: MetadataRoute.Sitemap = [

@@ -43,7 +43,9 @@ export type TrustpilotState =
  * Suppression wins over a score: if Trustpilot has pulled the aggregate, a
  * leftover number in the data file is stale by definition.
  */
-export function getTrustpilotState(firm: Firm): TrustpilotState {
+export function getTrustpilotState(
+  firm: Pick<Firm, 'trustpilotCount' | 'trustpilotUrl' | 'trustpilotCapturedAt' | 'trustpilotRatingSuppressed' | 'trustpilotScore'>,
+): TrustpilotState {
   const count = firm.trustpilotCount ?? null
   const url = firm.trustpilotUrl
   const capturedAt = firm.trustpilotCapturedAt

@@ -3,7 +3,7 @@ title: "TradeDay Review 2026: Day-One Payouts, but a Tiered Split"
 seoTitle: "TradeDay Review 2026: Fees, Payouts & Drawdown"
 slug: "tradeday-review"
 date: "2026-07-28"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-27 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "TradeDay pairs day-one Quick Pay withdrawals with three drawdown paths, but its 50% low-profit payout tier and promo-heavy monthly pricing needs scrutiny."
 seoDescription: "TradeDay review comparing 12 current monthly prices, three drawdown paths, day-one Quick Pay withdrawals, the 50% low-profit payout tier, and true cost."
@@ -36,7 +36,7 @@ sourceUrls:
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Markets</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">CME, CBOT, NYMEX and COMEX futures only</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Programs</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Quick Pay Intraday, Quick Pay End of Day and Fast Pass End of Day</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Account sizes</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K, $50K, $100K and $150K</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Captured monthly price</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100–$530 list, checked 2026-10-20; TDNEW promo prices are lower</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Captured monthly price</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100–$530 list, checked 2026-10-20; TDNEW promo prices are lower (checked 2026-10-27)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Profit target</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">6% on all 12 published program-size combinations</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Maximum loss</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$2,000 on $50K, $3,000 on $100K, $4,500 on $150K</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 700;">Consistency rule</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">30% on Quick Pay evaluation; 45% on Fast Pass evaluation and on Fast Pass Funded Sim accounts opened on or after 2026-07-26</td></tr>

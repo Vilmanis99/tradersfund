@@ -61,7 +61,7 @@ export interface IndiaMatcherProduct {
   payoutFrequency: PayoutFrequency | null
   profitSplitPct: number | null
   /** Display-only split tiers; sorting uses profitSplitPct. */
-  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
+  profitSplitTiers?: import('./profitSplitDisplay').SplitTier[]
   minTradingDays: number | null
   pricingModel: 'one-off' | 'monthly-subscription' | 'split-payment'
   capturedAt: string

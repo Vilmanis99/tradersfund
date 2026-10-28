@@ -303,7 +303,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
             </table>
           </div>
           {!productRows.length && <p className="ru-notice">Нет программ с актуальной проверкой. Цены и числовые рекомендации временно скрыты; используйте список источников ниже для проверки действующих условий.</p>}
-          <p className="ru-source-line">Самая ранняя проверка данных: {formatRuDate(latestCapture)}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; FundedNext против FTMO — в <Link href="/ru/ftmo-vs-fundednext">отдельном сравнении</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
+          <p className="ru-source-line">Самая ранняя проверка данных: {formatRuDate(latestCapture)}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; FundedNext против FTMO — в <Link href="/ru/ftmo-vs-fundednext">отдельном сравнении</Link>; все пять программ одной фирмы — в разборе <Link href="/ru/fundingpips-pravila">правила Funding Pips</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
           <RussianFundedNextPayoutNotice />
         </div>
       </section>

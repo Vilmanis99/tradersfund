@@ -263,6 +263,7 @@ export default function RussianChallengeLifecyclePage() {
             <Link href="/ru/luchshie-prop-firmy" className="btn-primary btn-glow">Собрать короткий список <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/how-prop-firm-challenges-work" hrefLang="en" className="btn-outline">Полная английская версия</Link>
           </div>
+          <p className="ru-source-line">Как эти этапы выглядят у одной фирмы, со всеми лимитами и исключениями, — в разборе <Link href="/ru/fundingpips-pravila">условия FundingPips по программам</Link>.</p>
           <div className="ru-grid" data-russian-education-partner-cta="challenge-guide">
             {partnerCards.map(item => {
               const reviewHref = item.slug === 'fundednext'

@@ -41,6 +41,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-teamtraders',
   '/ru/otzyvy-prop-firm',
   '/ru/ftmo-dlya-rossiyan',
+  '/ru/fundingpips-pravila',
 ] as const
 
 /**
@@ -101,6 +102,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/ftmo-vs-fundednext': '2026-10-21',
   '/ru/fundednext-vs-fundingpips': '2026-10-20',
   '/ru/fundingpips-vs-bright-funded': '2026-10-21',
+  '/ru/fundingpips-pravila': '2026-10-28',
   '/ru/kak-my-zarabatyvaem': '2026-10-20',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
   '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
@@ -110,7 +112,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-eratrade': '2026-10-20',
   '/ru/obzor-ftmo': '2026-10-20',
   '/ru/obzor-fundednext': '2026-10-20',
-  '/ru/obzor-fundingpips': '2026-10-20',
+  '/ru/obzor-fundingpips': '2026-10-28',
   '/ru/obzor-hash-hedge': '2026-10-27',
   '/ru/obzor-kascapital': '2026-10-20',
   '/ru/obzor-proplive': '2026-10-20',
@@ -181,11 +183,12 @@ export function getLanguageAlternates(pathname: string) {
 export const RU_RULES_TEMPLATE_SLUGS = ['bright-funded', 'crypto-fund-trader', 'ftmo', 'fundednext'] as const
 /**
  * Hand-written RU rules pages that exist on this stack. Every entry must answer
- * 200 (npm run test:ru-rules-routes). /ru/fundingpips-pravila is drafted on
- * content/ru-fundingpips-rules (8ffaa3c) but not merged, so it is not listed:
- * re-add `fundingpips: '/ru/fundingpips-pravila'` in the commit that merges it.
+ * 200 (npm run test:ru-rules-routes). /ru/fundingpips-pravila ships from
+ * content/ru-fundingpips-rules (RU Writer, 28.10.2026).
  */
-export const RU_RULES_HANDWRITTEN: Readonly<Record<string, string>> = {}
+export const RU_RULES_HANDWRITTEN: Readonly<Record<string, string>> = {
+  fundingpips: '/ru/fundingpips-pravila',
+}
 
 function rulesSwitchHref(pathname: string): string | null {
   const en = /^\/prop-firms\/([a-z0-9-]+)\/rules$/.exec(pathname)

@@ -4154,7 +4154,7 @@
       "sourceUrl": "https://help.topstep.com/en/articles/14434175-topstepx",
       "sourceCapturedAt": "2026-10-22",
       "sourceQuote": "TopstepX™ is Topstep’s trading platform",
-      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Re-read 2026-10-22 via WebFetch (article shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
+      "notes": "TopstepX is the execution platform verified in this check. Third-party execution compatibility is not verified. The built-in copier is limited to Trading Combine and Express Funded Accounts, not Live. Platform access does not establish country or personal eligibility. Checked 22.10.2026 on topstep.com (help centre article; it shows 'Updated over 3 weeks ago', no exact date): opening line still 'TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.'; copier scope still 'Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.'"
     },
     "score": 8.5,
     "logo": "/images/firms/topstep.png",
@@ -4217,16 +4217,16 @@
       "platform": null
     },
     "trustpilotScore": 3.7,
-    "trustpilotCount": 14945,
+    "trustpilotCount": 15002,
     "verifiedPayoutBadge": false,
     "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/topstep.com",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-28",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-06",
-      "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+      "capturedAt": "2026-10-28",
+      "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
       "drawdownType": {
         "value": "eod-trailing",
         "summary": "eod-trailing",
@@ -4237,10 +4237,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
-            "quote": "end-of-day balance",
+            "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down. Once it reaches your starting balance, it locks permanently.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-06",
-            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
             "productSlug": "trading-combine-standard-path"
           }
         ]
@@ -4269,8 +4269,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
             "quote": "Trading Combine — Consistency Target (55%)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-06",
-            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
             "productSlug": "trading-combine-standard-path"
           }
         ]
@@ -4285,10 +4285,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-            "quote": "90/10",
+            "quote": "90/10 profit split — you keep 90%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-06",
-            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
             "productSlug": "trading-combine-standard-path"
           }
         ]
@@ -4335,10 +4335,10 @@
           },
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-            "quote": "CME market hours",
+            "quote": "Available during CME market hours: Sunday 5 PM CT – Friday 5 PM CT (excluding holidays)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-06",
-            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
             "productSlug": "trading-combine-standard-path"
           }
         ]
@@ -4435,10 +4435,10 @@
           },
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
-            "quote": "$50K $2,000; $100K $3,000; $150K $4,500",
+            "quote": "$50K $2,000 $100K $3,000 $150K $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-06",
-            "captureFile": "content/data/challenges/_captures/topstep-2026-10-06.json",
+            "capturedAt": "2026-10-28",
+            "captureFile": "content/data/challenges/_captures/topstep-2026-10-28.json",
             "productSlug": "trading-combine-standard-path"
           }
         ]
@@ -4490,9 +4490,13 @@
     "payoutFrequency": "on-demand",
     "payoutMethods": [
       "ACH",
-      "Bank wire",
+      "Bank transfer",
       "Crypto"
     ],
+    "payoutMethodsSourceUrl": "https://help.myfundedfutures.com/en/articles/11542406-guide-to-your-first-payout-quick-and-easy-process",
+    "payoutMethodsQuote": "You can withdraw funds via bank transfer or cryptocurrency.",
+    "payoutMethodsCapturedAt": "2026-10-26",
+    "payoutMethodsNote": "Payouts are set up through a Riseworks account; the same article says \"Plaid/ACH payouts are available for US traders.\" so ACH is US-only.",
     "drawdownType": "eod-trailing",
     "minTradingDays": null,
     "consistencyRule": "Product-specific: 30% on Rapid EOD; 50% on Rapid, Flex, Pro; no consistency percentage on the remaining product.",
@@ -4601,18 +4605,18 @@
       "platform": null
     },
     "trustpilotScore": 4.9,
-    "trustpilotCount": 22408,
+    "trustpilotCount": 22577,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-26",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
-    "trustpilotCapturedAt": "2026-10-15",
+    "trustpilotCapturedAt": "2026-10-26",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "regionalDiscountCode": "CLUB",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
+    "discountCodeCapturedAt": "2026-10-26",
+    "discountCodeNote": "Seen only from a US IP (2026-10-15, rechecked 2026-10-26 on the homepage and all four plan pages); may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\" Not verified at checkout.",
     "regionalDiscountPct": 40,
     "rules": {
       "capturedAt": "2026-10-14",
@@ -4800,7 +4804,7 @@
       },
       "weekendHolding": {
         "value": false,
-        "summary": "not allowed (stated for Rapid: all positions closed before the daily session close; not stated on the Pro/Builder pages)",
+        "summary": "not allowed: positions auto-close at the 4:10 PM EST daily session close on every current plan (Permitted Times article); stated as overnight-not-allowed on the Rapid and Builder pages; \"weekend\" itself is not named",
         "byProduct": {
           "rapid": false,
           "rapid-eod": false,
@@ -4816,12 +4820,28 @@
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+            "quote": "Trades may be placed beginning at 6:00 PM EST when the Globex session opens and can remain open until the New York session closes at 4:10 PM EST.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+            "quote": "Can I hold positions overnight? No. All positions must be closed before the end of the trading session. Any open positions at session close will be automatically closed by the platform.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+            "productSlug": null
           }
         ]
       },
       "dailyLossUsd": {
         "value": null,
-        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; Rapid EOD and Flex (legacy) not re-confirmed",
+        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; none on Rapid EOD (help, 2026-10-26); Flex (legacy) not re-confirmed",
         "byProduct": {
           "rapid": null,
           "rapid-eod": null,
@@ -4865,6 +4885,14 @@
             "quoteKind": "verbatim",
             "capturedAt": "2026-10-15",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+            "quote": "there is no daily loss limit in the evaluation or sim funded stages",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-26",
+            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
             "productSlug": null
           }
         ]
@@ -4950,7 +4978,12 @@
       },
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
-    }
+    },
+    "legalEntity": "MyFunded Futures, LLC",
+    "headquarters": null,
+    "corporateNote": "The Terms name \"MyFunded Futures, LLC\" as the company and choose the laws of the State of Texas with venue in Collin County, Texas. The Terms, privacy policy, disclaimer and why-us page publish no office address, so headquarters and country of incorporation stay null.",
+    "corporateSourceUrl": "https://marketing.myfundedfutures.com/terms",
+    "corporateCapturedAt": "2026-10-26"
   },
   {
     "name": "City Traders Imperium",
@@ -5920,8 +5953,9 @@
     "regionalDiscountCode": "TDNEW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. Homepage banner \"USE CODE TDNEW\"; discount amount not stated.",
+    "discountCodeCapturedAt": "2026-10-27",
+    "discountCodeNote": "First seen 2026-10-15; still shown on https://www.tradeday.com/ on 2026-10-27 ~17:18 Riga (navbar and hero buttons \"USE CODE \"TDNEW\"\", hero \"Now up to 55% OFF! Accounts from just $45!\"). Seen only from the US so far; may be US-only, so not shown as a universal code. The code itself carries no stated discount amount.",
+    "discountCodeEvidence": "/workspace/tradersfundhub/evidence/tradeday-tdnew-2026-10-27/tradeday-home.html (box, internal)",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",

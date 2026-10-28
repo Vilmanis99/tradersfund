@@ -25,6 +25,7 @@ import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRu
 import type { DrawdownType, RuleAvailability } from '@/lib/firms'
 import type { IndiaMatcherFirm, IndiaMatcherProduct } from '@/lib/indiaMatcher'
 import { hasTieredSplit, profitSplitText } from '@/lib/profitSplitDisplay'
+import SplitTiersDisclosure from '@/components/SplitTiersDisclosure'
 
 type ProgramFilter = 'all' | 'instant' | 'one-step' | 'two-step' | 'three-step'
 type MarketFilter = 'all' | IndiaMatcherProduct['assetClass']
@@ -1171,7 +1172,7 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         </div>
                         <div>
                           <dt>Profit split</dt>
-                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{profitSplitText(product, 'en') ?? 'Unverified'}</dd>
+                          <dd data-split-product={`${firm.slug}:${product.slug}`} data-split-display={hasTieredSplit(product) ? 'tiered' : 'flat'}>{hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}</dd>
                         </div>
                       </dl>
 
@@ -1510,9 +1511,9 @@ export default function IndiaChallengeComparison({ firms }: { firms: IndiaMatche
                         <span style={{ display: 'block', color: 'var(--text)', fontSize: '0.69rem', marginTop: '0.3rem', textTransform: 'capitalize' }}>
                           {payoutLabel(product)}
                         </span>
-                        <span style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.25rem' }}>
-                          Split {profitSplitText(product, 'en') ?? 'Unverified'}
-                        </span>
+                        <div style={{ display: 'block', color: 'var(--muted)', fontSize: '0.68rem', marginTop: '0.25rem' }}>
+                          Split {hasTieredSplit(product) ? <SplitTiersDisclosure tiers={product.profitSplitTiers ?? []}>{profitSplitText(product, 'en')}</SplitTiersDisclosure> : profitSplitText(product, 'en') ?? 'Unverified'}
+                        </div>
                       </td>
                       <td style={{ padding: '0.85rem', borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
                         {[

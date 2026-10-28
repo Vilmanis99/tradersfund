@@ -1,0 +1,602 @@
+{
+  "firm": "Blue Guardian",
+  "slug": "blue-guardian",
+  "capturedAt": "2026-10-28",
+  "capturedBy": "Prop Firm Tracker",
+  "currency": "USD",
+  "pricesSource": {
+    "url": "https://blueguardian.com/forex",
+    "method": "Prices read from the pricing widget data embedded in the official /forex page (same widget on /, /fast-track, /buy-now-pay-later). 'list' = originalPrice (struck-through), 'sale' = currentPrice. The server-rendered Instant table matches (e.g. 100K $623.00 -> $405.00). Not confirmed at checkout. The page is a shared cached render with USD prices only; no regional price table is published.",
+    "activeCoupon": "HALLOWEEN, 35% (site banner: 'All accounts | CFDs & Futures • 35% OFF Code: HALLOWEEN'; no end date published). BNPL and Fast-Track widget entries carry code BG25; Instant Starter no code; some Futures Reserve sizes SPOOKY.",
+    "cheapestEntry": "Instant Starter 5K: list $27, shown $11 (help article states purchase via checkout.blueguardian.com/instant-starter/)"
+  },
+  "prices": {
+    "2-step-nano|25000": {
+      "list": 66.66,
+      "sale": 43,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-nano|50000": {
+      "list": 127,
+      "sale": 83,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-nano|100000": {
+      "list": 239,
+      "sale": 155,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-nano|200000": {
+      "list": 460,
+      "sale": 299,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|5000": {
+      "list": 26.66,
+      "sale": 17,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|10000": {
+      "list": 38.66,
+      "sale": 25,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|25000": {
+      "list": 78.66,
+      "sale": 51,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|50000": {
+      "list": 160,
+      "sale": 104,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|100000": {
+      "list": 320,
+      "sale": 208,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-nano|200000": {
+      "list": 585,
+      "sale": 380,
+      "coupon": "HALLOWEEN"
+    },
+    "fast-track|5000": {
+      "list": 135,
+      "sale": 135,
+      "coupon": "BG25"
+    },
+    "fast-track|10000": {
+      "list": 235,
+      "sale": 235,
+      "coupon": "BG25"
+    },
+    "fast-track|25000": {
+      "list": 415,
+      "sale": 415,
+      "coupon": "BG25"
+    },
+    "fast-track|50000": {
+      "list": 575,
+      "sale": 575,
+      "coupon": "BG25"
+    },
+    "fast-track|100000": {
+      "list": 845,
+      "sale": 845,
+      "coupon": "BG25"
+    },
+    "fast-track|200000": {
+      "list": 1365,
+      "sale": 1365,
+      "coupon": "BG25"
+    },
+    "bnpl|5000": {
+      "list": 69,
+      "sale": 41,
+      "coupon": "BG25"
+    },
+    "bnpl|10000": {
+      "list": 131,
+      "sale": 79,
+      "coupon": "BG25"
+    },
+    "bnpl|25000": {
+      "list": 269,
+      "sale": 161,
+      "coupon": "BG25"
+    },
+    "bnpl|50000": {
+      "list": 469,
+      "sale": 281,
+      "coupon": "BG25"
+    },
+    "bnpl|100000": {
+      "list": 915,
+      "sale": 549,
+      "coupon": "BG25"
+    },
+    "bnpl|200000": {
+      "list": 1377,
+      "sale": 826,
+      "coupon": "BG25"
+    },
+    "instant-starter|5000": {
+      "list": 27,
+      "sale": 11,
+      "coupon": null
+    },
+    "2-step-standard|5000": {
+      "list": 32,
+      "sale": 21,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-standard|10000": {
+      "list": 75,
+      "sale": 49,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-standard|25000": {
+      "list": 154,
+      "sale": 100,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-standard|50000": {
+      "list": 232,
+      "sale": 151,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-standard|100000": {
+      "list": 463,
+      "sale": 301,
+      "coupon": "HALLOWEEN"
+    },
+    "2-step-standard|200000": {
+      "list": 930,
+      "sale": 605,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|5000": {
+      "list": 40,
+      "sale": 26,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|10000": {
+      "list": 66,
+      "sale": 43,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|25000": {
+      "list": 134,
+      "sale": 87,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|50000": {
+      "list": 200,
+      "sale": 130,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|100000": {
+      "list": 398,
+      "sale": 259,
+      "coupon": "HALLOWEEN"
+    },
+    "1-step-standard|200000": {
+      "list": 736,
+      "sale": 478,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|5000": {
+      "list": 72,
+      "sale": 47,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|10000": {
+      "list": 100,
+      "sale": 65,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|25000": {
+      "list": 208,
+      "sale": 135,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|50000": {
+      "list": 324,
+      "sale": 211,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|100000": {
+      "list": 623,
+      "sale": 405,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|200000": {
+      "list": 954,
+      "sale": 620,
+      "coupon": "HALLOWEEN"
+    },
+    "instant-standard|400000": {
+      "list": 2200,
+      "sale": 1430,
+      "coupon": "HALLOWEEN"
+    }
+  },
+  "futuresPrices": {
+    "direct|25000": {
+      "list": 350,
+      "sale": 228,
+      "coupon": "HALLOWEEN"
+    },
+    "direct|50000": {
+      "list": 452,
+      "sale": 294,
+      "coupon": "HALLOWEEN"
+    },
+    "direct|100000": {
+      "list": 598.67,
+      "sale": 389,
+      "coupon": "HALLOWEEN"
+    },
+    "direct|150000": {
+      "list": 718.67,
+      "sale": 467,
+      "coupon": "HALLOWEEN"
+    },
+    "express|25000": {
+      "list": 86,
+      "sale": 56,
+      "coupon": "HALLOWEEN",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": null,
+              "list": 99,
+              "sale": 64
+            }
+          ]
+        }
+      ]
+    },
+    "express|50000": {
+      "list": 130,
+      "sale": 85,
+      "coupon": "HALLOWEEN",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": null,
+              "list": 150,
+              "sale": 98
+            }
+          ]
+        }
+      ]
+    },
+    "express|100000": {
+      "list": 205,
+      "sale": 133,
+      "coupon": "HALLOWEEN",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": null,
+              "list": 236,
+              "sale": 153
+            }
+          ]
+        }
+      ]
+    },
+    "express|150000": {
+      "list": 320,
+      "sale": 208,
+      "coupon": "HALLOWEEN",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": null,
+              "list": 368,
+              "sale": 239
+            }
+          ]
+        }
+      ]
+    },
+    "reserve|25000": {
+      "list": 72,
+      "sale": 54,
+      "coupon": "SPOOKY",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": "daily_loss_limit",
+              "list": 80,
+              "sale": 60
+            },
+            {
+              "riskKey": "no_daily_loss_limit",
+              "list": 112,
+              "sale": 84
+            }
+          ]
+        }
+      ]
+    },
+    "reserve|50000": {
+      "list": 125.33,
+      "sale": 94,
+      "coupon": "SPOOKY",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": "daily_loss_limit",
+              "list": 138.67,
+              "sale": 104
+            },
+            {
+              "riskKey": "no_daily_loss_limit",
+              "list": 210.67,
+              "sale": 158
+            }
+          ]
+        }
+      ]
+    },
+    "reserve|100000": {
+      "list": 148,
+      "sale": 111,
+      "coupon": "SPOOKY",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": "daily_loss_limit",
+              "list": 184,
+              "sale": 138
+            },
+            {
+              "riskKey": "no_daily_loss_limit",
+              "list": 284,
+              "sale": 213
+            }
+          ]
+        }
+      ]
+    },
+    "reserve|150000": {
+      "list": 296,
+      "sale": 222,
+      "coupon": "SPOOKY",
+      "options": [
+        {
+          "option": "50% Consistency",
+          "prices": [
+            {
+              "riskKey": "daily_loss_limit",
+              "list": 348,
+              "sale": 261
+            },
+            {
+              "riskKey": "no_daily_loss_limit",
+              "list": 460,
+              "sale": 345
+            }
+          ]
+        }
+      ]
+    },
+    "standard|25000": {
+      "list": 154,
+      "sale": 100,
+      "coupon": "HALLOWEEN"
+    },
+    "standard|50000": {
+      "list": 209,
+      "sale": 136,
+      "coupon": "HALLOWEEN"
+    },
+    "standard|100000": {
+      "list": 330,
+      "sale": 215,
+      "coupon": "HALLOWEEN"
+    },
+    "standard|150000": {
+      "list": 424,
+      "sale": 276,
+      "coupon": "HALLOWEEN"
+    }
+  },
+  "models": {
+    "1-step-nano": {
+      "url": "https://help.blueguardian.com/en/articles/16444654-1-step-nano-rules",
+      "pageDate": "2026-10-23",
+      "target": "10%",
+      "dailyLoss": "4% of initial balance; reset 17:00 EST from the higher of balance/equity",
+      "maxLoss": "6% trailing from highest closed balance; locks at starting balance once +6%, then 1% withdrawal buffer",
+      "minDays": "none in evaluation; 5 days with >=0.5% profit before a funded payout",
+      "consistency": "50% in challenge and funded (best day < 50% of total profit; not a breach)",
+      "split": "85% (100% add-on)",
+      "payoutCycle": "every 7 days",
+      "guardianShield": "not applied",
+      "sizes": "5K-200K"
+    },
+    "1-step-standard": {
+      "url": "https://help.blueguardian.com/en/articles/14062186-1-step-standard-rules",
+      "pageDate": "2026-10-23",
+      "target": "9%",
+      "dailyLoss": "4% of initial balance; reset 17:00 EST from the higher of balance/equity",
+      "maxLoss": "6% trailing from highest closed balance; locks at starting balance once +6%, then 1% buffer",
+      "minDays": "3 days with >=0.5% profit",
+      "consistency": "none stated",
+      "split": "85% (90% add-on)",
+      "payoutCycle": "every 14 days (7-day add-on)",
+      "guardianShield": "2% floating loss on funded",
+      "sizes": "5K-200K"
+    },
+    "2-step-standard": {
+      "url": "https://help.blueguardian.com/en/articles/14062291-2-step-standard-rules",
+      "pageDate": "2026-10-23",
+      "targets": [
+        "8%",
+        "4%"
+      ],
+      "dailyLoss": "4% of initial balance; reset 17:00 EST from the higher of balance/equity",
+      "maxLoss": "8% static (equity floor 92% of initial)",
+      "minDays": "3 days with >=0.5% profit for purchases from 20 Aug; 5 before",
+      "consistency": "none stated",
+      "split": "85% (90% add-on)",
+      "payoutCycle": "every 14 days (7-day add-on)",
+      "guardianShield": "2% floating loss on funded",
+      "sizes": "5K-200K"
+    },
+    "2-step-nano": {
+      "url": "https://help.blueguardian.com/en/articles/16445450-2-step-nano-rules",
+      "pageDate": "2026-10-23",
+      "targets": [
+        "8%",
+        "5%"
+      ],
+      "dailyLoss": "3% of initial balance",
+      "maxLoss": "10% static",
+      "minDays": "none (evaluation or funded)",
+      "consistency": "50% funded only",
+      "split": "80% (100% add-on)",
+      "payoutCycle": "every 14 days",
+      "payoutCap": "2% of initial balance per payout (pricing widget: 25K $500, 100K $2,000)",
+      "guardianShield": "not listed",
+      "sizes": "25K, 50K, 100K, 200K in the pricing widget"
+    },
+    "instant-standard": {
+      "url": "https://help.blueguardian.com/en/articles/14061082-instant-standard-account-rules",
+      "pageDate": "2026-10-23",
+      "target": "none",
+      "dailyLoss": "3% of initial balance",
+      "maxLoss": "6% trailing; locks at starting balance once +6%, then 1% buffer",
+      "minDays": "5 days with >=0.5% profit before payout",
+      "consistency": "20% (15% on 300K and 400K)",
+      "split": "80% (90% add-on)",
+      "payoutCycle": "on demand",
+      "payoutCap": "first two payouts on 200K/300K/400K capped at $10,000 each",
+      "guardianShield": "1% floating loss",
+      "sizes": "5K-400K (pricing widget lists 5K,10K,25K,50K,100K,200K,400K)"
+    },
+    "instant-starter": {
+      "url": "https://help.blueguardian.com/en/articles/14061939-instant-starter",
+      "pageDate": "2026-10-23",
+      "size": "5K only",
+      "dailyLoss": "3%",
+      "maxLoss": "5% trailing",
+      "minDays": "5 profitable days",
+      "consistency": "15%",
+      "split": "90% fixed",
+      "payoutCap": "5% of initial balance ($250), one payout only, crypto only",
+      "guardianShield": "1% floating loss",
+      "refund": "excluded from fee refund"
+    },
+    "bnpl": {
+      "url": "https://help.blueguardian.com/en/articles/15859899-buy-now-pay-later-bnpl-rules",
+      "pageDate": "2026-10-23",
+      "entry": "help: 'start a challenge for just $10'; landing page says both 'Start your challenge for just $5 today' and 'Start for $10'",
+      "target": "4% (one phase)",
+      "dailyLoss": "4%",
+      "maxLoss": "8% trailing",
+      "minDays": "none in evaluation; 5 days funded",
+      "consistency": "20% funded",
+      "split": "80%",
+      "payoutCycle": "instant",
+      "guardianShield": "1% floating loss",
+      "priceNote": "widget list/sale prices with code BG25; how they split into entry fee and remaining fee is not published"
+    },
+    "fast-track": {
+      "url": "https://blueguardian.com/fast-track",
+      "pageDate": null,
+      "note": "Ticket skips the challenge; widget funded rules 4% daily, 10% max, 1:30, 14-day payouts, 85% split; MT5 only in the widget; landing copy also says \"Keep 100% of your profits\" (conflict, do not print)"
+    },
+    "legacy (not sold)": {
+      "1-step-pro": "https://help.blueguardian.com/en/articles/14062228-1-step-pro-rules-legacy-model",
+      "2-step-pro": "https://help.blueguardian.com/en/articles/14062433-2-step-pro-rules-legacy-model",
+      "3-step": "https://help.blueguardian.com/en/articles/14062468-3-step-rules-legacy-model",
+      "note": "Articles now titled \"(Legacy Model)\"; General Information lists only 1 Step Nano, 1 Step Standard, 2 Step Standard, 2 Step Nano, Instant and Instant Starter as current models; none of the legacy models is in the pricing widget."
+    }
+  },
+  "fundedRules": {
+    "payouts": {
+      "url": "https://help.blueguardian.com/en/articles/9660857-how-do-payouts-work",
+      "pageDate": "2026-10-28",
+      "first": "after minimum trading days and at least 14 calendar days since the first trade (7 days with add-on); then every 14 days from the previous request",
+      "methods": "Crypto, Rise Works",
+      "minimum": "$100 crypto, $500 Rise",
+      "cryptoMax": "$1,000 per request; above that via Rise (no maximum)",
+      "fee": "3% processing fee on all payouts",
+      "processing": "within 24 business hours; account read-only while pending",
+      "largeInstantCap": "first two payouts on 200K/300K/400K Instant capped at $10,000 each"
+    },
+    "payoutGuarantee": {
+      "url": "https://help.blueguardian.com/en/articles/14187958-24-hours-payout-guarantee",
+      "pageDate": "2026-10-23",
+      "value": "eligible payouts processed within 24 business hours or +10% profit share on that payout; excludes weekends/holidays, compliance/risk reviews, Rise onboarding, pending documents"
+    },
+    "guardianShield": {
+      "url": "https://help.blueguardian.com/en/articles/14062186-1-step-standard-rules",
+      "value": "closes all trades at 2% floating loss (1% on Instant/Instant Starter/BNPL); 1st trigger split permanently 50%, 2nd trigger = breach; not on Nano"
+    },
+    "minHold": {
+      "value": "2 minutes (tick-scalping rule), all models"
+    },
+    "news": {
+      "value": "allowed in challenge; funded: no opening/closing 5 min before/after high-impact (red folder) news and FOMC, profits removed (no breach). Instant Starter article: news allowed."
+    },
+    "weekendOvernight": {
+      "quote": "We have no restrictions on holding trades over night or the weekend on all account types."
+    },
+    "ea": {
+      "quote": "EAs are allowed. You may use EAs (Expert Advisors) that you setup to suit your own strategy or trading style."
+    },
+    "copyTrading": {
+      "value": "only between accounts legally owned by the same holder (own BG accounts, own external accounts); copying other traders prohibited"
+    },
+    "prohibited": {
+      "url": "https://help.blueguardian.com/en/articles/9661512-prohibited-trading-practices-account-policies",
+      "pageDate": "2026-10-23",
+      "value": "HFT/arbitrage/latency/reverse/hedge arbitrage, demo exploits; hedging across accounts; >80% margin use = gambling; shared devices/VPS (CID match); false identity = hard breach + blacklist"
+    },
+    "inactivity": {
+      "value": "one trade every 30 days, else breach"
+    },
+    "scaling": {
+      "url": "https://help.blueguardian.com/en/articles/15618204-general-information-rules",
+      "value": "+30% of initial balance after 12% profit in 3 months, up to $4,000,000; max active funded allocation $400,000"
+    },
+    "feeRefund": {
+      "value": "help: evaluation fee refunded after the 4th payout (accounts bought from 21 Jan 2026, not Instant Starter); Refund Policy page: 'no refunds under any circumstances' after credentials are emailed (conflict)"
+    },
+    "platforms": {
+      "url": "https://help.blueguardian.com/en/articles/9661525-platform-rules",
+      "pageDate": "2026-10-26",
+      "value": "MT5, Match Trader, TradeLocker; US clients Match Trader and TradeLocker only; pricing widget lists all three for every CFD model except Fast-Track (MT5 only)"
+    },
+    "leverage": {
+      "value": "evaluation FX 1:50 (widget shows 1:100 on 1 Step Standard challenge, conflict); Instant/Starter FX 1:30; indices/commodities 1:10-1:20; crypto 1:2"
+    },
+    "commissions": {
+      "value": "FX $5/lot, commodities $5/lot, indices and crypto $0"
+    }
+  },
+  "trustpilot": {
+    "status": "not captured (HTTP 403 on 2026-10-28)"
+  }
+}
