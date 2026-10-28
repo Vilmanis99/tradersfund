@@ -318,6 +318,10 @@
         "sourceUrl": "https://cryptofundtrader.com/break-challenge/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "So, when you request a payout, we check that no one day's profit is more than 40% of your total profits to date.",
+    "consistencyBasisSourceUrl": "https://cryptofundtrader.com/break-challenge/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

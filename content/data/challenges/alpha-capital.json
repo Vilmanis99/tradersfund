@@ -54,6 +54,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -213,6 +217,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -370,6 +378,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -527,6 +539,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -610,6 +626,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -766,6 +786,10 @@
         "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "The consistency score is a simple calculation: the net profits generated on your best day are divided by the total net profits on the account. […] If a new trade is taken, a new consistency window opens. The system will then evaluate your best day and total profits from this window to calculate consistency and determine whether any withdrawal, including the remaining balance from before, is allowed.",
+    "consistencyBasisSourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",

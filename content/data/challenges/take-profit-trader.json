@@ -54,6 +54,10 @@
         "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits.",
+    "consistencyBasisSourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

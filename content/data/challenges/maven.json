@@ -262,6 +262,10 @@
         "sourceUrl": "https://maventrading.com/faqs"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest winning day must not exceed 20% of the sum of profits from your profitable days in the current payout cycle. Losing days are excluded and do not reduce this total for the consistency calculation. The calculation resets after each payout.",
+    "consistencyBasisSourceUrl": "https://maventrading.com/faqs",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": null,
@@ -340,6 +344,10 @@
         "sourceUrl": "https://maventrading.com/faqs"
       }
     ],
+    "consistencyBasis": "per-trade",
+    "consistencyBasisQuote": "For a $10,000 Instant Mini Funding Account, your largest winning trade must not exceed 15% of your total profit during the 24-hour funding period.",
+    "consistencyBasisSourceUrl": "https://maventrading.com/faqs",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 70,
     "payoutFirstDays": 1,
     "payoutFrequency": null,
@@ -429,6 +437,10 @@
         "sourceUrl": "https://maventrading.com/faqs"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest winning day must not exceed 20% of the sum of profits from your profitable days in the current payout cycle. Losing days are excluded and do not reduce this total for the consistency calculation. The calculation resets after each payout.",
+    "consistencyBasisSourceUrl": "https://maventrading.com/faqs",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

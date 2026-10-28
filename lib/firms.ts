@@ -398,6 +398,21 @@ export interface Challenge {
   consistencyScope?: ConsistencyScope
   /** Scoped consistency rules; take precedence over consistencyRulePct + consistencyScope when present. */
   consistencyRules?: ConsistencyRule[]
+  /**
+   * What the firm's own rules page says the consistency % is measured against,
+   * for consistencyRulePct (or the first consistencyRules entry when the pct is null).
+   * null = the firm's page does not state it (or states it inconsistently); see consistencyBasisNote.
+   * Absent = not yet researched.
+   */
+  consistencyBasis?: ConsistencyBasis | null
+  /** Verbatim first-party sentence(s) establishing consistencyBasis; null when the basis is null. */
+  consistencyBasisQuote?: string | null
+  /** First-party page holding consistencyBasisQuote (or the page checked when the basis is null). */
+  consistencyBasisSourceUrl?: string
+  /** ISO date the source page was last checked for the basis. */
+  consistencyBasisCheckedAt?: string
+  /** Public-safe reason the basis is null. */
+  consistencyBasisNote?: string
   /** Profit split this product pays the trader (0–100). */
   profitSplitPct: number | null
   /**
@@ -433,6 +448,8 @@ export interface Challenge {
   notes?: string[]
 }
 
+/** Denominator a consistency % is measured against, per the firm's own wording. */
+export type ConsistencyBasis = 'total-profit' | 'profit-target' | 'payout-cycle-profit' | 'per-trade' | 'per-position' | 'other'
 export type ConsistencyScope = 'evaluation' | 'funded' | 'both'
 
 export interface ConsistencyRule {

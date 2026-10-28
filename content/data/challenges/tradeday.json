@@ -51,6 +51,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 50,
     "profitSplitTiers": [
       {
@@ -166,6 +170,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 50,
     "profitSplitTiers": [
       {
@@ -282,6 +290,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Stay consistent: no single day can make up more than 45% of your total profits",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
     "payoutFrequency": "after-qualifying-days",

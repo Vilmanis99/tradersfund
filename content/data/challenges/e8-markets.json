@@ -64,6 +64,10 @@
         "sourceUrl": "https://help.e8markets.com/en/articles/11775980-e8-one"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "With a 40% best-day rule, you must ensure that no single trading day exceeds more than 40% of your total generated profits.",
+    "consistencyBasisSourceUrl": "https://help.e8markets.com/en/articles/11775980-e8-one",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
@@ -144,6 +148,10 @@
     "minTradingDays": 0,
     "maxTradingDays": null,
     "consistencyRulePct": 40,
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "With a 40% Best Day Rule, you must ensure that no single trading day exceeds more than 40% of your total generated profits.",
+    "consistencyBasisSourceUrl": "https://e8markets.com/e8-one",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",
@@ -374,6 +382,10 @@
         "sourceUrl": "https://help.e8markets.com/en/articles/11755943-e8-signature-forex"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "With a 35% best-day rule, you must ensure that no single trading day exceeds more than 35% of your total generated profits.",
+    "consistencyBasisSourceUrl": "https://help.e8markets.com/en/articles/11755943-e8-signature-forex",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 3,
     "payoutFrequency": "on-demand",

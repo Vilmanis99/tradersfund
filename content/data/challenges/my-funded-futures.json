@@ -49,6 +49,11 @@
         "sourceUrl": "https://myfundedfutures.com/plans/rapid"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -118,6 +123,11 @@
         "sourceUrl": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -175,6 +185,11 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "The Flex plan page lists the 50% evaluation consistency threshold without stating what profit it is measured against, so the basis is left unset.",
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -246,6 +261,11 @@
         "sourceUrl": "https://myfundedfutures.com/plans/pro"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -327,6 +347,11 @@
         "sourceUrl": "https://myfundedfutures.com/plans/builder"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://myfundedfutures.com/plans/builder",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "The Builder plan page states a 50% consistency rule at the payout stage but not whether it is measured against total profit or profit since the last payout, so the basis is left unset.",
     "profitSplitPct": 80,
     "payoutFirstDays": 2,
     "payoutFrequency": "on-demand",
