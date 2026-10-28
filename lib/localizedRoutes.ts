@@ -90,7 +90,7 @@ export type RussianRoutePath =
 export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru': '2026-10-20',
   '/ru/chto-takoe-prop-firma': '2026-10-20',
-  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-20',
+  '/ru/dlya-russkoyazychnykh-treyderov': '2026-10-29',
   '/ru/forex-prop-firmy': '2026-10-20',
   '/ru/fundednext-mt5': '2026-10-20',
   '/ru/funded-account': '2026-10-20',

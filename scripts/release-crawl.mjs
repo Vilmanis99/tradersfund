@@ -860,8 +860,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/dlya-russkoyazychnykh-treyderov', {
-    title: 'Проп-фирмы для россиян 2026: кто не ограничивает РФ',
-    h1: 'Проп-фирмы для россиян в 2026: кто не ограничивает РФ',
+    title: 'Проп-фирмы для россиян 2026: статус доступа из РФ',
+    h1: 'Проп-фирмы для россиян в 2026: у кого РФ нет в списке ограничений',
     markers: [
       'data-russia-availability-hub="2026-10"',
       'data-russia-availability-table="15-firms"',

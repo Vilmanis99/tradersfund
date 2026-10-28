@@ -26,8 +26,10 @@ const FP_HELP_UPDATED = fpDate(fpAccessEvidence.sourceUpdatedAt)
 const FP_TERMS_EFFECTIVE = fpDate(fpAccessEvidence.termsEffective)
 const FP_ACCESS_CHECKED = fpDate(fpAccessEvidence.sourceCapturedAt)
 export const revalidate = 3600
-const TITLE = 'Проп-фирмы для россиян 2026: кто не ограничивает РФ'
-const DESCRIPTION = 'Проп-фирмы для россиян: какие компании не ограничивают РФ в 2026 году. Таблица 15 фирм со статусом для России, Беларуси и Казахстана, оплатой и выплатами.'
+const TITLE = 'Проп-фирмы для россиян 2026: статус доступа из РФ'
+// Static on purpose: the audit reads DESCRIPTION as a single-quoted literal. The date is
+// ruNotListedDates(['bright-funded', 'crypto-fund-trader']); test:ru-access-basis fails when the data date moves.
+const DESCRIPTION = 'Проп-фирмы для россиян 2026: у каких РФ нет в списке ограничений (на 23.10.2026). Таблица 15 фирм: статус для России, Беларуси и Казахстана, оплата, выплаты.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -64,7 +66,7 @@ const UPSCALE_CHECKED = ruAccessDate(UPSCALE.russiaSourceCapturedAt)
 const UPSCALE_STATUS: Row['status'] = ({ available: 'open', restricted: 'closed' } as Record<string, Row['status']>)[UPSCALE.russiaStatus] ?? 'unclear'
 
 // Источник: ru-availability.csv, проверка 2026-10-14. «не указано» = страна не названа в списке ограничений,
-// это не письменное подтверждение доступа. «не проверено» = данных нет, не додумывать.
+// это не письменное разрешение. «не проверено» = данных нет, не додумывать.
 const rows: Row[] = [
   { firm: 'BrightFunded', russia: 'Не в списке ограничений', belarus: 'Не в списке', kazakhstan: 'Не в списке', payout: 'Оплата: криптовалюта (BTC вкл. Lightning, USDT TRC20, USDC ERC-20, ETH, LTC, TRX, SOL) или карта. Выплаты: USDC (ERC-20), банковский перевод в EUR', status: 'open', source: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded', review: '/ru/obzor-bright-funded' },
   { firm: 'Crypto Fund Trader', russia: 'На Match-Trader ограничений по странам нет; MT5 закрыт только для резидентов США (по данным на 23.10.2026)', belarus: 'Так же', kazakhstan: 'Так же', payout: 'Оплата: карта, PayPal, Apple Pay, Google Pay, криптовалюта. Выплаты: банк EUR/USD, USDT ERC20/TRC20, BTC, ETH', status: 'open', source: 'https://cryptofundtrader.com/faq/', review: '/ru/obzor-crypto-fund-trader' },
@@ -119,7 +121,7 @@ const localFirms = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие проп-компании работают с Россией в 2026 году?',
-    a: `Россию в своих ограничениях не называют Crypto Fund Trader на платформе Match-Trader (на ${ruAccessDate(russiaBasisDateFor('crypto-fund-trader') ?? CHECKED_ISO)}) и BrightFunded (на ${ruAccessDate(russiaBasisDateFor('bright-funded') ?? CHECKED_ISO)}). Это отсутствие в списке ограничений, а не письменное подтверждение доступа из России. У Upscale статус для РФ неясен (на ${UPSCALE_CHECKED}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту; в FAQ сказано иное, но обязывающий текст — Условия. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
+    a: `Россию в своих ограничениях не называют Crypto Fund Trader на платформе Match-Trader (на ${ruAccessDate(russiaBasisDateFor('crypto-fund-trader') ?? CHECKED_ISO)}) и BrightFunded (на ${ruAccessDate(russiaBasisDateFor('bright-funded') ?? CHECKED_ISO)}). Это отсутствие в списке ограничений, а не письменное разрешение на доступ из России. У Upscale статус для РФ неясен (на ${UPSCALE_CHECKED}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту; в FAQ сказано иное, но обязывающий текст — Условия. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
   },
   {
     q: 'Можно ли пройти челлендж FTMO из России?',
@@ -158,7 +160,7 @@ export default function RussiaAvailabilityPage() {
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
-    dateModified: CHECKED_ISO,
+    dateModified: '2026-10-29',
   }
   const openCount = rows.filter(r => r.status === 'open').length
   const closedCount = rows.filter(r => r.status === 'closed').length
@@ -173,7 +175,7 @@ export default function RussiaAvailabilityPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russia-availability-hub="2026-10">
           <div className="ru-eyebrow"><Globe2 size={14} aria-hidden="true" /> Статус для РФ · проверено {formatRuDate(CHECKED)}</div>
-          <h1>Проп-фирмы для россиян в 2026: кто не ограничивает РФ</h1>
+          <h1>Проп-фирмы для россиян в 2026: у кого РФ нет в списке ограничений</h1>
           <p className="ru-lead">
             Из 15 проп-фирм, чьи правила мы открыли {formatRuDate(CHECKED)}, ограничений для России не называют только {openCount}, ещё у {unclearCount} статус неясен.
             Остальные либо прямо пишут «Russian Federation» в списке запрещённых стран, либо прячут Россию за
@@ -236,7 +238,6 @@ export default function RussiaAvailabilityPage() {
             <a href="https://help.brightfunded.com/en/articles/12000749" target="_blank" rel="nofollow noopener noreferrer">справка BrightFunded 2</a>,{' '}
             <a href="https://help.fundednext.com/en/articles/8020089" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 1</a>,{' '}
             <a href="https://help.fundednext.com/en/articles/13990618" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 2</a>.
-            Работу карт «Мир» и карт российских банков мы не подтверждали.
           </p>
           <p className="ru-source-line">
             Apex Trader Funding и Tradeify закрыли свои страницы от нашего сборщика (ошибка 403): статус взят из
@@ -263,7 +264,7 @@ export default function RussiaAvailabilityPage() {
             <article className="ru-card" data-russia-open="crypto-fund-trader">
               <WalletCards size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>Crypto Fund Trader</h3>
-              <p className="ru-muted">России нет в списке ограничений (на {ruNotListedDate('crypto-fund-trader')}): на Match-Trader ограничений по странам нет, MT5 закрыт только для резидентов США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк. Работают ли карты, выпущенные в России, фирма не сообщает; криптовалюта от карты не зависит.</p>
+              <p className="ru-muted">России нет в списке ограничений (на {ruNotListedDate('crypto-fund-trader')}): на Match-Trader ограничений по странам нет, MT5 закрыт только для резидентов США. Выплаты — USDT ERC20/TRC20, BTC, ETH или банк.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-crypto-fund-trader" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="crypto-fund-trader" href="/go/crypto-fund-trader?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="nofollow noopener" className="btn-primary">
@@ -276,7 +277,7 @@ export default function RussiaAvailabilityPage() {
               <h3>Upscale</h3>
               <p className="ru-muted">Статус для РФ неясен: Условия (обновлены 15.05.2026, прочитаны {formatRuDate(UPSCALE_CHECKED)}) исключают резидентов и граждан стран под санкциями США/ЕС/Великобритании; Россия и Беларусь там не названы. Для вывода нужен KYC: фото страницы паспорта и селфи, а для жителей исключённых стран KYC и выводы недоступны. В FAQ сказано иное, но обязывающий текст — Условия. Выплаты — в USDT на собственный некастодиальный кошелёк.</p>
               <div className="ru-actions">
-                {/* TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale и добавления фирмы в firms.json */}
+                {/* TODO: заменить на /go/upscale после проверки партнёрской программы Upscale и добавления фирмы в firms.json */}
                 <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">
                   Проверить Upscale <ArrowRight size={14} aria-hidden="true" />
                 </a>
@@ -287,7 +288,7 @@ export default function RussiaAvailabilityPage() {
             <article className="ru-card" data-russia-unclear="fundingpips">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>FundingPips</h3>
-              <p className="ru-muted">Россия прямо не названа: справка FundingPips (обновлена {FP_HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ, а условия (действуют с {FP_TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены {formatRuDate(FP_ACCESS_CHECKED)}). Доступ для РФ не ясен — до оплаты запросите письменное подтверждение у поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
+              <p className="ru-muted">Россия прямо не названа: справка FundingPips (обновлена {FP_HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ, а условия (действуют с {FP_TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены {formatRuDate(FP_ACCESS_CHECKED)}). Доступ для РФ не ясен — до оплаты запросите письменный ответ поддержки. Выплаты — карта, USDT/USDC ERC-20, Rise (требует KYC), банк.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-fundingpips" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="fundingpips" href="/go/fundingpips?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel={goLinkRel('fundingpips')} className="btn-primary">
@@ -312,7 +313,7 @@ export default function RussiaAvailabilityPage() {
           </p>
           {hashHedgeReviewHref ? (
             <p className="ru-source-line" data-russian-hh-mention="2026-10-19">
-              Вне этих четырёх: в условиях Hash Hedge от {HASH_HEDGE_TERMS_DATE_RU} Россия не названа в списке ограничений; способ оплаты официальные страницы описывают по-разному, поэтому подтвердите его у поддержки до покупки —{' '}
+              Вне этих карточек: у Hash Hedge статус для РФ неясен — в условиях от {HASH_HEDGE_TERMS_DATE_RU} Россия не названа ни среди исключённых, ни среди принятых стран; способ оплаты официальные страницы описывают по-разному, поэтому уточните его у поддержки до покупки —{' '}
               <Link href={hashHedgeReviewHref}>обзор Hash Hedge</Link> (по данным на 19.10.2026).
             </p>
           ) : null}
@@ -326,9 +327,68 @@ export default function RussiaAvailabilityPage() {
             Причин три, и все они видны в самих правилах. Первая — санкции: условия FundingPips исключают юрисдикции из
             санкционных списков FATF и ЕС/ООН, Topstep — страны под всеобъемлющими санкциями OFAC и лиц из списка SDN.
             Вторая — платёжные провайдеры: FundedNext прямо оговаривает право блокировать страны, с которыми не работают
-            её провайдеры, — а фирмы официально не сообщают, принимаются ли карты, выпущенные в России, даже там, где страна формально не запрещена.
+            её провайдеры.
             Третья — KYC: Alpha Capital смотрит и на гражданство, и на резидентство, а E8 Markets определяет страну по
-            документу, а не по IP. Россиянин, живущий в другой стране, у Alpha Capital всё равно попадает под ограничение.
+            документу, а не по IP. При этом статья Alpha Capital о KYC допускает гражданина страны из списка, если он живёт в другой
+            стране и проходит проверку с её государственным документом, а резидента страны из списка не примут и с другим паспортом (на 20.10.2026).
+          </p>
+        </div>
+      </section>
+
+      <section className="ru-section" id="strana-prozhivaniya">
+        <div className="ru-shell ru-content">
+          <h2>Казахстан, ОАЭ, Европа, Грузия, Израиль: решает страна проживания, а не язык</h2>
+          <p>
+            Русский язык определяет язык объяснения, а не доступ: проп-фирмы проверяют страну проживания и документ, с которым
+            вы проходите KYC. Русскоязычный трейдер в Алматы, Дубае, Риге или Тбилиси получает те же правила, что и любой другой
+            житель этой страны. Гражданство при этом может иметь значение отдельно — ниже, как это написано у самих фирм.
+          </p>
+          <div data-russian-diaspora-regions="kazakhstan-uae">
+            <h3>Казахстан и ОАЭ</h3>
+            <p>
+              <strong>Казахстан.</strong> FTMO не предоставляет CFD-продукты жителям Казахстана (ограничение по стране проживания, на 21.10.2026), Take Profit Trader
+              тоже называет его в списке стран, откуда доступ запрещён (на 26.10.2026). У BrightFunded Казахстана в списке
+              ограничений нет (на 23.10.2026), у Crypto Fund Trader на Match-Trader ограничений по странам нет (на 23.10.2026),
+              а в списке стран при оформлении покупки у Alpha Capital Казахстан есть (на 20.10.2026). Остальные фирмы — в колонке
+              «Казахстан» таблицы выше.
+            </p>
+            <p>
+              <strong>ОАЭ.</strong> FundingPips не принимает трейдеров, проживающих в ОАЭ (справка, проверена {formatRuDate(FP_ACCESS_CHECKED)}).
+              BrightFunded в общем списке ОАЭ не называет, но по её Условиям услуги платформы MT5 не предназначены для резидентов и
+              граждан ОАЭ и США (на 23.10.2026). У Crypto Fund Trader MT5 закрыт только для проживающих в США (на 23.10.2026).
+            </p>
+          </div>
+          <div data-russian-diaspora-regions="global-routes">
+            <h3>Европа, Грузия, Израиль</h3>
+            <p>
+              Русскоязычные трейдеры в Европе, Грузии и Израиле проходят проверку как жители этих стран, и списки фирм здесь
+              расходятся. The5ers называет Израиль среди запрещённых территорий (на 22.10.2026). Take Profit Trader называет Грузию,
+              а из стран ЕС, например, Болгарию, Хорватию, Мальту, Румынию и Словению (на 26.10.2026). Apex Trader Funding называет
+              Латвию среди стран, где не открывает новые счета (на 20.10.2026). В списке ограничений BrightFunded ни одной из этих стран нет
+              (на 23.10.2026).
+            </p>
+            <p>
+              <strong>Паспорт России при жизни в другой стране.</strong> У BrightFunded России нет в списке ограничений
+              (на {ruNotListedDate('bright-funded')}), а её справка о странах распространяет этот список и на граждан. Apex Trader
+              Funding Россию ограничивает, но допускает выходцев из стран своего списка, если у них действующий документ страны
+              вне списка, а проживание, почтовый адрес и банковский счёт тоже вне списка (на 20.10.2026). У The5ers нумерованные
+              пункты Условий говорят о проживании, а дисклеймер на той же странице — о «резидентах или гражданах» (на 22.10.2026):
+              до оплаты запросите письменный ответ поддержки. Crypto Fund Trader принимает для KYC паспорт, водительское
+              удостоверение, национальное удостоверение личности или вид на жительство (FAQ, на 23.10.2026).
+            </p>
+          </div>
+          <p className="ru-source-line" data-russian-diaspora-region-sources="first-party">
+            Первоисточники:{' '}
+            <a href="https://ftmo.com/en/faq/who-can-join-ftmo/" target="_blank" rel="nofollow noopener noreferrer">FTMO</a>,{' '}
+            <a href="https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/22447557656477-Restricted-Countries" target="_blank" rel="nofollow noopener noreferrer">Take Profit Trader</a>,{' '}
+            <a href="https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded" target="_blank" rel="nofollow noopener noreferrer">справка BrightFunded</a>,{' '}
+            <a href="https://brightfunded.com/terms-and-conditions" target="_blank" rel="nofollow noopener noreferrer">Условия BrightFunded</a>,{' '}
+            <a href="https://cryptofundtrader.com/faq/" target="_blank" rel="nofollow noopener noreferrer">FAQ Crypto Fund Trader</a>,{' '}
+            <a href="https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations" target="_blank" rel="nofollow noopener noreferrer">Alpha Capital</a>,{' '}
+            <a href={fpAccessEvidence.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">справка FundingPips</a>,{' '}
+            <a href="https://the5ers.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">Условия The5ers</a>,{' '}
+            <a href="https://apextraderfunding.com/help-center/getting-started/restricted-countries/" target="_blank" rel="nofollow noopener noreferrer">Apex Trader Funding</a>.
+            Это опубликованные списки, а не проверка регистрации, KYC или выплаты для конкретного человека.
           </p>
         </div>
       </section>
@@ -341,7 +401,7 @@ export default function RussiaAvailabilityPage() {
             до выхода на профинансированный счёт, E8 Markets сверяет страну с документом, а FundedNext в своих правилах
             называет VPN и ложное указание страны основанием для закрытия аккаунта. Посчитайте: вы платите за челлендж,
             проходите оценку, доходите до первой выплаты — и на проверке документов теряете и взнос, и прибыль.
-            Если фирма ограничивает вашу страну, выбирайте среди тех, что её не ограничивают, а не обходной путь.
+            Если фирма ограничивает вашу страну, выбирайте среди тех, у кого её нет в списке ограничений, а не обходной путь.
           </p>
         </div>
       </section>
@@ -353,14 +413,14 @@ export default function RussiaAvailabilityPage() {
             <li><strong>Найдите официальный список ограничений</strong> — обычно это раздел FAQ или справки «restricted countries». Ищите «Russian Federation» и «sanctions».</li>
             <li><strong>Проверьте продукт, а не бренд.</strong> У FundedNext CFD и Futures разные списки.</li>
             <li><strong>Выясните, что проверяет KYC:</strong> гражданство, резидентство или документ.</li>
-            <li><strong>Сверьте оплату и выплату.</strong> Если принимают только карты и PayPal, учтите: фирмы официально не сообщают, принимаются ли карты, выпущенные в России; ищите крипту.</li>
+            <li><strong>Сверьте оплату и выплату.</strong> Если принимают только карты и PayPal, до оплаты уточните у поддержки, пройдёт ли ваш способ оплаты, или ищите фирму с оплатой криптовалютой.</li>
             <li><strong>Напишите в поддержку</strong> и сохраните письменный ответ до оплаты — особенно для FundingPips и Topstep.</li>
           </ol>
         </div>
       </section>
 
       <section className="ru-section" id="rossiyskie">
-        <div className="ru-shell ru-content" data-merged-from="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">
+        <div className="ru-shell ru-content" data-merged-from="/ru/rossiyskie-prop-kompanii">
           <h2>Российские проп-компании: шесть проверяемых примеров</h2>
           <p>
             Если вам нужен не CFD-челлендж, а локальный рынок (MOEX, рублёвый договор, стажировка), смотрите российских
@@ -386,6 +446,8 @@ export default function RussiaAvailabilityPage() {
           <ul>
             <li><Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян: почему недоступно и чем заменить</Link></li>
             <li><Link href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded: сравнение правил, цен и оплаты</Link></li>
+            <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext: чем отличаются правила и доступ из РФ</Link></li>
+            <li><Link href="/ru/prop-firmy-bez-kyc">Когда проп-фирма проверяет документы и есть ли фирмы без KYC</Link></li>
             <li><Link href="/ru/luchshie-prop-firmy">Рейтинг проп-фирм</Link></li>
             <li><Link href="/ru/vyplaty-prop-firm">Выплаты проп-фирм: USDT, USDC, Rise</Link></li>
             <li><Link href="/ru/promokody-prop-firm">Промокоды проп-фирм</Link></li>
