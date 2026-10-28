@@ -25,7 +25,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
@@ -33,6 +33,8 @@ import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/vyplaty-prop-firm'
 const TITLE = 'Выплаты проп-фирм 2026: как вывести прибыль — сроки и KYC'
@@ -119,6 +121,7 @@ const partnerRoutes = [
 const frequencyLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые 2 недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу',
 }
@@ -200,7 +203,7 @@ export default function RussianPayoutsPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'Выплаты проп-фирм' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -286,7 +289,7 @@ export default function RussianPayoutsPage() {
             <Link href="#sravnenie" className="btn-outline">Сначала сравнить выплаты</Link>
           </div>
           <RuFundedNextAccessCaveat />
-          <p className="ru-source-line">Самая ранняя проверка процесса выплат: {oldestPayoutCapture}; последняя проверка продуктовых данных: {latestCapture}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
+          <p className="ru-source-line">Самая ранняя проверка процесса выплат: {formatRuDate(oldestPayoutCapture)}; последняя проверка продуктовых данных: {formatRuDate(latestCapture)}. Условия проверяются повторно перед оплатой и запросом выплаты.</p>
         </div>
       </section>
 
@@ -402,7 +405,7 @@ export default function RussianPayoutsPage() {
                       <td>{product.productName}</td>
                       <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{payoutWindow(product)}</td>
                       <td>{product.profitSplitPct == null ? 'зависит от структуры' : `${product.profitSplitPct}%`}</td>
-                      <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Правила · {product.sourceCapturedAt}</a></td>
+                      <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Правила · {formatRuDate(product.sourceCapturedAt)}</a></td>
                     </tr>
                   )))}
                 </tbody>
@@ -560,7 +563,7 @@ export default function RussianPayoutsPage() {
             </ol>
             <div className="ru-notice">
               <CheckCircle2 size={16} aria-hidden="true" />{' '}
-              <strong>Если профиль подходит:</strong> откройте русский обзор BrightFunded (резидентам России) или FundedNext (только вне России), сравните конкретный
+              <strong>Если профиль подходит:</strong> откройте русский обзор BrightFunded (России нет в её списке ограничений на {ruNotListedDate('bright-funded')}) или FundedNext (только вне России), сравните конкретный
               продукт, затем переходите на официальную страницу оплаты через отмеченную партнёрскую ссылку.
             </div>
             <div className="ru-actions">

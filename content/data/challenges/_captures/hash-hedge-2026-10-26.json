@@ -1,0 +1,248 @@
+{
+  "firmSlug": "hash-hedge",
+  "captureType": "recheck",
+  "capturedAt": "2026-10-26",
+  "capturedAtTimestamp": "2026-10-26T07:33:09+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/hash-hedge-2026-10-23.json",
+  "requestedBy": "Prop Firm Tracker Monday recheck (EN review source plan items: leverage banner, payment, payout period, drawdown basis, funded max, +8% card)",
+  "egress": "Box egress is a US IP. No registration, checkout, payment or KYC attempted. No VPN/proxy.",
+  "method": "Headless Chrome --dump-dom of hashhedge.com, Terms, Commercial Terms, /faq (07:33-07:33:35 Riga); Playwright (playwright-core + system Chrome) clicks through the pricing selector 1-STAGE / 2-STAGE / US Stocks (07:34 Riga, ISO 2026-10-26T05:34:42Z); GitBook user guide via public llms-full.txt (curl 200, byte-identical to the 2026-10-23 export, 126,801 bytes).",
+  "rawEvidence": "/workspace/tradersfundhub/evidence/hash-hedge-2026-10-26/ (box path, not in repo): home.html/.txt, home.rendered.txt, terms.*, commercial.*, faq.*, llms-full.txt, pricing-selector.json, selector.cjs, fetch-log.txt",
+  "pageDates": {
+    "terms": "Last Updated: October 8, 2026",
+    "commercialTerms": "Last Updated: October 8, 2026",
+    "userGuide": "no page date published in the export (export byte-identical to 2026-10-23)",
+    "homepage": "no page date"
+  },
+  "unchangedSince20261023": [
+    "Terms text (word-for-word identical after whitespace normalisation)",
+    "Commercial Terms text (identical)",
+    "/faq question list and footer (identical)",
+    "GitBook llms-full.txt (byte-identical)",
+    "all 16 prices on the homepage selector"
+  ],
+  "pricing": {
+    "status": "unchanged vs 2026-10-19 and 2026-10-23",
+    "sourceUrl": "https://hashhedge.com/",
+    "twoStageCryptoTradfi": {
+      "5000": 79,
+      "10000": 99,
+      "25000": 249,
+      "50000": 499,
+      "100000": 799,
+      "200000": 1393
+    },
+    "oneStageCryptoTradfi": {
+      "5000": 99,
+      "10000": 159,
+      "25000": 349,
+      "50000": 599,
+      "100000": 999
+    },
+    "twoStageUsStocks": {
+      "5000": 79,
+      "10000": 99,
+      "25000": 249,
+      "50000": 499,
+      "100000": 799
+    },
+    "quotes": [
+      "ACCOUNT $5,000 $79 one-time +5% Cashback POPULAR ACCOUNT $10,000 $99 one-time +5% Cashback ACCOUNT $25,000 $249 one-time +5% Cashback ACCOUNT $50,000 $499 one-time +5% Cashback ACCOUNT $100,000 $799 one-time +5% Cashback BEST VALUE ACCOUNT $200,000 $1393 one-time",
+      "ACCOUNT $5,000 $99 one-time +5% Cashback POPULAR ACCOUNT $10,000 $159 one-time +5% Cashback ACCOUNT $25,000 $349 one-time +5% Cashback ACCOUNT $50,000 $599 one-time +5% Cashback ACCOUNT $100,000 $999 one-time",
+      "11,000+ US stocks · New terminal · Wall Street session 2-STAGE · LOWER TARGETS ACCOUNT $5,000 $79 one-time +5% Cashback ACCOUNT $10,000 $99 one-time +5% Cashback ACCOUNT $25,000 $249 one-time +5% Cashback ACCOUNT $50,000 $499 one-time +5% Cashback POPULAR ACCOUNT $100,000 $799 one-time"
+    ],
+    "rawFile": "pricing-selector.json"
+  },
+  "conflicts": {
+    "a_leverage": {
+      "outcome": "RESOLVED: 1:5. The 'LEVERAGE X10 ON ALL CRYPTO CHALLENGES' banner is gone and the selector now shows 1:5 on every stage of every product.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Max Leverage Capped at 1:5 across all stages and all assets. 1:5 1:5 1:5",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "2-STAGE tab, Crypto + TradFi (was 1:10 on 2026-10-23)"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Max Leverage Capped at 1:5 across all stages and all assets. 1:5 1:5",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "1-STAGE tab (was 1:10 on 2026-10-23)"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "Leverage of up to **1:5** is available.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        }
+      ],
+      "negativeCheck": "Rendered homepage body (home.rendered.txt) and dumped DOM contain no 'LEVERAGE X10' and no 'Sale ends' text (Playwright regex check: bannerX10=false, saleEnds=false; grep of home.html: 0 hits for 'x10')."
+    },
+    "b_paymentMethods": {
+      "outcome": "UNRESOLVED (unchanged): three different official wordings; not tested at checkout.",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "Credit or debit cards issued by internationally recognized financial institutions.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-26",
+          "note": "Terms 10.2 PAYMENT METHODS"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/buy-challenge",
+          "quote": "Hash Hedge accepts **USDT or USDC**: no cards or bank transfers.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "We accept USDT only, on the following networks: TRC20 (Tron), ERC20 (Ethereum), BEP20 (BNB Smart Chain), Solana, Arbitrum, Optimism.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "homepage FAQ block"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Pay with TRC20 ERC20 BEP20 Solana Arbitrum Optimism",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "selector footer"
+        }
+      ]
+    },
+    "c_payoutPeriod": {
+      "outcome": "UNRESOLVED (unchanged): guide says a fixed 14-day cycle; Commercial Terms let the trader pick a payout day 14 to 60 days from the cycle's first trade. Both agree the earliest payout is 14 days; data keeps payoutFirstDays 14 / bi-weekly with the conflict noted.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/welcome",
+          "quote": "| **Payout cycle**         | Every 14 days",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "you can withdraw 80% of your profit (90% with Profit Split) every 14 days; the maximum is $10,000 per account per 14 days, and the minimum is $100.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+          "quote": "the trading cycle shall end on the payout day selected by the User, which may fall between fourteen (14) and sixty (60) calendar days from the opening of the first trade in that trading cycle.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-26"
+        }
+      ]
+    },
+    "d_drawdownBasis": {
+      "outcome": "UNRESOLVED (unchanged): homepage label says peak-to-trough; the guide measures limits against account size and gives no total-loss formula. drawdownType stays null.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Max Overall Drawdown Peak-to-trough loss limit across the full challenge.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules",
+          "quote": "All percentages are measured against your account size. For example, on a **$25,000** account the Stage 1 target is **$1,250** (5%), the daily loss limit is **$1,250** (5%), and the max. total loss is **$2,500** (10%).",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        }
+      ]
+    },
+    "e_fundedMaximum": {
+      "outcome": "UNRESOLVED (unchanged): $200,000 on homepage, guide and the $1,393 tier vs $150,000 in the footer of Terms, Commercial Terms and /faq. maxAllocation stays null.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Choose the route that fits the way you trade, then select an account size up to $200,000.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "qualify for Trader Stage, and access up to $200,000 in funded capital.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/challenge-types",
+          "quote": "or up to **$200K** on Two-stage ($500K coming soon)",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+          "quote": "Hash Hedge is a 24/7 RWA and crypto prop trading platform where traders prove their edge and qualify for up to $150,000 in funded capital.",
+          "pageDate": "Last Updated: October 8, 2026",
+          "checkedAt": "2026-10-26",
+          "note": "same footer sentence on Commercial Terms and /faq (re-read 2026-10-26); /affiliateprogram not re-read today"
+        }
+      ]
+    },
+    "f_stage1Target": {
+      "outcome": "UNRESOLVED as a page inconsistency, data unaffected: homepage selector table and guide both say 5% (data keeps 5%); two homepage feature cards still say +8%.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Profit Target Required equity gain to advance to next stage. 5% 6% ∞",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "2-STAGE selector table"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/what-is-a-challenge",
+          "quote": "In the **Two-stage Challenge** the profit target is **5%** in Stage 1 and **6%** in Stage 2, measured against your account size.",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Stage 1 target +8%",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "'No Time Limit' feature card, next to 'Max drawdown 8–10%'"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "+8%\nSTAGE 1\n+6%\nSTAGE 2",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-26",
+          "note": "profit-split feature card"
+        }
+      ]
+    }
+  },
+  "russia": {
+    "status": "unchanged: unclear",
+    "note": "Terms text identical to 2026-10-23 (Section 4.3 still does not name Russia). No signup/KYC test."
+  },
+  "trustpilot": {
+    "sourceUrl": "https://www.trustpilot.com/review/hashhedge.com",
+    "checkedAt": "2026-10-26T07:53+02:00",
+    "access": [
+      "curl (US IP) -> HTTP 403 AWS WAF 'Verifying Connection' interstitial, 991 bytes",
+      "WebFetch -> 500",
+      "headless Chrome --dump-dom (same US IP, no VPN/proxy) -> full page rendered"
+    ],
+    "quotes": [
+      "\"aggregateRating\":{\"@type\":\"AggregateRating\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingValue\":\"4.4\",\"reviewCount\":\"114\"}",
+      "\"trustScore\":4.4",
+      "Claimed profile • Mar 2025 Paid Trustpilot subscription Hash Hedge Reviews 114 • 4.4",
+      "4.4 All reviews ( 114 ) 97 reviews in the last 12 months"
+    ],
+    "change": "trustpilotCount 110 (2026-10-23) -> 114; trustpilotScore 4.4 unchanged; trustpilotCapturedAt -> 2026-10-26. The star image alt reads 'TrustScore 4.5 out of 5' (half-star rounding); the stored score is the JSON-LD 4.4.",
+    "enReviewImpact": "EN review cites 110 reviews / 94 in the last 12 months (2026-10-23); today 114 / 97. Labels 'Claimed profile • Mar 2025' and 'Paid Trustpilot subscription' unchanged."
+  },
+  "enWriterRechecks": {
+    "leverageBanner": "conflicts.a: no LEVERAGE X10 / Sale ends text on the homepage; selector and guide both 1:5",
+    "terms10_2": "conflicts.b: Terms (Last Updated October 8, 2026) 10.2 still lists credit/debit cards",
+    "paymentWording": "conflicts.b: homepage FAQ 'USDT only' (6 networks), guide 'USDT or USDC: no cards or bank transfers'",
+    "payoutPeriod": "conflicts.c: guide every 14 days vs Commercial Terms 14-60 days",
+    "trustpilot": "trustpilot block above: 4.4 / 114",
+    "pricingSelector": "pricing section: re-read per size from the homepage selector, unchanged"
+  }
+}

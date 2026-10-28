@@ -1,3 +1,5 @@
+import { ruDatesInText } from '@/lib/ruDate'
+
 export interface RussianFaqItem {
   q: string
   a: string
@@ -8,8 +10,8 @@ export default function RussianFaq({ items }: { items: RussianFaqItem[] }) {
     <div className="ru-faq">
       {items.map(item => (
         <details key={item.q}>
-          <summary>{item.q}</summary>
-          <p>{item.a}</p>
+          <summary>{ruDatesInText(item.q)}</summary>
+          <p>{ruDatesInText(item.a)}</p>
         </details>
       ))}
     </div>

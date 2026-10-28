@@ -43,6 +43,7 @@ const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">
 try {
   const { getAllChallenges, getAllFirms, isChallengeFresh } = require(path.join(root, 'lib/firms.ts'))
   const { getAllCanonicalPairs, getCurrentCanonicalPairs, getOverlay, getOverlayIfCurrent, COMPARISON_OVERLAYS_ENABLED, firmSlug } = require(path.join(root, 'lib/comparisons.ts'))
+  const { isPostFreezeFirm } = require(path.join(root, 'lib/postFreezeFirms.ts'))
   const { isSourceHoldFirm } = require(path.join(root, 'lib/reviewStatus.ts'))
   const { buildChallengeMatchup, freshChallenges } = require(path.join(root, 'lib/challengeMatchup.ts'))
   const hub = require(path.join(root, 'app/compare/page.tsx'))
@@ -104,8 +105,10 @@ try {
     const hubHtml = renderToStaticMarkup(React.createElement(hub.default))
     const hubMetadata = hub.generateMetadata()
     assert.equal(hubMetadata.title.absolute, `Prop Firm Comparisons (2026): ${expectedPairs.length} Matchups`)
-    assert(hubMetadata.description.includes(`${eligible.size} prop firms`))
-    assert(hubMetadata.description.includes(`${current.length} fresh products`))
+    // Post-freeze firms (lib/postFreezeFirms.ts) are left out of the /compare hub counts until the freeze lifts.
+    const hubCurrent = current.filter(product => !isPostFreezeFirm(product.firmSlug))
+    assert(hubMetadata.description.includes(`${new Set(hubCurrent.map(product => product.firmSlug)).size} prop firms`))
+    assert(hubMetadata.description.includes(`${hubCurrent.length} fresh products`))
     const linkedPairs = [...hubHtml.matchAll(/data-(?:comparison-matchup|curated-matchup)="([^"]+)"/g)].map(match => match[1]).sort()
     assert.deepEqual(linkedPairs, expectedPairs.map(pair => pair.matchup).sort(), `${date}: real server-rendered directory and metadata agree`)
     const pendingPairs = [...hubHtml.matchAll(/data-pending-matchup="([^"]+)"/g)].map(match => match[1]).sort()

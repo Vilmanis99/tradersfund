@@ -12,6 +12,7 @@ import AuthorBio from '@/components/AuthorBio'
 import RelatedPosts from '@/components/RelatedPosts'
 import FirmCtaCard from '@/components/FirmCtaCard'
 import FirmStatPanel from '@/components/FirmStatPanel'
+import FirmRelatedLinks from '@/components/FirmRelatedLinks'
 import FirmAlternatives from '@/components/FirmAlternatives'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -287,6 +288,7 @@ export default async function BlogPostPage({ params }: Props) {
             )}
 
             {matchedFirm && <FirmAlternatives current={matchedFirm} allFirms={firms} />}
+            {matchedFirm && <FirmRelatedLinks firmName={matchedFirm.name} />}
             {matchedFirm && <IndiaMatchupLinks firmName={matchedFirm.name} />}
             {toolReviewLinks.length > 0 && (
               <TradingToolReviewCluster current={post} reviews={toolReviewLinks} />

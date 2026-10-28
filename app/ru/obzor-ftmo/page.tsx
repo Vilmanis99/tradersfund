@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
@@ -24,7 +25,7 @@ import {
   type Challenge,
 } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
@@ -36,6 +37,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-ftmo'
 const TITLE = 'FTMO проп: обзор 2026 — цены, правила и доступ из России'
@@ -209,7 +211,7 @@ export default function RussianFtmoReviewPage() {
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор FTMO' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -234,7 +236,7 @@ export default function RussianFtmoReviewPage() {
       <section className="ru-hero ru-hero--p1">
         <div className="ru-shell" data-russian-ftmo-review="search-to-decision">
           <RussianDataFreshnessNotice firmSlugs={['ftmo']} />
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {latestCapture}</div>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Условия проверены {formatRuDate(latestCapture)}</div>
           <h1>FTMO проп: обзор 2026 — программы, цены и правила</h1>
           <p className="ru-lead">
             FTMO 1-Step и 2-Step различаются не только числом фаз. У них разные дневные лимиты, механика максимального убытка,
@@ -243,7 +245,7 @@ export default function RussianFtmoReviewPage() {
           </p>
           <div className="ru-review-meta" aria-label="Редакционные данные обзора">
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {russianRouteDateModified(PATH, latestCapture)}</span>
+            <span>Обновлено: {ruDatesInText(russianRouteDateModified(PATH, latestCapture))}</span>
             <span>13 минут чтения</span>
           </div>
         </div>
@@ -401,7 +403,7 @@ export default function RussianFtmoReviewPage() {
             <p>
               FTMO маркирует размер симулируемого счёта в USD, но публикует взнос в EUR. Мы сохраняем обе единицы и не применяем курс дня:
               пересчёт €540 в доллары быстро устареет и скроет комиссию банка. В таблицах ниже использованы базовые цены,
-              проверенные {latestCapture}. Требуемая валовая прибыль рассчитывается как взнос, делённый на долю трейдера.
+              проверенные {formatRuDate(latestCapture)}. Требуемая валовая прибыль рассчитывается как взнос, делённый на долю трейдера.
             </p>
             {freshProducts.map(product => (
               <div key={product.productSlug} data-russian-ftmo-pricing-product={product.productSlug}>
@@ -579,6 +581,7 @@ export default function RussianFtmoReviewPage() {
             <RussianFaq items={faqs} />
           </div>
         </section>
+        <RuFirmRelatedLinks firm="ftmo" path={PATH} />
         <RuRelatedBlock path={PATH} />
       </article>
     </>

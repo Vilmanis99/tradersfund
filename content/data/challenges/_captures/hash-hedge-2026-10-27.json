@@ -1,0 +1,91 @@
+{
+  "firmSlug": "hash-hedge",
+  "captureType": "qa-recheck",
+  "capturedAt": "2026-10-27",
+  "capturedAtTimestamp": "2026-10-27T08:05:53+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/hash-hedge-2026-10-26.json",
+  "requestedBy": "Prop Firm Tracker data QA of the EN (/blog/hash-hedge-review) and RU (/ru/obzor-hash-hedge) reviews, EA kickoff 2026-10-27",
+  "egress": "Box egress geolocated LV on 2026-10-27 (ipinfo.io/country); no VPN/proxy. No registration, checkout, payment or KYC attempted.",
+  "method": "Headless Chrome --dump-dom of hashhedge.com, Terms, Commercial Terms, /faq (08:05-08:06 Riga); Playwright (playwright-core + system Chrome) clicks 1-STAGE / 2-STAGE / US Stocks on the homepage selector (2026-10-27T06:06:51Z = 08:06 Riga) plus a viewport screenshot; GitBook llms-full.txt via curl 200; Trustpilot: curl 403, then headless Chrome --dump-dom (same IP), as on 2026-10-26.",
+  "rawEvidence": "/workspace/tradersfundhub/evidence/hash-hedge-2026-10-27/ (box path, not in repo): home.html/.txt, home.rendered.txt, terms.*, commercial.*, faq.*, llms-full.txt, pricing-selector.json, selector.cjs, us-stocks-tab.png, trustpilot.html (403), trustpilot.chrome.html, fetch-log.txt",
+  "pageDates": {
+    "terms": "Last Updated: October 8, 2026",
+    "commercialTerms": "Last Updated: October 8, 2026",
+    "userGuide": "no page date (llms-full.txt byte-identical to 2026-10-23 and 2026-10-26, 126,801 bytes)",
+    "homepage": "no page date"
+  },
+  "unchangedSince20261026": [
+    "all 16 prices and every stage row on the homepage selector (pricing-selector.json sections identical to 2026-10-26)",
+    "Max Leverage 'Capped at 1:5 across all stages and all assets.'; no 'LEVERAGE X10' and no 'Sale ends' text",
+    "Terms text incl. 10.2 PAYMENT METHODS and 4.3 (only change: a nav line 'Already have an account? New challenges can only be purchased in the new dashboard' is gone)",
+    "Commercial Terms text incl. the 14-60 day payout-day clause and the section 3 72-hour guarantee (same nav-line change only)",
+    "homepage FAQ 'We accept USDT only, on the following networks: TRC20 (Tron), ERC20 (Ethereum), BEP20 (BNB Smart Chain), Solana, Arbitrum, Optimism.'",
+    "GitBook user guide (byte-identical): 'USDT or USDC: no cards or bank transfers', 'Every 14 days', 80% (90% with Profit Split)",
+    "homepage cards 'Stage 1 target +8% Stage 2 target +6% Max daily loss 5% Max drawdown 8–10% Leverage 1:5' and '+8% STAGE 1 +6% STAGE 2 ∞ FUNDED'"
+  ],
+  "usStocksTab": {
+    "sourceUrl": "https://hashhedge.com/",
+    "checkedAt": "2026-10-27",
+    "quote": "11,000+ US stocks · New terminal · Wall Street session 2-STAGE · LOWER TARGETS ACCOUNT $5,000 $79 one-time +5% Cashback ACCOUNT $10,000 $99 one-time +5% Cashback ACCOUNT $25,000 $249 one-time +5% Cashback ACCOUNT $50,000 $499 one-time +5% Cashback POPULAR ACCOUNT $100,000 $799 one-time +5% Cashback COMPARE Challenge rules, stage by stage STAGE 1 01 Evaluation stage STAGE 2 02 Verification stage FUNDED Live capital, real payouts Profit Target Required equity gain to advance to next stage. 5% 6% ∞ Max Daily Loss Equity drop within a single trading day. Breach = failed. 5% 5% 5% Max Overall Drawdown Peak-to-trough loss limit across the full challenge. 10% 8% 8% Minimum Trading Days Days you must trade before the stage can be passed. 5 5 –",
+    "dataMatch": "two-stage-us-stocks: phase1 5 / phase2 6, dailyLossPct 5, maxLossPct 10 (Stage 1), fundedMaxLossPct 8; the Stage 2 8% is in the notes. Matches."
+  },
+  "conflicts": {
+    "g_profitSplitLabel": {
+      "outcome": "NEW, data unaffected: the homepage shows 90/10 as the split without naming the paid add-on; the guide sets 80% as the base and 90% with the add-on. profitSplitPct stays 80.",
+      "evidence": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "YOUR ACCOUNT $50,000 Profit split 90 / 10 CHALLENGE FEE $499",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-27",
+          "note": "selector order summary, 2-STAGE and US Stocks tabs (1-STAGE shows the same '90 / 10' with $599); also on 2026-10-26"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Complete the Challenge, qualify for funded capital, and keep up to 90% of eligible profit. Funded capital up to $200K Profit split up to 90/10",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-27"
+        },
+        {
+          "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+          "quote": "you can withdraw 80% of your profit (90% with Profit Split) every 14 days",
+          "pageDate": "no page date",
+          "checkedAt": "2026-10-27"
+        }
+      ]
+    }
+  },
+  "fundedTradersCounter": {
+    "sourceUrl": "https://hashhedge.com/",
+    "checkedAt": "2026-10-27",
+    "quote": "4.5 · Trustpilot 5,832 funded traders",
+    "history": {
+      "2026-10-19": "5,792",
+      "2026-10-23": "5,814",
+      "2026-10-26": "5,826 (home.html)",
+      "2026-10-27": "5,832"
+    },
+    "note": "Live firm-side counter; cite only with its date. Firm's own claim, not verified."
+  },
+  "trustpilot": {
+    "sourceUrl": "https://www.trustpilot.com/review/hashhedge.com",
+    "checkedAt": "2026-10-27T08:07+02:00",
+    "access": [
+      "curl -> HTTP 403 (266 bytes)",
+      "headless Chrome --dump-dom (same IP, no VPN/proxy) -> full page rendered"
+    ],
+    "quotes": [
+      "\"aggregateRating\":{\"@type\":\"AggregateRating\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingValue\":\"4.4\",\"reviewCount\":\"113\"}",
+      "\"trustScore\":4.4",
+      "97 reviews in the last 12 months",
+      "star image alt 'TrustScore 4.5 out of 5' (half-star rounding)"
+    ],
+    "labels": "'Claimed profile', 'Paid Trustpilot subscription' and 'Asks customers to review' still shown",
+    "dataDecision": "firms.json keeps 4.4 / 114 / trustpilotCapturedAt 2026-10-26 (both reviews cite that dated figure, ship day 2026-10-27); 113 today is a one-review drop, to be taken in the next Trustpilot refresh."
+  },
+  "russia": {
+    "status": "unchanged: unclear",
+    "note": "Terms 4.3 text unchanged; Russia still not named."
+  }
+}

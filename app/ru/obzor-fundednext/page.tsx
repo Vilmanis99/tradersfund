@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
+import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import { fundedNextOneStepPayoutLabel } from '@/lib/fundedNextPayout'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ import RussianFundedNextEaNotice from '@/components/RussianFundedNextEaNotice'
 import { getDealsByFirm } from '@/lib/deals'
 import { challengeTierEconomics, minimumCostToFundedUsd, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { minimumTradingDaysLabel } from '@/lib/challengeRuleLabels'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import reviewEvidence from '@/content/data/russian-fundednext-review-evidence.json'
@@ -21,7 +22,7 @@ import mt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuArticleToc, RuCapturedTerms, RuReviewVerdictBox } from '@/components/RuVerdict'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { formatRuDate } from '@/lib/ruDate'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
@@ -53,6 +54,7 @@ const drawdownLabels: Record<string, string> = {
 const payoutLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые две недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу при выполнении условий',
 }
@@ -214,7 +216,7 @@ export default function RussianFundedNextReviewPage() {
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: 'Обзор FundedNext' },
   ])
-  const faq = faqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Что показывают отзывы о FundedNext на Trustpilot?'))
+  const faq = ruFaqPageSchema(hasFreshTrustpilot ? pageFaqs : pageFaqs.filter(item => item.q !== 'Что показывают отзывы о FundedNext на Trustpilot?'))
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -291,12 +293,12 @@ export default function RussianFundedNextReviewPage() {
                     <span className="ru-pill">TFH {firm.score.toFixed(1)}/10</span>
                   </div>
                   <p>
-                    Моделей CFD со свежими данными: {freshProducts.length} · цен: {pricedTiers.length} · самая ранняя проверка: {latestProductCapture ?? 'без даты'}
+                    Моделей CFD со свежими данными: {freshProducts.length} · цен: {pricedTiers.length} · самая ранняя проверка: {ruDatesInText(latestProductCapture ?? 'без даты')}
                   </p>
                   {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
                     <p className="ru-review-trustpilot">
                       Trustpilot: {firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')},
-                      проверено {firm.trustpilotCapturedAt ?? 'дата не указана'}; рейтинг не доказывает выплату по конкретному счёту.
+                      проверено {ruDatesInText(firm.trustpilotCapturedAt ?? 'дата не указана')}; рейтинг не доказывает выплату по конкретному счёту.
                       {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
                     </p>
                   ) : null}
@@ -334,9 +336,9 @@ export default function RussianFundedNextReviewPage() {
               в 14-дневном окне. После выполнения FundedNext отправляет персональный код на электронную почту и в раздел My Offers;
               он действует 14 дней, распространяется на CFD-программы и не применяется к перезапускам счёта.
               <p className="ru-source-line">
-                Проверено {fundedNextDeal.verifiedOn} ·{' '}
+                Проверено {ruDatesInText(fundedNextDeal.verifiedOn)} ·{' '}
                 <a href={fundedNextDeal.sourceUrl} target="_blank" rel="noopener noreferrer">
-                  {fundedNextDeal.sourceLabel}
+                  {ruDatesInText(fundedNextDeal.sourceLabel)}
                 </a>
               </p>
               <div className="ru-actions">
@@ -397,12 +399,12 @@ export default function RussianFundedNextReviewPage() {
           <div id="access" className="ru-notice ru-anchor-target" data-fundednext-russia-access="restricted">
             <strong><AlertTriangle size={16} aria-hidden="true" /> Для резидентов России FundedNext недоступна.</strong>{' '}
             Подвал fundednext.com и корпоративная страница говорят, что компании FundedNext не обслуживают резидентов России
-            (по данным на 20.10.2026); статья по ограничениям CFD, проверенная {accessCapturedAt}, Россию не называет, но действующим мы считаем
+            (по данным на 20.10.2026); статья по ограничениям CFD, проверенная {formatRuDate(accessCapturedAt)}, Россию не называет, но действующим мы считаем
             более строгий источник. Futures-направление прямо запрещает покупку из России,
             а банковский перевод и выплата на карту для России недоступны. Резидент РФ рискует
             получить отказ в обслуживании или в выплате; резидентам России мы рекомендуем BrightFunded.
           </div>
-          <p className="ru-source-line">Наблюдение официальных источников по стране: {accessCapturedAt}. Эта выборочная проверка не обновляет общий снимок рынка от {marketEvidence.capturedAt} и не подтверждает индивидуальный доступ.</p>
+          <p className="ru-source-line">Наблюдение официальных источников по стране: {formatRuDate(accessCapturedAt)}. Эта выборочная проверка не обновляет общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} и не подтверждает индивидуальный доступ.</p>
           <div className="ru-actions" aria-label="Источники ограничений FundedNext">
             {accessEvidence?.sourceUrls.map((url, index) => (
               <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="btn-outline">
@@ -422,7 +424,7 @@ export default function RussianFundedNextReviewPage() {
             <h2 id="reviews">Отзывы о FundedNext: что означают оценка {firm.trustpilotScore.toFixed(1)}/5 и число отзывов ({firm.trustpilotCount.toLocaleString('ru-RU')})</h2>
             {!hasFreshTrustpilot && <p className="ru-notice">Статус Trustpilot требует повторной проверки. Ниже сохранено наблюдение на указанную дату, а не текущая оценка профиля.</p>}
             <p>
-              При проверке профиля Trustpilot от {firm.trustpilotCapturedAt ?? 'неуказанной даты'} средняя оценка FundedNext составляла
+              При проверке профиля Trustpilot от {ruDatesInText(firm.trustpilotCapturedAt ?? 'неуказанной даты')} средняя оценка FundedNext составляла
               {' '}{firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')}. Это сторонний снимок показанного
               агрегата, а не проверка {freshProducts.length} текущих моделей, отдельной выплаты или соблюдения правила конкретным аккаунтом.
             </p>
@@ -441,7 +443,7 @@ export default function RussianFundedNextReviewPage() {
               </article>
             </div>
             <p className="ru-source-line">
-              Профиль проверен {firm.trustpilotCapturedAt ?? 'без даты'} ·{' '}
+              Профиль проверен {ruDatesInText(firm.trustpilotCapturedAt ?? 'без даты')} ·{' '}
               {firm.trustpilotUrl ? <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Открыть профиль Trustpilot</a> : 'ссылка на профиль не сохранена'}.
               {' '}Проверяйте каждый кейс по 7 полям до переноса на свой продукт.
             </p>
@@ -476,7 +478,7 @@ export default function RussianFundedNextReviewPage() {
             <h2 id="method">Что именно проверяет этот обзор</h2>
             <p>Правила в таблицах взяты с официальных страниц FundedNext; рядом указаны даты проверки. Неопубликованные значения отмечены отдельно. Базовая цена не включает промокод, возможную плату за платформу и дополнительные опции.</p>
             <p>Для русскоязычного трейдера важны не только проценты. Нужно проверить страну проживания, документ для проверки личности, способ оплаты, платформу, валюту списания и условия вознаграждения. Русский язык интерфейса или наличие знакомого платёжного метода сами по себе не означают, что профиль будет принят.</p>
-            <p>Самая ранняя проверка программ: <strong>{latestProductCapture ?? 'не указана'}</strong>. После истечения 30 дней соответствующие цены исключаются из обновляемых таблиц. Перед покупкой откройте официальную страницу оплаты и сохраните условия выбранной программы.</p>
+            <p>Самая ранняя проверка программ: <strong>{ruDatesInText(latestProductCapture ?? 'не указана')}</strong>. После истечения 30 дней соответствующие цены исключаются из обновляемых таблиц. Перед покупкой откройте официальную страницу оплаты и сохраните условия выбранной программы.</p>
           </div>
         </div>
       </section>
@@ -495,7 +497,7 @@ export default function RussianFundedNextReviewPage() {
                   <tr><th>Начальная доля трейдера</th><td>{splitRange(freshProducts)}</td></tr>
                   <tr><th>Совокупный лимит</th><td>{firm?.maxAllocation ?? 'не указан'}</td></tr>
                   <tr><th>Платформы</th><td>{firm?.platforms.join(', ') ?? 'не опубликованы'}</td></tr>
-                  <tr><th>Последняя проверка</th><td>{latestProductCapture ?? 'не указана'}</td></tr>
+                  <tr><th>Последняя проверка</th><td>{ruDatesInText(latestProductCapture ?? 'не указана')}</td></tr>
                 </tbody>
               </table>
             </div>
@@ -594,7 +596,7 @@ export default function RussianFundedNextReviewPage() {
           <div className="ru-prose-stack">
             <section>
               <h3>Новости: учитывайте программу и этап</h3>
-              <p>Общая статья, проверенная {reviewEvidence.sources.newsGeneral.sourceCapturedAt}, относится к счетам после оценки Stellar 1-Step, 2-Step и Lite. В окне 5 минут до и 5 минут после затрагивающей инструмент важной новости засчитывается 40% прибыли, а убыток остаётся полностью. При частичном закрытии корректируется весь ордер; оценочные счета этим правилом не охвачены.</p>
+              <p>Общая статья, проверенная {formatRuDate(reviewEvidence.sources.newsGeneral.sourceCapturedAt)}, относится к счетам после оценки Stellar 1-Step, 2-Step и Lite. В окне 5 минут до и 5 минут после затрагивающей инструмент важной новости засчитывается 40% прибыли, а убыток остаётся полностью. При частичном закрытии корректируется весь ордер; оценочные счета этим правилом не охвачены.</p>
               <p>У <Link href="/ru/fundednext-stellar-instant">Stellar Instant отдельное новостное правило</Link> и последствия для общей границы убытка. Его нельзя автоматически считать исключением или полностью приравнивать к общей статье.</p>
             </section>
             <section>
@@ -605,8 +607,8 @@ export default function RussianFundedNextReviewPage() {
               <h3>Советники и копирование — разные проверки</h3>
               <p>Для советников важны размер счёта, платформа и программа; cTrader и Match-Trader нельзя считать эквивалентом MT4/MT5. Платное дополнение не отменяет ограничения по размеру счёта или сценарию использования.</p>
               <div data-russian-fundednext-copy-scope="challenge-versus-instant">
-                <p>Общая <a href={reviewEvidence.sources.copyGeneral.sourceUrl} target="_blank" rel="nofollow noopener">статья о копировании</a> от проверки {reviewEvidence.sources.copyGeneral.sourceCapturedAt} допускает собственные оценочные счета в пределах её условий, но запрещает копирование с участием счёта после оценки.</p>
-                <p>Отдельная <a href={reviewEvidence.sources.copyInstant.sourceUrl} target="_blank" rel="nofollow noopener">статья Stellar Instant</a> от проверки {reviewEvidence.sources.copyInstant.sourceCapturedAt} разрешает копирование между счетами Instant одного владельца. Между Instant и 1-Step, 2-Step или Lite, а также между разными владельцами оно запрещено. Не переносите разрешение одной программы на другую.</p>
+                <p>Общая <a href={reviewEvidence.sources.copyGeneral.sourceUrl} target="_blank" rel="nofollow noopener">статья о копировании</a> от проверки {formatRuDate(reviewEvidence.sources.copyGeneral.sourceCapturedAt)} допускает собственные оценочные счета в пределах её условий, но запрещает копирование с участием счёта после оценки.</p>
+                <p>Отдельная <a href={reviewEvidence.sources.copyInstant.sourceUrl} target="_blank" rel="nofollow noopener">статья Stellar Instant</a> от проверки {formatRuDate(reviewEvidence.sources.copyInstant.sourceCapturedAt)} разрешает копирование между счетами Instant одного владельца. Между Instant и 1-Step, 2-Step или Lite, а также между разными владельцами оно запрещено. Не переносите разрешение одной программы на другую.</p>
               </div>
               <RussianFundedNextEaNotice instant />
             </section>
@@ -659,7 +661,7 @@ export default function RussianFundedNextReviewPage() {
       <section className="ru-section">
         <div className="ru-shell">
           <h2 id="prices">Сводная таблица моделей</h2>
-          <p className="ru-muted">{hasFreshProducts ? 'Цены и правила ниже взяты из проверенных источников; временные скидки и возможная отдельная плата за платформу не включены.' : `Числовые условия временно не показываем: последняя проверка источников (${latestProductCapture ?? 'дата не указана'}) была более 30 дней назад. Сверьте текущие правила FundedNext перед оплатой.`}</p>
+          <p className="ru-muted">{hasFreshProducts ? 'Цены и правила ниже взяты из проверенных источников; временные скидки и возможная отдельная плата за платформу не включены.' : `Числовые условия временно не показываем: последняя проверка источников (${ruDatesInText(latestProductCapture ?? 'дата не указана')}) была более 30 дней назад. Сверьте текущие правила FundedNext перед оплатой.`}</p>
           <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Сравнение программ FundedNext — таблицу можно прокрутить">
             <table className="ru-table" data-fundednext-russian-products={freshProducts.length}>
               <thead>
@@ -707,7 +709,7 @@ export default function RussianFundedNextReviewPage() {
                     <td>{product.drawdownType ? (drawdownLabels[product.drawdownType] ?? product.drawdownType) : 'не подтверждена'}</td>
                     <td>{pct(product.profitSplitPct)}</td>
                     <td>{tier.refundable === true ? 'по условиям возврата' : tier.refundable === false ? 'невозвратный' : 'возврат не подтверждён'}</td>
-                    <td>{product.sourceCapturedAt}; {payoutLabel(product)}</td>
+                    <td>{formatRuDate(product.sourceCapturedAt)}; {payoutLabel(product)}</td>
                   </tr>
                 )) : <tr><td colSpan={9}>Нет свежих цен для безопасного отображения; откройте официальную страницу оплаты.</td></tr>}
               </tbody>
@@ -802,9 +804,9 @@ export default function RussianFundedNextReviewPage() {
         <div className="ru-shell ru-content" data-russian-fundednext-evidence-status={hasFreshEvidence ? 'dated' : 'recapture-required'}>
           <h2 id="sources">Источники и границы проверки</h2>
           <p>Проверка отдельного торгового правила не обновляет цену, список стран или статус Trustpilot. Ниже указаны независимые даты. Источники по ценам сохранены выше и после истечения срока проверки; доступ конкретного трейдера или фактическая выплата здесь не подтверждаются.</p>
-          <ul>{ruleSources.map(source => <li key={source.sourceUrl}><a href={source.sourceUrl} target="_blank" rel="nofollow noopener">{source.labelRu}</a> — {source.sourceCapturedAt || 'дата не подтверждена'}.</li>)}</ul>
-          <p>Программы: {[...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют'}. Проверка источников по стране: {accessCapturedAt}.</p>
-          <p>Остальные условия Instant: {instantEvidence.capturedAt}; отдельная проверка новостей: {instantEvidence.news.sourceCapturedAt}. Подробные источники доступны в <Link href="/ru/fundednext-stellar-instant">разборе Instant</Link>. Условия советников и даты их проверки приведены в блоке правил выше.</p>
+          <ul>{ruleSources.map(source => <li key={source.sourceUrl}><a href={source.sourceUrl} target="_blank" rel="nofollow noopener">{source.labelRu}</a> — {ruDatesInText(source.sourceCapturedAt || 'дата не подтверждена')}.</li>)}</ul>
+          <p>Программы: {ruDatesInText([...new Set(products.map(product => product.sourceCapturedAt || 'дата не подтверждена'))].sort().join(', ') || 'записи отсутствуют')}. Проверка источников по стране: {formatRuDate(accessCapturedAt)}.</p>
+          <p>Остальные условия Instant: {formatRuDate(instantEvidence.capturedAt)}; отдельная проверка новостей: {formatRuDate(instantEvidence.news.sourceCapturedAt)}. Подробные источники доступны в <Link href="/ru/fundednext-stellar-instant">разборе Instant</Link>. Условия советников и даты их проверки приведены в блоке правил выше.</p>
         </div>
       </section>
 
@@ -815,6 +817,7 @@ export default function RussianFundedNextReviewPage() {
           <RussianFaq items={pageFaqs} />
         </div>
       </section>
+        <RuFirmRelatedLinks firm="fundednext" path={PATH} />
         <RuRelatedBlock path={PATH} />
       </article>
     </>

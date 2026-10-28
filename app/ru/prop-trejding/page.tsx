@@ -4,12 +4,15 @@ import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import RuPendingLink from '@/components/RuPendingLink'
 import { ArrowRight, Briefcase } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaBasisDateFor } from '@/lib/russiaAvailability'
+import { ruAccessDate } from '@/lib/ruAccessLabel'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { getAllChallenges, isChallengeFresh } from '@/lib/firms'
 import RuFundedNextAccessCaveat, { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/prop-trejding'
 const UPDATED = '14.10.2026'
@@ -56,7 +59,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какие проп-фирмы доступны трейдерам из России?',
-    a: `На ${UPDATED} Россию не ограничивают BrightFunded и Crypto Fund Trader (на Match-Trader). FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
+    a: `У BrightFunded и Crypto Fund Trader (на Match-Trader) России нет в списке ограничений (на ${ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}). На ${UPDATED} FTMO, Topstep, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Lucid и Tradeify Россию ограничивают; у FundingPips доступ для РФ не ясен. ${FUNDEDNEXT_RU_ACCESS_NOTE}`,
   },
   {
     q: 'Сколько зарабатывает проп-трейдер?',
@@ -95,7 +98,7 @@ export default function RussianPropTradingPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-prop-trading="guide">
@@ -139,7 +142,7 @@ export default function RussianPropTradingPage() {
             цели, получаете счёт и долю прибыли.
           </p>
           <p>
-            Пример на FundingPips 2 Step Pro (данные на {PRICES_CHECKED}): счёт $5 000 стоит $29. Цель — 6% в каждой из двух фаз, то есть
+            Пример на FundingPips 2 Step Pro (данные на {formatRuDate(PRICES_CHECKED)}): счёт $5 000 стоит $29. Цель — 6% в каждой из двух фаз, то есть
             $300; дневной лимит 3% — $150; общий статический лимит 6% — те же $300. Один плохой день на $150 съедает половину
             допустимого убытка. Поэтому цена в $29 — не главная цифра: главная — лимит убытка.
           </p>
@@ -149,7 +152,7 @@ export default function RussianPropTradingPage() {
       <section className="ru-section" id="poshagovo">
         <div className="ru-shell ru-content">
           <h2>От взноса до выплаты: пошаговый пример</h2>
-          <p>Возьмём BrightFunded 2-Step Classic на $10 000 (данные на {PRICES_CHECKED}):</p>
+          <p>Возьмём BrightFunded 2-Step Classic на $10 000 (данные на {formatRuDate(PRICES_CHECKED)}):</p>
           <ol>
             <li><strong>Оплата:</strong> €97.</li>
             <li><strong>Фаза 1:</strong> заработать 10% — $1 000, не потеряв за день больше 5% ($500) и за всё время больше 10% ($1 000). Минимум 5 торговых дней.</li>
@@ -336,8 +339,8 @@ export default function RussianPropTradingPage() {
         <div className="ru-shell ru-content">
           <h2>Проп-трейдинг из других стран: ЕС, Казахстан, Израиль</h2>
           <p>
-            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. BrightFunded
-            и Crypto Fund Trader не ограничивают Россию — и, по нашим данным, не называют в ограничениях и большинство стран ЕС; у
+            Русскоязычные трейдеры живут по всему миру, а доступ определяется страной проживания и документом KYC, а не языком. У BrightFunded
+            и Crypto Fund Trader России нет в списке ограничений (на {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}) — и они, по нашим данным, не называют в ограничениях и большинство стран ЕС; у
             FundedNext Россию теперь исключает (см. ниже). Казахстан ограничивают FTMO и Lucid Trading; у FundedNext CFD и BrightFunded он не в списке ограничений. Для Израиля
             и других стран проверьте список ограничений выбранной фирмы. Полная таблица — <Link href="/ru/dlya-russkoyazychnykh-treyderov">проп-фирмы для россиян</Link>.
           </p>
@@ -363,7 +366,7 @@ export default function RussianPropTradingPage() {
       <section className="ru-section" id="nachat">
         <div className="ru-shell">
           <h2>С чего начать</h2>
-          <p className="ru-muted">Универсальные фирмы — BrightFunded и Crypto Fund Trader открыты и для России, и для большинства других стран. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
+          <p className="ru-muted">Универсальные фирмы — BrightFunded и Crypto Fund Trader: они работают с большинством стран{russiaBasisDateFor('bright-funded') ? `, а Россию в своих списках ограничений не называют (на ${ruAccessDate(russiaBasisDateFor('bright-funded')!)})` : ' и открыты для России'}. Сначала прочитайте обзоры: <Link href="/ru/obzor-bright-funded">BrightFunded</Link>, <Link href="/ru/obzor-fundednext">FundedNext</Link>.</p>
           <RuFundedNextAccessCaveat />
           <div className="ru-actions">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-prop-trejding-start-1" rel={goLinkRel('bright-funded')} className="btn-primary">BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>

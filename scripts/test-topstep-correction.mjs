@@ -69,7 +69,7 @@ for (const table of tables) assert(review.includes(table), 'Review uses exact ge
 for (const text of ['China, Canada and UK only', 'Approval and transfer are separate', 'not guaranteed access', '1–3 business days', '5–10 business days', 'at most two reactivations', '2026-05-29']) assert(review.includes(text), text)
 for (const text of ['does not publish a settlement duration', 'We record 2 because', 'NinjaTrader, Quantower, TradingView', 'any R we printed would be our arithmetic']) assert(!review.includes(text), text)
 // 7 FAQs + the 'Topstep on Trustpilot (checked …)' answer added in 68ca03d
-assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 8, 'Reviews v2 FAQ count')
+assert.equal((review.match(/<h3 class="wp-block-heading">/g) ?? []).length, 10, 'Reviews v2 H3 count: commissions + Trustpilot themes + 7 FAQ')
 assert(!/href="https?:\/\/(?:www\.|help\.)?topstep\.com/.test(review), 'Firm links remain /go routed')
 const downstream = [
   'content/pages/how-prop-firm-challenges-work.md',

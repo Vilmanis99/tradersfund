@@ -39,12 +39,12 @@
       "firmSlug": "fxify",
       "firmName": "FXIFY",
       "accessStatus": "policy-supported",
-      "productSlugs": ["one-phase", "two-phase-classic", "two-phase-standard", "two-phase-pro", "three-phase", "instant-funding-standard", "instant-funding-lite", "lightning-challenge"],
+      "productSlugs": ["one-phase", "two-phase-classic", "two-phase-standard", "two-phase-pro", "three-phase", "instant-funding-standard", "instant-funding-lite", "lightning-challenge", "crypto-standard-1-step", "crypto-instant-funding"],
       "sourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-10-26",
       "evidenceLabel": "Restricted-jurisdiction policy",
-      "evidenceSummary": "FXIFY publishes the jurisdictions it does not accept, and the United Kingdom is not among the current prohibited countries.",
-      "decisionNote": "All 8 current FOREX-labelled product rows are mapped. A UK registered payment agent or office address does not by itself establish FCA authorisation or customer protection."
+      "evidenceSummary": "FXIFY publishes the jurisdictions it does not accept (\"prohibited from trading with FXIFY\"), and the United Kingdom is not among the current prohibited countries; the list is firm-wide, with no separate country list for crypto accounts.",
+      "decisionNote": "All 10 current structured product rows (8 FOREX-labelled plus 2 crypto) are mapped. A UK registered payment agent or office address does not by itself establish FCA authorisation or customer protection."
     },
     {
       "firmSlug": "alpha-capital",
@@ -84,12 +84,12 @@
       "firmSlug": "e8-markets",
       "firmName": "E8 Markets",
       "accessStatus": "policy-supported",
-      "productSlugs": ["e8-one", "e8-pro", "e8-signature"],
+      "productSlugs": ["e8-one", "e8-one-perpetuals", "e8-pro", "e8-pro-perpetuals", "e8-signature"],
       "sourceUrl": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-10-26",
       "evidenceLabel": "Accepted-countries policy",
-      "evidenceSummary": "E8 publishes current restricted-country lists for Forex, Crypto, and Futures; the United Kingdom is not restricted in those lists.",
-      "decisionNote": "The 3 current structured Forex products are mapped. KYC, platform-provider eligibility, payout-processor coverage, and any product-specific limitation still apply."
+      "evidenceSummary": "E8 publishes current restricted-country lists for Classic markets + Perpetuals and for Futures; the United Kingdom is not restricted in those lists.",
+      "decisionNote": "The 5 current structured products (E8 One, E8 Pro and E8 Signature, plus the E8 One and E8 Pro Perpetuals variants) are mapped. KYC, platform-provider eligibility, payout-processor coverage, and any product-specific limitation still apply."
     }
   ]
 }

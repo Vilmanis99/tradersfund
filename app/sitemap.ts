@@ -27,6 +27,7 @@ import {
   russianRouteLastModified,
 } from '@/lib/localizedRoutes'
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
+import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
 import { russianRankingDataDate } from '@/lib/russianRouteDates'
 import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
 import russianBrightEvidence from '@/content/data/russian-bright-funded-evidence.json'
@@ -39,6 +40,7 @@ import russianForexEvidence from '@/content/data/russian-forex-evidence.json'
 import russianTeamTradersEvidence from '@/content/data/russian-teamtraders-evidence.json'
 
 const BASE_URL = 'https://tradersfundhub.com'
+/** Absolute URL in the same form as the rendered canonical (home has no trailing slash). */
 const HOME_EDITORIAL_DATE = '2026-09-14'
 
 function slugify(name: string) {
@@ -250,8 +252,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }))
 
+  // Rules pages (lib/rulesPages.ts): only data-complete, sourced and fresh pages are listed.
+  const rulesModels = getRulesPageModels()
+  const rulesRoutes: MetadataRoute.Sitemap = rulesModels
+    .filter(model => model.en.indexable)
+    .map(model => ({
+      url: `${BASE_URL}${model.en.path}`,
+      lastModified: new Date(`${model.newestCapture ?? model.rules.capturedAt}T00:00:00Z`),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+  const nonIndexableRulesPaths = new Set(rulesModels.flatMap(model => [
+    ...(model.en.indexable ? [] : [model.en.path]),
+    // Template twins and hand-written RU rules pages alike (hand-written ones are also in RUSSIAN_ONLY_ROUTES).
+    ...(model.ru && !model.ru.indexable ? [model.ru.path] : []),
+  ]))
+
   const baseRoutes: MetadataRoute.Sitemap = [
     ...staticRoutes,
+    ...rulesRoutes,
     ...featureRoutes,
     ...indiaMatchupRoutes,
     ...landingRoutes,
@@ -328,6 +347,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/ru/obzor-fundednext', russianOldestChallengeLastModified('fundednext')],
     ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
     ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
+    ['/ru/obzor-crypto-fund-trader', russianOldestChallengeLastModified('crypto-fund-trader')],
     ['/ru/obzor-ftmo', russianFtmoLastModified],
     ['/ru/obzor-the5ers', russianOldestChallengeLastModified('the5ers')],
     ['/ru/obzor-topstep', russianOldestChallengeLastModified('topstep')],
@@ -412,6 +432,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const uniqueRoutes = new Map<string, MetadataRoute.Sitemap[number]>()
   for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes, ...russianClosedFirmsRoutes]) {
+    // A noindex rules page never enters the sitemap, even if its RU path gets registered early.
+    if (nonIndexableRulesPaths.has(new URL(route.url).pathname)) continue
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)
@@ -430,8 +452,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...uniqueRoutes.values()].map(route => {
     const pathname = new URL(route.url).pathname
-    const pair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname)
-    if (!pair) return route
+    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname)
+    if (!routePair) return route
+    // The home page canonical renders without a trailing slash, so its alternates must too.
+    const pair = { en: routePair.en === '/' ? '' : routePair.en, ru: routePair.ru }
 
     return {
       ...route,

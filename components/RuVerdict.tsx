@@ -123,7 +123,7 @@ export function RuReviewVerdictBox({ route, campaign, sourcesHref, terms }: { ro
             <div>
               <p id="ru-verdict-title" className="ru-p1-verdict__name">{verdict.firm}</p>
               {/* One Russia badge per box: it sits on the CTA row (RuCta -> RuGoLink). Header badge only when there is no CTA. */}
-              {!firm && <RuAccessBadgeView firm={verdict.firm} status={verdict.status} />}
+              {!firm && <RuAccessBadgeView firm={verdict.firm} status={verdict.status} basisDate={verdict.basisDate} pendingNotListed={verdict.pendingNotListed} />}
             </div>
             {firm && <div className="ru-p1-verdict__score" aria-label={`Наша оценка: ${num(firm.score, 1)} из 10`}><strong>{firm.score.toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong><span>/10</span></div>}
           </div>

@@ -7,8 +7,10 @@ import { challengeTierEconomics, getAllFirms, getChallengesByFirm, isChallengeFr
 import type { Challenge } from '@/lib/firms'
 import type { ReactNode } from 'react'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { ruNotListedDates } from '@/lib/ruBasisWording'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import accessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-fundingpips'
 export const revalidate = 3600
@@ -59,10 +61,20 @@ function proMinDaysFacts() {
 // instead of hardcoded copy. Trustpilot is hidden when trustpilotCapturedAt is missing or older than 30 days.
 const ruDate = (iso?: string | null) => iso ? iso.split('-').reverse().join('.') : null
 // Country-access sources (Prop Firm Tracker recapture 3b133ed, evidence date in russian-fundingpips-access-evidence.json):
-// the Help Center Get Started article (updated 24.09.2026) names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and site footer, not in the help article.
-const HELP_UPDATED = '24.09.2026'
+// the Help Center Get Started article names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms and site footer, not in the help article.
+// All three dates come from russian-fundingpips-access-evidence.json (sourceUpdatedAt = help article date, termsEffective = Terms date, sourceCapturedAt = re-read date).
+const HELP_UPDATED = ruDate(accessEvidence.sourceUpdatedAt)
 const ACCESS_CHECKED = ruDate(accessEvidence.sourceCapturedAt)
 const TERMS_EFFECTIVE = ruDate(accessEvidence.termsEffective)
+// Tier counts come from the firm's challenge data with the same logic as scripts/challenge-freshness.mjs
+// (tiers = every accountSizes row; priced = priceUsd > 0 or priceEur > 0), restricted to the products this page shows (fresh ones).
+function fundingPipsTierCounts() {
+  const products = getChallengesByFirm('fundingpips').filter(product => isChallengeFresh(product))
+  const tiers = products.flatMap(product => product.accountSizes)
+  const priced = tiers.filter(tier => (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0)).length
+  const sizes = tiers.map(tier => tier.sizeUsd).filter(size => Number.isFinite(size))
+  return { products: products.length, variants: tiers.length, priced, minSizeUsd: sizes.length ? Math.min(...sizes) : null }
+}
 const pct = (value?: number | null) => value == null ? '—' : `${value}%`
 function fundingPipsTrustpilot() {
   const firm = getAllFirms().find(item => item.name === 'FundingPips')
@@ -117,9 +129,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       return economics ? [{ product, tier, economics }] : []
     })
   })
-  const pricedTierCount = products.reduce((count, product) => count + product.accountSizes.filter(tier =>
-    tier.priceUsd != null && tier.priceUsd > 0,
-  ).length, 0)
+  const tierCounts = fundingPipsTierCounts()
   const money = (value: number | null | undefined) => value == null
     ? '—'
     : `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
@@ -129,18 +139,18 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="dostup-iz-rossii">
         <div className="ru-shell ru-content" data-russian-fundingpips-russia="unclear">
           <h2>Доступна ли FundingPips из России</h2>
-          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {ACCESS_CHECKED}</span></p>
+          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {formatRuDate(ACCESS_CHECKED)}</span></p>
           <p>
             Россия в списках FundingPips прямо не названа ни в условиях, ни в справке. <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">Условия</a>{' '}
             (действуют с {TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН, а также Вьетнама и ОАЭ;{' '}
             <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">справка Get Started</a> (обновлена {HELP_UPDATED}) называет только Иран, Вьетнам и ОАЭ.
-            Обе страницы перечитаны {ACCESS_CHECKED}. Попадает ли под эту формулировку резидент России — из текста не следует. Кроме того, выплата через
+            Обе страницы перечитаны {formatRuDate(ACCESS_CHECKED)}. Попадает ли под эту формулировку резидент России — из текста не следует. Кроме того, выплата через
             Rise требует KYC, а Pay to Card и банковский перевод работают только в перечисленных регионах.
           </p>
           <p>
             {'Кнопка FundingPips на странице помечена бейджем «Доступ для РФ не ясен»: если вы резидент России, до оплаты получите письменный ответ поддержки. '}
-            Фирмы, которые на{' '}
-            {RU_CHECKED} Россию не ограничивают: BrightFunded, Crypto Fund Trader (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
+            Фирмы, у которых России нет в списке ограничений (на{' '}
+            {ruNotListedDates(['bright-funded', 'crypto-fund-trader'])}): BrightFunded, <Link href="/ru/obzor-crypto-fund-trader">Crypto Fund Trader</Link> (FundedNext с 20.10.2026 резидентам РФ недоступна) — таблица на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>. VPN и неверные данные не решают проблему, а создают новую на этапе KYC.
           </p>
         </div>
@@ -210,7 +220,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             <h3>Что это значит для русскоязычной диаспоры</h3>
             <p>Pay to Card и банковский перевод прямо называют Бельгию, Францию, Германию, Италию, Нидерланды, Испанию и Великобританию среди поддерживаемых регионов, но конкретный банк всё равно может отклонить быстрый маршрут. Казахстан и Израиль в опубликованном списке этих двух методов не названы; это не доказывает отсутствие всех вариантов выплаты, но требует проверки криптовалюты или Rise внутри верифицированного профиля. {accessCurrent ? 'Резидент ОАЭ не должен доходить до этого шага: страна прямо ограничена.' : 'Ограничение для резидентов ОАЭ отмечено в прежней проверке; актуальные условия нужно подтвердить заново.'}</p>
             <p>Все счета FundingPips номинированы в USD, даже если на странице оплаты выбрана другая валюта. Если вы платите в EUR, GBP, KZT или ILS, учитывайте банковскую конвертацию. Для выплаты отдельно проверьте комиссии сети и платёжного сервиса.</p>
-            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · проверено {REWARD_METHODS_CAPTURED_AT}; <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {ACCESS_CHECKED}.</p>
+            <p className="ru-source-line"><a href={REWARD_METHODS_URL} target="_blank" rel="noopener noreferrer">Официальные способы выплаты</a> · проверено {formatRuDate(REWARD_METHODS_CAPTURED_AT)}; <a href={GET_STARTED_URL} target="_blank" rel="noopener noreferrer">оплата, валюта счёта и KYC</a> · проверено {formatRuDate(ACCESS_CHECKED)}.</p>
           </div>
         </div>
       </section>
@@ -219,10 +229,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
         <div className="ru-shell ru-content" data-russian-fundingpips-deep-dive="strategy-platforms">
           <h2>Платформы, новости, выходные и мастер-счёт</h2>
           <p><strong>FundingPips предоставляет симулированные счета, а не брокерский счёт с переданным капиталом.</strong> Текущий профиль фирмы перечисляет MT5, cTrader и Match-Trader. Официальный рабочий кабинет отдельно говорит, что MT5 недоступен в США и Канаде; это ограничение платформы, а не разрешение для любого другого продукта или профиля.</p>
-          <p data-russian-fundingpips-holding="eval-master-zero"><strong>Перенос позиций зависит от этапа.</strong> На оценке 1 Step Flex, 2 Step Flex, 2 Step Pro и 2 Step Standard держать сделки через ночь и через выходные можно. На мастер-счёте этих четырёх моделей система каждый день автоматически закрывает все открытые позиции, если при покупке не подключена платная опция Swing. Закрытие идёт в 15-минутное окно: сейчас 20:45–21:00 UTC, с первого воскресенья ноября — 21:45–22:00 UTC. Такое автозакрытие не считается нарушением. У FundingPips Zero оценки нет: позиция, оставленная на выходные, означает немедленное закрытие счёта, а ограничений на перенос через ночь в будни статья о Zero не называет (по данным на {HOLDING_CHECKED}).</p>
+          <p data-russian-fundingpips-holding="eval-master-zero"><strong>Перенос позиций зависит от этапа.</strong> На оценке 1 Step Flex, 2 Step Flex, 2 Step Pro и 2 Step Standard держать сделки через ночь и через выходные можно. На мастер-счёте этих четырёх моделей система каждый день автоматически закрывает все открытые позиции, если при покупке не подключена платная опция Swing. Закрытие идёт в 15-минутное окно: сейчас 20:45–21:00 UTC, с первого воскресенья ноября — 21:45–22:00 UTC. Такое автозакрытие не считается нарушением. У FundingPips Zero оценки нет: позиция, оставленная на выходные, означает немедленное закрытие счёта, а ограничений на перенос через ночь в будни статья о Zero не называет (по данным на {formatRuDate(HOLDING_CHECKED)}).</p>
           <p>Правило новостей тоже зависит от продукта: Zero запрещает окно новостей, а остальные модели нельзя считать полностью свободными только потому, что оценочная фаза допускает событие.</p>
           <p>После прохождения оценки мастер-счёт требует 4 шага: KYC, проверка, соглашение с клиентом и подключение. Два внутренних этапа FundingPips могут занимать до 2 рабочих дней каждый; торговать на мастер-счёте нельзя, пока KYC, соглашение и подключение не завершены. Instant Zero убирает оценку, но не KYC или соглашение с клиентом.</p>
-          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a> · <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">перенос через ночь и выходные</a>, <a href={ZERO_URL} target="_blank" rel="noopener noreferrer">правила Zero</a> (по данным на {HOLDING_CHECKED}).</p>
+          <p className="ru-source-line"><a href={RESPONSIBLE_TRADING_URL} target="_blank" rel="noopener noreferrer">Политика симулированных счетов и ограничения стран</a> · <a href={WORKSPACE_URL} target="_blank" rel="noopener noreferrer">платформы и географические ограничения</a> · <a href={MASTER_SETUP_URL} target="_blank" rel="noopener noreferrer">4 шага настройки мастер-счёта</a> · <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">перенос через ночь и выходные</a>, <a href={ZERO_URL} target="_blank" rel="noopener noreferrer">правила Zero</a> (по данным на {formatRuDate(HOLDING_CHECKED)}).</p>
         </div>
       </section>
 
@@ -257,16 +267,17 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2>Сильные стороны FundingPips</h2>
           <ul>
             <li>{products.length} текущих продуктов дают маршруты 1-Step, 2-Step и без оценочной фазы вместо одного универсального челленджа.</li>
-            <li>{pricedTierCount} из 29 уровней имеют подтверждённую цену; минимальный опубликованный вход — {money(proFiveKPrice)} за 2 Step Pro $5K.</li>
+            <li>{tierCounts.priced === tierCounts.variants
+              ? `У всех ${tierCounts.variants} вариантов размера счёта (${tierCounts.products} программ) есть подтверждённая цена`
+              : `${tierCounts.priced} из ${tierCounts.variants} вариантов размера счёта имеют подтверждённую цену`}; минимальный опубликованный вход — {money(proFiveKPrice)} за 2 Step Pro $5K.</li>
             <li>2 Step Flex расширяет статический максимальный убыток до {twoStepFlex?.maxLossPct ?? '—'}%, а Standard оставляет {standard?.maxLossPct ?? '—'}% — трейдер может выбирать точку нарушения, а не только число фаз.</li>
             <li>Официальный процесс выплаты публикует 4 маршрута: карта, криптовалюта, Rise и банковский перевод, плюс отдельные сроки, минимумы и KYC.</li>
           </ul>
 
           <h2 className="ru-review-secondary-heading">Ограничения и причины отказаться</h2>
           <ul>
-            <li>Для двух вариантов на $2.5K цена не подтверждена. Это не означает, что счёт бесплатный или доступен для покупки.</li>
             <li>100% по запросу (On Demand) добавляет правило стабильности 35%, 7 прибыльных дней и Striking System — это не стандартная доля без условий.</li>
-            <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {HOLDING_CHECKED}).</li>
+            <li>На мастер-счёте без опции Swing позиции закрываются автоматически каждый день, а не только перед выходными; в Zero позиция на выходных означает немедленное закрытие счёта, окно новостей там тоже запрещено (по данным на {formatRuDate(HOLDING_CHECKED)}).</li>
             <li>Вьетнам и ОАЭ ограничены и в условиях, и в справке (справка называет ещё Иран); условия дополнительно исключают страны из санкционных списков FATF и ЕС/ООН. VPN или чужой адрес не создают допустимый профиль.</li>
             <li>Возврат комиссии указан только для 2 Step Standard после четвёртой выплаты — так пишет Help Centre, но Условия (Terms) этого не подтверждают; 1 Step Flex, 2 Step Flex, 2 Step Pro и Zero возврат не получают.</li>
           </ul>
@@ -274,9 +285,10 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       </section>
 
       <section className="ru-section" id="pravila">
-        <div className="ru-shell ru-content" data-russian-fundingpips-rules="verified">
+        <div className="ru-shell ru-content" data-russian-fundingpips-rules="summary">
           <h2>Правила FundingPips</h2>
-          <p>Цели и лимиты по продуктам{rules.asOf ? ` (по данным на ${rules.asOf})` : ''}:</p>
+          <p className="ru-notice" data-russian-rules-inlink="obzor-fundingpips"><strong>Полный разбор всех пяти программ:</strong> <Link href="/ru/fundingpips-pravila">правила FundingPips</Link> — новости, перенос позиций, советники, выплата по запросу, расхождения источников и расчёт на примере.</p>
+          <p>Коротко — цели и лимиты{rules.asOf ? ` (по данным на ${formatRuDate(rules.asOf)})` : ''}:</p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-russian-fundingpips-rules-table="products">
               <caption className="hidden-caption">Правила FundingPips по продуктам</caption>
@@ -297,15 +309,8 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
               </tbody>
             </table>
           </div>
-          <ul>
-            <li><strong>Правило стабильности:</strong> от 15% до 35% в зависимости от продукта; у части программ есть минимум прибыльных дней (у Zero — 7 дней).</li>
-            <li><strong>Новости:</strong> торговля ограничена; у Zero окно новостей запрещено.</li>
-            <li><strong>Перенос позиций:</strong> на оценке всех четырёх оценочных моделей через ночь и выходные разрешён; на мастер-счёте без опции Swing все позиции закрываются автоматически каждый день (это не нарушение); у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</li>
-            <li><strong>Советники (EA) и копирование сделок:</strong> ограничены. Точные условия смотрите в правилах выбранного продукта.</li>
-            <li data-russian-fundingpips-pro-min-days={proDays.days ?? 'unconfirmed'}><strong>Минимальные дни:</strong> 2 Step Flex — {twoStepFlex?.minTradingDays ?? '—'} день на фазу (маршрут 80%), 2 Step Pro — {proDays.short} для новых и сброшенных счетов{proDays.dated}; купленные до 26.08.2026 сохраняют 1 день.</li>
-            <li><strong>Масштабирование:</strong> план масштабирования есть; условия зависят от продукта.</li>
-            <li><strong>Платформы:</strong> MT5, cTrader, Match-Trader; MT5 недоступен в США и Канаде.</li>
-          </ul>
+          <p>Доля трейдера: 80% у 1 Step Flex и 2 Step Pro, 80% или 95% у 2 Step Flex, 60%, 80% или 100% по запросу у 2 Step Standard (выбор при покупке), 95% у Zero; подробности — в разделе <Link href="#reward-routes">о маршрутах выплат</Link>.</p>
+          <p>Новости: на мастер-счёте прибыль сделок в окне ±5 минут вокруг важной новости вычитается, а у Zero окно ±10 минут — грубое нарушение. Перенос: на оценке через ночь и выходные можно, на мастер-счёте без опции Swing позиции закрываются автоматически каждый день, у Zero позиция на выходных — немедленное закрытие счёта (по данным на {formatRuDate(HOLDING_CHECKED)}, <a href={HOLDING_URL} target="_blank" rel="noopener noreferrer">справка FundingPips</a>).</p>
         </div>
       </section>
 
@@ -316,7 +321,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
           <h2>Промокод FundingPips</h2>
           <p>
             <strong>Промокод FundingPips: HELLO</strong> — скидка 20% на первую покупку. Не действует на счёт $100K; дата окончания не
-            опубликована. Источник — Prop Firm Tracker, проверено {RU_CHECKED}. Пример: если счёт стоит $100, с кодом вы заплатите $80.
+            опубликована. Источник — Prop Firm Tracker, проверено {formatRuDate(RU_CHECKED)}. Пример: если счёт стоит $100, с кодом вы заплатите $80.
             Все проверенные коды — в разделе <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
           </p>
           <p>Если код у вас уже есть, сверьте итоговую сумму до подтверждения платежа: счета FundingPips номинированы в USD, и при оплате в другой валюте добавится конвертация банка.</p>
@@ -333,11 +338,11 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
             </article>
             <article className="ru-card">
               <h3>Не подходит для переноса позиций без Swing</h3>
-              <p>На мастер-счетах (Master Accounts) без опции Swing позиции закрываются автоматически каждый день, а у Zero позиция на выходных — немедленное закрытие счёта (по данным на {HOLDING_CHECKED}). Трейдеру, который системно держит позицию через ночь или с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
+              <p>На мастер-счетах (Master Accounts) без опции Swing позиции закрываются автоматически каждый день, а у Zero позиция на выходных — немедленное закрытие счёта (по данным на {formatRuDate(HOLDING_CHECKED)}). Трейдеру, который системно держит позицию через ночь или с пятницы на понедельник, нужно сравнить русскоязычный рейтинг до оплаты.</p>
             </article>
             <article className="ru-card">
               <h3>{accessCurrent ? 'Не подходит резиденту ОАЭ' : 'ОАЭ: перепроверьте доступ'}</h3>
-              <p>{accessCurrent ? 'Справочный центр и условия FundingPips прямо включают ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.' : `Последняя проверка страновых источников (${ACCESS_CHECKED}) включала резидентов ОАЭ в ограничения. Источник устарел; подтвердите текущую политику до регистрации и оплаты.`}</p>
+              <p>{accessCurrent ? 'Справочный центр и условия FundingPips прямо включают ОАЭ в ограничения по резидентству. Русскоязычному трейдеру в Дубае нельзя использовать этот маршрут только потому, что фирма зарегистрирована или представлена в ОАЭ.' : `Последняя проверка страновых источников (${formatRuDate(ACCESS_CHECKED)}) включала резидентов ОАЭ в ограничения. Источник устарел; подтвердите текущую политику до регистрации и оплаты.`}</p>
             </article>
           </div>
           <p className="ru-muted">Standard сохраняет {standard?.minTradingDays ?? '—'} дня на фазу, а Zero не имеет оценки, но сочетает плавающий лимит {zero?.maxLossPct ?? '—'}%, правило стабильности {zero?.consistencyRulePct ?? '—'}% и семь прибыльных дней. Это пять разных контрактов, а не единый «челлендж FundingPips».</p>
@@ -353,6 +358,7 @@ export default function RussianFundingPipsReviewPage() {
   const proDays = proMinDaysFacts()
   const trustpilot = fundingPipsTrustpilot()
   const rules = fundingPipsRuleFacts()
+  const tierCounts = fundingPipsTierCounts()
   const oneStep = rules.bySlug('1-step-flex')
   const twoStepFlex = rules.bySlug('2-step-flex')
   const pro = rules.bySlug('2-step-pro')
@@ -361,7 +367,7 @@ export default function RussianFundingPipsReviewPage() {
     const price = product?.accountSizes.find(tier => tier.sizeUsd === 5000)?.priceUsd
     return price == null ? null : `$${price}`
   }
-  const asOf = rules.asOf ? ` (по данным на ${rules.asOf})` : ''
+  const asOf = rules.asOf ? ` (по данным на ${formatRuDate(rules.asOf)})` : ''
   const verdictCardsRaw: Array<{ title: string; body: ReactNode } | null> = [
     oneStep ? { title: '1 Step Flex', body: <>Цель {rules.targets(oneStep)}, дневной лимит {pct(oneStep.dailyLossPct)} и максимум {rules.maxLoss(oneStep)} (по данным на {ruDate(oneStep.sourceCapturedAt)}). Маршрут 80% работает раз в 14 дней; 100% по запросу (On Demand) добавляют правило стабильности 35% и семь дней минимум по 0,5%.</> } : null,
     twoStepFlex ? { title: '2 Step Flex', body: <>Цели {rules.targets(twoStepFlex)}, дневной лимит {pct(twoStepFlex.dailyLossPct)}, максимум {rules.maxLoss(twoStepFlex)} (по данным на {ruDate(twoStepFlex.sourceCapturedAt)}). Вариант с долей 80% требует один день на фазу, 95% — три прибыльных дня. Выплата 100% по запросу добавляет отдельные условия допуска (по данным на 20.10.2026).</> } : null,
@@ -381,7 +387,7 @@ export default function RussianFundingPipsReviewPage() {
       englishReviewHref="/blog/funding-pips-review"
       lead={<>FundingPips публикует пять разных наборов правил и несколько циклов выплат. После обновлений 15 и 26 августа 2026 года сравнивать нужно не только цену и рекламный процент, но также минимальные дни, правило стабильности, Striking System и дату создания аккаунта.</>}
       countryNote={<span data-russian-fundingpips-country-source-status={accessCurrent ? 'dated' : 'recapture-required'}>
-        <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a> (обновлена {HELP_UPDATED}) и <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">условия</a> (действуют с {TERMS_EFFECTIVE}), проверены {ACCESS_CHECKED}:{' '}
+        <a href={GET_STARTED_URL} target="_blank" rel="nofollow noopener noreferrer">Справка FundingPips</a> (обновлена {HELP_UPDATED}) и <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">условия</a> (действуют с {TERMS_EFFECTIVE}), проверены {formatRuDate(ACCESS_CHECKED)}:{' '}
         {accessCurrent
           ? 'справка называет Иран, Вьетнам и ОАЭ, а условия исключают резидентов стран из санкционных списков FATF и ЕС/ООН, Вьетнама и ОАЭ. Россия не названа ни там, ни там. Русскоязычному трейдеру в Дубае этот маршрут не подходит; для любой другой страны отдельно подтвердите резидентство, KYC, оплату и вывод.'
           : 'ранее справка ограничивала резидентов ОАЭ и Вьетнама. Страновые условия требуют повторной проверки; этот старый список не подтверждает доступ сегодня. До оплаты уточните резидентство, KYC и выплату напрямую у фирмы.'}
@@ -390,7 +396,7 @@ export default function RussianFundingPipsReviewPage() {
       editorialNotes={[
         'Комиссия за 1 Step Flex не возвращается: Help Centre (Get Started) прямо исключает этот продукт из возврата после четвёртой выплаты.',
         'У 2 Step Standard нет одной доли или единой частоты: еженедельно 60%, раз в 2 недели 80% и 100% по запросу (On Demand) имеют разные сроки и условия.',
-        `Цены и правила сверены с официальными страницами${asOf}. Две цены для счетов $2.5K не указаны: источники противоречат друг другу.`,
+        `Цены и правила сверены с официальными страницами${asOf}.${tierCounts.priced === tierCounts.variants ? ` Цена подтверждена у всех ${tierCounts.variants} вариантов размера счёта${tierCounts.minSizeUsd != null ? `; самый маленький счёт — $${tierCounts.minSizeUsd.toLocaleString('en-US')}` : ''}.` : ` Цена подтверждена у ${tierCounts.priced} из ${tierCounts.variants} вариантов размера счёта; остальные не указаны.`}`,
       ]}
       decisionGuide={{
         title: 'Как читать линейку FundingPips без ловушки одного сплита',
@@ -426,7 +432,7 @@ export default function RussianFundingPipsReviewPage() {
       faqs={[
         {
           q: 'Какой продукт FundingPips самый дешёвый?',
-          a: 'Самая низкая подтверждённая цена — $29 для 2 Step Pro на $5K. Для счетов $2.5K у Pro и Standard цена не указана, потому что официальные страницы противоречат друг другу. Это не бесплатные предложения.',
+          a: 'Самая низкая подтверждённая цена — $29 для 2 Step Pro на $5K. Это комиссия за оценочный счёт, а не бесплатное предложение.',
         },
         {
           q: 'У FundingPips теперь всегда сплит 100%?',
@@ -439,14 +445,14 @@ export default function RussianFundingPipsReviewPage() {
         {
           q: 'Можно ли использовать FundingPips из ОАЭ?',
           a: accessCurrent
-            ? `Нет для резидента ОАЭ по справке и условиям FundingPips, проверенным ${ACCESS_CHECKED}: ОАЭ включены в ограничения. Русскоязычному трейдеру в Дубае следует выбрать другую фирму; не обходите ограничение через VPN или неверный адрес.`
-            : `По страновым источникам, проверенным ${ACCESS_CHECKED}, резиденты ОАЭ были ограничены, но страновой источник требует повторной проверки. Старое наблюдение не подтверждает доступ сегодня; уточните условия у FundingPips и не используйте VPN или неверный адрес.`,
+            ? `Нет для резидента ОАЭ по справке и условиям FundingPips, проверенным ${formatRuDate(ACCESS_CHECKED)}: ОАЭ включены в ограничения. Русскоязычному трейдеру в Дубае следует выбрать другую фирму; не обходите ограничение через VPN или неверный адрес.`
+            : `По страновым источникам, проверенным ${formatRuDate(ACCESS_CHECKED)}, резиденты ОАЭ были ограничены, но страновой источник требует повторной проверки. Старое наблюдение не подтверждает доступ сегодня; уточните условия у FundingPips и не используйте VPN или неверный адрес.`,
         },
         {
           q: 'Можно ли зарегистрироваться из России?',
           a: accessCurrent
-            ? `Доступ нужно подтвердить для конкретного трейдера. Справка FundingPips (обновлена ${HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ; условия (действуют с ${TERMS_EFFECTIVE}) исключают также резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены ${ACCESS_CHECKED}). Россия в них не названа, и это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
-            : `Страновые источники FundingPips (справка и условия), проверенные ${ACCESS_CHECKED}, требуют повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
+            ? `Доступ нужно подтвердить для конкретного трейдера. Справка FundingPips (обновлена ${HELP_UPDATED}) называет Иран, Вьетнам и ОАЭ; условия (действуют с ${TERMS_EFFECTIVE}) исключают также резидентов стран из санкционных списков FATF и ЕС/ООН (оба источника проверены ${formatRuDate(ACCESS_CHECKED)}). Россия в них не названа, и это не подтверждает оплату, KYC и выплату для резидента России. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`
+            : `Страновые источники FundingPips (справка и условия), проверенные ${formatRuDate(ACCESS_CHECKED)}, требуют повторной проверки. Прежний список ограничений не подтверждает регистрацию, оплату, KYC или выплату резиденту России сегодня. Получите письменный ответ поддержки до оплаты; не обходите ограничения через VPN или неверные данные.`,
         },
         {
           q: 'Есть ли рабочий промокод FundingPips?',
@@ -461,8 +467,10 @@ export default function RussianFundingPipsReviewPage() {
           a: 'Официальная страница перечисляет карту, криптовалюту, Rise и банковский перевод. Криптовалюта использует USDT/USDC ERC-20 с минимумом 1% размера мастер-счёта; Rise и банковский перевод требуют минимум $500. Конкретный банк, карта или провайдер зависят от страны и профиля.',
         },
         {
-          q: 'Почему указано 27 цен, если в данных 29 размеров?',
-          a: 'У пяти программ 29 вариантов размера счёта. Для двух вариантов на $2.5K — у 2 Step Pro и 2 Step Standard — цена не подтверждена из-за конфликта официальных страниц. Поэтому обзор показывает 27 цен, а две оставшиеся помечены как неопределённые.',
+          q: 'Сколько вариантов размера счёта у FundingPips?',
+          a: tierCounts.priced === tierCounts.variants
+            ? `У ${tierCounts.products} программ ${tierCounts.variants} вариантов размера счёта, и у каждого есть подтверждённая цена в USD (${tierCounts.priced} цен)${tierCounts.minSizeUsd != null ? `; самый маленький счёт — $${tierCounts.minSizeUsd.toLocaleString('en-US')}` : ''}.`
+            : `У ${tierCounts.products} программ ${tierCounts.variants} вариантов размера счёта; цена подтверждена у ${tierCounts.priced}, остальные не указаны.`,
         },
         {
           q: 'FundingPips выдаёт реальный брокерский счёт?',

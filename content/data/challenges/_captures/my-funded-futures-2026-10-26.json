@@ -1,0 +1,352 @@
+{
+  "firmSlug": "my-funded-futures",
+  "capturedAt": "2026-10-26",
+  "capturedBy": "Prop Firm Tracker gap refresh for EN Writer (mff-funded-account-refresh-source-plan-2026-10-26)",
+  "vantage": "box (US IP) curl 07:50-07:55 EET; Trustpilot via headless Chrome; raw HTML/text in /workspace/tradersfundhub/evidence/mff-2026-10-26/",
+  "changes": [
+    {
+      "product": "Rapid, Rapid EOD, Pro, Builder",
+      "field": "rules.weekend",
+      "old": null,
+      "new": false,
+      "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+      "quote": "any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days."
+    },
+    {
+      "product": "Rapid",
+      "field": "payoutFirstDays",
+      "old": null,
+      "new": 1,
+      "sourceUrl": "https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look",
+      "quote": "Your first payout becomes available exactly 24 hours after your first trade on the Sim Funded account (as long as you meet the buffer and minimum)."
+    },
+    {
+      "product": "firm",
+      "field": "legalEntity / headquarters / corporate*",
+      "old": null,
+      "new": "MyFunded Futures, LLC / null",
+      "sourceUrl": "https://marketing.myfundedfutures.com/terms",
+      "quote": "Company / We / Us: MyFunded Futures, LLC"
+    },
+    {
+      "product": "firm",
+      "field": "payoutMethods + payoutMethods*",
+      "old": [
+        "ACH",
+        "Bank wire",
+        "Crypto"
+      ],
+      "new": [
+        "ACH",
+        "Bank transfer",
+        "Crypto"
+      ],
+      "sourceUrl": "https://help.myfundedfutures.com/en/articles/11542406-guide-to-your-first-payout-quick-and-easy-process",
+      "quote": "You can withdraw funds via bank transfer or cryptocurrency."
+    },
+    {
+      "product": "firm",
+      "field": "trustpilotCount",
+      "old": 22408,
+      "new": 22577,
+      "sourceUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
+      "quote": "\"aggregateRating\":{\"@type\":\"AggregateRating\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingValue\":\"4.9\",\"reviewCount\":\"22577\"}; visible \"See all 22,577 reviews\""
+    },
+    {
+      "product": "Builder",
+      "field": "accountSizes[100000,150000]",
+      "old": null,
+      "new": "282 / 398, maxLoss 3000 / 4500",
+      "sourceUrl": "https://myfundedfutures.com/plans/builder",
+      "quote": "\"name\":\"My Funded Futures Builder Plan 100,000 Account\",\"price\":\"282.00\" ... \"name\":\"My Funded Futures Builder Plan 150,000 Account\",\"price\":\"398.00\""
+    }
+  ],
+  "gaps": {
+    "1": {
+      "gap": "weekend/overnight holding",
+      "answer": "Overnight: not allowed on any current plan; positions auto-close at 4:10 PM EST. Weekend: not named on any official page, so it is derived as false from the daily auto-close (stored as rules.weekend=false on Rapid, Rapid EOD, Pro and Builder; Flex left null).",
+      "evidence": [
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+          "quote": "Trades may be placed beginning at 6:00 PM EST when the Globex session opens and can remain open until the New York session closes at 4:10 PM EST."
+        },
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+          "quote": "any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days."
+        },
+        {
+          "product": "rapid",
+          "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+          "quote": "All positions must be closed before the daily session close. Holding overnight will breach the account."
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+          "quote": "Can I hold positions overnight? No. All positions must be closed before the end of the trading session. Any open positions at session close will be automatically closed by the platform."
+        }
+      ]
+    },
+    "2": {
+      "gap": "first payout timing and buffer",
+      "answer": "Rapid: 24 h after the first Sim Funded trade plus the buffer in realized profits. Rapid EOD: buffer in realized profits, no day count. Pro: 14 calendar days plus the buffer. Builder: 48 h after the first trade plus net profit above the buffer.",
+      "evidence": [
+        {
+          "product": "rapid",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look",
+          "quote": "Your first payout becomes available exactly 24 hours after your first trade on the Sim Funded account (as long as you meet the buffer and minimum)."
+        },
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/13745661-payout-policy-overview-best-and-fastest-prop-firm-payouts",
+          "quote": "First payout eligible 24 hours after first trade"
+        },
+        {
+          "product": "rapid-eod",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+          "quote": "You must first build at least $2,100 in realized profits in the account before requesting your first payout."
+        },
+        {
+          "product": "pro",
+          "sourceUrl": "https://myfundedfutures.com/plans/pro",
+          "quote": "Payouts unlock 14 days from your first trade, with a $1,000 minimum and up to $100,000 in total Sim Funded payouts per user."
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "You may request a payout 48 hours after your first trade has been placed, provided that all required payout criteria have been met."
+        }
+      ]
+    },
+    "3": {
+      "gap": "buffer and drawdown lock",
+      "answer": "Rapid buffer $1,100/$2,100/$3,100/$4,600; Rapid EOD $1,100/$2,100; Pro $2,100/$3,100/$4,600; Builder $1,100/$2,100/$3,100/$4,600. The lock is at +$100 on every plan, with stage wording differing (see conflicts).",
+      "evidence": [
+        {
+          "product": "rapid",
+          "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+          "quote": "After building your buffer above the starting balance +$100, the trailing threshold stops moving and becomes static"
+        },
+        {
+          "product": "rapid",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/13134709-rapid-plan-50k-a-comprehensive-look",
+          "quote": "Once your trailing Max Loss reaches $100, it locks there."
+        },
+        {
+          "product": "rapid-eod",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+          "quote": "Once your trailing Max Loss reaches $100, it locks there."
+        },
+        {
+          "product": "pro",
+          "sourceUrl": "https://myfundedfutures.com/plans/pro",
+          "quote": "After your first approved payout, the MLL locks permanently at your starting balance plus $100"
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "The MLL locks permanently once it reaches $100 above the starting balance."
+        }
+      ]
+    },
+    "4": {
+      "gap": "payout caps per cycle and minimums",
+      "answer": "Rapid: no cap published, $500 minimum. Rapid EOD: no cap, $500 minimum. Pro: $100,000 (per cycle vs per user conflict), $1,000 minimum. Builder caps $1,000/$2,000/$3,000/$3,500 with minimums $250/$500/$1,000/$1,500.",
+      "evidence": [
+        {
+          "product": "rapid-eod",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+          "quote": "There is no cap on how much you can request per payout cycle."
+        },
+        {
+          "product": "pro",
+          "sourceUrl": "https://myfundedfutures.com/plans/pro",
+          "quote": "Up to $100,000 per cycle, subject to your live equity above the required buffer at the time of request."
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "Maximum payout per cycle is $1,000."
+        }
+      ]
+    },
+    "5": {
+      "gap": "live transition",
+      "answer": "Rapid: $10,000 in one day (automatic) or a Risk Team review; Rapid EOD follows Rapid. Pro: 3 consecutive payouts or an invitation. Builder: after the 5th approved sim payout.",
+      "evidence": [
+        {
+          "product": "rapid",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/13134718-understanding-rapid-live",
+          "quote": "$10,000 net profit achieved in a single trading day (automatic transition)"
+        },
+        {
+          "product": "rapid",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/13134718-understanding-rapid-live",
+          "quote": "There is no buffer requirement on the Rapid Live account."
+        },
+        {
+          "product": "rapid-eod",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+          "quote": "Live transition on Rapid EOD 50k follows the same rules as standard Rapid 50k."
+        },
+        {
+          "product": "pro",
+          "sourceUrl": "https://myfundedfutures.com/plans/pro",
+          "quote": "After three consecutive payouts on the same Pro account, the account is reviewed by our team for transition to a live brokerage account."
+        },
+        {
+          "product": "pro",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17573707-comprehensive-look-into-redesigned-pro-plan",
+          "quote": "Profits above $100,000 are forfeited."
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "After your 5th approved sim payout, you are eligible for promotion to a live funded account."
+        }
+      ]
+    },
+    "6": {
+      "gap": "activation fee",
+      "answer": "$0 on all plans (unchanged).",
+      "evidence": [
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/12398151-does-myfundedfutures-charge-activation-fees",
+          "quote": "all MFFU plans, regardless of account size, come with $0 activation fee."
+        }
+      ]
+    },
+    "7": {
+      "gap": "daily loss limit by stage",
+      "answer": "None on Rapid, Rapid EOD and Pro Sim Funded. Builder has a soft pause of $600/$1,000/$1,750/$2,500 that does not breach.",
+      "evidence": [
+        {
+          "product": "rapid",
+          "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+          "quote": "Rapid has no daily loss limit in either the evaluation or the funded stage."
+        },
+        {
+          "product": "rapid-eod",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+          "quote": "there is no daily loss limit in the evaluation or sim funded stages"
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://myfundedfutures.com/plans/builder",
+          "quote": "When your session hits $1,000 down for the day, trading pauses until the next session"
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+          "quote": "The Evaluation, Sim Funded and Live stage have a $1,000 soft pause DLL."
+        }
+      ]
+    },
+    "8": {
+      "gap": "inactivity rule",
+      "answer": "7 consecutive calendar days with no trade means the account could be closed (effective 25 Aug 2026), sim funded included. There is no inactivity rule on Builder live.",
+      "evidence": [
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/16596524-inactivity-rule-one-time-payment-model",
+          "quote": "If a trader does not place a trade for 7 consecutive calendar days, the account could be closed."
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "There is no inactivity rule on the live account."
+        }
+      ]
+    },
+    "9": {
+      "gap": "Tier 1 news per product",
+      "answer": "Tier 1 news is prohibited on Rapid Sim Funded and Pro Sim Funded (Rapid EOD Sim Funded is Not Allowed per its help articles). It is allowed in all evaluations and on Builder. The list is FOMC Meetings, FOMC Minutes, Employment Report and CPI (+EIA for energy, +Ag reports for ags); the window is 2 minutes either side.",
+      "evidence": [
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+          "quote": "Trading on T1 News events is prohibited for the following:"
+        },
+        {
+          "product": "all",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+          "quote": "FOMC Meetings"
+        },
+        {
+          "product": "builder",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/17036130-builder-plan-25k-a-comprehensive-look",
+          "quote": "News trading is fully unrestricted during the evaluation and sim funded stage."
+        }
+      ]
+    },
+    "10": {
+      "gap": "corporate entity, HQ, payout methods",
+      "answer": "Entity MyFunded Futures, LLC (Terms; Texas law, Collin County venue). HQ address not published (null). Payouts via Riseworks, by bank transfer or crypto, with Plaid/ACH for US traders only.",
+      "evidence": [
+        {
+          "product": "firm",
+          "sourceUrl": "https://marketing.myfundedfutures.com/terms",
+          "quote": "MyFunded Futures, LLC"
+        },
+        {
+          "product": "firm",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/11542406-guide-to-your-first-payout-quick-and-easy-process",
+          "quote": "You can withdraw funds via bank transfer or cryptocurrency."
+        },
+        {
+          "product": "firm",
+          "sourceUrl": "https://help.myfundedfutures.com/en/articles/11542406-guide-to-your-first-payout-quick-and-easy-process",
+          "quote": "Plaid/ACH payouts are available for US traders."
+        }
+      ]
+    },
+    "11": {
+      "gap": "Trustpilot",
+      "answer": "4.9, 22,577 reviews (header shows \"23K reviews\"), via a headless Chrome render from the box. Plain curl got 403 (AWS WAF) and the WebFetch reader returned 500.",
+      "evidence": [
+        {
+          "product": "firm",
+          "sourceUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
+          "quote": "23K reviews"
+        }
+      ]
+    },
+    "12": {
+      "gap": "CLUB coupon",
+      "answer": "Banner still live from a US IP on the homepage and the 4 plan pages; homepage links carry coupon=CLUB. Not checkout-verified; regionalDiscountCode stays us-only-unconfirmed.",
+      "evidence": [
+        {
+          "product": "firm",
+          "sourceUrl": "https://myfundedfutures.com/",
+          "quote": "Save 40% On Any Plan With Code CLUB."
+        }
+      ]
+    }
+  },
+  "conflicts": [
+    "Pro $100,000: plans/pro says \"Up to $100,000 per payout cycle\" / FAQ \"Up to $100,000 per cycle\", while the same page title/FAQ and help 17573707 / 13745661 say \"per user\" (total Sim Funded payouts).",
+    "Pro above-cap profits: plans/pro says they are \"transitioned to a live balance\"; help 17573707 says \"Profits above $100,000 are forfeited.\"",
+    "Pro live DLL: plans/pro FAQ says live has \"a daily loss limit\"; help 17573707 live table says \"Daily Loss Limit None\".",
+    "Rapid lock: plan rules \"After building your buffer above the starting balance +$100, the trailing threshold stops moving\"; a plan FAQ says it locks \"after your first payout\"; help says \"Once your trailing Max Loss reaches $100, it locks there.\"",
+    "Builder 150K: plan page cap $3,500 vs help 17035331 $4,500; help 150K buffer table $4,600 vs text \"MLL + $100 or $4,500\".",
+    "Builder live DLL: plan page $600/$1,000/$1,750/$2,500 vs help 25K/100K/150K \"Daily Loss Limit (Live) None\" (50K help: $1,000 soft pause on live).",
+    "Rapid 100K/150K Sim Funded max contracts: plan flight data 10/100 and 15/150 vs HTML table/help 8/80 and 10/100.",
+    "Payout overview 13745661 says \"No daily loss limits on Builder, Rapid or Pro plans\" vs Builder soft-pause DLL."
+  ],
+  "otherObservations": [
+    "New Studio line (myfundedfutures.com/studio; help 17589665 updated 2026-10-14): #001 $10K $140, #002 $20K $280, #003 $5K $75; static MLL $500/$1,000/$250; no DLL or consistency; payouts anytime ($250/$250/$100 min); \"Studio plans are sold only on the dedicated Studio page\". Not added as a product.",
+    "Pro \"50k - One Day\" variant on plans/pro: $4,000 target, no consistency, 1 day. Builder 50K add-on: $1,500 MLL, $125 price. Neither is stored.",
+    "Trustpilot shows \"This company may be associated with high-risk investments.\" and \"Claimed profile\"; no breach-of-guidelines banner.",
+    "Site navigation now shows \"Perps New 24/7 perps trading\" (seen on blog/myfundedfutures-mffu-flex-plan nav, 2026-10-26). Not investigated or stored."
+  ],
+  "unchanged": {
+    "rapid": "145/209/356/463 (plans/rapid schema)",
+    "rapid-eod": "145/225",
+    "pro": "265/401/557",
+    "builder": "105/153 (+282/398 new tiers)",
+    "activationFeeUsd": "0 on all",
+    "flex": "legacy; help 13521620 (updated 2026-06-03) and blog/myfundedfutures-mffu-flex-plan re-read 2026-10-26, unchanged (\"This article is about a legacy plan no longer on offer\")"
+  }
+}

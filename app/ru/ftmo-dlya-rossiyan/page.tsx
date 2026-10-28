@@ -2,12 +2,16 @@ import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
 import { ArrowRight, ShieldAlert } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { goLinkRel } from '@/lib/russiaAvailability'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
+import { RU_EXTRA_RUSSIA_BASIS } from '@/lib/ruAccessExtra'
+import { ruAccessDate } from '@/lib/ruAccessLabel'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru/ftmo-dlya-rossiyan'
 const CHECKED = '14.10.2026'
@@ -37,10 +41,13 @@ const restricted = [
   { region: 'Украина', status: 'Частично: Крым, Севастополь, Донецкая, Луганская, Херсонская и Запорожская области' },
 ]
 
+// Upscale: статус для РФ из lib/ruAccessExtra.ts (russiaStatus 'unclear', Условия прочитаны 26.10.2026); ставим после фирм без РФ в списке ограничений.
+const UPSCALE_CHECKED = ruAccessDate(RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt)
+
 const alternatives = [
-  { slug: 'bright-funded', name: 'BrightFunded', russia: 'Не в списке ограничений', kyc: 'Исключает лиц из санкционных списков', payout: 'USDC (ERC-20), банк в EUR', review: '/ru/obzor-bright-funded' },
-  { slug: 'upscale', name: 'Upscale', russia: 'Ограничений по странам не заявлено', kyc: 'Нет KYC', payout: 'USDT на свой кошелёк', review: null },
-  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', russia: 'Принимает на Match-Trader', kyc: 'Не проверено', payout: 'USDT ERC20/TRC20, BTC, ETH, банк', review: '/blog/crypto-fund-trader-review' },
+  { slug: 'bright-funded', name: 'BrightFunded', russia: `Нет в списке ограничений (на ${ruNotListedDate('bright-funded')})`, kyc: 'Исключает лиц из санкционных списков', payout: 'USDC (ERC-20), банк в EUR', review: '/ru/obzor-bright-funded' },
+  { slug: 'crypto-fund-trader', name: 'Crypto Fund Trader', russia: `Нет в списке ограничений (на ${ruNotListedDate('crypto-fund-trader')}; Match-Trader)`, kyc: 'Не проверено', payout: 'USDT ERC20/TRC20, BTC, ETH, банк', review: '/blog/crypto-fund-trader-review' },
+  { slug: 'upscale', name: 'Upscale', russia: `Статус неясен: Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании (на ${formatRuDate(UPSCALE_CHECKED)})`, kyc: 'Для вывода — паспорт и селфи (Условия, п. 6)', payout: 'USDT на свой кошелёк', review: null },
 ] as const
 
 const faqs: RussianFaqItem[] = [
@@ -58,7 +65,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Чем заменить FTMO трейдеру из России?',
-    a: 'На дату проверки Россию не ограничивают Upscale, Crypto Fund Trader (Match-Trader), BrightFunded; FundedNext с 20.10.2026 резидентам России недоступна (подвал её сайта). Условия у них разные — сравните правила по ссылкам на обзоры.',
+    a: `На дату проверки Россию в списках ограничений не называют Crypto Fund Trader (Match-Trader) и BrightFunded; у Upscale статус для РФ неясен (на ${UPSCALE_CHECKED}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту; FundedNext с 20.10.2026 резидентам России недоступна (подвал её сайта). Условия у них разные — сравните правила по ссылкам на обзоры.`,
   },
   {
     q: 'Почему на этой странице нет ссылки на регистрацию в FTMO?',
@@ -87,18 +94,18 @@ export default function FtmoForRussiansPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <section className="ru-hero">
         <div className="ru-shell" data-ftmo-russia="restricted">
-          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {CHECKED}</span></div>
+          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {formatRuDate(CHECKED)}</span></div>
           <h1>FTMO для россиян: работает ли FTMO в России и чем его заменить</h1>
           <p className="ru-lead">
             Короткий ответ — нельзя. «Russian Federation» стоит в официальном списке FTMO рядом с Беларусью, Казахстаном
             и ещё четырьмя странами Центральной Азии. Ниже — что именно написано в правилах, что будет, если попробовать
             обойти ограничение, и куда смотреть вместо FTMO.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источник: <a href={FTMO_SOURCE} target="_blank" rel="nofollow noopener noreferrer">FAQ FTMO «Who can join FTMO»</a>, открыт {CHECKED}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источник: <a href={FTMO_SOURCE} target="_blank" rel="nofollow noopener noreferrer">FAQ FTMO «Who can join FTMO»</a>, открыт {formatRuDate(CHECKED)}.</p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="ftmo-russia">
             <strong>Партнёрское раскрытие.</strong> На этой странице нет ссылки на регистрацию в FTMO. По кнопкам альтернатив
             Traders Fund Hub может получить комиссию; на изложение правил FTMO это не влияет.
@@ -115,7 +122,7 @@ export default function FtmoForRussiansPage() {
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-ftmo-restricted="cis">
-              <caption className="hidden-caption">Ограничения FTMO для стран СНГ и Украины на {CHECKED}</caption>
+              <caption className="hidden-caption">Ограничения FTMO для стран СНГ и Украины на {formatRuDate(CHECKED)}</caption>
               <thead><tr><th>Страна / регион</th><th>Статус в FTMO</th></tr></thead>
               <tbody>
                 {restricted.map(row => (
@@ -152,14 +159,17 @@ export default function FtmoForRussiansPage() {
         <div className="ru-shell ru-content">
           <h2>Альтернативы FTMO для трейдеров из России</h2>
           <p>
-            Три фирмы на {CHECKED} не ограничивают Россию. Они не копии FTMO: у Upscale и Crypto Fund Trader упор на
+            BrightFunded и Crypto Fund Trader Россию в списках ограничений не называют. У Upscale статус для РФ неясен
+            (на {formatRuDate(UPSCALE_CHECKED)}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для
+            вывода нужен KYC по паспорту; в FAQ сказано иное, но обязывающий текст — Условия.
+            Это не копии FTMO: у Upscale и Crypto Fund Trader упор на
             крипту, у BrightFunded — на форекс и индексы, хотя криптопары она тоже предлагает (более 48, по данным справки
             BrightFunded, проверка 20.10.2026). Сравнивайте правила, а не логотипы.
             Правила FTMO и FundedNext по пунктам — в сравнении <Link href="/ru/ftmo-vs-fundednext">«FTMO или FundedNext»</Link>.
           </p>
           <div className="ru-table-wrap">
             <table className="ru-table" data-ftmo-alternatives="russia">
-              <caption className="hidden-caption">Альтернативы FTMO, открытые для России</caption>
+              <caption className="hidden-caption">Альтернативы FTMO для трейдеров из России: статус доступа по каждой фирме</caption>
               <thead><tr><th>Фирма</th><th>Россия</th><th>KYC</th><th>Выплаты</th><th></th></tr></thead>
               <tbody>
                 {alternatives.map((alt, index) => (
@@ -171,7 +181,7 @@ export default function FtmoForRussiansPage() {
                     <td>
                       {alt.slug === 'upscale' ? (
                         // TODO: заменить на /go/upscale после подтверждения партнёрской программы Upscale
-                        <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">Открыть <ArrowRight size={14} aria-hidden="true" /></a>
+                        <a href="https://upscale.trade/ru/" target="_blank" rel="nofollow noopener noreferrer" className="btn-primary">Проверить <ArrowRight size={14} aria-hidden="true" /></a>
                       ) : (
                         <RuGoLink firm={alt.slug} hideBadge href={`/go/${alt.slug}?from=ru-ftmo-dlya-rossiyan-table-${index + 1}`} rel={goLinkRel(alt.slug)} className="btn-primary">
                           Проверить <ArrowRight size={14} aria-hidden="true" />

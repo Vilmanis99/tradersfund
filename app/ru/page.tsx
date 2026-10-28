@@ -20,13 +20,14 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getRussianFinderRows } from '@/lib/challengeComparisonData'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified, russianPublishedHref } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { isProductSetFresh } from '@/lib/reviewFreshness'
+import { formatRuDate } from '@/lib/ruDate'
 
 const PATH = '/ru'
 export const revalidate = 3600
@@ -35,7 +36,7 @@ export const revalidate = 3600
 const RU_HOME_BASICS = [
   { href: '/ru/prop-trejding', title: 'Что такое проп-трейдинг', text: 'Как работает торговля на капитале фирмы.' },
   { href: '/ru/funded-account', title: 'Funded account', text: 'Что такое финансируемый счёт и как его получить.' },
-  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы работают с РФ и как платят.' },
+  { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы не ограничивают РФ и как платят.' },
   { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
   { href: '/ru/obzor-topstep', title: 'Обзор Topstep', text: 'Фьючерсный проп: подписка, правила и доступ из РФ.' },
@@ -125,19 +126,19 @@ export default function RussianHomePage() {
     <div className="th-home ru-home ru-home--product-led" data-russian-home-layout="focused">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />
 
       <HeroBlock
         id="ru-home-heading"
         eyebrow={<><Globe2 size={14} aria-hidden="true" /> Для русскоязычных трейдеров по всему миру</>}
         title="Проп-фирмы и проп-компании 2026: сравнение условий"
-        lead="Стоимость участия, допустимый убыток и правила выплат. У каждой цифры есть дата источника, а отметка показывает, открыта ли фирма для резидентов РФ."
+        lead="Стоимость участия, допустимый убыток и правила выплат. У каждой цифры есть дата источника, а отметка показывает статус доступа для резидентов РФ."
         actions={[{ href: '#ru-home-compare', label: 'Сравнить фирмы' }, { href: '/ru/promokody-prop-firm', label: 'Промокоды', variant: 'secondary' }]}
         counters={[
           { value: String(counters.firms), label: 'фирм в базе' },
           { value: String(counters.freshProducts), label: 'программ с актуальными источниками' },
           { value: String(watchCount), label: 'датированных заметок о правилах' },
-          { value: counters.latestCheck ?? '—', label: 'последняя проверка' },
+          { value: counters.latestCheck ? formatRuDate(counters.latestCheck) : '—', label: 'последняя проверка' },
         ]}
         aside={
           <div className="home-finder-panel">
@@ -165,13 +166,13 @@ export default function RussianHomePage() {
           <div className="th-section__head">
             <div>
               <h2 id="ru-home-compare-heading">Сравнение программ</h2>
-              <p>Счёт $50 000 · самая дешёвая программа фирмы с актуальным источником · сначала фирмы, открытые для РФ. Валюты не пересчитываем.</p>
+              <p>Счёт $50 000 · самая дешёвая программа фирмы с актуальным источником · сначала фирмы, не ограничивающие РФ. Валюты не пересчитываем.</p>
             </div>
             <Link href="/ru/luchshie-prop-firmy" className="th-link">Посмотреть все фирмы <ArrowRight size={14} aria-hidden="true" /></Link>
           </div>
           <ComparisonTable rows={tableRows} locale="ru" placement="ru-home-comparison" />
           <DisclosureNote summary={<>Часть ссылок партнёрские. Порядок — не реклама. Размер счёта — не цена. Доступность для РФ проверяйте перед оплатой.</>}>
-            <p>Отметка доступа основана на поле russiaStatus и проверке условий фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
+            <p>Отметка «Доступ из РФ» основана на официальных списках ограничений и условиях фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
           </DisclosureNote>
         </div>
       </section>
@@ -228,17 +229,17 @@ export default function RussianHomePage() {
                   <p className="ru-home-partner-country-note" data-russian-partner-country-warning={item.slug} data-russian-partner-country-source-status={item.countryFresh ? 'dated' : 'recapture-required'} data-russian-home-bright-country-conflict={item.slug === 'bright-funded' ? 'help-six-terms-five' : undefined}>
                     {item.slug === 'fundednext'
                       ? item.countryFresh
-                        ? `Недоступно для резидентов России: подвал fundednext.com исключает Россию (по данным на 20.10.2026), хотя список в условиях (п. 5.3, CFD) её не называет (проверка от ${item.countryCapturedAt}). Резидент РФ рискует отказом в обслуживании или выплате.`
-                        : `Недоступно для резидентов России (подвал fundednext.com, по данным на 20.10.2026); страновые условия (проверка от ${item.countryCapturedAt}) требуют новой проверки.`
+                        ? `Недоступно для резидентов России: подвал fundednext.com исключает Россию (по данным на 20.10.2026), хотя список в условиях (п. 5.3, CFD) её не называет (проверка от ${formatRuDate(item.countryCapturedAt)}). Резидент РФ рискует отказом в обслуживании или выплате.`
+                        : `Недоступно для резидентов России (подвал fundednext.com, по данным на 20.10.2026); страновые условия (проверка от ${formatRuDate(item.countryCapturedAt)}) требуют новой проверки.`
                       : <>
-                        <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {item.countryCapturedAt} включает Пакистан;{' '}
-                        <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {item.brightTermsCapturedAt} его не называют.{' '}
+                        <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">Справка BrightFunded</a> от {formatRuDate(item.countryCapturedAt)} включает Пакистан;{' '}
+                        <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {formatRuDate(item.brightTermsCapturedAt)} его не называют.{' '}
                         {item.countryFresh
                           ? 'Россия не названа в обоих списках, но это не подтверждает доступ вашего профиля. Уточните до оплаты.'
                           : 'Страновые условия требуют повторной проверки; отсутствие России в старых списках не подтверждает доступ сегодня.'}
                       </>}
                   </p>
-                  <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${item.captureDate}` : 'Обновление источников ожидается'}</p>
+                  <p className="ru-source-line ru-home-checked">{item.captureDate ? `Источники проверены: ${formatRuDate(item.captureDate)}` : 'Обновление источников ожидается'}</p>
                 </FeaturedOfferCard>
               )
             })}
@@ -261,7 +262,7 @@ export default function RussianHomePage() {
           pickerFallbackHref="/ru/luchshie-prop-firmy"
           pickerInitial={pickerInitial}
           firmBadge={slug => <RuAccessBadge firm={slug} />}
-          country={{ lead: 'Из России?', label: 'Кто принимает трейдеров из РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
+          country={{ lead: 'Из России?', label: 'Какие фирмы не ограничивают РФ', href: '/ru/dlya-russkoyazychnykh-treyderov', data: { 'data-russian-home-country': 'russia' } }}
           extra={{
             label: 'Ещё по теме:',
             data: { 'data-russian-home-guides': 'selected-three' },

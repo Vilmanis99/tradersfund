@@ -1,0 +1,306 @@
+{
+  "firmSlug": "topstep",
+  "officialDomain": "https://www.topstep.com",
+  "capturedAt": "2026-10-28",
+  "captureType": "rules-recheck",
+  "reviewStatus": "ready",
+  "releaseBlockers": [],
+  "scope": "Re-read of the firm-level rules fields (drawdown type, maximum loss, consistency, profit split, payout frequency) plus the other fieldEvidence entries below, against the official pages listed. Every stored value matches the live pages; no product value changed. Product sourceCapturedAt stays 2026-10-20 (prices were re-read and match, but this capture is not a full product recapture).",
+  "pagesRead": [
+    "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+    "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+    "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+    "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+    "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+    "https://help.topstep.com/en/articles/10490293-daily-loss-limit-in-the-trading-combine-and-express-funded-account",
+    "https://www.topstep.com/topstep-prop"
+  ],
+  "pageDates": {
+    "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit": "dateModified 2026-09-18T18:51:37Z (Intercom JSON-LD)",
+    "https://help.topstep.com/en/articles/8284208-consistency-at-topstep": "dateModified 2026-09-17T14:21:11Z (Intercom JSON-LD)",
+    "https://help.topstep.com/en/articles/8284233-topstep-payout-policy": "dateModified 2026-10-13T14:26:14Z (Intercom JSON-LD)",
+    "https://help.topstep.com/en/articles/8284197-trading-combine-parameters": "dateModified 2026-09-24T20:21:06Z (Intercom JSON-LD)",
+    "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions": "dateModified 2026-10-15T22:44:35Z (Intercom JSON-LD)",
+    "https://help.topstep.com/en/articles/10490293-daily-loss-limit-in-the-trading-combine-and-express-funded-account": "dateModified 2026-06-30T17:30:14Z (Intercom JSON-LD)",
+    "https://www.topstep.com/topstep-prop": "no page date published"
+  },
+  "accessNotes": "Official Topstep pages only (www.topstep.com, help.topstep.com), plain HTTP fetch 2026-10-28 10:35–10:36 Riga (UTC+2), no VPN/proxy; quotes verbatim from the article body, whitespace-normalised; flattened table cells are joined with spaces.",
+  "unresolvedConflicts": [
+    {
+      "field": "minTradingDays",
+      "sourceUrls": [
+        "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+        "https://www.topstep.com/topstep-prop"
+      ],
+      "resolution": "Unresolved; null in both products."
+    }
+  ],
+  "products": [
+    {
+      "firmSlug": "topstep",
+      "productName": "Trading Combine - Standard Path",
+      "productSlug": "trading-combine-standard-path",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 49,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 99,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 199,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 55,
+      "consistencyScope": "evaluation",
+      "consistencyRules": [
+        {
+          "percent": 55,
+          "scope": "evaluation",
+          "appliesTo": "Trading Combine",
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+        },
+        {
+          "percent": 40,
+          "scope": "funded",
+          "appliesTo": "XFA Consistency payout path",
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+        }
+      ],
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "after-qualifying-days",
+      "rules": {
+        "news": "restricted",
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 149,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+          "quote": "It's a simulated account with one rule and two objectives. Meet them, and you've earned your Express Funded Account®",
+          "interpretation": "Single evaluation before XFA; no second evaluation target."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+          "quote": "Account Size Profit Target Best Day Recommendation $50K $3,000 Less than $1,650 $100K $6,000 Less than $3,300 $150K $9,000 Less than $4,950",
+          "interpretation": "Flattened table cells. $3,000/$6,000/$9,000 at 50K/100K/150K, each normalised to 6%."
+        },
+        "maxLossUsd": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+          "quote": "$50K $2,000 $100K $3,000 $150K $4,500",
+          "interpretation": "Flattened table cells (Account Size / Maximum Loss Limit)."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+          "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down. Once it reaches your starting balance, it locks permanently.",
+          "interpretation": "End-of-day trailing, locks at start, monitored intraday including unrealised P&L."
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/10490293-daily-loss-limit-in-the-trading-combine-and-express-funded-account",
+          "quote": "The Daily Loss Limit (DLL) is optional in the Trading Combine® and Express Funded Account® (XFA). It’s automatic in the Live Funded Account® (LFA).",
+          "interpretation": "Optional dollar lockout ($1,000/$2,000/$3,000) in Combine and XFA; null, not zero."
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+          "quote": "Trading Combine — Consistency Target (55%)",
+          "interpretation": "Hard 55% line, no buffer; a larger best day increases the required target. XFA Consistency payout path uses 40%."
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+          "quote": "You can pass in as few as two days",
+          "conflictingSourceUrl": "https://www.topstep.com/topstep-prop",
+          "conflictingQuote": "There’s no minimum time requirement to pass the Trading Combine®",
+          "interpretation": "Null; conflicting published minimum."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://www.topstep.com/topstep-prop",
+          "quote": "The subscription fee rebills monthly until you pass the Trading Combine® or cancel the subscription",
+          "interpretation": "No finite maximum verified; null."
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "90/10 profit split — you keep 90%",
+          "interpretation": "New entrant base; legacy first-$10K exception remains noted."
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "5 winning days of $150+ Net P&L. Days don't need to be consecutive.",
+          "interpretation": "Conditional trading-day paths (5 winning days Standard / 3 trading days Consistency); calendar scalar null."
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "Available during CME market hours: Sunday 5 PM CT – Friday 5 PM CT (excluding holidays)",
+          "interpretation": "Requests open during CME hours once the qualifying-day conditions are met (after-qualifying-days), not on demand."
+        },
+        "pricingModel": {
+          "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+          "quote": "$49/month",
+          "interpretation": "Recurring monthly, not one-off."
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+          "quote": "Standard Path — $149, charged once per XFA earned. No Activation Fee Path — $0.",
+          "interpretation": "Standard / No Activation Fee respectively."
+        }
+      }
+    },
+    {
+      "firmSlug": "topstep",
+      "productName": "Trading Combine - No Activation Fee Path",
+      "productSlug": "trading-combine-no-activation-fee-path",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 95,
+          "maxLossUsd": 2000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 149,
+          "maxLossUsd": 3000,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 150000,
+          "priceUsd": 229,
+          "maxLossUsd": 4500,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 6
+      },
+      "dailyLossPct": null,
+      "maxLossPct": null,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 55,
+      "consistencyScope": "evaluation",
+      "consistencyRules": [
+        {
+          "percent": 55,
+          "scope": "evaluation",
+          "appliesTo": "Trading Combine",
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+        },
+        {
+          "percent": 40,
+          "scope": "funded",
+          "appliesTo": "XFA Consistency payout path",
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
+        }
+      ],
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": "after-qualifying-days",
+      "rules": {
+        "news": "restricted",
+        "weekend": false,
+        "overnight": false,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "pricingModel": "monthly-subscription",
+      "activationFeeUsd": 0,
+      "assetClass": "futures",
+      "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+      "fieldEvidence": {
+        "phases": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+          "quote": "It's a simulated account with one rule and two objectives. Meet them, and you've earned your Express Funded Account®",
+          "interpretation": "Single evaluation before XFA; no second evaluation target."
+        },
+        "profitTargets.phase1": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+          "quote": "Account Size Profit Target Best Day Recommendation $50K $3,000 Less than $1,650 $100K $6,000 Less than $3,300 $150K $9,000 Less than $4,950",
+          "interpretation": "Flattened table cells. $3,000/$6,000/$9,000 at 50K/100K/150K, each normalised to 6%."
+        },
+        "maxLossUsd": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+          "quote": "$50K $2,000 $100K $3,000 $150K $4,500",
+          "interpretation": "Flattened table cells (Account Size / Maximum Loss Limit)."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+          "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down. Once it reaches your starting balance, it locks permanently.",
+          "interpretation": "End-of-day trailing, locks at start, monitored intraday including unrealised P&L."
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/10490293-daily-loss-limit-in-the-trading-combine-and-express-funded-account",
+          "quote": "The Daily Loss Limit (DLL) is optional in the Trading Combine® and Express Funded Account® (XFA). It’s automatic in the Live Funded Account® (LFA).",
+          "interpretation": "Optional dollar lockout ($1,000/$2,000/$3,000) in Combine and XFA; null, not zero."
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+          "quote": "Trading Combine — Consistency Target (55%)",
+          "interpretation": "Hard 55% line, no buffer; a larger best day increases the required target. XFA Consistency payout path uses 40%."
+        },
+        "minTradingDays": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+          "quote": "You can pass in as few as two days",
+          "conflictingSourceUrl": "https://www.topstep.com/topstep-prop",
+          "conflictingQuote": "There’s no minimum time requirement to pass the Trading Combine®",
+          "interpretation": "Null; conflicting published minimum."
+        },
+        "maxTradingDays": {
+          "sourceUrl": "https://www.topstep.com/topstep-prop",
+          "quote": "The subscription fee rebills monthly until you pass the Trading Combine® or cancel the subscription",
+          "interpretation": "No finite maximum verified; null."
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "90/10 profit split — you keep 90%",
+          "interpretation": "New entrant base; legacy first-$10K exception remains noted."
+        },
+        "payoutFirstDays": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "5 winning days of $150+ Net P&L. Days don't need to be consecutive.",
+          "interpretation": "Conditional trading-day paths (5 winning days Standard / 3 trading days Consistency); calendar scalar null."
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+          "quote": "Available during CME market hours: Sunday 5 PM CT – Friday 5 PM CT (excluding holidays)",
+          "interpretation": "Requests open during CME hours once the qualifying-day conditions are met (after-qualifying-days), not on demand."
+        },
+        "pricingModel": {
+          "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+          "quote": "$49/month",
+          "interpretation": "Recurring monthly, not one-off."
+        },
+        "activationFeeUsd": {
+          "sourceUrl": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+          "quote": "Standard Path — $149, charged once per XFA earned. No Activation Fee Path — $0.",
+          "interpretation": "Standard / No Activation Fee respectively."
+        }
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import Link from '@/components/SafeLink'
 import { ArrowRight } from 'lucide-react'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaPendingNotListedFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { russianPublishedHref } from '@/lib/localizedRoutes'
 import { ruPublishedLinks, ruReviewFirmFor } from '@/lib/ruRelatedLinks'
 
@@ -30,7 +30,7 @@ export default function RuRelatedBlock({ path }: { path: string }) {
               <li key={link.href} className="ru-related-card" data-ru-slot="related">
                 <span className="ru-related-kind">{kindLabel(link.href)}</span>
                 <Link href={link.href} className="ru-related-link">{link.anchor} <ArrowRight size={14} aria-hidden="true" /></Link>
-                {review && !review.local ? <RuAccessBadgeView firm={review.firm} status={russiaStatusFor(review.firm)} hint={false} /> : null}
+                {review && !review.local ? <RuAccessBadgeView firm={review.firm} status={russiaStatusFor(review.firm)} basisDate={russiaBasisDateFor(review.firm)} pendingNotListed={russiaPendingNotListedFor(review.firm)} hint={false} /> : null}
               </li>
             )
           })}

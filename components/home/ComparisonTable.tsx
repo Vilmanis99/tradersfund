@@ -6,6 +6,9 @@ import FirmLogo from '../FirmLogo'
 import { RuAccessBadgeView } from '../RuAccessBadgeView'
 import { HOME_COPY, type HomeLocale } from './copy'
 import type { ComparisonRow } from './types'
+import { localeDate } from '@/lib/ruDate'
+import { hasTieredSplit, profitSplitText, profitSplitValue, TIERED_LABEL } from '@/lib/profitSplitDisplay'
+import SplitTiersDisclosure from '../SplitTiersDisclosure'
 
 type Chip = 'all' | 'open' | 'cfd' | 'futures' | 'one' | 'two'
 
@@ -32,6 +35,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const money = (row: ComparisonRow) => row.priceBreakdown ?? new Intl.NumberFormat(t.locale, { style: 'currency', currency: row.currency, maximumFractionDigits: 0 }).format(row.price)
   const na = <span className="th-na" title={t.notPublished}><span aria-hidden="true">—</span><span className="sr-only">{t.notPublished}</span></span>
   const pct = (value: number | null) => value == null ? na : `${value}%`
+  const split = (row: ComparisonRow) => profitSplitText(row, locale === 'ru' ? 'ru' : 'en') ?? na
   const visit = (row: ComparisonRow, className: string, layout: 'table' | 'cards') => row.goHref
     ? <Link href={`${row.goHref}?from=${placement}-${layout}`} prefetch={false} rel="sponsored nofollow noopener" target="_blank" className={className} data-russia-status={row.russiaStatus ?? undefined}>{t.visit}</Link>
     : <Link href={row.reviewUrl} className={className.replace('th-btn--amber', 'th-btn--ghost')}>{t.review}</Link>
@@ -43,7 +47,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
   const partnerPill = (row: ComparisonRow) => row.goHref
     ? <span className="partner-pill" data-partner-label={row.firmSlug} title={t.partnerTitle}>{t.partner}</span>
     : null
-  const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} hint={false} /> : null
+  const badge = (row: ComparisonRow) => row.russiaStatus ? <RuAccessBadgeView firm={row.firmSlug} status={row.russiaStatus} basisDate={row.russiaBasisDate} hint={false} /> : null
 
   return (
     <div className="th-compare" data-home-comparison={locale}>
@@ -72,9 +76,9 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <td className="th-num"><b>{money(row)}</b>{row.pricingModel === 'monthly-subscription' ? <small> {t.subscription}</small> : null}</td>
                 <td className="th-num">{pct(row.profitTarget)}</td>
                 <td className="th-num">{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</td>
-                <td className="th-num">{pct(row.profitSplitPct)}</td>
+                <td className="th-num" data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{hasTieredSplit(row) ? <SplitTiersDisclosure tiers={row.profitSplitTiers ?? []} lang={locale === 'ru' ? 'ru' : 'en'}>{profitSplitValue(row)}<br /><small>({TIERED_LABEL[locale === 'ru' ? 'ru' : 'en']})</small></SplitTiersDisclosure> : split(row)}</td>
                 <td className="th-col--opt">{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : na}</td>
-                <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{row.checkedOn}</time></td>
+                <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{localeDate(row.checkedOn, locale)}</time></td>
                 <td><div className="th-row-actions" data-row-badge={badge(row) ? 'after-cta' : undefined}>{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{badge(row)}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : official(row)}</div></td>
               </tr>
             ))}
@@ -89,7 +93,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
             <span className="th-small th-muted">{row.product}</span>
             <dl className="th-facts">
               <div><dt>{t.cols.fee}</dt><dd>{money(row)}</dd></div>
-              <div><dt>{t.cols.split}</dt><dd>{pct(row.profitSplitPct)}</dd></div>
+              <div><dt>{t.cols.split}</dt><dd data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{hasTieredSplit(row) ? <SplitTiersDisclosure tiers={row.profitSplitTiers ?? []} lang={locale === 'ru' ? 'ru' : 'en'}>{split(row)}</SplitTiersDisclosure> : split(row)}</dd></div>
               <div><dt>{t.cols.loss}</dt><dd>{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</dd></div>
             </dl>
             {visit(row, 'th-btn th-btn--amber th-btn--block', 'cards')}

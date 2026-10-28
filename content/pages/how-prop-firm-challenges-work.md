@@ -3,7 +3,7 @@ title: "How Prop Firm Challenges Work: The 5-Stage Lifecycle (2026)"
 seoTitle: "How Prop Firm Challenges Work: 5 Stages (2026)"
 slug: "how-prop-firm-challenges-work"
 date: "2026-05-20 12:00:00"
-modified: "2026-09-08 22:30:00"
+modified: "2026-10-27 09:00:00"
 description: "Map any prop-firm product from checkout through evaluation, funded rules, payout eligibility, and optional scaling with source-dated examples."
 seoDescription: "Learn the 5 stages of a prop-firm challenge—from fee and evaluation to funded rules, payout eligibility and scaling—with current product examples."
 type: "page"
@@ -25,7 +25,7 @@ type: "page"
 
 <h2>Stage 1 — Buying the challenge</h2>
 
-<p>You pick a firm, account size, and product, then pay the published one-time, split-payment, or recurring fee. Some products refund an evaluation fee after a qualifying payout; others never refund it or attach additional conditions. The current <a href="/prop-firm-challenges">product comparison</a> keeps the billing model visible instead of treating every checkout as the same kind of cost. For scale, the median list fee across 54 one-off $100K evaluation tiers at 13 firms was $463.50 in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (products captured 14 to 22 Oct 2026); only 27 of the 96 products counted there refund the fee on every account size.</p>
+<p>You pick a firm, account size, and product, then pay the published one-time, split-payment, or recurring fee. Some products refund an evaluation fee after a qualifying payout; others never refund it or attach additional conditions. The current <a href="/prop-firm-challenges">product comparison</a> keeps the billing model visible instead of treating every checkout as the same kind of cost. For scale, the median list fee across 57 one-off $100K evaluation tiers at 14 firms was $477 in our <a href="/blog/prop-firm-statistics">prop firm statistics</a> (products captured 14 to 26 Oct 2026); only 27 of the 99 products counted there refund the fee on every account size.</p>
 
 <p><strong>What the firm asks of you upfront:</strong></p>
 
@@ -91,7 +91,7 @@ type: "page"
 
 <h2>Stage 5 — First payout and scaling</h2>
 
-<p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while FundingPips 2 Step Standard records its refund only at the 4th reward, and FundingPips says that refund does not apply to 1 Step Flex, 2 Step Pro, 2 Step Flex or Zero (checked 2026-10-20). Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
+<p>This is where payout eligibility, KYC, the profit split, minimum withdrawal, and any fee refund converge. A refundable flag does not always mean “first payout”: FundedNext Stellar 2-Step returns the registration fee with the first approved reward, while a FundingPips 2 Step Standard refund is unconfirmed: its help centre (updated 24 Sep 2026) places it at the 4th reward, but its Terms (effective 15 May 2026) say “The Customer is not entitled to a refund of the registration fees”. The same help centre says that refund does not apply to 1 Step Flex, 2 Step Pro, 2 Step Flex or Zero (checked 2026-10-20). Phase-0 fees such as FundedNext Stellar Instant and FXIFY Instant Funding are non-refundable.</p>
 
 <p>The <a href="/blog/is-prop-firm-trading-profitable">net-cash profitability guide</a> turns those gates into a trader ledger: approved payouts and refunds received minus every attempt, subscription, activation, reset, platform, and withdrawal cost.</p>
 

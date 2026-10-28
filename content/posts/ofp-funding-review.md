@@ -3,7 +3,7 @@ title: "OFP Funding Review 2026: Six Instant Accounts, 40 Priced Tiers, One $300
 seoTitle: "OFP Funding Review 2026: Legit? Fees, Rules & Payouts"
 slug: "ofp-funding-review"
 date: "2025-04-22 12:00:00"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-27 12:00:00"
 author: "Tara Mohseni"
 excerpt: "OFP now sells six instant accounts from $35 to $2,500 at an 80% base split. Instant Lite is the cheapest per dollar of drawdown; Instant Plus costs over 3x more."
 seoDescription: "OFP Funding review: is it legit, how the payout process works step by step, payout times and Rise fees, plus 6 instant accounts, true cost and drawdown rules."
@@ -209,12 +209,6 @@ type: "post"
     <tr><td style="padding: 8px 12px;">$300K</td><td style="padding: 8px 12px;">$2,500</td><td style="padding: 8px 12px;">$3,125</td><td style="padding: 8px 12px;">0.10</td><td style="padding: 8px 12px;">2</td></tr>
   </tbody>
 </table>
-
-[generated 6 table(s) for ofp-funding — sourceCapturedAt 2026-10-14]
-(node:271978) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/tf-en-b2/lib/firms.ts is not specified and it doesn't parse as CommonJS.
-Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
-To eliminate this warning, add "type": "module" to /workspace/tf-en-b2/package.json.
-(Use `node --trace-warnings ...` to show where the warning was created)
 
 <p><strong>What the tables show.</strong> Instant Lite (5%/10%) is the cheapest risk-adjusted account OFP sells: $250 at $100K for R = 0.03, against $420 and R = 0.05 for the Instant Classic (5%/10%) with the same drawdown. Instant Lite (3%/5%) at $100K costs $200 for R = 0.05. Instant Plus is the expensive end: the $100K Instant Plus (3%/5%) costs $670 for R = 0.17, more than three times Instant Lite's $200 for the identical 3% daily and 5% maximum drawdown. Lite's lower price comes with a 5% profit target, 5 minimum trading days, a 30-day duration and a single reward, so it is a one-shot account rather than a recurring one.</p>
 

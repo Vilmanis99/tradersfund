@@ -8,11 +8,13 @@ import {
   GitCompareArrows,
 } from 'lucide-react'
 import { getFeatureCounts } from '@/lib/features'
+import { firmSlug, getUnlistedComparePairs } from '@/lib/comparisons'
 import {
   getAllChallenges,
   getAllFirms,
   isChallengeFresh,
 } from '@/lib/firms'
+import { toPublicChallenge, toPublicFirm } from '@/lib/publicFirm'
 import { breadcrumbSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -49,6 +51,8 @@ export default async function PropFirmsHubPage({
   // Reading the request keeps the directory's URL state available during SSR.
   await searchParams
   const firms = getAllFirms()
+  // Pairs without a /compare page (new firms); passed only when there are any.
+  const unlistedComparePairs = getUnlistedComparePairs(firms.map(firm => firmSlug(firm.name)))
   const challenges = getAllChallenges()
   const freshChallenges = challenges.filter(challenge => isChallengeFresh(challenge))
   const tiles = getFeatureCounts()
@@ -194,9 +198,11 @@ export default async function PropFirmsHubPage({
             </span>
           </div>
 
+          {/* Public-field projections only: props are serialised into the page (HTML + RSC payload). */}
           <FirmTable
-            firms={firms}
-            challenges={freshChallenges}
+            firms={firms.map(toPublicFirm)}
+            challenges={freshChallenges.map(toPublicChallenge)}
+            {...(unlistedComparePairs.length ? { unlistedComparePairs } : {})}
           />
         </div>
       </section>

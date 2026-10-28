@@ -7,9 +7,10 @@ import { ArrowRight, Scale, ShieldAlert, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { RuAccessBadge, RuGoLink } from '@/components/RuGoLink'
-import { goLinkRel, russiaStatusFor } from '@/lib/russiaAvailability'
+import { goLinkRel, russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
+import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { challengeTierEconomics, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
@@ -265,7 +266,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(crumbs) }} />
       <RuMobileStickyCTA firms={['ftmo', 'bright-funded']} from="ru-ftmo-vs-bright-mobile-sticky" />
-      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {complete && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero ru-hero--p1">
         <div
@@ -333,7 +334,7 @@ export default function RussianFtmoVsBrightFundedPage() {
       <section className="ru-section" id="tablica">
         <div className="ru-shell">
           <h2>FTMO и BrightFunded: {rows.length} различий в одной таблице</h2>
-          <p className="ru-muted">BrightFunded стоит первым, потому что открыт для России; FTMO — ориентир для сравнения. «Не подтверждено» не значит «нет ограничения». Цены — базовые, без акций: итог на странице оплаты может отличаться.</p>
+          <p className="ru-muted">BrightFunded стоит первым, потому что {russiaBasisDateFor('bright-funded') ? `Россия не названа в её списке ограничений (на ${ruAccessDate(russiaBasisDateFor('bright-funded')!)})` : 'открыт для России'}; FTMO — ориентир для сравнения. «Не подтверждено» не значит «нет ограничения». Цены — базовые, без акций: итог на странице оплаты может отличаться.</p>
           {!complete && <p className="ru-notice" data-russian-comparison-evidence-status="recapture-required">Часть данных старше 30 дней или отсутствует. Такие ячейки помечены, а числовые выводы ниже нужно перепроверить на сайте фирмы.</p>}
           <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Сравнение FTMO и BrightFunded">
             <table className="ru-table" data-russian-comparison-fields={rows.length}>

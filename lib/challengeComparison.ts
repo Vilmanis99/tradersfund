@@ -19,7 +19,7 @@ export interface GlobalChallengeTier {
 
 export interface GlobalChallengeRow {
   /** russiaStatus: set server-side for /ru finder rows (russiaStatusFor), so client finders need no firm data. */
-  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus }
+  firm: { slug: string; name: string; logo: string; reviewUrl: string; isPartner: boolean; score: number; russiaStatus?: RussiaStatus; russiaBasisDate?: string | null }
   product: {
     name: string
     slug: string
@@ -39,6 +39,8 @@ export interface GlobalChallengeRow {
     consistencyRulePct: number | null
     consistencyRuleApplies?: boolean | null
     profitSplitPct: number | null
+    /** Display-only split tiers (traderPct + appliesTo; no quotes or URLs). Sorting and maths use profitSplitPct. */
+    profitSplitTiers?: import('./profitSplitDisplay').SplitTier[]
     payoutFirstDays: number | null
     payoutFrequency: PayoutFrequency | null
     rules: ChallengeRules

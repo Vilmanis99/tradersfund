@@ -11,6 +11,12 @@ import {
  * in the firm's own currency; the caller passes only fresh products.
  */
 
+function englishOrdinal(count: number) {
+  const tens = count % 100
+  const suffix = tens >= 11 && tens <= 13 ? 'th' : count % 10 === 1 ? 'st' : count % 10 === 2 ? 'nd' : count % 10 === 3 ? 'rd' : 'th'
+  return `${count}${suffix}`
+}
+
 const COPY = {
   en: {
     size: 'Account',
@@ -22,6 +28,8 @@ const COPY = {
     refundYes: 'Fee refunded',
     refundNo: 'No refund',
     refundUnknown: 'Refund not stated',
+    refundConflict: 'Refund: sources conflict, checked',
+    refundAfter: (count: number) => `Refunded after ${englishOrdinal(count)} payout`,
     refundCellYes: 'refunded',
     refundCellNo: 'no refund',
     checked: 'Checked',
@@ -38,6 +46,8 @@ const COPY = {
     refundYes: 'Взнос возвращается',
     refundNo: 'Без возврата',
     refundUnknown: 'Возврат не указан',
+    refundConflict: 'Возврат: источники расходятся, проверено',
+    refundAfter: (count: number) => `Возврат после ${count}-й выплаты`,
     refundCellYes: 'возврат',
     refundCellNo: 'без возврата',
     checked: 'Проверено',
@@ -119,7 +129,11 @@ export default function PriceMatrix({ products, firmName, firmSlug, locale, aria
               {matrix.columns.map(column => (
                 <th scope="col" key={column.product.productSlug} data-price-matrix-product={column.product.productSlug}>
                   <span className="price-matrix__product">{column.label}</span>
-                  {column.refundUniform && <span className="price-matrix__meta">{refundLabel(column.refundable, locale)}</span>}
+                  {column.refundConflictCheckedAt
+                    ? <span className="price-matrix__meta" data-price-matrix-refund-conflict={column.refundConflictCheckedAt}>{copy.refundConflict} <time dateTime={column.refundConflictCheckedAt}>{formatMatrixDate(column.refundConflictCheckedAt, locale)}</time></span>
+                    : column.refundUniform && column.refundable === true && column.refundAfterPayouts
+                      ? <span className="price-matrix__meta" data-price-matrix-refund-after={column.refundAfterPayouts}>{copy.refundAfter(column.refundAfterPayouts)}</span>
+                      : column.refundUniform && <span className="price-matrix__meta">{refundLabel(column.refundable, locale)}</span>}
                   {!singleDate && <span className="price-matrix__meta"><time dateTime={column.capturedAt}>{formatMatrixDate(column.capturedAt, locale)}</time></span>}
                 </th>
               ))}

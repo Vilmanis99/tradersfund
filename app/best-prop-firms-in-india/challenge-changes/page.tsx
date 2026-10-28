@@ -17,7 +17,7 @@ import ChallengeChangeFeed, {
 } from '@/components/ChallengeChangeFeed'
 import IndiaMatchupLinks from '@/components/IndiaMatchupLinks'
 import { validateChallengeProductKeys } from '@/lib/challengeChangeFocus'
-import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { challengeChangeCardEntry, getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { buildLandingPayload, getLandingBySlug } from '@/lib/landings'
 import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
@@ -93,7 +93,7 @@ export default function Page() {
     if (!affectedProducts.length) return []
 
     return [{
-      ...entry,
+      ...challengeChangeCardEntry(entry),
       reviewUrl: firm.reviewUrl,
       indiaScreened: true,
       productKeys: affectedProducts.map(product => `${firm.slug}:${product.slug}`),

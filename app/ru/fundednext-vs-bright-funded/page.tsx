@@ -35,7 +35,7 @@ import {
 } from '@/lib/firms'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import { isRussiaAccessEvidenceDocumented } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -45,6 +45,8 @@ import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
 import { russiaStatusFor } from '@/lib/russiaAvailability'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundednext-vs-bright-funded'
 const TITLE = 'FundedNext или BrightFunded: сравнение 2026 и доступ из РФ'
@@ -98,13 +100,14 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Какая фирма удобнее русскоязычному трейдеру за рубежом?',
-    a: 'Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции (не России) с подходящим кошельком — один из криптомаршрутов FundedNext. Резиденту России подходит только BrightFunded. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.',
+    a: `Язык не определяет доступ. Резидент ЕС с EUR-счётом может предпочесть BrightFunded, а пользователь разрешённой юрисдикции (не России) с подходящим кошельком — один из криптомаршрутов FundedNext. Резиденту России из двух остаётся только BrightFunded: России нет в её списке ограничений (на ${ruNotListedDate('bright-funded')}), но это не письменный ответ фирмы. Проверяются фактические гражданство, резидентство, адрес, платёж и KYC.`,
   },
 ]
 
 const frequencyLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые 14 дней',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу',
 }
@@ -245,7 +248,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
     { name: 'FundedNext или BrightFunded' },
   ])
-  const faq = faqPageSchema(pageFaqs)
+  const faq = ruFaqPageSchema(pageFaqs)
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -297,7 +300,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <div className="ru-stat"><strong>{fundedNextProducts.length}</strong><span>продукта FundedNext</span></div>
             <div className="ru-stat"><strong>{brightProducts.length}</strong><span>продукта BrightFunded</span></div>
             <div className="ru-stat"><strong>{priceCount}</strong><span>цен в исходных валютах</span></div>
-            <div className="ru-stat"><strong>{latestCapture}</strong><span>самая ранняя проверка программ</span></div>
+            <div className="ru-stat"><strong>{formatRuDate(latestCapture)}</strong><span>самая ранняя проверка программ</span></div>
           </div>
           <div className="ru-notice" data-russian-country-boundary="comparison-not-access">
             <strong>Русский язык не подтверждает доступность страны.</strong>{' '}
@@ -306,9 +309,9 @@ export default function FundedNextVsBrightFundedRussianPage() {
           </div>
           <div className="ru-notice" data-russian-primary-comparison-country-conflict="help-six-terms-five" data-russian-primary-comparison-country-status={countrySourcesCurrent ? 'dated' : 'recapture-required'}>
             <strong>{countrySourcesCurrent ? 'У BrightFunded расходятся официальные списки стран.' : 'В датированном снимке списки стран BrightFunded расходились.'}</strong>{' '}
-            По записи от {brightEvidence.sources.countries.sourceCapturedAt}{' '}
+            По записи от {formatRuDate(brightEvidence.sources.countries.sourceCapturedAt)}{' '}
             <a href={brightEvidence.sources.countries.sourceUrl} target="_blank" rel="nofollow noopener">справка</a> включала Пакистан среди шести ограниченных стран;{' '}
-            <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {brightEvidence.sources.countryTerms.sourceCapturedAt} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
+            <a href={brightEvidence.sources.countryTerms.sourceUrl} target="_blank" rel="nofollow noopener">условия</a> от {formatRuDate(brightEvidence.sources.countryTerms.sourceCapturedAt)} называли пять стран без Пакистана и допускали дополнительные ограничения.{' '}
             {countrySourcesCurrent
               ? 'Россия не названа ни в одном из этих списков, но это не подтверждает доступ для конкретного гражданства, резидентства и фактического местонахождения. Получите ответ фирмы до оплаты.'
               : 'Списки требуют повторной проверки; прежнее отсутствие России в них не подтверждает доступ сегодня. Получите ответ фирмы до оплаты.'}
@@ -384,7 +387,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
                       <td>{product.phases} · {targetLabel(product)}</td>
                       <td>{priceRange(product)}<br />{pricedTiers(product).length} размеров</td>
                       <td>{drawdownLabel(product)}</td>
-                      <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{payoutLabel(product)}<br /><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Источник · {product.sourceCapturedAt}</a></td>
+                      <td data-russian-payout-product={`${product.firmSlug}:${product.productSlug}`}>{payoutLabel(product)}<br /><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Источник · {formatRuDate(product.sourceCapturedAt)}</a></td>
                     </tr>
                   ))}
                   {products.length === 0 && <tr><td colSpan={5}>Актуальных строк нет: источники программ требуют повторной проверки. Объяснения и официальные ссылки ниже сохранены.</td></tr>}
@@ -529,12 +532,12 @@ export default function FundedNextVsBrightFundedRussianPage() {
             <h2>KYC, платформы и проверка страны</h2>
             <p>
               Проверка личности не заменяется русскоязычным интерфейсом или успешной оплатой. По разбору оценочных программ
-              от {kycEvidence.get('fundednext')?.sourceCapturedAt ?? 'неподтверждённой даты'} FundedNext проверяет документы после прохождения оценки и перед активацией следующего счёта.
+              от {ruDatesInText(kycEvidence.get('fundednext')?.sourceCapturedAt ?? 'неподтверждённой даты')} FundedNext проверяет документы после прохождения оценки и перед активацией следующего счёта.
               В перечне указаны паспорт, государственное удостоверение личности или вид на жительство; подтверждение адреса могут запросить дополнительно.
               Для Stellar Instant, где оценки нет, порядок активации нужно проверять отдельно.
             </p>
             <p>
-              Проверка BrightFunded от {kycEvidence.get('bright-funded')?.sourceCapturedAt ?? 'неподтверждённой даты'} описывает
+              Проверка BrightFunded от {ruDatesInText(kycEvidence.get('bright-funded')?.sourceCapturedAt ?? 'неподтверждённой даты')} описывает
               {' '}{kycEvidence.get('bright-funded')?.provider ?? 'неподтверждённого провайдера'} для личности и адреса, затем проверку торгового счёта командой риска.
               Одобрение документов, подписание договора и активация — отдельные шаги. Опубликованный ориентир не гарантирует срок для профиля,
               по которому запрошены дополнительные сведения.
@@ -575,10 +578,10 @@ export default function FundedNextVsBrightFundedRussianPage() {
           <div className="ru-shell ru-content">
             <h2>Отзывы: оценка платформы и подтверждение выплаты — разные вещи</h2>
             <p>
-              На снимке Trustpilot от {fundedNext?.trustpilotCapturedAt ?? 'неуказанной даты'} у FundedNext была оценка
+              На снимке Trustpilot от {ruDatesInText(fundedNext?.trustpilotCapturedAt ?? 'неуказанной даты')} у FundedNext была оценка
               {' '}{fundedNext?.trustpilotScore ?? '—'}/5, отзывов: {fundedNext?.trustpilotCount?.toLocaleString('ru-RU') ?? '—'}.
               Это сводка пользовательских отзывов, а не проверка каждой выплаты.
-              {' '}{brightFunded?.trustpilotRatingSuppressed ? `У BrightFunded в записи от ${brightFunded.trustpilotCapturedAt ?? 'неподтверждённой даты'} отмечено снятие общей оценки за нарушение правил платформы; это не нулевая оценка.` : 'Статус общей оценки BrightFunded нужно уточнить в его обзоре.'}
+              {' '}{brightFunded?.trustpilotRatingSuppressed ? `У BrightFunded в записи от ${ruDatesInText(brightFunded.trustpilotCapturedAt ?? 'неподтверждённой даты')} отмечено снятие общей оценки за нарушение правил платформы; это не нулевая оценка.` : 'Статус общей оценки BrightFunded нужно уточнить в его обзоре.'}
             </p>
             {(!freshCapture(fundedNext?.trustpilotCapturedAt ?? '') || !freshCapture(brightFunded?.trustpilotCapturedAt ?? '')) && <p className="ru-notice">Наблюдения Trustpilot требуют повторной проверки. Здесь сохранены датированные сведения, а не текущая оценка фирм.</p>}
             <div className="ru-notice">
@@ -630,7 +633,7 @@ export default function FundedNextVsBrightFundedRussianPage() {
                 <div className="ru-actions"><Link href="/ru/obzor-fundednext" className="btn-outline">Русский обзор</Link><RuGoLink firm="fundednext" href="/go/fundednext?from=ru-fn-vs-bright-verdict-fundednext" rel="sponsored nofollow noopener" className="btn-outline">Проверить FundedNext <ArrowRight size={14} aria-hidden="true" /></RuGoLink></div>
               </article>
             </div>
-            <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} программ · {priceCount} цен · {sourceCount} официальных страниц программ. Самая ранняя проверка — {latestCapture}.</p>
+            <p className="ru-source-line"><Database size={14} aria-hidden="true" /> {products.length} программ · {priceCount} цен · {sourceCount} официальных страниц программ. Самая ранняя проверка — {formatRuDate(latestCapture)}.</p>
           </div>
         </section>
 

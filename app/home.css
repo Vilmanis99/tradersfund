@@ -80,6 +80,7 @@
 .th-facts dd { margin: 0; font-weight: 800; color: var(--ink); font-size: 1.05rem; }
 .th-home .ru-badge { font-size: 0.7rem; padding: 0.1rem 0.5rem; }
 .th-home .ru-badge--open { color: var(--status-open); background: var(--status-open-bg); }
+.th-home .ru-badge--neutral { color: var(--status-neutral); background: var(--status-neutral-bg); }
 .th-home .ru-badge--unclear { color: var(--status-unclear); background: var(--status-unclear-bg); }
 .th-home .ru-badge--closed { color: var(--status-closed); background: var(--status-closed-bg); }
 

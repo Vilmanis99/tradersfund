@@ -3,7 +3,7 @@ title: "BrightFunded Discount Code 2026: HW30 Halloween Offer, What It Covers, a
 seoTitle: "BrightFunded Discount Code 2026: HW30 Halloween 30% Off"
 slug: "brightfunded-discount-code"
 date: "2026-10-16 09:00:00"
-modified: "2026-10-22 10:00:00"
+modified: "2026-10-25 10:00:00"
 author: "Tara Mohseni"
 excerpt: "BrightFunded's homepage now shows HW30 for 30% off, with no end date and no checkout total we could verify. Here is what is sourced and what is not."
 seoDescription: "BrightFunded discount code check: HW30 for 30% off seen on the homepage on 22 Oct 2026, not checkout-verified, plus EUR list prices and how to check your total."
@@ -92,7 +92,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>How it compares with codes we did verify</strong></h2>
 
-<p>Two firms on our hub have codes checked against their own published terms on 2026-10-16. <strong>FundingPips</strong> lists <strong>HELLO</strong> for 20% off a first purchase, excluding the $100K account. <strong>FundedNext</strong> lists <strong>STRTN</strong> for up to 33% off, but only on the four smallest Stellar accounts, capped at 5 redemptions per user and not valid on resets. Both show the pattern to expect from BrightFunded's banner too: the headline percentage applies to a narrower set of products than the advertisement implies. FTMO goes further and publishes no code at all; see our <a href="/blog/ftmo-discount-code">FTMO discount code check</a> for its $100K price cut.</p>
+<p>One firm on our hub has a public code checked against its own published terms: <strong>FundingPips</strong> lists <strong>HELLO</strong> for 20% off a first purchase, excluding the $100K account (checked 2026-10-16). It shows the pattern to expect from BrightFunded's banner too: the headline percentage applies to a narrower set of products than the advertisement implies. <strong>FundedNext</strong> has no public code as of 25 Oct 2026. Its STRTN offer ended that day, and the help-centre article that described it now returns a 404. FTMO goes further and publishes no code at all; see our <a href="/blog/ftmo-discount-code">FTMO discount code check</a> for its $100K price cut.</p>
 
 <p>If you are choosing between firms rather than just hunting a code, the rule differences are larger than the discounts. See <a href="/compare/bright-funded-vs-fundednext">BrightFunded vs FundedNext</a>, <a href="/compare/bright-funded-vs-fundingpips">BrightFunded vs FundingPips</a> and <a href="/compare/bright-funded-vs-ftmo">BrightFunded vs FTMO</a>, or rank every firm by list fee on our <a href="/cheapest-prop-firms">cheapest prop firms</a> page.</p>
 

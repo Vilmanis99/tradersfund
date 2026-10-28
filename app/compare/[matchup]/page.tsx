@@ -9,6 +9,7 @@ import {
   firmSlug,
   getAllCanonicalPairs,
   getOverlay,
+  isComparePairAllowed,
   parseMatchup,
 } from '@/lib/comparisons'
 import {
@@ -35,6 +36,7 @@ import { getAllFirms, getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
 import { isSourceHoldFirm } from '@/lib/reviewStatus'
 import { getLanguageAlternates } from '@/lib/localizedRoutes'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import CompareRulesLinks from '@/components/CompareRulesLinks'
 
 interface Props { params: Promise<{ matchup: string }> }
 
@@ -62,6 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const firmA = findFirmBySlug(parsed.a)
   const firmB = findFirmBySlug(parsed.b)
   if (!firmA || !firmB) return {}
+  if (!isComparePairAllowed(firmSlug(firmA.name), firmSlug(firmB.name))) return {}
 
   const canonical = canonicalMatchupSlug(firmSlug(firmA.name), firmSlug(firmB.name))
   const overlay = getOverlay(canonical)
@@ -109,6 +112,7 @@ export default async function ComparePage({ params }: Props) {
   const firmA = findFirmBySlug(parsed.a)
   const firmB = findFirmBySlug(parsed.b)
   if (!firmA || !firmB) notFound()
+  if (!isComparePairAllowed(firmSlug(firmA.name), firmSlug(firmB.name))) notFound()
   const allFirms = getAllFirms()
 
   // Canonical-redirect: if the requested slug isn't alphabetical, 301 to the
@@ -338,6 +342,7 @@ export default async function ComparePage({ params }: Props) {
             </section>
           ) : null}
 
+          <CompareRulesLinks firmA={firmA} firmB={firmB} />
           <RelatedComparisons firmA={firmA} firmB={firmB} allFirms={allFirms} />
         </div>
       </section>

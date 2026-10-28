@@ -17,6 +17,7 @@ import {
   type MatchupRuleRow,
   type RuleValueGroup,
 } from '@/lib/challengeMatchup'
+import SplitTiersDisclosure from '@/components/SplitTiersDisclosure'
 
 function dateLabel(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -92,10 +93,12 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
             >
               <th scope="row">
                 <span className="cm-product">{row.productName}</span>
-                <small>
+                <div className="cm-meta">
                   {row.firmName} · {formatBillingModel(row.pricingModel)} ·{' '}
-                  {row.profitSplitPct}% split
-                </small>
+                  {row.profitSplitTiered
+                    ? <SplitTiersDisclosure tiers={row.profitSplitTiers ?? []} splitProduct={`${row.firmSlug}:${row.productSlug}`}>{`${row.profitSplitDisplay} split (tiered)`}</SplitTiersDisclosure>
+                    : <span data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display="flat">{`${row.profitSplitPct}% split`}</span>}
+                </div>
               </th>
               <td>
                 <span className="cm-figure">{formatMoney(row.minimumCost, row.currency)}</span>
@@ -103,7 +106,7 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
               </td>
               <td>
                 <span className="cm-figure">{formatMoney(row.breakEvenProfit, row.currency)}</span>
-                <small>at {row.profitSplitPct}% split</small>
+                <small>at {row.profitSplitPct}% split{row.profitSplitTiered ? ' (lowest tier)' : ''}</small>
               </td>
               {showR && (
                 <td>

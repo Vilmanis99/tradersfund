@@ -9,13 +9,14 @@ import { ArrowRight, BarChart3, CheckCircle2, Scale, ShieldCheck } from 'lucide-
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianDataFreshnessNotice from '@/components/RussianDataFreshnessNotice'
 import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundednext-vs-fundingpips'
 const TITLE = 'FundedNext или FundingPips: сравнение 2026 и доступ из РФ'
@@ -128,6 +129,7 @@ function payoutLabel(product: Challenge) {
   const frequency = ({
     weekly: 'еженедельно',
     'bi-weekly': 'каждые две недели',
+    'after-qualifying-days': 'после квалификационных торговых дней',
     monthly: 'ежемесячно',
     'on-demand': 'по запросу',
   } as Record<string, string>)[product.payoutFrequency ?? ''] ?? 'цикл не указан'
@@ -182,7 +184,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
     { name: 'Рейтинг проп-фирм', url: '/ru/luchshie-prop-firmy' },
     { name: 'FundedNext или FundingPips' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -216,12 +218,12 @@ export default function RussianFundedNextVsFundingPipsPage() {
             Разбираем программы без оценки, с одним и двумя этапами: сколько стоит вход,
             как ограничен убыток и когда появляется право запросить вознаграждение.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Редакционная проверка: {articleDateModified}. Даты источников указаны отдельно.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Редакционная проверка: {ruDatesInText(articleDateModified)}. Даты источников указаны отдельно.</p>
           <div className="ru-stats">
             <div className="ru-stat"><strong>{productRows.length}</strong><span>свежих продуктов</span></div>
             <div className="ru-stat"><strong>{productRows.filter(row => row.firm === 'FundedNext').length}</strong><span>у FundedNext</span></div>
             <div className="ru-stat"><strong>{productRows.filter(row => row.firm === 'FundingPips').length}</strong><span>у FundingPips</span></div>
-            <div className="ru-stat"><strong>{latestCapture}</strong><span>самая ранняя проверка данных</span></div>
+            <div className="ru-stat"><strong>{formatRuDate(latestCapture)}</strong><span>самая ранняя проверка данных</span></div>
           </div>
           <nav className="ru-review-toc" aria-label="Содержание сравнения">
             <Link href="#produkty">Программы</Link> · <Link href="#comparison-instant">Без оценки</Link> · <Link href="#comparison-one-step">Один этап</Link> · <Link href="#comparison-two-step">Два этапа</Link> · <Link href="#comparison-cost">Стоимость</Link> · <Link href="#comparison-decision">Выбор</Link> · <Link href="#sources">Источники</Link>
@@ -292,7 +294,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
                     <td data-russian-payout-product={`${row.product.firmSlug}:${row.product.productSlug}`}>{payoutLabel(row.product)}</td>
                     <td>
                       <a href={row.product.sourceUrl} target="_blank" rel="noopener noreferrer">
-                        {row.product.sourceCapturedAt}
+                        {formatRuDate(row.product.sourceCapturedAt)}
                       </a>
                     </td>
                   </tr>
@@ -301,7 +303,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
             </table>
           </div>
           {!productRows.length && <p className="ru-notice">Нет программ с актуальной проверкой. Цены и числовые рекомендации временно скрыты; используйте список источников ниже для проверки действующих условий.</p>}
-          <p className="ru-source-line">Самая ранняя проверка данных: {latestCapture}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; FundedNext против FTMO — в <Link href="/ru/ftmo-vs-fundednext">отдельном сравнении</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
+          <p className="ru-source-line">Самая ранняя проверка данных: {formatRuDate(latestCapture)}. Разбор каждой фирмы — в <Link href="/ru/obzor-fundednext">обзоре FundedNext</Link> и <Link href="/ru/obzor-fundingpips">обзоре FundingPips</Link>; FundedNext против FTMO — в <Link href="/ru/ftmo-vs-fundednext">отдельном сравнении</Link>; все пять программ одной фирмы — в разборе <Link href="/ru/fundingpips-pravila">правила Funding Pips</Link>. Дата редактирования статьи не обновляет эти источники автоматически.</p>
           <RussianFundedNextPayoutNotice />
         </div>
       </section>
@@ -455,7 +457,7 @@ export default function RussianFundedNextVsFundingPipsPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Источники и границы сравнения</h2>
           <p>Цены и основные параметры берутся из датированных записей по программам, а не из максимальных значений бренда. Проверка рабочего цикла Stellar 1-Step имеет отдельную дату в пояснении к таблице. Если запись стареет или отсутствует, числовая пара скрывается, но ссылка на первоисточник остаётся. Наличие ссылки само по себе не означает, что условия подтверждены сегодня.</p>
-          <ul>{relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {validCaptureDate(product.sourceCapturedAt) ? product.sourceCapturedAt : 'дата не подтверждена'}.</li>)}</ul>
+          <ul>{relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {ruDatesInText(validCaptureDate(product.sourceCapturedAt) ? product.sourceCapturedAt : 'дата не подтверждена')}.</li>)}</ul>
           <p>Редакционный вывод ограничен указанными моделями и вариантами вознаграждения. Мы не проверяли личное получение выплаты по каждому сценарию и не выдаём универсального разрешения для граждан или резидентов какой-либо страны. Если фирма меняет цикл, правила или состав программы, сравнение нужно повторить перед оплатой.</p>
         </div>
       </section>

@@ -11,7 +11,7 @@ import {
   isChallengeFresh,
   type Challenge,
 } from '@/lib/firms'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import {
   russianRouteDateModified,
   type RussianRoutePath,
@@ -24,6 +24,7 @@ import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import PriceMatrix from '@/components/PriceMatrix'
 import ChallengePath from '@/components/ChallengePath'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 type RussianPartnerReviewProps = {
   path: RussianRoutePath
@@ -62,6 +63,7 @@ const drawdownLabels: Record<string, string> = {
 const payoutLabels: Record<string, string> = {
   weekly: 'еженедельно',
   'bi-weekly': 'каждые две недели',
+  'after-qualifying-days': 'после квалификационных торговых дней',
   monthly: 'ежемесячно',
   'on-demand': 'по запросу при выполнении условий',
 }
@@ -152,7 +154,7 @@ export default function RussianPartnerReview({
     { name: 'Лучшие проп-фирмы', url: '/ru/luchshie-prop-firmy' },
     { name: `Обзор ${firmName}` },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const faqSchemaCurrent = products.length > 0
     && isProductSetFresh(products)
     && faqSourceDates.length > 0
@@ -178,13 +180,13 @@ export default function RussianPartnerReview({
 
       <section className="ru-hero ru-hero--p1">
         <div className="ru-shell" data-russian-partner-review={firmSlug}>
-          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Источник до {latestCapture}</div>
+          <div className="ru-eyebrow"><Database size={14} aria-hidden="true" /> Источник до {formatRuDate(latestCapture)}</div>
           <h1>{displayHeadline}</h1>
           <RussianDataFreshnessNotice firmSlugs={[firmSlug]} />
           <p className="ru-lead">{lead}</p>
           <div className="ru-review-meta" aria-label={`Редакционные данные обзора ${firmName}`}>
             <span>Автор: Edris Derakhshi</span>
-            <span>Обновлено: {lastModified}</span>
+            <span>Обновлено: {formatRuDate(lastModified)}</span>
             <span>{readTime} минут чтения</span>
           </div>
         </div>
@@ -195,7 +197,7 @@ export default function RussianPartnerReview({
             <div className="ru-stat"><strong>{freshProducts.length}</strong><span>свежих продуктов</span></div>
             <div className="ru-stat"><strong>{pricedTiers.length}</strong><span>ценовых уровней</span></div>
             <div className="ru-stat"><strong>{firm?.score.toFixed(1) ?? '—'}/10</strong><span>редакционный балл</span></div>
-            <div className="ru-stat"><strong>{latestCapture}</strong><span>дата проверки источников</span></div>
+            <div className="ru-stat"><strong>{formatRuDate(latestCapture)}</strong><span>дата проверки источников</span></div>
           </div></RuCapturedTerms>} />
       <RuTelegramBlock placement={path.replace(/^\/ru\//, '')} />
       <section className="ru-section ru-review-opening" data-russian-partner-editorial-shell={firmSlug}>
@@ -220,11 +222,11 @@ export default function RussianPartnerReview({
                     <strong>{firmName}</strong>
                     <span className="ru-pill">TFH {firm.score.toFixed(1)}/10</span>
                   </div>
-                  <p>{freshProducts.length} программ · {pricedTiers.length} подтверждённых цен · проверено {latestCapture}</p>
+                  <p>{freshProducts.length} программ · {pricedTiers.length} подтверждённых цен · проверено {formatRuDate(latestCapture)}</p>
                   {firm.trustpilotScore != null && firm.trustpilotCount != null ? (
                     <p className="ru-review-trustpilot">
                       Trustpilot: {firm.trustpilotScore.toFixed(1)}/5, отзывов: {firm.trustpilotCount.toLocaleString('ru-RU')},
-                      проверено {firm.trustpilotCapturedAt ?? 'дата не указана'}; средняя оценка не доказывает выплату по конкретному счёту.
+                      проверено {ruDatesInText(firm.trustpilotCapturedAt ?? 'дата не указана')}; средняя оценка не доказывает выплату по конкретному счёту.
                       {firm.trustpilotUrl ? <> <a href={firm.trustpilotUrl} target="_blank" rel="noopener noreferrer">Проверить профиль</a>.</> : null}
                     </p>
                   ) : null}
@@ -282,7 +284,7 @@ export default function RussianPartnerReview({
           {products.length > 0 && freshProducts.length === 0 && (
             <div className="ru-notice" data-russian-partner-review-freshness="stale">
               <strong>Свежих данных сейчас нет.</strong>{' '}
-              Источники последний раз проверяли {latestAnyCapture}, более 30 дней назад. Цены временно скрыты; перед покупкой нужна повторная проверка условий фирмы.
+              Источники последний раз проверяли {formatRuDate(latestAnyCapture)}, более 30 дней назад. Цены временно скрыты; перед покупкой нужна повторная проверка условий фирмы.
             </div>
           )}
           <div className="ru-table-wrap">

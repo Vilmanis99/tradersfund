@@ -8,6 +8,7 @@ export interface ComparisonRow {
   score: number
   trustpilot: number | null
   product: string
+  productSlug: string
   phases: number
   assetClass: string
   price: number
@@ -19,6 +20,8 @@ export interface ComparisonRow {
   dailyLossPct: number | null
   maxLossPct: number | null
   profitSplitPct: number | null
+  /** Display-only split tiers (lib/profitSplitDisplay); profitSplitPct stays the lowest tier. */
+  profitSplitTiers?: import('@/lib/profitSplitDisplay').SplitTier[]
   payoutFrequency: string | null
   checkedOn: string
   /** /go/<slug> without campaign; the table appends ?from=<placement>-table|-cards. */
@@ -26,4 +29,6 @@ export interface ComparisonRow {
   /** First-party site, shown as a non-sponsored link when there is no affiliate link. */
   officialUrl: string | null
   russiaStatus: RussiaStatus | null
+  /** russiaBasis evidence date (YYYY-MM-DD) for 'not-on-restricted-list' firms, else null. */
+  russiaBasisDate: string | null
 }

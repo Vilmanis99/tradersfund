@@ -1,0 +1,369 @@
+{
+  "firmSlug": "hash-hedge",
+  "captureType": "new-firm-capture",
+  "capturedAt": "2026-10-19",
+  "capturedAtTimestamp": "2026-10-19T11:30:00+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": null,
+  "requestedBy": "RU SEO Lead brief /workspace/ru-seo/briefs/new-obzor-hash-hedge.md (section 8)",
+  "egress": "Box egress is a US IP. hashhedge.com showed one price list in USD-equivalent (paid in USDT/USDC); no regional switcher or geo-block was seen. US residents are not named as excluded.",
+  "method": "Headless Chrome render of hashhedge.com (pricing selector clicked for Crypto + TradFi 1-Stage/2-Stage and US Stocks), the GitBook user guide via its public llms-full.txt export, Terms and Conditions and Commercial Terms (both 'Last Updated: October 8, 2026'), the affiliate page and the Trustpilot profile. No registration, checkout, payment or KYC was attempted.",
+  "pagesRead": [
+    "https://hashhedge.com/",
+    "https://www.hashhedge.com/ru",
+    "https://www.hashhedge.com/ua",
+    "https://www.hashhedge.com/kz",
+    "https://www.hashhedge.com/faq",
+    "https://www.hashhedge.com/terms-and-conditions",
+    "https://www.hashhedge.com/commercial-terms",
+    "https://www.hashhedge.com/affiliateprogram",
+    "https://www.hashhedge.com/affiliate-politics",
+    "https://www.hashhedge.com/privacy-policy",
+    "https://hashhedge.gitbook.io/hashhedge-user-guide/llms-full.txt",
+    "https://hashhedge.ru/",
+    "https://www.trustpilot.com/review/hashhedge.com"
+  ],
+  "russia": {
+    "status": "available",
+    "basis": "Terms name no CIS country; the sanctions clause targets sanctioned persons and comprehensively sanctioned jurisdictions, naming Cuba, Iran, North Korea, Syria and Yemen. Hash Hedge runs full RU, UA and KZ site versions and lists its own 2026 events in Moscow.",
+    "evidence": [
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "quote": "4.1. ELIGIBILITY TO USE SERVICES To engage with the Services offered by us, you represent and warrant that you: Are at least eighteen (18) years of age or older and possess the legal capacity to enter into this Agreement. Reside in a jurisdiction where the use of the Services is permitted under applicable laws, regulations, and ordinances. Are not subject to any restrictions that would prohibit or limit your access to the Services under international sanctions or local regulations."
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "quote": "4.3. SANCTIONED TERRITORIES The Services are not available to: Individuals or entities (including those owned or controlled by individuals) that are subject to economic or trade sanctions enforced by any governmental authority, or that are designated on any list of prohibited or restricted parties. ... or residents, citizens, or entities located in or incorporated under the laws of any country, territory, or jurisdiction that is subject to an embargo, has been designated as a terrorist-supporting country, or is otherwise under comprehensive economic sanctions by the United Nations, the European Union, the UK Treasury, or the U.S. Government. This includes, but is not limited to, countries and regions such as Cuba, Iran, North Korea, Syria, Yemen."
+      },
+      {
+        "sourceUrl": "https://hashhedge.com/",
+        "quote": "Dubai. São Paulo. Moscow. From main-stage keynotes to live-trading booths and top-affiliate awards ... Moscow 2026 HOST Affiliates Meet-up ... Moscow 2026 HOST Top Affiliate Awards 2026",
+        "note": "Corroborates active Russian market presence; not an eligibility statement."
+      }
+    ],
+    "byCountry": {
+      "Russia": "not named; available subject to 4.1/4.3 (sanctioned individuals excluded)",
+      "Belarus": "not named",
+      "Ukraine": "not named; Crimea and other comprehensively sanctioned regions may fall under 'countries and regions' in 4.3 (not named)",
+      "Kazakhstan": "not named; KZ site version exists",
+      "EU": "not named; no EU restriction found"
+    },
+    "unverified": "Eligibility not tested by signup. Russia is not under comprehensive UN/EU/UK/US sanctions, so 4.3 does not by its terms exclude Russian residents, but individuals on sanctions lists are excluded and the firm may refuse service at its discretion."
+  },
+  "corporate": {
+    "platformOperator": "Empower Academy Ltd, UAE, registration number 01010596",
+    "payoutEntity": "FinSmart Solution Ltd, Seychelles, registration number 246832",
+    "address": "Office A, RAK DAO Business Centre, RAK BANK ROC Office, Ground Floor, Al Rifaa, Sheikh Mohammed Bin Zayed Road, Ras Al Khaimah, United Arab Emirates (Trustpilot company-written contact info; not found on hashhedge.com pages read)",
+    "evidence": [
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "quote": "Welcome to the services provided by Empower Academy Ltd, a company duly incorporated and registered in the United Arab Emirates under the registration number 01010596"
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+        "quote": "For the purposes of these Commercial Terms, \"Company\" means FinSmart Solution Ltd, a company duly incorporated and registered in Seychelles under registration number 246832. The Company is responsible for profit allocation, payout obligations and related commercial matters under these Commercial Terms. The Hash Hedge Platform, Challenge Program and Accounts used for applicable Evaluation Stages are operated by Empower Academy Ltd"
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+        "quote": "Hash Hedge – Terms And Conditions Last Updated: October 8, 2026",
+        "note": "The brief's 26 May 2026 date is superseded."
+      }
+    ],
+    "hashhedgeRu": {
+      "sourceUrl": "https://hashhedge.ru/",
+      "quote": "Сайт не является официальным сайтом компании Hash Hedge",
+      "note": "hashhedge.ru states it is NOT the official Hash Hedge site; hashhedge.com/ru is the official Russian version."
+    }
+  },
+  "products": {
+    "crypto2Stage": {
+      "prices": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $5,000 | $79 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $10,000 | $99 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $25,000 | $249 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $50,000 | $499 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $100,000 | $799 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 2-STAGE · LOWER TARGETS ... ACCOUNT | $200,000 | $1393 | one-time | +5% Cashback"
+        }
+      ],
+      "rules": {
+        "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/challenge-types",
+        "quote": "| Profit target | 5% | 6% | none | | Daily loss | 5% | 5% | 5% | | Total loss | 10% | 8% | 8% | | Minimum trading days | 5 | 5 | none |"
+      }
+    },
+    "crypto1Stage": {
+      "prices": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 1-STAGE · FASTER ... ACCOUNT | $5,000 | $99 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 1-STAGE · FASTER ... ACCOUNT | $10,000 | $159 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 1-STAGE · FASTER ... ACCOUNT | $25,000 | $349 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 1-STAGE · FASTER ... ACCOUNT | $50,000 | $599 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "Crypto + TradFi | 1-STAGE · FASTER ... ACCOUNT | $100,000 | $999 | one-time | +5% Cashback"
+        }
+      ],
+      "rules": {
+        "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/challenge-types",
+        "quote": "| Profit target | 10% | none | | Daily loss | 3% | 3% | | Total loss | 6% | 6% | | Minimum trading days | 3 | none |"
+      }
+    },
+    "usStocks2Stage": {
+      "prices": [
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "US Stocks | NEW | 11,000+ US stocks · New terminal · Wall Street session | 2-STAGE · LOWER TARGETS ... ACCOUNT | $5,000 | $79 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "US Stocks | NEW | 11,000+ US stocks · New terminal · Wall Street session | 2-STAGE · LOWER TARGETS ... ACCOUNT | $10,000 | $99 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "US Stocks | NEW | 11,000+ US stocks · New terminal · Wall Street session | 2-STAGE · LOWER TARGETS ... ACCOUNT | $25,000 | $249 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "US Stocks | NEW | 11,000+ US stocks · New terminal · Wall Street session | 2-STAGE · LOWER TARGETS ... ACCOUNT | $50,000 | $499 | one-time | +5% Cashback"
+        },
+        {
+          "sourceUrl": "https://hashhedge.com/",
+          "quote": "US Stocks | NEW | 11,000+ US stocks · New terminal · Wall Street session | 2-STAGE · LOWER TARGETS ... ACCOUNT | $100,000 | $799 | one-time | +5% Cashback"
+        }
+      ],
+      "rules": {
+        "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+        "quote": "| **Challenge type** | **Two-stage** only. The One-stage Challenge is not offered on US Stocks. ... | **Account sizes** | **$5,000 to $100,000**."
+      }
+    },
+    "instant": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/challenge-types",
+      "quote": "Hash Hedge offers two live challenge types, the **One-stage Challenge** and the **Two-stage Challenge**, plus an **Instant** account **coming soon**.",
+      "note": "Not added: not on sale."
+    }
+  },
+  "leverage": {
+    "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/challenge-types",
+    "quote": "Both types use **1:5** leverage and have no time limit."
+  },
+  "timeLimit": {
+    "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/welcome",
+    "quote": "**There is no time limit.** A Challenge has no deadline, so you can trade at your own pace."
+  },
+  "profitSplit": [
+    {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/profit-payouts",
+      "quote": "You keep **80%** of the profit you generate on a funded account. With the **+10% Profit Split** add-on, that rises to **90%**."
+    },
+    {
+      "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+      "quote": "1.1. USER'S ALLOCATION Unless a different reward allocation ratio is expressly specified in the applicable Challenge Plan Conditions or applies pursuant to an Add-On under Section 7, eighty percent (80%) of the net profits generated on the Live Account shall be payable to the User"
+    }
+  ],
+  "addOns": {
+    "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/buy-challenge",
+    "quote": "* **+10% to profit share**: raises your profit share by 10% at the **Trader** stage ... * **Daily Loss Protection**: a one-time safety net for your daily loss limit ... Option prices scale with your account size.",
+    "note": "Add-on prices not published outside the logged-in checkout."
+  },
+  "rules": {
+    "newsWeekend": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+      "quote": "Can I trade on weekends or during major news? Yes. We don't restrict trading during news events or on weekends."
+    },
+    "strategies": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules",
+      "quote": "Arbitrage, manipulation, and other forms of unfair trading. Aside from the above, any trading strategy is allowed on both the Challenge and the funded account."
+    },
+    "automation": {
+      "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+      "quote": "Use automated tools, bots, scripts, APIs, or software to access, interact with, manipulate, or interfere with the Platform.",
+      "note": "Listed under 12.2 MISUSE OF THE PLATFORM ('No person may:'). Also 'unauthorized use of bots, scripts, APIs, automation tools' is a prohibited practice. EA recorded false."
+    },
+    "hedgingSameAccount": {
+      "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+      "quote": "(c) Hedging within a single Account. Holding both a long and a short position in the same Instrument within one and the same Account is permitted, provided the offsetting positions are wholly contained within that single Account"
+    },
+    "prohibitedHedging": {
+      "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+      "quote": "\"Prohibited Hedging\" means opening, holding or maintaining Opposing Positions across two (2) or more Challenges or Accounts (whether held by the same User or by different Users acting in coordination ...)",
+      "note": "Confirms the brief's 'opposite positions across challenges banned'; it also covers correlated instruments (30-day Pearson >= 0.6)."
+    },
+    "overnightStocks": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+      "quote": "**You cannot hold a stock position overnight**, over a weekend, or for several days: the platform closes everything at the end of the trading day, and each day starts flat."
+    },
+    "dailyReset": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/faq",
+      "quote": "The daily limit updates at **00:00–00:13 UTC+4** on a Crypto + TradFi account, and at **08:00–08:10 UTC+4** on a US Stocks one."
+    },
+    "consistency": "No consistency rule found (guide, Terms, Commercial Terms)."
+  },
+  "payouts": {
+    "schedule": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/profit-payouts",
+      "quote": "A payout becomes available once **all** of these are true: * The **14-day** payout period has passed ... * Your account is **in profit**. * **All your positions are closed.**"
+    },
+    "limits": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/profit-payouts",
+      "quote": "* **Minimum** withdrawal: **$100**. * **Maximum** withdrawal: **$10,000** per account per 14 days. * A new request can be made no earlier than **14 days** after your previous request was completed."
+    },
+    "cycle": {
+      "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+      "quote": "the trading cycle shall end on the payout day selected by the User, which may fall between fourteen (14) and sixty (60) calendar days from the opening of the first trade in that trading cycle. ... The minimum payout amount is USD 100, and the maximum payout amount per fourteen (14) calendar day period is USD 10,000."
+    },
+    "networks": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/welcome",
+      "quote": "Six: ERC-20, TRC-20, BEP-20, Arbitrum, Optimism and Solana. The network you pick changes the fee and the arrival time, not the amount you requested."
+    },
+    "currency": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/welcome",
+      "quote": "| **You withdraw in** | USDT |"
+    },
+    "guarantee72h": [
+      {
+        "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+        "quote": "Payout processing guarantee (72 hours). Where the User has submitted a valid and complete payout request in respect of an eligible profitable trading cycle, and that request is not processed and paid within seventy-two (72) hours of its submission, the User shall be entitled to receive an amount equal to three (3) times the payout"
+      },
+      {
+        "sourceUrl": "https://hashhedge.com/",
+        "quote": "If your payout is delayed by more than 72 hours, we pay you triple."
+      }
+    ],
+    "kyc": [
+      {
+        "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/buy-challenge",
+        "quote": "Payment is in **USDT or USDC**, the account is **instant**, and there's **no KYC**."
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+        "quote": "Following successful completion of all Evaluation Stages, the required identity verification and all other applicable eligibility requirements, the User may access a Live Account."
+      },
+      {
+        "sourceUrl": "https://www.hashhedge.com/commercial-terms",
+        "quote": "The Company may, as a condition of processing any payout request, require the User to successfully complete enhanced identity Re-Verification"
+      }
+    ]
+  },
+  "payments": {
+    "guide": {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/start-here/buy-challenge",
+      "quote": "Hash Hedge accepts **USDT or USDC**: no cards or bank transfers. Choose the currency and the network your wallet uses: * ERC-20 * TRC-20 * BEP-20 * Arbitrum * Optimism * Solana"
+    },
+    "homepageFaq": {
+      "sourceUrl": "https://hashhedge.com/",
+      "quote": "We accept USDT only, on the following networks: TRC20 (Tron), ERC20 (Ethereum), BEP20 (BNB Smart Chain), Solana, Arbitrum, Optimism.",
+      "note": "Conflicts with the guide on USDC; the guide's checkout screenshots ('Choosing USDT or USDC') support USDC."
+    },
+    "processorsListedAsPartners": {
+      "sourceUrl": "https://hashhedge.com/",
+      "quote": "Our Partners HyperPay Cipherbc TradingView CoinMarketCap CRYPTO BANTER",
+      "note": "Partner list only; not stated to be the checkout processor."
+    }
+  },
+  "platforms": [
+    {
+      "sourceUrl": "https://hashhedge.com/",
+      "quote": "Built-in Trading Terminal Log in to your dashboard and start trading in under a minute."
+    },
+    {
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/trading-terminal/stocks-terminal",
+      "quote": "A **US Stocks** Challenge trades on a different platform from a Crypto + TradFi one: a stock terminal with its own screen"
+    },
+    {
+      "sourceUrl": "https://www.hashhedge.com/terms-and-conditions",
+      "quote": "The Hash Hedge mobile application ... provides existing Users with read-only access to account information ... It does not enable Users to place, modify, or close orders",
+      "note": "The app is read-only (the brief's 'приложение' query)."
+    }
+  ],
+  "affiliate": {
+    "exists": true,
+    "url": "https://www.hashhedge.com/affiliateprogram",
+    "evidence": [
+      {
+        "sourceUrl": "https://www.hashhedge.com/affiliateprogram",
+        "quote": "Earn up to 80% of Hash Hedge profits - for life from every trader you refer ... 50% Commission 0-14 Traders Level 1 ... 80% Commission 700+ Traders Level 7 ... Weekly payments in USDT"
+      },
+      {
+        "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/account-and-payouts/affiliate-program",
+        "quote": "Each link uses the format `https://hashhedge.com/?fpr=YOURCODE`."
+      }
+    ],
+    "ourStatus": "none (no TFH link known)",
+    "promoCode": "Checkout has a promo-code field; no public official code was found on the pages read."
+  },
+  "trustpilot": {
+    "capturedAt": "2026-10-19",
+    "url": "https://www.trustpilot.com/review/hashhedge.com",
+    "score": 4.5,
+    "reviewCount": 116,
+    "reviewsLast12Months": 100,
+    "distribution": {
+      "5": "76%",
+      "4": "14%",
+      "3": "3%",
+      "2": "<1%",
+      "1": "6%"
+    },
+    "labels": "Claimed profile • Mar 2025; Paid Trustpilot subscription; Asks customers to review",
+    "evidence": "Hash Hedge Reviews 116 • 4.5 ... Claimed profile • Mar 2025 Paid Trustpilot subscription",
+    "note": "Homepage claims '4.5 · Trustpilot' and '5,792 funded traders'; the 5,792 figure is a firm claim with no independent source."
+  },
+  "conflicts": [
+    {
+      "topic": "Homepage 'Transparent Rules' card vs rules table",
+      "detail": "A homepage feature card shows 'Stage 1 target +8%, Stage 2 target +6%, Max daily loss 5%, Max drawdown 8–10%', while the pricing table and the guide give 5% / 6% for Stage 1 / Stage 2. Data uses the pricing table and guide."
+    },
+    {
+      "topic": "Daily loss guide uses legacy plans",
+      "detail": "'How the daily loss limit is calculated' says the limit is 'a fixed 5% of your Challenge's starting balance' and lists Starter $5K ... Titan $150K ... APEX $200K; the One-stage Challenge is 3% and there is no current $150K tier."
+    },
+    {
+      "topic": "Funded capital maximum",
+      "detail": "Homepage and guide: up to $200,000; Commercial Terms footer: 'up to $150,000'; affiliate page: '$5,000 to $150,000'. firms-pending maxAllocation left null until one figure is published (largest tier on sale is $200K)."
+    },
+    {
+      "topic": "USDT only vs USDT or USDC",
+      "detail": "Homepage FAQ: 'We accept USDT only'; guide: 'USDT or USDC'."
+    },
+    {
+      "topic": "crypto.ru price table",
+      "detail": "Brief's crypto.ru table (5K $79 ... 150K $1,093) is outdated: $79 for 5K matches the current Two-stage price, but there is no $150K tier now; 200K Two-stage is $1,393."
+    }
+  ],
+  "logo": {
+    "path": "public/images/firms/hash-hedge.png",
+    "sourceUrl": "https://static.tildacdn.com/tild3661-3038-4664-a164-363137633261/Vector.svg",
+    "sourcePage": "https://hashhedge.com/",
+    "sourceElement": "<link rel=\"icon\" type=\"image/svg+xml\" sizes=\"any\" href=\"https://static.tildacdn.com/tild3661-3038-4664-a164-363137633261/Vector.svg\">",
+    "note": "Official favicon SVG (identical bytes for the light and dark favicon variants; fill #FFDD2D, transparent). Rendered unmodified to a 192x192 RGBA PNG to match other /images/firms logos. The site's 192x192 PNG icon link actually serves a 96x91 image, so the SVG was used.",
+    "capturedAt": "2026-10-19"
+  }
+}

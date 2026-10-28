@@ -38,7 +38,7 @@ export default function TrustpilotRating({
   linked = false,
   label = false,
 }: {
-  firm: Firm
+  firm: Pick<Firm, 'name' | 'trustpilotCount' | 'trustpilotUrl' | 'trustpilotCapturedAt' | 'trustpilotRatingSuppressed' | 'trustpilotScore'>
   /** Wrap the figure in a link to the Trustpilot profile so readers can verify. */
   linked?: boolean
   /** Name Trustpilot in the sub-line. Needed wherever no column header does it. */

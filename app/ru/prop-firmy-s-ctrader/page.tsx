@@ -16,13 +16,15 @@ import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnessNotice'
 import { getAllChallenges, isChallengeFresh, type Challenge, type ChallengeAccountSize } from '@/lib/firms'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import cTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { russiaStatusFor } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { ruNotListedDate } from '@/lib/ruBasisWording'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/prop-firmy-s-ctrader'
 const TITLE = 'Проп-фирмы с cTrader 2026: цены, лимиты и правила cBot'
@@ -123,7 +125,7 @@ export default function RussianCTraderPropFirmsPage() {
     { name: 'Русская версия', url: '/ru' },
     { name: 'Проп-фирмы с cTrader' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -166,9 +168,9 @@ export default function RussianCTraderPropFirmsPage() {
           <p className="ru-lead">
             Сравниваем 2 глобальные проп-фирмы не по логотипу cTrader, а по ограничениям покупки:
             размер счёта, дополнительная комиссия, cBot, страна профиля, устройства и вход в аккаунт.
-            Резидентам России подходит BrightFunded (с отдельным подтверждением автоматизации); ручной маршрут FundedNext — только для трейдеров из других стран.
+            Для резидентов России из двух остаётся BrightFunded: России нет в её списке ограничений (на {ruNotListedDate('bright-funded')}), автоматизацию уточните у фирмы отдельно; ручной маршрут FundedNext — только для трейдеров из других стран.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {russianRouteDateModified(PATH, cTraderEvidence.capturedAt)}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Обновлено {ruDatesInText(russianRouteDateModified(PATH, cTraderEvidence.capturedAt))}.</p>
           <RussianEvidenceFreshnessNotice evidence={evidenceDates} />
           <div className="ru-stats" aria-label="Проверяемая выборка cTrader">
             <div className="ru-stat"><strong>2</strong><span>основных партнёра</span></div>
@@ -203,7 +205,7 @@ export default function RussianCTraderPropFirmsPage() {
           </div>
           <h2>Короткий ответ: кому подходит каждый маршрут</h2>
           <p>
-            В правилах FundedNext, проверенных {fundedNextEvidence?.sourceCapturedAt}, указаны оценочные счета до $50 000,
+            В правилах FundedNext, проверенных {formatRuDate(fundedNextEvidence?.sourceCapturedAt)}, указаны оценочные счета до $50 000,
             стандартная доплата $25 и ручная торговля. Разрешённые встроенные ордера терминала и сторонний робот — не одно и то же:
             стратегию нужно сверять именно с запретом автоматизации фирмы.
           </p>
@@ -214,10 +216,10 @@ export default function RussianCTraderPropFirmsPage() {
           </p>
           <div className="ru-table-wrap" data-russian-ctrader-matrix="two-primary-partners">
             <table className="ru-table">
-              <caption>Правила платформы по проверке от {cTraderEvidence.capturedAt}; доступность для вашего профиля требует отдельного подтверждения.</caption>
+              <caption>Правила платформы по проверке от {formatRuDate(cTraderEvidence.capturedAt)}; доступность для вашего профиля требует отдельного подтверждения.</caption>
               <thead><tr><th>Поле</th><th>BrightFunded</th><th>FundedNext</th></tr></thead>
               <tbody>
-                <tr data-russian-ctrader-russia-row="fundednext-restricted"><td><strong>Резиденты России</strong></td><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} hint={false} /> Проверьте свой профиль до оплаты</td><td><RuAccessBadgeView firm="fundednext" status={russiaStatusFor('fundednext')} hint={false} /> Подвал fundednext.com, по данным на 20.10.2026</td></tr>
+                <tr data-russian-ctrader-russia-row="fundednext-restricted"><td><strong>Резиденты России</strong></td><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} basisDate={russiaBasisDateFor('bright-funded')} hint={false} /> Проверьте свой профиль до оплаты</td><td><RuAccessBadgeView firm="fundednext" status={russiaStatusFor('fundednext')} basisDate={russiaBasisDateFor('fundednext')} hint={false} /> Подвал fundednext.com, по данным на 20.10.2026</td></tr>
                 <tr><td><strong>Статус cTrader</strong></td><td>Доступен с ограничениями профиля</td><td>Доступен с лимитами продукта и профиля</td></tr>
                 <tr><td><strong>Размер счёта</strong></td><td>Не опубликован в проверенной справке</td><td>Оценочная программа до $50 000</td></tr>
                 <tr><td><strong>Доплата</strong></td><td>Не опубликована в проверенной справке</td><td>$25; стандартно не возвращается, в справке есть исключение для клиентов из США</td></tr>
@@ -228,7 +230,7 @@ export default function RussianCTraderPropFirmsPage() {
             </table>
           </div>
           <p className="ru-source-line">
-            Состояние платформенных источников: {cTraderEvidence.capturedAt}. «Не опубликовано» означает неизвестное поле,
+            Состояние платформенных источников: {formatRuDate(cTraderEvidence.capturedAt)}. «Не опубликовано» означает неизвестное поле,
             а не бесплатную функцию или отсутствие лимита.
           </p>
         </div>
@@ -255,7 +257,7 @@ export default function RussianCTraderPropFirmsPage() {
                     <td>{formatPrice(tier)}</td>
                     <td>{fundedNextPlatformFee == null ? 'не опубликована' : formatUsd(fundedNextPlatformFee)}</td>
                     <td>{tier.priceUsd == null || tier.priceUsd <= 0 || fundedNextPlatformFee == null ? 'не вычислено' : formatUsd(tier.priceUsd + fundedNextPlatformFee)}</td>
-                    <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{product.sourceCapturedAt}</a></td>
+                    <td><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">{formatRuDate(product.sourceCapturedAt)}</a></td>
                   </tr>
                 ))}
                 {!fundedNextCheckoutRows.length && <tr><td colSpan={6}>Нужна повторная проверка цены или правил платформы. Расчёт временно скрыт.</td></tr>}
@@ -282,7 +284,7 @@ export default function RussianCTraderPropFirmsPage() {
                   <tr key={product.productSlug} data-russian-ctrader-reference-product={`bright-funded:${product.productSlug}`}>
                     <td><strong>{product.productName}</strong><br />Цель {formatTargets(product)}</td>
                     <td>${tier.sizeUsd.toLocaleString('en-US')}</td>
-                    <td>{formatPrice(tier)}<br /><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Проверено {product.sourceCapturedAt}</a></td>
+                    <td>{formatPrice(tier)}<br /><a href={product.sourceUrl} target="_blank" rel="nofollow noopener">Проверено {formatRuDate(product.sourceCapturedAt)}</a></td>
                     <td>Не опубликована</td>
                     <td>Платформа, размер счёта, профиль и итоговая сумма в евро</td>
                   </tr>
@@ -492,7 +494,7 @@ export default function RussianCTraderPropFirmsPage() {
           <h2>Частые вопросы</h2>
           <RussianFaq items={faqs} />
           <p className="ru-source-line">
-            Правила платформы проверены {cTraderEvidence.capturedAt}; даты проверки цен показаны отдельно.
+            Правила платформы проверены {formatRuDate(cTraderEvidence.capturedAt)}; даты проверки цен показаны отдельно.
             Материал информационный и не является финансовой или юридической рекомендацией.
           </p>
         </div>
@@ -502,11 +504,11 @@ export default function RussianCTraderPropFirmsPage() {
           <h2>Официальные источники правил платформы</h2>
           <p>Проверка этих страниц не обновляет базовые цены программ. Их отдельные даты указаны в таблицах выше.</p>
           <ul>
-            <li><a href={cTraderEvidence.platformSource.sourceUrl} target="_blank" rel="nofollow noopener">Возможности cTrader Algo</a> · {cTraderEvidence.platformSource.sourceCapturedAt}</li>
+            <li><a href={cTraderEvidence.platformSource.sourceUrl} target="_blank" rel="nofollow noopener">Возможности cTrader Algo</a> · {formatRuDate(cTraderEvidence.platformSource.sourceCapturedAt)}</li>
             {cTraderEvidence.firms.flatMap(firm => firm.sourceUrls.map((sourceUrl, index) => <li key={sourceUrl}>
               <a href={sourceUrl} target="_blank" rel="nofollow noopener">{firm.firmName}: {(firm.firmSlug === 'fundednext'
                 ? ['платформы и размеры счетов', 'условия cTrader и комиссия', 'возврат взноса и исключения', 'советники и автоматизация', 'вход в cTrader', 'платформы Stellar Instant']
-                : ['платформы, устройства и страны', 'советники и совместимость'])[index]}</a> · {firm.sourceCapturedAt}
+                : ['платформы, устройства и страны', 'советники и совместимость'])[index]}</a> · {formatRuDate(firm.sourceCapturedAt)}
             </li>))}
           </ul>
         </div>

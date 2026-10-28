@@ -13,6 +13,7 @@ import {
 } from '@/lib/russianPartnerMatcher'
 import { RuGoLinkView } from '@/components/RuGoLinkView'
 import type { RussiaStatus } from '@/lib/russiaStatus'
+import { formatRuDate } from '@/lib/ruDate'
 
 export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   slug: RussianMatcherPartnerSlug
@@ -23,6 +24,8 @@ export interface RussianPartnerMatcherProfile extends RussianMatcherCapability {
   reviewHref: string
   /** Resolved on the server (russiaStatusFor); the client never reads firms.json. */
   russiaStatus?: RussiaStatus
+  /** russiaBasis evidence date (YYYY-MM-DD) for 'not-on-restricted-list' firms; resolved on the server. */
+  russiaBasisDate?: string | null
 }
 
 const accessOptions: { value: RussianMatcherAccess; label: string }[] = [
@@ -191,12 +194,13 @@ export default function RussianPartnerMatcher({
                     </div>
                     <ul className="ru-facts">
                       <li><ShieldCheck size={14} aria-hidden="true" /> {profile.priceCount} цен; диапазон {profile.priceRange}</li>
-                      <li>Самая ранняя дата проверки продукта: {profile.captureDate}</li>
+                      <li>Самая ранняя дата проверки продукта: {formatRuDate(profile.captureDate)}</li>
                     </ul>
                     <div className="ru-actions">
                       <Link href={profile.reviewHref} className="btn-outline">Сначала прочитать обзор</Link>
                       <RuGoLinkView firm={profile.slug}
                         status={profile.russiaStatus ?? 'unverified'}
+                        basisDate={profile.russiaBasisDate ?? null}
                         href={`/go/${profile.slug}?from=ru-ranking-matcher-${profile.slug}`}
                         prefetch={false}
                         rel="sponsored nofollow noopener"

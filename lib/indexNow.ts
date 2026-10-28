@@ -4,6 +4,7 @@ import {
   RU_CLOSED_FIRMS_PATH,
   RUSSIAN_ONLY_ROUTES,
 } from './localizedRoutes.ts'
+import { gatedRuRulesHandwrittenPaths } from './rulesPages.ts'
 
 export const INDEXNOW_KEY = 'efe7141439424e2eb37e4faaff858975'
 export const INDEXNOW_KEY_PATH = `/${INDEXNOW_KEY}.txt`
@@ -21,9 +22,11 @@ function closedFirmsPublished(): boolean {
 
 export function getRussianIndexNowUrls(origin = 'https://tradersfundhub.com') {
   const normalizedOrigin = origin.replace(/\/$/, '')
+  // A hand-written RU rules page held noindex by the rules gate is not announced (lib/rulesPages.ts).
+  const gated = new Set(gatedRuRulesHandwrittenPaths())
   return [
     ...LOCALIZED_ROUTE_PAIRS.map(pair => pair.ru),
-    ...RUSSIAN_ONLY_ROUTES,
+    ...RUSSIAN_ONLY_ROUTES.filter(path => !gated.has(path)),
     // The RU closed-firms page is announced only while the closed list is published.
     ...(closedFirmsPublished() ? [RU_CLOSED_FIRMS_PATH] : []),
   ].map(path => `${normalizedOrigin}${path}`)

@@ -1,5 +1,6 @@
+import { displaySplitTiers } from './profitSplitDisplay.ts'
 import { firmSlug } from './firmSlug.ts'
-import { resolveRussiaStatus, russiaStatusesBySlug } from './russiaStatus.ts'
+import { resolveRussiaBasisDate, resolveRussiaStatus, russiaBasisDatesBySlug, russiaStatusesBySlug } from './russiaStatus.ts'
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
 import { getChallengeWatchEntries, productChangeSignals, type ChallengeWatchEntry } from './challengeWatch.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type GlobalChallengeRow } from './challengeComparison.ts'
@@ -33,6 +34,7 @@ export function buildChallengeComparisonRows(
         maxTradingDaysUnlimited: challenge.maxTradingDaysUnlimited ?? null,
         consistencyRuleApplies: challenge.consistencyRuleApplies ?? null,
         consistencyRulePct: challenge.consistencyRulePct, profitSplitPct: challenge.profitSplitPct,
+        profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
         payoutFirstDays: challenge.payoutFirstDays, payoutFrequency: challenge.payoutFrequency,
         rules: challenge.rules, assetClass: challenge.assetClass,
         sourceUrl: challenge.sourceUrl, capturedAt: challenge.sourceCapturedAt,
@@ -51,9 +53,10 @@ export function getRussianFinderRows(now = new Date()): GlobalChallengeRow[] {
   const firms = getAllFirms()
   // Resolved here (server) so client finders get the status as data and never bundle firms.json.
   const russiaStatuses = russiaStatusesBySlug(firms)
+  const russiaBasisDates = russiaBasisDatesBySlug(firms)
   return buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now)
     .filter(row => row.firm.slug in RUSSIAN_FINDER_REVIEWS)
-    .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug], russiaStatus: resolveRussiaStatus(russiaStatuses, row.firm.slug) } }))
+    .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug], russiaStatus: resolveRussiaStatus(russiaStatuses, row.firm.slug), russiaBasisDate: resolveRussiaBasisDate(russiaBasisDates, row.firm.slug) } }))
 }
 
 /** Editorial starting pairs, not a ranking. Matching phases/size do not make other rules equal. */

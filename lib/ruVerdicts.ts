@@ -1,8 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
+import { ruAccessBadgeFor, russiaBasisDateFor, russiaPendingNotListedFor, russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 import { RU_ACCESS_BADGE } from '@/components/RuAccessBadgeView'
 import { getChallengesByFirm, isChallengeFresh } from '@/lib/firms'
+import type { RuPendingNotListed } from '@/lib/ruAccessLabel'
 
 /**
  * RU Phase 2 verdict copy (content/data/ru-verdicts/<route slug>.json, rules in
@@ -84,7 +85,7 @@ function guarded(route: string, text: string) {
 }
 
 export type RuReviewVerdict = {
-  firm: string; status: RussiaStatus; dataAsOf: string; verdict: string; best: string[]; avoid: string[]
+  firm: string; status: RussiaStatus; basisDate: string | null; pendingNotListed: RuPendingNotListed | null; dataAsOf: string; verdict: string; best: string[]; avoid: string[]
 }
 
 export function getRuReviewVerdict(route: string, now = new Date()): RuReviewVerdict | null {
@@ -95,12 +96,13 @@ export function getRuReviewVerdict(route: string, now = new Date()): RuReviewVer
   const best = [...entry.best], avoid = [...entry.avoid]
   const line = entry.russiaAccess?.byStatus?.[status]
   if (line) {
-    let text = fill(line.text, { firm, badge: RU_ACCESS_BADGE[status].label })
+    // Labels come from the central rule (status + russiaBasis): «нет в списке ограничений (на …)» for list-absence firms.
+    let text = fill(line.text, { firm, badge: ruAccessBadgeFor(firm).label })
     const alt = line.altText ? openAlternative(entry.russiaAccess.alternatives, [firm]) : null
-    if (line.altText && alt) text = `${text.replace(/[.;\s]*$/, '.')} ${fill(line.altText, { openAlternative: alt, altBadge: RU_ACCESS_BADGE.available.label })}`
+    if (line.altText && alt) text = `${text.replace(/[.;\s]*$/, '.')} ${fill(line.altText, { openAlternative: alt, altBadge: ruAccessBadgeFor(alt).label })}`
     ;(line.list === 'best' ? best : avoid).unshift(text)
   }
-  return { firm, status, dataAsOf: entry.dataAsOf, verdict: entry.verdict, best: best.slice(0, MAX_ITEMS), avoid: avoid.slice(0, MAX_ITEMS) }
+  return { firm, status, basisDate: russiaBasisDateFor(firm), pendingNotListed: russiaPendingNotListedFor(firm), dataAsOf: entry.dataAsOf, verdict: entry.verdict, best: best.slice(0, MAX_ITEMS), avoid: avoid.slice(0, MAX_ITEMS) }
 }
 
 export type RuCompareVerdict = {
@@ -116,13 +118,13 @@ export function getRuCompareVerdict(route: string, now = new Date()): RuCompareV
   let note: string | null = null
   const openA = statusA === 'available', openB = statusB === 'available'
   if (openA !== openB && entry.russiaPick?.oneOpen?.text) {
-    const [open, other, so, st] = openA ? [entry.a, entry.b, statusA, statusB] : [entry.b, entry.a, statusB, statusA]
-    picks[openA ? 'a' : 'b'].unshift(fill(entry.russiaPick.oneOpen.text, { open, other, openBadge: RU_ACCESS_BADGE[so].label, otherBadge: RU_ACCESS_BADGE[st].label }))
+    const [open, other] = openA ? [entry.a, entry.b] : [entry.b, entry.a]
+    picks[openA ? 'a' : 'b'].unshift(fill(entry.russiaPick.oneOpen.text, { open, other, openBadge: ruAccessBadgeFor(open).label, otherBadge: ruAccessBadgeFor(other).label }))
   } else if (!openA && !openB && entry.russiaPick?.neitherOpen?.text) {
-    const values = { a: entry.a, b: entry.b, aBadge: RU_ACCESS_BADGE[statusA].label, bBadge: RU_ACCESS_BADGE[statusB].label, altBadge: RU_ACCESS_BADGE.available.label }
+    const alt = openAlternative(entry.russiaPick.alternatives, [entry.a, entry.b])
+    const values = { a: entry.a, b: entry.b, aBadge: ruAccessBadgeFor(entry.a).label, bBadge: ruAccessBadgeFor(entry.b).label, altBadge: alt ? ruAccessBadgeFor(alt).label : RU_ACCESS_BADGE.available.label }
     note = fill(entry.russiaPick.neitherOpen.text, values)
-    const alt = entry.russiaPick.neitherOpen.altText ? openAlternative(entry.russiaPick.alternatives, [entry.a, entry.b]) : null
-    if (alt) note = `${note} ${fill(entry.russiaPick.neitherOpen.altText!, { ...values, openAlternative: alt })}`
+    if (alt && entry.russiaPick.neitherOpen.altText) note = `${note} ${fill(entry.russiaPick.neitherOpen.altText, { ...values, openAlternative: alt })}`
   }
   return { a: entry.a, b: entry.b, statusA, statusB, dataAsOf: entry.dataAsOf, verdict: guarded(route, entry.verdict), picks: { a: picks.a.filter(line => guarded(route, line) === line).slice(0, MAX_ITEMS), b: picks.b.filter(line => guarded(route, line) === line).slice(0, MAX_ITEMS) }, note }
 }

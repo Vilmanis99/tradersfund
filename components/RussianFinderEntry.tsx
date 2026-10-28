@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { DEFAULT_FINDER_FILTERS, challengeKey, filterChallengeRows, finderTier, finderAccountSizes, priceBreakdownLabel, tierPriceParts, resolveFinderSize, serializeFinderState, type ChallengeFinderFilters, type GlobalChallengeRow } from '@/lib/challengeComparison'
 import { trackSiteEvent } from '@/lib/clientAnalytics'
+import { formatRuDate } from '@/lib/ruDate'
 
 export default function RussianFinderEntry({ rows }: { rows: GlobalChallengeRow[] }) {
   const sizes = finderAccountSizes(rows)
@@ -51,7 +52,7 @@ export default function RussianFinderEntry({ rows }: { rows: GlobalChallengeRow[
       {preview.length > 0 && <ul>{preview.map(row => (
         <li key={challengeKey(row)} data-russian-home-preview-product={challengeKey(row)}>
           <Link href={`/ru/luchshie-prop-firmy#${serializeFinderState(filters, [challengeKey(row)])}`}>
-            <span><strong>{row.firm.name}</strong><span>{row.product.name}</span><small>{{ cfd: 'CFD', futures: 'Фьючерсы', crypto: 'Криптовалюты', 'prediction-markets': 'Рынки прогнозов' }[row.product.assetClass]} · Проверено {row.product.capturedAt}</small></span>
+            <span><strong>{row.firm.name}</strong><span>{row.product.name}</span><small>{{ cfd: 'CFD', futures: 'Фьючерсы', crypto: 'Криптовалюты', 'prediction-markets': 'Рынки прогнозов' }[row.product.assetClass]} · Проверено {formatRuDate(row.product.capturedAt)}</small></span>
             <span className="ru-home-finder-fee"><strong>{fee(row)}</strong><small>{row.product.pricingModel === 'monthly-subscription' ? 'в месяц; доплаты отдельно' : row.product.pricingModel === 'split-payment' ? 'первый взнос' : 'базовый взнос'}</small></span>
             <ArrowRight size={16} aria-hidden="true" />
           </Link>

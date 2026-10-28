@@ -1,11 +1,11 @@
-# /ru/obzor-topstep — RU Writer branch notes (ships Mon 26.10.2026)
+# /ru/obzor-topstep — RU Writer branch notes (ships Thu 29.10.2026)
 
 Brief: /workspace/ru-seo/briefs/2026-10-26.md (supersedes briefs/new-obzor-topstep.md). Base: origin/daily/2026-10-20b @ f4e547d.
 
 ## Wiring
-- `lib/localizedRoutes.ts`: hreflang pair `/blog/topstep-review` ↔ `/ru/obzor-topstep`; editorial date 2026-10-26.
+- `lib/localizedRoutes.ts`: hreflang pair `/blog/topstep-review` ↔ `/ru/obzor-topstep`; editorial date 2026-10-29.
   firms.json `reviewUrl` stays `/blog/topstep-review`.
-- `app/sitemap.ts`: lastmod source `russianOldestChallengeLastModified('topstep')` (editorial date wins → 2026-10-26).
+- `app/sitemap.ts`: lastmod source `russianOldestChallengeLastModified('topstep')` (editorial date wins → 2026-10-29).
 - `lib/analyticsTaxonomy.ts` + `scripts/audit-reviews.mjs`: `russian_review`; acquisition-pilot route list.
 - `scripts/release-crawl.mjs`: title/H1/markers, Article schema count, Topstep official CTA nofollow-not-sponsored +
   closed badge + no FundedNext CTA, BrightFunded alternative CTA must be sponsored.
@@ -71,3 +71,8 @@ Sources: /workspace/ru-seo/briefs/2026-10-26.md (status 23.10, READY) and
 - §3a terms: added «проп трейдинг фьючерсы», «вывод прибыли», «альтернатива Topstep»; the rest were already present.
 - Still open (page states none of them): CIS/EU VAT amounts, the $85/$129 topstep-prop toggle, Kazakhstan. Sun 25.10 15:00:
   Tracker re-confirms 8284116; re-merge onto the newest daily before ship (separate routine).
+
+## 28.10 final re-merge — ship date Thu 29.10.2026
+- Merged origin/daily/2026-10-28 @ 480385e3 (--no-ff; includes Dev's russiaBasis neutral badge and Tracker's data/topstep-recheck-2026-10-28 @ dc959c0b).
+- Editorial date / datePublished moved 2026-10-26 → 2026-10-29 (RU SEO Lead + Code Reviewer, 25.10). Source, capture and verification dates unchanged.
+- Tracker's 28.10 recheck (/workspace/tradersfundhub/evidence/topstep-recheck-2026-10-28/README.md): all 36 official pages show no substantive change in rules, prices, payout policy or eligibility; 8284116 still lists Russia, Belarus, Ukraine and Crimea as ineligible (dateModified 2026-09-04). No RU copy change needed; the page's access source stays the 20.10 capture.

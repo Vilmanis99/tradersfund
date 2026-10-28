@@ -8,7 +8,7 @@ import RussianEvidenceFreshnessNotice from '@/components/RussianEvidenceFreshnes
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import { russianRouteDateModified } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -16,6 +16,7 @@ import { russiaStatusFor } from '@/lib/russiaAvailability'
 import { RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/obzor-eratrade'
 export const revalidate = 3600
@@ -114,7 +115,7 @@ export default function RussianEraTradeReviewPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(article) }} />
       <Breadcrumbs ld={crumbs} locale="ru" />
-      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqPageSchema(faqs)) }} />}
+      {faqSourcesCurrent && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ruFaqPageSchema(faqs)) }} />}
 
       <section className="ru-hero">
         <div className="ru-shell" data-russian-local-review="era-trade" data-russian-local-review-status="verification-only">
@@ -126,7 +127,7 @@ export default function RussianEraTradeReviewPage() {
           <div className="ru-eyebrow"><Building2 size={14} aria-hidden="true" /> Локальное исследование, не рекомендация</div>
           <h1>Era Trade: обзор 2026 — правила, сплит и выплаты</h1>
           <p className="ru-lead">Разбираем официальные заявления Era Trade для русскоязычного трейдера: 6 000+ трейдеров, 70 стран, базовый сплит 80%, правила одно- и двухэтапных челленджей, условия выплаты и публичная партнёрская программа. Это проверка источников, а не подтверждение платёжеспособности или доступа.</p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {marketEvidence.capturedAt}; заявления на главной: {localSignalCapturedAt || 'дата не подтверждена'}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Общий снимок рынка: {formatRuDate(marketEvidence.capturedAt)}; заявления на главной: {ruDatesInText(localSignalCapturedAt || 'дата не подтверждена')}.</p>
           <div className="ru-actions">
             <Link href="#facts" className="btn-primary btn-glow">Проверить факты <ArrowRight size={15} aria-hidden="true" /></Link>
             <Link href="/ru/luchshie-prop-firmy#podbor" className="btn-outline">Сравнить глобальные фирмы</Link>
@@ -135,7 +136,7 @@ export default function RussianEraTradeReviewPage() {
             <div className="ru-stat"><strong>{Number(localSignal?.claims.traders).toLocaleString('ru-RU')}+</strong><span>трейдеров по заявлению оператора</span></div>
             <div className="ru-stat"><strong>{localSignal?.claims.countries}</strong><span>стран по заявлению оператора</span></div>
             <div className="ru-stat"><strong>{localSignal?.claims.baseProfitSplitPct}%</strong><span>базовый сплит трейдера</span></div>
-            <div className="ru-stat"><strong>{localSignalCapturedAt || 'нет даты'}</strong><span>проверка заявлений на главной</span></div>
+            <div className="ru-stat"><strong>{ruDatesInText(localSignalCapturedAt || 'нет даты')}</strong><span>проверка заявлений на главной</span></div>
           </div>
         </div>
       </section>
@@ -155,7 +156,7 @@ export default function RussianEraTradeReviewPage() {
                 <tr><td>Сплит</td><td>{localSignal?.claims.baseProfitSplitPct}% в пользу трейдера</td><td>Условие зависит от продукта и правил выплаты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат (сплит)</SourceLink></td></tr>
                 <tr><td>2 этапа</td><td>Цель 8%, дневной лимит 5%, общий лимит 10%</td><td>Отдельный продукт; не переносим на 1-этапный</td><td><SourceLink href={ERA_TWO_STAGE}>Правила 2 этапов</SourceLink></td></tr>
                 <tr><td>1 этап</td><td>Цель 11%, дневной лимит 4%, общий лимит 8%</td><td>Отдельный продукт; проверяйте актуальную версию</td><td><SourceLink href={ERA_ONE_STAGE}>Правила 1 этапа</SourceLink></td></tr>
-                <tr><td>Платформы</td><td>Bybit, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
+                <tr><td>Платформы</td><td>Сторонняя криптобиржа, MT5 и TradeLocker указаны в витрине; продукт и доступный терминал нужно выбирать отдельно</td><td>Платформа меняет технические и страновые ограничения</td><td><SourceLink href={ERA_HOME}>Витрина Era Trade</SourceLink></td></tr>
                 <tr><td>Выплата</td><td>Каждые 15 или 30 дней; 3 прибыльных дня; минимум 1%; максимум 10% за период; до 5 рабочих дней</td><td>Заявленное правило; сделки и ордера должны быть закрыты</td><td><SourceLink href={ERA_PAYOUT_SYSTEM}>Система выплат</SourceLink></td></tr>
                 <tr><td>Партнёрство</td><td>{affiliateSignal?.baseCommissionPct}% по умолчанию, уровни до {affiliateSignal?.maximumPublishedCommissionPct}%, минимум ${affiliateSignal?.minimumPayoutUsd}</td><td>Публичная программа; Ambassador активируется отдельно</td><td><SourceLink href={ERA_AFFILIATE}>Условия партнёров</SourceLink></td></tr>
               </tbody>
@@ -174,7 +175,7 @@ export default function RussianEraTradeReviewPage() {
             </table>
           </div>
           <p className="ru-muted">Расхождения показаны по данным на {ERA_RECHECK}. Какая цифра действует для вашей покупки, уточните у Era Trade письменно до оплаты.</p>
-          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок источников: {marketEvidence.capturedAt}; показатели на главной: {localSignalCapturedAt || 'дата не подтверждена'}; партнёрская программа: {affiliateCapturedAt || 'дата не подтверждена'}. Остальные правила нужно перепроверить перед покупкой. Все суммы, проценты и сроки выше — заявления Era Trade, а не независимая проверка.</p>
+          <p className="ru-source-line"><Globe2 size={14} aria-hidden="true" /> Общий снимок источников: {formatRuDate(marketEvidence.capturedAt)}; показатели на главной: {ruDatesInText(localSignalCapturedAt || 'дата не подтверждена')}; партнёрская программа: {ruDatesInText(affiliateCapturedAt || 'дата не подтверждена')}. Остальные правила нужно перепроверить перед покупкой. Все суммы, проценты и сроки выше — заявления Era Trade, а не независимая проверка.</p>
         </div>
       </section>
 
@@ -195,7 +196,7 @@ export default function RussianEraTradeReviewPage() {
           <h2>Как не смешать два разных продукта</h2>
           <ol>
             <li><strong>Выберите модель:</strong> в двухэтапной схеме цели 8% и 5%, а в одноэтапной заявлена цель 11%; дневные и общие лимиты тоже различаются.</li>
-            <li><strong>Проверьте платформу:</strong> Bybit, MT5 и TradeLocker требуют разных аккаунтов, сетей и ограничений; не переносите правило одного терминала на другой.</li>
+            <li><strong>Проверьте платформу:</strong> счёт через стороннюю криптобиржу, MT5 и TradeLocker требуют разных аккаунтов, сетей и ограничений; не переносите правило одного терминала на другой.</li>
             <li><strong>Пройдите проверку:</strong> после цели оператор описывает ручную проверку команды по рискам и KYC; до этого не считайте funded-аккаунт окончательно подтверждённым.</li>
             <li><strong>Подайте выплату корректно:</strong> выберите 15- или 30-дневный период, закройте позиции и ордера, подтвердите 3 прибыльных дня и сохраните дату заявки.</li>
           </ol>
@@ -245,7 +246,7 @@ export default function RussianEraTradeReviewPage() {
       </section>
 
       <section className="ru-section" data-russian-local-faq-status={faqSourcesCurrent ? 'dated' : 'recapture-required'}>
-        <div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {marketEvidence.capturedAt} и отдельные проверки Era Trade. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующих правил или выплаты.</p>}<RussianFaq items={faqs} /></div>
+        <div className="ru-shell ru-content"><h2>Частые вопросы</h2>{!faqSourcesCurrent && <p className="ru-muted">Источники ответов включают общий снимок рынка от {formatRuDate(marketEvidence.capturedAt)} и отдельные проверки Era Trade. Как минимум один источник требует повторной проверки; ответы ниже — датированный разбор, а не подтверждение действующих правил или выплаты.</p>}<RussianFaq items={faqs} /></div>
       </section>
       <RuRelatedBlock path={PATH} />
     </>

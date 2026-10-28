@@ -10,15 +10,16 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { minimumTradingDaysLabel } from '@/lib/challengeRuleLabels'
 import { challengeCurrency, challengeTierEconomics, minimumCostToFundedUsd, getAllFirms, getChallengesByFirm, isChallengeFresh, type Challenge } from '@/lib/firms'
 import { goLinkRel } from '@/lib/russiaAvailability'
-import { authorSchema, breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { authorSchema, breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
-const DESCRIPTION = 'FundingPips или BrightFunded: сравнение 1-Step, 2-Step и Zero, цен в USD и EUR, просадки, сплита и выплат. BrightFunded открыта для РФ, FundingPips — неясно.'
+const DESCRIPTION = 'FundingPips или BrightFunded: 1-Step, 2-Step и Zero, цены и выплаты. У BrightFunded РФ нет в списке ограничений (на 23.10.2026), у FundingPips статус неясен.'
 
 // Official pages re-read by the RU Writer on this date: FundingPips Get Started (countries, checkout, HELLO, refund),
 // BrightFunded help country list + Terms §2, payout methods, news rule, platforms.
@@ -26,9 +27,10 @@ const CHECKED = '20.10.2026'
 // Prop Firm Tracker, content/data/challenges/_captures/fundingpips-2026-10-20.json → refundTerms (help centre 4th-reward refund vs Terms «ALL PAYMENTS ARE FINAL»).
 // Prop Firm Tracker, /workspace/ru-data/2026-10-20-fundingpips-checkout-rules.md + branch data/daily-check-2026-10-20 (FundingPips reward routes, checkout, EA/copy, Prime).
 const TRACKER_FP = '20.10.2026'
-// FundingPips country-access sources (Prop Firm Tracker recapture 3b133ed): the Help Center Get Started article (updated 24.09.2026)
-// names Iran, Vietnam and the UAE; the FATF and EU/UN sanctions-list sentence is in the Terms (effective 15.05.2026) and footer, not in the help article.
-const FP_HELP_UPDATED = '24.09.2026'
+// FundingPips country-access sources (Prop Firm Tracker recapture 3b133ed): the Help Center Get Started article names Iran, Vietnam and the UAE;
+// the FATF and EU/UN sanctions-list sentence is in the Terms and footer, not in the help article. Dates come from russian-fundingpips-access-evidence.json
+// (sourceUpdatedAt = help article date, termsEffective = Terms date, sourceCapturedAt = re-read date).
+const FP_HELP_UPDATED = fpAccessEvidence.sourceUpdatedAt.split('-').reverse().join('.')
 const FP_ACCESS_CHECKED = fpAccessEvidence.sourceCapturedAt.split('-').reverse().join('.')
 const FP_TERMS_EFFECTIVE = fpAccessEvidence.termsEffective.split('-').reverse().join('.')
 // Prop Firm Tracker, /workspace/ru-data/2026-10-19-ftmo-brightfunded-payments.md (BrightFunded checkout and payout cycle).
@@ -192,6 +194,7 @@ function payoutLabel(product: Challenge) {
   const frequency = ({
     weekly: 'еженедельно',
     'bi-weekly': 'далее раз в две недели',
+    'after-qualifying-days': 'после квалификационных торговых дней',
     monthly: 'ежемесячно',
     'on-demand': 'по запросу',
   } as Record<string, string>)[product.payoutFrequency ?? ''] ?? 'цикл не указан'
@@ -223,6 +226,11 @@ export default function RussianFundingPipsVsBrightFundedPage() {
   const bfProducts = getChallengesByFirm('bright-funded')
   const fpProducts = getChallengesByFirm('fundingpips')
   const relevantProducts = [...bfProducts, ...fpProducts]
+  // Same logic as scripts/challenge-freshness.mjs (tiers = every accountSizes row; priced = priceUsd > 0 or priceEur > 0), over the fresh FundingPips products shown here.
+  const fpTiers = fpProducts.filter(freshProduct).flatMap(product => product.accountSizes)
+  const fpTierCount = fpTiers.length
+  const fpPricedTiers = fpTiers.filter(tier => (tier.priceUsd != null && tier.priceUsd > 0) || (tier.priceEur != null && tier.priceEur > 0)).length
+  const fpMinSize = Math.min(...fpTiers.map(tier => tier.sizeUsd))
   const productRows: ProductRow[] = [
     ...bfProducts.filter(freshProduct).map(product => ({ firm: 'BrightFunded' as const, product, price: priceRange(product) })),
     ...fpProducts.filter(freshProduct).map(product => ({ firm: 'FundingPips' as const, product, price: priceRange(product) })),
@@ -270,7 +278,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     { field: 'Платформы', bf: bfFirm?.platforms.join(', ') ?? '—', fp: fpFirm?.platforms.join(', ') ?? '—' },
     {
       field: 'Рынки для торговли',
-      bf: <span data-russian-bright-funded-assets="firms-json">{assetsRu(bfFirm?.assets)}{bfFirm?.assets?.includes('Crypto') ? `; криптопар более 48 (справка BrightFunded, проверка ${BF_CRYPTO_PAIRS_CHECKED})` : ''}</span>,
+      bf: <span data-russian-bright-funded-assets="firms-json">{assetsRu(bfFirm?.assets)}{bfFirm?.assets?.includes('Crypto') ? `; криптопар более 48 (справка BrightFunded, проверка ${formatRuDate(BF_CRYPTO_PAIRS_CHECKED)})` : ''}</span>,
       fp: assetsRu(fpFirm?.assets),
     },
     { field: 'Программы (свежие записи)', bf: bfRows.map(row => short(row.product)).join(', ') || '—', fp: fpRows.map(row => short(row.product)).join(', ') || '—' },
@@ -278,7 +286,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     { field: 'Минимум торговых дней', bf: bfRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—', fp: fpRows.map(row => `${short(row.product)}: ${daysLabel(row.product)}`).join('; ') || '—' },
     { field: 'Доля вознаграждения', bf: '80% базово; 90% — платное дополнение; 100% — через масштабирование', fp: 'по модели: 1 Step Flex и 2 Step Pro — 80%; 2 Step Flex — 80% или 95%; 2 Step Standard — 60% или 80%; у всех, кроме Zero, — 100% по запросу при условиях; Zero — 95%' },
     { field: 'Первая выплата', bf: 'через 30 дн. после первой сделки на funded-счёте, затем раз в 14 дней (официальное противоречие, см. ниже)', fp: fpRows.map(row => `${short(row.product)}: ${payoutLabel(row.product)}`).join('; ') || '—' },
-    { field: 'Способы выплаты', bf: `банковский перевод (в EUR), USDC (ERC-20) (по данным на ${CHECKED})`, fp: `карта (Visa/Mastercard; Pay to Card — только в 14 странах), USDT/USDC только в сети ERC-20, Rise, банковский перевод (только в тех же 14 странах); минимум 1% мастер-счёта, для Rise и банка — $500 (по данным на ${FP_REWARD_METHODS})` },
+    { field: 'Способы выплаты', bf: `банковский перевод (в EUR), USDC (ERC-20) (по данным на ${formatRuDate(CHECKED)})`, fp: `карта (Visa/Mastercard; Pay to Card — только в 14 странах), USDT/USDC только в сети ERC-20, Rise, банковский перевод (только в тех же 14 странах); минимум 1% мастер-счёта, для Rise и банка — $500 (по данным на ${FP_REWARD_METHODS})` },
     { field: 'Trustpilot', bf: bfTrustpilot, fp: fpTrustpilot },
   ]
   const crumbs = breadcrumbSchema([
@@ -286,7 +294,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
     { name: 'Рейтинг проп-компаний', url: '/ru/luchshie-prop-firmy' },
     { name: 'FundingPips или BrightFunded' },
   ])
-  const faq = faqPageSchema(faqs)
+  const faq = ruFaqPageSchema(faqs)
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -309,7 +317,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-partner-comparison="fundingpips-bright-funded" data-russian-comparison-editorial-date={articleDateModified}>
           <RussianDataFreshnessNotice firmSlugs={['bright-funded', 'fundingpips']} />
-          <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Сравнение · доступ проверен {CHECKED}</div>
+          <div className="ru-eyebrow"><Scale size={14} aria-hidden="true" /> Сравнение · доступ проверен {formatRuDate(CHECKED)}</div>
           <h1>FundingPips или BrightFunded: что выбрать в 2026 году</h1>
           <p className="ru-lead">
             FundingPips (Funding Pips, «Фандинг Пипс») знают многие, но для резидента России первый вопрос — не цена, а доступ. BrightFunded Россию в своих
@@ -317,14 +325,14 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             и USD, доля вознаграждения и выплаты.
           </p>
           <div className="ru-notice" data-russian-access-answer="first-screen">
-            <strong>Коротко о доступе (по данным на {CHECKED}):</strong>
+            <strong>Коротко о доступе (по данным на {formatRuDate(CHECKED)}):</strong>
             <ul>
               <li>BrightFunded <RuAccessBadge firm="bright-funded" /> — России нет ни в справке (6 стран, включая Пакистан), ни в условиях (5 стран, без Пакистана).</li>
-              <li>FundingPips <RuAccessBadge firm="fundingpips" /> — справка называет Иран, Вьетнам и ОАЭ, а условия добавляют страны из санкционных списков FATF и ЕС/ООН (по данным на {FP_ACCESS_CHECKED}); Россия не названа ни там, ни там.</li>
+              <li>FundingPips <RuAccessBadge firm="fundingpips" /> — справка называет Иран, Вьетнам и ОАЭ, а условия добавляют страны из санкционных списков FATF и ЕС/ООН (по данным на {formatRuDate(FP_ACCESS_CHECKED)}); Россия не названа ни там, ни там.</li>
               <li>Живёте в Дубае или другом эмирате — FundingPips вам недоступна, хотя сама зарегистрирована в Дубае.</li>
             </ul>
           </div>
-          <p className="ru-source-line">Автор: редакция Traders Fund Hub · Редакционная проверка: {articleDateModified}. Даты источников указаны у каждого факта.</p>
+          <p className="ru-source-line">Автор: редакция Traders Fund Hub · Редакционная проверка: {ruDatesInText(articleDateModified)}. Даты источников указаны у каждого факта.</p>
           <div className="ru-actions" data-russian-comparison-cta="bright-funded-first">
             <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-comparison-fundingpips-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary btn-glow">
               Перейти в BrightFunded <ArrowRight size={15} aria-hidden="true" />
@@ -384,7 +392,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       <section className="ru-section" id="dostup">
         <div className="ru-shell ru-content ru-review-article">
           <h2>Доступ: Россия, Беларусь, Казахстан, ОАЭ</h2>
-          <p>Таблица собрана по официальным спискам, проверенным {CHECKED}. «Не названа» означает только то, что страны нет в тексте ограничений: регистрацию с документами этих стран мы не тестировали.</p>
+          <p>Таблица собрана по официальным спискам, проверенным {formatRuDate(CHECKED)}. «Не названа» означает только то, что страны нет в тексте ограничений: регистрацию с документами этих стран мы не тестировали.</p>
           <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Доступ по странам">
             <table className="ru-table" data-russian-access-table="ru-by-kz-ae">
               <thead><tr><th>Страна</th><th>BrightFunded</th><th>FundingPips</th></tr></thead>
@@ -400,11 +408,11 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <strong>Списки BrightFunded расходятся.</strong> Справка (обновлена 15.09.2026) запрещает покупку и регистрацию
             гражданам и жителям Кубы, Ирана, Северной Кореи, Сирии, Вьетнама и Пакистана; пакистанцы с уже активным счётом
             могут продолжать торговлю. Пункт 2 условий называет пять стран без Пакистана и добавляет фактическое
-            местонахождение; фирма оставляет за собой право вводить новые ограничения. Оба источника проверены {CHECKED}.
+            местонахождение; фирма оставляет за собой право вводить новые ограничения. Оба источника проверены {formatRuDate(CHECKED)}.
             Россию не называет ни один.
           </div>
           <p className="ru-source-line">
-            Источники: <a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">справка BrightFunded</a>; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">справка FundingPips Get Started</a> (обновлена {FP_HELP_UPDATED}; Иран, Вьетнам, ОАЭ); <a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">условия FundingPips</a> (с {FP_TERMS_EFFECTIVE}; санкционные списки FATF и ЕС/ООН) — оба источника проверены {FP_ACCESS_CHECKED}.
+            Источники: <a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">справка BrightFunded</a>; <a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">условия BrightFunded</a>; <a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">справка FundingPips Get Started</a> (обновлена {FP_HELP_UPDATED}; Иран, Вьетнам, ОАЭ); <a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">условия FundingPips</a> (с {FP_TERMS_EFFECTIVE}; санкционные списки FATF и ЕС/ООН) — оба источника проверены {formatRuDate(FP_ACCESS_CHECKED)}.
             Подробнее — в разделе <Link href="/ru/obzor-fundingpips#dostup-iz-rossii">доступ к FundingPips из России</Link> обзора и на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">для русскоязычных трейдеров</Link>.
           </p>
         </div>
@@ -460,7 +468,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               </p>
               <p>
                 После оценки у 2 Step Standard нет единой доли: еженедельно 60%, раз в две недели 80% или по запросу 100%, причём для
-                выплаты по запросу действует правило стабильности 35%. Прежних маршрутов «ежемесячно 100%» и «по запросу 90%» больше нет (по данным на 20.10.2026).
+                выплаты по запросу действует правило стабильности 35%. Прежних маршрутов «ежемесячно 100%» и «по запросу 90%» больше нет (по данным на 20.10.2026). Новости, перенос и выплаты по каждой модели — в <Link href="/ru/fundingpips-pravila">полных правилах FundingPips</Link>.
               </p>
               <p data-russian-fundingpips-refund-conflict="help-vs-terms">
                 <strong>Возврат взноса: источники FundingPips расходятся.</strong> По справке FundingPips (Get Started и Reward Methods) взнос за 2 Step Standard
@@ -532,7 +540,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
               })}</tbody>
             </table>
           </div>
-          <p>Счёт $200K есть у всех продуктов BrightFunded и у FundingPips 2 Step Pro и Zero. Размер $2.5K у Pro и Standard в наших данных без подтверждённой цены, поэтому в таблицу не попал.</p>
+          <p>Счёт $200K есть у всех продуктов BrightFunded и у FundingPips 2 Step Pro и Zero. Самый маленький счёт FundingPips в наших данных — ${fpMinSize.toLocaleString('en-US')}; цена подтверждена у {fpPricedTiers} из {fpTierCount} вариантов размера счёта.</p>
         </div>
       </section>
 
@@ -578,7 +586,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           </p>
           <p>
             <strong>FundingPips</strong> перечисляет карты Visa и Mastercard (только на ваше имя), Google Pay и Apple Pay, PayPal, Neteller, Skrill,
-            Paysafe Card и криптовалюту. Фирма предупреждает, что набор способов зависит от региона (по данным на {CHECKED}).
+            Paysafe Card и криптовалюту. Фирма предупреждает, что набор способов зависит от региона (по данным на {formatRuDate(CHECKED)}).
           </p>
           <p>Ни одна из фирм не упоминает «Мир» или карты российских банков, поэтому мы не утверждаем, что они сработают.</p>
           <p>Речь здесь только об оплате. Торговля криптопарами — отдельная тема, она описана в разделе о платформах и рынках ниже.</p>
@@ -591,7 +599,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           <h2>Платформы, советники, новости, копирование</h2>
           <p>
             Платформы BrightFunded: {bfFirm?.platforms.join(', ')}. MT5 недоступен для граждан, жителей и находящихся в США и ОАЭ, cTrader — для профиля
-            США (статья справки проверена {CHECKED}). Платформы FundingPips: {fpFirm?.platforms.join(', ')}. Советники и копирование сделок у обеих фирм
+            США (статья справки проверена {formatRuDate(CHECKED)}). Платформы FundingPips: {fpFirm?.platforms.join(', ')}. Советники и копирование сделок у обеих фирм
             разрешены с ограничениями. У FundingPips сторонний советник допустим только как менеджер сделок или риска, свой советник
             может торговать полностью автоматически при подтверждении авторства. Копировать сделки между своими счетами FundingPips и
             со счёта FundingPips на внешний можно, а копировать во FundingPips со стороннего источника или сигнального сервиса нельзя (по данным на 20.10.2026).
@@ -599,13 +607,13 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           </p>
           <p data-russian-bright-funded-crypto-trading="help-9268229">
             Рынки. Кроме форекса, индексов и сырья, BrightFunded предлагает торговлю криптовалютами: в справке указано более 48 криптопар
-            к доллару, в том числе BTC/USD и ETH/USD (по данным справки BrightFunded, проверка {BF_CRYPTO_PAIRS_CHECKED}). Это торговля на счёте
+            к доллару, в том числе BTC/USD и ETH/USD (по данным справки BrightFunded, проверка {formatRuDate(BF_CRYPTO_PAIRS_CHECKED)}). Это торговля на счёте
             и не связано с оплатой челленджа в криптовалюте, о которой написано выше.
           </p>
           <p>
             Новости. У BrightFunded сделки за 5 минут до и 5 минут после важной новости запрещены: прибыль от них вычитается, но счёт не закрывают
-            (по данным на {CHECKED}). У FundingPips 2 Step Pro на оценке новостных ограничений нет, а на мастер-счёте прибыль от сделок в окне
-            ±5 минут может быть вычтена. Позиции, открытые за 5 часов и раньше, это правило не затрагивает (по данным на {CHECKED}). Перенос через выходные у FundingPips разрешён на оценке, а на мастер-счёте нужна опция Swing; у BrightFunded
+            (по данным на {formatRuDate(CHECKED)}). У FundingPips 2 Step Pro на оценке новостных ограничений нет, а на мастер-счёте прибыль от сделок в окне
+            ±5 минут может быть вычтена. Позиции, открытые за 5 часов и раньше, это правило не затрагивает (по данным на {formatRuDate(CHECKED)}). Перенос через выходные у FundingPips разрешён на оценке, а на мастер-счёте нужна опция Swing; у BrightFunded
             условия переноса сверяйте в правилах выбранной программы.
           </p>
           <p className="ru-source-line">Источники: <a href={SRC.brightPlatforms} target="_blank" rel="noopener noreferrer">BrightFunded: platforms</a>; <a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: crypto instruments</a> ({BF_CRYPTO_PAIRS_CHECKED}); <a href={SRC.brightNews} target="_blank" rel="noopener noreferrer">BrightFunded: news</a>; <a href={SRC.fpPro} target="_blank" rel="noopener noreferrer">FundingPips 2 Step Pro</a>.</p>
@@ -626,7 +634,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             ) : (
               <span data-russian-bright-funded-promo="none">BrightFunded: действующий публичный код мы сейчас не подтверждаем.</span>
             )}{' '}
-            FundingPips: код HELLO даёт 20% на первую покупку, кроме счетов $100K (по данным на {CHECKED}).
+            FundingPips: код HELLO даёт 20% на первую покупку, кроме счетов $100K (по данным на {formatRuDate(CHECKED)}).
             Статус проверенных предложений — на странице <Link href="/ru/promokody-prop-firm">промокодов проп-фирм</Link>.
           </p>
         </div>
@@ -640,7 +648,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             <article className="ru-card" data-russian-alternative="bright-funded">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>BrightFunded <RuAccessBadge firm="bright-funded" /></h3>
-              <p className="ru-muted">Россия не названа ни в справке, ни в условиях (по данным на {CHECKED}). Взносы в EUR. Есть торговля криптопарами — более 48 (справка BrightFunded, проверка {BF_CRYPTO_PAIRS_CHECKED}).</p>
+              <p className="ru-muted">Россия не названа ни в справке, ни в условиях (по данным на {formatRuDate(CHECKED)}). Взносы в EUR. Есть торговля криптопарами — более 48 (справка BrightFunded, проверка {formatRuDate(BF_CRYPTO_PAIRS_CHECKED)}).</p>
               <p className="ru-source-line"><Link href="/ru/obzor-bright-funded">Обзор BrightFunded</Link> · <Link href="/ru/fundednext-vs-bright-funded">FundedNext или BrightFunded</Link> · <RuPendingLink href="/ru/ftmo-vs-bright-funded">FTMO или BrightFunded</RuPendingLink></p>
               <div className="ru-actions">
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-fundingpips-vs-bright-alt-bright-funded" rel={goLinkRel('bright-funded')} className="btn-primary">Перейти в BrightFunded <ArrowRight size={14} aria-hidden="true" /></RuGoLink>
@@ -677,14 +685,14 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       <section className="ru-section" id="sources">
         <div className="ru-shell ru-content ru-review-article">
           <h2>Источники и дата проверки</h2>
-          <p>Цены, цели, лимиты, доли и сроки выплат взяты из датированных записей по программам. Списки стран, способы оплаты FundingPips, код HELLO, способы выплаты и правило новостей BrightFunded перепроверены на официальных страницах {CHECKED}. Касса BrightFunded и противоречие по циклу выплат — из проверки Prop Firm Tracker от {TRACKER_BRIGHT}. Trustpilot — по данным на 15.10.2026; как отличить проверяемый отзыв от рекламы — в руководстве <Link href="/ru/otzyvy-prop-firm">отзывы о проп-фирмах</Link>.</p>
+          <p>Цены, цели, лимиты, доли и сроки выплат взяты из датированных записей по программам. Списки стран, способы оплаты FundingPips, код HELLO, способы выплаты и правило новостей BrightFunded перепроверены на официальных страницах {formatRuDate(CHECKED)}. Касса BrightFunded и противоречие по циклу выплат — из проверки Prop Firm Tracker от {TRACKER_BRIGHT}. Trustpilot — по данным на 15.10.2026; как отличить проверяемый отзыв от рекламы — в руководстве <Link href="/ru/otzyvy-prop-firm">отзывы о проп-фирмах</Link>.</p>
           <ul>
             {relevantProducts.map(product => <li key={`${product.firmSlug}:${product.productSlug}`}><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.productName}: официальные условия</a> — {validCaptureDate(product.sourceCapturedAt) ? ruDate(product.sourceCapturedAt) : 'дата не подтверждена'}.</li>)}
-            <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {CHECKED}.</li>
-            <li><a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">BrightFunded: условия, п. 2</a> — {CHECKED}.</li>
-            <li><a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: какие криптопары можно торговать (справка, статья от 25.05.2026)</a> — {BF_CRYPTO_PAIRS_CHECKED}.</li>
-            <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (справка обновлена {FP_HELP_UPDATED}): страны — Иран, Вьетнам, ОАЭ</a> — проверено {FP_ACCESS_CHECKED}; оплата и HELLO — {CHECKED}.</li>
-            <li><a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">FundingPips: условия (действуют с {FP_TERMS_EFFECTIVE}) — оговорка о санкционных списках FATF и ЕС/ООН</a> — проверено {FP_ACCESS_CHECKED}.</li>
+            <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам (справка)</a> — {formatRuDate(CHECKED)}.</li>
+            <li><a href={SRC.brightTerms} target="_blank" rel="noopener noreferrer">BrightFunded: условия, п. 2</a> — {formatRuDate(CHECKED)}.</li>
+            <li><a href={SRC.brightCryptoPairs} target="_blank" rel="noopener noreferrer">BrightFunded: какие криптопары можно торговать (справка, статья от 25.05.2026)</a> — {formatRuDate(BF_CRYPTO_PAIRS_CHECKED)}.</li>
+            <li><a href={SRC.fpGetStarted} target="_blank" rel="noopener noreferrer">FundingPips: Get Started (справка обновлена {FP_HELP_UPDATED}): страны — Иран, Вьетнам, ОАЭ</a> — проверено {formatRuDate(FP_ACCESS_CHECKED)}; оплата и HELLO — {formatRuDate(CHECKED)}.</li>
+            <li><a href={SRC.fpTerms} target="_blank" rel="nofollow noopener noreferrer">FundingPips: условия (действуют с {FP_TERMS_EFFECTIVE}) — оговорка о санкционных списках FATF и ЕС/ООН</a> — проверено {formatRuDate(FP_ACCESS_CHECKED)}.</li>
             <li><a href={SRC.fpRewardMethods} target="_blank" rel="noopener noreferrer">FundingPips: Reward Methods (способы, минимумы и сроки выплат, страны Pay to Card и банковского перевода)</a> — Prop Firm Tracker, {FP_REWARD_METHODS}.</li>
             <li><a href={SRC.fpStandard} target="_blank" rel="noopener noreferrer">FundingPips: 2 Step Standard (циклы выплат)</a>, <a href={SRC.fpConduct} target="_blank" rel="noopener noreferrer">правила советников и копирования</a> и <a href={SRC.fpPrime} target="_blank" rel="noopener noreferrer">счёт Prime</a> — Prop Firm Tracker, {TRACKER_FP}.</li>
           </ul>

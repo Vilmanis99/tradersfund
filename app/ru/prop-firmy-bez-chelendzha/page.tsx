@@ -18,10 +18,11 @@ import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.
 import { getAllChallenges, getAllFirms, isChallengeFresh, type Challenge, type Firm } from '@/lib/firms'
 import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { breadcrumbSchema, faqPageSchema, jsonLd } from '@/lib/schema'
+import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
 import { RuGoLink } from '@/components/RuGoLink'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import RuFundedNextAccessCaveat from '@/components/RuFundedNextAccessCaveat'
+import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/prop-firmy-bez-chelendzha'
 const TITLE = 'Проп-фирмы без челленджа 2026: мгновенное финансирование'
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
 const faqs: RussianFaqItem[] = [
   {
     q: 'Что значит «проп-фирма без челленджа»?',
-    a: 'На этой странице «фаза 0» (phase-0) означает 0 оценочных этапов и отсутствие обычной цели по прибыли до профинансированного этапа. Это не подтверждает реальный капитал: каждая свежая запись остаётся симулированной или требует отдельной проверки модели, просадки, выплаты и договора.',
+    a: 'На этой странице «фаза 0» означает 0 оценочных этапов и отсутствие обычной цели по прибыли до профинансированного этапа. Это не подтверждает реальный капитал: каждая свежая запись остаётся симулированной или требует отдельной проверки модели, просадки, выплаты и договора.',
   },
   {
     q: 'Сколько стоит FundedNext Stellar Instant?',
@@ -128,6 +129,7 @@ function payoutLabel(product: Challenge) {
   const frequency = ({
     weekly: 'еженедельно',
     'bi-weekly': 'каждые 2 недели',
+    'after-qualifying-days': 'после квалификационных торговых дней',
     monthly: 'ежемесячно',
     'on-demand': 'по запросу',
   } as Record<string, string>)[product.payoutFrequency ?? ''] ?? 'цикл не указан'
@@ -208,7 +210,7 @@ export default function RussianInstantPropFirmsPage() {
     { name: 'Проп-фирмы без челленджа' },
   ])
   const faq = brightCatalogFresh && instantCatalogFresh && fundedNextRulesFresh
-    ? faqPageSchema(pageFaqs)
+    ? ruFaqPageSchema(pageFaqs)
     : null
   const itemList = {
     '@context': 'https://schema.org',
@@ -279,7 +281,7 @@ export default function RussianInstantPropFirmsPage() {
             <Link href="#all-products" className="btn-outline">Актуальные программы</Link>
             <Link href="#bright-alternative" className="btn-outline">Когда выбрать BrightFunded</Link>
           </div>
-          <p className="ru-source-line">Последний продуктовый срез: {latestCapture}. Цену и правила нужно повторно проверить перед оплатой.</p>
+          <p className="ru-source-line">Последний продуктовый срез: {formatRuDate(latestCapture)}. Цену и правила нужно повторно проверить перед оплатой.</p>
         </div>
       </section>
 
@@ -345,13 +347,13 @@ export default function RussianInstantPropFirmsPage() {
             <div className="ru-notice">
               {brightEvaluationOnly ? (
                 <><strong>Не включаем BrightFunded в таблицу фазы 0.</strong>{' '}
-                  Снимок от {brightOldestCapture}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
+                  Снимок от {formatRuDate(brightOldestCapture)}: оценочных программ — {brightProducts.length}; опубликованных EUR-цен — {brightPriceCount}. Ни у одной нет подтверждённой фазы 0.</>
               ) : brightPhaseZero.length > 0 ? (
                 <><strong>Программы без оценки включены в таблицу ниже.</strong>{' '}
-                  По снимку от {brightOldestCapture} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
+                  По снимку от {formatRuDate(brightOldestCapture)} число таких программ — {brightPhaseZero.length}; остальные модели проверяйте отдельно.</>
               ) : (
                 <><strong>Нужна повторная проверка BrightFunded.</strong>{' '}
-                  Последний продуктовый снимок от {brightOldestCapture ?? 'неизвестной даты'} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
+                  Последний продуктовый снимок от {ruDatesInText(brightOldestCapture ?? 'неизвестной даты')} не подтверждает текущую линейку, число программ или цены. Сверьте этапы на сайте фирмы до оплаты.</>
               )}
             </div>
             {brightEvaluationOnly ? (
@@ -382,7 +384,7 @@ export default function RussianInstantPropFirmsPage() {
             {!partnerPairCurrent || !fundedNextRulesFresh ? (
               <div className="ru-notice" data-russian-instant-partner-source-status="recapture-required">
                 {!partnerPairCurrent ? 'Не обе партнёрские программы имеют свежую продуктовую запись. ' : ''}
-                {!fundedNextRulesFresh ? `Отдельная проверка правил Stellar Instant от ${instantEvidence.capturedAt} вышла за 30-дневное окно. ` : ''}
+                {!fundedNextRulesFresh ? `Отдельная проверка правил Stellar Instant от ${formatRuDate(instantEvidence.capturedAt)} вышла за 30-дневное окно. ` : ''}
                 Не используйте прежние суммы и условия заявки как текущие без повторной проверки.
               </div>
             ) : null}
@@ -409,7 +411,7 @@ export default function RussianInstantPropFirmsPage() {
                 </tbody>
               </table>
             </div> : <p className="ru-muted">Сейчас нет свежих партнёрских записей для сравнения. Проверьте официальные страницы программ и вернитесь к таблице после обновления данных.</p>}
-            <p className="ru-source-line">Текущие продуктовые записи: {partnerCards.length ? partnerCards.map(card => `${card.name} — ${card.product!.sourceCapturedAt}`).join('; ') : 'нет'}. Акции и дополнительные опции не смешиваются с базовой ценой.</p>
+            <p className="ru-source-line">Текущие продуктовые записи: {partnerCards.length ? partnerCards.map(card => `${card.name} — ${formatRuDate(card.product!.sourceCapturedAt)}`).join('; ') : 'нет'}. Акции и дополнительные опции не смешиваются с базовой ценой.</p>
           </div>
         </section>
 
@@ -482,7 +484,7 @@ export default function RussianInstantPropFirmsPage() {
             </p>
             </> : <div className="ru-notice" data-russian-instant-fundednext-status="recapture-required">
               {fundedNextCard
-                ? <>Ценовая запись Stellar Instant проверена {fundedNextCard.product!.sourceCapturedAt}; базовый диапазон — {priceRange(fundedNextCard.product!)}. Но отдельный снимок правил от {instantEvidence.capturedAt} устарел. Сверьте <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">условия выплаты</a>, <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">правило новостей</a> и доплаты до оплаты.</>
+                ? <>Ценовая запись Stellar Instant проверена {formatRuDate(fundedNextCard.product!.sourceCapturedAt)}; базовый диапазон — {priceRange(fundedNextCard.product!)}. Но отдельный снимок правил от {formatRuDate(instantEvidence.capturedAt)} устарел. Сверьте <a href={FUNDEDNEXT_REWARD_URL} target="_blank" rel="noopener noreferrer">условия выплаты</a>, <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">правило новостей</a> и доплаты до оплаты.</>
                 : <>Продуктовая запись Stellar Instant вышла за 30-дневное окно. Старые цены и условия нельзя считать текущими; откройте <Link href="/ru/fundednext-stellar-instant">датированный разбор</Link> и <a href={FUNDEDNEXT_NEWS_URL} target="_blank" rel="noopener noreferrer">официальное правило новостей</a>.</>}
             </div>}
             <div className="ru-actions">
@@ -519,7 +521,7 @@ export default function RussianInstantPropFirmsPage() {
                         <td>{drawdownLabel(product)}</td>
                         <td>{consistencyRuleLabel(product, 'ru')}</td>
                         <td>{payoutLabel(product)}</td>
-                        <td><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.sourceCapturedAt}</a></td>
+                        <td><a href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{formatRuDate(product.sourceCapturedAt)}</a></td>
                       </tr>
                     )
                   })}

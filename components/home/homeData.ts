@@ -3,8 +3,9 @@ import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
 import { priceBreakdownLabel, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
 import { getAllDeals } from '@/lib/deals'
+import { displaySplitTiers } from '@/lib/profitSplitDisplay'
 import type { ComparisonRow } from './types'
 
 /** Preferred comparison size. Falls back to the closest published tier. */
@@ -44,6 +45,7 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       score: row.firm.score,
       trustpilot: firm && !firm.trustpilotRatingSuppressed ? firm.trustpilotScore ?? null : null,
       product: row.product.name,
+      productSlug: row.product.slug,
       phases: row.product.phases,
       assetClass: row.product.assetClass,
       price,
@@ -56,11 +58,13 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       dailyLossPct: row.product.dailyLossPct,
       maxLossPct: row.product.maxLossPct,
       profitSplitPct: row.product.profitSplitPct,
+      profitSplitTiers: displaySplitTiers(row.product.profitSplitTiers),
       payoutFrequency: row.product.payoutFrequency,
       checkedOn: row.product.capturedAt,
       goHref: firm?.affiliateUrl ? `/go/${row.firm.slug}` : null,
       officialUrl: firm?.affiliateUrl ? null : firm?.officialUrl ?? null,
       russiaStatus: locale === 'ru' ? russiaStatusFor(row.firm.slug) : null,
+      russiaBasisDate: locale === 'ru' ? russiaBasisDateFor(row.firm.slug) : null,
     })
   }
   return [...best.values()].sort((a, b) =>

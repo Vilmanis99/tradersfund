@@ -102,12 +102,15 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-bright-funded',
   '/ru/obzor-the5ers',
   '/ru/obzor-topstep',
+  '/ru/obzor-crypto-fund-trader',
+  '/ru/obzor-hash-hedge',
   '/ru/otzyvy-prop-firm',
 ])
 
 const RUSSIAN_PRODUCT_PATHS = new Set([
   '/ru/fundednext-mt5',
   '/ru/fundednext-stellar-instant',
+  '/ru/fundingpips-pravila',
 ])
 
 const RUSSIAN_LOCAL_RESEARCH_PATHS = new Set([

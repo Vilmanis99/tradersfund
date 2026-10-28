@@ -33,8 +33,8 @@ export interface ChallengeChangeCardData {
   status: 'verified' | 'watch'
   observedAt: string
   lastCheckedAt: string
-  ruleEvidenceRefs?: { file: string; section: string }[]
-  sourceConflictEvidenceRefs?: { file: string; section: string }[]
+  ruleSourcesCheckedSeparately?: true
+  conflictObservedSeparately?: true
   effectiveAt?: string
   title: string
   summary: string
@@ -378,8 +378,8 @@ export default function ChallengeChangeFeed({
                 <div className="change-feed-date">
                   <span>Observed {dateLabel(entry.observedAt)}</span>
                   <span>Last checked {dateLabel(entry.lastCheckedAt)}</span>
-                  {entry.ruleEvidenceRefs?.length ? <span>Rule sources checked separately; prices were not refreshed.</span> : null}
-                  {entry.sourceConflictEvidenceRefs?.length ? <span>Conflict observed separately; full product verification remains unresolved.</span> : null}
+                  {entry.ruleSourcesCheckedSeparately ? <span>Rule sources checked separately; prices were not refreshed.</span> : null}
+                  {entry.conflictObservedSeparately ? <span>Conflict observed separately; full product verification remains unresolved.</span> : null}
                   {entry.effectiveAt && (
                     <span>Effective {dateLabel(entry.effectiveAt)}</span>
                   )}

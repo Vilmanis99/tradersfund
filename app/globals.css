@@ -33,6 +33,8 @@
   --amber-soft: #fff7e6;
   --status-open: #047857;
   --status-open-bg: #dcfce7;
+  --status-neutral: #334155;
+  --status-neutral-bg: #f1f5f9;
   --status-unclear: #92400e;
   --status-unclear-bg: #fef3c7;
   --status-closed: #b91c1c;
@@ -5746,7 +5748,8 @@ a.bento-tile:hover,
   font-weight: 400;
 }
 .cm-table tbody th { color: var(--text); }
-.cm-table small {
+.cm-table small,
+.cm-table .cm-meta {
   display: block;
   color: var(--muted);
   font-size: 0.74rem;
@@ -6142,3 +6145,50 @@ a.bento-tile:hover,
   .tf-trust__table { font-size: 0.88rem; }
   .tf-trust__table th, .tf-trust__table td { padding: 0.5rem 0.4rem; }
 }
+
+/* ── Firm rules pages (/prop-firms/<firm>/rules, /ru/<firm>-pravila) ── */
+.rules-hero { margin-top: 1.25rem; }
+.rules-title { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.15; margin: 0.6rem 0 0.9rem; color: var(--text); }
+.rules-lead { font-size: 1.05rem; line-height: 1.65; color: var(--text); max-width: 760px; }
+.rules-meta { color: var(--muted); font-size: 0.88rem; line-height: 1.55; }
+.rules-incomplete { margin-top: 1.5rem; padding: 1rem 1.15rem; border: 1px solid #e3c27a; background: #fff8e8; border-radius: 12px; color: var(--text); line-height: 1.55; }
+.rules-incomplete ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.rules-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; margin-top: 0.9rem; }
+.rules-table { width: 100%; min-width: 640px; border-collapse: collapse; background: var(--bg2); font-size: 0.92rem; }
+.rules-table th, .rules-table td { padding: 0.8rem 0.9rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; color: var(--text); }
+.rules-table thead th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: var(--bg3); }
+.rules-table tbody th { font-weight: 700; width: 22%; }
+.rules-table--products { min-width: 860px; }
+.rules-table--products tbody th { width: auto; }
+.rules-by-product { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.86rem; color: var(--text); }
+.rules-summary, .rules-note { margin: 0.4rem 0 0; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
+.rules-issue { display: inline-block; margin: 0.4rem 0 0; font-size: 0.8rem; font-weight: 600; color: #9a5b00; }
+.rules-source-list { list-style: none; margin: 0; padding: 0; font-size: 0.82rem; word-break: break-word; }
+.rules-checked { display: block; margin-top: 0.3rem; font-size: 0.78rem; color: var(--muted); }
+.rules-quote { margin-top: 0.4rem; font-size: 0.8rem; }
+.rules-quote summary { cursor: pointer; color: var(--accent); }
+.rules-quote blockquote { margin: 0.4rem 0 0; padding-left: 0.6rem; border-left: 3px solid var(--border); color: var(--muted); }
+.rules-sources { padding-left: 1.3rem; font-size: 0.88rem; line-height: 1.7; word-break: break-word; }
+.firm-related-links a.chip { font-size: 0.84rem; padding: 6px 12px; text-decoration: none; }
+
+/* Tiered profit split label with its tier conditions (components/SplitTiersDisclosure).
+   A button + HTML popover: keyboard, touch, Esc and outside-tap work without JS; the panel sits in
+   the top layer, so scrollers never clip it and opening it never reflows the row or card. */
+.split-tiers { display: inline; }
+.split-tiers__trigger { display: inline; padding: 0; margin: 0; border: 0; background: none; font: inherit; color: inherit; text-align: inherit; cursor: pointer; border-radius: 4px; text-decoration: underline dotted; text-decoration-color: var(--muted); text-underline-offset: 3px; }
+.split-tiers__trigger:hover { text-decoration-color: var(--accent); }
+.split-tiers__trigger:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.split-tiers__icon { display: inline-block; margin-left: 0.25em; vertical-align: -1px; color: var(--accent); }
+.split-tiers__panel { box-sizing: border-box; width: min(19rem, calc(100vw - 2rem)); padding: 0.7rem 0.85rem; background: #fff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-md, 12px); box-shadow: 0 1px 2px rgba(13, 31, 28, 0.08), 0 12px 32px rgba(13, 31, 28, 0.16); font-size: 0.8125rem; font-weight: 400; line-height: 1.45; text-align: left; text-transform: none; letter-spacing: normal; white-space: normal; }
+/* Browsers without popover support leave the panel in the flow under the label. */
+@supports selector(:popover-open) {
+  .split-tiers__panel[popover]:popover-open { position: fixed; inset: 0; margin: auto; height: fit-content; }
+  @supports (anchor-name: --a) {
+    .split-tiers__panel[popover]:popover-open { inset: auto; margin: 0.4rem 0.75rem; position-area: bottom span-right; position-try-fallbacks: bottom span-left, top span-right, top span-left; }
+  }
+}
+.split-tiers__heading { margin: 0 0 0.35rem; font-weight: 700; color: var(--text); }
+.split-tiers__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
+.split-tiers__list li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.4rem; }
+.split-tiers__list b { color: var(--accent); font-variant-numeric: tabular-nums; }
+.split-tiers__note { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.75rem; }
