@@ -122,7 +122,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-topstep': '2026-10-29',
   '/ru/otzyvy-prop-firm': '2026-10-20',
   '/ru/prop-trejding': '2026-10-20',
-  '/ru/promokody-prop-firm': '2026-10-20',
+  '/ru/promokody-prop-firm': '2026-10-28',
   '/ru/prop-firmy-bez-chelendzha': '2026-10-20',
   '/ru/prop-firmy-bez-kyc': '2026-10-20',
   '/ru/prop-firmy-s-ctrader': '2026-10-20',

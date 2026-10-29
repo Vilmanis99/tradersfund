@@ -104,6 +104,8 @@ function dealFor(slug: string, deals: Deal[]): Deal | undefined {
 
 export default function RussianPromoHubPage() {
   const deals = getAllDeals()
+  // Align Article dateModified with sitemap russianDealsLastModified (max deals.verifiedOn).
+  const dealsModified = [...deals.map(deal => deal.verifiedOn).filter(Boolean)].sort().at(-1) ?? CHECKED_ISO
   const crumbs = breadcrumbSchema([
     { name: 'Русская версия', url: '/ru' },
     { name: 'Промокоды проп-фирм' },
@@ -117,7 +119,7 @@ export default function RussianPromoHubPage() {
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
-    dateModified: CHECKED_ISO,
+    dateModified: dealsModified,
   }
   const liveCount = hubFirms.filter(firm => dealFor(firm.slug, deals)).length
 
