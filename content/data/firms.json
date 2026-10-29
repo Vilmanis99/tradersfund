@@ -2642,16 +2642,16 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/ofpfunding.com",
     "trustpilotRatingSuppressed": true,
-    "trustpilotCapturedAt": "2026-10-20",
-    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"Breach of guidelines. We've removed a number of fake reviews for this company.\"",
+    "trustpilotCapturedAt": "2026-10-29",
+    "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+      "capturedAt": "2026-10-29",
+      "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-29.json",
       "drawdownType": {
         "value": "static",
         "summary": "static",
@@ -2934,7 +2934,8 @@
     },
     "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
-    "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: ... Russia"
+    "russiaSourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries: Afghanistan Iran Iraq North Korea Russia Somalia Syria Yemen",
+    "russiaSourceCapturedAt": "2026-10-29"
   },
   {
     "name": "Maven",

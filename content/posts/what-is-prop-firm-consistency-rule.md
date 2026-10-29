@@ -29,7 +29,7 @@ type: "post"
 
 <p>A best-day consistency rule compares the account's most profitable closed trading day with a named profit base. A product can use that calculation to decide whether the evaluation is complete or whether a reward can be requested. The named day boundary, open-position treatment, reset event, and required inequality can all change the result.</p>
 
-<p>There is no safe firm-wide shortcut. Current captures show a 50% Consistency rule on FTMO 1-Step but no consistency objective on FTMO 2-Step; FundingPips applies a 35% score only to the On Demand reward cycle on 2-Step Standard; and FXIFY applies its 25% Two Phase Classic percentage only in the funded stage. The exact product and stage matter more than the brand name.</p>
+<p>There is no safe firm-wide shortcut. Current captures show a 50% Consistency rule on FTMO 1-Step but no consistency objective on FTMO 2-Step; FundingPips applies a 35% score only to the On Demand reward cycle on 2-Step Standard; and FXIFY applies its 25% Two Phase Classic percentage only in the funded stage. The exact product and stage matter more than the brand name. <a href="/blog/ofp-funding-review">OFP Funding</a> is a case where Instant Classic pricing data still carries a 20% consistency value while the help-centre article (re-read 2026-10-29) publishes only the formula and a soft payout block — no cycle percentage — so the capture leaves the field unresolved rather than picking a side.</p>
 
 <h2>The 6 fields that define the rule</h2>
 

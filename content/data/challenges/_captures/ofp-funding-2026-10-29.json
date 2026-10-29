@@ -1,0 +1,130 @@
+{
+  "firmSlug": "ofp-funding",
+  "officialDomain": "https://ofpfunding.com",
+  "capturedAt": "2026-10-29",
+  "capturedAtTimestamp": "2026-10-29T08:06:00+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/ofp-funding-2026-10-19.json",
+  "pagesRead": [
+    "https://ofpfunding.com/",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/",
+    "https://help.ofpfunding.com/what-are-the-trading-rules-every-ofp-trader-must-follow/",
+    "https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/",
+    "https://help.ofpfunding.com/what-is-the-daily-drawdown-and-how-is-it-calculated/",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+    "https://help.ofpfunding.com/how-does-the-payout-process-work-at-ofp-funding/",
+    "https://help.ofpfunding.com/how-long-does-it-take-to-receive-my-payout-after-request/",
+    "https://help.ofpfunding.com/minimum-withdrawal-policy/",
+    "https://help.ofpfunding.com/which-countries-are-supported-or-restricted/",
+    "https://help.ofpfunding.com/country-restrictions/",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+    "https://help.ofpfunding.com/which-strategies-are-not-allowed-hedging-arbitrage-hft-martingale/",
+    "https://help.ofpfunding.com/do-you-have-a-maximum-risk-rule/",
+    "https://help.ofpfunding.com/account-models/"
+  ],
+  "accessNotes": "RECHECK 2026-10-29: Live lineup still Instant Lite / Instant Classic / Instant Plus only (80 plan objects in homepage __NUXT_DATA__). 80% list prices unchanged vs 2026-10-19. Instant Lite Account Duration on the live pricing widget is now 28 Days (maxTradingDays=28, payoutDays=28); trading-rules Instant Lite payout text and help account-models still say 30 days — dated conflict; structured maxTradingDays set to 28 to match pricing. Consistency: Classic maxScore=20 in plan data, Lite/Plus null with Lite rendering 'No Consistency'; account-models YES/NO without percent; consistency help article no longer publishes On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds (article last update 23 September 2026). Russia remains restricted (country-restrictions + which-countries). BY/UA/KZ not named. Weekend/overnight still unpublished. Max allocation: trading-rules 'capped at $300,000' vs account-models Instant Plus FAQ '$400,000' — dated conflict; firm maxAllocation kept at $300,000. Trustpilot rating still hidden (fresh count 4,421 on 29 October 2026; prior 20 October capture 4,423).",
+  "conflicts": [
+    {
+      "field": "instant-lite.maxTradingDays / Account Duration",
+      "status": "dated-conflict",
+      "checkedAt": "2026-10-29",
+      "sources": [
+        {
+          "url": "https://ofpfunding.com/",
+          "quote": "Account Duration 28 Days",
+          "note": "Visible pricing table for Instant Lite; plan data maxTradingDays=28, payoutDays=28"
+        },
+        {
+          "url": "https://ofpfunding.com/trading-rules",
+          "quote": "during the active 30-day period, provided that all trading criteria have been met. ... Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded"
+        },
+        {
+          "url": "https://help.ofpfunding.com/account-models/",
+          "quote": "INSTANT LITE ... Total Duration: 30 Days"
+        }
+      ],
+      "resolution": "Structured maxTradingDays=28 (pricing widget). Copy must flag 28 vs 30."
+    },
+    {
+      "field": "consistencyRulePct",
+      "status": "dated-conflict-evolved",
+      "checkedAt": "2026-10-29",
+      "sources": [
+        {
+          "url": "https://ofpfunding.com/",
+          "quote": "plan data maxScore=20 on Instant Classic; maxScore=null on Instant Lite/Plus; Instant Lite pricing cell 'No Consistency'"
+        },
+        {
+          "url": "https://help.ofpfunding.com/account-models/",
+          "quote": "INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT LITE ... Consistency Rule: NO ... INSTANT PLUS ... Consistency Rule: No"
+        },
+        {
+          "url": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+          "pageDate": "last update: 09.23.2026",
+          "quote": "Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent. This means you are not entitled to request a payout",
+          "note": "Numeric On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds from the 14 October 2026 capture are no longer present on this article as of 29 October 2026."
+        }
+      ],
+      "priorConflictQuoteRemoved": {
+        "url": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+        "quoteAsOf2026-10-14": "On-Demand Accounts: Your score must be under 10%. Bi-Weekly Accounts: Your score must be under 15%. Monthly Accounts: Your score must be under 20%.",
+        "statusOn2026-10-29": "not found on current article"
+      },
+      "resolution": "consistencyRulePct remains null on every product."
+    },
+    {
+      "field": "maxAllocation",
+      "status": "dated-conflict",
+      "checkedAt": "2026-10-29",
+      "sources": [
+        {
+          "url": "https://ofpfunding.com/trading-rules",
+          "quote": "The total manageable accounts are capped at $300,000. Account merging is not supported at OFP Funding."
+        },
+        {
+          "url": "https://help.ofpfunding.com/account-models/",
+          "quote": "The maximum total allocation per trader is $400,000 across all Instant accounts combined."
+        }
+      ],
+      "resolution": "firms.json maxAllocation kept at $300,000 (trading-rules + homepage)."
+    }
+  ],
+  "productsConfirmed": [
+    "instant-classic-3-daily-6-max-drawdown",
+    "instant-classic-5-daily-10-max-drawdown",
+    "instant-lite",
+    "instant-lite-5-daily-10-max-drawdown",
+    "instant-plus-3-daily-5-max-drawdown",
+    "instant-plus-5-daily-10-max-drawdown"
+  ],
+  "fieldChanges": [
+    {
+      "productSlug": "instant-lite",
+      "field": "maxTradingDays",
+      "from": 30,
+      "to": 28
+    },
+    {
+      "productSlug": "instant-lite-5-daily-10-max-drawdown",
+      "field": "maxTradingDays",
+      "from": 30,
+      "to": 28
+    }
+  ],
+  "trustpilot": {
+    "url": "https://www.trustpilot.com/review/ofpfunding.com",
+    "checkedAt": "2026-10-29",
+    "rating": "hidden",
+    "quote": "This company's rating is unavailable due to a breach of our guidelines.",
+    "banner": "We've removed a number of fake reviews for this company.",
+    "reviewsTotal": 4421,
+    "reviewsLast12Months": 881,
+    "priorCapture2026-10-20": {
+      "reviewsTotal": 4423,
+      "reviewsLast12Months": 880,
+      "rating": "hidden"
+    },
+    "screenshotNote": "evidence/ofp-trustpilot-2026-10-29/ofp-trustpilot-header.png"
+  }
+}

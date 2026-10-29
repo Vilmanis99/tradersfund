@@ -44,7 +44,7 @@ type: "post"
 <p>Maven requires your IP address to stay in the same geographical region throughout and may ask for proof, such as travel tickets, if it changes. Maven also prohibits copying trades from another individual and does not permit EAs on any platform. Alpha Capital allows copy trading only with own-account verification and not on cTrader, DXtrade or TradeLocker. These rules matter most if you travel, use a VPN, or run the same strategy across firms.</p>
 
 <h3 class="wp-block-heading"><strong>6. Discretionary payout reviews</strong></h3>
-<p>Some firms reserve the right to review a strategy before paying. OFP Funding's help centre says payouts "can be subject to additional analysis at any moment" and are paid only "when a real trading strategy is present" (checked 2026-10-14). Maven requires a risk interview after $5,000 in payouts. FundingPips' 1 Step Flex has a striking system: a 2nd warning on a losing trade idea halves the reward split, and a 4th breaches the account. None of these is hidden if you read the rules page, but none appears on a pricing card either.</p>
+<p>Some firms reserve the right to review a strategy before paying. <a href="/blog/ofp-funding-review">OFP Funding</a>'s help centre says payouts "can be subject to additional analysis at any moment" and are paid only "when a real trading strategy is present" (checked 2026-10-14). Maven requires a risk interview after $5,000 in payouts. FundingPips' 1 Step Flex has a striking system: a 2nd warning on a losing trade idea halves the reward split, and a 4th breaches the account. None of these is hidden if you read the rules page, but none appears on a pricing card either.</p>
 
 <h2 class="wp-block-heading"><strong>Which prop firms disclose their rules clearly?</strong></h2>
 
