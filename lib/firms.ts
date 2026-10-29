@@ -198,6 +198,18 @@ export interface Firm {
   countriesRestricted?: string[]
   /** Official source for countriesRestricted. */
   countriesRestrictedSourceUrl?: string | null
+  /**
+   * Futures-product restricted countries (separate list from CFD/challenge when the
+   * firm publishes one — BrightFunded, Blue Guardian pending). Russia on this list
+   * makes the futures product restricted for /ru while russiaStatus (CFD) can stay available.
+   */
+  futuresCountriesRestricted?: string[]
+  futuresCountriesRestrictedSourceUrl?: string | null
+  futuresCountriesRestrictedQuote?: string | null
+  /** Firm-published page date (YYYY-MM-DD) for the futures restricted-countries list. */
+  futuresCountriesRestrictedPageDate?: string | null
+  /** ISO date we last read the futures restricted-countries source. */
+  futuresCountriesRestrictedCapturedAt?: string | null
   /** Official source + verbatim quote backing russiaStatus. */
   russiaSourceUrl?: string | null
   russiaSourceQuote?: string | null

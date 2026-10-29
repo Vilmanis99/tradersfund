@@ -63,6 +63,7 @@
     "test:ru-telegram-block": "node scripts/test-ru-telegram-block.mjs",
     "test:ru-access-basis": "node scripts/test-ru-access-basis.mjs",
     "test:russia-status-pending": "node scripts/test-russia-status-pending.mjs",
+    "test:futures-ru-product-status": "node scripts/test-futures-ru-product-status.mjs",
     "test:rules-pages": "node scripts/test-rules-pages.mjs",
     "test:split-tiers-display": "node scripts/test-split-tiers-display.mjs",
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",

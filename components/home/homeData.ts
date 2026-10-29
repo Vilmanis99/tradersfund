@@ -3,7 +3,7 @@ import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
 import { priceBreakdownLabel, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { russiaBasisDateFor, russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusForProduct, type RussiaStatus } from '@/lib/russiaAvailability'
 import { getAllDeals } from '@/lib/deals'
 import type { ComparisonRow } from './types'
 
@@ -62,7 +62,7 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       checkedOn: row.product.capturedAt,
       goHref: firm?.affiliateUrl ? `/go/${row.firm.slug}` : null,
       officialUrl: firm?.affiliateUrl ? null : firm?.officialUrl ?? null,
-      russiaStatus: locale === 'ru' ? russiaStatusFor(row.firm.slug) : null,
+      russiaStatus: locale === 'ru' ? russiaStatusForProduct(row.firm.slug, row.product.assetClass) : null,
       russiaBasisDate: locale === 'ru' ? russiaBasisDateFor(row.firm.slug) : null,
     })
   }
