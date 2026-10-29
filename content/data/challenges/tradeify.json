@@ -55,6 +55,10 @@
         "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "After an approved payout, the consistency % will reset and you will need to maintain consistency % for the period up to the next approved payout request.",
+    "consistencyBasisSourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -149,6 +153,10 @@
         "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "40% Consistency Rule: No single trading day can represent more than 40% of your total profit.",
+    "consistencyBasisSourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -241,6 +249,10 @@
         "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "40% Consistency Rule: No single trading day can represent more than 40% of your total profit.",
+    "consistencyBasisSourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -341,6 +353,10 @@
         "sourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "After an approved payout, the consistency % will reset and you will need to maintain consistency % for the period up to the next approved payout request.",
+    "consistencyBasisSourceUrl": "https://help.tradeify.co/en/articles/10468320-rules-consistency-rule",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",

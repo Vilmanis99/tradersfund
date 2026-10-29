@@ -52,6 +52,10 @@
         "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest single-day profit must be no more than 40% of your total profit during the payout cycle.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -136,6 +140,11 @@
         "sourceUrl": "https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/12945805-lucidflex-consistency-percentage",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "Lucid's LucidFlex help pages give the 40% (50% add-on) threshold and a ratio, but no sentence states what profit the percentage is measured against, so the basis is left unset.",
     "profitSplitPct": 90,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -219,6 +228,10 @@
         "sourceUrl": "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest single-day profit must be no more than 20% of your total profit during the payout cycle.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/12890164-luciddirect-payout-objectives",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
@@ -297,6 +310,10 @@
         "sourceUrl": "https://www.lucidtrading.com/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "However, if your largest day had exceeded 50% of your account profit, you would need to continue trading until your largest day is 50% or less.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -376,6 +393,10 @@
         "sourceUrl": "https://www.lucidtrading.com/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "However, if your largest day had exceeded 50% of your account profit, you would need to continue trading until your largest day is 50% or less.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -450,6 +471,10 @@
         "sourceUrl": "https://www.lucidtrading.com/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "However, if your largest day had exceeded 50% of your account profit, you would need to continue trading until your largest day is 50% or less.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
@@ -524,6 +549,10 @@
         "sourceUrl": "https://www.lucidtrading.com/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "However, if your largest day had exceeded 50% of your account profit, you would need to continue trading until your largest day is 50% or less.",
+    "consistencyBasisSourceUrl": "https://support.lucidtrading.com/en/articles/15998336-luciddaily-consistency",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",

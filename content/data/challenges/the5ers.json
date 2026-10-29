@@ -391,6 +391,10 @@
         "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
       }
     ],
+    "consistencyBasis": "per-trade",
+    "consistencyBasisQuote": "Consistency: One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.",
+    "consistencyBasisSourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -457,6 +461,10 @@
         "sourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/"
       }
     ],
+    "consistencyBasis": "per-trade",
+    "consistencyBasisQuote": "Consistency: One trade cannot represent more than 40% of total profits. If it does, continue trading until its share falls to 40% or less.",
+    "consistencyBasisSourceUrl": "https://the5ers.com/futures-faqs/what-are-the-general-rules-for-the-futures-program/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",

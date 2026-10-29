@@ -139,6 +139,10 @@
         "sourceUrl": "https://fxify.com/programs/two-phase/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Your biggest profit day cannot account for more than 25% of your total profits at the time of withdrawal.",
+    "consistencyBasisSourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "monthly",
@@ -544,6 +548,10 @@
         "sourceUrl": "https://fxify.com/programs/instant-funding/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "The 20% Consistency Rule says that, the trading day with the biggest profit, this profit should not be more than 1/5 of the total profit.",
+    "consistencyBasisSourceUrl": "https://fxify.com/faqs/all-faqs/instant-funding-lite-how-does-the-20-consistency-rule-work/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": null,
     "payoutFirstDays": 10,
     "payoutFrequency": null,
@@ -619,6 +627,10 @@
         "sourceUrl": "https://fxify.com/programs/lightning-challenge/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Profits from any single trading day cannot exceed 30% of the total profits made.",
+    "consistencyBasisSourceUrl": "https://fxify.com/faqs/all-faqs/lightning-plan/lighting-plan-whats-the-consistency-rule/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": null,
     "payoutFirstDays": 7,
     "payoutFrequency": "bi-weekly",
@@ -699,6 +711,10 @@
         "sourceUrl": "https://fxify.com/programs/crypto/"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "No single trading day’s profit should exceed 25% of your total profit for the payout period.",
+    "consistencyBasisSourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-how-does-the-consistency-rule-work-on-the-crypto-instant-funded/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "bi-weekly",
@@ -771,6 +787,10 @@
         "sourceUrl": "https://fxify.com/programs/crypto/"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "No single trading day’s profit should exceed 25% of your total profit for the payout period.",
+    "consistencyBasisSourceUrl": "https://fxify.com/faqs/all-faqs/crypto-accounts/crypto-account-how-does-the-consistency-rule-work-on-the-crypto-instant-funded/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": null,
     "payoutFrequency": "bi-weekly",

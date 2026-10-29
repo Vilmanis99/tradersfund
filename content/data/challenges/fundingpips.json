@@ -49,6 +49,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -124,6 +128,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "profitSplitTiers": [
       {
@@ -226,6 +234,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
@@ -303,6 +315,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 60,
     "profitSplitTiers": [
       {
@@ -407,6 +423,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "The single largest winning day must not exceed 15% of total cumulative profit.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 95,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",

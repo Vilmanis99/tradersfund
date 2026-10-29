@@ -48,6 +48,11 @@
         "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "Topstep's consistency article states the 55% Trading Combine threshold both against the Profit Target and against total profit, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "after-qualifying-days",
@@ -132,6 +137,11 @@
         "sourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "Topstep's consistency article states the 55% Trading Combine threshold both against the Profit Target and against total profit, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "after-qualifying-days",
