@@ -483,7 +483,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 81664,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-19",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundednext.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -498,11 +498,8 @@
     "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "FNTRICK is shown on official FundedNext plan cards on 2026-10-28: https://fundednext.com/cfds/stellar-2-step shows \"Stellar 2-Step $6K $34.99 $59.99 SAVE UP TO 41% WITH CODE FNTRICK\" and \"20% OFF\" on the $15K, $25K and $50K cards ($95.99/$119.99, $159.99/$199.99, $239.99/$299.99); the $100K and $200K cards show list price only. No end date published. Availability outside the region it was read from is not confirmed and checkout is NOT verified, so it is kept as a regional code and out of deals.json. STRTN remains previousDiscountCode.",
-    "regionalDiscountCode": "FNTRICK",
-    "discountCodeRegion": "us-only-unconfirmed",
-    "regionalDiscountPct": 20,
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, read 29 October 2026: \"SAVE UP TO 41% WITH CODE FNTRICK\"; $6K card shows $34.99 struck from $59.99 (41% off), with 20% off on $15K/$25K/$50K sale prices. Checkout not verified, so it is not promoted and is kept out of deals.json. Previous public CFD code STRTN ended on 25 October 2026 (see previousDiscountCode).",
     "previousDiscountCode": "STRTN",
     "previousDiscountCodeStatus": "ended: the official offer article https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer returned 404 on 2026-10-25 (live 2026-10-24) and STRTN no longer appears on fundednext.com plan cards (Stellar 2-Step $6K back to $59.99); FundedNext had said the offer \"may end at any time\"",
     "rules": {
@@ -792,7 +789,11 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
-    }
+    },
+    "discountCode": "FNTRICK",
+    "discountPct": 41,
+    "discountCodeCheckoutVerified": false,
+    "discountCodeValidity": "no end date published on the Stellar 2-Step page (29 October 2026)"
   },
   {
     "name": "FundingPips",
@@ -845,7 +846,7 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 70514,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/fundingpips.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "unclear",
@@ -858,8 +859,8 @@
     "affiliateStatus": "active",
     "discountCode": "HELLO",
     "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Official Get Started article https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started, re-read 2026-10-28: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts. It must be applied before payment.\" No end date published. HELLO is still the deals.json checkout-verified code (verifiedOn 2026-10-16). The official X account @fundingpips posted a Halloween code on 2026-10-28 (https://x.com/fundingpips/status/2115355283312762899): \"20% OFF for new traders 15% OFF for existing traders ALL account types. ALL sizes. CODE: INTERN\"; no end date stated, not checkout-verified, not recorded as discountCode. regionalDiscountCode FP (us-only-unconfirmed, 20%) unchanged and not re-confirmed on 2026-10-28 (fundingpips.com homepage could not be read).",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Help Centre Get Started page still says: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts.\" (read 29 October 2026). The firm homepage could not be re-read on this check; INTERN was not found on the firm's own help pages, so it was not added.",
     "rules": {
       "capturedAt": "2026-10-15",
       "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
@@ -1327,7 +1328,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/e8markets.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -1627,11 +1628,11 @@
     },
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts and homepage, read 2026-10-28 (EU visitor view): E8 One tiers show \"30% OFF\" with struck-through list prices (e.g. \"$100K One phase $488 $342 Save $146 with code E8 on first order\"). First order only; no end date shown. Previously held as regionalDiscountCode us-only-unconfirmed (seen only on the US view on 2026-10-20); now confirmed on the EU view of the site, so moved to discountCode. Checkout NOT verified; not in deals.json.",
-    "discountCode": "E8",
-    "discountPct": 30,
-    "discountCodeCheckoutVerified": false
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts still shows E8 One $100K at \"$488 $342\" (30% off) on 29 October 2026. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
+    "regionalDiscountPct": 30,
+    "regionalDiscountCode": "E8",
+    "discountCodeRegion": "us-only-unconfirmed"
   },
   {
     "name": "Alpha Capital",
@@ -1715,7 +1716,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-23",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
@@ -2134,8 +2135,8 @@
     "discountPct": 45,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 2026-10-28 (EU visitor view): still \"Active 45% off 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October. HALLOWEEN45\"; homepage banner \"45% Off · Use code HALLOWEEN45 · Doesn't apply to Alpha Pro 8% and 10% Bi-weekly\". Checkout NOT verified; not in deals.json. Other active codes on the same page: FUNDED40 (40% Alpha Direct only, 1–31 Oct), ALPHA20 (20% all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). MYALPHA remains previousDiscountCode.",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 29 October 2026: still lists HALLOWEEN45 as \"45% off … 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October.\" Other active codes on the same page: FUNDED40 (40% off Alpha Direct only, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). Checkout not verified, so it is not promoted and is kept out of deals.json.",
     "discountCodeValidity": "26 Oct 2026 – 31 Oct 2026, live until midnight UK time on 31 October (official codes page); remove after 31.10.2026",
     "previousDiscountCode": "MYALPHA",
     "previousDiscountCodeStatus": "ended: the official codes page listed it \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October\"; on 2026-10-27 the page (\"Last updated 26 October 2026\", \"Codes are removed when their published end date passes.\") no longer lists it and the homepage banner now shows HALLOWEEN45; it was only ever seen from a US IP and never checkout-verified"
@@ -2198,7 +2199,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-28",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/brightfunded.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-20",
@@ -2282,10 +2283,11 @@
     "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://brightfunded.com/, read 2026-10-28 (EU visitor view): top banner still \"Halloween Offer: 30% Off Code: HW30\". Checkout NOT verified; not in deals.json. No published end date. DOUBLE25 remains previousDiscountCode (not shown on site since 22.10; expiry unconfirmed). FAQ restricted list unchanged: Cuba, Iran, North Korea, Pakistan, Syria, Vietnam.",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Homepage observation 29 October 2026: top banner still shows \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\". No end date, countdown or terms link on the homepage. Checkout not verified; kept out of deals.json. Previous homepage code DOUBLE25: not shown on site since 22 October 2026; expiry unconfirmed.",
     "discountPct": 30,
-    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
+    "discountCodeValidity": "limited time (Halloween offer, no end date published); scheduled to move to previous codes from 1 November 2026",
+    "discountCodeEvidence": "https://brightfunded.com/; homepage banner \"Halloween Offer: Code: HW30 30% Off\", rechecked 29 October 2026",
     "previousDiscountCode": "DOUBLE25",
     "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
@@ -3003,7 +3005,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-27",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/maventrading.com",
     "trustpilotRatingSuppressed": true,
     "trustpilotCapturedAt": "2026-10-15",
@@ -3011,8 +3013,8 @@
     "affiliateStatus": "none",
     "discountCode": "OMO",
     "discountCodeSourceUrl": "https://maventrading.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage and pricing https://maventrading.com/, read 2026-10-28 (EU visitor view): Omo 2-Step still shows \"40% OFF Omo Challenges with code CODE: OMO\" (e.g. \"$10k account 40% OFF with code OMO $38 * $62 *Price with coupon. Refundable on the third withdrawal\"). Sitewide banner is an A/B test: control \"Trade like a Diamond. 5% off\" coupon DIAMOND, test \"Rocket to funded. 10% off\" coupon ROCKET — not recorded as the firm discountCode. Checkout NOT verified; not in deals.json.",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Omo 2-Step challenges only: homepage 29 October 2026 still shows \"40% OFF with code OMO\" on $10K+ Omo cards and flat \"$10 OFF with code OMO\" / \"$17 OFF with code OMO\" on smaller Omo sizes.",
     "rules": {
       "capturedAt": "2026-10-27",
       "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
@@ -3938,12 +3940,15 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
     "discountCodeSourceUrl": "https://fxify.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://fxify.com/, read 2026-10-28 (EU visitor view): \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\"; also \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\"; the page also names a Halloween code \"AGHHH35 Expires: 2 November\" (-35% excl. Instant Lite). Primary public new-trader code recorded as ONESTEP35. Re-read later on 2026-10-28: unchanged; the homepage promo data lists ONESTEP35 with \"discount_percent\":30 while the banner says 35%, so the exact percent is not confirmed until checkout. Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-20); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json.",
+    "discountCodeCapturedAt": "2026-10-20",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only). Rechecked 2026-10-23 (US IP): ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\". AGHHH35 is not checkout-verified, may be US-only and is not in deals.json.",
     "discountCode": "ONESTEP35",
     "discountPct": 35,
     "discountCodeCheckoutVerified": false,
-    "discountCodeValidity": "ONESTEP35 until 31 Dec 2026 (homepage); FUNDED40 until 3 Nov 2026; AGHHH35 until 2 Nov 2026"
+    "discountCodeValidity": "ONESTEP35 until 31 Dec 2026 (homepage); FUNDED40 until 3 Nov 2026; AGHHH35 until 2 Nov 2026",
+    "regionalDiscountCode": "ONESTEP35",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 35
   },
   {
     "name": "Crypto Fund Trader",
@@ -4776,14 +4781,14 @@
     "trustpilotScore": 4.9,
     "trustpilotCount": 22577,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-26",
+    "lastUpdated": "2026-10-20",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-10-26",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage and plan pages (rapid / rapid-eod / pro / builder) on https://myfundedfutures.com/, read 2026-10-28 (EU visitor view): \"Save 40% On Any Plan With Code CLUB.\" Same banner also says \"New to MFFU? Get 50% off your first eval\" (no separate code named for the 50%). Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-15/26); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json. Schema list prices unchanged vs 2026-10-22 capture (Rapid 145/209/356/463; Rapid EOD 145/225; Pro 265/401/557; Builder 105/153/282/398).",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
@@ -5152,7 +5157,10 @@
     "corporateCapturedAt": "2026-10-26",
     "discountCode": "CLUB",
     "discountPct": 40,
-    "discountCodeCheckoutVerified": false
+    "discountCodeCheckoutVerified": false,
+    "regionalDiscountCode": "CLUB",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 40
   },
   {
     "name": "City Traders Imperium",
@@ -5206,7 +5214,7 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 1633,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/citytradersimperium.com",
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
@@ -5532,8 +5540,8 @@
     "discountPct": 15,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 2026-10-28 (EU visitor view): still \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" ... \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Checkout NOT verified; not in deals.json. BREAK15 remains previousDiscountCode.",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 29 October 2026: \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" … \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Not valid on Direct Funding per that wording. Checkout not verified, so it is not promoted and is kept out of deals.json.",
     "previousDiscountCode": "BREAK15",
     "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified",
     "discountCodeValidity": "until 31 Oct 2026, 23:59 UK time (official homepage pop-up); remove after 31.10.2026"
@@ -5725,8 +5733,8 @@
     "russiaSourceNote": "\"Russia\" is listed in the Q - T: column of the restricted-countries table in the same article (read 2026-10-26, Zendesk updated_at 2026-08-25T18:46:53Z). The article also prohibits access through \"VPNs, remote connections, or shared networks that may route activity through a restricted country.\" Previous value was unverified.",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://www.takeprofittrader.com/, read 2026-10-28 (EU visitor view): \"Get 40% Off For Life + Never Pay An Activation Fee!\" with \"Use Code: NOFEE40\". Previously held as regionalDiscountCode us-only-unconfirmed (US view 2026-10-15); now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json. Restricted-countries Zendesk article could not be read on 2026-10-28 (list not re-verified today).",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
@@ -5999,7 +6007,10 @@
     },
     "discountCode": "NOFEE40",
     "discountPct": 40,
-    "discountCodeCheckoutVerified": false
+    "discountCodeCheckoutVerified": false,
+    "regionalDiscountCode": "NOFEE40",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 40
   },
   {
     "name": "TradeDay",
@@ -6139,14 +6150,14 @@
     "trustpilotScore": 4.5,
     "trustpilotCount": 1447,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-15",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/tradeday.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage https://www.tradeday.com/, read 2026-10-28 (EU visitor view): navbar and hero buttons \"USE CODE \\\"TDNEW\\\"\"; hero \"Now up to 55% OFF! Accounts from just $45!\". The 55% / $45 figures are sale pricing on the page, not a published percent attached to TDNEW itself, so discountPct is omitted. Previously held as regionalDiscountCode us-only-unconfirmed; now confirmed on the EU view of the site. Checkout NOT verified; not in deals.json.",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Seen on https://www.tradeday.com/ navbar as \"USE CODE \\\"TDNEW\\\"\" on 29 October 2026; hero still \"Now up to 55% OFF! Accounts from just $45!\". Discount amount for the code is not stated on the code itself. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
@@ -6434,7 +6445,9 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
     },
     "discountCode": "TDNEW",
-    "discountCodeCheckoutVerified": false
+    "discountCodeCheckoutVerified": false,
+    "regionalDiscountCode": "TDNEW",
+    "discountCodeRegion": "us-only-unconfirmed"
   },
   {
     "name": "Apex Trader Funding",
@@ -6567,14 +6580,14 @@
     "trustpilotScore": 4.2,
     "trustpilotCount": 21334,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-22",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/apextraderfunding.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "No public Apex code is live as of 2026-10-28: homepage shows no promo code (Legacy Accounts Are Back limited-time banner has no code) (checked 2026-10-28). SAVENOW remains previousDiscountCode (expired ~23.10.2026).",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "No public Apex code is live as of 29 October 2026: homepage still shows \"Limited-Time Offer — Legacy Accounts Are Back\" with no discount code. Expired SAVENOW remains in previousDiscountCode.",
     "previousDiscountCode": "SAVENOW",
     "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },
@@ -6612,7 +6625,7 @@
     ],
     "drawdownType": null,
     "minTradingDays": null,
-    "consistencyRule": "Product-specific: 40% on LucidPro payout cycles, 50% on LucidFlex/LucidDaily evaluations, and 20% on LucidDirect payout cycles.",
+    "consistencyRule": "Product-specific: 40% on LucidPro payout cycles, 40% standard (50% paid add-on) on LucidFlex/LucidDaily evaluations, and 20% on LucidDirect payout cycles.",
     "scalingPlan": true,
     "newsTradingAllowed": "restricted",
     "eaAllowed": true,
@@ -6712,7 +6725,7 @@
     "trustpilotScore": 4.4,
     "trustpilotCount": 7032,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-10-29",
     "trustpilotUrl": "https://www.trustpilot.com/review/lucidtrading.com",
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
@@ -6765,17 +6778,25 @@
       },
       "consistencyPct": {
         "value": null,
-        "summary": "Product-specific: 40% on LucidPro; 50% on LucidFlex, LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; 20% on LucidDirect",
+        "summary": "Product-specific: 40% on LucidPro; 40% standard (50% add-on) on LucidFlex and LucidDaily (DLL On/Off × Intraday/EOD); 20% on LucidDirect",
         "byProduct": {
           "lucidpro": 40,
-          "lucidflex": 50,
+          "lucidflex": 40,
           "luciddirect": 20,
-          "luciddaily-dll-on-intraday": 50,
-          "luciddaily-dll-on-eod": 50,
-          "luciddaily-dll-off-intraday": 50,
-          "luciddaily-dll-off-eod": 50
+          "luciddaily-dll-on-intraday": 40,
+          "luciddaily-dll-on-eod": 40,
+          "luciddaily-dll-off-intraday": 40,
+          "luciddaily-dll-off-eod": 40
         },
         "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+            "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-10-29",
+            "captureFile": "content/data/challenges/_captures/consistency-luciddaily-2026-10-29.json",
+            "productSlug": "luciddaily-dll-on-intraday"
+          },
           {
             "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
             "quote": "Consistency Percentage Your largest single-day profit must be no more than 40% of your total profit during the payout cycle.",
@@ -7633,7 +7654,7 @@
     "platforms": [
       "Hash Hedge web terminal"
     ],
-    "score": 7.0,
+    "score": 7,
     "logo": "/images/firms/hash-hedge.png",
     "reviewUrl": "/blog/hash-hedge-review",
     "officialUrl": "https://hashhedge.com/",
