@@ -17,13 +17,13 @@ sources:
     url: >-
       https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account
   - title: >-
-      Does BrightFunded have a consistency rule? (help centre; Tracker capture
-      2026-10-15)
+      Does BrightFunded have a consistency rule? (help centre; read 15 October
+      2026)
     url: >-
       https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule
   - title: >-
-      Dataset norms: prop-firm-statistics (96 products, captured 14-23 Oct 2026;
-      en-fixes 5cacc3f)
+      Dataset norms: prop-firm-statistics (96 products, captured 14–23 October
+      2026)
     url: /blog/prop-firm-statistics
 fieldsUsed:
   - rules.consistencyPct
@@ -47,8 +47,7 @@ dataFiles:
     content/data/challenges/bright-funded.json (3 products, captured 2026-10-20)
   - >-
     content/data/firms.json — Tracker data: content/data/firms.json BrightFunded
-    rules block (captured 2026-10-14; capture file
-    _captures/bright-funded-2026-10-14.json)
+    rules block (captured 2026-10-14)
 ---
 BrightFunded's help centre says it does "not currently enforce" a consistency rule. That puts it with the majority. Only 18 of the 57 CFD products in our dataset publish a consistency percentage. The rules that matter here are the drawdown and the clock.
 
