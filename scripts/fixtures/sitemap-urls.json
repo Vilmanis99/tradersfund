@@ -271,7 +271,11 @@
   },
   {
    "url": "https://tradersfundhub.com/blog/topstep-review",
-   "languages": null
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/topstep-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-topstep",
+    "x-default": "https://tradersfundhub.com/blog/topstep-review"
+   }
   },
   {
    "url": "https://tradersfundhub.com/blog/tradeday-review",
@@ -1142,6 +1146,10 @@
    "languages": null
   },
   {
+   "url": "https://tradersfundhub.com/prop-firms/take-profit-trader/rules",
+   "languages": null
+  },
+  {
    "url": "https://tradersfundhub.com/prop-firms/topstep/rules",
    "languages": null
   },
@@ -1224,6 +1232,10 @@
     "ru": "https://tradersfundhub.com/ru/fundednext-vs-fundingpips",
     "x-default": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips"
    }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundingpips-pravila",
+   "languages": null
   },
   {
    "url": "https://tradersfundhub.com/ru/fundingpips-vs-bright-funded",
@@ -1335,6 +1347,14 @@
     "en": "https://tradersfundhub.com/blog/the5ers-review",
     "ru": "https://tradersfundhub.com/ru/obzor-the5ers",
     "x-default": "https://tradersfundhub.com/blog/the5ers-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-topstep",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/topstep-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-topstep",
+    "x-default": "https://tradersfundhub.com/blog/topstep-review"
    }
   },
   {

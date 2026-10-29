@@ -234,12 +234,17 @@ async function generate() {
           }
           continue
         }
-        // Content at previous manifest commit re-hashed with new fn equals tip → keep stored
-        // date only when that date is on/before baseline's (avoids locking in 10-28 false bumps).
-        const prevNewHash = prevBySpec.get(spec.path)?.get(key)
-        if (prevNewHash === tipHash && prev?.changed && baseEntry?.changed && prev.changed <= baseEntry.changed) {
-          next[key] = { hash: tipHash, changed: prev.changed, first: prev.first }
-          continue
+        // Do NOT keep via previousManifestCommit re-hash when tip differs from
+        // CONTENT_BASELINE. After lastmod is committed onto today's tree, that
+        // commit already contains tip content, so prevNewHash===tipHash while
+        // prev.changed still carries the old (ab52) tip's dates — the stale-
+        // baseline failure mode from int/2026-10-29-lm.
+        if (!baselineBySpec.size) {
+          const prevNewHash = prevBySpec.get(spec.path)?.get(key)
+          if (prevNewHash === tipHash && prev?.changed) {
+            next[key] = { hash: tipHash, changed: prev.changed, first: prev.first }
+            continue
+          }
         }
       }
 
@@ -278,7 +283,9 @@ async function generate() {
       'On hashVersion bump, content at the previous manifest commit is re-hashed; matching hashes keep their dates. ' +
       'Regenerate after committing content; npm run test:sitemap-lastmod fails when stale.',
     sources,
-    urls: manifest.urls ?? {},
+    // Empty urls so sitemapLastmod computes lastModified from sources+editorial only
+    // (not the previous stateful URL dates). Gen decides keep/seed/bump below.
+    urls: {},
   }
   fs.writeFileSync(MANIFEST_PATH, JSON.stringify(partial, null, 2) + '\n')
 
@@ -331,6 +338,13 @@ async function generate() {
     } else if (migrating) {
       // Real rendered-content change since baseline (or new URL): use provenance date.
       lastmod = entry.lastModified.slice(0, 10)
+      urlBumped++
+    }
+
+    // Never leave an ii44 URL on the false 2026-10-28 squash/hash-redate.
+    // Real content changes on that calendar day move to today instead.
+    if (migrating && seed[pathname] && lastmod === '2026-10-28') {
+      lastmod = today
       urlBumped++
     }
 
