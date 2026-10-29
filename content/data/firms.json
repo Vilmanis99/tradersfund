@@ -1627,12 +1627,12 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
+    "regionalDiscountCode": "E8",
+    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
     "discountCodeCapturedAt": "2026-10-29",
     "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts still shows E8 One $100K at \"$488 $342\" (30% off) on 29 October 2026. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
-    "regionalDiscountPct": 30,
-    "regionalDiscountCode": "E8",
-    "discountCodeRegion": "us-only-unconfirmed"
+    "regionalDiscountPct": 30
   },
   {
     "name": "Alpha Capital",
@@ -3940,15 +3940,11 @@
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
+    "regionalDiscountCode": "ONESTEP35",
+    "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
     "discountCodeCapturedAt": "2026-10-20",
     "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only). Rechecked 2026-10-23 (US IP): ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\". AGHHH35 is not checkout-verified, may be US-only and is not in deals.json.",
-    "discountCode": "ONESTEP35",
-    "discountPct": 35,
-    "discountCodeCheckoutVerified": false,
-    "discountCodeValidity": "ONESTEP35 until 31 Dec 2026 (homepage); FUNDED40 until 3 Nov 2026; AGHHH35 until 2 Nov 2026",
-    "regionalDiscountCode": "ONESTEP35",
-    "discountCodeRegion": "us-only-unconfirmed",
     "regionalDiscountPct": 35
   },
   {
@@ -4787,9 +4783,6 @@
     "trustpilotCapturedAt": "2026-10-26",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "discountCodeSourceUrl": "https://myfundedfutures.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
@@ -5156,11 +5149,11 @@
     "corporateNote": "The Terms name \"MyFunded Futures, LLC\" as the company and choose the laws of the State of Texas with venue in Collin County, Texas. The Terms, privacy policy, disclaimer and why-us page publish no office address, so headquarters and country of incorporation stay null.",
     "corporateSourceUrl": "https://marketing.myfundedfutures.com/terms",
     "corporateCapturedAt": "2026-10-26",
-    "discountCode": "CLUB",
-    "discountPct": 40,
-    "discountCodeCheckoutVerified": false,
     "regionalDiscountCode": "CLUB",
     "discountCodeRegion": "us-only-unconfirmed",
+    "discountCodeSourceUrl": "https://myfundedfutures.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
     "regionalDiscountPct": 40
   },
   {
@@ -5733,9 +5726,6 @@
     "russiaSourceCapturedAt": "2026-10-26",
     "russiaSourceNote": "\"Russia\" is listed in the Q - T: column of the restricted-countries table in the same article (read 2026-10-26, Zendesk updated_at 2026-08-25T18:46:53Z). The article also prohibits access through \"VPNs, remote connections, or shared networks that may route activity through a restricted country.\" Previous value was unverified.",
     "affiliateStatus": "none",
-    "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
@@ -6006,11 +5996,11 @@
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
     },
-    "discountCode": "NOFEE40",
-    "discountPct": 40,
-    "discountCodeCheckoutVerified": false,
     "regionalDiscountCode": "NOFEE40",
     "discountCodeRegion": "us-only-unconfirmed",
+    "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
+    "discountCodeCapturedAt": "2026-10-15",
+    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
     "regionalDiscountPct": 40
   },
   {
@@ -6156,9 +6146,6 @@
     "trustpilotCapturedAt": "2026-10-15",
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
-    "discountCodeSourceUrl": "https://www.tradeday.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Seen on https://www.tradeday.com/ navbar as \"USE CODE \\\"TDNEW\\\"\" on 29 October 2026; hero still \"Now up to 55% OFF! Accounts from just $45!\". Discount amount for the code is not stated on the code itself. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
     "rules": {
       "capturedAt": "2026-10-14",
       "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
@@ -6445,10 +6432,11 @@
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
     },
-    "discountCode": "TDNEW",
-    "discountCodeCheckoutVerified": false,
     "regionalDiscountCode": "TDNEW",
-    "discountCodeRegion": "us-only-unconfirmed"
+    "discountCodeRegion": "us-only-unconfirmed",
+    "discountCodeSourceUrl": "https://www.tradeday.com/",
+    "discountCodeCapturedAt": "2026-10-29",
+    "discountCodeNote": "Seen on https://www.tradeday.com/ navbar as \"USE CODE \\\"TDNEW\\\"\" on 29 October 2026; hero still \"Now up to 55% OFF! Accounts from just $45!\". Discount amount for the code is not stated on the code itself. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed."
   },
   {
     "name": "Apex Trader Funding",

@@ -98,7 +98,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://www.tradeday.com/",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "PROMOTIONAL PRICE ONLY: the 2026-09-14 live cards show $59 / $108 / $162 per month under 55% OFF and code TDNEW. These match the 2026-07-28 promotional capture, but they remain campaign prices rather than stable list prices.",
       "LIST-PRICE CONFLICT: the homepage crosses out $131 / $240 / $360, while TradeDay's support pricing table states $125 / $230 / $350. The homepage meta description says accounts start at $59, while its JSON-LD description says $62.50. No stable list price is projected into the Challenge schema; confirm the order total before payment.",
@@ -218,7 +218,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://www.tradeday.com/",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "PROMOTIONAL PRICE ONLY: the 2026-09-14 live cards show $79 / $129 / $180 per month under 55% OFF and code TDNEW. These match the 2026-07-28 promotional capture.",
       "LIST-PRICE CONFLICT: the homepage crosses out $175 / $285 / $400, while the support pricing table states $175 / $285 / $395. No stable list price is projected into the Challenge schema.",
@@ -310,7 +310,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://www.tradeday.com/",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-10-14",
     "notes": [
       "PROMOTIONAL PRICE ONLY (2026-10-14): live cards show $65 / $95 / $175 / $265 per month under 50% OFF, crossed-out $130 / $189 / $350 / $530; previously $59 / $85 / $149 / $225 at 55% OFF. Code TDNEW still advertised.",
       "RESET-PRICE CONFLICT: homepage platform variants show $85 versus $89 for the 50K reset, then $149 / $225 for 100K / 150K. The billing and renewal articles state $89 / $140 / $225. These values are not evaluation prices and are kept out of priceUsd.",
