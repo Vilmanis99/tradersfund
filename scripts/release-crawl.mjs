@@ -55,6 +55,7 @@ import {
   CLOSED_FIRMS_ROUTE_PAIR,
   RU_CLOSED_FIRMS_EDITORIAL_DATE,
   RU_CLOSED_FIRMS_PATH,
+  russianRouteDateModified,
 } from '../lib/localizedRoutes.ts'
 import {
   INDEXNOW_KEY,
@@ -819,10 +820,9 @@ const russianFnFundingPipsCaptures = ['fundednext', 'fundingpips']
   .map(product => product.sourceCapturedAt)
   .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
   .sort()
-const russianFnFundingPipsDate = [
-  RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-vs-fundingpips'],
-  russianFnFundingPipsCaptures[0],
-].filter(Boolean).sort().at(-1)
+// Same rule as the page and the sitemap (lib/ruRouteLastmod.generated.ts), never older than the editorial date.
+const russianFnFundingPipsDate = russianRouteDateModified('/ru/fundednext-vs-fundingpips', russianFnFundingPipsCaptures[0])
+if (russianFnFundingPipsDate < RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-vs-fundingpips']) throw new Error('FundedNext/FundingPips date predates its editorial date')
 const fundedNextInstantSourceUrl = getChallengesByFirm('fundednext')
   .find(product => product.productSlug === 'stellar-instant')?.sourceUrl
 

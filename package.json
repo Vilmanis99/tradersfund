@@ -69,7 +69,10 @@
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",
     "test:ru-rules-routes": "node scripts/test-ru-rules-routes.mjs",
     "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs",
-    "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs"
+    "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs",
+    "test:sitemap-lastmod": "node scripts/test-sitemap-lastmod.mjs",
+    "test:sitemap-lastmod-idempotent": "node scripts/test-sitemap-lastmod-idempotent.mjs",
+    "gen:sitemap-lastmod": "node scripts/gen-sitemap-lastmod.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -47,6 +47,7 @@ function load(file) {
       if (specifier === '@/lib/localizedRoutes') return load('lib/localizedRoutes.ts')
       if (specifier === '@/lib/closedFirms') return load('lib/closedFirms.ts')
       if (specifier === './localizedRoutes') return load('lib/localizedRoutes.ts')
+      if (specifier === './ruRouteLastmod.generated.ts') return load('lib/ruRouteLastmod.generated.ts')
       if (specifier.startsWith('../content/data/')) return require(`../${specifier.slice(3)}`)
       return require(specifier)
     },

@@ -8,7 +8,7 @@ import {
   closedFirmsLanguageAlternates,
   getClosedFirmViews,
 } from '@/lib/closedFirms'
-import { RU_CLOSED_FIRMS_EDITORIAL_DATE, RU_CLOSED_FIRMS_PATH } from '@/lib/localizedRoutes'
+import { RU_CLOSED_FIRMS_EDITORIAL_DATE, RU_CLOSED_FIRMS_PATH, russianPageDate } from '@/lib/localizedRoutes'
 import { jsonLd } from '@/lib/schema'
 
 // Same data and the same publish flag as /prop-firms/closed: noindex, no hreflang and out of
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RuClosedFirmsPage() {
   const closed = getClosedFirmViews('ru', 'closed')
   const offline = getClosedFirmViews('ru', 'offline')
-  const modified = [RU_CLOSED_FIRMS_EDITORIAL_DATE, CLOSED_FIRMS_CAPTURED_AT].sort().at(-1) as string
+  const modified = russianPageDate(RU_CLOSED_FIRMS_PATH, RU_CLOSED_FIRMS_EDITORIAL_DATE)
   const [year, month, day] = modified.split('-')
   const article = {
     '@context': 'https://schema.org',

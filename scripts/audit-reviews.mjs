@@ -6314,7 +6314,7 @@ function checkUkLandingCluster() {
       rows.push(`UK landing route is missing freshness safeguard "${fragment}"`)
     }
   }
-  if (!read(SITEMAP_FILE).includes('getLandingSourceLastModified(l.slug)')) {
+  if (!read(SITEMAP_FILE).includes('LANDING_EVIDENCE[l.slug]')) {
     rows.push('sitemap must use source-based lastmod for access landings')
   }
 
@@ -13642,19 +13642,22 @@ function checkRussianAcquisitionPilot() {
     rows.push(`Russian footer exposes ${footerRussianRoutes.size} routes; expected no more than 15 focused routes`)
   }
 
-  const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
+  // RU lastmod sources live in lib/sitemapLastmod.ts (shared with page dateModified).
+  const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8') + fs.readFileSync(path.join(ROOT, 'lib/sitemapLastmod.ts'), 'utf8')
   for (const token of [
     'LOCALIZED_ROUTE_PAIRS',
     'RUSSIAN_ONLY_ROUTES',
-    'russianRouteLastModified(',
+    // lastmod = editorial date floor + the change dates of the page file and the evidence it renders
+    // (content/data/sitemap-lastmod.json), never the evidence capture dates themselves.
+    'RUSSIAN_ROUTE_EDITORIAL_DATES[path]',
     "'x-default': `${BASE_URL}${pair.en}`",
-    'russianMarketEvidence.capturedAt',
-    'russianDiasporaEvidence.capturedAt',
-    'russianTeamTradersEvidence.capturedAt',
-    'russianForexEvidence.capturedAt',
-    'russianCTraderEvidence.capturedAt',
-    'russianFundedNextMt5Evidence.capturedAt',
-    'russianFundedNextInstantEvidence.capturedAt',
+    "'russian-market-evidence.json'",
+    "'russian-diaspora-evidence.json'",
+    "'russian-teamtraders-evidence.json'",
+    "'russian-forex-evidence.json'",
+    "'russian-ctrader-evidence.json'",
+    "'russian-fundednext-mt5-evidence.json'",
+    "'russian-fundednext-instant-evidence.json'",
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
   }
