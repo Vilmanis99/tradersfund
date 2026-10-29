@@ -4,7 +4,10 @@ import RuPendingLink, { RuRelatedLinks } from '@/components/RuPendingLink'
 import { ArrowRight, Globe2, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
-import { getLanguageAlternates } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
+import { getRussianDiasporaCountryRows, russianDiasporaEvidence, type RussianDiasporaCountryStatus } from '@/lib/russianDiasporaEvidence'
+import { getAllFirms } from '@/lib/firms'
+import { firmSlug } from '@/lib/firmSlug'
 import { goLinkRel, russiaBasisDateFor } from '@/lib/russiaAvailability'
 import { ruAccessBadge, ruAccessDate, type RuAccessBadgeInfo } from '@/lib/ruAccessLabel'
 import { RU_EXTRA_RUSSIA_BASIS } from '@/lib/ruAccessExtra'
@@ -108,6 +111,40 @@ const badge: Record<Exclude<Row['status'], 'open'>, string> = {
   closed: `Недоступно для РФ · проверено ${formatRuDate(CHECKED)}`,
 }
 
+// Матрица стран: content/data/russian-diaspora-evidence.json (Tracker). Порядок фирм и статусы — из данных, не из кода.
+const diasporaCountryRows = getRussianDiasporaCountryRows()
+const countryStatusLabels: Record<RussianDiasporaCountryStatus, string> = {
+  'not-named': 'Не названа в списке',
+  restricted: 'Ограничена',
+  'product-specific': 'Ограничение продукта',
+  conflict: 'Источники расходятся',
+}
+
+// BrightFunded Futures — отдельный продукт со своим списком стран: firms.json futuresCountriesRestricted* (Tracker).
+// «Нет в списке ограничений» у BrightFunded относится только к Challenge (CFD); оговорка строится из этих полей.
+const BF_FUTURES = getAllFirms().find(firm => firmSlug(firm.name) === 'bright-funded' && Array.isArray(firm.futuresCountriesRestricted) && firm.futuresCountriesRestricted.length > 0)
+const BF_FUTURES_LIST = BF_FUTURES?.futuresCountriesRestricted ?? []
+/** Страны из профилей матрицы, которые названы в списке BrightFunded Futures (порядок матрицы). */
+const BF_FUTURES_PROFILE_NAMES = russianDiasporaEvidence.countries.filter(country => BF_FUTURES_LIST.includes(country.sourceName)).map(country => country.labelRu)
+const BF_FUTURES_RUSSIA = BF_FUTURES_LIST.includes('Russia')
+const BF_FUTURES_CHECKED = BF_FUTURES?.futuresCountriesRestrictedCapturedAt ? ruAccessDate(BF_FUTURES.futuresCountriesRestrictedCapturedAt) : null
+const BF_FUTURES_PAGE_DATE = BF_FUTURES?.futuresCountriesRestrictedPageDate ? ruAccessDate(BF_FUTURES.futuresCountriesRestrictedPageDate) : null
+const BF_FUTURES_DATES = [BF_FUTURES_PAGE_DATE && `справка обновлена ${BF_FUTURES_PAGE_DATE}`, BF_FUTURES_CHECKED && `прочитана ${BF_FUTURES_CHECKED}`].filter(Boolean)
+
+function BrightFundedFuturesCaveat({ placement }: { placement: string }) {
+  if (!BF_FUTURES) return null
+  return (
+    <div className="ru-notice" data-russian-bf-futures-caveat={placement} data-russian-bf-futures-russia={BF_FUTURES_RUSSIA ? 'restricted' : 'not-named'}>
+      <strong>BrightFunded: Challenge и Futures — разные продукты.</strong>{' '}
+      Отметка «нет в списке ограничений» у BrightFunded относится только к Challenge (CFD).
+      {` У BrightFunded Futures свой список из ${BF_FUTURES_LIST.length} стран${BF_FUTURES_DATES.length > 0 ? ` (${BF_FUTURES_DATES.join(', ')})` : ''}${BF_FUTURES_PROFILE_NAMES.length > 0 ? `; из стран этой страницы в нём названы: ${BF_FUTURES_PROFILE_NAMES.join(', ')}.` : '.'}`}
+      {BF_FUTURES_RUSSIA ? ' Для России BrightFunded Futures ограничен.' : ''}
+      {BF_FUTURES.futuresCountriesRestrictedQuote ? <> Формулировка справки (англ.): «{BF_FUTURES.futuresCountriesRestrictedQuote}»</> : null}
+      {BF_FUTURES.futuresCountriesRestrictedSourceUrl ? <>{' '}<a href={BF_FUTURES.futuresCountriesRestrictedSourceUrl} target="_blank" rel="nofollow noopener noreferrer">Справка BrightFunded Futures</a>.</> : null}
+    </div>
+  )
+}
+
 // Российские проп-компании — блок перенесён со страницы /ru/dlya-russkoyazychnykh-treyderov#rossiyskie (слияние).
 const localFirms = [
   { name: 'Era Trade', href: '/ru/obzor-eratrade' },
@@ -121,7 +158,7 @@ const localFirms = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'Какие проп-компании работают с Россией в 2026 году?',
-    a: `Россию в своих ограничениях не называют Crypto Fund Trader на платформе Match-Trader (на ${ruAccessDate(russiaBasisDateFor('crypto-fund-trader') ?? CHECKED_ISO)}) и BrightFunded (на ${ruAccessDate(russiaBasisDateFor('bright-funded') ?? CHECKED_ISO)}). Это отсутствие в списке ограничений, а не письменное разрешение на доступ из России. У Upscale статус для РФ неясен (на ${UPSCALE_CHECKED}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту; в FAQ сказано иное, но обязывающий текст — Условия. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
+    a: `Россию в своих ограничениях не называют Crypto Fund Trader на платформе Match-Trader (на ${ruAccessDate(russiaBasisDateFor('crypto-fund-trader') ?? CHECKED_ISO)}) и BrightFunded (на ${ruAccessDate(russiaBasisDateFor('bright-funded') ?? CHECKED_ISO)}${BF_FUTURES_RUSSIA && BF_FUTURES_CHECKED ? `; это касается Challenge (CFD), а список BrightFunded Futures Россию называет (на ${BF_FUTURES_CHECKED})` : ''}). Это отсутствие в списке ограничений, а не письменное разрешение на доступ из России. У Upscale статус для РФ неясен (на ${UPSCALE_CHECKED}): Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании, а для вывода нужен KYC по паспорту; в FAQ сказано иное, но обязывающий текст — Условия. FundedNext резидентам России недоступна: подвал fundednext.com исключает Россию, хотя список в условиях (п. 5.3, CFD) её не называет (по данным на 20.10.2026). FTMO, The5ers, E8 Markets, FXIFY, Maven, Alpha Capital, Apex, Tradeify, Lucid Trading и FundedNext Futures Россию ограничивают.`,
   },
   {
     q: 'Можно ли пройти челлендж FTMO из России?',
@@ -160,7 +197,7 @@ export default function RussiaAvailabilityPage() {
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
     publisher: { '@type': 'Organization', name: 'Traders Fund Hub', url: 'https://tradersfundhub.com' },
-    dateModified: '2026-10-29',
+    dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt),
   }
   const openCount = rows.filter(r => r.status === 'open').length
   const closedCount = rows.filter(r => r.status === 'closed').length
@@ -181,7 +218,7 @@ export default function RussiaAvailabilityPage() {
             Остальные либо прямо пишут «Russian Federation» в списке запрещённых стран, либо прячут Россию за
             формулировкой «санкционные юрисдикции». Ниже — кто есть кто, со ссылкой на первоисточник по каждой строке.
           </p>
-          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источники открыты {formatRuDate(CHECKED)}.</p>
+          <p className="ru-source-line">Автор: <Link href="/authors/edris-derakhshi">Edris Derakhshi</Link> · Источники прочитаны {formatRuDate(CHECKED)}.</p>
           <div className="ru-notice ru-disclosure" data-russian-affiliate-disclosure="russia-hub" data-russian-country-boundary="diaspora-not-access">
             <strong>Партнёрское раскрытие.</strong>{' '}
             По кнопкам регистрации Traders Fund Hub может получить комиссию. У каждой фирмы есть отметка доступа из РФ, а кнопки —
@@ -239,6 +276,7 @@ export default function RussiaAvailabilityPage() {
             <a href="https://help.fundednext.com/en/articles/8020089" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 1</a>,{' '}
             <a href="https://help.fundednext.com/en/articles/13990618" target="_blank" rel="nofollow noopener noreferrer">справка FundedNext 2</a>.
           </p>
+          <BrightFundedFuturesCaveat placement="russia-table" />
           <p className="ru-source-line">
             Apex Trader Funding и Tradeify закрыли свои страницы от нашего сборщика (ошибка 403): статус взят из
             поисковой выдачи и агрегатора funded.now, поэтому уверенность средняя.
@@ -253,7 +291,7 @@ export default function RussiaAvailabilityPage() {
             <article className="ru-card" data-russia-open="bright-funded">
               <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
               <h3>BrightFunded</h3>
-              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет (на {ruNotListedDate('bright-funded')}). При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
+              <p className="ru-muted">В списке ограничений — Куба, Иран, КНДР, Сирия, Вьетнам и Пакистан; России нет (на {ruNotListedDate('bright-funded')}).{BF_FUTURES_RUSSIA && BF_FUTURES_CHECKED ? ` Это список Challenge (CFD): BrightFunded Futures Россию ограничивает (на ${BF_FUTURES_CHECKED}).` : ''} При этом фирма исключает лиц из санкционных списков. Выплаты — USDC (ERC-20) или банковский перевод в EUR.</p>
               <div className="ru-actions">
                 <Link href="/ru/obzor-bright-funded" className="btn-outline">Обзор</Link>
                 <RuGoLink firm="bright-funded" href="/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards" rel="sponsored nofollow noopener" className="btn-primary">
@@ -389,6 +427,66 @@ export default function RussiaAvailabilityPage() {
             <a href="https://the5ers.com/terms-and-conditions/" target="_blank" rel="nofollow noopener noreferrer">Условия The5ers</a>,{' '}
             <a href="https://apextraderfunding.com/help-center/getting-started/restricted-countries/" target="_blank" rel="nofollow noopener noreferrer">Apex Trader Funding</a>.
             Это опубликованные списки, а не проверка регистрации, KYC или выплаты для конкретного человека.
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="ru-section"
+        id="strany"
+        data-russian-diaspora-country-matrix="published-lists-not-approval"
+      >
+        <div
+          className="ru-shell ru-content"
+          data-russian-diaspora-country-count={diasporaCountryRows.length}
+          data-russian-diaspora-country-captured={russianDiasporaEvidence.capturedAt}
+        >
+          <h2>Списки стран BrightFunded, Crypto Fund Trader и FundedNext: {diasporaCountryRows.length} стран</h2>
+          <p>
+            Это не таблица «доступно или нет». Она показывает, названа ли страна в опубликованном списке фирмы и есть ли
+            отдельное ограничение продукта или платформы. Все страницы фирм перечитаны {ruAccessDate(russianDiasporaEvidence.capturedAt)};
+            регистрацию, KYC, оплату и выплату мы не проходили.
+          </p>
+          <div className="ru-notice" data-russian-diaspora-country-boundary="absence-not-eligibility">
+            <strong>Страны нет в списке — это не письменное разрешение.</strong>{' '}
+            {russianDiasporaEvidence.scopeRu}
+          </div>
+          <BrightFundedFuturesCaveat placement="country-matrix" />
+          <div className="ru-table-wrap">
+            <table className="ru-table" data-russian-diaspora-country-evidence="first-party">
+              <caption className="hidden-caption">Опубликованные списки стран на {ruAccessDate(russianDiasporaEvidence.capturedAt)}</caption>
+              <thead>
+                <tr>
+                  <th>Страна</th>
+                  {russianDiasporaEvidence.firms.map(firm => (
+                    <th key={firm.slug}>{firm.name}<br /><span className="ru-muted">{firm.generalProductRu}</span></th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {diasporaCountryRows.map(country => (
+                  <tr key={country.key} data-russian-diaspora-country={country.key}>
+                    <td><strong>{country.labelRu}</strong></td>
+                    {country.checks.map(check => (
+                      <td key={check.firmSlug} data-russian-diaspora-status={check.status}>
+                        <strong>{countryStatusLabels[check.status]}</strong><br />
+                        <span className="ru-muted">{check.noteRu}</span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="ru-source-line" data-russian-diaspora-country-sources="first-party">
+            Первоисточники:{' '}
+            {russianDiasporaEvidence.firms.flatMap(firm => firm.sources).map((source, index, sources) => (
+              <span key={source.url}>
+                <a href={source.url} target="_blank" rel="nofollow noopener noreferrer">{source.labelRu}</a>
+                {source.pageDate ? ` (обновлена ${ruAccessDate(source.pageDate)})` : ''}
+                {index < sources.length - 1 ? '; ' : '.'}
+              </span>
+            ))}
           </p>
         </div>
       </section>
