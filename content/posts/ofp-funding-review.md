@@ -23,7 +23,7 @@ type: "post"
     <li><strong>80% profit split is the base price.</strong> A 100% split is sold on every tier for roughly 20% more.</li>
     <li><strong>Static max drawdown.</strong> "This limit never changes during the challenge"; the help centre rebases it after each approved reward.</li>
     <li>Daily loss is measured off the <strong>previous day's closing equity</strong>, recorded at midnight GMT+2.</li>
-    <li><strong>Total manageable accounts are capped at $300,000</strong>, and account merging is not supported.</li>
+    <li><strong>Total manageable accounts are capped at $300,000 per OFP's trading-rules page</strong> (its account-models help article says $400,000; both checked 2026-10-29), and account merging is not supported.</li>
     <li>Instant Lite (5%/10%) is the cheapest risk-adjusted account OFP sells: $250 at $100K for an R-multiple of 0.03.</li>
     <li><strong>Trustpilot has suppressed OFP's aggregate rating</strong> — "This company's rating is unavailable due to a breach of our guidelines" (first recorded 2026-07-27, still shown 2026-10-29).</li>
     <li><strong>Instant Plus costs over 3x Instant Lite</strong> for the same 3% daily and 5% maximum drawdown at $100K ($670 against $200).</li>
@@ -140,7 +140,7 @@ type: "post"
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Entity</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">OFP Funding Ltd (St. Lucia, company 2024-00577); payment agent FINTEKNOLOGY LTD (UK 15131112)</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Account types</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Six instant accounts: Instant Lite, Classic and Plus, each in two drawdown variants</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Account cap</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 total manageable; no account merging</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Account cap</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 per trading-rules vs $400,000 per help centre (both checked 2026-10-29); no account merging</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% at base price; 100% option costs ~20% more</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static — 5%, 6%, or 10% depending on product</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">First request 14 calendar days after the first trade, then every 14 days (Instant Lite: one reward; duration 28 vs 30 days — see What changed)</td></tr>
@@ -253,7 +253,7 @@ type: "post"
   <li><strong>Instant Lite is a one-shot account:</strong> a 5% target, 5 minimum trading days, a single reward, and a 28- vs 30-day duration conflict between pricing data and trading-rules copy (checked 2026-10-29).</li>
   <li><strong>The consistency threshold is self-contradictory.</strong> The pricing data still says 20% on Instant Classic; the help-centre article re-read on 2026-10-29 publishes the formula and the soft payout block but no cycle percentage.</li>
   <li><strong>No weekend or overnight rule is published anywhere</strong> on the firm's site or help centre, a gap rather than a permission.</li>
-  <li><strong>The $300,000 account cap</strong> with no account merging is low for a firm marketing scaling.</li>
+  <li><strong>The $300,000 account cap</strong> (trading-rules; the help centre says $400,000) with no account merging is low for a firm marketing scaling.</li>
   <li><strong>Fees are refundable for 14 days only on an untouched account</strong>: "once any trade has been placed", the refund window is void.</li>
   <li><strong>Withdrawals above $500 carry a fixed $50 Rise fee</strong>, which costs a $600 payout 8.3% of its value.</li>
   <li><strong>28 consecutive days of inactivity suspends the account</strong>, which penalises traders whose setups are seasonal or low-frequency.</li>
