@@ -9774,9 +9774,11 @@ function checkScalingPlanGuide() {
     {
       slug: 'fundingpips',
       name: 'FundingPips',
+      // 2026-10-28: 2 Step Flex stores 80 (lowest of its 80%/95% tiers) and 2 Step Standard 60
+      // (lowest of Weekly 60% / Bi-Weekly 80%); the guide row "80%, 95%, or a selected payout structure" still holds.
       splitFragments: ['80%', '95%', 'selected payout structure'],
-      countFragments: [[80, 2], [95, 1]],
-      nullCount: 2,
+      countFragments: [[80, 3], [95, 1], [60, 1]],
+      nullCount: 0,
     },
     {
       slug: 'fxify',
