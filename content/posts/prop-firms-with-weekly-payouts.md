@@ -108,7 +108,7 @@ type: "post"
   <li><strong>Tradeify and My Funded Futures:</strong> Tradeify's Select Daily has daily eligibility (Select Flex pays every 5 winning days), and MFF's Rapid plan lists a daily payout cadence. MFF's Pro plan is bi-weekly instead.</li>
 </ul>
 
-<p>For context, the common forex default is still a 14-day cycle: Maven's standard plans (first payout 10 business days after your first funded trade), OFP's Instant Classic and Plus, Alpha Capital's bi-weekly Pro variants and FXIFY's Lightning (first payout after 7 days, then every 14). FXIFY's phase challenges go monthly unless you buy a bi-weekly add-on.</p>
+<p>For context, the common forex default is still a 14-day cycle: Maven's standard plans (first payout 10 business days after your first funded trade), <a href="/blog/ofp-funding-review">OFP Funding</a>'s Instant Classic and Plus, Alpha Capital's bi-weekly Pro variants and FXIFY's Lightning (first payout after 7 days, then every 14). FXIFY's phase challenges go monthly unless you buy a bi-weekly add-on.</p>
 
 <h2 class="wp-block-heading"><strong>What "weekly payouts" doesn't promise</strong></h2>
 
