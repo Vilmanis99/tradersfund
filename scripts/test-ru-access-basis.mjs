@@ -38,6 +38,20 @@ for (const f of firms) {
 const extra = readFileSync('lib/ruAccessExtra.ts', 'utf8')
 for (const m of extra.matchAll(/(\w+): \{\s*(?:russiaStatus: '\w+',\s*)?basis: 'not-on-restricted-list',\s*capturedAt: '(\d{4}-\d{2}-\d{2})'/g)) basis.set(m[1], { name: m[1] === 'upscale' ? 'Upscale' : m[1], date: m[2] })
 for (const slug of ['bright-funded', 'crypto-fund-trader']) if (!basis.has(slug)) fail(`${slug}: expected russiaBasis 'not-on-restricted-list' in data`)
+// (h) /ru/dlya-russkoyazychnykh-treyderov meta description (RU Writer 2026-10-28): the audit reads DESCRIPTION as a static
+// single-quoted literal, so its «(на DD.MM.YYYY)» cannot call ruNotListedDates(['bright-funded', 'crypto-fund-trader']).
+// Pin it to that data date (fails when Tracker moves it), and pin «15 фирм» / Беларусь / Казахстан to the rendered table source.
+{
+  const dlyaSource = readFileSync('app/ru/dlya-russkoyazychnykh-treyderov/page.tsx', 'utf8')
+  const dlyaDescription = dlyaSource.match(/const DESCRIPTION = '([^']+)'/)?.[1] ?? ''
+  const notListed = [...new Set(['bright-funded', 'crypto-fund-trader'].map(slug => basis.get(slug)?.date).filter(Boolean).map(ruDate))].join(' / ')
+  if (!dlyaDescription.includes(`(на ${notListed})`)) fail(`/ru/dlya-russkoyazychnykh-treyderov: DESCRIPTION must carry «(на ${notListed})» (ruNotListedDates for BrightFunded/CFT); got "${dlyaDescription}"`)
+  const rowsBlock = dlyaSource.match(/const rows: Row\[\] = \[([\s\S]*?)\n\]/)?.[1] ?? ''
+  const tableFirms = new Set([...rowsBlock.matchAll(/\{ firm: '([^']+)'/g)].map(m => m[1].replace(/ \(CFD\)$| Futures$/, '')))
+  const describedFirms = Number(dlyaDescription.match(/(\d+) фирм/)?.[1])
+  if (tableFirms.size !== describedFirms) fail(`/ru/dlya-russkoyazychnykh-treyderov: DESCRIPTION says ${describedFirms} фирм, table rows cover ${tableFirms.size}`)
+  if (dlyaDescription.includes('Беларуси и Казахстана') && !(dlyaSource.includes('<th>Беларусь</th>') && dlyaSource.includes('<th>Казахстан</th>'))) fail('/ru/dlya-russkoyazychnykh-treyderov: DESCRIPTION names Беларусь/Казахстан but the table has no such columns')
+}
 // Upscale (Prop Firm Tracker 2026-10-26, Terms of Use 15.05.2026): russiaStatus 'unclear', no list-absence basis.
 const upscaleStatus = extra.match(/upscale: \{\s*russiaStatus: '(\w+)'/)?.[1] ?? null
 if (upscaleStatus !== 'unclear') fail(`upscale: expected russiaStatus 'unclear' in lib/ruAccessExtra.ts, got ${upscaleStatus}`)

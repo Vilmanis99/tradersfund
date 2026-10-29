@@ -12650,7 +12650,7 @@ function checkRussianAcquisitionPilot() {
   const rossiyskieHubPage = fs.existsSync(rossiyskieHubFile) ? fs.readFileSync(rossiyskieHubFile, 'utf8') : ''
   for (const token of [
     '<section className="ru-section" id="rossiyskie">',
-    'data-merged-from="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
+    'data-merged-from="/ru/rossiyskie-prop-kompanii"',
     '<h2>Российские проп-компании: шесть проверяемых примеров</h2>',
     'Это не рейтинг и не совет регистрироваться',
     "{ name: 'Era Trade', href: '/ru/obzor-eratrade' }",
