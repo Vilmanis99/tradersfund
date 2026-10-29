@@ -60,10 +60,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   },
   {
@@ -127,10 +127,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   },
   {
@@ -177,7 +177,7 @@
     "maxLossPct": 5,
     "drawdownType": "static",
     "minTradingDays": 5,
-    "maxTradingDays": 30,
+    "maxTradingDays": 28,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": null,
@@ -191,10 +191,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026: Instant Lite account duration is a dated conflict. The live pricing table on https://ofpfunding.com/ shows Account Duration 28 Days (plan data maxTradingDays 28, payoutDays 28). https://ofpfunding.com/trading-rules Instant Lite payout text still says 'during the active 30-day period' and '30-day validity period has expired'. https://help.ofpfunding.com/account-models/ still lists 'Total Duration: 30 Days'. maxTradingDays is set to 28 to match the live pricing table (same source as priceUsd); flag 28 vs 30 in copy.",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   },
   {
@@ -241,7 +242,7 @@
     "maxLossPct": 10,
     "drawdownType": "static",
     "minTradingDays": 5,
-    "maxTradingDays": 30,
+    "maxTradingDays": 28,
     "consistencyRulePct": null,
     "profitSplitPct": 80,
     "payoutFirstDays": null,
@@ -255,10 +256,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026: Instant Lite account duration is a dated conflict. The live pricing table on https://ofpfunding.com/ shows Account Duration 28 Days (plan data maxTradingDays 28, payoutDays 28). https://ofpfunding.com/trading-rules Instant Lite payout text still says 'during the active 30-day period' and '30-day validity period has expired'. https://help.ofpfunding.com/account-models/ still lists 'Total Duration: 30 Days'. maxTradingDays is set to 28 to match the live pricing table (same source as priceUsd); flag 28 vs 30 in copy.",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   },
   {
@@ -322,10 +324,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   },
   {
@@ -389,10 +391,10 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-10-29",
     "notes": [
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json"
+      "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
     ]
   }
 ]
