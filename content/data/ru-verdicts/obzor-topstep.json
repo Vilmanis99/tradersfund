@@ -1,0 +1,55 @@
+{
+  "route": "/ru/obzor-topstep",
+  "type": "review",
+  "firm": "Topstep",
+  "dataAsOf": "2026-10-20",
+  "sources": [
+    "content/data/firms.json#Topstep (profitSplitPct, platforms, payoutMethods + payoutMethodsCapturedAt 2026-10-20, legalEntity, maxAllocation, countriesRestricted, russiaStatus)",
+    "content/data/challenges/topstep.json (sourceCapturedAt 2026-10-20: prices, activation fee, maxLossUsd tiers, target 6%, consistency 55%)",
+    "content/data/challenges/_captures/topstep-2026-10-20.json (Prop Firm Tracker recheck 20.10.2026: MLL mechanics, payout routes, transfer rails, trading hours)",
+    "content/data/challenges/_captures/topstep-ru-gaps-2026-10-20.json (Prop Firm Tracker 20.10.2026: eligibility page 8284116 dated 04.09.2026, payout methods, legal entity, TopstepX, API/automation, Tier 1 news, checkout taxes, minimum days, XFA Consistency route)",
+    "/workspace/tradersfundhub/evidence/topstep-delta-2026-10-23/README.md (Prop Firm Tracker delta 23.10.2026: eligibility 8284116, payout policy 8284233, prices 14289835 and Terms unchanged vs 20.10; help 13613539 changed 21.10.2026: Live accounts with a balance below $3,000 limited to 1 contract during Tier 1 News Events; help 14434175 changed 22.10.2026: TopstepX login = Topstep Dashboard login)",
+    "https://help.topstep.com/en/articles/13613539-risk-adjustments-high-risk-high-volatility (dateModified 2026-10-21T20:34:23Z, checked 2026-10-23)"
+  ],
+  "verdict": "Topstep — фьючерсный проп с одной фазой оценки: цель 6%, единственное жёсткое правило — Maximum Loss Limit $2,000 / $3,000 / $4,500 с подтяжкой по балансу на конец дня, доля трейдера 90%. Оценка оплачивается ежемесячной подпиской: Standard $49–199 в месяц плюс $149 за активацию или No Activation Fee $95–229 в месяц, цены без налогов, поэтому медленное прохождение стоит дороже (по данным на 20.10.2026).",
+  "best": [
+    "вы торгуете фьючерсы CME внутри дня: все позиции закрываются до 15:10 по Чикаго, а дневного лимита в Trading Combine нет",
+    "вам нужен один понятный лимит убытка в долларах, а не несколько процентных правил",
+    "вы рассчитываете пройти быстро: подписка No Activation Fee без платы за активацию выгоднее при коротком прохождении"
+  ],
+  "avoid": [
+    "вы держите позиции через ночь или выходные: Topstep это запрещает",
+    "вы делаете прибыль одним крупным днём: лучший день не может превышать 55% цели, иначе цель растёт",
+    "вам нужны выплаты в криптовалюте или через Rise: у Topstep их нет, а вне США, Китая, Канады и Великобритании выплата идёт только через Wire/SWIFT за $30"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "Topstep",
+    "alternatives": [
+      "BrightFunded",
+      "Crypto Fund Trader"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, гражданство, KYC и способ выплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», Topstep учитывает и гражданство, и место жительства, торговать нельзя даже в поездке в страну из списка, VPN не помогает.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать подпиской: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и хотите подтверждённый доступ: статус {firm} — «{badge}»; запросите у Topstep письменное подтверждение до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}, но это CFD или криптовалюта, а не фьючерсы CME."
+      }
+    }
+  },
+  "firmInFirmsJson": true
+}

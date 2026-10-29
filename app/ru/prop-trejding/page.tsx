@@ -285,7 +285,7 @@ export default function RussianPropTradingPage() {
           <ul>
             <li><strong>Взнос сгорает при провале</strong>, а повторные попытки стоят столько же.</li>
             <li><strong>Правила меняются:</strong> FundingPips обновлял условия выплат в августе 2026 года.</li>
-            <li><strong>Симулированные счета</strong> у части фирм и ограничения по странам — включая Россию у FTMO, Topstep и других.</li>
+            <li><strong>Симулированные счета</strong> у части фирм и ограничения по странам — включая Россию у FTMO, <RuPendingLink href="/ru/obzor-topstep">фьючерсного пропа Topstep</RuPendingLink> и других.</li>
           </ul>
         </div>
       </section>

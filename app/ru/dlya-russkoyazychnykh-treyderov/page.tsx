@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from '@/components/SafeLink'
-import { RuRelatedLinks } from '@/components/RuPendingLink'
+import RuPendingLink, { RuRelatedLinks } from '@/components/RuPendingLink'
 import { ArrowRight, Globe2, ShieldCheck, WalletCards } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
 import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
@@ -309,7 +309,7 @@ export default function RussiaAvailabilityPage() {
             </article>
           </div>
           <p className="ru-source-line">
-            Topstep прямо исключает резидентов России.
+            Topstep прямо исключает резидентов России. Чем заменить фьючерсный проп — в материале <RuPendingLink href="/ru/obzor-topstep">Topstep: обзор и альтернативы для РФ</RuPendingLink>.
           </p>
           {hashHedgeReviewHref ? (
             <p className="ru-source-line" data-russian-hh-mention="2026-10-19">

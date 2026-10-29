@@ -4297,7 +4297,7 @@
     "assets": [
       "Futures"
     ],
-    "maxAllocation": "$500,000",
+    "maxAllocation": "$150,000 per account; up to 5 active XFAs",
     "platforms": [
       "TopstepX",
       "Quantower"
@@ -4315,6 +4315,9 @@
     "profitSplitPct": 90,
     "payoutFrequency": "after-qualifying-days",
     "payoutMethods": [
+      "Prop-to-Brokerage",
+      "Aeropay",
+      "Wise",
       "ACH",
       "Bank wire"
     ],
@@ -4615,7 +4618,21 @@
       },
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json"
-    }
+    },
+    "payoutMethodsSourceUrl": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+    "payoutMethodsQuote": "Prop-to-Brokerage Payouts US only Same day* No Fee Aeropay US banks only Instant after approval No Topstep fee** Wise China, Canada, UK 1-3 business days No Topstep fee** ACH US banks only 1-3 business days $30 Wire/SWIFT International 5-10 business days $30",
+    "payoutMethodsCapturedAt": "2026-10-20",
+    "payoutMethodsNote": "Read 2026-10-20 (article dateModified 2026-10-13). Scope per Topstep: Prop-to-Brokerage US only (to a Topstep Brokerage account); Aeropay US banks only; Wise only for China, Canada and the UK (\"Wise remains unavailable everywhere else\"); ACH US banks only, $30; 'Bank wire' is Topstep's Wire/SWIFT, international, 5-10 business days, $30. Outside the US, China, Canada and the UK the only listed method is Wire/SWIFT. No crypto, Rise, card or PayPal payout is listed. Payouts go only to a bank account in the trader's own name; W-8BEN required for non-US persons. Internal approval can take 1-3 business days. Payouts are never available to residents or citizens of ineligible countries (see countriesRestrictedSourceUrl).",
+    "countriesRestrictedSourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
+    "russiaSourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
+    "russiaSourceQuote": "Countries Ineligible to Trade — Citizens of these countries can't trade or receive payouts: … Belarus … Russia … Ukraine … Crimea (incl. Donetsk, Luhansk, Kherson, Zaporizhzhia)",
+    "legalEntity": "TopstepTrader, LLC",
+    "headquarters": "Chicago, Illinois, United States",
+    "country": "United States",
+    "regulation": null,
+    "corporateNote": "Per the Topstep site footer and Terms of Use (Last updated: September 21, 2026), the Trading Combine and Express Funded Account are operated by TopstepTrader, LLC, a wholly owned subsidiary of Topstep LLC (a Delaware limited liability company); Live Funded Accounts are operated by TopstepFunded LLC (an Illinois LLC). Chicago is the Topstep LLC mailing address in the Terms: 130 S Jefferson St, Chicago, IL 60661. TopstepTrader, LLC's state of formation is not stated. The NFA membership (NFA ID 0567079) belongs to the separate introducing broker Topstep Brokerage LLC, not to the prop programme, so regulation stays null.",
+    "corporateSourceUrl": "https://www.topstep.com/terms-of-use",
+    "corporateCapturedAt": "2026-10-20"
   },
   {
     "name": "My Funded Futures",
