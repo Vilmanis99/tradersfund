@@ -296,7 +296,7 @@
     "kind": "lineup-change",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-10-29",
+    "lastCheckedAt": "2026-10-20",
     "title": "LucidDaily launched with 4 configurable evaluation paths",
     "summary": "Lucid's help centre documents 4 Daily variants, and since October the homepage picker includes a LucidDaily tab with one-time list prices ($104-$313 Intraday, $118-$375 EOD for 25K-150K; rechecked 2026-10-20 12:49 Riga). A general page broadly restricts red-folder news, while the funded-product page narrows the hard-breach window to U.S. high-impact USD events.",
     "traderImpact": "Confirm the exact DLL, drawdown, price, overnight, weekend, and news-calendar scope at checkout; the stored Daily prices are list prices, not the coupon or limited-time totals.",

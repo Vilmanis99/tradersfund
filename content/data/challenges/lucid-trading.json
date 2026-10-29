@@ -333,17 +333,17 @@
     "pricingModel": "one-off",
     "activationFeeUsd": 0,
     "assetClass": "futures",
-    "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20 , Drawdown In Eval = Intraday: 25K $104, 50K $138, 100K $224, 150K $313. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
+      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20, Drawdown In Eval = Intraday: 25K $104, 50K $138, 100K $224, 150K $313. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
       "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in evaluation and funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
       "PAYOUT: 90% trader split, no funded consistency, requests on any eligible day, $500 minimum, MLL-plus-$100 buffer, and at least $1 positive profit since the prior request.",
       "NEWS: evaluation/general news is allowed, but funded Daily requires flat positions from 1 minute before through 1 minute after U.S. high-impact USD events; the product-wide value is restricted.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
-      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass."
+      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass, so sourceCapturedAt stays 2026-10-20."
     ]
   },
   {
@@ -423,16 +423,16 @@
     "pricingModel": "one-off",
     "activationFeeUsd": 0,
     "assetClass": "futures",
-    "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20 , Drawdown In Eval = EOD: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
+      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20, Drawdown In Eval = EOD: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
       "RISK: DLL of $600 / $1,200 / $1,800 / $2,700 applies in both stages. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
-      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass."
+      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass, so sourceCapturedAt stays 2026-10-20."
     ]
   },
   {
@@ -508,16 +508,16 @@
     "pricingModel": "one-off",
     "activationFeeUsd": 0,
     "assetClass": "futures",
-    "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20 , Drawdown In Eval = Intraday: 25K $104, 50K $138, 100K $224, 150K $313. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
+      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20, Drawdown In Eval = Intraday: 25K $104, 50K $138, 100K $224, 150K $313. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
       "RISK: no DLL in evaluation or funded. Intraday trailing MLL of $1,000 / $2,000 / $3,000 / $4,500 applies in both stages.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
-      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass."
+      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass, so sourceCapturedAt stays 2026-10-20."
     ]
   },
   {
@@ -593,16 +593,16 @@
     "pricingModel": "one-off",
     "activationFeeUsd": 0,
     "assetClass": "futures",
-    "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+    "sourceCapturedAt": "2026-10-20",
     "notes": [
-      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20 , Drawdown In Eval = EOD: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
+      "PRICE (list price, not checkout-verified): one-time list prices shown on the live LucidDaily product picker at https://www.lucidtrading.com/ on 2026-10-20, Drawdown In Eval = EOD: 25K $118, 50K $166, 100K $267, 150K $375. The Daily Loss Limit ON/OFF toggle does not change the list price (it changes only the limited-time saving and the reset fee). Sale and coupon prices (code VAULT) are not stored and were not verified at checkout. Evidence: content/data/challenges/_captures/lucid-trading-2026-10-20.json (pickerRecheck, 12:49 Riga).",
       "RISK: no DLL in evaluation or funded. Evaluation MLL is EOD trailing; funded MLL switches to Intraday trailing, with $1,000 / $2,000 / $3,000 / $4,500 limits.",
       "PAYOUT and NEWS match the other LucidDaily variants: 90% split, daily eligible requests, $500 minimum, buffer and positive-profit gates, plus the funded U.S. high-impact USD news blackout.",
       "HOLDING UNKNOWN: the current trading-hours article names Pro, Flex and Direct but not Daily, so weekend and overnight are null.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/lucid-trading-2026-10-20.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/lucid-trading-2026-10-19.json",
-      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass."
+      "Consistency recheck 2026-10-29: LucidDaily Customization (https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization) lists \"Consistency: 40% or 50%\" and states \"40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price.\" and \"50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee.\" Each of the four DLL/drawdown options also says \"Choice of 40% or 50% Consistency\". consistencyRulePct moved from 50 to 40 (50 is a paid add-on), matching the LucidFlex pattern. The LucidDaily Evaluation overview table (https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation) still shows \"Consistency % 50%\" as the two-day pass path. Prices were not rechecked in this pass, so sourceCapturedAt stays 2026-10-20."
     ]
   }
 ]
