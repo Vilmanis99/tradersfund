@@ -18,15 +18,28 @@ type DiasporaCountry = {
   sourceName: string
 }
 
+type DiasporaSource = {
+  labelRu: string
+  url: string
+  /** Date the page itself shows (dateModified / 'Last updated'), when it shows one. */
+  pageDate?: string
+  /** Date we re-read the page. */
+  checkedAt?: string
+  /** Verbatim English quote from the page. */
+  quote?: string
+}
+
 type DiasporaFirmEvidence = {
-  slug: 'fundednext' | 'bright-funded'
+  slug: 'fundednext' | 'bright-funded' | 'crypto-fund-trader'
   name: string
   generalProductRu: string
   restrictedJurisdictions: string[]
   defaultNotNamedNoteRu: string
   restrictedNoteRu: string
   overrides: Record<string, CountryOverride>
-  sources: { labelRu: string; url: string }[]
+  /** KYC documents named on the firm's own pages (residence permit / proof of address vs passport). */
+  kycDocumentsRu?: string
+  sources: DiasporaSource[]
 }
 
 export type RussianDiasporaEvidence = {
