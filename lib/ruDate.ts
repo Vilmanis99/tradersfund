@@ -28,3 +28,20 @@ export function ruDatesInText(text: string | null | undefined): string {
   if (!text) return ''
   return text.replace(ISO_DATE_IN_TEXT, (_, year: string, month: string, day: string) => `${day}.${month}.${year}`)
 }
+
+/** Current calendar month in Europe/Riga as «ноябрь 2026». Used by the promokody title/H1. */
+export function ruMonthYear(now: Date = new Date()): string {
+  const months = [
+    'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',
+  ]
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    timeZone: 'Europe/Riga',
+  }).formatToParts(now)
+  const month = Number(parts.find(part => part.type === 'month')!.value)
+  const year = parts.find(part => part.type === 'year')!.value
+  return `${months[month - 1]} ${year}`
+}
+

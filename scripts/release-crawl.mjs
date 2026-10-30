@@ -64,6 +64,13 @@ import {
 } from '../lib/indexNow.ts'
 import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
 
+/** Same output as lib/ruDate.ts ruMonthYear(): «ноябрь 2026» for the current month in Riga time. */
+function ruMonthYearForCrawl(now = new Date()) {
+  const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+  const parts = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', timeZone: 'Europe/Riga' }).formatToParts(now)
+  return `${months[Number(parts.find(part => part.type === 'month').value) - 1]} ${parts.find(part => part.type === 'year').value}`
+}
+
 const args = process.argv.slice(2)
 // /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
 const closedFirmsData = JSON.parse(readFileSync(new URL('../content/data/closed-firms.json', import.meta.url), 'utf8'))
@@ -1037,8 +1044,9 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
-    h1: 'Промокоды проп-фирм — октябрь 2026',
+    // Month of the build/regeneration (lib/ruDate.ts ruMonthYear, Europe/Riga); the crawl runs against a fresh build.
+    title: `Промокоды проп-фирм — ${ruMonthYearForCrawl()}: коды с датой проверки`,
+    h1: `Промокоды проп-фирм — ${ruMonthYearForCrawl()}`,
     markers: [
       'id="kody"',
       'data-russian-affiliate-disclosure="promo-hub"',

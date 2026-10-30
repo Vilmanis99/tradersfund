@@ -17,13 +17,14 @@ import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat
 import { ruNotListedDates } from '@/lib/ruBasisWording'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
+import { formatRuDate, ruDatesInText, ruMonthYear } from '@/lib/ruDate'
 
 export const revalidate = 86400
 
 const PATH = '/ru/promokody-prop-firm'
-// Обновлять каждый месяц: MONTH_LABEL, MONTH_ISO и проверенные коды в content/data/deals.json.
-const MONTH_LABEL = 'октябрь 2026'
+// Месяц в title/H1 берётся из даты сборки (Europe/Riga) через ruMonthYear().
+// ISSUE_MONTH — литерал для аудита (статичная TITLE/DESCRIPTION); на странице подменяется на MONTH_LABEL.
+const MONTH_LABEL = ruMonthYear()
 const CHECKED = '14.10.2026'
 const CHECKED_ISO = '2026-10-14'
 // Per-firm Russia-source dates: CFT from firms.json russiaSourceCapturedAt (FAQ/Terms 7.3 re-read 23.10.2026,
@@ -33,12 +34,15 @@ const CFT_RU_SOURCE_DATE = ruAccessDate(russiaSourceDateFor('crypto-fund-trader'
 // CFT payment list (card, PayPal, Apple/Google Pay, crypto): first named in the FAQ on 19.10.2026, last re-read in the 20.10.2026 capture; the 14.10.2026 capture had card + crypto only.
 const CFT_PAYMENTS_CHECKED = ruAccessDate(cftPaymentsCapture.articleSlotRecapture.capturedAt)
 const FP_ACCESS_CHECKED = ruAccessDate(fundingPipsAccessEvidence.sourceCapturedAt)
-const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ'
-const DESCRIPTION = 'Промокоды проп-фирм, октябрь 2026: BrightFunded и Crypto Fund Trader — РФ нет в их списках ограничений. У Upscale статус для РФ неясен. Почему нет FTMO.'
+const ISSUE_MONTH = 'ноябрь 2026'
+const TITLE = 'Промокоды проп-фирм — ноябрь 2026: коды с датой проверки'
+const DESCRIPTION = 'Промокоды проп-фирм, ноябрь 2026, с датой проверки: BrightFunded и Crypto Fund Trader — РФ нет в списках ограничений. Upscale: статус неясен. Почему нет FTMO.'
+const PAGE_TITLE = TITLE.replace(ISSUE_MONTH, MONTH_LABEL)
+const PAGE_DESCRIPTION = DESCRIPTION.replace(ISSUE_MONTH, MONTH_LABEL)
 
 export const metadata: Metadata = {
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
+  title: { absolute: PAGE_TITLE },
+  description: PAGE_DESCRIPTION,
   keywords: [
     'промокоды проп фирм',
     'промокод fundednext',
@@ -48,8 +52,8 @@ export const metadata: Metadata = {
     'промокод ftmo',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  openGraph: { title: PAGE_TITLE, description: PAGE_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: PAGE_TITLE, description: PAGE_DESCRIPTION },
 }
 
 type HubFirm = {
