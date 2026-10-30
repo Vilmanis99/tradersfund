@@ -7691,7 +7691,7 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/hashhedge.com",
     "trustpilotCapturedAt": "2026-10-26",
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-26",
-    "russiaNote": "Unclear, not available (EA rule 2026-10-23: 'available' needs positive evidence that Russia is accepted, i.e. named or confirmed at checkout/KYC). Terms 4.3 does not name Russia (re-read 2026-10-23, 'Last Updated: October 8, 2026'): it excludes sanctioned persons and residents of countries under embargo or comprehensive sanctions, 'countries and regions such as Cuba, Iran, North Korea, Syria, Yemen'. Russia is neither named as excluded nor named as accepted, and signup/KYC was not tested. Hash Hedge's Moscow 2026 affiliate events and RU site version show a Russian market presence but are not an eligibility statement. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-23.json (russia)."
+    "lastUpdated": "2026-10-30",
+    "russiaNote": "Unclear, not available (EA rule 2026-10-23: 'available' needs positive evidence that Russia is accepted, i.e. named or confirmed at checkout/KYC). Terms 4.3 does not name Russia (re-read 2026-10-23, 'Last Updated: October 8, 2026'): it excludes sanctioned persons and residents of countries under embargo or comprehensive sanctions, 'countries and regions such as Cuba, Iran, North Korea, Syria, Yemen'. Russia is neither named as excluded nor named as accepted, and signup/KYC was not tested. Hash Hedge's Moscow 2026 affiliate events and RU site version show a Russian market presence but are not an eligibility statement. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-23.json (russia). Re-read 2026-10-30 in the version 'Last Updated: October 27, 2026': Terms 4.3 wording is unchanged and still does not name Russia."
   }
 ]
