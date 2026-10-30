@@ -26,6 +26,7 @@
     "test:null-price-products": "node scripts/test-null-price-products.mjs",
     "test:previous-discount-code": "node scripts/test-previous-discount-code.mjs",
     "test:client-bundle-no-firm-internals": "node scripts/test-client-bundle-no-firm-internals.mjs",
+    "test:no-firm-internals-html": "node scripts/test-no-firm-internals-html.mjs",
     "test:payout-days-unit": "node scripts/test-payout-days-unit.mjs",
     "test:review-freshness": "node scripts/test-review-freshness.mjs",
     "test:topstep-correction": "node scripts/test-topstep-correction.mjs",
@@ -50,6 +51,7 @@
     "test:comparison-expiry": "node scripts/test-comparison-expiry.mjs",
     "test:comparison-overlays": "node scripts/test-comparison-overlays.mjs",
     "test:consistency-scope": "node scripts/test-consistency-scope.mjs",
+    "test:consistency-basis": "node scripts/test-consistency-basis.mjs",
     "check:finder-release": "node scripts/check-russian-finder-release.mjs",
     "check:home-release": "node scripts/check-english-home.mjs",
     "check:light-release": "node scripts/check-light-release.mjs",
@@ -61,12 +63,16 @@
     "test:ru-telegram-block": "node scripts/test-ru-telegram-block.mjs",
     "test:ru-access-basis": "node scripts/test-ru-access-basis.mjs",
     "test:russia-status-pending": "node scripts/test-russia-status-pending.mjs",
+    "test:futures-ru-product-status": "node scripts/test-futures-ru-product-status.mjs",
     "test:rules-pages": "node scripts/test-rules-pages.mjs",
     "test:split-tiers-display": "node scripts/test-split-tiers-display.mjs",
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",
     "test:ru-rules-routes": "node scripts/test-ru-rules-routes.mjs",
     "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs",
-    "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs"
+    "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs",
+    "test:sitemap-lastmod": "node scripts/test-sitemap-lastmod.mjs",
+    "test:sitemap-lastmod-idempotent": "node scripts/test-sitemap-lastmod-idempotent.mjs",
+    "gen:sitemap-lastmod": "node scripts/gen-sitemap-lastmod.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -14,6 +14,7 @@ import {
   getAllFirms,
   isChallengeFresh,
 } from '@/lib/firms'
+import { toPublicChallenge, toPublicFirm } from '@/lib/publicFirm'
 import { breadcrumbSchema, itemListSchema, jsonLd } from '@/lib/schema'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
 import AnimatedNumber from '@/components/AnimatedNumber'
@@ -197,9 +198,10 @@ export default async function PropFirmsHubPage({
             </span>
           </div>
 
+          {/* Public-field projections only: props are serialised into the page (HTML + RSC payload). */}
           <FirmTable
-            firms={firms}
-            challenges={freshChallenges}
+            firms={firms.map(toPublicFirm)}
+            challenges={freshChallenges.map(toPublicChallenge)}
             {...(unlistedComparePairs.length ? { unlistedComparePairs } : {})}
           />
         </div>

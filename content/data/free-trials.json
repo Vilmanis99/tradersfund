@@ -52,7 +52,7 @@
       "FTMO's FAQ says the 2-Step trial uses paid 2-Step objectives except that the 10% target becomes 5% and 4 minimum days become 2.",
       "FTMO's FAQ says the 1-Step trial uses paid 1-Step objectives except that the 10% target becomes 5%.",
       "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing.",
-      "Rechecked on 2026-10-19 against the FTMO Free Trial landing page (dateModified 2026-10-16) and the Free Trial FAQ: 14 days, unlimited trials one at a time, up to $200,000.",
+      "Rechecked on 2026-10-19 against the FTMO Free Trial landing page (Last updated 16 October 2026) and the Free Trial FAQ: 14 days, unlimited trials one at a time, up to $200,000.",
       "2026-10-19 change: the landing page now offers a third Free Trial that mirrors the FTMO Instant Account (no profit target, 3% daily loss, 10% balance-based intraday trailing maximum loss, 30% consistency). FTMO Instant Account paid pricing is not captured in content/data/challenges/ftmo.json, so mapsToChallenge is null.",
       "2026-10-19 change: the landing-page FAQ says the Free Trial runs on MT4, MT5 and cTrader and that TradingView is not supported for a Free Trial; TradingView was removed from platforms.",
       "2026-10-19: the landing page says a trial also ends if the trader does not trade in the first 7 days (inactivityCloseDays)."

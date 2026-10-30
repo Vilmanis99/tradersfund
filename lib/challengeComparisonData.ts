@@ -1,6 +1,6 @@
 import { displaySplitTiers } from './profitSplitDisplay.ts'
 import { firmSlug } from './firmSlug.ts'
-import { resolveRussiaBasisDate, resolveRussiaStatus, russiaBasisDatesBySlug, russiaStatusesBySlug } from './russiaStatus.ts'
+import { futuresRussiaRestrictedBySlug, resolveRussiaBasisDate, resolveRussiaStatusForProduct, russiaBasisDatesBySlug, russiaStatusesBySlug } from './russiaStatus.ts'
 import { getAllChallenges, getAllFirms, isChallengeFresh, minimumCostToFundedUsd, type Challenge, type Firm } from './firms.ts'
 import { getChallengeWatchEntries, productChangeSignals, type ChallengeWatchEntry } from './challengeWatch.ts'
 import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type GlobalChallengeRow } from './challengeComparison.ts'
@@ -8,11 +8,13 @@ import { challengeKey, DEFAULT_FINDER_FILTERS, serializeFinderState, type Global
 /** One projection for the English comparison and the Russian finder. */
 export function buildChallengeComparisonRows(
   challenges: Challenge[], firms: Firm[], watch: ChallengeWatchEntry[], now = new Date(),
+  lang: 'en' | 'ru' = 'en',
 ): GlobalChallengeRow[] {
   const firmBySlug = new Map(firms.map(firm => [firmSlug(firm.name), firm]))
   return challenges.filter(challenge => isChallengeFresh(challenge, now)).flatMap(challenge => {
     const firm = firmBySlug.get(challenge.firmSlug)
     if (!firm) return []
+    const splitTierRows = displaySplitTiers(challenge.profitSplitTiers, lang)
     return [{
       firm: { slug: challenge.firmSlug, name: firm.name, logo: firm.logo, reviewUrl: firm.reviewUrl, isPartner: Boolean(firm.affiliateUrl), score: firm.score },
       product: {
@@ -34,7 +36,7 @@ export function buildChallengeComparisonRows(
         maxTradingDaysUnlimited: challenge.maxTradingDaysUnlimited ?? null,
         consistencyRuleApplies: challenge.consistencyRuleApplies ?? null,
         consistencyRulePct: challenge.consistencyRulePct, profitSplitPct: challenge.profitSplitPct,
-        profitSplitTiers: displaySplitTiers(challenge.profitSplitTiers),
+        ...(splitTierRows ? { splitTierRows } : {}),
         payoutFirstDays: challenge.payoutFirstDays, payoutFrequency: challenge.payoutFrequency,
         rules: challenge.rules, assetClass: challenge.assetClass,
         sourceUrl: challenge.sourceUrl, capturedAt: challenge.sourceCapturedAt,
@@ -52,11 +54,21 @@ export const RUSSIAN_FINDER_REVIEWS: Record<string, string> = {
 export function getRussianFinderRows(now = new Date()): GlobalChallengeRow[] {
   const firms = getAllFirms()
   // Resolved here (server) so client finders get the status as data and never bundle firms.json.
+  // Futures products use futuresCountriesRestricted; CFD/challenge keep firm-level russiaStatus.
   const russiaStatuses = russiaStatusesBySlug(firms)
   const russiaBasisDates = russiaBasisDatesBySlug(firms)
-  return buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now)
+  const futuresRestricted = futuresRussiaRestrictedBySlug(firms)
+  return buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now, 'ru')
     .filter(row => row.firm.slug in RUSSIAN_FINDER_REVIEWS)
-    .map(row => ({ ...row, firm: { ...row.firm, reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug], russiaStatus: resolveRussiaStatus(russiaStatuses, row.firm.slug), russiaBasisDate: resolveRussiaBasisDate(russiaBasisDates, row.firm.slug) } }))
+    .map(row => ({
+      ...row,
+      firm: {
+        ...row.firm,
+        reviewUrl: RUSSIAN_FINDER_REVIEWS[row.firm.slug],
+        russiaStatus: resolveRussiaStatusForProduct(russiaStatuses, futuresRestricted, row.firm.slug, row.product.assetClass),
+        russiaBasisDate: resolveRussiaBasisDate(russiaBasisDates, row.firm.slug),
+      },
+    }))
 }
 
 /** Editorial starting pairs, not a ranking. Matching phases/size do not make other rules equal. */

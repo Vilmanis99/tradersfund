@@ -49,12 +49,17 @@
         "sourceUrl": "https://myfundedfutures.com/plans/rapid"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
-    "payoutFirstDays": null,
+    "payoutFirstDays": 1,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": null,
+      "weekend": false,
       "overnight": false,
       "ea": "restricted",
       "copyTrading": "restricted"
@@ -63,18 +68,21 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-    "sourceCapturedAt": "2026-10-22",
+    "sourceCapturedAt": "2026-10-26",
     "notes": [
       "Current Rapid plan page says one-time payment with no renewals and $0 activation fee for new purchases.",
       "Current Rapid plan page sells one-time list prices of $145 / $209 / $356 / $463 for 25K / 50K / 100K / 150K. These are the regular, pre-coupon prices from the page's embedded plan data (\"priceCents\":14500 / 20900 / 35600 / 46300; the 25K/50K JSON-LD offers read \"145.00\" / \"209.00\"), first filled in the 2026-10-14 recapture (which replaced the old null placeholders) and found unchanged on the live page 2026-10-20. The embedded data also carries a CLUB coupon price (\"priceDiscountedCents\"), which is not stored.",
       "Evaluation uses EOD trailing drawdown; the Sim Funded stage uses intraday trailing drawdown and the floor locks at +$100 after the buffer is secured.",
       "The evaluation target is 6% (the official rules table gives $1,500 / $3,000 / $6,000 / $9,000 by size), with 2 minimum trading days and a 50% evaluation-only consistency rule.",
-      "The funded stage has no daily loss limit or consistency rule, a 90/10 split, a $500 minimum payout, and a required buffer of $1,100 / $2,100 / $3,100 / $4,600 by size. The first request is not a fixed day count because the buffer must be cleared.",
+      "The funded stage has no daily loss limit or consistency rule, a 90/10 split, a $500 minimum payout, and a required buffer of $1,100 / $2,100 / $3,100 / $4,600 by size, built in realized profits. payoutFirstDays 1 = the 24-hour wait after the first Sim Funded trade; the request also needs the buffer and minimum (help 13134709: \"Your first payout becomes available exactly 24 hours after your first trade on the Sim Funded account (as long as you meet the buffer and minimum).\"). No per-cycle payout cap is published for Rapid.",
       "The firm-wide restricted-country article lists Russia. A trader located in Russia cannot purchase a new account.",
       "Capture sources: https://myfundedfutures.com/plans/rapid and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
-      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json"
+      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json",
+      "Live transition (help 13134718, updated 2026-09-08, read 2026-10-26): \"$10,000 net profit achieved in a single trading day (automatic transition)\" or approval by the Risk Management Team; \"There is no buffer requirement on the Rapid Live account.\" Sim Funded has a 7-calendar-day inactivity rule; Tier 1 news is not allowed in Sim Funded.",
+      "Weekend holding (2026-10-26): false. Derived from the firm-wide session rule, not from a page that uses the word \"weekend\": https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade says positions \"can remain open until the New York session closes at 4:10 PM EST\" and \"any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days.\" No position can therefore stay open over the Friday close.",
+      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
     ]
   },
   {
@@ -115,12 +123,17 @@
         "sourceUrl": "https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": null,
+      "weekend": false,
       "overnight": false,
       "ea": "restricted",
       "copyTrading": "restricted"
@@ -129,7 +142,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/rapid-eod",
-    "sourceCapturedAt": "2026-10-22",
+    "sourceCapturedAt": "2026-10-26",
     "notes": [
       "Official Rapid EOD plan page (read 2026-10-22) lists one-time prices 25K $145 and 50K $225 (Product schema offers \"price\":\"145.00\" and \"price\":\"225.00\"; card \"One-time fee $87 Based on current promotions $145\", homepage \"$135 Based on current promotions $225\", i.e. 40% off with CLUB). Replaces the 50K $157 from the older blog article. Read from the box (US IP) and the WebFetch reader (same $87 promo for 25K); MFF publishes a single USD price list with no regional table. Rules unchanged: no activation fee, 4 minimum days, 30% evaluation consistency, EOD drawdown in evaluation and Sim Funded, $1,100/$2,100 buffer, $500 minimum payout, 90/10.",
       "The official Rapid EOD 25K help article confirms the 25K rules and $1,000 drawdown; the 25K price ($145) comes from the plan page captured 2026-10-22.",
@@ -138,7 +151,10 @@
       "Capture sources: https://myfundedfutures.com/blog/myfundedfutures-rapid-eod-plan, https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look, https://help.myfundedfutures.com/en/articles/16727601-rapid-eod-25k-a-comprehensive-look, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
-      "Daily check 2026-10-22: price change 50K $157 -> $225 and 25K null -> $145 from https://myfundedfutures.com/plans/rapid-eod; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json"
+      "Daily check 2026-10-22: price change 50K $157 -> $225 and 25K null -> $145 from https://myfundedfutures.com/plans/rapid-eod; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json",
+      "Payout gates (help 16158363 / 16727601, read 2026-10-26): first payout needs $2,100 (50K) / $1,100 (25K) in realized profits; later payouts unlock at $500 / $250 net profit since the last payout; $500 minimum; \"There is no cap on how much you can request per payout cycle.\" No daily loss limit in evaluation or Sim Funded; MLL locks once the trailing Max Loss reaches $100. \"Live transition on Rapid EOD 50k follows the same rules as standard Rapid 50k.\" Tier 1 news not allowed in Sim Funded; 7-day inactivity rule. No fixed first-payout day count is published for Rapid EOD, so payoutFirstDays stays null.",
+      "Weekend holding (2026-10-26): false. Derived from the firm-wide session rule, not from a page that uses the word \"weekend\": https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade says positions \"can remain open until the New York session closes at 4:10 PM EST\" and \"any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days.\" No position can therefore stay open over the Friday close.",
+      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
     ]
   },
   {
@@ -169,6 +185,11 @@
     "minTradingDays": 2,
     "maxTradingDays": null,
     "consistencyRulePct": 50,
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "The Flex plan page lists the 50% evaluation consistency threshold without stating what profit it is measured against, so the basis is left unset.",
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
     "payoutFrequency": "on-demand",
@@ -183,7 +204,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
-    "sourceCapturedAt": "2026-10-22",
+    "sourceCapturedAt": "2026-10-26",
     "notes": [
       "Flex is a legacy product. MFFU’s own Flex article says it is no longer offered to new buyers; these values describe legacy subscriptions and should not be presented as a current purchase option.",
       "Legacy Flex subscriptions retain recurring 30-day billing under the terms that applied before the one-time-payment migration. The current terms distinguish legacy subscriptions from new one-time plans.",
@@ -192,7 +213,8 @@
       "Capture sources: https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy, https://myfundedfutures.com/blog/myfundedfutures-mffu-flex-plan, https://marketing.myfundedfutures.com/terms, and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
-      "Daily check 2026-10-22: official Flex article re-read; still \"a legacy plan no longer on offer\"; prices stay null."
+      "Daily check 2026-10-22: official Flex article re-read; still \"a legacy plan no longer on offer\"; prices stay null.",
+      "Legacy recheck 2026-10-26: help 13521620 (updated 2026-06-03) still gives \"You may request 50% of your net profits per payout, up to $5,000\" with 5 qualifying winning days, and the Flex blog still says \"This article is about a legacy plan no longer on offer\". No change; rules.weekend stays null because neither legacy source addresses it. Log: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
     ]
   },
   {
@@ -239,12 +261,17 @@
         "sourceUrl": "https://myfundedfutures.com/plans/pro"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://help.myfundedfutures.com/en/articles/11994562-consistency-rule-at-my-fundedfutures",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "MyFundedFutures' consistency help article describes the evaluation threshold both as a share of total evaluation profits and as a share of the profit target, so the basis is left unset until the firm's wording is consistent.",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
       "news": "restricted",
-      "weekend": null,
+      "weekend": false,
       "overnight": false,
       "ea": "restricted",
       "copyTrading": "restricted"
@@ -253,7 +280,7 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/pro",
-    "sourceCapturedAt": "2026-10-22",
+    "sourceCapturedAt": "2026-10-26",
     "notes": [
       "Current Pro plan page says one-time payment with no renewals and $0 activation fee. Stored list prices of $265 / $401 / $557 for 50K / 100K / 150K come from the page's embedded plan data (\"priceCents\":26500 / 40100 / 55700, regular price before the CLUB coupon). They were first filled in the 2026-10-14 recapture and found unchanged on the live page 2026-10-20.",
       "Pro evaluation uses a 6% target, $2,000 / $3,000 / $4,500 EOD maximum loss by size, 2 minimum trading days, and a 50% evaluation-only consistency rule.",
@@ -263,7 +290,10 @@
       "Capture sources: https://myfundedfutures.com/plans/pro and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
-      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json"
+      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json",
+      "2026-10-26 recheck (plans/pro and help 17573707, updated 2026-10-14): the $100,000 figure is worded both ways. The plan page says \"Up to $100,000 per payout cycle\" and \"Up to $100,000 per cycle\", but its title and FAQ say \"up to $100,000 in total Sim Funded payouts per user\", and the help article and payout overview say \"Maximum Payout (per user) $100,000\". Live triggers: 3 consecutive payouts (Risk Team review) or invitation; the help article says \"Profits above $100,000 are forfeited.\" The MLL locks at starting balance + $100 after the first approved payout. Unresolved, so not stored as a structured cap.",
+      "Weekend holding (2026-10-26): false. Derived from the firm-wide session rule, not from a page that uses the word \"weekend\": https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade says positions \"can remain open until the New York session closes at 4:10 PM EST\" and \"any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days.\" No position can therefore stay open over the Friday close.",
+      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
     ]
   },
   {
@@ -283,13 +313,25 @@
         "priceUsd": 153,
         "maxLossUsd": 2000,
         "refundable": false
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 282,
+        "maxLossUsd": 3000,
+        "refundable": false
+      },
+      {
+        "sizeUsd": 150000,
+        "priceUsd": 398,
+        "maxLossUsd": 4500,
+        "refundable": false
       }
     ],
     "profitTargets": {
       "phase1": 6
     },
     "dailyLossPct": null,
-    "maxLossPct": 4,
+    "maxLossPct": null,
     "drawdownType": "eod-trailing",
     "fundedDrawdownType": "eod-trailing",
     "minTradingDays": 1,
@@ -305,12 +347,17 @@
         "sourceUrl": "https://myfundedfutures.com/plans/builder"
       }
     ],
+    "consistencyBasis": null,
+    "consistencyBasisQuote": null,
+    "consistencyBasisSourceUrl": "https://myfundedfutures.com/plans/builder",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "consistencyBasisNote": "The Builder plan page states a 50% consistency rule at the payout stage but not whether it is measured against total profit or profit since the last payout, so the basis is left unset.",
     "profitSplitPct": 80,
     "payoutFirstDays": 2,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": true,
-      "weekend": null,
+      "weekend": false,
       "overnight": false,
       "ea": "restricted",
       "copyTrading": "restricted"
@@ -319,9 +366,8 @@
     "activationFeeUsd": 0,
     "assetClass": "futures",
     "sourceUrl": "https://myfundedfutures.com/plans/builder",
-    "sourceCapturedAt": "2026-10-22",
+    "sourceCapturedAt": "2026-10-26",
     "notes": [
-      "Current Builder page says one-time payment with no renewals and $0 activation fee. Stored list prices of $105 / $153 for 25K / 50K come from the page's embedded plan data (\"priceCents\":10500 / 15300, regular price before the CLUB coupon). They were first filled in the 2026-10-14 recapture and found unchanged on the live page 2026-10-20. The visible promotional starting figures are not used. The embedded data also lists 100K (\"priceCents\":28200) and 150K (\"priceCents\":39800) tiers, which are not stored yet because their rules were not captured.",
       "Builder evaluation targets are $1,500 on 25K and $3,000 on 50K (6%); maximum EOD trailing loss is $1,000 and $2,000 by size, with a $1,000 soft pause on 50K, 1 minimum trading day, and no evaluation consistency rule.",
       "Sim Funded Builder applies a 50% consistency rule at payout, requires 2 qualifying days per cycle, clears a $1,100 or $2,100 buffer, and caps payouts at $1,000 or $2,000. The cadence is every 48 hours, represented as on-demand because the schema has no 48-hour enum.",
       "After 5 approved simulated payouts, MFFU describes a live transition with daily payouts, an 80/20 split, and no live consistency rule; the live account has different limits.",
@@ -329,7 +375,11 @@
       "Capture sources: https://myfundedfutures.com/plans/builder and https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
-      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json"
+      "Daily check 2026-10-22: plan-page Product schema list prices re-read, no change; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json",
+      "2026-10-26: the Builder plan page now sells four sizes. Product schema offers: \"My Funded Futures Builder Plan 100,000 Account\",\"price\":\"282.00\" and \"My Funded Futures Builder Plan 150,000 Account\",\"price\":\"398.00\" (priceCents 28200 / 39800). The plan-page rules give a $6,000 / $9,000 target (6%) and a $3,000 / $4,500 EOD MLL, so maxLossPct is null because MLL is 4% on 25K/50K but 3% on 100K/150K. Help 17005296 / 17035331 cover the rules.",
+      "Builder payout and limit details (plans/builder plus help 17036130 / 14290805 / 17005296 / 17035331, read 2026-10-26): buffer $1,100 / $2,100 / $3,100 / $4,600; first payout needs net profit above the buffer of $250 / $500 / $1,000 / $1,500, and the same amounts are the minimums; the plan-page cap per cycle is $1,000 / $2,000 / $3,000 / $3,500. The 150K help says $4,500, which is unresolved. Soft-pause DLL $600 / $1,000 / $1,750 / $2,500 does not breach. News is unrestricted in evaluation and Sim Funded. Sim Funded inactivity is 7 calendar days, with none on live. Live comes after the 5th approved sim payout, with a 21-day cooldown after a live breach.",
+      "Weekend holding (2026-10-26): false. Derived from the firm-wide session rule, not from a page that uses the word \"weekend\": https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade says positions \"can remain open until the New York session closes at 4:10 PM EST\" and \"any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days.\" No position can therefore stay open over the Friday close.",
+      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
     ]
   }
 ]

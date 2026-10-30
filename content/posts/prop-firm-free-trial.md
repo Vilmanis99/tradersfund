@@ -3,7 +3,7 @@ title: "Prop Firms With a Free Trial (2026): 6 Offers Checked"
 seoTitle: "Prop Firm Free Trial 2026: 6 Firms, Limits & Rules"
 slug: "prop-firm-free-trial"
 date: "2026-10-19 12:00:00"
-modified: "2026-10-20 12:00:00"
+modified: "2026-10-27 12:00:00"
 author: "Edris Derakhshi"
 excerpt: "Six prop firms let you trade for free right now, and five of them will never pay you for it. Here are the limits, the gotchas and how each trial converts to a paid account."
 seoDescription: "Prop firm free trial list for 2026: FTMO, FundedNext, FundingPips, Alpha Capital, E8 and BrightFunded's free $1K challenge, with limits and how to convert."
@@ -27,7 +27,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Every prop firm free trial we could verify, side by side</strong></h2>
 
-<p>"Free trial" covers three different things in this industry: a practice account that copies a paid rule set, a free challenge that can actually fund you, and a "practice" account that only comes with a paid subscription. The table keeps them apart. Each row is sourced from the firm's own help center or landing page, and the captures sit in <code>content/data/free-trials.json</code> and <code>content/data/free-trial-offers-evidence.json</code>.</p>
+<p>"Free trial" covers three different things in this industry: a practice account that copies a paid rule set, a free challenge that can actually fund you, and a "practice" account that only comes with a paid subscription. The table keeps them apart. Each row is sourced from the firm's own help center or landing page. All six offers were checked on 2026-10-19, and FTMO was rechecked on 2026-10-20.</p>
 
 <table data-free-trial-index="2026-10-19" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
   <caption class="hidden-caption">Prop firm free trials and free challenges checked on 2026-10-19 (FTMO rechecked on 2026-10-20)</caption>

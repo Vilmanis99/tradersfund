@@ -974,7 +974,7 @@ export const LANDINGS: Landing[] = [
       },
       {
         title: 'Is the evaluation fee one-time or recurring?',
-        body: 'Read pricingModel before comparing headline prices. A monthly subscription can rebill until the trader passes or cancels, while a one-time evaluation can still add a funded-account activation payment.',
+        body: 'Check whether the fee is one-time or monthly before comparing headline prices. A monthly subscription can rebill until the trader passes or cancels, while a one-time evaluation can still add a funded-account activation payment.',
       },
       {
         title: 'Does drawdown trail intraday or at session end?',

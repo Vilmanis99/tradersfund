@@ -243,9 +243,9 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
   ],
   '/ru/fundingpips-pravila': [
     alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),
-    rel('/ru/fundednext-vs-fundingpips', 'FundedNext или FundingPips'),
-    rel('/ru/fundingpips-vs-bright-funded', 'FundingPips или BrightFunded'),
-    rel('/ru/kak-rabotayut-chellendzhi-prop-firm', 'Как работают челленджи'),
+    rel('/ru/prop-firmy-s-ctrader', 'Проп-фирмы с cTrader'),
+    rel('/ru/forex-prop-firmy', 'Форекс проп-фирмы'),
+    rel('/ru/obzor-the5ers', 'Обзор The5ers'),
   ],
 }
 

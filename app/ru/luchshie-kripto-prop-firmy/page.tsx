@@ -67,7 +67,7 @@ const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
 const OPEN_BASIS_DATE = ruNotListedDates(ACCESS_LIST_SLUGS.filter(slug => russiaStatusFor(slug) === 'available'))
 const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
-const DESCRIPTION = 'Крипто проп-компании 2026: BrightFunded и Crypto Fund Trader не ограничивают РФ, а FTMO, CTI, OFP и FundedNext ограничивают. Криптопары, плечо, комиссии, цены.'
+const DESCRIPTION = 'Крипто проп-компании 2026: у BrightFunded и Crypto Fund Trader РФ нет в списке ограничений (на 23.10.2026), а FTMO, CTI, OFP и FundedNext ограничивают. Цены.'
 // RU SEO Lead approved 22.10, numberless by design
 const SOCIAL_TITLE = 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ'
 const SOCIAL_DESCRIPTION = 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.'
@@ -395,7 +395,7 @@ export default function RussianCryptoPropFirmsPage() {
         <section className="ru-section" id="crypto-shortlist">
           <div className="ru-shell" data-russian-crypto-shortlist="russia-access-first">
             <div className="ru-content">
-              <h2>Крипто-проп-фирмы: сначала не ограничивающие РФ, затем закрытые</h2>
+              <h2>Крипто-проп-фирмы: сначала те, у кого РФ нет в списке ограничений, затем закрытые</h2>
               <p>Порядок — по доступу для резидентов России (бейдж берётся из нашей базы), затем редакционный. Закрытые фирмы мы оставили в списке, потому что их часто ищут: бейдж показывает, почему они не подходят трейдеру из РФ. Ссылки на их сайты идут последними, с пометкой «резидентам РФ недоступна»; резидентам России мы их не рекомендуем.</p>
             </div>
             <div className="ru-grid">

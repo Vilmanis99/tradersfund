@@ -1,20 +1,15 @@
-import { firmSlug } from '@/lib/firmSlug'
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
-import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
+import { getAllFirms } from '@/lib/firms'
 import { FEATURES } from '@/lib/features'
 import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
-import { LANDINGS, buildLandingPayload, getLandingSourceLastModified } from '@/lib/landings'
+import { LANDINGS, buildLandingPayload } from '@/lib/landings'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
 import { AUTHORS } from '@/lib/authors'
-import { getAllDeals } from '@/lib/deals'
-import { INDIA_EVIDENCE } from '@/lib/india'
 import { INDIA_MATCHUPS, indiaMatchupPath } from '@/lib/indiaMatchups'
-import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { latestCorrectionDate } from '@/lib/corrections'
 import { HOW_WE_MAKE_MONEY_UPDATED } from '@/lib/trustPages'
-import { CLOSED_FIRMS_CAPTURED_AT, CLOSED_FIRMS_PUBLISHED, closedFirmsRoutePair } from '@/lib/closedFirms'
-import { RU_DISCLOSURE } from '@/lib/ruDisclosure'
+import { CLOSED_FIRMS_PUBLISHED, closedFirmsRoutePair } from '@/lib/closedFirms'
 import { isSourceHoldReview, isSourceHoldFirm } from '@/lib/reviewStatus'
 import {
   LOCALIZED_ROUTE_PAIRS,
@@ -24,205 +19,181 @@ import {
   RU_CLOSED_FIRMS_EDITORIAL_DATE,
   RU_CLOSED_FIRMS_PATH,
   getLocalizedRoutePair,
-  russianRouteLastModified,
 } from '@/lib/localizedRoutes'
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
 import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
-import { russianRankingDataDate } from '@/lib/russianRouteDates'
-import russianMarketEvidence from '@/content/data/russian-market-evidence.json'
-import russianBrightEvidence from '@/content/data/russian-bright-funded-evidence.json'
-import russianFundedNextReviewEvidence from '@/content/data/russian-fundednext-review-evidence.json'
-import russianDiasporaEvidence from '@/content/data/russian-diaspora-evidence.json'
-import russianCTraderEvidence from '@/content/data/russian-ctrader-evidence.json'
-import russianFundedNextInstantEvidence from '@/content/data/russian-fundednext-instant-evidence.json'
-import russianFundedNextMt5Evidence from '@/content/data/russian-fundednext-mt5-evidence.json'
-import russianForexEvidence from '@/content/data/russian-forex-evidence.json'
-import russianTeamTradersEvidence from '@/content/data/russian-teamtraders-evidence.json'
+import { RUSSIAN_ROUTE_EXTRA_EDITORIAL } from '@/lib/russianRouteLastmod'
+import { fileSource, firmSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
 
 const BASE_URL = 'https://tradersfundhub.com'
-/** Absolute URL in the same form as the rendered canonical (home has no trailing slash). */
 const HOME_EDITORIAL_DATE = '2026-09-14'
+const CONTACT_EDITORIAL_DATE = '2026-01-01'
+const data = (name: string) => fileSource(`content/data/${name}`)
 
-function slugify(name: string) {
-  return firmSlug(name)
-}
-
+/**
+ * lastmod per URL = newest real change among the sources that render it (lib/sitemapLastmod.ts):
+ * editorial dates written by people plus the commit dates where the rendered data last changed
+ * (content/data/sitemap-lastmod.json). Capture/re-check dates and the clock are never used.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
   const pages = getAllPages()
   const firms = getAllFirms()
-  const challenges = getAllChallenges()
+  const firmSlugs = firms.map(firm => firm.name)
+  const allFirms = (surface: 'en' | 'ru' | 'compare' | 'listing') => firmSlugs.flatMap(name => firmSources(name, surface))
+  const lm = sitemapLastmod
 
-  // The most recent firm-data update — used as a defensible lastmod for
-  // every route that's a function of `firms.json` (home, main-table,
-  // /prop-firms hub, etc.). Avoids the "every deploy bumps every URL"
-  // problem that makes Google deprioritise the sitemap.
-  const firmsLastModified = firms
-    .map(f => f.lastUpdated)
-    .filter((d): d is string => !!d)
-    .sort()
-    .at(-1) || new Date().toISOString()
-  const firmsLastDate = new Date(firmsLastModified)
+  // Review posts also render their firm's data and the writer's verdict copy.
+  const reviewFirmBySlug = new Map<string, string>()
+  for (const firm of firms) {
+    const match = /^\/blog\/([^/?#]+)/.exec(firm.reviewUrl ?? '')
+    if (match) reviewFirmBySlug.set(match[1], firm.name)
+  }
+  // Posts: the writer's frontmatter `modified` (else `date`) dates the article itself; the file's
+  // git date is used only when the frontmatter has no `modified`.
+  const postSources = (slug: string, hasModified: boolean) => {
+    const firm = reviewFirmBySlug.get(slug)
+    return [
+      ...(hasModified ? [] : [fileSource(`content/posts/${slug}.md`)]),
+      ...(firm ? [...firmSources(firm, 'en'), `copy:reviews:${slug}`] : []),
+    ]
+  }
+  const postRouteList = posts.filter(post => !isSourceHoldReview(post.slug))
+  const postLastmod = new Map(postRouteList.map(post => [
+    post.slug,
+    lm(`${BASE_URL}/blog/${post.slug}`, post.date, postSources(post.slug, Boolean(post.modified)), [post.modified]),
+  ]))
+  const newest = (dates: Date[]) => dates.map(d => d.toISOString().slice(0, 10)).sort().at(-1)
+  const oldestPostDate = posts.map(post => post.date).filter(Boolean).sort()[0]
 
-  // For each firm, the latest "lastUpdated" date keyed by slug — used to
-  // lastmod compare/<a>-vs-<b> pages (the more recent of the two firms wins).
-  const firmDateBySlug = new Map<string, Date>()
-  firms.forEach(f => {
-    if (f.lastUpdated) firmDateBySlug.set(slugify(f.name), new Date(f.lastUpdated))
-  })
-
-  // Latest post mtime for /blog list lastmod.
-  const blogLastModified = posts
-    .map(p => p.modified || p.date)
-    .filter(Boolean)
-    .sort()
-    .at(-1) || new Date().toISOString()
-
-  // Deals hub lastmod tracks the newest verified-deal date (a custom route,
-  // so it must be listed here — it is neither an MDX page nor a LANDING).
-  const dealsLastModified = getAllDeals()
-    .map(d => d.verifiedOn)
-    .filter(Boolean)
-    .sort()
-    .at(-1) || firmsLastModified
-  const dealsLastDate = new Date(dealsLastModified)
-  const indiaEvidenceLastModified = INDIA_EVIDENCE
-    .map(entry => entry.capturedAt)
-    .sort()
-    .at(-1) || firmsLastModified
-  const indiaEvidenceLastDate = new Date(indiaEvidenceLastModified)
-  const challengeLastModified = [
-    ...challenges.map(challenge => challenge.sourceCapturedAt),
-    ...getChallengeWatchEntries().map(entry => entry.lastCheckedAt),
-  ].sort().at(-1) || firmsLastModified
-  const challengeLastDate = new Date(challengeLastModified)
-  const challengeComparisonLastDate = new Date(Math.max(
-    challengeLastDate.getTime(),
-    firmsLastDate.getTime(),
-  ))
-  const indiaMatchupLastDate = new Date(Math.max(
-    indiaEvidenceLastDate.getTime(),
-    challengeComparisonLastDate.getTime(),
-  ))
-  const comparisonTemplateLastDate = new Date(COMPARISON_EDITORIAL_DATE)
-  const comparisonHubLastDate = new Date(Math.max(challengeComparisonLastDate.getTime(), comparisonTemplateLastDate.getTime()))
+  const indiaLanding = LANDINGS.find(landing => landing.slug === 'best-prop-firms-in-india')
+  const indiaFirms = indiaLanding
+    ? buildIndiaMatcherFirms(buildLandingPayload(indiaLanding).ranked.map(entry => entry.firm))
+    : []
+  const indiaEligibleFirmSlugs = new Set(indiaFirms.map(firm => firm.slug))
+  const indiaSources = [data('india-evidence.json'), ...[...indiaEligibleFirmSlugs].flatMap(slug => firmSources(slug, 'en'))]
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(Math.max(new Date(HOME_EDITORIAL_DATE).getTime(), challengeComparisonLastDate.getTime())), changeFrequency: 'daily', priority: 1 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(blogLastModified), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: dealsLastDate, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-changes`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: indiaMatchupLastDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/payout-methods`, lastModified: indiaEvidenceLastDate, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/prop-firm-challenges`, lastModified: challengeComparisonLastDate, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: challengeLastDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/prop-firms`, lastModified: firmsLastDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/compare`, lastModified: comparisonHubLastDate, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/contact`, lastModified: new Date('2026-01-01'), changeFrequency: 'yearly', priority: 0.4 },
-    { url: `${BASE_URL}/how-we-make-money`, lastModified: new Date(`${HOW_WE_MAKE_MONEY_UPDATED}T00:00:00Z`), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${BASE_URL}/corrections`, lastModified: new Date(`${latestCorrectionDate() ?? HOW_WE_MAKE_MONEY_UPDATED}T00:00:00Z`), changeFrequency: 'weekly', priority: 0.5 },
+    { url: BASE_URL, lastModified: lm(BASE_URL, HOME_EDITORIAL_DATE, [...allFirms('en'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'daily', priority: 1 },
+    { url: `${BASE_URL}/blog`, lastModified: lm(`${BASE_URL}/blog`, oldestPostDate, [], [newest([...postLastmod.values()])]), changeFrequency: 'daily', priority: 0.9 },
+    { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: lm(`${BASE_URL}/prop-firm-discount-codes`, null, [data('deals.json')]), changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/compare`, null, indiaSources), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-changes`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/challenge-changes`, null, [...indiaSources, data('challenge-watch.json')]), changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, null, indiaSources), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/payout-methods`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/payout-methods`, null, [data('india-evidence.json')]), changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${BASE_URL}/prop-firm-challenges`, lastModified: lm(`${BASE_URL}/prop-firm-challenges`, null, [...allFirms('en'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: lm(`${BASE_URL}/prop-firm-challenge-changes`, null, [data('challenge-watch.json')]), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/prop-firms`, lastModified: lm(`${BASE_URL}/prop-firms`, null, allFirms('en')), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/compare`, lastModified: lm(`${BASE_URL}/compare`, COMPARISON_EDITORIAL_DATE, [...allFirms('compare'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/contact`, lastModified: lm(`${BASE_URL}/contact`, CONTACT_EDITORIAL_DATE, []), changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE_URL}/how-we-make-money`, lastModified: lm(`${BASE_URL}/how-we-make-money`, HOW_WE_MAKE_MONEY_UPDATED, []), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE_URL}/corrections`, lastModified: lm(`${BASE_URL}/corrections`, HOW_WE_MAKE_MONEY_UPDATED, [data('corrections.json')], [latestCorrectionDate()]), changeFrequency: 'weekly', priority: 0.5 },
     // /prop-firms/closed joins the sitemap only once content/data/closed-firms.json is published.
     ...(CLOSED_FIRMS_PUBLISHED
-      ? [{ url: `${BASE_URL}/prop-firms/closed`, lastModified: new Date(`${CLOSED_FIRMS_CAPTURED_AT}T00:00:00Z`), changeFrequency: 'monthly' as const, priority: 0.5 }]
+      ? [{ url: `${BASE_URL}/prop-firms/closed`, lastModified: lm(`${BASE_URL}/prop-firms/closed`, null, [data('closed-firms.json')]), changeFrequency: 'monthly' as const, priority: 0.5 }]
       : []),
   ]
 
-  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => {
-    const reviewedAt = new Date(`${f.lastReviewed}T00:00:00Z`)
-    return {
-      url: `${BASE_URL}/prop-firms/${f.slug}`,
-      lastModified: new Date(Math.max(firmsLastDate.getTime(), reviewedAt.getTime())),
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    }
-  })
-  const indiaLanding = LANDINGS.find(landing => landing.slug === 'best-prop-firms-in-india')
-  const indiaEligibleFirmSlugs = new Set(
-    indiaLanding
-      ? buildIndiaMatcherFirms(
-          buildLandingPayload(indiaLanding).ranked.map(entry => entry.firm),
-        ).map(firm => firm.slug)
-      : [],
-  )
+  // Listing surface: rule flags only (no Trustpilot). Split-tier UI dates pages that render tiers.
+  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => ({
+    url: `${BASE_URL}/prop-firms/${f.slug}`,
+    lastModified: lm(
+      `${BASE_URL}/prop-firms/${f.slug}`,
+      null,
+      [...allFirms('listing'), ...SPLIT_TIER_SOURCES],
+      [f.lastReviewed],
+    ),
+    changeFrequency: 'weekly',
+    priority: 0.75,
+  }))
   const indiaMatchupRoutes: MetadataRoute.Sitemap = Object.values(INDIA_MATCHUPS)
     .filter(matchup => matchup.firmSlugs.every(slug => indiaEligibleFirmSlugs.has(slug)))
     .map(matchup => ({
       url: `${BASE_URL}${indiaMatchupPath(matchup)}`,
-      lastModified: indiaMatchupLastDate,
+      lastModified: lm(
+        `${BASE_URL}${indiaMatchupPath(matchup)}`,
+        null,
+        [data('india-evidence.json'), ...matchup.firmSlugs.flatMap(slug => firmSources(slug, 'en'))],
+      ),
       changeFrequency: 'weekly' as const,
       priority: 0.88,
     }))
 
-  // Long-tail landings: /best-prop-firms-in-uk, /cheapest-prop-firms, etc.
-  // These are data-driven, so lastmod tracks the relevant source snapshot.
-  const landingRoutes: MetadataRoute.Sitemap = LANDINGS.map(l => ({
-    url: `${BASE_URL}/${l.slug}`,
-    lastModified: getLandingSourceLastModified(l.slug) ?? firmsLastDate,
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
+  // Long-tail landings: the firms each one ranks, plus its own evidence file.
+  const LANDING_EVIDENCE: Record<string, string> = {
+    'best-prop-firms-in-uk': 'uk-access-evidence.json',
+    'best-prop-firms-in-us': 'us-access-evidence.json',
+    'best-crypto-prop-firms': 'crypto-market-evidence.json',
+    'best-prop-firms-in-india': 'india-evidence.json',
+  }
+  const landingRoutes: MetadataRoute.Sitemap = LANDINGS.map(l => {
+    const ranked = [...new Set(buildLandingPayload(l).ranked.map(entry => entry.firm.name))]
+    const evidence = LANDING_EVIDENCE[l.slug]
+    return {
+      url: `${BASE_URL}/${l.slug}`,
+      lastModified: lm(
+        `${BASE_URL}/${l.slug}`,
+        null,
+        [...ranked.flatMap(name => firmSources(name, 'en')), ...(evidence ? [data(evidence)] : [])],
+        [l.lastReviewed],
+      ),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }
+  })
 
-  // E-E-A-T: bio pages are explicitly indexable so Google can attribute
-  // YMYL content (prop-firm reviews) to a named person.
+  // Bio pages: the registry's own updatedAt (lib/authors.ts has no data file to date).
   const authorRoutes: MetadataRoute.Sitemap = AUTHORS.map(a => ({
     url: `${BASE_URL}/authors/${a.slug}`,
-    lastModified: a.updatedAt ? new Date(a.updatedAt) : firmsLastDate,
+    lastModified: lm(`${BASE_URL}/authors/${a.slug}`, a.updatedAt ?? HOME_EDITORIAL_DATE, []),
     changeFrequency: 'monthly',
     priority: 0.6,
   }))
 
-  // Preserve existing URLs; substantive template edits and the pair's own
-  // source captures can update lastmod. Never use the current request date.
+  // A pair page changes when the template's editorial date, either firm's compare-visible data
+  // or the pair's writer copy changes; other firms' releases leave it alone.
   const compareRoutes: MetadataRoute.Sitemap = getAllCanonicalPairs()
     .filter(p => {
       const [aSlug, bSlug] = p.matchup.split('-vs-')
       return !isSourceHoldFirm(aSlug) && !isSourceHoldFirm(bSlug)
     })
     .map(p => {
-    const [aSlug, bSlug] = p.matchup.split('-vs-')
-    const aDate = firmDateBySlug.get(aSlug)
-    const bDate = firmDateBySlug.get(bSlug)
-    const latest = aDate && bDate
-      ? (aDate > bDate ? aDate : bDate)
-      : (aDate || bDate || firmsLastDate)
-    return {
-      url: `${BASE_URL}/compare/${p.matchup}`,
-      lastModified: new Date(Math.max(latest.getTime(), comparisonTemplateLastDate.getTime(),
-        ...challenges.filter(product => [aSlug, bSlug].includes(product.firmSlug))
-          .map(product => new Date(product.sourceCapturedAt).getTime()).filter(Number.isFinite))),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    }
+      const [aSlug, bSlug] = p.matchup.split('-vs-')
+      return {
+        url: `${BASE_URL}/compare/${p.matchup}`,
+        lastModified: lm(
+          `${BASE_URL}/compare/${p.matchup}`,
+          COMPARISON_EDITORIAL_DATE,
+          [...firmSources(aSlug, 'compare'), ...firmSources(bSlug, 'compare'), `copy:compares:${p.matchup}`],
+        ),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      }
     })
 
-  // Category archives are prerendered (app/category/[slug]) and Google is
-  // already crawling them, but they were missing from the sitemap entirely —
-  // so they were only discoverable via in-page links. lastmod tracks the
-  // newest post in each category rather than a global date.
+  // Category archives: the newest post lastmod in the category.
   const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map(cat => {
     const catPosts = getPostsByCategory(cat)
-    const latest = catPosts
-      .map(p => p.modified || p.date)
-      .filter(Boolean)
-      .sort()
-      .at(-1) || blogLastModified
+    const catUrl = `${BASE_URL}/category/${cat.toLowerCase().replace(/\s+/g, '-')}`
     return {
-      url: `${BASE_URL}/category/${cat.toLowerCase().replace(/\s+/g, '-')}`,
-      lastModified: new Date(latest),
+      url: catUrl,
+      lastModified: lm(
+        catUrl,
+        catPosts.map(p => p.date).filter(Boolean).sort()[0],
+        [],
+        [newest(catPosts.flatMap(p => postLastmod.get(p.slug) ?? []))],
+      ),
       changeFrequency: 'weekly' as const,
       priority: 0.5,
     }
   })
 
-  const postRoutes: MetadataRoute.Sitemap = posts
-    .filter(post => !isSourceHoldReview(post.slug))
-    .map(post => ({
+  const postRoutes: MetadataRoute.Sitemap = postRouteList.map(post => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.modified || post.date),
+    lastModified: postLastmod.get(post.slug)!,
     changeFrequency: 'monthly',
     priority: 0.7,
-    }))
+  }))
 
   // Keep in sync with RESERVED in app/[slug]/page.tsx and the staticRoutes above.
   // `home` is rendered as `/`, `blog`/`main-table`/`prop-firms` have dedicated
@@ -247,7 +218,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(p => !SKIP.has(p.slug))
     .map(page => ({
       url: `${BASE_URL}/${page.slug}`,
-      lastModified: new Date(page.modified || page.date),
+      lastModified: lm(`${BASE_URL}/${page.slug}`, page.date, page.modified ? [] : [fileSource(`content/pages/${page.slug}.md`)], [page.modified]),
       changeFrequency: 'monthly',
       priority: 0.6,
     }))
@@ -258,13 +229,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(model => model.en.indexable)
     .map(model => ({
       url: `${BASE_URL}${model.en.path}`,
-      lastModified: new Date(`${model.newestCapture ?? model.rules.capturedAt}T00:00:00Z`),
+      lastModified: lm(
+        `${BASE_URL}${model.en.path}`,
+        null,
+        [...firmSources(model.slug, 'en'), fileSource(`content/verdicts/rules/${model.slug}.md`)],
+      ),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     }))
   const nonIndexableRulesPaths = new Set(rulesModels.flatMap(model => [
     ...(model.en.indexable ? [] : [model.en.path]),
-    ...(model.ru?.template && !model.ru.indexable ? [model.ru.path] : []),
+    // Template twins and hand-written RU rules pages alike (hand-written ones are also in RUSSIAN_ONLY_ROUTES).
+    ...(model.ru && !model.ru.indexable ? [model.ru.path] : []),
   ]))
 
   const baseRoutes: MetadataRoute.Sitemap = [
@@ -280,128 +256,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pageRoutes,
   ]
 
-  const russianChallengeLastModified = (...firmSlugs: string[]) => {
-    const capturedAt = challenges
-      .filter(challenge => firmSlugs.includes(challenge.firmSlug))
-      .map(challenge => challenge.sourceCapturedAt)
-      .sort()
-      .at(-1)
-    return new Date(capturedAt || challengeLastModified)
-  }
-  const russianOldestChallengeLastModified = (...firmSlugs: string[]) => {
-    const capturedAt = challenges
-      .filter(challenge => firmSlugs.includes(challenge.firmSlug))
-      .map(challenge => challenge.sourceCapturedAt)
-      .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date))
-      .sort()[0]
-    return new Date(capturedAt || russianMarketEvidence.capturedAt)
-  }
-  const russianFtmoCaptures = challenges.filter(challenge => challenge.firmSlug === 'ftmo')
-  const russianFtmoLastModified = new Date(
-    russianFtmoCaptures.filter(challenge => isChallengeFresh(challenge)).map(challenge => challenge.sourceCapturedAt).sort().at(-1)
-      ?? russianFtmoCaptures.map(challenge => challenge.sourceCapturedAt).sort().at(-1)
-      ?? russianMarketEvidence.capturedAt,
-  )
-  const russianPartnerSlugs = ['fundednext', 'bright-funded', 'fundingpips']
-  const russianEligiblePartnerSlugs = russianPartnerSlugs.filter(slug =>
-    firms.some(firm => slugify(firm.name) === slug && firm.affiliateUrl),
-  )
-  const russianPayoutLastModified = new Date([
-    ...challenges.filter(challenge => russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
-      .map(challenge => challenge.sourceCapturedAt),
-    ...russianMarketEvidence.payoutEvidence.filter(evidence => russianEligiblePartnerSlugs.includes(evidence.firmSlug))
-      .map(evidence => evidence.sourceCapturedAt),
-  ].sort().at(-1) ?? russianMarketEvidence.capturedAt)
-  const russianKycLastModified = new Date([
-    ...challenges.filter(challenge => russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
-      .map(challenge => challenge.sourceCapturedAt),
-    ...russianMarketEvidence.kycEvidence.filter(evidence => russianEligiblePartnerSlugs.includes(evidence.firmSlug))
-      .map(evidence => evidence.sourceCapturedAt),
-  ].sort().at(-1) ?? russianMarketEvidence.capturedAt)
-  const russianPrimaryComparisonLastModified = new Date([
-    ...challenges.filter(challenge => ['fundednext', 'bright-funded'].includes(challenge.firmSlug))
-      .map(challenge => challenge.sourceCapturedAt),
-    russianMarketEvidence.capturedAt,
-    russianFundedNextReviewEvidence.sources.payoutGeneral.sourceCapturedAt,
-    russianBrightEvidence.sources.rules.sourceCapturedAt,
-    russianBrightEvidence.sources.reward.sourceCapturedAt,
-    russianBrightEvidence.sources.platforms.sourceCapturedAt,
-    ...russianMarketEvidence.payoutEvidence.filter(evidence => ['fundednext', 'bright-funded'].includes(evidence.firmSlug))
-      .map(evidence => evidence.sourceCapturedAt),
-    ...russianMarketEvidence.kycEvidence.filter(evidence => ['fundednext', 'bright-funded'].includes(evidence.firmSlug))
-      .map(evidence => evidence.sourceCapturedAt),
-  ].filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort().at(-1) ?? russianMarketEvidence.capturedAt)
-  const russianReviewsLastModified = new Date(
-    challenges.filter(challenge => ['fundednext', 'bright-funded'].includes(challenge.firmSlug)
-      && russianEligiblePartnerSlugs.includes(challenge.firmSlug) && isChallengeFresh(challenge))
-      .map(challenge => challenge.sourceCapturedAt).sort().at(-1) ?? russianMarketEvidence.capturedAt,
-  )
-  const russianDealsLastModified = new Date(
-    getAllDeals().map(deal => deal.verifiedOn).sort().at(-1)
-      ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/promokody-prop-firm'],
-  )
-  const russianDataLastModified = new Map<string, Date>([
-    ['/ru', challengeComparisonLastDate],
-    ['/ru/luchshie-prop-firmy', new Date(`${russianRankingDataDate().slice(0, 10)}T00:00:00Z`)],
-    ['/ru/obzor-fundednext', russianOldestChallengeLastModified('fundednext')],
-    ['/ru/obzor-fundingpips', russianChallengeLastModified('fundingpips')],
-    ['/ru/obzor-bright-funded', russianOldestChallengeLastModified('bright-funded')],
-    ['/ru/obzor-crypto-fund-trader', russianOldestChallengeLastModified('crypto-fund-trader')],
-    ['/ru/obzor-ftmo', russianFtmoLastModified],
-    ['/ru/obzor-the5ers', russianOldestChallengeLastModified('the5ers')],
-    ['/ru/promokody-prop-firm', russianDealsLastModified],
-    ['/ru/fundednext-vs-bright-funded', russianPrimaryComparisonLastModified],
-    [
-      '/ru/fundednext-vs-fundingpips',
-      russianOldestChallengeLastModified('fundednext', 'fundingpips'),
-    ],
-    ['/ru/ftmo-vs-bright-funded', russianOldestChallengeLastModified('ftmo', 'bright-funded')],
-    ['/ru/ftmo-vs-fundednext', russianOldestChallengeLastModified('ftmo', 'fundednext')],
-    ['/ru/vyplaty-prop-firm', russianPayoutLastModified],
-    ['/ru/prop-firmy-bez-kyc', russianKycLastModified],
-    ['/ru/otzyvy-prop-firm', russianReviewsLastModified],
-    ['/ru/fundingpips-vs-bright-funded', russianOldestChallengeLastModified('bright-funded', 'fundingpips')],
-    // RU Writer's own date in the copy file; never earlier than the editorial date.
-    ['/ru/kak-my-zarabatyvaem', new Date(`${RU_DISCLOSURE.updated ?? RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/kak-my-zarabatyvaem']}T00:00:00Z`)],
-    // The instant guide's Article uses its editorial date; product rows show
-    // their own captures separately. Evaluation-only rechecks must not redate it.
-  ])
+  const russianEditorial = (path: string) => RUSSIAN_ROUTE_EXTRA_EDITORIAL[path] ?? []
   const russianRoutes: MetadataRoute.Sitemap = LOCALIZED_ROUTE_PAIRS.map(pair => ({
     url: `${BASE_URL}${pair.ru}`,
-    lastModified: russianRouteLastModified(
-      pair.ru,
-      russianDataLastModified.get(pair.ru),
-    ),
+    lastModified: lm(`${BASE_URL}${pair.ru}`, RUSSIAN_ROUTE_EDITORIAL_DATES[pair.ru], russianSources(pair.ru), russianEditorial(pair.ru)),
     changeFrequency: 'weekly',
     priority: pair.ru === '/ru' ? 0.85 : 0.8,
   }))
-  const russianOnlyRoutes: MetadataRoute.Sitemap = RUSSIAN_ONLY_ROUTES.map(path => {
-    const evidenceLastModified = new Date(
-      path === '/ru/dlya-russkoyazychnykh-treyderov'
-        ? russianDiasporaEvidence.capturedAt
-        : path === '/ru/forex-prop-firmy'
-        ? russianForexEvidence.capturedAt
-        : path === '/ru/prop-firmy-s-ctrader'
-          ? russianCTraderEvidence.capturedAt
-        : path === '/ru/fundednext-mt5'
-          ? russianFundedNextMt5Evidence.capturedAt
-        : path === '/ru/fundednext-stellar-instant'
-          ? russianFundedNextInstantEvidence.capturedAt
-        : path === '/ru/obzor-teamtraders'
-          ? russianTeamTradersEvidence.capturedAt
-          : russianMarketEvidence.capturedAt,
-    )
-
-    return {
-      url: `${BASE_URL}${path}`,
-      lastModified: russianRouteLastModified(
-        path,
-        russianDataLastModified.get(path) ?? evidenceLastModified,
-      ),
-      changeFrequency: 'monthly',
-      priority: 0.78,
-    }
-  })
+  const russianOnlyRoutes: MetadataRoute.Sitemap = RUSSIAN_ONLY_ROUTES.map(path => ({
+    url: `${BASE_URL}${path}`,
+    lastModified: lm(`${BASE_URL}${path}`, RUSSIAN_ROUTE_EDITORIAL_DATES[path], russianSources(path), russianEditorial(path)),
+    changeFrequency: 'monthly',
+    priority: 0.78,
+  }))
 
   // A few localized routes are also represented by an MDX page (for example
   // the Russian no-challenge guide). Keep one sitemap entry per URL and use
@@ -412,7 +279,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const editorialDate = RUSSIAN_PLANNED_ROUTE_EDITORIAL_DATES[path]
     return editorialDate ? [{
       url: `${BASE_URL}${path}`,
-      lastModified: new Date(`${editorialDate}T00:00:00Z`),
+      lastModified: lm(`${BASE_URL}${path}`, editorialDate, russianSources(path)),
       changeFrequency: 'monthly' as const,
       priority: 0.78,
     }] : []
@@ -422,7 +289,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const russianClosedFirmsRoutes: MetadataRoute.Sitemap = CLOSED_FIRMS_PUBLISHED
     ? [{
         url: `${BASE_URL}${RU_CLOSED_FIRMS_PATH}`,
-        lastModified: new Date(`${[RU_CLOSED_FIRMS_EDITORIAL_DATE, CLOSED_FIRMS_CAPTURED_AT].sort().at(-1)}T00:00:00Z`),
+        lastModified: lm(
+          `${BASE_URL}${RU_CLOSED_FIRMS_PATH}`,
+          RU_CLOSED_FIRMS_EDITORIAL_DATE,
+          russianSources(RU_CLOSED_FIRMS_PATH),
+        ),
         changeFrequency: 'monthly' as const,
         priority: 0.5,
       }]

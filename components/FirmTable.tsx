@@ -5,7 +5,7 @@ import { useState, useMemo, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import FirmLogo from './FirmLogo'
-import type { Challenge, Firm } from '@/lib/firms'
+import type { PublicChallenge as Challenge, PublicFirm as Firm } from '@/lib/publicFirm'
 import TrustpilotRating from './TrustpilotRating'
 import { formatCapturedAt } from '@/lib/trustpilot'
 import { directoryPlatformNames, firmPlatformEvidenceStatus, firmPlatformSourceUrl } from '@/lib/firmPlatforms'
@@ -599,7 +599,7 @@ export default function FirmTable({
                     </> : 'Platform list not separately source-checked.'}
                     {' '}Firm-level list, not confirmation for every programme or country.
                     </p>
-                    {firm.platformEvidence && <p>{firm.platformEvidence.notes}</p>}
+                    {firm.platformEvidence && <p>{firm.platformNote}</p>}
                   </details>
                 </td>
                 <td style={{ padding: '12px 16px' }}><span className="score-badge">★ {firm.score}</span></td>

@@ -1,0 +1,33 @@
+{
+  "captureType": "daily-recheck",
+  "capturedAt": "2026-10-29",
+  "timezone": "Europe/Riga",
+  "firmSlug": "tradeday",
+  "products": [
+    {
+      "productSlug": "quick-pay-intraday",
+      "sourceCapturedAt": "2026-10-29",
+      "sourceUrl": "https://www.tradeday.com/"
+    },
+    {
+      "productSlug": "quick-pay-end-of-day",
+      "sourceCapturedAt": "2026-10-29",
+      "sourceUrl": "https://www.tradeday.com/"
+    },
+    {
+      "productSlug": "fast-pass-end-of-day",
+      "sourceCapturedAt": "2026-10-29",
+      "sourceUrl": "https://www.tradeday.com/"
+    }
+  ],
+  "sources": [
+    {
+      "sourceUrl": "https://www.tradeday.com/",
+      "quote": "Now up to 55% OFF! Accounts from just $45!"
+    },
+    {
+      "sourceUrl": "https://www.tradeday.com/",
+      "quote": "USE CODE \"TDNEW\""
+    }
+  ]
+}

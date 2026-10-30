@@ -426,7 +426,7 @@
     },
     "country": {
       "status": "verified",
-      "summary": "India is absent from both current FXIFY lists, stored as their 36-name union: the FAQ 'What Countries are not accepted?' (schema dateModified 2026-02-12, rechecked 2026-10-21) names 35 including Haiti, and the site-wide footer names 35 including the United States but not Haiti.",
+      "summary": "India is absent from both current FXIFY lists, stored as their 36-name union: the FAQ 'What Countries are not accepted?' (Last updated 12 February 2026, rechecked 21 October 2026 on fxify.com) names 35 including Haiti, and the site-wide footer names 35 including the United States but not Haiti.",
       "sourceUrls": [
         "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
         "https://fxify.com/faqs/all-faqs/"

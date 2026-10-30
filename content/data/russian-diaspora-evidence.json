@@ -1,74 +1,65 @@
 {
-  "capturedAt": "2026-10-02",
-  "recheckNote": "All four listed first-party pages were rechecked on 2026-10-02. FundedNext's CFD list and Futures/Russia disclosure remain product-specific; its MetaQuotes notice still limits US-based access. BrightFunded's help list still names Pakistan while its Terms do not, and the Terms still restrict MT5 for US/UAE profiles. This checks published lists only, not registration, KYC, payment or payout eligibility.",
-  "scopeRu": "Срез сравнивает только опубликованные фирмами списки стран и отдельные ограничения продукта или платформы. Он не подтверждает регистрацию, KYC, оплату или выплату конкретному человеку.",
+  "capturedAt": "2026-10-28",
+  "recheckNote": "All first-party pages below were re-read on 2026-10-28. BrightFunded's help list (updated 2026-09-15) still names Cuba, Iran, North Korea, Syria, Vietnam and Pakistan for people residing in or holding nationality of those countries; its Terms section 2 still keeps MT5 away from US/UAE residents or citizens. Crypto Fund Trader's Terms 7.3 and FAQ (both updated 2026-03-30) publish no country restriction for one platform and exclude US residents from MT5. FundedNext's site-wide Jurisdictional Restrictions text (homepage footer and Terms, last updated 5 May 2026) names Russia and Belarus by residence, so Russia is now in its restricted list in line with firms.json; its CFD list (updated 2026-08-27) and MetaQuotes US notice are unchanged and its Futures list still names Ukraine. Separate product: BrightFunded Futures (help article updated 2026-10-26) restricts residents, citizens and people located in Russia, Belarus and Ukraine; this matrix covers the BrightFunded Challenge list only. This checks published lists only, not registration, KYC, payment or payout eligibility.",
+  "scopeRu": "Срез сравнивает только опубликованные фирмами списки стран и отдельные ограничения продукта или платформы. Доступ определяют страна проживания и документы KYC, а не язык. Это не письменное разрешение: регистрацию, KYC, оплату и выплату конкретному человеку мы не тестировали.",
   "countries": [
-    { "key": "kazakhstan", "labelRu": "Казахстан", "sourceName": "Kazakhstan" },
-    { "key": "united-arab-emirates", "labelRu": "ОАЭ", "sourceName": "United Arab Emirates" },
-    { "key": "georgia", "labelRu": "Грузия", "sourceName": "Georgia" },
-    { "key": "armenia", "labelRu": "Армения", "sourceName": "Armenia" },
-    { "key": "latvia", "labelRu": "Латвия", "sourceName": "Latvia" },
-    { "key": "germany", "labelRu": "Германия", "sourceName": "Germany" },
-    { "key": "israel", "labelRu": "Израиль", "sourceName": "Israel" },
-    { "key": "united-states", "labelRu": "США", "sourceName": "United States" },
-    { "key": "ukraine", "labelRu": "Украина", "sourceName": "Ukraine" },
-    { "key": "belarus", "labelRu": "Беларусь", "sourceName": "Belarus" },
-    { "key": "russia", "labelRu": "Россия", "sourceName": "Russia" }
+    {
+      "key": "kazakhstan",
+      "labelRu": "Казахстан",
+      "sourceName": "Kazakhstan"
+    },
+    {
+      "key": "united-arab-emirates",
+      "labelRu": "ОАЭ",
+      "sourceName": "United Arab Emirates"
+    },
+    {
+      "key": "georgia",
+      "labelRu": "Грузия",
+      "sourceName": "Georgia"
+    },
+    {
+      "key": "armenia",
+      "labelRu": "Армения",
+      "sourceName": "Armenia"
+    },
+    {
+      "key": "latvia",
+      "labelRu": "Латвия",
+      "sourceName": "Latvia"
+    },
+    {
+      "key": "germany",
+      "labelRu": "Германия",
+      "sourceName": "Germany"
+    },
+    {
+      "key": "israel",
+      "labelRu": "Израиль",
+      "sourceName": "Israel"
+    },
+    {
+      "key": "united-states",
+      "labelRu": "США",
+      "sourceName": "United States"
+    },
+    {
+      "key": "ukraine",
+      "labelRu": "Украина",
+      "sourceName": "Ukraine"
+    },
+    {
+      "key": "belarus",
+      "labelRu": "Беларусь",
+      "sourceName": "Belarus"
+    },
+    {
+      "key": "russia",
+      "labelRu": "Россия",
+      "sourceName": "Russia"
+    }
   ],
   "firms": [
-    {
-      "slug": "fundednext",
-      "name": "FundedNext",
-      "generalProductRu": "CFD-продукты",
-      "restrictedJurisdictions": [
-        "Bangladesh",
-        "Myanmar",
-        "Belarus",
-        "North Korea",
-        "Syria",
-        "Grenada",
-        "Chad",
-        "Malaysia",
-        "Belize",
-        "Antigua and Barbuda",
-        "Cape Verde",
-        "Tuvalu",
-        "Vietnam",
-        "Bouvet Island",
-        "Burundi",
-        "Cook Islands",
-        "Eritrea",
-        "Comoros",
-        "Sri Lanka",
-        "Fiji"
-      ],
-      "defaultNotNamedNoteRu": "Не названа в общем CFD-списке; регистрация, KYC, платёж и выплата не тестировались.",
-      "restrictedNoteRu": "Названа в общем CFD-списке ограничений для резидентов и граждан.",
-      "overrides": {
-        "united-states": {
-          "status": "product-specific",
-          "noteRu": "Общий CFD-список не называет США, но FundedNext ограничивает MetaQuotes с IP США и MT5-зависимые Free Trial, Competition и Stellar Instant."
-        },
-        "ukraine": {
-          "status": "product-specific",
-          "noteRu": "Общий CFD-список не называет Украину, но список FundedNext Futures ограничивает резидентов Украины."
-        },
-        "russia": {
-          "status": "conflict",
-          "noteRu": "CFD-список не называет Россию, но Futures-список ограничивает её, а отдельное раскрытие FundedNext Ltd говорит, что не обслуживает резидентов России."
-        }
-      },
-      "sources": [
-        {
-          "labelRu": "FundedNext: ограничения стран для CFD",
-          "url": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds"
-        },
-        {
-          "labelRu": "FundedNext: Terms of Service, раздел 5",
-          "url": "https://fundednext.com/terms-of-service"
-        }
-      ]
-    },
     {
       "slug": "bright-funded",
       "name": "BrightFunded",
@@ -96,13 +87,134 @@
       "sources": [
         {
           "labelRu": "BrightFunded: опубликованный список стран",
-          "url": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded"
+          "url": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
+          "pageDate": "2026-09-15",
+          "checkedAt": "2026-10-28",
+          "quote": "Individuals residing in or holding nationality from the following countries are currently not permitted to purchase Challenges or register with BrightFunded."
         },
         {
           "labelRu": "BrightFunded: Terms and Conditions, раздел 2",
-          "url": "https://brightfunded.com/terms-and-conditions"
+          "url": "https://brightfunded.com/terms-and-conditions",
+          "checkedAt": "2026-10-28",
+          "quote": "services related to MetaTrader 5 (MT5) ... are not intended for residents or citizens of the United States, United Arab Emirates, and other restricted countries"
+        },
+        {
+          "labelRu": "BrightFunded: какие документы нужны для KYC",
+          "url": "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
+          "pageDate": "2025-04-23",
+          "checkedAt": "2026-10-28",
+          "quote": "Specific documentation may vary based on the customer's country of residence"
+        },
+        {
+          "labelRu": "BrightFunded Futures: кто может участвовать (отдельный продукт, в матрицу не входит)",
+          "url": "https://futures-help.brightfunded.com/en/articles/17507323-who-can-join-and-restricted-countries",
+          "pageDate": "2026-10-26",
+          "checkedAt": "2026-10-28",
+          "quote": "The restriction covers residents and citizens of the listed countries, and also people located in them."
+        }
+      ],
+      "kycDocumentsRu": "Справка BrightFunded: обычно нужен документ, удостоверяющий личность (государственный ID), и подтверждение адреса; конкретный набор документов зависит от страны проживания."
+    },
+    {
+      "slug": "crypto-fund-trader",
+      "name": "Crypto Fund Trader",
+      "generalProductRu": "Challenge и платформы",
+      "restrictedJurisdictions": [],
+      "defaultNotNamedNoteRu": "Страновых ограничений Crypto Fund Trader не публикует; KYC, платёж и выплата не тестировались.",
+      "restrictedNoteRu": "Названа в опубликованном списке ограничений Crypto Fund Trader.",
+      "overrides": {
+        "united-states": {
+          "status": "product-specific",
+          "noteRu": "Общих страновых ограничений нет, но Terms 7.3 и FAQ говорят, что MetaTrader 5 недоступен пользователям, проживающим в США."
+        }
+      },
+      "kycDocumentsRu": "FAQ: один документ, удостоверяющий личность (паспорт, водительское удостоверение, национальный ID или вид на жительство), и один документ, подтверждающий адрес (например, счёт за коммунальные услуги, банковская выписка или письмо государственного органа).",
+      "sources": [
+        {
+          "labelRu": "Crypto Fund Trader: Terms and Conditions, раздел 7.3",
+          "url": "https://cryptofundtrader.com/terms-and-conditions/",
+          "pageDate": "2026-03-30",
+          "checkedAt": "2026-10-28",
+          "quote": "MetaTrader 5: Access to this platform is not available to users residing in the United States."
+        },
+        {
+          "labelRu": "Crypto Fund Trader: FAQ (страны и KYC)",
+          "url": "https://cryptofundtrader.com/faq/",
+          "pageDate": "2026-03-30",
+          "checkedAt": "2026-10-28",
+          "quote": "one proof of identity document and one proof of address document. Accepted proof of identity documents include: Passport, Driving license, National ID document, or Residence permit."
         }
       ]
+    },
+    {
+      "slug": "fundednext",
+      "name": "FundedNext",
+      "generalProductRu": "CFD-продукты",
+      "restrictedJurisdictions": [
+        "Bangladesh",
+        "Myanmar",
+        "Belarus",
+        "North Korea",
+        "Syria",
+        "Grenada",
+        "Chad",
+        "Malaysia",
+        "Belize",
+        "Antigua and Barbuda",
+        "Cape Verde",
+        "Tuvalu",
+        "Vietnam",
+        "Bouvet Island",
+        "Burundi",
+        "Cook Islands",
+        "Eritrea",
+        "Comoros",
+        "Sri Lanka",
+        "Fiji",
+        "Russia"
+      ],
+      "defaultNotNamedNoteRu": "Не названа в общем CFD-списке; регистрация, KYC, платёж и выплата не тестировались.",
+      "restrictedNoteRu": "Названа в опубликованных ограничениях FundedNext: в общем CFD-списке для резидентов и граждан или в разделе Jurisdictional Restrictions на сайте и в Terms (по стране проживания).",
+      "overrides": {
+        "united-states": {
+          "status": "product-specific",
+          "noteRu": "Общий CFD-список не называет США, но FundedNext ограничивает MetaQuotes с IP США и MT5-зависимые Free Trial, Competition и Stellar Instant."
+        },
+        "ukraine": {
+          "status": "product-specific",
+          "noteRu": "Общий CFD-список не называет Украину, но список FundedNext Futures ограничивает резидентов Украины."
+        }
+      },
+      "sources": [
+        {
+          "labelRu": "FundedNext: ограничения стран для CFD",
+          "url": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
+          "pageDate": "2026-08-27",
+          "checkedAt": "2026-10-28",
+          "quote": "residents and citizens of Bangladesh, Myanmar, Belarus, North Korea, Syria, ... Sri Lanka, and Fiji are not able to access FundedNext's trading platform."
+        },
+        {
+          "labelRu": "FundedNext: Terms of Service, разделы 5 и 11.2",
+          "url": "https://fundednext.com/terms-of-service",
+          "pageDate": "2026-05-05",
+          "checkedAt": "2026-10-28",
+          "quote": "(a) official photographic identification document issued by a competent authority (e.g., passport, or national identity card); (b) recent proof of residence"
+        },
+        {
+          "labelRu": "FundedNext: Jurisdictional Restrictions в футере сайта",
+          "url": "https://fundednext.com/",
+          "checkedAt": "2026-10-28",
+          "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
+        },
+        {
+          "labelRu": "FundedNext: документы для KYC",
+          "url": "https://help.fundednext.com/en/articles/15442628-understanding-the-kyc-verification-process-at-fundednext",
+          "pageDate": "2026-10-02",
+          "checkedAt": "2026-10-28",
+          "quote": "A photo of the physical copy of any of the following documents for KYC: National ID / Passport / Permanent Residence Permit"
+        }
+      ],
+      "kycDocumentsRu": "Terms 11.2: официальный документ с фото (паспорт или национальное удостоверение личности) и свежее подтверждение адреса проживания; справка FundedNext также называет вид на жительство (Permanent Residence Permit) и, если запрошено, счёт за коммунальные услуги или банковскую выписку не старше трёх месяцев."
     }
   ]
 }

@@ -121,6 +121,10 @@
         "sourceUrl": "https://ftmo.com/en/trading-objectives/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "the Consistency rule requires that your Best Day does not represent more than 50% of your total profit. The total profit is the cumulative sum of closed profits and losses across all trading days",
+    "consistencyBasisSourceUrl": "https://ftmo.com/en/trading-objectives/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": 14,
     "payoutFrequency": "on-demand",
@@ -194,6 +198,10 @@
         "sourceUrl": "https://ftmo.com/en/instant-account/"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "When you withdraw a Reward and continue on an FTMO Account, your total profit starts again from zero, so Consistency is measured only after the Reward withdrawal.",
+    "consistencyBasisSourceUrl": "https://ftmo.com/en/trading-objectives/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 90,
     "payoutFirstDays": null,
     "payoutFrequency": null,

@@ -8,11 +8,11 @@ author: Tara Mohseni
 sources:
   - title: 'What is Quick Pay? (help centre, modified Wed 9 Sep; read 2026-10-26)'
     url: 'https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-'
-  - title: 'Fast Pass Funded Sim Payout Policy (help centre; Tracker capture 2026-10-15)'
+  - title: 'Fast Pass Funded Sim Payout Policy (help centre; read 15 October 2026)'
     url: 'https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy'
-  - title: 'Can I trade news or data releases? (help centre; Tracker capture 2026-10-15)'
+  - title: 'Can I trade news or data releases? (help centre; read 15 October 2026)'
     url: 'https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-'
-  - title: 'What is the permitted trading times guideline? (help centre; Tracker capture 2026-10-15)'
+  - title: 'What is the permitted trading times guideline? (help centre; read 15 October 2026)'
     url: 'https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-'
 fieldsUsed:
   - rules.drawdownType.byProduct

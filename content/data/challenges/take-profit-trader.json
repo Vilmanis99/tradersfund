@@ -54,12 +54,16 @@
         "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits.",
+    "consistencyBasisSourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-6-Be-Consistent",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
     "rules": {
       "news": "restricted",
-      "weekend": null,
+      "weekend": false,
       "overnight": false,
       "ea": false,
       "copyTrading": "restricted"
@@ -95,7 +99,8 @@
       "Current official homepage account cards show the same five monthly list prices: $150 / $170 / $245 / $330 / $360 for $25K / $50K / $75K / $100K / $150K.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
       "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/take-profit-trader-2026-10-19.json",
-      "Key-facts recheck 2026-10-20: accountSizes[].maxLossUsd filled from the official subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, \"eodTrailingDrawdown\": 1500/2000/2500/3000/4500 for the $25k-$150k Test tiers; homepage 50K card \"EOD Trailing Drawdown $2000\"). maxLossPct stays null (not a constant %). dailyLossPct stays null: the homepage 50K card now reads \"Daily Loss Limit $1100 Removed\" and the journey table reads \"Daily loss rule Test: None\", while the API still returns dailyLossLimit 500/1100/1600/2200/3300. Only maxLossUsd was rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-take-profit-trader-recheck-2026-10-20.json"
+      "Key-facts recheck 2026-10-20: accountSizes[].maxLossUsd filled from the official subscriptions API (https://takeprofittrader.com/accounts/api/subscriptions, \"eodTrailingDrawdown\": 1500/2000/2500/3000/4500 for the $25k-$150k Test tiers; homepage 50K card \"EOD Trailing Drawdown $2000\"). maxLossPct stays null (not a constant %). dailyLossPct stays null: the homepage 50K card now reads \"Daily Loss Limit $1100 Removed\" and the journey table reads \"Daily loss rule Test: None\", while the API still returns dailyLossLimit 500/1100/1600/2200/3300. Only maxLossUsd was rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-take-profit-trader-recheck-2026-10-20.json",
+      "Holding rule (read 2026-10-28): no overnight or weekend holding on Test, PRO or PRO+. The Universal Trading Policies (help centre, updated March 06, 2026) 'apply to all TakeProfitTrader accounts, including Test, PRO, and PRO+' and state 'positions may not be held from one session to the next'; Test Rule 4 (updated May 06, 2026): 'Positions cannot be carried from one trading day into the next ... TPT will automatically close any open position at 4:55 PM Eastern.' Sources: https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP and https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours. Log: content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
     ]
   }
 ]

@@ -1,0 +1,328 @@
+{
+  "firmSlug": "topstep",
+  "captureType": "targeted-gaps",
+  "capturedAt": "2026-10-20",
+  "capturedAtTimestamp": "2026-10-20T12:28:44+03:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/topstep-2026-10-20.json",
+  "requestedBy": "RU Writer /ru/obzor-topstep data gaps (content/ru-obzor-topstep @ b92c3c3, docs/ru-obzor-topstep-notes.md) and RU SEO Lead brief /workspace/ru-seo/briefs/2026-10-26.md §10",
+  "egress": "US IP (box); curl of official pages; dateModified from Intercom JSON-LD on help.topstep.com; Terms of Use date from page text. No VPN/proxy; no archive snapshots needed (all pages returned 200).",
+  "rawEvidence": "/workspace/tradersfundhub/evidence/topstep-ru-gaps-2026-10-20-raw/ (box only; text sha256 recorded per page)",
+  "eligibility": {
+    "sourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
+    "dateModified": "2026-09-04T15:26:29Z",
+    "textSha256": "a263245109281ecd1913f20a1b3cf527a9a4b10f12d7b1fbb89ea9c5e3070755",
+    "rule": "Eligibility is based on both citizenship and permanent residency. OFAC sanctions and partner restrictions apply. Some countries can access Express Funded Accounts® (XFA) but not Live Funded Accounts® (LFA).",
+    "requirements": [
+      "No US citizenship required",
+      "Minimum age: 18",
+      "Citizens or residents of OFAC-sanctioned or partner-restricted countries are not eligible to trade, earn funding, or receive payouts"
+    ],
+    "ineligibleHeading": "Countries Ineligible to Trade — Citizens of these countries can't trade or receive payouts:",
+    "ineligible": [
+      "Afghanistan",
+      "Algeria",
+      "Angola",
+      "Belarus",
+      "Burkina Faso",
+      "Burma/Myanmar",
+      "Burundi",
+      "Chinese Military Companies",
+      "Cote d'Ivoire",
+      "Crimea (incl. Donetsk, Luhansk, Kherson, Zaporizhzhia)",
+      "Cuba",
+      "Dem. Rep. Congo",
+      "Haiti",
+      "Iran",
+      "Iraq",
+      "Kenya",
+      "Kosovo",
+      "Lebanon",
+      "Libya",
+      "Mali",
+      "Morocco",
+      "Nicaragua",
+      "Nigeria",
+      "North Korea",
+      "Pakistan",
+      "Russia",
+      "Somalia",
+      "South Sudan",
+      "Sudan & Darfur",
+      "Syria",
+      "Turkey",
+      "Ukraine",
+      "Venezuela",
+      "Yemen"
+    ],
+    "xfaOnlyHeading": "Countries Eligible for an XFA — Not LFA. These Traders can join Topstep, trade and pass the Trading Combine, earn Express Funded Accounts, and take up to $200,000 in total payouts. No Live Funded Account access:",
+    "xfaOnly": [
+      "Albania",
+      "Bolivia",
+      "Bosnia and Herzegovina",
+      "British Virgin Islands",
+      "Cameroon",
+      "Central African Republic",
+      "Ethiopia",
+      "Germany",
+      "Ghana",
+      "Hong Kong",
+      "Iceland",
+      "Kuwait",
+      "Laos",
+      "Liberia",
+      "Macedonia",
+      "Monaco",
+      "Mongolia",
+      "Montenegro",
+      "Namibia",
+      "Nepal",
+      "Papua New Guinea",
+      "Serbia",
+      "Trinidad and Tobago",
+      "Vietnam",
+      "Zimbabwe"
+    ],
+    "proAccountNote": "Select Traders from these countries may be considered for the Pro Account track rather than the Live Funded Account, based on performance.",
+    "listCaveat": "⚠️ This list can change at any time based on updates from brokerages and other circumstances.",
+    "faq": {
+      "eligibleCitizenIneligibleResidence": "No. Residing in an ineligible country makes you ineligible — regardless of citizenship.",
+      "ineligibleCitizenEligibleResidence": "Possibly. Submit a government-issued photo ID proving permanent residency in the eligible country, plus a bank statement from that country. Topstep's Trust team reviews it.",
+      "travelling": "Don't trade while there. Trading from an ineligible country — even briefly — may trigger a review by the Trust team.",
+      "whyXfaOnly": "Brokerage restrictions prevent Live Funded Account access in certain countries. Those Traders can still earn payouts and build skills in the XFA and Pro Account.",
+      "previouslyEligible": "A country may be deemed ineligible for several reasons, including, but not limited to, OFAC sanctions and restrictions with our partners. In these cases, traders are unable to trade with, get Funded by, or receive payouts from Topstep."
+    },
+    "kazakhstanNamed": false,
+    "observations": [
+      "Russia, Belarus, Ukraine and Crimea (incl. Donetsk, Luhansk, Kherson, Zaporizhzhia) are on the ineligible list.",
+      "Kazakhstan is not named anywhere on the page (neither list). Absence is not confirmation of eligibility.",
+      "Germany is on the XFA-only (no Live) list.",
+      "Internal tension: the Requirements line excludes 'Citizens or residents' of restricted countries, while the FAQ says citizens of an ineligible country who permanently reside in an eligible one may 'Possibly' trade after Trust-team review. Treat as case-by-case, never as approval.",
+      "Unchanged vs firms.json countriesRestricted (33 entries; 'Chinese Military Companies' is not a country and is not stored)."
+    ],
+    "corroboration": {
+      "sourceUrl": "https://www.topstep.com/terms-of-use",
+      "pageDate": "Last updated: September 21, 2026",
+      "quotes": [
+        "you are not located in, ordinarily resident in, or accessing Topstep Products and Content from any country or region subject to comprehensive U.S. sanctions (including, but not limited to, Cuba, Iran, North Korea, Syria, or the Crimea, Donetsk, or Luhansk regions of Ukraine)",
+        "Restricted Participants will not migrate from an Express Funded Account to a Live Funded Account, regardless of trading performance"
+      ]
+    }
+  },
+  "pagesRead": [
+    {
+      "url": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
+      "dateModified": "2026-10-13T14:26:14Z",
+      "textSha256": "a1968c99b7bf04c5b27a91485bdc5170778999e903818b11d6fa749a003814fe",
+      "gaps": [
+        1,
+        8
+      ],
+      "quotes": [
+        "Prop-to-Brokerage Payouts US only Same day* No Fee Aeropay US banks only Instant after approval No Topstep fee** Wise China, Canada, UK 1-3 business days No Topstep fee** ACH US banks only 1-3 business days $30 Wire/SWIFT International 5-10 business days $30",
+        "Wise remains unavailable everywhere else. Keep using another available payout method — we'll update all traders if that changes.",
+        "No Topstep fee for Aeropay or Wise, but your bank or those services may charge their own fees. Processing times are estimates and exclude weekends and holidays. Internal approval can take 1-3 business days.",
+        "No. Payouts can only be sent to a bank account in your own name.",
+        "W-9 for US persons, W-8BEN for non-US persons. Submitted as part of the Payout request process.",
+        "Minimum Payout: $125 90/10 profit split — you keep 90%",
+        "3 trading days with at least 1 trade per day.",
+        "Stay at or below the 40% consistency target. Your largest single day cannot exceed 40% of your total net profit.",
+        "Account Size XFA Standard XFA Consistency $50K $2,000 $3,000 $100K $3,000 $4,000 $150K $5,000 $6,000",
+        "Max Payout per request: 50% of your account balance up to the cap below.",
+        "$50K Consistency $3,000 $6,000 ... $100K Consistency $4,000 $8,000 ... $150K Consistency $6,000 $12,000 (Current Cap / With DLL (new))",
+        "No. Only if you already added the DLL when you purchased your Trading Combine. Adding it at the XFA stage doesn't unlock the higher cap.",
+        "Payout caps apply to XFA accounts only. Live Funded Account Payouts are not capped."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284215-express-funded-account-parameters",
+      "dateModified": "2026-08-05T19:49:02Z",
+      "textSha256": "5b43e70512145557bac8f4d007635ebd3a8dc93ab9b5fc095844bab1fc02b095",
+      "gaps": [
+        3,
+        8
+      ],
+      "quotes": [
+        "You can hold up to 5 active XFAs at a time. At activation, you choose your Payout path: Standard or Consistency.",
+        "3 days traded, 40% consistency target",
+        "50% of balance, up to $6,000*",
+        "Yes, up to $750K buying power using a trade copier."
+      ]
+    },
+    {
+      "url": "https://www.topstep.com/topstep-prop",
+      "dateModified": null,
+      "textSha256": "aa8adc2f620129a630425bf0887c6362a97aabb4e06f6873154a117e388d5793",
+      "gaps": [
+        3,
+        6,
+        7,
+        8
+      ],
+      "quotes": [
+        "Pass the Trading Combine® and we'll back you with up to $150K in buying power to trade with. Earn payouts up to $12,000 per account, and keep 90% of the profits.",
+        "Pass the Trading Combine® in as little as two days, or take your time. It's up to you.",
+        "There’s no minimum time requirement to pass the Trading Combine® and become a funded trader. Some traders take their time, while others pass in as little as a few days by meeting the objectives.",
+        "Trade at least three (3) days with at least one (1) trade per day / Keep your best day within 40% of total profit",
+        "Select currency: AUD CAD COP EUR GBP JPY MXN USD CHF"
+      ]
+    },
+    {
+      "url": "https://www.topstep.com/terms-of-use",
+      "pageDate": "Last updated: September 21, 2026",
+      "textSha256": "73b080eacb269b7fdd2e3621535df2104902b3211a8779928d11e68f9d8e3233",
+      "gaps": [
+        3
+      ],
+      "quotes": [
+        "These Terms of Use govern access to and the use of the Sites or Services of Topstep LLC, a Delaware limited liability company, and its affiliated entities",
+        "“TopstepFunded” means TopstepFunded LLC, an Illinois limited liability company.",
+        "write to us at: Topstep LLC, 130 S Jefferson St, Chicago, IL 60661, Attn: Designated Agent.",
+        "Simulated trading program services, comprising the Trading Combine, and the Express Funded Account, and Topstep Labs experiments are operated by TopstepTrader, LLC (“TopstepTrader”).",
+        "Introducing brokerage services are offered through Topstep Brokerage LLC (“Topstep Brokerage”), a registered introducing broker and a member of the National Futures Association. ... NFA ID# 0567079"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/14434175-topstepx",
+      "dateModified": "2026-09-25T22:00:44Z",
+      "textSha256": "09d4b642bff13da014a60d6883f6ebdcd651ad110e0d33168f451e122976957e",
+      "gaps": [
+        4,
+        5
+      ],
+      "quotes": [
+        "TopstepX™ is Topstep’s trading platform built for execution, risk management, and performance tracking.",
+        "Trade copying is only available for Trading Combine® and Express Funded Account® accounts. Live Funded Account® accounts cannot use the Trade Copier.",
+        "Cannot connect to external platforms like TradingView; custom indicators are not available due to TradingView's commercial licensing terms."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+      "dateModified": "2026-06-18T14:47:55Z",
+      "textSha256": "3abf037271f8c518f21b22fb561131c70b0f68320c8bd994c79891490e8cb396",
+      "gaps": [
+        4
+      ],
+      "quotes": [
+        "Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+      "dateModified": "2026-09-24T20:21:06Z",
+      "textSha256": "d287162b34154bc86ce857d6af3874b40a711b43bc70e7c94f25952f54ad9b9c",
+      "gaps": [
+        5,
+        7
+      ],
+      "quotes": [
+        "Can I pass the Trading Combine in one day? No. Big spike days don't build funded traders, consistency does. You can pass in as few as two days, but keep your best day below 55% of your Profit Target.",
+        "Can I use automated trading strategies? Yes, with conditions. Topstep won't help set up or troubleshoot automated strategies, and no exceptions are made for errant trades or malfunctions. Test on your Practice Account first and review Prohibited Conduct and Prohibited Trading Strategies before going live."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+      "dateModified": "2026-09-17T14:21:11Z",
+      "textSha256": "850efd27ae663735f9631a4da43fbbcc7de01b9e038124fe9b03348204f1bb42",
+      "gaps": [
+        7
+      ],
+      "quotes": [
+        "55% is a hard line. It is not rounded, and there is no buffer. You can pass in as few as 2 days, as long as no single day exceeds 55% of your total profit and your Profit Target is met."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/11187768-topstepx-api-access",
+      "dateModified": "2026-09-17T14:57:17Z",
+      "textSha256": "d25b28ae9b87e534178fa75177ba085946f5920e2f8e5a1c63495bfaf42bec65",
+      "gaps": [
+        5
+      ],
+      "quotes": [
+        "Yes. Custom automated strategies and bots are allowed via the TopstepX / ProjectX API, subject to standard platform rules and our prohibition on highfrequency trading (HFT).",
+        "All trading activity must originate from your personal device. The use of VPS, VPNs, and remote servers is prohibited by Topstep's Terms of Use. Running automation on a VPS can result in account suspension or removal from the program.",
+        "No, Live funded accounts are not allowed to trade through the ProjectX API.",
+        "API Access is $29/month. Topstep Traders get 50% off with code topstep — that's $14.50/month",
+        "A rule violation is treated the same whether it originates from manual trading or third-party automation."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+      "dateModified": "2026-06-10T14:02:45Z",
+      "textSha256": "eec41eaa09b1b5088be1d1f89246a2a4e12bdb9e6dcb87df5876a5ade86ff28c",
+      "gaps": [
+        5
+      ],
+      "quotes": [
+        "Using software, AI, ultra-high speed systems, or mass data entry that manipulates, abuses, or provides an unfair advantage on the platform or in the program.",
+        "Purposefully trading your full Maximum Position Size directly into a scheduled major news event.",
+        "Running scalping algorithms designed to exploit unrealistic SIM fills"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/13613539-risk-adjustments-high-risk-high-volatility",
+      "dateModified": "2026-10-19T18:49:27Z",
+      "textSha256": "efb5ecb726209ec28feee356faeed853c047a7f86095ee73c61d683ca5721d23",
+      "gaps": [
+        5
+      ],
+      "quotes": [
+        "Ahead of Tier 1 News Events (for example, CPI, FOMC, NFP, PPI), Topstep temporarily restricts new opening positions on equity index products and metals in SIM to protect Traders from extreme volatility.",
+        "Minis (ES, RTY, YM, NQ, NKD, GC, SI, HG, PL): No new opening transactions permitted during the 10-minute window surrounding the release (5 minutes before, 5 minutes after).",
+        "Micros (MES, M2K, MYM, MNQ, MGC): Opening transactions limited to 1, 3, 6, 9, and 15 contracts for the $25K, $50K, $100K, $150K, and $250K account sizes, respectively, during the window",
+        "Other products (energies, rates, FX, etc.) are unaffected.",
+        "Consumer Price Index (CPI) 7:30 AM 7:25 to 7:35 AM; FOMC rate decision 1:00 PM 12:55 to 1:05 PM; FOMC press conference 1:30 PM 1:25 to 1:35 PM; Non Farm Payroll (NFP/Unemployment Rate) 7:30 AM 7:25 to 7:35 AM; Producer Price Index (PPI) 7:30 AM 7:25 to 7:35 AM"
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/8284211-economic-releases",
+      "dateModified": "2026-10-15T17:51:06Z",
+      "textSha256": "489d33c9f37f9e6cb84cf64181fbc75e664327b01806a075c9383012e19bead0",
+      "gaps": [
+        5
+      ],
+      "quotes": [
+        "CPI Report 7:30 AM; Unemployment Rate (Non-Farm Payroll) 7:30 AM; FOMC Statement 1:00 PM; Crude Oil Inventories (EIA) 9:30 AM / 10:00 AM; Natural Gas Inventories (EIA) 9:30 AM; Crop Production 11:00 AM",
+        "Topstep restricts trading for a short period during Tier 1 News Events."
+      ]
+    },
+    {
+      "url": "https://help.topstep.com/en/articles/14289835-topstep-pricing-and-payment-questions",
+      "dateModified": "2026-10-15T22:44:35Z",
+      "textSha256": "0471fdd5abbc17595fffb5370395f9b66e6190b178866c2f0e2035293b7503c0",
+      "gaps": [
+        6
+      ],
+      "quotes": [
+        "Sales tax may be added at checkout where applicable.",
+        "Listed prices are base costs only. Depending on where you're located, applicable taxes — VAT, GST, or sales tax — will be calculated and shown at checkout in accordance with local regulations. The exact amount varies by region and will appear before you complete your purchase. Topstep collects and remits all taxes directly — we don't keep any of it."
+      ]
+    }
+  ],
+  "resolvedConflicts": [
+    {
+      "field": "minTradingDays",
+      "previousStatus": "unresolved since 2026-09-08",
+      "resolution": "No explicit minimum-days rule; a one-day pass is impossible under the 55% Consistency Target, so the effective floor is two trading days. The product page itself carries both 'in as little as two days' and 'no minimum time requirement'; the help centre (8284197, 8284208) explains the two-day floor comes from consistency. minTradingDays stays null (no stated rule).",
+      "sourceUrls": [
+        "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+        "https://help.topstep.com/en/articles/8284208-consistency-at-topstep",
+        "https://www.topstep.com/topstep-prop"
+      ],
+      "watchEntry": "challenge-watch topstep-minimum-days-source-conflict-2026-09-08 left as status 'watch' on this branch: flipping it to 'verified' changes the pinned counts in app/prop-firm-challenge-changes/page.tsx (SOCIAL_CARD_VERIFIED_COUNT 19 / WATCH_COUNT) and scripts/test-topstep-correction.mjs line 91 (['verified','verified','watch']), so it needs a coordinated pin update by Dev/Code Reviewer."
+    }
+  ],
+  "unresolved": [
+    "Non-US tax amounts: Topstep publishes only that VAT/GST/sales tax is region-dependent and shown at checkout; from a US IP with no checkout no CIS/EU amount was observed.",
+    "Kazakhstan: not named on the eligibility page; we cannot confirm eligibility either way.",
+    "TopstepTrader, LLC state of formation is not stated on the pages read."
+  ],
+  "changes": [
+    "firms.json Topstep payoutMethods ['ACH','Bank wire'] -> ['Prop-to-Brokerage','Aeropay','Wise','ACH','Bank wire'] with payoutMethodsSourceUrl/Quote/CapturedAt/Note (Bank wire = Topstep's Wire/SWIFT)",
+    "firms.json Topstep maxAllocation '$500,000' (unsourced) -> '$150,000 per account; up to 5 active XFAs'",
+    "firms.json Topstep legalEntity/headquarters/country/regulation/corporateNote/corporateSourceUrl/corporateCapturedAt added",
+    "firms.json Topstep countriesRestrictedSourceUrl, russiaSourceUrl, russiaSourceQuote added (list unchanged)",
+    "firms.json Topstep platformEvidence 2026-09-08 -> 2026-10-20",
+    "topstep.json both products: ACCESS note replaced with the 2026-10-20 read; AUTOMATION DETAIL, NEWS DETAIL, TAXES, MINIMUM DAYS RESOLVED, XFA CONSISTENCY ROUTE notes added"
+  ]
+}

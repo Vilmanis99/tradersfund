@@ -39,6 +39,7 @@ const RU_HOME_BASICS = [
   { href: '/ru/prop-kompanii-v-rossii', title: 'Проп-компании в России', text: 'Какие фирмы не ограничивают РФ и как платят.' },
   { href: '/ru/prop-kompanii-otzyvy', title: 'Отзывы о проп-компаниях', text: 'Красные флаги и доказательства выплат.' },
   { href: '/ru/obzor-the5ers', title: 'Обзор The5ers', text: 'Условия и доступ для трейдеров из РФ.' },
+  { href: '/ru/obzor-topstep', title: 'Обзор Topstep', text: 'Фьючерсный проп: подписка, правила и доступ из РФ.' },
   { href: '/ru/luchshie-prop-firmy', title: 'Рейтинг проп-компаний', text: 'Сравнение условий и доступ из России.' },
 ]
 // Gated by the closed-firms publish flag (lib/closedFirms.ts), not by route registration.
@@ -171,7 +172,7 @@ export default function RussianHomePage() {
           </div>
           <ComparisonTable rows={tableRows} locale="ru" placement="ru-home-comparison" />
           <DisclosureNote summary={<>Часть ссылок партнёрские. Порядок — не реклама. Размер счёта — не цена. Доступность для РФ проверяйте перед оплатой.</>}>
-            <p>Отметка доступа основана на поле russiaStatus и проверке условий фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
+            <p>Отметка «Доступ из РФ» основана на официальных списках ограничений и условиях фирм; она не заменяет проверку вашего гражданства, резидентства и способа оплаты. Нужна местная биржевая торговля? <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">Российские проп-компании разобраны отдельно.</Link></p>
           </DisclosureNote>
         </div>
       </section>

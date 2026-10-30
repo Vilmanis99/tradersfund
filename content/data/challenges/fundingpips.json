@@ -49,6 +49,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
@@ -124,7 +128,31 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex"
       }
     ],
-    "profitSplitPct": null,
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "profitSplitPct": 80,
+    "profitSplitTiers": [
+      {
+        "traderPct": 80,
+        "stage": "funded-sim",
+        "appliesTo": "Bi-Weekly 80% split, chosen at purchase: every 14 calendar days after the first executed trade on the Master Account",
+        "appliesToRu": "Раз в две недели 80%, выбор при покупке: каждые 14 календарных дней после первой сделки на Master",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+        "quote": "Request a Reward with an 80% split every 14 calendar days after the first executed trade on the Master Account. The 14-day timer is the only gate.",
+        "capturedAt": "2026-10-28"
+      },
+      {
+        "traderPct": 95,
+        "stage": "funded-sim",
+        "appliesTo": "Bi-Weekly 95% split, chosen at purchase: every 14 calendar days plus 3 profitable days (0.5%+ each) in the cycle",
+        "appliesToRu": "Раз в две недели 95%, выбор при покупке: каждые 14 календарных дней плюс 3 прибыльных дня (от 0,5% каждый) в цикле",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+        "quote": "Request a Reward with a 95% split every 14 calendar days after the first executed trade, plus 3 profitable days in the cycle. A profitable day is a day whose profit is at least 0.5% of the starting account size.",
+        "capturedAt": "2026-10-28"
+      }
+    ],
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",
     "rules": {
@@ -139,7 +167,7 @@
     "sourceCapturedAt": "2026-10-20",
     "notes": [
       "Current first-party page changed the evaluation target to 10% then 8%; the older 10% then 6% value is retired.",
-      "Reward choice is conditional: 80% with 1 minimum trading day or 95% with 3 profitable days; the schema keeps split null because there is no single universal percentage.",
+      "Reward choice is set at purchase: 80% with 1 minimum trading day or 95% with 3 profitable days (official page, read 2026-10-28: \"No. The 80% or 95% split is chosen at purchase, and the choice is locked for the life of the account. Both cost the same.\"). Since 2026-10-28 profitSplitPct stores 80 (the lowest tier) and profitSplitTiers lists 80% and 95%; On Demand 100% stays in the reward-cycle note.",
       "Reward cycles (official page, updated 2026-10-19, read 2026-10-20): \"Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split).\" The stored bi-weekly / 14-day value is the Bi-Weekly route; On Demand 100% needs a 35% consistency score, 7 profitable days at 0.5%+ and the Striking System. No Monthly route is listed.",
       "New and reset accounts require the current minimum-day conditions; older accounts may retain legacy terms.",
       "Overnight and weekend holding is allowed during Evaluation; Master holding requires the Swing add-on.",
@@ -206,6 +234,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model"
       }
     ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 7,
     "payoutFrequency": "weekly",
@@ -283,9 +315,33 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard"
       }
     ],
-    "profitSplitPct": null,
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "consistencyBasisCheckedAt": "2026-10-28",
+    "profitSplitPct": 60,
+    "profitSplitTiers": [
+      {
+        "traderPct": 60,
+        "stage": "funded-sim",
+        "appliesTo": "Weekly 60% cycle, selected at Master: seven days after the first executed trade on the Master Account",
+        "appliesToRu": "Еженедельно 60%, цикл выбирается на Master: через семь дней после первой сделки на Master",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+        "quote": "Request a Reward with a 60% split seven days after the first executed trade on the Master Account.",
+        "capturedAt": "2026-10-28"
+      },
+      {
+        "traderPct": 80,
+        "stage": "funded-sim",
+        "appliesTo": "Bi-Weekly 80% cycle, selected at Master: every 14 calendar days after the first executed trade on the Master Account",
+        "appliesToRu": "Раз в две недели 80%, цикл выбирается на Master: каждые 14 календарных дней после первой сделки на Master",
+        "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+        "quote": "Request a Reward with an 80% split every 14 calendar days after the first executed trade on the Master Account.",
+        "capturedAt": "2026-10-28"
+      }
+    ],
     "payoutFirstDays": null,
-    "payoutFrequency": null,
+    "payoutFrequency": "weekly",
     "rules": {
       "news": "restricted",
       "weekend": "restricted",
@@ -302,7 +358,7 @@
       "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-26.json"
     },
     "notes": [
-      "No single split or frequency: the official 2 Step Standard page (2026-10-20) lists \"Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.\" The former Monthly 100% and On Demand 90% routes are no longer listed.",
+      "The official 2 Step Standard page (2026-10-20, re-read 2026-10-28) lists \"Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%.\" and \"The reward cycle can be selected once the evaluation account reaches the Master Account.\" Since 2026-10-28 profitSplitPct stores 60 (the lowest tier, Weekly) with payoutFrequency weekly, and profitSplitTiers lists Weekly 60% and Bi-Weekly 80%; On Demand 100% needs a 35% consistency score and 7 profitable days at 0.5%+. The former Monthly 100% and On Demand 90% routes are no longer listed.",
       "The 35% consistency score applies to the On Demand 100% route only (\"A 35% consistency score must be achieved\"), not to Weekly or Bi-Weekly rewards.",
       "The current 8%-target Standard replaces the former 10%-target product.",
       "Removed the unsupported $2.5K row on 2026-10-23 (it had priceUsd null and refundable null since the 2026-07-27 capture, availability unresolved; RU SEO Lead decision, data must match official pages). No first-party page lists a $2.5K size when read on 2026-10-23: Get Started help article https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started (updated 2026-09-24T09:41:29Z) says \"Sizes from $5,000 up to $200K\" and \"Not all sizes are available on every model.\"; Compare Account Models https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models (updated 2026-10-21) price table starts at 5 (\"'2std8': {5:36,10:66,25:177,50:299,100:544,200:null}\", \"'2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}\"); Free Trial article https://help.fundingpips.com/hc/en-us/articles/45363484760209-Free-Trial (updated 2026-09-28T14:34:40Z, read 2026-10-23) no longer contains the earlier \"$2,500 size is paid evaluations only\" sentence and lists \"2 Step Standard Trial $5K $10K $25K $50K $100K 2 Step Pro Trial $5K $10K $25K $50K $100K $200K\". Historical captures keep the old row for provenance. Evidence: /workspace/tradersfundhub/evidence/fundingpips-rules-2026-10-23/ and /workspace/tradersfundhub/evidence/fundingpips-data-2026-10-23/.",
@@ -367,6 +423,10 @@
         "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "The single largest winning day must not exceed 15% of total cumulative profit.",
+    "consistencyBasisSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 95,
     "payoutFirstDays": 14,
     "payoutFrequency": "bi-weekly",

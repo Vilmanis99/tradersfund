@@ -2,7 +2,7 @@ import firms from '@/content/data/firms.json'
 import firmsPending from '@/content/data/firms-pending.json'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { firmSlug } from './firmSlug.ts'
-import { resolvePendingNotListed, resolveRussiaBasisDate, resolveRussiaStatus, russiaBasisDatesBySlug, russiaPendingNotListedBySlug, russiaStatusesWithPending, type RussiaStatus, type RussiaStatusFirm } from './russiaStatus.ts'
+import { futuresRussiaRestrictedBySlug, resolveFuturesRestrictedInRussia, resolvePendingNotListed, resolveRussiaBasisDate, resolveRussiaStatus, resolveRussiaStatusForProduct, russiaBasisDatesBySlug, russiaPendingNotListedBySlug, russiaStatusesWithPending, type RussiaStatus, type RussiaStatusFirm, type FuturesRussiaFirm } from './russiaStatus.ts'
 import { ruAccessBadge, type RuAccessBadgeInfo, type RuPendingNotListed } from './ruAccessLabel.ts'
 
 /**
@@ -20,6 +20,24 @@ const STATUS_BY_SLUG = russiaStatusesWithPending(firms as RussiaStatusFirm[], fi
 
 export function russiaStatusFor(slugOrName: string): RussiaStatus {
   return resolveRussiaStatus(STATUS_BY_SLUG, slugOrName)
+}
+
+const FUTURES_RU_RESTRICTED_BY_SLUG = futuresRussiaRestrictedBySlug(firms as FuturesRussiaFirm[])
+
+/** True when the firm's futures-product country list names Russia (independent of CFD russiaStatus). */
+export function futuresRestrictedInRussia(slugOrName: string): boolean {
+  return resolveFuturesRestrictedInRussia(FUTURES_RU_RESTRICTED_BY_SLUG, slugOrName)
+}
+
+export type RussiaProductAssetClass = 'cfd' | 'futures' | 'crypto' | 'prediction-markets' | string
+
+/**
+ * Product-level Russia status for /ru badges and sign-up CTAs.
+ * Futures: restricted when futuresCountriesRestricted includes Russia.
+ * CFD/challenge and other products: firm-level russiaStatusFor.
+ */
+export function russiaStatusForProduct(slugOrName: string, assetClass: RussiaProductAssetClass | null | undefined): RussiaStatus {
+  return resolveRussiaStatusForProduct(STATUS_BY_SLUG, FUTURES_RU_RESTRICTED_BY_SLUG, slugOrName, assetClass)
 }
 
 const BASIS_DATE_BY_SLUG = russiaBasisDatesBySlug(firms as RussiaStatusFirm[])

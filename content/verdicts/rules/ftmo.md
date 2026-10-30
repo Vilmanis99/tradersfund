@@ -6,15 +6,15 @@ checkedAt: '2026-10-26'
 dataAsOf: '2026-10-15'
 author: Tara Mohseni
 sources:
-  - title: FTMO Trading Objectives (dateModified 2026-10-20; read 2026-10-26)
+  - title: FTMO Trading Objectives (last updated 20 October 2026; read 26 October 2026)
     url: 'https://ftmo.com/en/trading-objectives/'
   - title: >-
-      How do I withdraw my profits? (FTMO FAQ; Tracker capture 2026-10-20,
-      modified 2026-10-13)
+      How do I withdraw my profits? (FTMO FAQ; read 20 October 2026; last
+      updated 13 October 2026)
     url: 'https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/'
   - title: >-
       FTMO 2-Step Challenge (news, overnight and weekend restrictions by account
-      type; Tracker capture 2026-10-15)
+      type; read 15 October 2026)
     url: 'https://ftmo.com/en/2-step-challenge/'
 fieldsUsed:
   - rules.drawdownType.byProduct

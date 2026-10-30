@@ -52,7 +52,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The all-evaluations row also includes Maven's 2 prediction-markets products ($599 and $999), which fit none of the three asset classes. Futures sample is small, with 13 tiers at 4 firms. Lucid Trading's prices in it are list prices from the firm's own price picker, and Apex Trader Funding's are the struck-through list prices on its product cards on 22 Oct 2026; neither is a checkout total.</p>
+<p>The all-evaluations row also includes Maven's 2 prediction-markets products ($599 and $999), which fit none of the three asset classes. Futures sample is small, with 14 tiers at 4 firms. Lucid Trading's prices in it are list prices from the firm's own price picker, and Apex Trader Funding's are the struck-through list prices on its product cards on 22 Oct 2026; neither is a checkout total.</p>
 
 <p><strong>The cheapest sticker isn't always the cheapest account.</strong> The two lowest fees in the table come with a second charge. <a href="/go/the5ers?source=bootcamp&from=post-body-prop-firm-statistics">The5ers Bootcamp</a> lists $95 and charges another $205 when you're funded. <a href="/go/crypto-fund-trader?source=break&from=post-body-prop-firm-statistics">Crypto Fund Trader Break Challenge</a> lists $200 plus a $328 activation fee. Add those two charges and the evaluation median moves from $477 to $488.</p>
 

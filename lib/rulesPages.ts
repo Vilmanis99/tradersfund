@@ -23,7 +23,7 @@ import { isRussianRoutePath, RU_RULES_HANDWRITTEN, RU_RULES_TEMPLATE_SLUGS } fro
  *
  *   EN  /prop-firms/<firm-slug>/rules   every firm with a `rules` block in firms.json
  *   RU  /ru/<firm-slug>-pravila         template twins in RU_RULES_TEMPLATE_SLUGS, plus any
- *                                       hand-written page in RU_RULES_HANDWRITTEN (none today)
+ *                                       hand-written page in RU_RULES_HANDWRITTEN (same gate)
  *
  * A page is indexable only when every required field is complete, sourced and
  * fresh (≤ RULES_MAX_AGE_DAYS since capture). Everything else renders with
@@ -544,14 +544,13 @@ export function buildRulesPageModel(firm: Firm, now = new Date(), options: Rules
   if (template || Object.hasOwn(RU_RULES_HANDWRITTEN, slug)) {
     const ruPath = ruRulesPath(slug)
     const ruReasons = [...dataReasons]
-    if (template) {
-      if (RULES_REQUIRE_VERDICT.ru && !ruVerdict) ruReasons.push('no RU verdict file')
-      // RU pages go live through the RU registry (sitemap, inlinks, RU audits).
-      if (!isRussianRoutePath(ruPath)) ruReasons.push('not registered in RUSSIAN_ROUTE_EDITORIAL_DATES')
-    } else if (!isRussianRoutePath(ruPath)) {
-      ruReasons.push('hand-written RU page not published yet')
-    }
-    ru = { path: ruPath, template, indexable: template ? ruReasons.length === 0 : isRussianRoutePath(ruPath), reasons: ruReasons }
+    // Template twins and hand-written pages pass the same gate (Code Reviewer 27.10.2026): complete,
+    // unflagged data plus a RU writer verdict. A hand-written page reads ru.indexable for its robots
+    // and hreflang, so it flips to indexable on its own once the flags clear.
+    if (RULES_REQUIRE_VERDICT.ru && !ruVerdict) ruReasons.push('no RU verdict file')
+    // RU pages go live through the RU registry (sitemap, inlinks, RU audits).
+    if (!isRussianRoutePath(ruPath)) ruReasons.push(template ? 'not registered in RUSSIAN_ROUTE_EDITORIAL_DATES' : 'hand-written RU page not published yet')
+    ru = { path: ruPath, template, indexable: ruReasons.length === 0, reasons: ruReasons }
   }
 
   return {
@@ -587,6 +586,17 @@ export function getRulesPageModels(now = new Date()): RulesPageModel[] {
 
 export function getRulesPageModel(slug: string, now = new Date()): RulesPageModel | null {
   return getRulesPageModels(now).find(model => model.slug === slug) ?? null
+}
+
+/**
+ * Hand-written RU rules pages (RU_RULES_HANDWRITTEN) that the gate keeps noindex. They stay
+ * registered RU routes (200, inlinks, editorial date) but are left out of the sitemap, IndexNow
+ * and hreflang, and the release crawl checks them as noindex pages instead of acquisition pages.
+ */
+export function gatedRuRulesHandwrittenPaths(now = new Date()): string[] {
+  return getRulesPageModels(now)
+    .filter(model => model.ru && !model.ru.template && !model.ru.indexable)
+    .map(model => model.ru!.path)
 }
 
 /** Indexable EN rules paths (sitemap source). */

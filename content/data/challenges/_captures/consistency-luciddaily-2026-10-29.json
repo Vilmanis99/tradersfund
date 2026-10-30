@@ -1,0 +1,122 @@
+{
+  "captureType": "consistency-luciddaily-recheck",
+  "capturedAt": "2026-10-29",
+  "timezone": "Europe/Riga",
+  "firmSlug": "lucid-trading",
+  "products": [
+    {
+      "productSlug": "luciddaily-dll-on-intraday",
+      "consistencyRulePct": 40,
+      "consistencyRules": [
+        {
+          "percent": 40,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation (standard)",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        },
+        {
+          "percent": 50,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation with the 50% consistency add-on",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        }
+      ],
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+          "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+        }
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-on-eod",
+      "consistencyRulePct": 40,
+      "consistencyRules": [
+        {
+          "percent": 40,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation (standard)",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        },
+        {
+          "percent": 50,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation with the 50% consistency add-on",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        }
+      ],
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+          "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+        }
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-off-intraday",
+      "consistencyRulePct": 40,
+      "consistencyRules": [
+        {
+          "percent": 40,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation (standard)",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        },
+        {
+          "percent": 50,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation with the 50% consistency add-on",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        }
+      ],
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+          "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+        }
+      }
+    },
+    {
+      "productSlug": "luciddaily-dll-off-eod",
+      "consistencyRulePct": 40,
+      "consistencyRules": [
+        {
+          "percent": 40,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation (standard)",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        },
+        {
+          "percent": 50,
+          "scope": "evaluation",
+          "appliesTo": "LucidDaily evaluation with the 50% consistency add-on",
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization"
+        }
+      ],
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+          "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+      "quote": "Consistency: 40% or 50%"
+    },
+    {
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+      "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price."
+    },
+    {
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+      "quote": "50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+    },
+    {
+      "sourceUrl": "https://support.lucidtrading.com/en/articles/15996664-luciddaily-evaluation",
+      "quote": "The LucidDaily evaluation 50% consistency has cushion built in, so you can pass in two days"
+    }
+  ]
+}

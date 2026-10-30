@@ -56,6 +56,7 @@ function load(file) {
   return testModule.exports
 }
 const FirmTable = load('components/FirmTable.tsx').default
+const { toPublicChallenge, toPublicFirm } = load('lib/publicFirm.ts')
 const { directoryPlatformNames, firmPlatformEvidenceStatus } = load('lib/firmPlatforms.ts')
 const allFirms = JSON.parse(readFileSync(new URL('../content/data/firms.json', import.meta.url), 'utf8'))
 const bright = allFirms.find(firm => firm.name === 'BrightFunded')
@@ -70,7 +71,8 @@ const render = (firms, challenges = [], initialFilters = {}) => {
     directoryQuery = new URLSearchParams(Object.entries(initialFilters).map(([key, value]) => [key, value === true ? 'allowed' : String(value)]))
     testLocation.search = directoryQuery.size ? `?${directoryQuery}` : ''
   }
-  return FirmTable({ firms, challenges })
+  // Same public-field projections app/prop-firms/(index)/page.tsx passes to the client table.
+  return FirmTable({ firms: firms.map(toPublicFirm), challenges: challenges.map(toPublicChallenge) })
 }
 function nodes(tree) {
   return React.isValidElement(tree) ? [tree, ...React.Children.toArray(tree.props.children).flatMap(nodes)] : []

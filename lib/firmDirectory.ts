@@ -1,4 +1,10 @@
-import type { Challenge } from './firms'
+import type { Challenge, ChallengeAccountSize, ChallengeRules } from './firms'
+
+/** The product fields the directory filters read (full Challenge or lib/publicFirm's PublicChallenge). */
+type DirectoryProduct = Pick<Challenge, 'phases' | 'drawdownType' | 'profitSplitPct'> & {
+  rules: Pick<ChallengeRules, 'news' | 'ea' | 'overnight' | 'weekend'>
+  accountSizes: Pick<ChallengeAccountSize, 'sizeUsd'>[]
+}
 
 export const DIRECTORY_PHASES = ['All', 'Instant', '1-step', '2-step', '3-step'] as const
 export const DIRECTORY_DRAWDOWNS = ['All', 'static', 'trailing', 'eod-trailing', 'balance-based'] as const
@@ -61,7 +67,7 @@ export function hasProductFilters(state: DirectoryState) {
 }
 
 /** The same projected offerings drive both eligibility and every displayed product term. */
-export function matchingDirectoryProducts(products: Challenge[], state: DirectoryState): Challenge[] {
+export function matchingDirectoryProducts<T extends DirectoryProduct>(products: T[], state: DirectoryState): T[] {
   return products.filter(product =>
     (state.phase === 'All' || (product.phases === 0 ? 'Instant' : `${product.phases}-step`) === state.phase)
     && (state.drawdown === 'All' || product.drawdownType === state.drawdown)
@@ -72,7 +78,7 @@ export function matchingDirectoryProducts(products: Challenge[], state: Director
   })).filter(product => state.size === 0 || product.accountSizes.length > 0)
 }
 
-export function directorySplit(products: Challenge[]) {
+export function directorySplit(products: Pick<Challenge, 'profitSplitPct'>[]) {
   const values = products.flatMap(product => product.profitSplitPct == null ? [] : [product.profitSplitPct])
   const hasUnknown = values.length < products.length
   const min = values.length ? Math.min(...values) : null

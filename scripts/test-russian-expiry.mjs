@@ -200,9 +200,10 @@ try {
   const { getRussianReviewFinderHref, getRussianFinderRows, getRussianInstantFinderHref, buildChallengeComparisonRows } = require(path.join(root, 'lib/challengeComparisonData.ts'))
   const GlobalComparison = require(path.join(root, 'components/GlobalChallengeComparison.tsx')).default
   const CftChangeFeed = require(path.join(root, 'components/ChallengeChangeFeed.tsx')).default
+  const { challengeChangeCardEntry } = require(path.join(root, 'lib/challengeWatch.ts'))
   const cftChanges = require(path.join(root, 'content/data/challenge-watch.json'))
     .filter(entry => entry.firmSlug === 'crypto-fund-trader')
-    .map(entry => ({ ...entry, reviewUrl: '/blog/crypto-fund-trader-review', indiaScreened: false,
+    .map(entry => ({ ...challengeChangeCardEntry(entry), reviewUrl: '/blog/crypto-fund-trader-review', indiaScreened: false,
       productKeys: entry.productSlugs.map(slug => `crypto-fund-trader:${slug}`) }))
   const cftFeedHtml = renderToStaticMarkup(React.createElement(CftChangeFeed, {
     entries: cftChanges, surface: 'global', validProductKeys: cftChanges.flatMap(entry => entry.productKeys),
@@ -291,6 +292,14 @@ try {
   assert.equal(brightPayoutEvidence?.sourceCapturedAt, brightPayoutEvidence?.sourceObservations.map(item => item.sourceCapturedAt).sort()[0], 'Bright payout date is the oldest cited observation')
   assert.equal(brightKycEvidence?.sourceCapturedAt, brightKycEvidence?.sourceObservations.map(item => item.sourceCapturedAt).sort()[0], 'Bright KYC date is the oldest cited observation')
   const { RUSSIAN_ROUTE_EDITORIAL_DATES } = require(path.join(root, 'lib/localizedRoutes.ts'))
+  // Russian dateModified = the route's sitemap lastmod (lib/ruRouteLastmod.generated.ts): the newest real change of its
+  // page copy, evidence or firm data, never older than the editorial date. Capture/re-check dates alone do not move it.
+  const { RU_ROUTE_LASTMOD } = require(path.join(root, 'lib/ruRouteLastmod.generated.ts'))
+  const ruDate = route => {
+    const date = RU_ROUTE_LASTMOD[route]
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(date ?? '') && (!RUSSIAN_ROUTE_EDITORIAL_DATES[route] || date >= RUSSIAN_ROUTE_EDITORIAL_DATES[route]), `${route}: generated lastmod exists and is not older than the editorial date`)
+    return date
+  }
   const EvidenceNotice = require(path.join(root, 'components/RussianEvidenceFreshnessNotice.tsx')).default
   clock = RU_PAGE_CLOCK
   const originalTeamEvidence = JSON.stringify(teamTradersEvidence)
@@ -369,7 +378,7 @@ try {
   assert(emptyEnglish.includes('href="/prop-firm-challenges"') && !emptyEnglish.includes('<select'), 'English empty preview retains its comparison link')
   const ChangeFeed = require(path.join(root, 'components/ChallengeChangeFeed.tsx')).default
   const ruleEntries = require(path.join(root, 'content/data/challenge-watch.json')).filter(entry => entry.ruleEvidenceRefs)
-  const changeHtml = renderToStaticMarkup(React.createElement(ChangeFeed, { entries: ruleEntries.map(entry => ({ ...entry, reviewUrl: '/ru/obzor-fundednext', indiaScreened: false, productKeys: entry.productSlugs.map(slug => `fundednext:${slug}`) })), surface: 'global', validProductKeys: [] }))
+  const changeHtml = renderToStaticMarkup(React.createElement(ChangeFeed, { entries: ruleEntries.map(entry => ({ ...challengeChangeCardEntry(entry), reviewUrl: '/ru/obzor-fundednext', indiaScreened: false, productKeys: entry.productSlugs.map(slug => `fundednext:${slug}`) })), surface: 'global', validProductKeys: [] }))
   assert.equal((changeHtml.match(/Rule sources checked separately; prices were not refreshed\./g) ?? []).length, ruleEntries.length, 'each rule-only card explains its capture scope')
   for (const [captures, needsCheck] of [
     [[], true], [[ruDaysBefore(21)], false], [[ruDaysBefore(30)], false], [[ruDaysBefore(31)], true], [[ruDaysBefore(46)], true],
@@ -713,15 +722,7 @@ try {
   assert.equal(cryptoSchemas(primaryReference).find(item => item['@type'] === 'Article')?.headline, primaryModule.metadata.title.absolute, 'comparison Article headline follows the search title')
   assert.equal(cryptoSchemas(primaryReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.[1]?.item?.name, 'BrightFunded', 'comparison ItemList uses the official brand')
   const fundedPayoutSource = require(path.join(root, 'lib/fundedNextPayout.ts')).fundedNextPayoutSource
-  const primaryExpectedModified = [
-    RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-vs-bright-funded'],
-    ...getAllChallenges().filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug)).map(product => product.sourceCapturedAt),
-    fundedNextAccessEvidence.sourceCapturedAt,
-    fundedPayoutSource.sourceCapturedAt,
-    ...[brightEvidence.sources.rules, brightEvidence.sources.reward, brightEvidence.sources.platforms, brightEvidence.sources.countries, brightEvidence.sources.countryTerms].map(source => source.sourceCapturedAt),
-    ...marketEvidence.payoutEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
-    ...marketEvidence.kycEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
-  ].sort().at(-1)
+  const primaryExpectedModified = ruDate('/ru/fundednext-vs-bright-funded')
   assert.equal(cryptoSchemas(primaryReference).find(item => item['@type'] === 'Article')?.dateModified, primaryExpectedModified, 'Bright comparison Article reflects the newest scoped rule or product update')
   assert(primaryReference.includes(`href="${fundedPayoutSource.sourceUrl}"`) && primaryReference.includes(ruDay(fundedPayoutSource.sourceCapturedAt)), 'comparison exposes its Stellar 1-Step payout source and separate date')
   assert(primaryReference.includes(`href="${brightEvidence.sources.countries.sourceUrl}"`) && primaryReference.includes(ruDay(brightEvidence.sources.countries.sourceCapturedAt)), 'comparison cites Bright Funded country restrictions separately')
@@ -842,10 +843,7 @@ try {
   assert(cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'ItemList')?.itemListElement?.some(item => item.item.name === 'BrightFunded'), 'payout ItemList uses the official brand')
   assert(payoutGuideReference.includes('Russian Federation') || payoutGuideReference.includes('Российской Федерации'), 'payout guide names the distinct Russian card boundary')
   const payoutArticle = cryptoSchemas(payoutGuideReference).find(item => item['@type'] === 'Article')
-  const latestPayoutEvidenceDate = marketEvidence.payoutEvidence.map(item => item.sourceCapturedAt).sort().at(-1)
-  const latestPayoutProductDate = getAllChallenges().filter(product => ['fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug) && isChallengeFresh(product))
-    .map(product => product.sourceCapturedAt).sort().at(-1)
-  assert.equal(payoutArticle?.dateModified, [RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/vyplaty-prop-firm'], latestPayoutEvidenceDate, latestPayoutProductDate].filter(Boolean).sort().at(-1), 'payout Article date includes the newest scoped source just like the sitemap')
+  assert.equal(payoutArticle?.dateModified, ruDate('/ru/vyplaty-prop-firm'), 'payout Article date is the route lastmod, just like the sitemap')
   assert(!payoutGuideReference.includes('80% против 85%'), 'Russian payout guide does not retain the retired FundingPips split comparison')
   assert(payoutGuideReference.includes('карта (сохранена при оплате)') && payoutGuideReference.includes('Методов: 7'), 'Russian payout guide renders the conditional seventh FundedNext route')
   assert(payoutGuideReference.includes('стандартный вариант; другие опции') && !payoutGuideReference.includes('из 6 опубликованных маршрутов'), 'Russian payout timing and method count do not flatten checkout options or retain the old list')
@@ -1207,6 +1205,7 @@ try {
    * (c) on /ru/obzor-<firm> pages only the reviewed firm's own CTAs are exempt from (b); alternatives are
    *     ranked like everywhere else, so an available BrightFunded leads them. The two single-product FundedNext
    *     guides (fundednext-mt5, fundednext-stellar-instant) are treated the same way: their subject is FundedNext.
+   *     The FundingPips rules page (fundingpips-pravila, 2026-10-27) is treated the same way: its subject is FundingPips.
    * Returns issues instead of throwing so the all-pages sweep can report every page at once.
    */
   const russiaCtaIssues = (html, { ranking = true, reviewedFirm = null, comparePage = false } = {}) => {
@@ -1273,7 +1272,7 @@ try {
   const russiaCtaSweep = new Map()
   // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
   // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
-  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext' }
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundingpips-pravila': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext', 'obzor-topstep': 'topstep' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
@@ -1459,7 +1458,7 @@ try {
             assert(html.includes(`${localReviewAffiliateLabels[slug]} — ${formatRuDate(affiliateSignal.sourceCapturedAt)}`), `${slug}: affiliate check shows its own capture date`)
             assert(html.includes(`data-russian-guide-source-status="${current ? 'dated' : 'recapture-required'}"`), `${slug}: source warning follows all three capture dates`)
             assert(html.includes(`<strong>${ruDay(localSignal.sourceCapturedAt)}</strong><span>проверка заявлений на главной</span>`), `${slug}: hero date belongs to the operator claims`)
-            assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES[`/ru/${slug}`], `${slug}: Article and sitemap use the same editorial date`)
+            assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, ruDate(`/ru/${slug}`), `${slug}: Article and sitemap use the same date`)
           }
         }
         const brightPreclickDisclosures = {
@@ -1502,7 +1501,7 @@ try {
         assert(!html.includes(brightFirm.affiliateUrl), `${slug || 'ru home'}: never expose a second Bright affiliate destination outside /go/`)
 // former rossiyskie-prop-kompanii route now 301s to /ru/dlya-russkoyazychnykh-treyderov#rossiyskie
         if (slug === 'dlya-russkoyazychnykh-treyderov') {
-          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/dlya-russkoyazychnykh-treyderov'], 'diaspora Article uses the Week 1 editorial date')
+          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, ruDate('/ru/dlya-russkoyazychnykh-treyderov'), 'diaspora Article uses the Week 1 editorial date')
         }
         const countFreeComparisonLabels = {
           'obzor-proplive': 'программы BrightFunded и FundedNext',
@@ -1618,7 +1617,7 @@ try {
           const article = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(item => item['@type'] === 'Article')
           assert.equal(article?.author?.name, 'Edris Derakhshi')
           assert.equal(article?.datePublished, '2026-08-28')
-          assert.equal(article?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/obzor-teamtraders'])
+          assert.equal(article?.dateModified, ruDate('/ru/obzor-teamtraders'))
           assert(html.includes(`Обновлено ${ruDay(article.dateModified)}`))
           for (const id of ['tarify', 'etapy', 'pravila', 'vyplaty', 'raskhozhdeniya', 'oferta', 'istochniki', 'global-options']) assert(html.includes(`id="${id}"`), 'contents links resolve to real sections')
           for (const source of teamTradersEvidence.sources.filter(item => item.id === 'home' || item.id === 'faq')) assert(html.includes(`href="${source.url}"`), 'live primary sources remain linked')
@@ -1653,10 +1652,7 @@ try {
           const fullyCurrent = isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
             && partnerProducts.length > 0 && partnerProducts.every(product => isChallengeFresh(product)) && allKycCurrent
           assert.equal(schemas.some(item => item['@type'] === 'FAQPage'), fullyCurrent, 'KYC FAQ schema expires with country, KYC and product evidence')
-          // dateModified is max(editorial date, newest partner product/KYC capture) by design (russianRouteDateModified).
-          const latestFreshProduct = expectedProducts.map(product => product.sourceCapturedAt).sort().at(-1) ?? marketEvidence.capturedAt
-          const latestKyc = marketEvidence.kycEvidence.filter(source => partnerSlugs.includes(source.firmSlug)).map(source => source.sourceCapturedAt).sort().at(-1) ?? marketEvidence.capturedAt
-          assert.equal(schemas.find(item => item['@type'] === 'Article')?.dateModified, [RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/prop-firmy-bez-kyc'], latestFreshProduct, latestKyc].sort().at(-1), 'dateModified follows the newest current evidence, never older than the editorial date')
+          assert.equal(schemas.find(item => item['@type'] === 'Article')?.dateModified, ruDate('/ru/prop-firmy-bez-kyc'), 'dateModified is the route lastmod, never older than the editorial date')
           assert(html.includes(`<strong>${expectedProducts.length}</strong><span>свежих глобальных продуктов</span>`), 'KYC product count comes from fresh rows')
           assert(html.includes(`<strong>${expectedPrices}</strong><span>опубликованных цен</span>`), 'KYC price count comes from fresh tiers')
           assert(html.includes(`${marketEvidence.localFirmSignals.find(item => item.operator === 'TeamTraders').claims.minimumTradingSessions} торговых дней`), 'local TeamTraders history uses captured trading days, not an invented 15-session claim')
@@ -1675,7 +1671,7 @@ try {
           assert(html.includes('ru-review-article'))
           const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
           assert.equal(schema.find(item => item['@type'] === 'Article')?.author?.name, 'Edris Derakhshi')
-          assert.equal(schema.find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/prop-firmy-s-ctrader'])
+          assert.equal(schema.find(item => item['@type'] === 'Article')?.dateModified, ruDate('/ru/prop-firmy-s-ctrader'))
           const fresh = products.filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug) && isChallengeFresh(product))
           const needsCheck = cTraderSourceDates.some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
             || ['fundednext', 'bright-funded'].some(firm => !fresh.some(product => product.firmSlug === firm))
@@ -1694,7 +1690,7 @@ try {
           assert(visible.includes('Исключение по возврату не является разрешением купить новый счёт'))
         }
         if (slug === '') {
-          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'CollectionPage')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru'], 'homepage schema reflects the dated access-copy correction')
+          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'CollectionPage')?.dateModified, ruDate('/ru'), 'homepage schema reflects the dated access-copy correction')
           assert.match(html, /<a\b[^>]*href="\/ru\/obzor-bright-funded"[^>]*>Читать обзор BrightFunded<\/a>/, 'homepage links to the Bright review with the first-party brand spelling')
           const homeDisclosure = html.indexOf('data-russian-affiliate-disclosure="home-primary-partners"')
           const fundedNextAffiliate = html.indexOf('href="/go/fundednext?from=ru-home-hero-fundednext"')
@@ -1746,7 +1742,7 @@ try {
           assert.doesNotMatch(visible, /\bcheckout\b|\bsnapshot\b|\ballocation\b|\bdownload\b|\bCTA\b/iu, 'MT5 guide uses reader-facing Russian')
           assert(visible.includes('Автор: Edris Derakhshi'))
           const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
-          assert.equal(schema.find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-mt5'])
+          assert.equal(schema.find(item => item['@type'] === 'Article')?.dateModified, ruDate('/ru/fundednext-mt5'))
           const freshProducts = products.filter(product => product.firmSlug === 'fundednext' && isChallengeFresh(product))
           const accessCapturedAt = fundedNextAccessEvidence?.sourceCapturedAt ?? marketEvidence.capturedAt
           const needsCheck = !freshProducts.length || [...mt5SourceDates, accessCapturedAt].some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
@@ -1902,7 +1898,7 @@ try {
             && instantCatalog.filter(product => riskExampleSlugs.includes(product.firmSlug)).every(product => isChallengeFresh(product))
           assert.equal(html.includes('data-russian-instant-risk-status="recapture-required"'), !riskExamplesCurrent, 'fixed risk-price examples expire with every named product')
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), brightFresh && instantCatalogFresh && fundedNextRulesFresh, 'instant FAQ schema expires with product and independent rule evidence')
-          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/prop-firmy-bez-chelendzha'], 'editorial date does not drift with product capture')
+          assert.equal(cryptoSchemas(html).find(item => item['@type'] === 'Article')?.dateModified, ruDate('/ru/prop-firmy-bez-chelendzha'), 'editorial date does not drift with product capture')
           if (!currentInstant.length) {
             assert(html.includes('data-russian-instant-empty="recapture-required"'), 'fully expired phase-0 catalogue shows an explanation instead of an empty table')
             assert(!visible.includes('$59.99') && !visible.includes('$60') && !visible.includes('4 цены и плавающий лимит'), 'expired instant prices disappear from visible guide copy')
@@ -1962,7 +1958,7 @@ try {
           const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
           const article = schema.find(item => item['@type'] === 'Article')
           assert.equal(article?.author?.name, 'Edris Derakhshi')
-          assert.equal(article?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/forex-prop-firmy'])
+          assert.equal(article?.dateModified, ruDate('/ru/forex-prop-firmy'))
           assert(!article.headline.includes('7 продуктов'), 'metadata does not promise a fixed expiring count')
           const scoped = getAllChallenges().filter(product => product.assetClass === 'cfd' && ['fundednext', 'bright-funded'].includes(product.firmSlug))
           const current = scoped.filter(product => isChallengeFresh(product))
@@ -2007,7 +2003,7 @@ try {
           const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]))
           const article = schema.find(item => item['@type'] === 'Article')
           assert.equal(article?.author?.name, 'Edris Derakhshi')
-          assert.equal(article?.dateModified, RUSSIAN_ROUTE_EDITORIAL_DATES['/ru/fundednext-stellar-instant'])
+          assert.equal(article?.dateModified, ruDate('/ru/fundednext-stellar-instant'))
           const needsCheck = instantSourceDates.some(sourceCapturedAt => !isChallengeFresh({ sourceCapturedAt }))
           assert.equal(html.includes('data-russian-guide-source-status="recapture-required"'), needsCheck, 'rule, price and access age are independent of editorial date')
           assert.equal(schema.some(item => item['@type'] === 'FAQPage'), !needsCheck, 'dated archival answers do not remain current FAQ structured data')

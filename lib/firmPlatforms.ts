@@ -1,6 +1,11 @@
 import type { Firm } from './firms'
 
-export function firmPlatformSourceUrl(firm: Pick<Firm, 'platformEvidence' | 'officialUrl'>): string | null {
+/** The platform-evidence fields these checks read (also satisfied by lib/publicFirm's projection). */
+type PlatformEvidenceFirm = Pick<Firm, 'officialUrl'> & {
+  platformEvidence?: Pick<NonNullable<Firm['platformEvidence']>, 'sourceUrl' | 'sourceCapturedAt' | 'sourceQuote'>
+}
+
+export function firmPlatformSourceUrl(firm: PlatformEvidenceFirm): string | null {
   if (!firm.platformEvidence) return null
   try {
     const source = new URL(firm.platformEvidence.sourceUrl)
@@ -10,7 +15,7 @@ export function firmPlatformSourceUrl(firm: Pick<Firm, 'platformEvidence' | 'off
   } catch { return null }
 }
 
-export function firmPlatformEvidenceStatus(firm: Pick<Firm, 'platformEvidence' | 'officialUrl'>, now = new Date()): 'uncaptured' | 'fresh' | 'recapture-required' {
+export function firmPlatformEvidenceStatus(firm: PlatformEvidenceFirm, now = new Date()): 'uncaptured' | 'fresh' | 'recapture-required' {
   const evidence = firm.platformEvidence
   if (!evidence) return 'uncaptured'
   if (!firmPlatformSourceUrl(firm) || typeof evidence.sourceQuote !== 'string' || !evidence.sourceQuote.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(evidence.sourceCapturedAt)) return 'recapture-required'
@@ -21,6 +26,6 @@ export function firmPlatformEvidenceStatus(firm: Pick<Firm, 'platformEvidence' |
 }
 
 /** Legacy lists remain explicitly unverified; a known stale capture cannot count as a current filter match. */
-export function directoryPlatformNames(firm: Pick<Firm, 'platforms' | 'platformEvidence' | 'officialUrl'>, now = new Date()): string[] {
+export function directoryPlatformNames(firm: Pick<Firm, 'platforms'> & PlatformEvidenceFirm, now = new Date()): string[] {
   return firmPlatformEvidenceStatus(firm, now) === 'recapture-required' ? [] : firm.platforms
 }

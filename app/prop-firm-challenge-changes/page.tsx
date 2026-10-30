@@ -17,7 +17,7 @@ import ChallengeChangeFeed, {
   type ChallengeChangeCardData,
 } from '@/components/ChallengeChangeFeed'
 import { validateChallengeProductKeys } from '@/lib/challengeChangeFocus'
-import { getChallengeWatchEntries } from '@/lib/challengeWatch'
+import { challengeChangeCardEntry, getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
 import {
   INDIA_EVIDENCE,
@@ -135,7 +135,7 @@ export default function Page() {
     const affectedProductSlugs = affectedProducts.map(product => product.productSlug)
     const completeProductMap = affectedProducts.length === entry.productSlugs.length
     return {
-      ...entry,
+      ...challengeChangeCardEntry(entry),
       reviewUrl: firmBySlug.get(entry.firmSlug)?.reviewUrl || '/prop-firms',
       indiaScreened: indiaScreenedSlugs.has(entry.firmSlug),
       productKeys: affectedProductSlugs.map(productSlug => `${entry.firmSlug}:${productSlug}`),

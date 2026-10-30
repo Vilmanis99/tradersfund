@@ -1,0 +1,32 @@
+{
+  "scope": "Internal provenance for challenge-watch entries whose visible text names only the public site and date. Never render this file; it keeps the capture-file paths that used to sit in traderImpact text (moved 2026-10-27, render-hygiene fix).",
+  "entries": {
+    "crypto-fund-trader-reward-model-correction-2026-09-08": {
+      "field": "traderImpact",
+      "visibleWording": "Rechecked 2026-10-20 on cryptofundtrader.com (homepage and FAQ)",
+      "sourceCapture": {
+        "file": "content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json",
+        "section": "articleSlotRecapture"
+      },
+      "sourceUrls": [
+        "https://cryptofundtrader.com/",
+        "https://cryptofundtrader.com/faq/"
+      ],
+      "checkedAt": "2026-10-20"
+    },
+    "crypto-fund-trader-ascend-break-source-conflicts-2026-09-08": {
+      "field": "traderImpact",
+      "visibleWording": "Checked 2026-10-19 on cryptofundtrader.com (homepage, Terms and the Break challenge page)",
+      "sourceCapture": {
+        "file": "content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json",
+        "section": "conflicts"
+      },
+      "sourceUrls": [
+        "https://cryptofundtrader.com/",
+        "https://cryptofundtrader.com/terms-and-conditions/",
+        "https://cryptofundtrader.com/break-challenge/"
+      ],
+      "checkedAt": "2026-10-19"
+    }
+  }
+}

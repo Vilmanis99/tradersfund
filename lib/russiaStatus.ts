@@ -119,3 +119,45 @@ export function resolveRussiaStatus(statusBySlug: Record<string, RussiaStatus>, 
   const key = ALIASES[slug] ?? slug
   return EXTRA_RESTRICTED[key] ?? statusBySlug[key] ?? 'unverified'
 }
+
+/** Firm fields used to decide futures-product Russia restriction. */
+export type FuturesRussiaFirm = { name: string; futuresCountriesRestricted?: string[] | null }
+
+const RUSSIA_NAME = /^russia$/i
+
+/** slug -> true when futuresCountriesRestricted names Russia. */
+export function futuresRussiaRestrictedBySlug(firms: readonly FuturesRussiaFirm[]): Record<string, true> {
+  const out: Record<string, true> = {}
+  for (const firm of firms) {
+    const list = firm.futuresCountriesRestricted
+    if (!Array.isArray(list) || !list.some(country => RUSSIA_NAME.test(String(country).trim()))) continue
+    out[firmSlug(firm.name)] = true
+  }
+  return out
+}
+
+export function resolveFuturesRestrictedInRussia(
+  bySlug: Record<string, true>,
+  slugOrName: string,
+): boolean {
+  const slug = firmSlug(slugOrName)
+  const key = ALIASES[slug] ?? slug
+  return bySlug[key] === true
+}
+
+/**
+ * Product-level Russia status. Futures + Russia on futuresCountriesRestricted → restricted.
+ * All other asset classes keep the firm-level status.
+ */
+export function resolveRussiaStatusForProduct(
+  statusBySlug: Record<string, RussiaStatus>,
+  futuresRestrictedBySlug: Record<string, true>,
+  slugOrName: string,
+  assetClass: string | null | undefined,
+): RussiaStatus {
+  if (assetClass === 'futures' && resolveFuturesRestrictedInRussia(futuresRestrictedBySlug, slugOrName)) {
+    return 'restricted'
+  }
+  return resolveRussiaStatus(statusBySlug, slugOrName)
+}
+

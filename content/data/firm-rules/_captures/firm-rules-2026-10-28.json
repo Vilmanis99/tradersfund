@@ -1,0 +1,202 @@
+{
+  "capturedAt": "2026-10-28",
+  "accessNotes": "Fresh official reads for Take Profit Trader weekend/overnight holding only, 2026-10-28 ~13:05 Riga, help-centre articles read with WebFetch (standard fetch). Quotes verbatim. Raw notes: /workspace/tradersfundhub/evidence/tpt-weekend-2026-10-28/README.md. | FundingPips open-flag fill 2026-10-28 (Riga, UTC+2), Prop Firm Tracker, for /ru/fundingpips-pravila (RU Writer FYI 27 Oct). Help Centre articles read as Help Center API JSON with curl (HTTP 200) at 13:05-13:20 Riga; no account, checkout or payment; no VPN/proxy. fundingpips.com/ and fundingpips.com/terms-and-conditions returned HTTP 429 'Vercel Security Checkpoint' to curl and were not read (not bypassed). Box egress may geolocate to the US; the Help Centre articles carry no regional variant. Quotes are verbatim after whitespace normalisation of the article HTML. Raw evidence: /workspace/tradersfundhub/evidence/fundingpips-flags-2026-10-28/.",
+  "pagesRead": [
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+    "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods"
+  ],
+  "pageDates": {
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP": "March 06, 2026 06:21 Updated",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours": "May 06, 2026 17:37 Updated",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules": "September 22, 2026 12:36 Updated",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex": "updated_at 2026-10-21T09:41:33Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex": "updated_at 2026-10-21T09:40:38Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model": "updated_at 2026-10-21T09:40:58Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard": "updated_at 2026-10-21T09:41:20Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero": "updated_at 2026-10-28T09:23:08Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models": "updated_at 2026-10-21T09:40:17Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods": "updated_at 2026-09-28T13:01:01Z (Help Center API)",
+    "https://fundingpips.com/": "not read: HTTP 429 Vercel Security Checkpoint",
+    "https://fundingpips.com/terms-and-conditions": "not read: HTTP 429 Vercel Security Checkpoint"
+  },
+  "observations": [
+    "Compare Account Models (updated 2026-10-21) reward cells: 1 Step Flex 'Bi-Weekly 80%', 'On Demand 100%'; 2 Step Flex 'Bi-Weekly 80%', 'Bi-Weekly 95% (add-on)', 'On Demand 100%'; 2 Step Standard 'Weekly 60%', 'Bi-Weekly 80%', 'On Demand 100%'; Zero 'Bi-Weekly 95%'. The table labels the 2 Step Flex 95% split '(add-on)' while the 2 Step Flex article says 'The 80% or 95% split is chosen at purchase, and the choice is locked for the life of the account. Both cost the same.' The split values agree; only the label differs, so the article wording is used.",
+    "Compare Account Models consistency row shows a dash for 1 Step Flex, 2 Step Flex and 2 Step Pro and '15%' for Zero; its On Demand tooltip reads 'Consistency Score' / '35% on On Demand: no single trading day may exceed 35% of total profit.' This matches the product articles: 35% applies to the On Demand 100% reward only.",
+    "FundingPips Zero article updated 2026-10-28T09:23:08Z; 95% Bi-Weekly split and 15% consistency score unchanged.",
+    "Product articles for 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard carry the same updated_at as on 2026-10-21 (no edit since)."
+  ],
+  "challengeChanges": [
+    {
+      "productSlug": "2-step-flex",
+      "field": "profitSplitPct",
+      "previousValue": null,
+      "newValue": 80,
+      "plus": "profitSplitTiers 80 (Bi-Weekly 80%) / 95 (Bi-Weekly 95%); profitSplitPct is the lowest tier per lib/profitSplitDisplay.ts"
+    },
+    {
+      "productSlug": "2-step-standard",
+      "field": "profitSplitPct",
+      "previousValue": null,
+      "newValue": 60,
+      "plus": "profitSplitTiers 60 (Weekly 60%) / 80 (Bi-Weekly 80%); profitSplitPct is the lowest tier"
+    },
+    {
+      "productSlug": "2-step-standard",
+      "field": "payoutFrequency",
+      "previousValue": null,
+      "newValue": "weekly",
+      "plus": "the cycle of the lowest split tier (Weekly 60%); Bi-Weekly 80% and On Demand 100% are recorded in tiers / notes"
+    }
+  ],
+  "firms": {
+    "take-profit-trader": {
+      "weekendHolding": {
+        "value": false,
+        "byProduct": {
+          "the-test": false
+        },
+        "summary": "not allowed",
+        "note": "Applies to Test, PRO and PRO+: the Universal Trading Policies (updated 6 Mar 2026) apply to all accounts and say positions may not be held from one session to the next; Test Rule 4 (updated 6 May 2026) says open positions are closed automatically at 4:55 PM Eastern. A position held over the weekend would be carried from Friday's session into Sunday's.",
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "The Universal Trading Policies (UTP) establish the core standards that apply to all TakeProfitTrader accounts, including Test, PRO, and PRO+."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "#6: Trade Approved Products, During Approved Times. Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
+            "quote": "Positions cannot be carried from one trading day into the next. All positions must be opened and closed within the approved daily window: ... TPT will automatically close any open position at 4:55 PM Eastern."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
+            "quote": "You may only trade approved instruments during the permitted trading hours."
+          }
+        ]
+      }
+    },
+    "fundingpips": {
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 35% on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard for the On Demand 100% reward only (2 Step Flex and 2 Step Standard state that their Bi-Weekly / Weekly rewards have no consistency score); 15% on FundingPips Zero for every reward request",
+        "byProduct": {
+          "1-step-flex": 35,
+          "2-step-flex": 35,
+          "2-step-pro": 35,
+          "2-step-standard": 35,
+          "zero": 15
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "A 35% consistency score must be achieved: no single trading day can account for more than 35% of total profit. This resets after each reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "For 2 Step Standard, the 35% Consistency Score applies only on the On Demand reward cycle."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "To request a reward, the biggest winning day must not exceed 15% of total accumulated profit."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on 1 Step Flex (Bi-Weekly) and 2 Step Pro (Weekly); 80% or 95% on 2 Step Flex (Bi-Weekly split chosen at purchase); 60% Weekly or 80% Bi-Weekly on 2 Step Standard (cycle selected at Master); 95% on FundingPips Zero. 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard also offer On Demand 100% after a 35% consistency score and 7 profitable days",
+        "byProduct": {
+          "1-step-flex": 80,
+          "2-step-flex": "80% or 95% (Bi-Weekly, split chosen at purchase)",
+          "2-step-pro": 80,
+          "2-step-standard": "60% Weekly or 80% Bi-Weekly (cycle selected at Master)",
+          "zero": 95
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Bi-Weekly pays an 80% split every 14 calendar days once the 1% minimum is cleared. On Demand pays a 100% split on demand and requires a 35% consistency score plus 7 profitable days at 0.5%+ each; both of those reset after a successfully processed reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "No. The 80% or 95% split is chosen at purchase, and the choice is locked for the life of the account. Both cost the same."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Every 7 calendar days after the first executed trade on the Master Account. 80% split on every reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Every 14 calendar days after the first executed trade on the Master Account. 95% profit split on every reward."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: bi-weekly on 1 Step Flex, 2 Step Flex, FundingPips Zero; weekly on 2 Step Pro; Weekly (60%), Bi-Weekly (80%) or On Demand (100%) on 2 Step Standard, cycle selected at Master; 1 Step Flex, 2 Step Flex and 2 Step Pro also offer On Demand 100% after a 35% consistency score and 7 profitable days",
+        "byProduct": {
+          "1-step-flex": "bi-weekly",
+          "2-step-flex": "bi-weekly",
+          "2-step-pro": "weekly",
+          "2-step-standard": "Weekly (60%), Bi-Weekly (80%) or On Demand (100%), cycle selected at Master",
+          "zero": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Bi-Weekly pays an 80% split every 14 calendar days once the 1% minimum is cleared. On Demand pays a 100% split on demand and requires a 35% consistency score plus 7 profitable days at 0.5%+ each; both of those reset after a successfully processed reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Rewards run on two cycles: Bi-Weekly (choose an 80% or 95% split at purchase) or On Demand (100% split). Qualification depends on the cycle and split chosen. There is no Consistency Score on either Bi-Weekly split."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Every 7 calendar days after the first executed trade on the Master Account. 80% split on every reward."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Flexible reward cycles: Weekly 60%, Bi-Weekly 80%, or On Demand 100%."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "The reward cycle can be selected once the evaluation account reaches the Master Account."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Every 14 calendar days after the first executed trade on the Master Account. 95% profit split on every reward."
+          }
+        ]
+      }
+    }
+  }
+}

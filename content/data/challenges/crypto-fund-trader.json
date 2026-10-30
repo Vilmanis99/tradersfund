@@ -69,7 +69,7 @@
       "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
       "2026-10-19: the FAQ lists paid add-ons for 2-Phase and 1-Phase: Weekly Scholarship Request (+20%, request after 7 traded days) and 90% Bonus Performance (+20%); 2-Phase only: Daily Drawdown 6% (+15%) and Max Drawdown 12% (+25%). The store also sells a 'Bi Weekly Payouts (15%)' add-on not described in the FAQ.",
       "Reward processing: FAQ states an average of about 8 hours and up to 48 business hours for review and payment.",
-      "2026-10-20 article-slot recapture (Prop Firm Tracker, ~12:32 Riga, US-IP box; CFT publishes one USD ladder): homepage, FAQ, Terms, Break page, get-started, refund policy, last-updates FAQ and the public Store API re-read; every 2026-10-19 rule/payout/country quote found verbatim again and all 18 purchasable tier prices unchanged. Provenance and quotes: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture); previous full capture content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json.",
+      "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
       "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product."
     ]
   },
@@ -141,8 +141,8 @@
       "Current Section 5.6.5 of the official Terms and Conditions lists the complete Ascend fee ladder: $39 / $78 / $195 / $390 / $780 / $1,560 for 5K / 10K / 25K / 50K / 100K / 200K.",
       "The current FAQ confirms Ascend availability, its Phase 2 scholarship ticket, no minimum evaluation days, and product-specific copy/news restrictions. No independent payout verification.",
       "2026-10-19: Terms 5.6.5 still lists $39 / $78 / $195 / $390 / $780 / $1,560. The homepage also embeds six Ascend store items at $45 / $90 / $225 / $450 / $899 / $1,798, but the public Store API reports every one of them as is_purchasable=false. Current purchasability of Ascend is unconfirmed; do not present $39 as the cheapest buyable entry.",
-      "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json",
-      "NOT PURCHASABLE (2026-10-20): prices set to null the way discontinued products are handled (cf. My Funded Futures Flex). CFT public Store API, checked 2026-10-20 (https://cryptofundtrader.com/wp-json/wc/store/v1/products/<id>): all six Ascend items 162495/162500/162504/162450/162484/162490 (\"$5.000 Ascend Evaluation\" ... \"$200.000 Ascend Evaluation\") return \"is_purchasable\": false (store prices 45/90/225/450/899/1798 USD). Terms 5.6.5 still publish the fee ladder $5K $39, $10K $78, $25K $195, $50K $390, $100K $780, $200K $1560 (https://cryptofundtrader.com/terms-and-conditions/); restore those prices only if checkout offers Ascend again. Re-verified 2026-10-20 12:49 Riga: all six items still \"is_purchasable\": false, and Terms 5.6.5 re-read with the same ladder; sourceCapturedAt deliberately stays 2026-10-19 while the cft-ascend-break-price-disagreement-2026-10-06 source-conflict watch is open (conflict observations do not renew product verification). Evidence: content/data/cft-ascend-store-recheck-2026-10-20.json (also content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json, content/data/cft-price-recheck-2026-10-20.json)."
+      "Capture provenance and unresolved conflicts are held in the internal 2026-10-19 CFT capture (not published).",
+      "NOT PURCHASABLE (2026-10-20): prices set to null the way discontinued products are handled (cf. My Funded Futures Flex). CFT public Store API, checked 2026-10-20 (https://cryptofundtrader.com/wp-json/wc/store/v1/products/<id>): all six Ascend items 162495/162500/162504/162450/162484/162490 (\"$5.000 Ascend Evaluation\" ... \"$200.000 Ascend Evaluation\") return \"is_purchasable\": false (store prices 45/90/225/450/899/1798 USD). Terms 5.6.5 still publish the fee ladder $5K $39, $10K $78, $25K $195, $50K $390, $100K $780, $200K $1560 (https://cryptofundtrader.com/terms-and-conditions/); restore those prices only if checkout offers Ascend again. Re-verified 2026-10-20 12:49 Riga: all six items still \"is_purchasable\": false, and Terms 5.6.5 re-read with the same ladder; sourceCapturedAt deliberately stays 2026-10-19 while the cft-ascend-break-price-disagreement-2026-10-06 source-conflict watch is open (conflict observations do not renew product verification). Evidence held in the internal 2026-10-20 Ascend store recheck (not published)."
     ]
   },
   {
@@ -214,7 +214,7 @@
       "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
       "2026-10-19: the FAQ lists paid add-ons for 2-Phase and 1-Phase: Weekly Scholarship Request (+20%, request after 7 traded days) and 90% Bonus Performance (+20%); 2-Phase only: Daily Drawdown 6% (+15%) and Max Drawdown 12% (+25%). The store also sells a 'Bi Weekly Payouts (15%)' add-on not described in the FAQ.",
       "Reward processing: FAQ states an average of about 8 hours and up to 48 business hours for review and payment.",
-      "2026-10-20 article-slot recapture (Prop Firm Tracker, ~12:32 Riga, US-IP box; CFT publishes one USD ladder): homepage, FAQ, Terms, Break page, get-started, refund policy, last-updates FAQ and the public Store API re-read; every 2026-10-19 rule/payout/country quote found verbatim again and all 18 purchasable tier prices unchanged. Provenance and quotes: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture); previous full capture content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json.",
+      "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
       "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product."
     ]
   },
@@ -270,7 +270,7 @@
       "Rule/source correction checked 2026-09-08. See https://cryptofundtrader.com/faq/ and https://cryptofundtrader.com/terms-and-conditions/. No independent payout verification.",
       "Initial reward share is 50% on each selected starting tier; subsequent scale levels show 60/70/80/90%. This corrects our blanket 80% claim, not an established policy-change date.",
       "Only the 4% daily and 6% overall percentages are confirmed; drawdownType remains null because its exact basis was not established. Numeric first-payout days/frequency are null to avoid ranking a conditional 10%-profit request as immediate unconditional payment.",
-      "2026-10-20 article-slot recapture (Prop Firm Tracker, ~12:32 Riga, US-IP box; CFT publishes one USD ladder): homepage, FAQ, Terms, Break page, get-started, refund policy, last-updates FAQ and the public Store API re-read; every 2026-10-19 rule/payout/country quote found verbatim again and all 18 purchasable tier prices unchanged. Provenance and quotes: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture); previous full capture content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json.",
+      "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
       "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product."
     ]
   },
@@ -318,6 +318,10 @@
         "sourceUrl": "https://cryptofundtrader.com/break-challenge/"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "So, when you request a payout, we check that no one day's profit is more than 40% of your total profits to date.",
+    "consistencyBasisSourceUrl": "https://cryptofundtrader.com/break-challenge/",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 0,
     "payoutFrequency": "on-demand",
@@ -339,7 +343,7 @@
       "Break phase targets are $1,250 / $3,000 / $6,000 for $25K / $50K / $100K. No product-wide percentage target is inferred.",
       "The current dedicated Break page confirms no minimum trading days, no daily loss limit, 40% final-stage consistency, on-demand payouts and tier-specific trailing drawdown values.",
       "The current shop lists Break evaluation and activation products. The 2026-09-14 refresh resolves the previous 70/139/199 homepage-versus-terms discrepancy with the current Terms and Conditions schedule.",
-      "2026-10-20 article-slot recapture (Prop Firm Tracker, ~12:32 Riga, US-IP box; CFT publishes one USD ladder): homepage, FAQ, Terms, Break page, get-started, refund policy, last-updates FAQ and the public Store API re-read; every 2026-10-19 rule/payout/country quote found verbatim again and all 18 purchasable tier prices unchanged. Provenance and quotes: content/data/challenges/_captures/crypto-fund-trader-2026-10-20.json (articleSlotRecapture); previous full capture content/data/challenges/_captures/crypto-fund-trader-2026-10-19.json.",
+      "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
       "2026-10-20 consistency scope: the Break page and homepage Break tab both say \"On a BREAK funded account, the consistency rule is a 40% limit on how much of your total profits can come from a single trading day ... It's only checked at payout time\"; Phase 1 rows say \"Consistency Rule NO\". So consistencyScope=funded (resolves the scope left empty in data/key-facts-2026-10-20 b37d713).",
       "2026-10-20 conflict (unchanged): the dedicated Break page lists \"Min days traded 0\" for Phase 1 and the Live Stage on all three tiers, while the homepage Break tab still shows \"Min days traded 1\" for Phase 1 (Live Stage 0). minTradingDays stays 0 from the dedicated page.",
       "2026-10-20 availability: Store API items 357765/357770/357774 ($25K/$50K/$100K Break Evaluation, $70/$140/$200) and activation items 370819/370826/370828 ($138/$198/$328) are is_purchasable=true and in stock; the homepage items 373833/373838/373842 ($70/$139/$199) are is_purchasable=false. The Break page shows 'LIMITED TIME ONLY' and its first product block reads 'EVALUATION - SOLD OUT - $ 58.00' (a 2-Phase $5K block); the homepage tab label reads 'Break LAST DAY'. Break may be withdrawn soon; recheck before publishing.",

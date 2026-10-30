@@ -17,6 +17,7 @@ import {
   type MatchupRuleRow,
   type RuleValueGroup,
 } from '@/lib/challengeMatchup'
+import SplitTiersDisclosure from '@/components/SplitTiersDisclosure'
 
 function dateLabel(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -92,12 +93,12 @@ function CostTable({ group }: { group: MatchupCostGroup }) {
             >
               <th scope="row">
                 <span className="cm-product">{row.productName}</span>
-                <small>
+                <div className="cm-meta">
                   {row.firmName} · {formatBillingModel(row.pricingModel)} ·{' '}
-                  <span data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={row.profitSplitTiered ? 'tiered' : 'flat'}>
-                    {row.profitSplitTiered ? `${row.profitSplitDisplay} split (tiered)` : `${row.profitSplitPct}% split`}
-                  </span>
-                </small>
+                  {row.profitSplitTiered
+                    ? <SplitTiersDisclosure tiers={row.splitTierRows ?? []} splitProduct={`${row.firmSlug}:${row.productSlug}`}>{`${row.profitSplitDisplay} split (tiered)`}</SplitTiersDisclosure>
+                    : <span data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display="flat">{`${row.profitSplitPct}% split`}</span>}
+                </div>
               </th>
               <td>
                 <span className="cm-figure">{formatMoney(row.minimumCost, row.currency)}</span>

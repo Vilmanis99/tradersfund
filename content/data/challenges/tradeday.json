@@ -51,6 +51,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 50,
     "profitSplitTiers": [
       {
@@ -111,7 +115,8 @@
       "KYC AND PAYOUT RAILS: funded onboarding requires KYC/AML through TradeDay's broker, clearing firm and Rise, with a government-issued ID plus bank statement or utility bill. Rise supports bank wire and crypto; international bank wire is stated as $15, L1 crypto as $2.50 plus gas, and L2 crypto as free. Indian bank acceptance and INR settlement remain unverified.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
       "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $100 → $45, $131 → $59, $240 → $108, $360 → $162. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $100 / $125 / $230 / $350. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json",
-      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26)."
+      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26).",
+      "Daily recheck 2026-10-29: homepage https://www.tradeday.com/ still shows \"Now up to 55% OFF! Accounts from just $45!\" and navbar \"USE CODE \\\"TDNEW\\\"\". Live promotional cards still match prior list/sale pairs (e.g. Quick Pay Intraday 25K $100→$45, EOD 25K $120→$54; Fast Pass EOD 25K $130→$65). Stored prices remain list prices, not the campaign totals."
     ]
   },
   {
@@ -166,6 +171,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 50,
     "profitSplitTiers": [
       {
@@ -221,7 +230,8 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
       "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $120 → $54, $175 → $79, $285 → $129, $400 → $180. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $120 / $175 / $285 / $395. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json",
       "TIERED SPLIT: same as Quick Pay Intraday. profitSplitPct holds 50 (the lowest tier); profitSplitTiers carries 50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim) and 90/10 in Funded Live, from the Quick Pay article (re-read 2026-10-26, modified 2026-09-09).",
-      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26)."
+      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26).",
+      "Daily recheck 2026-10-29: homepage https://www.tradeday.com/ still shows \"Now up to 55% OFF! Accounts from just $45!\" and navbar \"USE CODE \\\"TDNEW\\\"\". Live promotional cards still match prior list/sale pairs (e.g. Quick Pay Intraday 25K $100→$45, EOD 25K $120→$54; Fast Pass EOD 25K $130→$65). Stored prices remain list prices, not the campaign totals."
     ]
   },
   {
@@ -282,6 +292,10 @@
         "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy"
       }
     ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Stay consistent: no single day can make up more than 45% of your total profits",
+    "consistencyBasisSourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405229-what-is-fast-pass-",
+    "consistencyBasisCheckedAt": "2026-10-28",
     "profitSplitPct": 80,
     "payoutFirstDays": 5,
     "payoutFrequency": "after-qualifying-days",
@@ -311,7 +325,8 @@
       "India is absent from the named prohibited-country list, but checkout, KYC success, Indian bank acceptance, and INR settlement were not tested. KYC requires government ID and proof of address; Rise payout methods are bank wire and crypto.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/tradeday-2026-10-14.json",
       "PRICE = LIST PRICE (rechecked 2026-10-20 about 11:55 Riga, https://www.tradeday.com/ server HTML): priceUsd now holds the crossed-out monthly list price on each card, not the TDNEW promo price. 25K/50K/100K/150K list → promo: $130 → $65, $189 → $95, $350 → $175, $530 → $265. The page reads \"Now up to 55% OFF! Accounts from just $45!\" and \"For best pricing USE CODE \\\"TDNEW\\\"\". The promo is not stored as a price; TDNEW is not checkout-verified, so it is not in deals.json. CONFLICT: the support article \"What are the differences between each account size?\" (freshdesk 103000304248, \"Modified on Tue, 1 Sep\") lists $130 / $180 / $320 / $480. The live homepage is used because it is the price the promo is cut from. Only prices were rechecked, so sourceCapturedAt is unchanged. Log: content/data/challenges/_captures/key-facts-tradeday-price-recheck-2026-10-20.json",
-      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26)."
+      "FIRM-LEVEL SPLIT FIELD: content/data/firms.json TradeDay profitSplitPct is null on purpose, because the split differs by product and stage (Quick Pay 50/50 below $4,000 current profit and 80/20 above it in Funded Sim, 90/10 in Funded Live; Fast Pass 80/20). It was set from 80 to null in commit 9787fa3 (2026-08-12, 'Refresh challenge evidence and India screening'), the same commit that moved TradeDay drawdownType to product level; checked 2026-10-27. Per-product values live in profitSplitPct / profitSplitTiers here and in firms.json rules.profitSplitPct.byProduct. Tier stage values ('funded-sim' / 'funded-live') come from the same article's wording 'Profit splits on Funded Sim accounts' and 'Withdrawals from Funded Live accounts' (https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-, captured 2026-10-26).",
+      "Daily recheck 2026-10-29: homepage https://www.tradeday.com/ still shows \"Now up to 55% OFF! Accounts from just $45!\" and navbar \"USE CODE \\\"TDNEW\\\"\". Live promotional cards still match prior list/sale pairs (e.g. Quick Pay Intraday 25K $100→$45, EOD 25K $120→$54; Fast Pass EOD 25K $130→$65). Stored prices remain list prices, not the campaign totals."
     ]
   }
 ]

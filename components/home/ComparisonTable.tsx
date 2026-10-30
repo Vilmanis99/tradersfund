@@ -8,6 +8,7 @@ import { HOME_COPY, type HomeLocale } from './copy'
 import type { ComparisonRow } from './types'
 import { localeDate } from '@/lib/ruDate'
 import { hasTieredSplit, profitSplitText, profitSplitValue, TIERED_LABEL } from '@/lib/profitSplitDisplay'
+import SplitTiersDisclosure from '../SplitTiersDisclosure'
 
 type Chip = 'all' | 'open' | 'cfd' | 'futures' | 'one' | 'two'
 
@@ -75,7 +76,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
                 <td className="th-num"><b>{money(row)}</b>{row.pricingModel === 'monthly-subscription' ? <small> {t.subscription}</small> : null}</td>
                 <td className="th-num">{pct(row.profitTarget)}</td>
                 <td className="th-num">{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</td>
-                <td className="th-num" data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{hasTieredSplit(row) ? <>{profitSplitValue(row)}<br /><small>({TIERED_LABEL[locale === 'ru' ? 'ru' : 'en']})</small></> : split(row)}</td>
+                <td className="th-num" data-split-product={row.splitProductKey} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{hasTieredSplit(row) ? <SplitTiersDisclosure tiers={row.splitTierRows ?? []} lang={locale === 'ru' ? 'ru' : 'en'}>{profitSplitValue(row)}<br /><small>({TIERED_LABEL[locale === 'ru' ? 'ru' : 'en']})</small></SplitTiersDisclosure> : split(row)}</td>
                 <td className="th-col--opt">{row.payoutFrequency ? t.payout[row.payoutFrequency] ?? row.payoutFrequency : na}</td>
                 <td className="th-muted th-small th-col--opt"><time dateTime={row.checkedOn}>{localeDate(row.checkedOn, locale)}</time></td>
                 <td><div className="th-row-actions" data-row-badge={badge(row) ? 'after-cta' : undefined}>{visit(row, 'th-btn th-btn--amber th-btn--sm', 'table')}{badge(row)}{row.goHref ? <Link href={row.reviewUrl} className="th-link">{t.review}</Link> : official(row)}</div></td>
@@ -92,7 +93,7 @@ export default function ComparisonTable({ rows, locale, placement }: { rows: Com
             <span className="th-small th-muted">{row.product}</span>
             <dl className="th-facts">
               <div><dt>{t.cols.fee}</dt><dd>{money(row)}</dd></div>
-              <div><dt>{t.cols.split}</dt><dd data-split-product={`${row.firmSlug}:${row.productSlug}`} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{split(row)}</dd></div>
+              <div><dt>{t.cols.split}</dt><dd data-split-product={row.splitProductKey} data-split-display={hasTieredSplit(row) ? 'tiered' : 'flat'}>{hasTieredSplit(row) ? <SplitTiersDisclosure tiers={row.splitTierRows ?? []} lang={locale === 'ru' ? 'ru' : 'en'}>{split(row)}</SplitTiersDisclosure> : split(row)}</dd></div>
               <div><dt>{t.cols.loss}</dt><dd>{pct(row.dailyLossPct)} / {pct(row.maxLossPct)}</dd></div>
             </dl>
             {visit(row, 'th-btn th-btn--amber th-btn--block', 'cards')}

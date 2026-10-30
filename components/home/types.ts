@@ -8,7 +8,8 @@ export interface ComparisonRow {
   score: number
   trustpilot: number | null
   product: string
-  productSlug: string
+  /** Precomposed "firmSlug:productSlug" for data-split-product (avoids serialising productSlug). */
+  splitProductKey: string
   phases: number
   assetClass: string
   price: number
@@ -20,8 +21,8 @@ export interface ComparisonRow {
   dailyLossPct: number | null
   maxLossPct: number | null
   profitSplitPct: number | null
-  /** Display-only split tiers (lib/profitSplitDisplay); profitSplitPct stays the lowest tier. */
-  profitSplitTiers?: Array<{ traderPct: number; appliesTo: string }>
+  /** Lang-resolved display rows for the tier disclosure; omit when flat. */
+  splitTierRows?: import('@/lib/profitSplitDisplay').SplitTierDisplayRow[]
   payoutFrequency: string | null
   checkedOn: string
   /** /go/<slug> without campaign; the table appends ?from=<placement>-table|-cards. */

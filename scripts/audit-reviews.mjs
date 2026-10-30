@@ -83,6 +83,7 @@ import {
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
 } from '../lib/indexNow.ts'
+import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
 import {
   getTradingToolReviewLinks,
   TRADING_TOOL_REVIEWS,
@@ -1764,7 +1765,9 @@ function checkGlobalDirectorySurface() {
       "alternates: { canonical: '/prop-firms' }",
       'itemListSchema',
       'freshChallenges',
-      'challenges={freshChallenges}',
+      // Public-field projections only: the table's props are serialised into the page payload.
+      'firms={firms.map(toPublicFirm)}',
+      'challenges={freshChallenges.map(toPublicChallenge)}',
       'await searchParams',
       'global-prop-firm-directory',
       'focused-rule-lists',
@@ -2821,6 +2824,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/fundingpips-vs-bright-funded', 'russian_comparison'],
     ['/ru/promokody-prop-firm', 'russian_deals'],
     ['/ru/obzor-ftmo', 'russian_review'],
+    ['/ru/obzor-topstep', 'russian_review'],
     ['/ru/obzor-fundednext/', 'russian_review'],
     ['/ru/obzor-fundingpips', 'russian_review'],
     ['/ru/obzor-bright-funded/', 'russian_review'],
@@ -2829,6 +2833,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-hash-hedge', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
+    ['/ru/fundingpips-pravila', 'russian_product'],
     ['/ru/luchshie-kripto-prop-firmy', 'russian_ranking'],
     ['/ru/forex-prop-firmy', 'russian_ranking'],
     ['/ru/vyplaty-prop-firm', 'russian_ranking'],
@@ -4215,6 +4220,29 @@ function checkChallengePassingPillar() {
   return rows.length
 }
 
+/**
+ * FXIFY Lightning's firm-level profitSplitPct is null, so the true-cost pillar must say so in
+ * reader wording. One block (paragraph or list item) that names Lightning must carry both:
+ *  - a statement that the base / firm-level profit split is null, unpublished or unverified
+ *    (the legacy "<code>profitSplitPct</code> is null" is still accepted, but no field name is required);
+ *  - a statement that fee-recovery profit is undefined or cannot be calculated.
+ */
+function statesLightningSplitUnpublished(content) {
+  const SPLIT = String.raw`(?:(?:base|firm-level|fixed|headline)\s+)?(?:profit\s+)?split`
+  const splitUnpublished = [
+    /\bprofitSplitPct\s+is\s+null\b/i,
+    new RegExp(String.raw`\bno\s+(?:verified|published|fixed|confirmed)\s+${SPLIT}\b`, 'i'),
+    new RegExp(String.raw`\b${SPLIT}\b[^.;]{0,60}?\b(?:is|stays|remains)\s+(?:null|not\s+(?:published|disclosed|verified|confirmed)|unpublished|undisclosed|unverified|unconfirmed)\b`, 'i'),
+    new RegExp(String.raw`\b(?:does\s+not|doesn['’]t)\s+publish\s+(?:a|an|its|any)\s+(?:verified\s+|exact\s+)?${SPLIT}\b`, 'i'),
+  ]
+  const recoveryUndefined = /\bfee-recovery\s+profit\s+(?:is|stays|remains)\s+(?:undefined|not\s+calculated|uncalculated|not\s+calculable)\b|\bfee-recovery\s+profit\s+(?:cannot|can['’]t|can\s+not)\s+be\s+calculated\b/i
+  const blocks = content.split(/<\/li>|<\/p>|\n\s*\n/)
+    .map(block => block.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' '))
+  return blocks.some(block => /\bLightning\b/.test(block)
+    && splitUnpublished.some(pattern => pattern.test(block))
+    && recoveryUndefined.test(block))
+}
+
 /** True-cost copy must preserve the calculator's scope and captured inputs. */
 function checkTrueCostPillar() {
   const rows = []
@@ -4344,12 +4372,8 @@ function checkTrueCostPillar() {
   }
 
   const lightning = product('fxify', 'lightning-challenge')
-  if (
-    lightning?.profitSplitPct !== null ||
-    !content.includes('<code>profitSplitPct</code> is null') ||
-    !content.includes('fee-recovery profit is undefined')
-  ) {
-    rows.push('FXIFY Lightning must remain uncalculated while its base split is null')
+  if (lightning?.profitSplitPct !== null || !statesLightningSplitUnpublished(content)) {
+    rows.push('FXIFY Lightning must remain uncalculated while its base split is null: one paragraph or list item naming Lightning must say its base/firm-level split is null, not published or unverified (e.g. "No verified base split", "its base split is not published") and that fee-recovery profit is undefined / cannot be calculated')
   }
 
   const requiredLinks = [
@@ -6290,7 +6314,7 @@ function checkUkLandingCluster() {
       rows.push(`UK landing route is missing freshness safeguard "${fragment}"`)
     }
   }
-  if (!read(SITEMAP_FILE).includes('getLandingSourceLastModified(l.slug)')) {
+  if (!read(SITEMAP_FILE).includes('LANDING_EVIDENCE[l.slug]')) {
     rows.push('sitemap must use source-based lastmod for access landings')
   }
 
@@ -6950,12 +6974,12 @@ function checkFuturesLandingCluster() {
   const { data: mff, content: mffContent } = matter(mffFile)
   const expectedMffSeoTitle = 'My Funded Futures Review 2026: MFF Funded Account Rules'
   const expectedMffDescription =
-    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, funded drawdown, payout buffers and minimums.'
+    'My Funded Futures (MFF) review: funded account rules on Rapid, Rapid EOD, Builder and Pro, payout buffers, minimums and caps, and what a first payout costs.'
   if (
     mff.seoTitle !== expectedMffSeoTitle
     || mff.seoDescription !== expectedMffDescription
-    || mff.modified !== '2026-09-14 12:00:00'
-    || mff.sourceCapturedAt !== '2026-09-14'
+    || mff.modified !== '2026-10-28 10:00:00'
+    || mff.sourceCapturedAt !== '2026-10-26'
   ) {
     rows.push('My Funded Futures SEO or evidence metadata is stale')
   }
@@ -9751,9 +9775,11 @@ function checkScalingPlanGuide() {
     {
       slug: 'fundingpips',
       name: 'FundingPips',
+      // 2026-10-28: 2 Step Flex stores 80 (lowest of its 80%/95% tiers) and 2 Step Standard 60
+      // (lowest of Weekly 60% / Bi-Weekly 80%); the guide row "80%, 95%, or a selected payout structure" still holds.
       splitFragments: ['80%', '95%', 'selected payout structure'],
-      countFragments: [[80, 2], [95, 1]],
-      nullCount: 2,
+      countFragments: [[80, 3], [95, 1], [60, 1]],
+      nullCount: 0,
     },
     {
       slug: 'fxify',
@@ -11252,8 +11278,10 @@ function checkRussianAcquisitionPilot() {
     ['/ru/luchshie-prop-firmy', path.join(ROOT, 'app/ru/luchshie-prop-firmy/page.tsx')],
     ['/ru/luchshie-kripto-prop-firmy', path.join(ROOT, 'app/ru/luchshie-kripto-prop-firmy/page.tsx')],
     ['/ru/obzor-ftmo', path.join(ROOT, 'app/ru/obzor-ftmo/page.tsx')],
+    ['/ru/obzor-topstep', path.join(ROOT, 'app/ru/obzor-topstep/page.tsx')],
     ['/ru/obzor-fundednext', path.join(ROOT, 'app/ru/obzor-fundednext/page.tsx')],
     ['/ru/obzor-fundingpips', path.join(ROOT, 'app/ru/obzor-fundingpips/page.tsx')],
+    ['/ru/fundingpips-pravila', path.join(ROOT, 'app/ru/fundingpips-pravila/page.tsx')],
     ['/ru/obzor-bright-funded', path.join(ROOT, 'app/ru/obzor-bright-funded/page.tsx')],
     ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/obzor-crypto-fund-trader', path.join(ROOT, 'app/ru/obzor-crypto-fund-trader/page.tsx')],
@@ -11389,7 +11417,13 @@ function checkRussianAcquisitionPilot() {
       if (!announceable(route)) rows.push(`Russian IndexNow inventory announces ${route}, which has no page source${route === RU_CLOSED_FIRMS_PATH ? ' while closed firms are unpublished' : ''}`)
       if (redirectSources.has(route)) rows.push(`Russian IndexNow inventory announces ${route}, which next.config.ts redirects`)
     }
+    // A hand-written RU rules page held noindex by the rules gate is deliberately not announced.
+    const gatedRulesPaths = new Set(gatedRuRulesHandwrittenPaths())
     for (const route of russianRouteFiles.keys()) {
+      if (gatedRulesPaths.has(route)) {
+        if (indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory announces ${route}, which the rules gate keeps noindex`)
+        continue
+      }
       if (!indexNowPaths.includes(route)) rows.push(`Russian IndexNow inventory is missing ${route}`)
     }
     if (new Set(indexNowPaths).size !== indexNowPaths.length) rows.push('Russian IndexNow inventory lists a path twice')
@@ -12618,7 +12652,7 @@ function checkRussianAcquisitionPilot() {
   const rossiyskieHubPage = fs.existsSync(rossiyskieHubFile) ? fs.readFileSync(rossiyskieHubFile, 'utf8') : ''
   for (const token of [
     '<section className="ru-section" id="rossiyskie">',
-    'data-merged-from="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie"',
+    'data-merged-from="/ru/rossiyskie-prop-kompanii"',
     '<h2>Российские проп-компании: шесть проверяемых примеров</h2>',
     'Это не рейтинг и не совет регистрироваться',
     "{ name: 'Era Trade', href: '/ru/obzor-eratrade' }",
@@ -12791,11 +12825,11 @@ function checkRussianAcquisitionPilot() {
   const russianDiasporaPage = fs.existsSync(russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/dlya-russkoyazychnykh-treyderov'), 'utf8')
     : ''
+  // Since PR #6 (7bcab4b, 14 Oct) this route is the Russia hub (BrightFunded first, FundedNext restricted and last).
+  // Pins of the August FundedNext-first diaspora layout (f459799) were re-pointed or dropped on 27 Oct
+  // per audit/ru-writer-promokody-dlya-plan-2026-10-27.md; markers RU Writer is still to (re)build stay pinned.
   for (const token of [
-    'data-russian-diaspora-guide="global-access"',
-    'data-russian-diaspora-hero-partners="fundednext-bright-funded"',
-    'data-russian-diaspora-hero-partner={item.slug}',
-    'data-russian-diaspora-hero-disclosure="primary-affiliates"',
+    'data-russia-availability-hub=',
     'data-russian-diaspora-regions="kazakhstan-uae"',
     'data-russian-diaspora-regions="global-routes"',
     'data-russian-diaspora-country-matrix="published-lists-not-approval"',
@@ -12805,15 +12839,10 @@ function checkRussianAcquisitionPilot() {
     'data-russian-diaspora-country-evidence="first-party"',
     'data-russian-diaspora-country={country.key}',
     'data-russian-diaspora-status={check.status}',
-    'data-russian-diaspora-region-funnel="global-partners"',
-    'data-russian-diaspora-decision-router="four-unresolved-fields"',
     'data-russian-country-boundary="diaspora-not-access"',
-    'data-russian-affiliate-disclosure="diaspora-guide"',
-    'ru-diaspora-hero-fundednext',
-    'ru-diaspora-hero-bright-funded',
-    'ru-diaspora-fundednext',
-    'ru-diaspora-bright-funded',
-    'ru-diaspora-regions-',
+    'data-russian-affiliate-disclosure="russia-hub"',
+    '/go/bright-funded?from=ru-dlya-russkoyazychnykh-treyderov-cards',
+    '/go/fundednext?from=ru-dlya-russkoyazychnykh-treyderov-cards',
     'rel="sponsored nofollow noopener"',
     'Российские проп-компании',
     'Русский язык определяет язык объяснения',
@@ -12823,11 +12852,21 @@ function checkRussianAcquisitionPilot() {
     'href="/ru/fundednext-vs-bright-funded"',
     'getRussianDiasporaCountryRows()',
     'dateModified: russianRouteDateModified(PATH, russianDiasporaEvidence.capturedAt)',
-    'Число доступных строк зависит от свежести источников.',
-    'Отсутствие страны в списке не подтверждает доступ',
+    'это не письменное',
+    'Отсутствие России в списке ограничений — это гарантия?',
     'href={source.url}',
   ]) {
     if (!russianDiasporaPage.includes(token)) rows.push(`Russian diaspora guide is missing ${token}`)
+  }
+  {
+    // BrightFunded first; FundedNext (russiaStatus 'restricted' in firms.json) is the last partner card on the hub.
+    const hubCta = slug => russianDiasporaPage.indexOf(`<RuGoLink firm="${slug}"`)
+    const bright = hubCta('bright-funded')
+    const fundedNext = hubCta('fundednext')
+    const lastCta = Math.max(...[...russianDiasporaPage.matchAll(/<RuGoLink firm="([^"]+)"/g)].map(match => match.index))
+    if (bright < 0 || fundedNext < 0 || bright > fundedNext || fundedNext !== lastCta) {
+      rows.push('Russia hub partner cards must open with BrightFunded and keep restricted FundedNext last')
+    }
   }
   const diasporaCapturedAt = new Date(`${russianDiasporaEvidence.capturedAt}T00:00:00Z`)
   const diasporaAgeDays = Math.floor((TODAY - diasporaCapturedAt) / 86_400_000)
@@ -12837,18 +12876,43 @@ function checkRussianAcquisitionPilot() {
   if (!russianDiasporaEvidence.recheckNote?.includes(russianDiasporaEvidence.capturedAt)) {
     rows.push('Russian diaspora country recheck note must identify its capture date')
   }
-  if (russianDiasporaEvidence.firms.map(firm => firm.slug).join(',') !== 'fundednext,bright-funded') {
-    rows.push('Russian diaspora country evidence must contain FundedNext and Bright Funded in commercial order')
+  // FundedNext's Russia status: firms.json russiaStatus (fundednext.com footer names Russia, seen 2026-10-20 per
+  // ru-availability.csv). The diaspora evidence captured before that date still carries the August model
+  // (FundedNext first, russia:fundednext = 'conflict'); it cannot know the footer, so the legacy expectation applies
+  // only to captures older than the footer date. Any recapture from 2026-10-20 on must be BrightFunded-first and
+  // match firms.json. (The 30-day gate above forces that recapture by 2026-11-02 at the latest.)
+  const FUNDEDNEXT_RU_FOOTER_SEEN = '2026-10-20'
+  const diasporaFirmsJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/firms.json'), 'utf8'))
+  const diasporaFirmRecords = Array.isArray(diasporaFirmsJson) ? diasporaFirmsJson : diasporaFirmsJson.firms ?? []
+  const fundedNextRussiaStatus = diasporaFirmRecords.find(firm => firm.name === 'FundedNext')?.russiaStatus
+  const diasporaPredatesFooter = russianDiasporaEvidence.capturedAt < FUNDEDNEXT_RU_FOOTER_SEEN
+  const diasporaFirmOrder = russianDiasporaEvidence.firms.map(firm => firm.slug)
+  if (diasporaPredatesFooter) {
+    if (diasporaFirmOrder.join(',') !== 'fundednext,bright-funded') {
+      rows.push(`Russian diaspora country evidence captured ${russianDiasporaEvidence.capturedAt} (before ${FUNDEDNEXT_RU_FOOTER_SEEN}) changed without a recapture date`)
+    }
+  } else if (
+    diasporaFirmOrder[0] !== 'bright-funded'
+    || !diasporaFirmOrder.includes('fundednext')
+    || diasporaFirmOrder.at(-1) !== 'fundednext'
+  ) {
+    rows.push(`Russian diaspora country evidence must open with BrightFunded and keep restricted FundedNext last; received ${diasporaFirmOrder.join(',')}`)
+  }
+  const diasporaFirstPartyHosts = {
+    fundednext: 'fundednext.com',
+    'bright-funded': 'brightfunded.com',
+    'crypto-fund-trader': 'cryptofundtrader.com',
   }
   for (const firm of russianDiasporaEvidence.firms) {
     if (firm.sources.length < 2) {
       rows.push(`Russian diaspora ${firm.slug} evidence must cite both a country page and terms`)
     }
+    if (!diasporaFirstPartyHosts[firm.slug]) rows.push(`Russian diaspora ${firm.slug} evidence has no known first-party host`)
     for (const source of firm.sources) {
       const sourceUrl = new URL(source.url)
       if (
         sourceUrl.protocol !== 'https:'
-        || !sourceUrl.hostname.endsWith(firm.slug === 'fundednext' ? 'fundednext.com' : 'brightfunded.com')
+        || !sourceUrl.hostname.endsWith(diasporaFirstPartyHosts[firm.slug] ?? '\u0000')
       ) {
         rows.push(`Russian diaspora ${firm.slug} evidence is not first-party: ${source.url}`)
       }
@@ -12867,13 +12931,19 @@ function checkRussianAcquisitionPilot() {
       rows.push(`Russian diaspora country evidence is missing ${expectedSourceUrl}`)
     }
   }
+  // Counts derive from the evidence file (countries x firms), not from the August 11 x 2 literal.
   const diasporaCountryEvidenceRows = getRussianDiasporaCountryRows()
-  if (diasporaCountryEvidenceRows.length !== 11) {
-    rows.push(`Russian diaspora country matrix must contain 11 profiles; received ${diasporaCountryEvidenceRows.length}`)
+  const diasporaCountryKeys = russianDiasporaEvidence.countries.map(country => country.key)
+  if (diasporaCountryKeys.length === 0 || new Set(diasporaCountryKeys).size !== diasporaCountryKeys.length) {
+    rows.push('Russian diaspora country evidence must list each country once')
+  }
+  if (!diasporaCountryKeys.includes('russia')) rows.push('Russian diaspora country evidence must include Russia')
+  if (diasporaCountryEvidenceRows.length !== diasporaCountryKeys.length) {
+    rows.push(`Russian diaspora country matrix must contain ${diasporaCountryKeys.length} profiles; received ${diasporaCountryEvidenceRows.length}`)
   }
   for (const country of diasporaCountryEvidenceRows) {
-    if (country.checks.length !== 2) {
-      rows.push(`Russian diaspora ${country.key} row must contain 2 primary-partner checks`)
+    if (country.checks.length !== russianDiasporaEvidence.firms.length) {
+      rows.push(`Russian diaspora ${country.key} row must contain ${russianDiasporaEvidence.firms.length} partner checks; received ${country.checks.length}`)
     }
   }
   const diasporaStatusByCountryFirm = new Map(diasporaCountryEvidenceRows.flatMap(country =>
@@ -12887,7 +12957,8 @@ function checkRussianAcquisitionPilot() {
     ['united-states:bright-funded', 'product-specific'],
     ['ukraine:fundednext', 'product-specific'],
     ['belarus:fundednext', 'restricted'],
-    ['russia:fundednext', 'conflict'],
+    // firms.json russiaStatus 'restricted' (footer) once the evidence is recaptured; 'conflict' only in the pre-footer capture.
+    ['russia:fundednext', diasporaPredatesFooter ? 'conflict' : fundedNextRussiaStatus],
     ['russia:bright-funded', 'not-named'],
   ]) {
     if (diasporaStatusByCountryFirm.get(fixture) !== expected) {
@@ -12993,55 +13064,57 @@ function checkRussianAcquisitionPilot() {
   const russianDealsPage = fs.existsSync(russianRouteFiles.get('/ru/promokody-prop-firm'))
     ? fs.readFileSync(russianRouteFiles.get('/ru/promokody-prop-firm'), 'utf8')
     : ''
+  // Since PR #6 (7bcab4b, 14 Oct) this is the per-firm card hub (BrightFunded first, FundedNext last).
+  // Pins of the August FundedNext-first offers layout (02d858c) were re-pointed or dropped on 27 Oct per
+  // audit/ru-writer-promokody-dlya-plan-2026-10-27.md; sections RU Writer is still to (re)build stay pinned.
   for (const token of [
-    'data-russian-deals="verified-offers"',
-    'data-russian-deals-guide="long-form-verified-offers"',
-    'data-russian-offer-freshness="30-days"',
-    'data-russian-deals-featured-partners="fundednext-bright-funded"',
-    'data-russian-deals-article="checkout-intent-source-gated"',
+    'data-russian-promo-hub=',
+    'Почему старые промокоды исчезают со страницы?',
     'data-russian-country-boundary="deals-not-access"',
-    'data-russian-affiliate-disclosure="deals"',
-    'data-russian-deals-mechanisms={mechanismMarker}',
-    'data-russian-deals-fail-closed="conditional-firm-claims"',
-    'data-russian-deals-featured-partner="fundednext"',
-    'data-russian-deals-fundednext="earned-not-public"',
+    'data-russian-affiliate-disclosure="promo-hub"',
+    "data-russian-promo-status={deal ? 'verified' : 'pending'}",
+    'data-russian-promo-placeholder={firm.slug}',
     'data-russian-deals-discount-table="currency-preserved"',
     'data-russian-deals-featured-partner="bright-funded"',
     'data-russian-deals-bright="current-product-codes"',
     'data-russian-deals-bright-price-rows={brightRows.length}',
     'data-russian-deals-secondary="fundingpips"',
-    'data-russian-deals-decision="product-before-discount"',
-    'data-russian-deals-checkout="final-total-controls"',
-    'data-russian-deals-diaspora="language-not-residency"',
+    'Выберите продукт до кода',
+    'Сверьте итоговую сумму',
+    'для русскоязычных трейдеров в любой стране',
     'data-russian-deals-expiry="thirty-day-fail-closed"',
     'getAllDeals',
     'getAllChallenges',
     'isChallengeFresh',
     'CopyableCodePill',
     'locale="ru"',
-    'analyticsFirm={deal.firmSlug}',
-    'analyticsPlacement={campaignFor(deal)}',
+    'analyticsFirm={firm.slug}',
     'analyticsFirm={fundingPipsDeal.firmSlug}',
     'analyticsPlacement={campaignFor(fundingPipsDeal)}',
     'analyticsOfferType="public_checkout"',
-    'campaignFor(deal)',
-    'from=${campaignFor(deal)}-table',
-    'const generalFaqs: RussianFaqItem[]',
-    '...(fundedNextDeal ? [{',
+    'const from = `ru-promokody-prop-firm-card-${index + 1}`',
+    'href={`/go/${firm.slug}?from=${from}`}',
     '...(brightDeals.length > 0 ? [{',
     '...(fundingPipsDeal ? [{',
-    '{fundedNextDeal && <section className="ru-section" id="fundednext-promokod">',
     '{brightDeals.length > 0 && <section className="ru-section" id="bright-funded-promokody">',
     '{fundingPipsDeal && <section className="ru-section" id="fundingpips-promokod">',
-    '/go/fundednext?from=ru-deals-fundednext-earned-coupon',
     'href={`/go/fundingpips?from=${campaignFor(fundingPipsDeal)}`}',
-    "fundednext: '/ru/obzor-fundednext'",
-    "'bright-funded': '/ru/obzor-bright-funded'",
-    "fundingpips: '/ru/obzor-fundingpips'",
+    "review: '/ru/obzor-bright-funded'",
+    "review: '/ru/obzor-fundingpips'",
+    "review: '/ru/obzor-fundednext'",
     "author: { '@type': 'Person', name: 'Edris Derakhshi'",
-    'rel={isAffiliate ? \'sponsored nofollow noopener\' : \'nofollow noopener\'}',
+    "import { goLinkRel, ",
+    'rel={goLinkRel(firm.slug)}',
   ]) {
     if (!russianDealsPage.includes(token)) rows.push(`Russian offers page is missing ${token}`)
+  }
+  {
+    // BrightFunded first; FundedNext (russiaStatus 'restricted') is the last card of the hub.
+    const hubFirmsBlock = russianDealsPage.match(/const hubFirms: HubFirm\[\] = \[([\s\S]*?)\n\]/)?.[1] ?? ''
+    const hubOrder = [...hubFirmsBlock.matchAll(/slug: '([^']+)'/g)].map(match => match[1])
+    if (hubOrder[0] !== 'bright-funded' || hubOrder.at(-1) !== 'fundednext') {
+      rows.push(`Russian offers page cards must open with BrightFunded and keep restricted FundedNext last; received ${hubOrder.join(',') || 'none'}`)
+    }
   }
   for (const stalePublicClaim of [
     '5 свежих предложений:',
@@ -13569,19 +13642,22 @@ function checkRussianAcquisitionPilot() {
     rows.push(`Russian footer exposes ${footerRussianRoutes.size} routes; expected no more than 15 focused routes`)
   }
 
-  const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8')
+  // RU lastmod sources live in lib/sitemapLastmod.ts (shared with page dateModified).
+  const sitemap = fs.readFileSync(SITEMAP_FILE, 'utf8') + fs.readFileSync(path.join(ROOT, 'lib/sitemapLastmod.ts'), 'utf8')
   for (const token of [
     'LOCALIZED_ROUTE_PAIRS',
     'RUSSIAN_ONLY_ROUTES',
-    'russianRouteLastModified(',
+    // lastmod = editorial date floor + the change dates of the page file and the evidence it renders
+    // (content/data/sitemap-lastmod.json), never the evidence capture dates themselves.
+    'RUSSIAN_ROUTE_EDITORIAL_DATES[path]',
     "'x-default': `${BASE_URL}${pair.en}`",
-    'russianMarketEvidence.capturedAt',
-    'russianDiasporaEvidence.capturedAt',
-    'russianTeamTradersEvidence.capturedAt',
-    'russianForexEvidence.capturedAt',
-    'russianCTraderEvidence.capturedAt',
-    'russianFundedNextMt5Evidence.capturedAt',
-    'russianFundedNextInstantEvidence.capturedAt',
+    "'russian-market-evidence.json'",
+    "'russian-diaspora-evidence.json'",
+    "'russian-teamtraders-evidence.json'",
+    "'russian-forex-evidence.json'",
+    "'russian-ctrader-evidence.json'",
+    "'russian-fundednext-mt5-evidence.json'",
+    "'russian-fundednext-instant-evidence.json'",
   ]) {
     if (!sitemap.includes(token)) rows.push(`sitemap is missing Russian safeguard ${token}`)
   }

@@ -8,7 +8,7 @@ author: Tara Mohseni
 sources:
   - title: Maven FAQ (drawdown, news, consistency, payout and EA rules by plan; read 2026-10-27)
     url: 'https://maventrading.com/faqs'
-  - title: Maven pricing (plan rules table; Tracker capture 2026-10-19)
+  - title: Maven pricing (plan rules table; read 19 October 2026)
     url: 'https://maventrading.com/pricing'
 fieldsUsed:
   - rules.drawdownType.byProduct

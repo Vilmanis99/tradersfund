@@ -3,7 +3,7 @@ import { buildChallengeComparisonRows } from '@/lib/challengeComparisonData'
 import { priceBreakdownLabel, tierPriceParts, tierTotalPrice } from '@/lib/challengeComparison'
 import { getChallengeWatchEntries } from '@/lib/challengeWatch'
 import { outboundSlug } from '@/lib/outboundDestinations'
-import { russiaBasisDateFor, russiaStatusFor, type RussiaStatus } from '@/lib/russiaAvailability'
+import { russiaBasisDateFor, russiaStatusForProduct, type RussiaStatus } from '@/lib/russiaAvailability'
 import { getAllDeals } from '@/lib/deals'
 import type { ComparisonRow } from './types'
 
@@ -19,7 +19,7 @@ const RU_ORDER: Record<RussiaStatus, number> = { available: 0, unclear: 1, unver
  */
 export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): ComparisonRow[] {
   const firms = getAllFirms()
-  const rows = buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now)
+  const rows = buildChallengeComparisonRows(getAllChallenges(), firms, getChallengeWatchEntries(), now, locale)
   const best = new Map<string, ComparisonRow>()
   const bestTotal = new Map<string, number>()
   for (const row of rows) {
@@ -44,7 +44,7 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       score: row.firm.score,
       trustpilot: firm && !firm.trustpilotRatingSuppressed ? firm.trustpilotScore ?? null : null,
       product: row.product.name,
-      productSlug: row.product.slug,
+      splitProductKey: `${row.firm.slug}:${row.product.slug}`,
       phases: row.product.phases,
       assetClass: row.product.assetClass,
       price,
@@ -57,12 +57,12 @@ export function getHomeComparisonRows(locale: 'en' | 'ru', now = new Date()): Co
       dailyLossPct: row.product.dailyLossPct,
       maxLossPct: row.product.maxLossPct,
       profitSplitPct: row.product.profitSplitPct,
-      profitSplitTiers: row.product.profitSplitTiers,
+      ...(row.product.splitTierRows?.length ? { splitTierRows: row.product.splitTierRows } : {}),
       payoutFrequency: row.product.payoutFrequency,
       checkedOn: row.product.capturedAt,
       goHref: firm?.affiliateUrl ? `/go/${row.firm.slug}` : null,
       officialUrl: firm?.affiliateUrl ? null : firm?.officialUrl ?? null,
-      russiaStatus: locale === 'ru' ? russiaStatusFor(row.firm.slug) : null,
+      russiaStatus: locale === 'ru' ? russiaStatusForProduct(row.firm.slug, row.product.assetClass) : null,
       russiaBasisDate: locale === 'ru' ? russiaBasisDateFor(row.firm.slug) : null,
     })
   }

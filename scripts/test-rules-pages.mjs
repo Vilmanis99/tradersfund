@@ -148,8 +148,8 @@ if (!complete) {
   console.log(`PASS real-data flags: TPT daily loss, ${RULES_REVIEW_HOLDS.length} review holds; indexable EN: ${models.filter(m => m.en.indexable).map(m => m.slug).join(', ') || 'none'}`)
 }
 
-// RU: a template twin gets 'no RU verdict file' exactly when the RU verdict is missing.
-for (const model of models.filter(item => item.ru?.template)) {
+// RU: a template twin or hand-written RU rules page gets 'no RU verdict file' exactly when the RU verdict is missing.
+for (const model of models.filter(item => item.ru)) {
   const now = nowFor(model)
   const without = buildRulesPageModel(model.firm, now, noVerdicts)
   const withOne = buildRulesPageModel(model.firm, now, withVerdicts(model.slug))
@@ -163,7 +163,7 @@ for (const model of models.filter(item => item.ru?.template)) {
 for (const model of models) {
   assert.equal(model.en.indexable, model.dataEligible && Boolean(model.enVerdict), `${model.slug}: EN indexable must equal data gate AND EN verdict`)
   if (!model.enVerdict) assert.ok(model.en.reasons.includes('no EN verdict file'), `${model.slug}: missing EN verdict reason`)
-  if (model.ru?.template && model.ru.indexable) assert.ok(model.ruVerdict, `${model.slug}: RU indexable without RU verdict`)
+  if (model.ru?.indexable) assert.ok(model.ruVerdict, `${model.slug}: RU indexable without RU verdict`)
 }
 
 // Every currently noindex model explains why; every indexable one has every required field clean.

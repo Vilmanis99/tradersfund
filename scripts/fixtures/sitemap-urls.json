@@ -1,0 +1,1409 @@
+{
+ "_readme": "URL set and hreflang alternates of the sitemap at 805b715 (pinned by test:sitemap-lastmod). Update deliberately when a release adds or removes URLs: node scripts/test-sitemap-lastmod.mjs --update-urls",
+ "urls": [
+  {
+   "url": "https://tradersfundhub.com",
+   "languages": {
+    "en": "https://tradersfundhub.com",
+    "ru": "https://tradersfundhub.com/ru",
+    "x-default": "https://tradersfundhub.com"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/about",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/authors",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/authors/edris-derakhshi",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/authors/tara-mohseni",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-crypto-prop-firms",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-crypto-prop-firms",
+    "ru": "https://tradersfundhub.com/ru/luchshie-kripto-prop-firmy",
+    "x-default": "https://tradersfundhub.com/best-crypto-prop-firms"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/best-futures-prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-instant-funding-prop-firms",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-instant-funding-prop-firms",
+    "ru": "https://tradersfundhub.com/ru/prop-firmy-bez-chelendzha",
+    "x-default": "https://tradersfundhub.com/best-instant-funding-prop-firms"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-2026",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-prop-firms-2026",
+    "ru": "https://tradersfundhub.com/ru/luchshie-prop-firmy",
+    "x-default": "https://tradersfundhub.com/best-prop-firms-2026"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/bright-funded-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/challenge-changes",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/challenge-comparison",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/compare",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/fundingpips-vs-bright-funded",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/fundingpips-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-india/payout-methods",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-uk",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-prop-firms-in-us",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/best-swing-trading-prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/3commas-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/alpha-capital-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/apex-trader-funding-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/are-prop-firm-passing-services-worth-it",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/are-prop-firms-legal-in-india",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/balance-based-drawdown-vs-equity-based-drawdown",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/bright-funded-prop-firm",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/bright-funded-prop-firm",
+    "ru": "https://tradersfundhub.com/ru/obzor-bright-funded",
+    "x-default": "https://tradersfundhub.com/blog/bright-funded-prop-firm"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/brightfunded-discount-code",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/city-traders-imperium-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/copyfx-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/crypto-fund-trader-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/crypto-fund-trader-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-crypto-fund-trader",
+    "x-default": "https://tradersfundhub.com/blog/crypto-fund-trader-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/e8-markets-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/ftmo-discount-code",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/ftmo-free-trial-explained",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/ftmo-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/ftmo-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-ftmo",
+    "x-default": "https://tradersfundhub.com/blog/ftmo-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/fundednext-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/fundednext-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-fundednext",
+    "x-default": "https://tradersfundhub.com/blog/fundednext-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/funding-pips-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/funding-pips-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-fundingpips",
+    "x-default": "https://tradersfundhub.com/blog/funding-pips-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/fundingpips-zero",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/fx-replay-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/fxify-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/hash-hedge-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/hash-hedge-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-hash-hedge",
+    "x-default": "https://tradersfundhub.com/blog/hash-hedge-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/is-prop-firm-trading-profitable",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/lucid-trading-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/maven-prop-firm-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/no-hidden-rules-prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/ofp-funding-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firm-free-trial",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firm-payout-tax-india",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firm-scaling-plan",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firm-statistics",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firms-with-no-consistency-rule",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/prop-firms-with-weekly-payouts",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/take-profit-trader-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/the5ers-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/the5ers-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-the5ers",
+    "x-default": "https://tradersfundhub.com/blog/the5ers-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/topstep-review",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/topstep-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-topstep",
+    "x-default": "https://tradersfundhub.com/blog/topstep-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/tradeday-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/tradeify-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/traders-connect-trade-copier",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/what-is-a-prop-firm",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/what-is-a-prop-firm",
+    "ru": "https://tradersfundhub.com/ru/chto-takoe-prop-firma",
+    "x-default": "https://tradersfundhub.com/blog/what-is-a-prop-firm"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/what-is-copy-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/what-is-overtrading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/what-is-prop-firm-consistency-rule",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/wyckoff-pattern",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/blog/zulutrade-review",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/category/copy-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/category/educational",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/category/prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/category/trading-psychology",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/category/trading-tools",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/cheapest-prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-apex-trader-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-bright-funded",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-city-traders-imperium",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-crypto-fund-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-e8-markets",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-ftmo",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-fundednext",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/alpha-capital-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-bright-funded",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-city-traders-imperium",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-crypto-fund-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-e8-markets",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-ftmo",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-fundednext",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/apex-trader-funding-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-city-traders-imperium",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-crypto-fund-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-e8-markets",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-ftmo",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-ftmo",
+    "ru": "https://tradersfundhub.com/ru/ftmo-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-ftmo"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-fundednext",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-fundednext",
+    "ru": "https://tradersfundhub.com/ru/fundednext-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-fundednext"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-fundingpips",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-fundingpips",
+    "ru": "https://tradersfundhub.com/ru/fundingpips-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-fundingpips"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/bright-funded-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-crypto-fund-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-e8-markets",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-ftmo",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-fundednext",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/city-traders-imperium-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-e8-markets",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-ftmo",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-fundednext",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/crypto-fund-trader-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-ftmo",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-fundednext",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/e8-markets-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-fundednext",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/ftmo-vs-fundednext",
+    "ru": "https://tradersfundhub.com/ru/ftmo-vs-fundednext",
+    "x-default": "https://tradersfundhub.com/compare/ftmo-vs-fundednext"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-fundingpips",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ftmo-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips",
+    "ru": "https://tradersfundhub.com/ru/fundednext-vs-fundingpips",
+    "x-default": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundednext-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-fxify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fundingpips-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-lucid-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/fxify-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-maven",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/lucid-trading-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-my-funded-futures",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/maven-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-ofp-funding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/my-funded-futures-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ofp-funding-vs-take-profit-trader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ofp-funding-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ofp-funding-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ofp-funding-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/ofp-funding-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/take-profit-trader-vs-the5ers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/take-profit-trader-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/take-profit-trader-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/take-profit-trader-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/the5ers-vs-topstep",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/the5ers-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/the5ers-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/topstep-vs-tradeday",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/topstep-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/compare/tradeday-vs-tradeify",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/contact",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/corrections",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/disclaimers",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/how-prop-firm-challenges-work",
+   "languages": {
+    "en": "https://tradersfundhub.com/how-prop-firm-challenges-work",
+    "ru": "https://tradersfundhub.com/ru/kak-rabotayut-chellendzhi-prop-firm",
+    "x-default": "https://tradersfundhub.com/how-prop-firm-challenges-work"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/how-to-pass-a-prop-firm-challenge",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/how-we-make-money",
+   "languages": {
+    "en": "https://tradersfundhub.com/how-we-make-money",
+    "ru": "https://tradersfundhub.com/ru/kak-my-zarabatyvaem",
+    "x-default": "https://tradersfundhub.com/how-we-make-money"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/methodology",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/privacy-policy",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firm-challenge-changes",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firm-challenges",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firm-discount-codes",
+   "languages": {
+    "en": "https://tradersfundhub.com/prop-firm-discount-codes",
+    "ru": "https://tradersfundhub.com/ru/promokody-prop-firm",
+    "x-default": "https://tradersfundhub.com/prop-firm-discount-codes"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/closed",
+   "languages": {
+    "en": "https://tradersfundhub.com/prop-firms/closed",
+    "ru": "https://tradersfundhub.com/ru/zakrytye-prop-firmy",
+    "x-default": "https://tradersfundhub.com/prop-firms/closed"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/copy-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/crypto-payouts",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/ea-allowed",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/high-profit-split",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/news-trading",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/overnight-holding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/static-drawdown",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/take-profit-trader/rules",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/topstep/rules",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/tradeday/rules",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/prop-firms/weekend-holding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru",
+   "languages": {
+    "en": "https://tradersfundhub.com",
+    "ru": "https://tradersfundhub.com/ru",
+    "x-default": "https://tradersfundhub.com"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/chto-takoe-prop-firma",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/what-is-a-prop-firm",
+    "ru": "https://tradersfundhub.com/ru/chto-takoe-prop-firma",
+    "x-default": "https://tradersfundhub.com/blog/what-is-a-prop-firm"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/dlya-russkoyazychnykh-treyderov",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/forex-prop-firmy",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/ftmo-dlya-rossiyan",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/ftmo-vs-bright-funded",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-ftmo",
+    "ru": "https://tradersfundhub.com/ru/ftmo-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-ftmo"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/ftmo-vs-fundednext",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/ftmo-vs-fundednext",
+    "ru": "https://tradersfundhub.com/ru/ftmo-vs-fundednext",
+    "x-default": "https://tradersfundhub.com/compare/ftmo-vs-fundednext"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/funded-account",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundednext-mt5",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundednext-stellar-instant",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundednext-vs-bright-funded",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-fundednext",
+    "ru": "https://tradersfundhub.com/ru/fundednext-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-fundednext"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundednext-vs-fundingpips",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips",
+    "ru": "https://tradersfundhub.com/ru/fundednext-vs-fundingpips",
+    "x-default": "https://tradersfundhub.com/compare/fundednext-vs-fundingpips"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundingpips-pravila",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/fundingpips-vs-bright-funded",
+   "languages": {
+    "en": "https://tradersfundhub.com/compare/bright-funded-vs-fundingpips",
+    "ru": "https://tradersfundhub.com/ru/fundingpips-vs-bright-funded",
+    "x-default": "https://tradersfundhub.com/compare/bright-funded-vs-fundingpips"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/kak-my-zarabatyvaem",
+   "languages": {
+    "en": "https://tradersfundhub.com/how-we-make-money",
+    "ru": "https://tradersfundhub.com/ru/kak-my-zarabatyvaem",
+    "x-default": "https://tradersfundhub.com/how-we-make-money"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/kak-rabotayut-chellendzhi-prop-firm",
+   "languages": {
+    "en": "https://tradersfundhub.com/how-prop-firm-challenges-work",
+    "ru": "https://tradersfundhub.com/ru/kak-rabotayut-chellendzhi-prop-firm",
+    "x-default": "https://tradersfundhub.com/how-prop-firm-challenges-work"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/luchshie-kripto-prop-firmy",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-crypto-prop-firms",
+    "ru": "https://tradersfundhub.com/ru/luchshie-kripto-prop-firmy",
+    "x-default": "https://tradersfundhub.com/best-crypto-prop-firms"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/luchshie-prop-firmy",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-prop-firms-2026",
+    "ru": "https://tradersfundhub.com/ru/luchshie-prop-firmy",
+    "x-default": "https://tradersfundhub.com/best-prop-firms-2026"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-bright-funded",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/bright-funded-prop-firm",
+    "ru": "https://tradersfundhub.com/ru/obzor-bright-funded",
+    "x-default": "https://tradersfundhub.com/blog/bright-funded-prop-firm"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-crypto-fund-trader",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/crypto-fund-trader-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-crypto-fund-trader",
+    "x-default": "https://tradersfundhub.com/blog/crypto-fund-trader-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-eratrade",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-ftmo",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/ftmo-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-ftmo",
+    "x-default": "https://tradersfundhub.com/blog/ftmo-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-fundednext",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/fundednext-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-fundednext",
+    "x-default": "https://tradersfundhub.com/blog/fundednext-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-fundingpips",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/funding-pips-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-fundingpips",
+    "x-default": "https://tradersfundhub.com/blog/funding-pips-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-hash-hedge",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/hash-hedge-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-hash-hedge",
+    "x-default": "https://tradersfundhub.com/blog/hash-hedge-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-kascapital",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-proplive",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-teamtraders",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-the5ers",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/the5ers-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-the5ers",
+    "x-default": "https://tradersfundhub.com/blog/the5ers-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-topstep",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/topstep-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-topstep",
+    "x-default": "https://tradersfundhub.com/blog/topstep-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/otzyvy-prop-firm",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/promokody-prop-firm",
+   "languages": {
+    "en": "https://tradersfundhub.com/prop-firm-discount-codes",
+    "ru": "https://tradersfundhub.com/ru/promokody-prop-firm",
+    "x-default": "https://tradersfundhub.com/prop-firm-discount-codes"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/prop-firmy-bez-chelendzha",
+   "languages": {
+    "en": "https://tradersfundhub.com/best-instant-funding-prop-firms",
+    "ru": "https://tradersfundhub.com/ru/prop-firmy-bez-chelendzha",
+    "x-default": "https://tradersfundhub.com/best-instant-funding-prop-firms"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/prop-firmy-bez-kyc",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/prop-firmy-s-ctrader",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/prop-trejding",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/vyplaty-prop-firm",
+   "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/zakrytye-prop-firmy",
+   "languages": {
+    "en": "https://tradersfundhub.com/prop-firms/closed",
+    "ru": "https://tradersfundhub.com/ru/zakrytye-prop-firmy",
+    "x-default": "https://tradersfundhub.com/prop-firms/closed"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/true-cost-of-prop-firm-challenges",
+   "languages": null
+  }
+ ]
+}

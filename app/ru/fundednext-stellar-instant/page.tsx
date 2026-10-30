@@ -24,7 +24,7 @@ import instantEvidence from '@/content/data/russian-fundednext-instant-evidence.
 import marketEvidence from '@/content/data/russian-market-evidence.json'
 import { getDealsByFirm } from '@/lib/deals'
 import { getAllChallenges, getAllFirms, isChallengeFresh } from '@/lib/firms'
-import { getLanguageAlternates, RUSSIAN_ROUTE_EDITORIAL_DATES } from '@/lib/localizedRoutes'
+import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localizedRoutes'
 import { getRussianInstantFinderHref } from '@/lib/challengeComparisonData'
 import { outboundSlug } from '@/lib/outboundDestinations'
 import { breadcrumbSchema, ruFaqPageSchema, jsonLd } from '@/lib/schema'
@@ -37,7 +37,7 @@ import { formatRuDate } from '@/lib/ruDate'
 const PATH = '/ru/fundednext-stellar-instant'
 const TITLE = 'FundedNext Stellar Instant: правила и выплаты (2026)'
 const DESCRIPTION = 'Разбор FundedNext Stellar Instant на русском: стоимость участия, плавающая просадка, условия вывода прибыли, торговля на новостях и проверка страны.'
-const EDITORIAL_DATE = RUSSIAN_ROUTE_EDITORIAL_DATES[PATH]
+const EDITORIAL_DATE = russianRouteDateModified(PATH)
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

@@ -1,0 +1,434 @@
+{
+  "firm": "Goat Funded Trader",
+  "slug": "goat-funded-trader",
+  "capturedAt": "2026-10-27",
+  "capturedBy": "Prop Firm Tracker",
+  "currency": "USD",
+  "pricesSource": {
+    "url": "https://www.goatfundedtrader.com/model",
+    "method": "List prices read from the model page's PRICES map; sale price = list x (1 - DEFAULT_DISCOUNT 50%) or the SPECIAL_DISCOUNTS override. Not confirmed at checkout. Instant Daily prices are also printed in help article 17677256.",
+    "activeCoupon": "HALLOWEEN50 (page code comment: 'Halloween 2026-10-26, was GFT45; next: BOGO40'; no end date published)",
+    "previousCoupon": "GFT45 (45%, seen 2026-10-26)"
+  },
+  "prices": {
+    "1-step|goat|5000": {
+      "list": 74.0,
+      "sale": 37.0
+    },
+    "1-step|goat|10000": {
+      "list": 114.0,
+      "sale": 57.0
+    },
+    "1-step|goat|25000": {
+      "list": 214.0,
+      "sale": 107.0
+    },
+    "1-step|goat|50000": {
+      "list": 314.0,
+      "sale": 157.0
+    },
+    "1-step|goat|100000": {
+      "list": 530.0,
+      "sale": 265.0
+    },
+    "1-step|goat|200000": {
+      "list": 914.0,
+      "sale": 457.0
+    },
+    "2-step|goat|5000": {
+      "list": 36.0,
+      "sale": 17.0
+    },
+    "2-step|goat|10000": {
+      "list": 65.0,
+      "sale": 32.5
+    },
+    "2-step|goat|25000": {
+      "list": 158.0,
+      "sale": 79.0
+    },
+    "2-step|goat|50000": {
+      "list": 308.0,
+      "sale": 154.0
+    },
+    "2-step|goat|100000": {
+      "list": 478.0,
+      "sale": 239.0
+    },
+    "2-step|goat|150000": {
+      "list": 758.0,
+      "sale": 379.0
+    },
+    "2-step|standard|5000": {
+      "list": 52.0,
+      "sale": 17.0
+    },
+    "2-step|standard|10000": {
+      "list": 90.0,
+      "sale": 45.0
+    },
+    "2-step|standard|25000": {
+      "list": 234.0,
+      "sale": 117.0
+    },
+    "2-step|standard|50000": {
+      "list": 358.0,
+      "sale": 179.0
+    },
+    "2-step|standard|100000": {
+      "list": 628.0,
+      "sale": 314.0
+    },
+    "2-step|standard|200000": {
+      "list": 1198.0,
+      "sale": 599.0
+    },
+    "promo|promo|100000": {
+      "list": 478.0,
+      "sale": 99.0
+    },
+    "instant|daily|1000": {
+      "list": 30.0,
+      "sale": 15.0
+    },
+    "instant|daily|2500": {
+      "list": 78.0,
+      "sale": 39.0
+    },
+    "instant|daily|5000": {
+      "list": 138.0,
+      "sale": 69.0
+    },
+    "instant|daily|10000": {
+      "list": 258.0,
+      "sale": 129.0
+    },
+    "instant|daily|25000": {
+      "list": 598.0,
+      "sale": 299.0
+    },
+    "instant|daily|50000": {
+      "list": 998.0,
+      "sale": 499.0
+    },
+    "instant|goat|5000": {
+      "list": 108.0,
+      "sale": 54.0
+    },
+    "instant|goat|10000": {
+      "list": 158.0,
+      "sale": 79.0
+    },
+    "instant|goat|25000": {
+      "list": 318.0,
+      "sale": 159.0
+    },
+    "instant|goat|50000": {
+      "list": 488.0,
+      "sale": 244.0
+    },
+    "instant|goat|100000": {
+      "list": 815.0,
+      "sale": 407.5
+    },
+    "instant|goat|200000": {
+      "list": 1663.0,
+      "sale": 831.5
+    },
+    "instant|goat|300000": {
+      "list": 2398.0,
+      "sale": 1199.0
+    },
+    "instant|goat|400000": {
+      "list": 2998.0,
+      "sale": 1499.0
+    },
+    "instant|hero|5000": {
+      "list": 58.0,
+      "sale": 17.0
+    },
+    "instant|hero|10000": {
+      "list": 107.0,
+      "sale": 53.5
+    },
+    "instant|hero|15000": {
+      "list": 157.0,
+      "sale": 78.5
+    },
+    "instant|hero|25000": {
+      "list": 240.0,
+      "sale": 120.0
+    },
+    "instant|hero|50000": {
+      "list": 357.0,
+      "sale": 178.5
+    },
+    "instant|hero|100000": {
+      "list": 657.0,
+      "sale": 328.5
+    },
+    "instant|hero|200000": {
+      "list": 1157.0,
+      "sale": 578.5
+    },
+    "instant|hero|300000": {
+      "list": 1663.0,
+      "sale": 831.5
+    },
+    "instant|hero|400000": {
+      "list": 2330.0,
+      "sale": 1165.0
+    },
+    "instant|premium|5000": {
+      "list": 158.0,
+      "sale": 79.0
+    },
+    "instant|premium|10000": {
+      "list": 297.0,
+      "sale": 148.5
+    },
+    "instant|premium|15000": {
+      "list": 397.0,
+      "sale": 198.5
+    },
+    "instant|premium|25000": {
+      "list": 563.0,
+      "sale": 281.5
+    },
+    "instant|premium|50000": {
+      "list": 813.0,
+      "sale": 406.5
+    },
+    "instant|premium|100000": {
+      "list": 1313.0,
+      "sale": 656.5
+    },
+    "instant|premium|150000": {
+      "list": 2130.0,
+      "sale": 1065.0
+    },
+    "goat-blitz|goat|2500": {
+      "list": 47.0,
+      "sale": 23.5
+    },
+    "goat-blitz|goat|5000": {
+      "list": 77.0,
+      "sale": 38.5
+    },
+    "goat-blitz|goat|10000": {
+      "list": 117.0,
+      "sale": 58.5
+    },
+    "goat-blitz|goat|25000": {
+      "list": 247.0,
+      "sale": 123.5
+    },
+    "goat-blitz|goat|50000": {
+      "list": 387.0,
+      "sale": 193.5
+    },
+    "goat-blitz|goat|100000": {
+      "list": 617.0,
+      "sale": 308.5
+    }
+  },
+  "models": {
+    "1-step": {
+      "url": "https://help.goatfundedtrader.com/en/articles/10630134",
+      "target": "10%",
+      "dailyLoss": "4%; 3% for purchases from 1 Aug 2026",
+      "maxLoss": "6% static",
+      "consistency": "none",
+      "fundedMinProfitDays": "3; 4 for purchases from 27 Jul 2026",
+      "fundedDailyProfitCap": "$3,000"
+    },
+    "2-step-standard": {
+      "url": "https://help.goatfundedtrader.com/en/articles/13575169-2-step-standard",
+      "pageDate": "2026-10-05",
+      "targets": [
+        "10%",
+        "5%"
+      ],
+      "dailyLoss": "5% from the higher of balance/equity at 17:00 EST",
+      "maxLoss": "10% static",
+      "fundedMinProfitDays": "3; 4 for purchases from 25 Jul 2026",
+      "fundedDailyProfitCap": "$3,000"
+    },
+    "2-step-goat": {
+      "url": "https://help.goatfundedtrader.com/en/articles/13575348",
+      "targets": [
+        "8%",
+        "6%"
+      ],
+      "dailyLoss": "4%",
+      "maxLoss": "10% static"
+    },
+    "2-step-pro": {
+      "url": "https://help.goatfundedtrader.com/en/articles/13778401",
+      "status": "not sold since 13 Jun 2026"
+    },
+    "2-step-promo-100k": {
+      "url": "https://help.goatfundedtrader.com/en/articles/17593946",
+      "price": "$99",
+      "targets": [
+        "10%",
+        "5%"
+      ],
+      "dailyLoss": "3%",
+      "maxLoss": "8% static",
+      "fundedConsistency": "40%",
+      "fundedPayoutCap": "$2,000"
+    },
+    "3-step": {
+      "url": "https://help.goatfundedtrader.com/en/articles/10630343-3-step-model",
+      "pageDate": "2026-10-05",
+      "status": "help article still live; model page code says retired 2026-08-12 and it has no price",
+      "targets": [
+        "6%",
+        "6%",
+        "6%"
+      ],
+      "dailyLoss": "4%",
+      "maxLoss": "8% static"
+    },
+    "instant-goat": {
+      "url": "https://help.goatfundedtrader.com/en/articles/13574117-instant-funding-goat-model",
+      "pageDate": "2026-10-23",
+      "dailyLoss": "3%",
+      "maxLoss": "6% trailing (locks at initial balance)",
+      "floatingLoss": "2%",
+      "consistency": "15%",
+      "minProfitDays": 5,
+      "split": "80% (100% add-on)",
+      "cycle": "14 days"
+    },
+    "instant-pro": {
+      "url": "https://help.goatfundedtrader.com/en/articles/13574328-instant-funding-pro-model",
+      "pageDate": "2026-10-23",
+      "dailyLoss": "none",
+      "maxLoss": "4% trailing",
+      "floatingLoss": "2%",
+      "consistency": "20%",
+      "minProfitDays": 5,
+      "split": "80% (100% add-on)",
+      "cycle": "14 days",
+      "note": "no price in the model page code"
+    },
+    "instant-premium": {
+      "url": "https://help.goatfundedtrader.com/en/articles/16013484-instant-premium-model",
+      "pageDate": "2026-10-23",
+      "dailyLoss": "3%",
+      "maxLoss": "6% intraday trailing",
+      "floatingLoss": "1.5%; 1% for purchases from 2 Sep 2026",
+      "consistency": "none",
+      "minProfitDays": 5,
+      "split": "80%",
+      "cycle": "10 days; 14 days for purchases from 21 Sep 2026"
+    },
+    "instant-hero": {
+      "url": "https://help.goatfundedtrader.com/en/articles/16097387-instant-hero-model",
+      "pageDate": "2026-10-23",
+      "dailyLoss": "3%",
+      "maxLoss": "5% trailing",
+      "floatingLoss": "1%",
+      "consistency": "15%",
+      "minProfitDays": 6,
+      "split": "90% (100% add-on)",
+      "cycle": "14 days"
+    },
+    "goat-stride": {
+      "url": "https://help.goatfundedtrader.com/en/articles/17333437-goat-stride-model",
+      "pageDate": "2026-10-23",
+      "size": "$2,500",
+      "rules": "Instant HERO rule set",
+      "split": "90%",
+      "note": "no price in the model page code"
+    },
+    "instant-daily": {
+      "url": "https://help.goatfundedtrader.com/en/articles/17677256-instant-daily-model",
+      "pageDate": "2026-10-27",
+      "new": true,
+      "sizesAndPrices": {
+        "1000": 15,
+        "2500": 39,
+        "5000": 69,
+        "10000": 129,
+        "25000": 299,
+        "50000": 499
+      },
+      "dailyLoss": "none",
+      "maxLoss": "3% trailing, locks at initial balance",
+      "floatingLoss": "1%",
+      "consistency": "none",
+      "payoutPerRequest": "1-3% of initial balance",
+      "split": "60% rising to 80%",
+      "cycle": "daily",
+      "validity": "30 days"
+    },
+    "goat-blitz": {
+      "url": "https://help.goatfundedtrader.com/en/articles/11111955-goat-blitz-model",
+      "pageDate": "2026-10-23",
+      "target": "3%",
+      "dailyLoss": "3%",
+      "maxLoss": "5% trailing",
+      "floatingLoss": "2% (hard breach)",
+      "minProfitDays": "5 per phase/payout",
+      "fundedConsistency": "15%",
+      "split": "80%",
+      "availability": "drops on two random weekends per month"
+    },
+    "goat-1-dollar": {
+      "url": "https://help.goatfundedtrader.com/en/articles/11769239-goat-1-model",
+      "pageDate": "2026-10-26",
+      "size": "$1,000",
+      "price": "$1",
+      "maxLifetimeWithdrawal": "$100",
+      "expiry": "28 days after activation",
+      "limit": "1 per user"
+    },
+    "pay-later": {
+      "url": "https://help.goatfundedtrader.com/en/articles/12822025-pay-later-model",
+      "pageDate": "2026-10-23",
+      "entryFee": "$5",
+      "activationFees": {
+        "5000": 78,
+        "10000": 118,
+        "15000": 168,
+        "25000": 238,
+        "50000": 368,
+        "100000": 598,
+        "200000": 998
+      },
+      "target": "4%; 3% for purchases from 5 Sep 2026",
+      "evalMaxLoss": "8% trailing",
+      "fundedDailyLoss": "3%",
+      "fundedMaxLoss": "6% trailing",
+      "split": "80%"
+    }
+  },
+  "fundedRules": {
+    "firstTwoPayoutCap": {
+      "url": "https://help.goatfundedtrader.com/en/articles/11472001-funded-account-reward-guidelines",
+      "quote": "For the first two reward requests, traders can withdraw a maximum of 6% of the initial account balance or $10,000, whichever is lower."
+    },
+    "minHoldingTime": {
+      "url": "https://help.goatfundedtrader.com/en/articles/12849041-what-is-the-minimum-holding-time-for-trades",
+      "value": "60 s for purchases from 6 Oct 2026 (120 s before); profit removed, not a breach"
+    },
+    "goatGuard": {
+      "url": "https://help.goatfundedtrader.com/en/articles/10742107-what-is-goat-guard",
+      "value": "2% of initial size combined floating loss: 1st trigger split cut to 50%, 2nd trigger breach; not on Instant, Blitz, Pay Later"
+    },
+    "kyc": {
+      "url": "https://help.goatfundedtrader.com/en/articles/15949678-identity-verification-kyc-what-to-expect",
+      "value": "at first payout; Veriff (crypto/Skrill/bank) or Rise"
+    },
+    "refund": {
+      "url": "https://help.goatfundedtrader.com/en/articles/11036447-is-the-evaluation-fee-refundable",
+      "quote": "fully refundable when you receive your fourth payout on that account"
+    }
+  },
+  "trustpilot": {
+    "status": "not captured (HTTP 403 on 2026-10-27)"
+  }
+}
