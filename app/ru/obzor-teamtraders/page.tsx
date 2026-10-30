@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { RuReviewVerdictBox } from '@/components/RuVerdict'
 import Link from '@/components/SafeLink'
@@ -197,7 +198,7 @@ export default function RussianTeamTradersReviewPage() {
               Сравнить глобальные варианты <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
-          <p className="ru-source-line">Ссылки TeamTraders не партнёрские. Условия ниже относятся к разбору от {formatRuDate(evidence.capturedAt)}; это не обещание доступности для вашей страны.</p>
+          <p className="ru-source-line">Ссылки TeamTraders не партнёрские. Условия ниже относятся к разбору от {formatRuDate(evidence.capturedAt)}; это не обещание доступности для вашей страны. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Рейтинг проп-компаний для резидентов России →</RuPendingLink></p>
           <nav className="ru-actions" aria-label="Содержание обзора TeamTraders">
             <Link href="#tarify">Тарифы</Link>
             <Link href="#etapy">Этапы</Link>

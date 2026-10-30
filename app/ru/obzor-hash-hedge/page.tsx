@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, CheckCircle2, Database, ExternalLink, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -437,7 +438,7 @@ export default function RussianHashHedgeReviewPage() {
                 </tbody>
               </table>
             </div>
-            <p className="ru-source-line">BrightFunded — данные программ по нашей базе; CFT — официальные страницы CFT по данным на 19.10.2026; Hash Hedge — {asOf(CHECKED)}.</p>
+            <p className="ru-source-line">BrightFunded — данные программ по нашей базе; CFT — официальные страницы CFT по данным на 19.10.2026; Hash Hedge — {asOf(CHECKED)}. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Проп-компании для России: список по статусу доступа →</RuPendingLink></p>
             <p data-russian-hh-alt-basis="not-in-restricted-list">
               Если для вас важен именно список ограничений: у BrightFunded России нет в списке ограничений (на {ruNotListedDate('bright-funded')}),
               у Crypto Fund Trader для платформы Match-Trader России тоже нет в списке ограничений (на {ruNotListedDate('crypto-fund-trader')}).

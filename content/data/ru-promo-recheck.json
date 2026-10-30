@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-28",
+  "method": "official-pages",
+  "checkoutTested": false,
+  "source": "Prop Firm Tracker promo recheck 28.10.2026 13:00-13:15 Riga: tradersfundhub/reports/ru-promo-recheck-2026-10-28.md (data/ru-diaspora-promo-2026-10-28 @ 83104896)",
+  "firms": {
+    "bright-funded": { "checkedAt": "2026-10-28", "sourceUrl": "https://brightfunded.com/" },
+    "crypto-fund-trader": { "checkedAt": "2026-10-28", "sourceUrl": "https://cryptofundtrader.com/" },
+    "upscale": { "checkedAt": "2026-10-28", "sourceUrl": "https://upscale.trade/" },
+    "fundingpips": { "checkedAt": "2026-10-28", "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started" }
+  }
+}

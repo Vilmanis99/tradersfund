@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, CheckCircle2, Database, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -512,7 +513,7 @@ export default function RussianCryptoFundTraderReviewPage() {
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content" data-russian-cft-alternatives="bright-funded-first">
             <h2>Альтернативы Crypto Fund Trader</h2>
-            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, начните с BrightFunded. Доступ для РФ показан бейджем рядом с кнопкой — он берётся из нашей последней проверки.</p>
+            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, начните с BrightFunded. Доступ для РФ показан бейджем рядом с кнопкой — он берётся из нашей последней проверки. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Список проп-компаний для России с датами проверки →</RuPendingLink></p>
             <div className="ru-grid">
               <article className="ru-card" data-russian-cft-alternative="bright-funded">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
 import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import { minimumTradingDaysLabel, consistencyRuleLabel } from '@/lib/challengeRuleLabels'
@@ -333,7 +334,7 @@ export default function RussianFtmoReviewPage() {
               </RuGoLink>
               <Link href="#alternatives" className="btn-primary">Сравнить партнёрские альтернативы <ArrowRight size={14} aria-hidden="true" /></Link>
             </div>
-            <p className="ru-source-line">Подробно об ограничениях для России и СНГ: <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link>.</p>
+            <p className="ru-source-line">Подробно об ограничениях для России и СНГ: <Link href="/ru/ftmo-dlya-rossiyan">FTMO для россиян</Link>. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Список проп-фирм для трейдеров из России по статусу →</RuPendingLink></p>
             <p className="ru-source-line">Ссылка FTMO не является партнёрской: Traders Fund Hub не получает комиссию за этот переход.</p>
           </div>
         </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
 import RuFirmRelatedLinks from '@/components/RuFirmRelatedLinks'
 import { getRussianReviewFinderHref } from '@/lib/challengeComparisonData'
@@ -542,7 +543,7 @@ export default function RussianBrightFundedReviewPage() {
             data-russian-bright-comparison-prices={comparisonPriceCount}
           >
             <h2 id="alternatives">С чем сравнить BrightFunded</h2>
-            <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 6 материалов помогают разобрать эти различия до регистрации.</p>
+            <p>Сравнивайте альтернативы по тому условию, которое вам не подходит: просадке, сроку выплаты, проверке документов или валюте оплаты. Следующие 6 материалов помогают разобрать эти различия до регистрации. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Рейтинг проп-компаний для России по статусу доступа →</RuPendingLink></p>
             <ul className="ru-review-related-links">
               <li><Link href="/ru/fundednext-vs-bright-funded">BrightFunded или FundedNext</Link> — сравнение {comparisonProductCount} программ и {comparisonPriceCount} цен в USD/EUR: просадка, окупаемость взноса, выплаты и ограничения по стране.</li>
               <li><Link href="/ru/ftmo-vs-bright-funded">BrightFunded или FTMO</Link> — 14 различий по данным на 14–20.10.2026: доступ из СНГ, цена на $100K, тип просадки, сплит, выплаты, платформы и способы оплаты.</li>

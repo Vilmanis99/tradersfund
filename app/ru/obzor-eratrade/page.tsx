@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import RuRelatedBlock from '@/components/RuRelatedBlock'
 import { RuReviewVerdictBox } from '@/components/RuVerdict'
 import Link from '@/components/SafeLink'
@@ -241,7 +242,7 @@ export default function RussianEraTradeReviewPage() {
               </article>
             ))}
           </div>
-          <p className="ru-source-line">Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">исследование российских проп-компаний</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">BrightFunded и FundedNext</Link> (FundedNext недоступна для РФ); отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>.</p>
+          <p className="ru-source-line">Локальные примеры: <Link href="/ru/dlya-russkoyazychnykh-treyderov#rossiyskie">исследование российских проп-компаний</Link>; глобальное сравнение: <Link href="/ru/fundednext-vs-bright-funded">BrightFunded и FundedNext</Link> (FundedNext недоступна для РФ); отдельная локальная проверка: <Link href="/ru/obzor-proplive">PropLive</Link>. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Какие глобальные проп-фирмы не ограничивают Россию →</RuPendingLink></p>
         </div>
       </section>
 

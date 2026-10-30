@@ -15,7 +15,7 @@ import marketEvidence from '@/content/data/russian-market-evidence.json'
 import brightEvidence from '@/content/data/russian-bright-funded-evidence.json'
 import fundingPipsAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
 import { RuGoLink } from '@/components/RuGoLink'
-import { ruAccessBadgeFor, russiaBasisDateFor, russiaSourceDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
+import { futuresRestrictedInRussia, ruAccessBadgeFor, russiaBasisDateFor, russiaSourceDateFor, russiaStatusFor } from '@/lib/russiaAvailability'
 import { RU_EXTRA_RUSSIA_BASIS } from '@/lib/ruAccessExtra'
 import { compareRussianRanking, RUSSIA_STATUS_ORDER } from '@/lib/russianRanking'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
@@ -107,6 +107,25 @@ const RU_ACCESS_NOTES: Record<string, string> = {
   // (hash-hedge-2026-10-26.json 'russia': Terms text identical, 4.3 still does not name Russia). No payment claim: Terms 10.2 and the guide/FAQ disagree.
   'hash-hedge': `Россия в условиях от 08.10.2026 не названа ни среди исключённых, ни среди принятых; регистрацию и KYC не проверяли (Prop Firm Tracker, ${ruAccessDate(hhLatestCapture.russia ? hhLatestCapture.capturedAt : '2026-10-23')})`,
   topstep: 'Недоступно для РФ по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
+}
+
+/**
+ * Check date (YYYY-MM-DD) behind each row of the «список для России» section: the basis date for 'available' rows; otherwise
+ * firms.json russiaSourceCapturedAt, the dated Russia-access evidence (russian-market-evidence.json firmAccess, FundingPips
+ * access evidence, the latest Hash Hedge capture, Upscale in lib/ruAccessExtra.ts), and the 14.10.2026 ru-availability check
+ * (the source of firms.json russiaStatus and of the RU_ACCESS_EXTRA rows) when a firm has no later dated source.
+ */
+function ruAccessCheckedIso(row: RuAccessRow): string {
+  if (row.status === 'available' && row.basisDate) return row.basisDate
+  if (row.name === 'Upscale') return RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt
+  const slug = row.slug
+  if (!slug) return '2026-10-14'
+  if (slug === 'fundingpips') return fundingPipsAccessEvidence.sourceCapturedAt
+  if (slug === 'hash-hedge') return hhLatestCapture.russia ? hhLatestCapture.capturedAt : '2026-10-23'
+  const evidence = (marketEvidence as { firmAccess?: Array<{ firmSlug?: string; sourceObservations?: Array<{ sourceCapturedAt?: string }> }> }).firmAccess
+    ?.find(item => item.firmSlug === slug)?.sourceObservations?.map(item => item.sourceCapturedAt).filter((date): date is string => typeof date === 'string') ?? []
+  const dates = [russiaSourceDateFor(slug), ...evidence].filter((date): date is string => typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)).sort()
+  return dates.at(-1) ?? '2026-10-14'
 }
 
 // No firm count in the search description: the audit reads DESCRIPTION as a static single-quoted string (120–160 chars), so a
@@ -439,6 +458,7 @@ export default function RussianBestPropFirmsPage() {
               <li><a href="#chto-takoe-prop-kompaniya">Что такое проп-компания</a></li>
               <li><a href="#prop-kompanii-dlya-treyderov">Проп-компании для трейдеров</a></li>
               <li><a href="#dostup-iz-rossii">Доступ из России: таблица</a></li>
+              <li><a href="#spisok-dlya-rossii">Список проп-компаний для России по статусу</a></li>
               <li><a href="#bystryy-otvet">Лучшие проп-фирмы: топ-3</a></li>
               <li><a href="#es-i-drugie-strany">ЕС и другие страны</a></li>
               <li><a href="#top-10">Топ-10 проп-компаний</a></li>
@@ -532,6 +552,53 @@ export default function RussianBestPropFirmsPage() {
             ))}
             Все коды — на странице{' '}
             <Link href="/ru/promokody-prop-firm">промокоды проп-фирм</Link>.
+          </p>
+        </div>
+      </section>
+
+      <section className="ru-section" id="spisok-dlya-rossii">
+        <div className="ru-shell ru-content" data-russian-ranking-russia-list={ruAccessRows.length}>
+          <h2>Список проп-компаний для России: рейтинг по статусу доступа</h2>
+          <p>
+            Если вы ищете рейтинг проп-компаний для трейдеров из России, начните не с балла, а со статуса страны. Ниже те же фирмы, что и в
+            таблице выше, разложены на три группы, и у каждой стоит дата, на которую мы читали её список стран или условия.
+            «Нет в списке ограничений» значит только то, что Россия не названа в опубликованных ограничениях фирмы на эту дату:
+            гражданство, резидентство и документы KYC фирма проверяет сама.
+          </p>
+          <h3>России нет в списке ограничений</h3>
+          <ul data-russian-ranking-russia-group="not-listed">
+            {ruAccessRows.filter(row => row.status === 'available').map(row => (
+              <li key={row.name}>
+                <strong>{row.review?.startsWith('/ru/') ? <Link href={row.review}>{row.name}</Link> : row.name}</strong>
+                {row.basisDate
+                  ? ` — нет в списке ограничений (на ${formatRuDate(ruAccessCheckedIso(row))}).`
+                  : ` — доступ из России отмечен в наших данных (проверено ${formatRuDate(ruAccessCheckedIso(row))}).`}
+                {row.slug && futuresRestrictedInRussia(row.slug) ? ' Это относится к челленджам (CFD): у фьючерсного продукта фирмы свой список стран, и Россия в нём есть.' : ''}
+              </li>
+            ))}
+          </ul>
+          <h3>Статус для России неясен</h3>
+          <ul data-russian-ranking-russia-group="unclear">
+            {ruAccessRows.filter(row => row.status === 'unclear' || row.status === 'unverified').map(row => (
+              <li key={row.name}>
+                <strong>{row.review?.startsWith('/ru/') ? <Link href={row.review}>{row.name}</Link> : row.name}</strong>
+                {row.status === 'unclear'
+                  ? ` — статус неясен (проверено ${formatRuDate(ruAccessCheckedIso(row))}).`
+                  : ' — статус для России не проверялся.'}
+              </li>
+            ))}
+          </ul>
+          <h3>Россию ограничивают</h3>
+          <p data-russian-ranking-russia-group="restricted">
+            {ruAccessRows.filter(row => row.status === 'restricted').map((row, index, rows) => (
+              <span key={row.name}>
+                {row.review?.startsWith('/ru/') ? <Link href={row.review}>{row.name}</Link> : row.name} (проверено {formatRuDate(ruAccessCheckedIso(row))}){index < rows.length - 1 ? ', ' : '.'}
+              </span>
+            ))}
+          </p>
+          <p className="ru-source-line">
+            Даты — по нашим данным о каждой фирме: официальные списки стран, условия и справка фирм. Подробная таблица с Беларусью и
+            Казахстаном — на странице <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>.
           </p>
         </div>
       </section>

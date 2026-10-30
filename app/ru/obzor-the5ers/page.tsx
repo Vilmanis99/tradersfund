@@ -587,7 +587,7 @@ export default function RussianThe5ersReviewPage() {
       <section className="ru-section" id="alternativy">
         <div className="ru-shell" data-russian-alternatives="bright-funded-first">
           <h2>Альтернативы The5ers для трейдеров из России</h2>
-          <p className="ru-muted">Порядок редакционный: сначала фирмы, которые по нашим данным не ограничивают РФ. Бейдж — статус доступа для резидентов России.</p>
+          <p className="ru-muted">Порядок редакционный: сначала фирмы, которые по нашим данным не ограничивают РФ. Бейдж — статус доступа для резидентов России. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Полный список проп-фирм для России с датами проверки →</RuPendingLink></p>
           <div className="ru-grid">
             {alternatives.map(item => {
               const notes = ALT_NOTES[item.firm]

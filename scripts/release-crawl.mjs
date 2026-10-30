@@ -62,6 +62,7 @@ import {
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
 } from '../lib/indexNow.ts'
+
 import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
 
 /** Same output as lib/ruDate.ts ruMonthYear(): «ноябрь 2026» for the current month in Riga time. */
@@ -1049,6 +1050,8 @@ const russianExpectations = new Map([
     h1: `Промокоды проп-фирм — ${ruMonthYearForCrawl()}`,
     markers: [
       'id="kody"',
+      'data-russian-country-boundary="deals-not-access"',
+      'data-russian-deals-expiry="thirty-day-fail-closed"',
       'data-russian-affiliate-disclosure="promo-hub"',
       'data-russian-risk-disclaimer="promo-hub"',
       'ru-badge ru-badge--neutral',
