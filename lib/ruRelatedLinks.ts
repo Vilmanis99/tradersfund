@@ -63,6 +63,7 @@ export const RU_REVIEW_FIRMS: ReadonlyArray<{ path: string; firm: string; name: 
   { path: '/ru/obzor-crypto-fund-trader', firm: 'crypto-fund-trader', name: 'Crypto Fund Trader' },
   { path: '/ru/obzor-hash-hedge', firm: 'hash-hedge', name: 'Hash Hedge' },
   { path: '/ru/obzor-spice-prop', firm: 'spice-prop', name: 'Spice Prop' },
+  { path: '/ru/obzor-goat-funded-trader', firm: 'goat-funded-trader', name: 'Goat Funded Trader' },
   { path: '/ru/obzor-fundingpips', firm: 'fundingpips', name: 'FundingPips' },
   { path: '/ru/obzor-ftmo', firm: 'ftmo', name: 'FTMO' },
   { path: '/ru/obzor-fundednext', firm: 'fundednext', name: 'FundedNext' },
@@ -246,6 +247,14 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     rel('/ru/luchshie-kripto-prop-firmy', 'крипто проп компании'),
     rel('/ru/luchshie-prop-firmy', 'рейтинг проп-компаний'),
     rel('/ru/otzyvy-prop-firm', 'проп компании отзывы'),
+  ],
+  '/ru/obzor-goat-funded-trader': [
+    alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),
+    alt('/ru/obzor-crypto-fund-trader', 'CFT проп'),
+    rel('/ru/luchshie-prop-firmy', 'проп компании для трейдеров'),
+    rel('/ru/otzyvy-prop-firm', 'проп компании отзывы'),
+    rel('/ru/vyplaty-prop-firm', 'выплаты проп-фирм'),
+    rel('/ru/dlya-russkoyazychnykh-treyderov', 'гид для русскоязычных трейдеров'),
   ],
   '/ru/obzor-topstep': [
     ...RUSSIA_ALTERNATIVES,

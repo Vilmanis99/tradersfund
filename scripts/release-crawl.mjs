@@ -1404,6 +1404,39 @@ const russianExpectations = new Map([
       '1 104',
     ],
   }],
+  ['/ru/obzor-goat-funded-trader', {
+    title: 'Goat Funded Trader: обзор 2026 — правила и доступ из России',
+    h1: 'Goat Funded Trader: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="goat-funded-trader"',
+      'data-russian-goat-verdict="summary"',
+      'data-russian-goat-access="restricted"',
+      'data-russia-status="restricted"',
+      'data-russia-firm="goat-funded-trader"',
+      'Недоступно для РФ',
+      'Россия в списке ограничений',
+      'по данным на 27.10.2026',
+      '"datePublished":"2026-11-02"',
+      'data-russian-goat-product-count="9"',
+      'data-russian-goat-product="instant-daily"',
+      'data-russian-goat-retired="2026-10-27"',
+      'не продаётся с 13.06.2026',
+      'HALLOWEEN50',
+      'Условия расходятся, уточните у поддержки',
+      'на сайте не указано',
+      'data-russian-goat-example="2-step-standard-100k"',
+      'Пример, не прогноз',
+      'data-russian-goat-payout-risks="stage-checks"',
+      'data-russian-goat-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-goat-funded-trader-alternative-bright-funded"',
+      'data-russian-goat-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="goat-funded-trader-review"',
+      'data-russian-risk-disclaimer="goat-funded-trader-review"',
+      'Wishes Tower International Limited',
+      'Проверено 27.10.2026 по официальным страницам',
+    ],
+  }],
   ['/ru/obzor-hash-hedge', {
     title: 'Hash Hedge: отзывы и обзор крипто-проп-компании 2026',
     h1: 'Hash Hedge: обзор и отзывы 2026',
@@ -2085,7 +2118,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 
