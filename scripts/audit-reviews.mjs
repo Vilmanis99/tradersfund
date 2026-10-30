@@ -11289,7 +11289,6 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-crypto-fund-trader', path.join(ROOT, 'app/ru/obzor-crypto-fund-trader/page.tsx')],
     ['/ru/obzor-hash-hedge', path.join(ROOT, 'app/ru/obzor-hash-hedge/page.tsx')],
     ['/ru/obzor-spice-prop', path.join(ROOT, 'app/ru/obzor-spice-prop/page.tsx')],
-    ['/ru/obzor-goat-funded-trader', path.join(ROOT, 'app/ru/obzor-goat-funded-trader/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],

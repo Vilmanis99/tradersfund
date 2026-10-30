@@ -223,6 +223,7 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     ...RUSSIA_ALTERNATIVES,
     rel('/ru/luchshie-prop-firmy', 'Рейтинг проп-компаний'),
     rel('/ru/dlya-russkoyazychnykh-treyderov', 'Проп-фирмы для русскоязычных трейдеров'),
+    rel('/ru/obzor-goat-funded-trader', 'Goat Funded Trader отзывы'),
   ],
   '/ru/obzor-crypto-fund-trader': [
     cmp('/ru/bright-funded-vs-crypto-fund-trader', 'BrightFunded или Crypto Fund Trader'),
