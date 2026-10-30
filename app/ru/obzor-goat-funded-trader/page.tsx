@@ -32,14 +32,17 @@ export const metadata: Metadata = {
 
 /**
  * Facts: Prop Firm Tracker final capture /workspace/ru-data/2026-10-27-goat-funded-trader-final.md
- * (+ interim 2026-10-26) and content/data/challenges/_captures/goat-funded-trader-2026-10-27.json.
+ * (+ interim 2026-10-26) and content/data/challenges/_captures/goat-funded-trader-2026-10-27.json;
+ * list prices and the restricted-countries list re-checked 30.10.2026 (evidence goat-2026-10-30/VERDICT.md).
  * Goat is only in firms-pending.json (russiaStatus 'restricted'): info-only page, no /go route, no affiliate,
  * official link nofollow and below the alternatives. List prices only; the discount depends on the current code.
  */
 const CHECKED = '2026-10-27'
 const RESTRICTED_LIST_UPDATED = '2026-10-01'
 const DATE_PUBLISHED = '2026-11-02'
-const COUPON = 'HALLOWEEN50'
+/** Tracker re-check 30.10.2026 (evidence goat-2026-10-30/VERDICT.md): list prices unchanged; RU/BY/UA still restricted. */
+const PRICES_CHECKED = '2026-10-30'
+const ACCESS_CHECKED = '2026-10-30'
 
 const HELP = 'https://help.goatfundedtrader.com/en/articles/'
 const SOURCES = {
@@ -176,7 +179,7 @@ const PROGRAMS: ProgramRow[] = [
 const faqs: RussianFaqItem[] = [
   {
     q: 'Работает ли Goat Funded Trader в России?',
-    a: `Нет. В справке фирмы (статья обновлена ${ruDate(RESTRICTED_LIST_UPDATED)}, ${asOf(CHECKED)}) Россия, Беларусь и Украина входят в список из 32 стран, где «нельзя создать аккаунт или пользоваться платформой». Казахстана в этом списке нет. Русский язык интерфейса или поддержки не означает доступ.`,
+    a: `Нет. В справке фирмы (статья обновлена ${ruDate(RESTRICTED_LIST_UPDATED)}, ${asOf(ACCESS_CHECKED)}) Россия, Беларусь и Украина входят в список из 32 стран, где «нельзя создать аккаунт или пользоваться платформой». Казахстана в этом списке нет. Русский язык интерфейса или поддержки не означает доступ.`,
   },
   {
     q: 'Можно ли гражданину РФ, который живёт в другой стране?',
@@ -184,7 +187,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит челлендж Goat Funded Trader?',
-    a: `Лист-цены ${asOf(CHECKED)}: 2-Step GOAT от ${usd(36)} ($5K), 2-Step Standard от ${usd(52)}, 1-Step от ${usd(74)}, Instant Daily от ${usd(30)} ($1K), самый дорогой — Instant GOAT $400K за ${usd(2_998)}. Скидка зависит от действующего промокода (на дату проверки — ${COUPON}); итоговую цену видно только при оформлении заказа.`,
+    a: `Лист-цены ${asOf(PRICES_CHECKED)}: 2-Step GOAT от ${usd(36)} ($5K), 2-Step Standard от ${usd(52)}, 1-Step от ${usd(74)}, Instant Daily от ${usd(30)} ($1K), самый дорогой — Instant GOAT $400K за ${usd(2_998)}. Скидка зависит от действующего промокода; итоговую цену видно только при оформлении заказа.`,
   },
   {
     q: 'Как выводить прибыль и сколько удерживают?',
@@ -307,7 +310,7 @@ export default function RussianGoatFundedTraderReviewPage() {
             <div className="ru-notice" data-russian-goat-access={goatStatus}>
               <strong>Доступ из России:</strong> <RuAccessBadgeView firm="goat-funded-trader" status={goatStatus} />{' '}
               Россия в списке ограничений: справочная статья фирмы (обновлена {ruDate(RESTRICTED_LIST_UPDATED)},{' '}
-              {asOf(CHECKED)}) называет 32 страны, в том числе Россию, Беларусь и Украину, где «нельзя создать аккаунт
+              {asOf(ACCESS_CHECKED)}) называет 32 страны, в том числе Россию, Беларусь и Украину, где «нельзя создать аккаунт
               или пользоваться платформой». Казахстана в списке нет. Русский язык ≠ доступ: даже если интерфейс
               переведён, решает список стран.
             </div>
@@ -384,10 +387,9 @@ export default function RussianGoatFundedTraderReviewPage() {
         <section className="ru-section" id="programs">
           <div className="ru-shell">
             <h2>Программы и цены</h2>
-            <p className="ru-muted" data-russian-goat-prices={CHECKED}>
-              Лист-цены в долларах США {asOf(CHECKED)} — со страницы моделей. Скидка зависит от действующего промокода
-              (на дату проверки — {COUPON}, срок действия на сайте не указан); итоговую цену видно только при
-              оформлении заказа, и мы её не печатаем.
+            <p className="ru-muted" data-russian-goat-prices={PRICES_CHECKED}>
+              Лист-цены в долларах США {asOf(PRICES_CHECKED)} — со страницы моделей. Скидка зависит от действующего
+              промокода; итоговую цену видно только при оформлении заказа, и мы её не печатаем.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Программы Goat Funded Trader">
               <table className="ru-table" data-russian-goat-product-count={PROGRAMS.length}>
@@ -446,7 +448,7 @@ export default function RussianGoatFundedTraderReviewPage() {
         <section className="ru-section" id="example">
           <div className="ru-shell ru-content" data-russian-goat-example="2-step-standard-100k">
             <h2>Пример пути: 2-Step Standard $100K</h2>
-            <p className="ru-muted">Пример, не прогноз. Цифры — лист-цена и правила {asOf(CHECKED)}.</p>
+            <p className="ru-muted">Пример, не прогноз. Цифры — лист-цена {asOf(PRICES_CHECKED)} и правила {asOf(CHECKED)}.</p>
             <ul className="wp-block-list">
               <li><strong>Взнос:</strong> {usd(628)} по лист-цене; с промокодом меньше, точную сумму показывает корзина.</li>
               <li><strong>Этап 1:</strong> цель 10% = {usd(10_000)}, минимум 3 прибыльных дня (прибыльный день — не меньше 0,5% начального баланса, то есть {usd(500)}).</li>
@@ -664,11 +666,11 @@ export default function RussianGoatFundedTraderReviewPage() {
         <section className="ru-section" id="sources">
           <div className="ru-shell ru-content">
             <h2>Источники и дата проверки</h2>
-            <p>Проверено {ruDate(CHECKED)} по официальным страницам Goat Funded Trader.</p>
+            <p>Проверено {ruDate(CHECKED)} по официальным страницам Goat Funded Trader; лист-цены и список стран повторно сверены {ruDate(PRICES_CHECKED)}.</p>
             <ul>
               <li>{src(SOURCES.terms, 'Terms and Conditions')}: §1.1, §2.2, §7.4, §7.5, §15.1 — {asOf(CHECKED)}.</li>
-              <li>{src(SOURCES.model, 'Страница моделей')} и {src(SOURCES.home, 'главная')}: лист-цены, пометка «retired» у 3-Step, виджеты рейтингов, подвал — {asOf(CHECKED)}.</li>
-              <li>Справка о доступе: {src(SOURCES.restricted, 'список стран')} (обновлена {ruDate(RESTRICTED_LIST_UPDATED)}), {src(SOURCES.ip, 'политика IP')} — {asOf(CHECKED)}.</li>
+              <li>{src(SOURCES.model, 'Страница моделей')} и {src(SOURCES.home, 'главная')}: лист-цены — {asOf(PRICES_CHECKED)}; пометка «retired» у 3-Step, виджеты рейтингов, подвал — {asOf(CHECKED)}.</li>
+              <li>Справка о доступе: {src(SOURCES.restricted, 'список стран')} (обновлена {ruDate(RESTRICTED_LIST_UPDATED)}) — {asOf(ACCESS_CHECKED)}, {src(SOURCES.ip, 'политика IP')} — {asOf(CHECKED)}.</li>
               <li>
                 Справка по моделям: {src(SOURCES.oneStep, '1-Step')}, {src(SOURCES.twoStepStandard, '2-Step Standard')},{' '}
                 {src(SOURCES.twoStepGoat, '2-Step GOAT')}, {src(SOURCES.twoStepPro, '2-Step PRO')}, {src(SOURCES.promo100k, 'Promo 100k')},{' '}
