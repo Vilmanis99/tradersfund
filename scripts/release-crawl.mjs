@@ -1432,6 +1432,34 @@ const russianExpectations = new Map([
       'по данным на 19.10.2026',
     ],
   }],
+  ['/ru/obzor-spice-prop', {
+    title: 'Spice Prop: отзывы и обзор 2026 — условия и доступ из РФ',
+    h1: 'Spice Prop (Спайс Проп): обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="spice-prop"',
+      'data-russian-spice-verdict="summary"',
+      'data-russian-spice-access="unclear"',
+      'data-russian-spice-product-count="6"',
+      'data-russian-spice-conflicts="2026-10-26"',
+      'data-russian-spice-example="2-step-10k"',
+      'data-russian-spice-nssmc="2026-10-26"',
+      'data-russian-spice-alternatives="bright-funded-first"',
+      'data-russian-spice-cta="summary"',
+      'data-russian-spice-cta="programs"',
+      'data-russian-spice-cta="final"',
+      'data-russian-spice-official="non-affiliate"',
+      'data-russia-firm="spice-prop"',
+      'data-russian-affiliate-disclosure="spice-prop-review"',
+      'data-russian-risk-disclaimer="spice-prop-review"',
+      'по данным на 26.10.2026',
+      '"datePublished":"2026-10-30"',
+      'SPICEPROP SL LTD',
+      'Условия расходятся, уточните у поддержки',
+      'нет в списке ограничений',
+      'НКЦПФР',
+    ],
+  }],
   ['/ru/obzor-fundingpips', {
     title: 'FundingPips (Funding Pips): отзывы, обзор 2026, доступ из РФ',
     h1: 'FundingPips: отзывы и обзор 2026 — цены, правила, доступ из России',
@@ -2057,7 +2085,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 

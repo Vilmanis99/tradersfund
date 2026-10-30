@@ -19,8 +19,15 @@ export const RU_ROUTES_PATH = 'lib/ruRouteLastmod.generated.ts'
  * Bump when projection / URL hashing rules change. Migration keeps dates when content matches.
  * v3: challenge allowlist (page-visible fields only); strip related-links / inlink chrome from
  * page.tsx; deals/evidence drop non-rendered fields; URL seed only when content unchanged.
+ * v4: promotable discounts only (checkout-verified); drop futuresCountriesRestricted from firm:ru
+ * (page-level / product status owns that); challenges:landing for ranking cards (no split tiers).
+ * v5: drop consistencyRuleApplies from full/landing (footer chrome + calculator-only BF null→false
+ * was redating hubs that never print it); keep it on challenges:compare only. Emit
+ * challenges:product:firm:productSlug so landings hash only the rows each card shows (futures /
+ * cheapest must not inherit The5ers Summer CFD rows). Sitewide priced-programme / data-as-of
+ * footer stamp is never a per-URL source.
  */
-export const HASH_VERSION = 3
+export const HASH_VERSION = 5
 
 /** TS source for lib/ruRouteLastmod.generated.ts. */
 export function ruRoutesModule(dates) {
@@ -76,11 +83,15 @@ export const RENDERED_FIRM_FIELDS_LISTING = Object.freeze([
   'copyTradingAllowed', 'countriesRestricted', 'verifiedPayoutBadge',
 ])
 
-/** RU surfaces. */
+/**
+ * RU surfaces: firm-level russiaStatus only.
+ * futuresCountriesRestricted is product-level (BrightFunded Futures etc.) and is read by
+ * specific pages (dlya / product badges); hashing the full country list on every firm:ru
+ * consumer falsely redates compare/KYC hubs that never print it.
+ */
 export const RENDERED_FIRM_FIELDS_RU = Object.freeze([
   ...RENDERED_FIRM_FIELDS_EN,
   'russiaStatus',
-  'futuresCountriesRestricted',
 ])
 
 /** Split-tier UI: pages that render displaySplitTiers / SplitTiersDisclosure. */
@@ -101,9 +112,33 @@ export const LASTMOD_IGNORED_DATA_FILES = Object.freeze([
 export const RENDERED_CHALLENGE_FIELDS = Object.freeze([
   'firmSlug', 'productName', 'productSlug', 'phases', 'accountSizes', 'profitTargets',
   'dailyLossPct', 'maxLossPct', 'drawdownType', 'minTradingDays', 'maxTradingDays',
-  'maxTradingDaysUnlimited', 'consistencyRulePct', 'consistencyRuleApplies',
+  'maxTradingDaysUnlimited', 'consistencyRulePct',
   'consistencyRules', 'consistencyScope',
   'profitSplitPct', 'profitSplitTiers', 'payoutFirstDays', 'payoutFrequency',
+  'rules', 'assetClass', 'pricingModel', 'activationFeeUsd',
+  'fundedMaxLossPct', 'fundedDailyLossPct', 'fundedDrawdownType', 'refundAfterPayouts',
+])
+
+/**
+ * Compare / challenge-comparison tables that call consistencyRuleLabel.
+ * consistencyRuleApplies (null→false = Unverified→No rule) is page-local there; it is NOT
+ * on landing cards, RU fundednext-vs-BF, KYC, feature firm lists, or the sitewide footer stamp.
+ */
+export const RENDERED_CHALLENGE_FIELDS_COMPARE = Object.freeze([
+  ...RENDERED_CHALLENGE_FIELDS,
+  'consistencyRuleApplies',
+])
+
+/**
+ * Long-tail landing / ranking cards: product identity, holding rules, drawdown, sizes, fees.
+ * Omits profitSplitTiers / payout cadence — those landings do not print split matrices, and
+ * hashing them redated UK/swing/KYC hubs when FundingPips tiers were filled in.
+ */
+export const RENDERED_CHALLENGE_FIELDS_LANDING = Object.freeze([
+  'firmSlug', 'productName', 'productSlug', 'phases', 'accountSizes', 'profitTargets',
+  'dailyLossPct', 'maxLossPct', 'drawdownType', 'minTradingDays', 'maxTradingDays',
+  'maxTradingDaysUnlimited', 'consistencyRulePct',
+  'consistencyRules', 'consistencyScope',
   'rules', 'assetClass', 'pricingModel', 'activationFeeUsd',
   'fundedMaxLossPct', 'fundedDailyLossPct', 'fundedDrawdownType', 'refundAfterPayouts',
 ])
@@ -128,7 +163,18 @@ function stable(value, drop = () => false) {
 function pickFirm(firm, fields) {
   const out = {}
   for (const key of fields) {
-    if (Object.prototype.hasOwnProperty.call(firm, key) && !VOLATILE_KEY.test(key)) out[key] = firm[key]
+    if (!Object.prototype.hasOwnProperty.call(firm, key) || VOLATILE_KEY.test(key)) continue
+    out[key] = firm[key]
+  }
+  // LandingFirmList / FirmTable promote only checkout-verified codes. Unverified
+  // discountCode / discountPct pairs are absent from those surfaces — hashing them
+  // redated UK/swing/RU hubs when Tracker added FNTRICK / BOO20 as unverified.
+  if (Object.prototype.hasOwnProperty.call(out, 'discountCode') || Object.prototype.hasOwnProperty.call(out, 'discountPct')) {
+    if (firm.discountCodeCheckoutVerified === false) {
+      delete out.discountCode
+      delete out.discountPct
+      delete out.discountCodeCheckoutVerified
+    }
   }
   return out
 }
@@ -149,13 +195,22 @@ function normalizeChallengeValue(key, value) {
       appliesTo: rule.appliesTo,
     }))
   }
+  // Landing cards / filters treat null and false the same for boolean holding flags
+  // (only `=== true` qualifies). Coerce so null→false does not redate product rows.
+  if (key === 'rules' && value && typeof value === 'object' && !Array.isArray(value)) {
+    const out = { ...value }
+    for (const flag of ['weekend', 'overnight', 'ea']) {
+      if (out[flag] == null) out[flag] = false
+    }
+    return out
+  }
   return value
 }
 
-function challengeRendered(products) {
+function challengeProjected(products, fields) {
   return stable(products.map(p => {
     const out = {}
-    for (const key of RENDERED_CHALLENGE_FIELDS) {
+    for (const key of fields) {
       if (!Object.prototype.hasOwnProperty.call(p, key)) continue
       if (VOLATILE_KEY.test(key)) continue
       out[key] = normalizeChallengeValue(key, p[key])
@@ -165,8 +220,21 @@ function challengeRendered(products) {
   }))
 }
 
+function challengeRendered(products) {
+  return challengeProjected(products, RENDERED_CHALLENGE_FIELDS)
+}
+
+function challengeLanding(products) {
+  return challengeProjected(products, RENDERED_CHALLENGE_FIELDS_LANDING)
+}
+
 function challengeCompare(products) {
-  return challengeRendered(products)
+  return challengeProjected(products, RENDERED_CHALLENGE_FIELDS_COMPARE)
+}
+
+/** Single product under landing field set — landings declare which rows they show. */
+function challengeProduct(product) {
+  return challengeProjected([product], RENDERED_CHALLENGE_FIELDS_LANDING)
 }
 
 /**
@@ -262,6 +330,7 @@ export function sourceSpecs() {
         out.set(`firm:ru:${slug}`, stable(pickFirm(firm, RENDERED_FIRM_FIELDS_RU)))
         out.set(`firm:compare:${slug}`, stable(pickFirm(firm, RENDERED_FIRM_FIELDS_COMPARE)))
         out.set(`firm:listing:${slug}`, stable(pickFirm(firm, RENDERED_FIRM_FIELDS_LISTING)))
+        out.set(`firm:landing:${slug}`, stable(pickFirm(firm, RENDERED_FIRM_FIELDS_EN)))
       }
       return out
     },
@@ -274,10 +343,16 @@ export function sourceSpecs() {
       project(text) {
         const products = JSON.parse(text)
         const list = Array.isArray(products) ? products : []
-        return new Map([
+        const out = new Map([
           [`challenges:full:${slug}`, challengeRendered(list)],
           [`challenges:compare:${slug}`, challengeCompare(list)],
+          [`challenges:landing:${slug}`, challengeLanding(list)],
         ])
+        for (const product of list) {
+          if (!product?.productSlug) continue
+          out.set(`challenges:product:${slug}:${product.productSlug}`, challengeProduct(product))
+        }
+        return out
       },
     })
   }
@@ -353,4 +428,4 @@ export function urlSourcesUnchanged(sourceKeys, tipHashes, baselineHashes) {
   return true
 }
 
-export { hash, pageCode, challengeWatchRendered, challengeRendered, dealsRendered }
+export { hash, pageCode, challengeWatchRendered, challengeRendered, challengeCompare, challengeProduct, dealsRendered }

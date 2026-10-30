@@ -1,0 +1,100 @@
+{
+  "firmSlug": "spice-prop",
+  "captureType": "recheck",
+  "capturedAt": "2026-10-30",
+  "capturedAtTimestamp": "2026-10-30T08:05:00+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/spice-prop-2026-10-26.json",
+  "question": "Fri 30 Oct final QA for /ru/obzor-spice-prop before ship: recheck live first-party pages vs ffbf684 (26.10) and RU article 77c3dab0.",
+  "method": "curl of live HTML (home EN/RU, 6 program pages, terms, terms-addons, Q&A 892, promo 270, Halloween promo 280, payouts). Evidence: tradersfundhub/evidence/spice-recheck-2026-10-30/.",
+  "verdict": {
+    "russiaStatus": "unclear",
+    "changedVsPrevious": false,
+    "listPricesUnchanged": true,
+    "articleVerdict": "READY",
+    "russiaReason": "Footer restricted list still 14 countries without Russia/Belarus/Ukraine/Kazakhstan; Terms Effective Date 16 October 2025 §§2.2/9.4 and Q&A 892 unchanged on sanctioned/restricted wording."
+  },
+  "listPricesEur": {
+    "source": "https://spiceprop.com/ grid Get it for / Try for buttons; program pages; identical on /ru; unchanged vs 2026-10-26",
+    "spice-2-step": {
+      "6000": 45,
+      "10000": 99,
+      "25000": 166,
+      "50000": 295,
+      "100000": 499,
+      "150000": 715
+    },
+    "spice-2-step-pro": {
+      "300000": 1573
+    },
+    "spice-1-step": {
+      "10000": 129,
+      "25000": 219,
+      "50000": 389,
+      "75000": 586
+    },
+    "spice-3-step-upfront": {
+      "15000": 18,
+      "40000": 39,
+      "80000": 60,
+      "120000": 90
+    },
+    "spice-3-step-after": {
+      "15000": 42,
+      "40000": 91,
+      "80000": 140,
+      "120000": 210
+    },
+    "spice-instant": {
+      "1000": 40,
+      "5000": 120,
+      "10000": 234,
+      "20000": 422,
+      "40000": 780
+    },
+    "spice-instant-pro": {
+      "1000": 62,
+      "5000": 185,
+      "10000": 360
+    }
+  },
+  "threeStep": {
+    "url": "https://spiceprop.com/programs/spice-3-step",
+    "targetsQuote": "Conservative targets (4% / 6% / 6%)",
+    "phaseTableQuote": "Phase 1: Evaluation 4% Profit Target … Phase 2: Verification 6% Profit Target … Phase 3: Final Review 6% Profit Target",
+    "maxLossQuote": "static 7% Max Total Drawdown",
+    "dailyQuote": "3% Daily Drawdown",
+    "splitPaymentQuote": "You only cover 30% of the cost upfront … The remaining 70% is only required once you successfully pass Phase 3"
+  },
+  "promo": {
+    "halloween": {
+      "url": "https://spiceprop.com/blog/280-halloween-promo-30-off-extra-rewards",
+      "periodQuote": "Promotion Period: October 29 – October 31, 23:59 CET",
+      "code": "SCARY30",
+      "bannerQuote": "Offer is valid until 11:59 PM on 31 October 2026 (CET)",
+      "checkoutVerified": false,
+      "note": "New since 26.10 capture. Site-wide Halloween banner + SCARY30 30% OFF (+1% total DD, +5% performance reward; except Spice 3-Step). Not for deals.json. Article correctly omits promo codes and prints list prices only."
+    },
+    "seriousOfferArchive": {
+      "url": "https://spiceprop.com/blog/270-serious-offer-to-serious-traders-big-accounts-smaller-prices",
+      "periodQuote": "Promotion Period: October 26 – October 28, 23:59 CET",
+      "note": "Post still online as archive; superseded by Halloween promo for the Fri 30 ship window."
+    }
+  },
+  "footer": {
+    "url": "https://spiceprop.com/",
+    "countriesQuote": "To avoid potential regulatory issues, even if no trading is occurring, we cannot register citizens from the following countries: USA North Korea Eritrea Iran Iraq Liberia Libya Somalia Sudan Syria Japan Canada Puerto Rico Indonesia"
+  },
+  "openConflictsUnchanged": [
+    "Spice Instant/Instant Pro leverage: grid 1:30 vs program pages 1:33",
+    "1-Step fee refund: program-page rules vs Add-ons T&C §4",
+    "1-Step funded daily: grid 4.5% vs page/rules 4%",
+    "Spice Instant page cost table still stale (€165/€285/€455) vs buttons €120/€234/€422"
+  ],
+  "articleBranch": {
+    "sha": "77c3dab0e412efded89b47eafaf8c681009aa16b",
+    "inMain10315b13": false,
+    "threeStepTargets": "4% / 6% / 6%",
+    "threeStepMaxLoss": "7% (статический)"
+  }
+}

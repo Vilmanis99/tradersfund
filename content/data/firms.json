@@ -498,8 +498,8 @@
     "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, read 29 October 2026: \"SAVE UP TO 41% WITH CODE FNTRICK\"; $6K card shows $34.99 struck from $59.99 (41% off), with 20% off on $15K/$25K/$50K sale prices. Checkout not verified, so it is not promoted and is kept out of deals.json. Previous public CFD code STRTN ended on 25 October 2026 (see previousDiscountCode).",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, read 30 October 2026: \"SAVE UP TO 41% WITH CODE FNTRICK\"; $6K card shows $34.99 struck from $59.99 (41% off), with 20% off on larger sizes in page data. Checkout not verified, so it is not promoted and is kept out of deals.json. Previous public CFD code STRTN ended on 25 October 2026 (see previousDiscountCode).",
     "previousDiscountCode": "STRTN",
     "previousDiscountCodeStatus": "ended: the official offer article https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer returned 404 on 2026-10-25 (live 2026-10-24) and STRTN no longer appears on fundednext.com plan cards (Stellar 2-Step $6K back to $59.99); FundedNext had said the offer \"may end at any time\"",
     "rules": {
@@ -793,7 +793,7 @@
     "discountCode": "FNTRICK",
     "discountPct": 41,
     "discountCodeCheckoutVerified": false,
-    "discountCodeValidity": "no end date published on the Stellar 2-Step page (29 October 2026)"
+    "discountCodeValidity": "no end date published on the Stellar 2-Step page (30 October 2026)"
   },
   {
     "name": "FundingPips",
@@ -859,8 +859,8 @@
     "affiliateStatus": "active",
     "discountCode": "HELLO",
     "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Help Centre Get Started page still says: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts.\" (read 29 October 2026). The firm homepage could not be re-read on this check; INTERN was not found on the firm's own help pages, so it was not added.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "20% off first purchase; excludes $100K accounts. Help Centre Get Started page still says: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts.\" (read 30 October 2026). INTERN was not found on the firm's own help pages, so it was not added.",
     "rules": {
       "capturedAt": "2026-10-15",
       "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
@@ -1630,8 +1630,8 @@
     "regionalDiscountCode": "E8",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts still shows E8 One $100K at \"$488 $342\" (30% off) on 29 October 2026. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts still shows \"Save $146 with code E8 on first order\" and 30% OFF pricing on 30 October 2026. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
     "regionalDiscountPct": 30
   },
   {
@@ -2135,8 +2135,8 @@
     "discountPct": 45,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 29 October 2026: still lists HALLOWEEN45 as \"45% off … 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October.\" Other active codes on the same page: FUNDED40 (40% off Alpha Direct only, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). Checkout not verified, so it is not promoted and is kept out of deals.json.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes (\"Last updated 27 October 2026\"), read 30 October 2026: still lists HALLOWEEN45 as \"45% off … 26 Oct 2026 – 31 Oct 2026 · Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October.\" Other active codes on the same page: FUNDED40 (40% off Alpha Direct only, 1–31 Oct), ALPHA20 (20% off all, 1–31 Oct), 10KFOR40 ($10K evaluation for $40, 1–31 Oct). Checkout not verified, so it is not promoted and is kept out of deals.json.",
     "discountCodeValidity": "26 Oct 2026 – 31 Oct 2026, live until midnight UK time on 31 October (official codes page); remove after 31.10.2026",
     "previousDiscountCode": "MYALPHA",
     "previousDiscountCodeStatus": "ended: the official codes page listed it \"30% off all accounts 19 Oct 2026 – 26 Oct 2026 · Applies to all accounts through 26 October\"; on 2026-10-27 the page (\"Last updated 26 October 2026\", \"Codes are removed when their published end date passes.\") no longer lists it and the homepage banner now shows HALLOWEEN45; it was only ever seen from a US IP and never checkout-verified"
@@ -2283,11 +2283,11 @@
     "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Homepage observation 29 October 2026: top banner still shows \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\". No end date, countdown or terms link on the homepage. Checkout not verified; kept out of deals.json. Previous homepage code DOUBLE25: not shown on site since 22 October 2026; expiry unconfirmed.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Homepage observation 30 October 2026: top banner still shows \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\". No end date, countdown or terms link on the homepage. Checkout not verified; kept out of deals.json. Previous homepage code DOUBLE25: not shown on site since 22 October 2026; expiry unconfirmed.",
     "discountPct": 30,
     "discountCodeValidity": "limited time (Halloween offer, no end date published)",
-    "discountCodeEvidence": "https://brightfunded.com/; homepage banner \"Halloween Offer: Code: HW30 30% Off\", rechecked 29 October 2026",
+    "discountCodeEvidence": "https://brightfunded.com/; homepage banner \"Halloween Offer: Code: HW30 30% Off\", rechecked 30 October 2026",
     "previousDiscountCode": "DOUBLE25",
     "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
@@ -3014,8 +3014,8 @@
     "affiliateStatus": "none",
     "discountCode": "OMO",
     "discountCodeSourceUrl": "https://maventrading.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Omo 2-Step challenges only: homepage 29 October 2026 still shows \"40% OFF with code OMO\" on $10K+ Omo cards and flat \"$10 OFF with code OMO\" / \"$17 OFF with code OMO\" on smaller Omo sizes.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Omo 2-Step challenges only: homepage 30 October 2026 still shows \"40% OFF with code OMO\" on Omo cards. Same page also shows a sitewide A/B banner arm \"Trade like a Diamond. 5% off with code\" DIAMOND (control) / ROCKET 10% (test) — not checkout-verified and not stored as the primary code. Primary public code remains OMO for Omo challenges.",
     "rules": {
       "capturedAt": "2026-10-27",
       "captureFile": "content/data/challenges/_captures/maven-2026-10-27.json",
@@ -3943,8 +3943,8 @@
     "regionalDiscountCode": "ONESTEP35",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
-    "discountCodeCapturedAt": "2026-10-20",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-20; not checkout-verified and may be US-only, so not shown as a universal code. \"NEW TRADERS: 35% OFF 1-PHASE Expires: 31st December 2026 ONESTEP35\". Same banner also shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) Expires: 3rd November 2026 FUNDED40\" (Instant Funding Standard only). Rechecked 2026-10-23 (US IP): ONESTEP35 and FUNDED40 still shown; the monthly-offer slot changed from \"THIS MONTH'S OFFER: -25% OFF (excl. Instant Lite) REWARD25 Expires: 1 November\" (seen 2026-10-22) to \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) AGHHH35 Expires: 2 November\". AGHHH35 is not checkout-verified, may be US-only and is not in deals.json.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Seen on https://fxify.com/ on 30 October 2026; not checkout-verified and may be region-specific, so not shown as a universal code. Homepage still shows \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\"; \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\"; and \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) --> AGHHH35 Expires: 2 November\". Primary regionalDiscountCode remains ONESTEP35; AGHHH35/FUNDED40 stay in the note only. Not in deals.json.",
     "regionalDiscountPct": 35
   },
   {
@@ -4289,9 +4289,9 @@
     "discountPct": 20,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://cryptofundtrader.com/",
-    "discountCodeCapturedAt": "2026-10-28",
-    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 2026-10-28 (EU visitor view): \"Find the exit to reveal your discount code! FREE DISCOUNT CODE\" / \"Copy code: BOO20\" and win HUD \"Congratulations! 20% DISCOUNT\" with \"Not applicable to Ascend Challenge\". Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay.",
-    "discountCodeValidity": "Halloween overlay, no published end date (checked 2026-10-28); recheck after Halloween"
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 30 October 2026: \"Copy code: BOO20\" still present. Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay; Halloween-named — plan to move to previous codes from 1 Nov if gone.",
+    "discountCodeValidity": "Halloween overlay, no published end date (checked 30 October 2026); recheck after Halloween"
   },
   {
     "name": "Topstep",
@@ -5152,8 +5152,8 @@
     "regionalDiscountCode": "CLUB",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://myfundedfutures.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Save 40% On Any Plan With Code CLUB.\"",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Seen on https://myfundedfutures.com/ on 30 October 2026: \"Save 40% On Any Plan With Code CLUB.\" May be US-only; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
     "regionalDiscountPct": 40
   },
   {
@@ -5534,8 +5534,8 @@
     "discountPct": 15,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 29 October 2026: \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" … \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Not valid on Direct Funding per that wording. Checkout not verified, so it is not promoted and is kept out of deals.json.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Homepage pop-up on https://citytradersimperium.com/, read 30 October 2026: \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" … \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\" Not valid on Direct Funding per that wording. Checkout not verified, so it is not promoted and is kept out of deals.json.",
     "previousDiscountCode": "BREAK15",
     "previousDiscountCodeStatus": "expired: the official homepage pop-up said \"Valid until 25 Oct 2026.\" and its script expiry (EXPIRES = 1792972740000, i.e. 2026-10-25 23:59 UTC / 26.10 01:59 Riga) has passed, after which the page removes the pop-up (rechecked 2026-10-26); it was only ever seen from a US IP and never checkout-verified",
     "discountCodeValidity": "until 31 Oct 2026, 23:59 UK time (official homepage pop-up); remove after 31.10.2026"
@@ -5999,8 +5999,8 @@
     "regionalDiscountCode": "NOFEE40",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
-    "discountCodeCapturedAt": "2026-10-15",
-    "discountCodeNote": "Seen only from a US IP on 2026-10-15; may be US-only, so not shown as a universal code. \"Get 40% Off For Life + Never Pay An Activation Fee\" with code NOFEE40.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Seen on https://www.takeprofittrader.com/ on 30 October 2026: \"Get 40% Off For Life + Never Pay An Activation Fee! … Use Code: NOFEE40\". May be US-only; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
     "regionalDiscountPct": 40
   },
   {
@@ -6435,8 +6435,8 @@
     "regionalDiscountCode": "TDNEW",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.tradeday.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "Seen on https://www.tradeday.com/ navbar as \"USE CODE \\\"TDNEW\\\"\" on 29 October 2026; hero still \"Now up to 55% OFF! Accounts from just $45!\". Discount amount for the code is not stated on the code itself. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed."
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "Seen on https://www.tradeday.com/ navbar as \"USE CODE \\\"TDNEW\\\"\" on 30 October 2026; hero still \"Now up to 55% OFF! Accounts from just $45!\". Discount amount for the code is not stated on the code itself. May be region-specific; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed."
   },
   {
     "name": "Apex Trader Funding",
@@ -6575,8 +6575,8 @@
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-29",
-    "discountCodeNote": "No public Apex code is live as of 29 October 2026: homepage still shows \"Limited-Time Offer — Legacy Accounts Are Back\" with no discount code. Expired SAVENOW remains in previousDiscountCode.",
+    "discountCodeCapturedAt": "2026-10-30",
+    "discountCodeNote": "No public Apex code is live as of 30 October 2026: homepage still shows \"Limited-Time Offer — Legacy Accounts Are Back\" / \"Legacy Accounts Are Back\" with no discount code. Expired SAVENOW remains in previousDiscountCode.",
     "previousDiscountCode": "SAVENOW",
     "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },

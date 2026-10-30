@@ -352,7 +352,7 @@ export default function RussiaAvailabilityPage() {
           {hashHedgeReviewHref ? (
             <p className="ru-source-line" data-russian-hh-mention="2026-10-19">
               Вне этих карточек: у Hash Hedge статус для РФ неясен — в условиях от {HASH_HEDGE_TERMS_DATE_RU} Россия не названа ни среди исключённых, ни среди принятых стран; способ оплаты официальные страницы описывают по-разному, поэтому уточните его у поддержки до покупки —{' '}
-              <Link href={hashHedgeReviewHref}>обзор Hash Hedge</Link> (по данным на 19.10.2026).
+              <Link href={hashHedgeReviewHref}>обзор Hash Hedge</Link> (по данным на 19.10.2026). Отдельный разбор — <Link href="/ru/obzor-spice-prop">Spice Prop (спайс проп)</Link>: статус для РФ неясен.
             </p>
           ) : null}
         </div>
