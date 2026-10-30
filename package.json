@@ -52,6 +52,7 @@
     "test:comparison-overlays": "node scripts/test-comparison-overlays.mjs",
     "test:consistency-scope": "node scripts/test-consistency-scope.mjs",
     "test:consistency-basis": "node scripts/test-consistency-basis.mjs",
+    "test:consistency-calculator": "node scripts/test-consistency-calculator.mjs",
     "check:finder-release": "node scripts/check-russian-finder-release.mjs",
     "check:home-release": "node scripts/check-english-home.mjs",
     "check:light-release": "node scripts/check-light-release.mjs",

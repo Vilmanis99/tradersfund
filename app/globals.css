@@ -6192,3 +6192,163 @@ a.bento-tile:hover,
 .split-tiers__list li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.4rem; }
 .split-tiers__list b { color: var(--accent); font-variant-numeric: tabular-nums; }
 .split-tiers__note { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.75rem; }
+
+/* ── Consistency rule calculator (in-article tool) ── */
+.consistency-calc {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.35rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg2);
+  /* Reserve space so client hydration does not jump the article */
+  min-height: 28rem;
+}
+.consistency-calc__header { margin-bottom: 1rem; }
+.consistency-calc__title {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.consistency-calc__lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.consistency-calc__grid {
+  display: grid;
+  gap: 1.1rem;
+}
+@media (min-width: 860px) {
+  .consistency-calc__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
+  }
+}
+.consistency-calc__fields {
+  display: grid;
+  gap: 0.85rem;
+}
+.consistency-calc__field {
+  display: grid;
+  gap: 0.35rem;
+}
+.consistency-calc__label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.consistency-calc__control {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  padding: 0 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.consistency-calc__control:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.consistency-calc__help {
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+.consistency-calc__note,
+.consistency-calc__warn {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.consistency-calc__note {
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg3));
+  color: var(--text);
+}
+.consistency-calc__warn {
+  background: color-mix(in srgb, #e6a23c 14%, var(--bg3));
+  color: var(--text);
+}
+.consistency-calc__empty {
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  background: var(--bg3);
+  border: 1px dashed var(--border);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.consistency-calc__empty p { margin: 0 0 0.55rem; }
+.consistency-calc__empty p:last-child { margin-bottom: 0; }
+.consistency-calc__results {
+  padding: 1rem 1.05rem;
+  border-radius: 12px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  min-height: 12rem;
+}
+.consistency-calc__results-title {
+  margin: 0 0 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.consistency-calc__dl {
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.consistency-calc__dl dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 0.15rem;
+}
+.consistency-calc__dl dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.consistency-calc__badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+.consistency-calc__badge--pass {
+  background: color-mix(in srgb, #22c55e 22%, var(--bg2));
+  color: #86efac;
+}
+.consistency-calc__badge--fail {
+  background: color-mix(in srgb, #ef4444 22%, var(--bg2));
+  color: #fca5a5;
+}
+.consistency-calc__muted {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.consistency-calc__source {
+  margin: 1rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+  word-break: break-word;
+}
+.consistency-calc__disclaimer {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
