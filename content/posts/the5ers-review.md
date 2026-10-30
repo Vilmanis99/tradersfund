@@ -3,7 +3,7 @@ title: "The5ers Review 2026: 22 Prices Across High Stakes, Growth and Bootcamp"
 seoTitle: "The5ers Review 2026: Fees, Rules, Payouts & Bootcamp"
 slug: "the5ers-review"
 date: "2026-10-21 09:00:00"
-modified: "2026-10-27 09:00:00"
+modified: "2026-10-30 09:00:00"
 author: "Tara Mohseni"
 excerpt: "The5ers sells 4 programs with 22 list prices. Compare High Stakes New vs Classic, the 4%/8% limits on $50K+, static drawdown, refunds and the 3.5% payout fee."
 seoDescription: "The5ers review: 22 fees across High Stakes, Growth and Bootcamp, 4%/8% loss limits on $50K+, static drawdown, 14-day payouts with a 3.5% fee, and refunds."
@@ -43,7 +43,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Static on every program</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">First at 14 days, then every 2 weeks; $150 minimum; Rise, crypto or bank transfer at 3.5%</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starting split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on High Stakes; 75% on Pro Growth and Hyper Growth</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Country access</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Terms (updated 12 Oct 2026, read 2026-10-20) bar residents or citizens of 31 named territories, including Russia and Belarus; for Ukraine only Crimea is named</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Country access</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Terms (Last update – Oct. 28th 2026, read 2026-10-29) bar residents or citizens of 31 named territories, including Russia and Belarus; for Ukraine only Crimea is named</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trustpilot</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4.7 from 40,175 reviews, no warning banner (checked 2026-10-20)</td></tr>
     <tr><td style="padding: 8px 12px;"><strong>India evidence</strong></td><td style="padding: 8px 12px;">Not on the forbidden list; Indian checkout, KYC and payout not tested</td></tr>
   </tbody>
@@ -86,12 +86,15 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>Summer Plan: advertised list prices</strong></h3>
 
-<p>The Summer Plan is a separate, limited-time offer with no published end date. The prices below are The5ers' advertised list prices from The5ers' Summer Plan page (the5ers.com/summer-plan/), read on 2026-10-20 and rechecked unchanged on 2026-10-27. <strong>Checkout not verified:</strong> the checkout sits behind a sign-in, so we could not see what it actually charges. The homepage banner now reads "$200K Only For $249" (checked 2026-10-27) and links to the Summer Plan page, where $249 is the price on the "$200k- 10/5" tab, the 2-Step 10%/5% $200K account; its "$200k- 8/5" tab shows "$279". The Summer Plan page's own header still reads "$100K Only $149", the price on its "$100k-10/5" tab. We keep these rows out of our comparisons and true-cost tables until a checkout price is confirmed.</p>
+<p>The Summer Plan is a separate, limited-time offer with no published end date. The prices below are The5ers' advertised list prices from The5ers' Summer Plan page (the5ers.com/summer-plan/), read on 2026-10-20, rechecked on 2026-10-27, and re-read on 2026-10-29 when The5ers added $50K sizes. <strong>Checkout not verified:</strong> the checkout sits behind a sign-in, so we could not see what it actually charges. The homepage banner still reads "$200K Only For $249" (checked 2026-10-27) and links to the Summer Plan page, where $249 is the price on the "$200k- 10/5" tab, the 2-Step 10%/5% $200K account; its "$200k- 8/5" tab shows "$279". The Summer Plan page's own header still reads "$100K Only $149", the price on its "$100k-10/5" tab. $100K and $200K advertised prices were unchanged on 2026-10-29. We keep these rows out of our comparisons and true-cost tables until a checkout price is confirmed.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
-  <caption class="hidden-caption">The5ers Summer Plan advertised list prices, 2026-10-20, rechecked 2026-10-27, checkout not verified</caption>
+  <caption class="hidden-caption">The5ers Summer Plan advertised list prices, 2026-10-20, rechecked 2026-10-27 and 2026-10-29, checkout not verified</caption>
   <thead><tr style="background: var(--bg3);"><th>Summer Plan</th><th>Account</th><th>Advertised list price</th><th>Targets</th><th>Daily / Max loss</th><th>Split</th><th>Payout cap per cycle</th></tr></thead>
   <tbody>
+    <tr><td>1-Step</td><td>$50K</td><td>$179</td><td>10%</td><td>3% / 6%</td><td>75%</td><td>$1,000</td></tr>
+    <tr><td>2-Step 10/5</td><td>$50K</td><td>$99</td><td>10% / 5%</td><td>3% / 10%</td><td>80%</td><td>$1,000</td></tr>
+    <tr><td>2-Step 8/5</td><td>$50K</td><td>$119</td><td>8% / 5%</td><td>3% / 10%</td><td>80%</td><td>$1,000</td></tr>
     <tr><td>1-Step</td><td>$100K</td><td>$249</td><td>10%</td><td>3% / 6%</td><td>75%</td><td>$2,000</td></tr>
     <tr><td>2-Step 10/5</td><td>$100K</td><td>$149</td><td>10% / 5%</td><td>3% / 10%</td><td>80%</td><td>$2,000</td></tr>
     <tr><td>2-Step 8/5</td><td>$100K</td><td>$179</td><td>8% / 5%</td><td>3% / 10%</td><td>80%</td><td>$2,000</td></tr>
@@ -134,14 +137,14 @@ type: "post"
 
 <p>Every Summer account has a 3% daily loss, set at the end of each day from the higher of equity or balance. Hitting it terminates the account permanently. The maximum loss is static: 6% on the 1-Step and 10% on the 2-Step. The 1-Step has a 10% target, 1:100 leverage, a 75% split after passing, a limit of 2 active accounts, and a 50% consistency rule in both evaluation and funded stages. The 2-Step has no consistency rule during evaluation and a 50% rule once funded, with an 80% split.</p>
 
-<p>On $100K, the 50% rule means a single $5,000 day needs $10,000 of total profit before a payout. Payouts are capped at $2,000 per cycle on $100K and $3,000 on $200K, with a $250 minimum. The $200K accounts don't scale, and total Summer buying power is capped at $600,000 per trader. Copying trades between your own Summer accounts is allowed, but copying from third-party accounts is not.</p>
+<p>On $100K, the 50% rule means a single $5,000 day needs $10,000 of total profit before a payout. Payouts are capped at $1,000 per cycle on $50K, $2,000 on $100K and $3,000 on $200K, with a $250 minimum. The Summer Plan FAQ (read 2026-10-29) allows up to 2 × 1-Step, 2 × 2-Step 10%/5% and 2 × 2-Step 8%/5% $50K accounts at once, subject to the $600,000 total Summer buying-power cap; the $200K accounts don't scale. Copying trades between your own Summer accounts is allowed, but copying from third-party accounts is not.</p>
 
 <h3 class="wp-block-heading"><strong>Rules that apply across programs</strong></h3>
 
 <ul class="wp-block-list">
   <li><strong>Copy trading with others is prohibited.</strong> The Terms ban "trade coordination or copy trading with other traders or accounts". See <a href="/blog/what-is-copy-trading">what copy trading means at prop firms</a> before you mirror signals.</li>
   <li><strong>EAs are allowed with exceptions.</strong> The Terms prohibit EAs that scalp the rollover to exploit the price feed, third-party EAs whose trades other traders also hold, and EAs whose source code you don't own.</li>
-  <li><strong>Refunds depend on the program.</strong> The Terms give a full refund within 5 days of purchase if you haven't traded, and Hub Credit only after 5 days. Once you trade, the fee is non-refundable. The Pro Growth, Hyper Growth and Bootcamp fees are non-refundable.</li>
+  <li><strong>Refunds depend on the program.</strong> The Terms give a full refund within 5 days of purchase if you haven't traded, and Hub Credit only after 5 days. Once you trade, the fee is non-refundable. The Pro Growth, Hyper Growth and Bootcamp fees are non-refundable. The Oct. 28th 2026 Terms update adds that eligible refunds for Latin American local or alternative payment methods are issued solely as Hub Credits (read 2026-10-29), provided no trading has started.</li>
   <li><strong>High Stakes' "Refund" is a passing reward.</strong> You get 10% of the fee as Hub Credit at step 1 and 20% at step 2. The other 70% is paid with your first payout once funded, provided you have made at least $150 profit and the account has been active for 14 days. It applies only to fees paid with external funds, not Hub Credit.</li>
   <li><strong>Summer 2-Step works the same way</strong>, 10% and 20% in Hub Credit, but the 70% comes as cash alongside the 3rd payout. The 1-Step table says only "Refund From 3rd Payout".</li>
 </ul>
@@ -241,7 +244,7 @@ type: "post"
   <li><strong>Pro Growth, Hyper Growth and Bootcamp fees are non-refundable</strong>, and refunds under the Terms end once you trade.</li>
   <li><strong>US clients are limited to TradingView.</strong></li>
   <li><strong>The consistency rule is unclear</strong>: none is listed on the program pages, but the FAQ says some accounts carry 30% or 50%.</li>
-  <li><strong>31 forbidden territories</strong> in the Terms (updated 12 Oct 2026, read 2026-10-20), including Russia and Belarus, closed to their "residents or citizens". Israel is listed too. Crypto payments sent from exchanges or payment providers established in Russia "will be automatically placed on hold by the payment processor". For Ukraine, only Crimea is named. Kazakhstan isn't named at all, which is not a confirmation that it's accepted. The list says "including but not limited to", so check with support if your country is missing from it.</li>
+  <li><strong>31 forbidden territories</strong> in the Terms (Last update – Oct. 28th 2026, read 2026-10-29), including Russia and Belarus, closed to their "residents or citizens". Israel is listed too. Crypto payments sent from exchanges or payment providers established in Russia "will be automatically placed on hold by the payment processor". For Ukraine, only Crimea is named. Kazakhstan isn't named at all, which is not a confirmation that it's accepted. The list says "including but not limited to", so check with support if your country is missing from it.</li>
 </ul>
 
 <h2 class="wp-block-heading"><strong>Who should pick The5ers</strong></h2>
@@ -271,7 +274,7 @@ type: "post"
 <p>You can request the first withdrawal 14 days after funding, then every 14 days, with a $150 minimum. Rise, crypto (USDT, USDC, ETH, LTC, up to $1,500 per withdrawal) and bank transfer each cost 3.5%. Hub Credits are commission-free but only buy new accounts.</p>
 
 <h3 class="wp-block-heading"><strong>What is the The5ers Summer Plan?</strong></h3>
-<p>A limited-time offer with no published end date. On 2026-10-20 its page listed advertised prices of $149 and $179 for 2-Step $100K accounts, $249 and $279 for 2-Step $200K, and $249 for the 1-Step $100K. Checkout was not verified because it needs a sign-in, so confirm the charged price before you pay.</p>
+<p>A limited-time offer with no published end date. On 2026-10-29 its page added $50K accounts at $99 (2-Step 10/5), $119 (2-Step 8/5) and $179 (1-Step), each with a $1,000 payout cap. On 2026-10-20 it listed $149 and $179 for 2-Step $100K accounts, $249 and $279 for 2-Step $200K, and $249 for the 1-Step $100K, and those prices were unchanged on 2026-10-29. Checkout was not verified because it needs a sign-in, so confirm the charged price before you pay.</p>
 
 <h3 class="wp-block-heading"><strong>Does The5ers have a consistency rule?</strong></h3>
 <p>None is listed on the standard program pages. The5ers' FAQ says some accounts may have a 30% or 50% rule without naming them, so ask support for your account. Summer 1-Step has 50% in evaluation and funded; Summer 2-Step has none in evaluation and 50% once funded.</p>
@@ -280,6 +283,6 @@ type: "post"
 <p>India is not among the 31 forbidden territories in The5ers' Terms. We have not tested an Indian checkout, KYC or payout, so confirm with support before you pay.</p>
 
 <h3 class="wp-block-heading"><strong>Does The5ers refund the challenge fee?</strong></h3>
-<p>Only in limited cases. The Terms allow a full refund within 5 days if you haven't traded, and Hub Credit after that. Pro Growth, Hyper Growth and Bootcamp are non-refundable. On High Stakes, the "Refund" is a passing reward: 10% and 20% in Hub Credit, then 70% with your first payout.</p>
+<p>Only in limited cases. The Terms allow a full refund within 5 days if you haven't traded, and Hub Credit after that. Pro Growth, Hyper Growth and Bootcamp are non-refundable. On High Stakes, the "Refund" is a passing reward: 10% and 20% in Hub Credit, then 70% with your first payout. For Latin American local or alternative payment methods, the Oct. 28th 2026 Terms say any eligible refund is Hub Credits only (read 2026-10-29).</p>
 
 <p>Read the High Stakes table for your exact tier, check the 4% line if you are buying $50K or more, and add the 3.5% withdrawal fee to your sums before you open the <a href="/go/the5ers">The5ers program page</a>.</p>

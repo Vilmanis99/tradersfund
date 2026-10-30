@@ -464,7 +464,7 @@ export default function RussianHashHedgeReviewPage() {
                 </div>
               </article>
             </div>
-            <p>Все крипто-варианты в одной таблице — в <Link href="/ru/luchshie-kripto-prop-firmy">рейтинге крипто-проп фирм</Link>.</p>
+            <p>Ещё один крипто-проп на MT5 — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link>. Все крипто-варианты в одной таблице — в <Link href="/ru/luchshie-kripto-prop-firmy">рейтинге крипто-проп фирм</Link>.</p>
           </div>
         </section>
 

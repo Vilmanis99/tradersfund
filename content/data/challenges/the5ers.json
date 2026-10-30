@@ -491,5 +491,209 @@
       "Country rules: no futures-specific list is published; the Terms ('Last update – Oct. 20th 2026') say the services include 'proprietary trading on Contract for Difference and Futures Contract', and the site-wide Forbidden Territories footer (Russia, Belarus, Crimea named) is shown on /futures/. Capture: content/data/challenges/_captures/the5ers-2026-10-21.json",
       "Consistency stage check 2026-10-21: the page row 'Consistency Rule – Per Position 40% 40%' is shown for both the Evaluation Phase and the Pro Stage on the Day Trade and Swing tabs (https://the5ers.com/futures/ and the Futures tab of https://the5ers.com/summer-plan/). FAQ: 'The5ers Futures has a 40% consistency rule, which means a single trade can’t account for more than 40% of your total profits. ... This rule applies on funded accounts as well.' (futures-faqs/what-is-the-consistency-rule, July 20, 2026); 'To qualify for a payout or scale-up, your best trade must account for less than 40% of your total profit.' (futures-faqs/how-is-the-consistency-rule-calculated, October 6, 2026); 'Your account does not fail or get breached.' (futures-faqs/what-happens-if-my-best-trading-day-is-above-the-allowed-percentage-2, August 10, 2026). Some FAQ examples say 'best trading day' instead of best trade; the page and the general rules FAQ say per position/trade, which is what is stored. It is a payout, pass and scale-up eligibility gate, not a breach."
     ]
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Summer Plan 1-Step",
+    "productSlug": "summer-plan-1-step",
+    "phases": 1,
+    "accountSizes": [
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 179,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 249,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 10
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 6,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": 50,
+    "consistencyRuleApplies": true,
+    "consistencyScope": "both",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "evaluation",
+        "appliesTo": "Summer Plan 1-Step evaluation",
+        "sourceUrl": "https://the5ers.com/summer-plan/"
+      },
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Summer Plan 1-Step Pro / funded",
+        "sourceUrl": "https://the5ers.com/summer-plan/"
+      }
+    ],
+    "profitSplitPct": 75,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/summer-plan/",
+    "sourceCapturedAt": "2026-10-30",
+    "notes": [
+      "Limited-time Summer Plan CFD 1-Step (advertised list prices; checkout behind sign-in — not verified). Tabs $50K Price $179 and $100K Price $249 on https://the5ers.com/summer-plan/ (read 2026-10-30). No $200K 1-Step tab.",
+      "Rules from the same page: Maximum Daily Loss 3%; Maximum Loss 6% static; Target 10%; Consistency- Per Day 50% on evaluation and Pro; Profit Share 75%-25%; Payout Cap $1000 on $50K and $2000 on $100K; Min. Withdrawal $250; Leverage 1:100; Max no. of active accounts 2; Refund From 3rd Payout.",
+      "Page quote (1-Step body): 'Consistency Requirement: 50% in both evaluation and Pro accounts'. FAQ: total Summer buying power capped at $600,000 per trader; up to '2 x 1-Step, 2 x 2-Step 10%/5%, 2 x 2-Step 8%/5%' at once (subject to the cap).",
+      "Copying between own Summer accounts allowed; third-party copy trading not. Daily loss hit terminates the account (Summer FAQ).",
+      "Russia/Belarus: not named on the Summer Plan page; firm Terms (Last update – Oct. 28th 2026) still bar residents or citizens of 31 named territories including Russia and Belarus (read 2026-10-30). Capture: content/data/challenges/_captures/the5ers-summer-plan-2026-10-30.json"
+    ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Consistency Requirement: 50% (no single trading day can account for more than 50% of your total profit). Consistency Rule: Best trading day : $5,000 Required total profit : $10,000 (Because: $5,000 ÷ 50% = $10,000).",
+    "consistencyBasisSourceUrl": "https://the5ers.com/summer-plan/",
+    "consistencyBasisCheckedAt": "2026-10-30"
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Summer Plan 2-Step 10/5",
+    "productSlug": "summer-plan-2-step-10-5",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 99,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 149,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 249,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 10,
+      "phase2": 5
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": 50,
+    "consistencyRuleApplies": true,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Summer Plan 2-Step funded / Pro (no consistency during evaluation)",
+        "sourceUrl": "https://the5ers.com/summer-plan/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/summer-plan/",
+    "sourceCapturedAt": "2026-10-30",
+    "notes": [
+      "Summer Plan CFD 2-Step 10%/5% advertised list prices (checkout not verified): $50K $99, $100K $149, $200K $249 (tabs on https://the5ers.com/summer-plan/, read 2026-10-30).",
+      "Maximum Daily Loss 3%; Maximum Loss 10% static; Targets 10% then 5%; Consistency- Per Day blank on evaluation columns and 50% on funded; Profit Share 80%-20%; Payout Cap $1000 / $2000 / $3000 by size; Min. Withdrawal $250; Leverage 1:100. $200K Max no. of Active Accounts 1; $100K shows Max no. of active accounts 2. $200K funded target column shows 100% (no scale).",
+      "Page FAQ: no consistency rule during 2-Step evaluation; 50% once funded. Buying-power cap $600,000. Russia/Belarus restricted via firm Terms (Last update – Oct. 28th 2026), not on the Summer page itself.",
+      "Capture: content/data/challenges/_captures/the5ers-summer-plan-2026-10-30.json"
+    ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Consistency Requirement: 50% (no single trading day can account for more than 50% of your total profit). Consistency Rule: Best trading day : $5,000 Required total profit : $10,000 (Because: $5,000 ÷ 50% = $10,000).",
+    "consistencyBasisSourceUrl": "https://the5ers.com/summer-plan/",
+    "consistencyBasisCheckedAt": "2026-10-30"
+  },
+  {
+    "firmSlug": "the5ers",
+    "productName": "Summer Plan 2-Step 8/5",
+    "productSlug": "summer-plan-2-step-8-5",
+    "phases": 2,
+    "accountSizes": [
+      {
+        "sizeUsd": 50000,
+        "priceUsd": 119,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 100000,
+        "priceUsd": 179,
+        "refundable": null
+      },
+      {
+        "sizeUsd": 200000,
+        "priceUsd": 279,
+        "refundable": null
+      }
+    ],
+    "pricingModel": "one-off",
+    "profitTargets": {
+      "phase1": 8,
+      "phase2": 5
+    },
+    "dailyLossPct": 3,
+    "maxLossPct": 10,
+    "drawdownType": "static",
+    "minTradingDays": null,
+    "maxTradingDays": null,
+    "maxTradingDaysUnlimited": true,
+    "consistencyRulePct": 50,
+    "consistencyRuleApplies": true,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Summer Plan 2-Step funded / Pro (no consistency during evaluation)",
+        "sourceUrl": "https://the5ers.com/summer-plan/"
+      }
+    ],
+    "profitSplitPct": 80,
+    "payoutFirstDays": 14,
+    "payoutFrequency": "bi-weekly",
+    "rules": {
+      "news": "restricted",
+      "weekend": true,
+      "overnight": true,
+      "ea": "restricted",
+      "copyTrading": "restricted"
+    },
+    "assetClass": "cfd",
+    "sourceUrl": "https://the5ers.com/summer-plan/",
+    "sourceCapturedAt": "2026-10-30",
+    "notes": [
+      "Summer Plan CFD 2-Step 8%/5% advertised list prices (checkout not verified): $50K $119, $100K $179, $200K $279 (tabs on https://the5ers.com/summer-plan/, read 2026-10-30).",
+      "Same risk/payout frame as Summer Plan 2-Step 10/5 except phase-1 target 8%: daily 3%, max loss 10% static, funded consistency 50%, split 80%, payout caps $1,000/$2,000/$3,000 by size.",
+      "Capture: content/data/challenges/_captures/the5ers-summer-plan-2026-10-30.json"
+    ],
+    "consistencyBasis": "total-profit",
+    "consistencyBasisQuote": "Consistency Requirement: 50% (no single trading day can account for more than 50% of your total profit). Consistency Rule: Best trading day : $5,000 Required total profit : $10,000 (Because: $5,000 ÷ 50% = $10,000).",
+    "consistencyBasisSourceUrl": "https://the5ers.com/summer-plan/",
+    "consistencyBasisCheckedAt": "2026-10-30"
   }
 ]

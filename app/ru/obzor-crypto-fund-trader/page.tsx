@@ -531,6 +531,10 @@ export default function RussianCryptoFundTraderReviewPage() {
                 и расхождения официальных источников в способах оплаты разобраны там.
               </p>
             )}
+            <p data-russian-cft-spice="related">
+              Ещё один MT5-вариант с крипто-выплатами — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link>
+              {' '}(статус для РФ неясен; лист-цены и расхождения условий — в обзоре).
+            </p>
             <p>Полное сравнение крипто-направления — в <Link href="/ru/luchshie-kripto-prop-firmy">рейтинге крипто-проп фирм</Link>.</p>
           </div>
         </section>
