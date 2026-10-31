@@ -6575,8 +6575,8 @@
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "discountCodeSourceUrl": "https://apextraderfunding.com/",
-    "discountCodeCapturedAt": "2026-10-30",
-    "discountCodeNote": "No public Apex code is live as of 30 October 2026: homepage still shows \"Limited-Time Offer — Legacy Accounts Are Back\" / \"Legacy Accounts Are Back\" with no discount code. Expired SAVENOW remains in previousDiscountCode.",
+    "discountCodeCapturedAt": "2026-10-31",
+    "discountCodeNote": "31 October 2026: the homepage banner again reads \"90% OFF ALL EVALS! INTRADAY • EOD • LEGACY • ANY SIZE! | USE CODE: COUPON “SAVENOW”\" with a countdown ending 31 October 2026 23:59 ET (1 November 05:59 Riga), and cards show the coupon price at 10% of list (25K Intraday One Pack $167.00 → $16.70 \"(with Coupon Code)\"). One-day return, not checkout-verified and regional visibility unconfirmed, so it is not set as a live code and not added to deals.json; SAVENOW stays in previousDiscountCode. 30 October 2026: no public code (\"Legacy Accounts Are Back\" banner only).",
     "previousDiscountCode": "SAVENOW",
     "previousDiscountCodeStatus": "expired: the on-page countdown ended about 07:00 23.10.2026 Riga (page config said expiration \"2026-10-22 23:59\") and the 90% banner was no longer on https://apextraderfunding.com/ when rechecked 2026-10-23; it was only ever seen from a US IP and never checkout-verified"
   },
@@ -7691,7 +7691,7 @@
     "trustpilotUrl": "https://www.trustpilot.com/review/hashhedge.com",
     "trustpilotCapturedAt": "2026-10-26",
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-30",
-    "russiaNote": "Unclear, not available (EA rule 2026-10-23: 'available' needs positive evidence that Russia is accepted, i.e. named or confirmed at checkout/KYC). Terms 4.3 does not name Russia (re-read 2026-10-23, 'Last Updated: October 8, 2026'): it excludes sanctioned persons and residents of countries under embargo or comprehensive sanctions, 'countries and regions such as Cuba, Iran, North Korea, Syria, Yemen'. Russia is neither named as excluded nor named as accepted, and signup/KYC was not tested. Hash Hedge's Moscow 2026 affiliate events and RU site version show a Russian market presence but are not an eligibility statement. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-23.json (russia). Re-read 2026-10-30 in the version 'Last Updated: October 27, 2026': Terms 4.3 wording is unchanged and still does not name Russia."
+    "lastUpdated": "2026-10-31",
+    "russiaNote": "Unclear, not available (EA rule 2026-10-23: 'available' needs positive evidence that Russia is accepted, i.e. named or confirmed at checkout/KYC). Terms 4.3 does not name Russia (re-read 2026-10-23, 'Last Updated: October 8, 2026'): it excludes sanctioned persons and residents of countries under embargo or comprehensive sanctions, 'countries and regions such as Cuba, Iran, North Korea, Syria, Yemen'. Russia is neither named as excluded nor named as accepted, and signup/KYC was not tested. Hash Hedge's Moscow 2026 affiliate events and RU site version show a Russian market presence but are not an eligibility statement. Evidence: content/data/challenges/_captures/hash-hedge-2026-10-23.json (russia). Re-read 2026-10-30 in the version 'Last Updated: October 27, 2026': Terms 4.3 wording is unchanged and still does not name Russia. Re-read 2026-10-31 in the version 'Last Updated: October 30, 2026': Terms 4.3 wording is unchanged and still does not name Russia."
   }
 ]
