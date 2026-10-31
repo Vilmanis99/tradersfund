@@ -3,7 +3,7 @@ title: "Prop Firms With Weekly Payouts (2026)"
 seoTitle: "Prop Firm Weekly Payouts 2026: 5 Firms That Pay Every 7 Days"
 slug: "prop-firms-with-weekly-payouts"
 date: "2026-10-20 12:00:00"
-modified: "2026-10-22 09:00:00"
+modified: "2026-10-31 09:30:00"
 author: "Tara Mohseni"
 excerpt: "Only five forex and crypto prop firms we track offer a 7-day payout cycle, and on three of those plans weekly costs you a lower split or a paid add-on. At a fourth, it's a VIP unlock. Here's what each one really costs."
 seoDescription: "Prop firm weekly payouts in 2026: FundedNext, FundingPips, City Traders Imperium, BrightFunded and CFT, with first-payout days, split cuts and add-on costs."
@@ -112,7 +112,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>What "weekly payouts" doesn't promise</strong></h2>
 
-<p>Every cycle above is a request window. After you click "request," each firm runs its own review: KYC, a rule check and, at several firms, a consistency test or a minimum amount. CFT says it averages about 8 hours and allows up to 48 business hours for review and payment; most others publish no standard. Hash Hedge is a 14-day-cycle example: it states a 72-hour ceiling after the request and no average (<a href="/blog/hash-hedge-review">Hash Hedge review</a>). A weekly cycle also doesn't help if a consistency rule holds back your best day. Run your numbers through the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> first. And all of these are simulated accounts: the money you're paid is a reward from the firm, not a withdrawal from a funded brokerage account.</p>
+<p>Every cycle above is a request window. After you click "request," each firm runs its own review: KYC, a rule check and, at several firms, a consistency test or a minimum amount. CFT says it averages about 8 hours and allows up to 48 business hours for review and payment; most others publish no standard. Hash Hedge is a longer-cycle example rather than a weekly one: its guide still says every 14 days, its Commercial Terms (dated 30 Oct 2026, checked 2026-10-31) allow a selected payout day from 14 to 60 days with successive Live cycles under one Challenge, and it states a 72-hour ceiling after the request with no average (<a href="/blog/hash-hedge-review">Hash Hedge review</a>). A weekly cycle also doesn't help if a consistency rule holds back your best day. Run your numbers through the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> first. And all of these are simulated accounts: the money you're paid is a reward from the firm, not a withdrawal from a funded brokerage account.</p>
 
 <h2 class="wp-block-heading"><strong>Which weekly payout should you pick?</strong></h2>
 

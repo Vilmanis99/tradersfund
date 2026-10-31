@@ -3,7 +3,7 @@ title: "BrightFunded Review 2026: Three Plans, One Important Currency Catch"
 seoTitle: "BrightFunded Review 2026: EUR Fees & Drawdown"
 slug: "bright-funded-prop-firm"
 date: "2025-05-19 11:10:28"
-modified: "2026-09-29"
+modified: "2026-10-31 09:30:00"
 author: "Tara Mohseni"
 excerpt: "Bright Funded now has 3 evaluation paths and EUR list pricing. The 1-Step trailing drawdown and 30-day first payout are the deciding rules."
 seoDescription: "BrightFunded review: 3 plans, 18 EUR-priced sizes from €47 to €997, 80% base split, 6% trailing vs 8–10% static drawdown, first payout after 30 days."
@@ -173,7 +173,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should avoid Bright Funded</strong></h2>
 
-<p>A news scalper should avoid the funded 10-minute blackout, and a trader who routinely gives back floating profit should avoid the 1-Step’s real-time 6% trail. Anyone needing a first payout before day 30 without buying an add-on should compare a 14-day or on-demand base cycle elsewhere. Hash Hedge states a 14-day payout period (see our <a href="/blog/hash-hedge-review">Hash Hedge review</a>), but it trades crypto perpetuals on its own terminal rather than MT5.</p>
+<p>A news scalper should avoid the funded 10-minute blackout, and a trader who routinely gives back floating profit should avoid the 1-Step’s real-time 6% trail. Anyone needing a first payout before day 30 without buying an add-on should compare a 14-day or on-demand base cycle elsewhere. Hash Hedge's earliest published Live Account payout day is 14 days after a cycle's first trade (see our <a href="/blog/hash-hedge-review">Hash Hedge review</a>), but its own pages disagree on whether that cycle is fixed at 14 days, and it trades crypto perpetuals on its own terminal rather than MT5.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
