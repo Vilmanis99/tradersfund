@@ -188,8 +188,11 @@ export default function RussianPromoHubPage() {
       .filter(tier => tier.priceEur != null && tier.priceEur > 0)
       .map(tier => ({ product: product.productName, size: tier.sizeUsd, price: tier.priceEur as number, capturedAt: product.sourceCapturedAt })))
   // FundingPips HELLO: USD list prices of fresh products, minus the code %, excluding the size the code does not cover.
+  // 30.10.2026 Tracker: homepage selector vs Compare Account Models help table disagree on 1-Step/2-Step list prices
+  // (Zero matches). Hold exact USD rows until sources agree — code/scope still shown.
   const fundingPipsPct = fundingPipsDeal?.pct && !fundingPipsDeal.pctIsUpTo ? fundingPipsDeal.pct : null
-  const fundingPipsRows = challenges
+  const fundingPipsPriceConflict = true
+  const fundingPipsRows = fundingPipsPriceConflict ? [] : challenges
     .filter(product => product.firmSlug === 'fundingpips' && isChallengeFresh(product))
     .flatMap(product => product.accountSizes
       .filter(tier => tier.priceUsd != null && tier.priceUsd > 0 && tier.sizeUsd !== fundingPipsText?.excludedSizeUsd)
@@ -350,6 +353,11 @@ export default function RussianPromoHubPage() {
             {fundingPipsText ? ` ${fundingPipsText.note}` : ''} Доступ для резидентов России у FundingPips не ясен (проверено {formatRuDate(FP_ACCESS_CHECKED)}).
           </p>
           <CopyableCodePill code={fundingPipsDeal.code as string} pct={fundingPipsDeal.pctIsUpTo ? undefined : fundingPipsDeal.pct} locale="ru" analyticsFirm={fundingPipsDeal.firmSlug} analyticsPlacement={campaignFor(fundingPipsDeal)} analyticsOfferType="public_checkout" />
+          {fundingPipsPriceConflict ? (
+            <p className="ru-source-line" data-russian-deals-fp-price-conflict="2026-10-30">
+              По данным на 30.10.2026 цены 1-Step и 2-Step на главной FundingPips и в справке Compare Account Models расходятся, поэтому точные суммы здесь не публикуем. Скидку {fundingPipsDeal.pct}% по коду {fundingPipsDeal.code} сверяйте на странице оплаты{fundingPipsText?.excludedSizeUsd ? ` (счета ${sizeLabel(fundingPipsText.excludedSizeUsd)} код не покрывает)` : ''}.
+            </p>
+          ) : null}
           {fundingPipsRows.length > 0 && fundingPipsPct ? (
             <>
               <div className="ru-table-wrap" tabIndex={0} role="region" aria-label={`Цены FundingPips с кодом ${fundingPipsDeal.code}`}>

@@ -50,7 +50,8 @@ const CHEAPEST_BUYABLE = { name: 'Accelerated (1-Phase) $5K', priceUsd: 40 }
 const PRICE_CONFLICT_CHECKED = CHECKED
 const ASCEND_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} все шесть позиций Ascend в магазине CFT помечены как недоступные к покупке, поэтому цены Ascend мы не приводим.`
 const BREAK_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} цена Break $100K расходится: на главной странице — $199, в условиях (разд. 5.6) и в магазине — $200. Позиции главной страницы ($70 / $139 / $199) в магазине недоступны к покупке.`
-const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи.`
+const BREAK_AVAIL_CHECKED = '2026-10-30'
+const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи. По данным на ${BREAK_AVAIL_CHECKED.split('-').reverse().join('.')} позиции Break Evaluation в магазине помечены как недоступные к покупке (is_purchasable=false; сборы за активацию ещё продавались) — наличие к покупке сверьте в магазине.`
 const PRICE_CONFLICT_NOTE = `${ASCEND_CONFLICT_NOTE} ${BREAK_CONFLICT_NOTE} Итоговую цену и доступность проверьте в корзине перед оплатой.`
 
 const SOURCES = {

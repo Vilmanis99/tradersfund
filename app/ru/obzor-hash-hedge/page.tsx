@@ -53,6 +53,8 @@ const DATE_PUBLISHED = '2026-10-27'
 // checkedAt across the latest capture's payment evidence (hash-hedge-2026-10-26.json, conflicts.b_paymentMethods), so the date
 // moves only when every payment source was re-read. Sources still disagree; not tested at checkout.
 const PAYMENT_CHECKED = hhLatestCapture.conflicts.b_paymentMethods.evidence.map(item => item.checkedAt).sort()[0]
+// Tracker 30–31.10.2026: Commercial Terms min payout USD 1 vs user guide $100; cycle 'Every 14 days' vs 14–60 calendar days. Do not state either as settled fact.
+const PAYOUT_LIMIT_CHECKED = '2026-10-30'
 
 const SOURCES = {
   home: 'https://hashhedge.com/',
@@ -95,7 +97,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Как вывести прибыль и какие лимиты?',
-    a: 'Выплата доступна, когда прошёл 14-дневный период, счёт в прибыли и все позиции закрыты. Минимум — $100, максимум — $10 000 на счёт за 14 дней. Выплата — в USDT (по руководству), в одной из шести сетей. Доля трейдера — 80%, с платной опцией — 90%.',
+    a: `Выплата доступна, когда счёт в прибыли и все позиции закрыты; срок и минимум официальные источники расходятся (${asOf(PAYOUT_LIMIT_CHECKED)}): руководство пишет минимум $100 и «каждые 14 дней», коммерческие условия — минимум $1 и день выплаты от 14 до 60 календарных дней после первой сделки цикла. Максимум в обоих источниках — $10 000 на счёт за 14 дней. Выплата — в USDT (по руководству), в одной из шести сетей. Доля трейдера — 80%, с платной опцией — 90%.`,
   },
   {
     q: 'Можно ли торговать на новостях и в выходные?',
@@ -347,20 +349,20 @@ export default function RussianHashHedgeReviewPage() {
           <div className="ru-shell ru-content" data-russian-hh-payouts={CHECKED}>
             <h2>Вывод прибыли</h2>
             <p>
-              Доля трейдера — 80%, с опцией +10% — 90%. Выплата становится доступной, когда выполнены три условия: прошёл
-              14-дневный период, счёт в прибыли и все позиции закрыты. По коммерческим условиям день выплаты вы выбираете сами:
-              от 14 до 60 календарных дней после первой сделки цикла. В итоговой сводке на главной доля показана как «Profit split 90 / 10»
+              Доля трейдера — 80%, с опцией +10% — 90%. Выплата становится доступной, когда счёт в прибыли и все позиции закрыты;
+              срок и минимум официальные тексты расходятся ({asOf(PAYOUT_LIMIT_CHECKED)}): руководство — 14-дневный период и минимум $100,
+              коммерческие условия — день выплаты от 14 до 60 календарных дней после первой сделки цикла и минимум $1. В итоговой сводке на главной доля показана как «Profit split 90 / 10»
               без упоминания платной опции ({asOf(HOME_COUNTER_CHECKED)}); по руководству базовая доля — 80%, а 90% — с опцией.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Лимиты выплат Hash Hedge">
               <table className="ru-table">
                 <caption className="sr-only">Лимиты и способы выплат Hash Hedge</caption>
                 <tbody>
-                  <tr><th scope="row">Минимум</th><td>$100</td></tr>
+                  <tr><th scope="row">Минимум</th><td data-russian-hh-min-payout-conflict={PAYOUT_LIMIT_CHECKED}>источники расходятся ({asOf(PAYOUT_LIMIT_CHECKED)}): руководство — $100, коммерческие условия — $1</td></tr>
                   <tr><th scope="row">Максимум</th><td>$10 000 на счёт за 14 дней</td></tr>
                   <tr><th scope="row">Валюта</th><td>USDT (по руководству)</td></tr>
                   <tr><th scope="row">Сети</th><td>ERC-20, TRC-20, BEP-20, Arbitrum, Optimism, Solana</td></tr>
-                  <tr><th scope="row">Следующий запрос</th><td>Не раньше чем через 14 дней после предыдущей выплаты</td></tr>
+                  <tr><th scope="row">Цикл / следующий запрос</th><td>источники расходятся: руководство — каждые 14 дней; коммерческие условия — день выплаты 14–60 календарных дней после первой сделки цикла</td></tr>
                 </tbody>
               </table>
             </div>
@@ -432,7 +434,7 @@ export default function RussianHashHedgeReviewPage() {
                   <tr><th scope="row">Рынки</th><td>Форекс, индексы, сырьё, крипто</td><td>Крипто и TradFi-фьючерсы, акции США</td><td>Крипто, форекс, индексы</td></tr>
                   <tr><th scope="row">Платформы</th><td>MT5, DXTrade, cTrader</td><td>Свой веб-терминал</td><td>Match-Trader, MT5</td></tr>
                   <tr><th scope="row">Доля</th><td>{brightSplit != null ? `${brightSplit}%` : 'требует проверки'}</td><td>80% (90% с опцией)</td><td>80% в оценочных программах</td></tr>
-                  <tr><th scope="row">Цикл выплат</th><td>{brightFrequency ? frequencyRu[brightFrequency] ?? brightFrequency : 'требует проверки'}</td><td>от 14 дней (руководство — каждые 14 дней, коммерческие условия — 14–60 дней)</td><td>после 15 торговых или раз в 30 календарных дней</td></tr>
+                  <tr><th scope="row">Цикл выплат</th><td>{brightFrequency ? frequencyRu[brightFrequency] ?? brightFrequency : 'требует проверки'}</td><td>источники расходятся ({asOf(PAYOUT_LIMIT_CHECKED)}): руководство — каждые 14 дней; коммерческие условия — 14–60 дней</td><td>после 15 торговых или раз в 30 календарных дней</td></tr>
                   <tr><th scope="row">Оплата</th><td>Крипта и карта</td><td>источники расходятся</td><td>Карта, PayPal, Apple/Google Pay, крипта</td></tr>
                   <tr><th scope="row">Доступ для РФ</th><td><RuAccessBadgeView firm="bright-funded" status={russiaStatusFor('bright-funded')} basisDate={russiaBasisDateFor('bright-funded')} /></td><td><RuAccessBadgeView firm="hash-hedge" status={hhRussiaStatus} /></td><td><RuAccessBadgeView firm="crypto-fund-trader" status={russiaStatusFor('crypto-fund-trader')} basisDate={russiaBasisDateFor('crypto-fund-trader')} /></td></tr>
                 </tbody>
