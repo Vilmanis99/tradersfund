@@ -63,7 +63,7 @@ const RU_ACCESS_EXTRA: RuAccessRow[] = [
   { name: 'Upscale', status: RU_EXTRA_RUSSIA_BASIS.upscale.russiaStatus, basisDate: null, note: `Статус для РФ неясен: Условия (15.05.2026) исключают резидентов стран под санкциями США/ЕС/Великобритании; для вывода нужен KYC по паспорту (на ${ruAccessDate(RU_EXTRA_RUSSIA_BASIS.upscale.russiaSourceCapturedAt)}); в FAQ сказано иное, но обязывающий текст — Условия` },
   { name: 'The5ers', status: 'restricted', note: 'Россия и Беларусь в списке «Forbidden Territories»' },
   { name: 'Funded Trading Plus', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },
-  { name: 'Goat Funded Trader', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },
+  { name: 'Goat Funded Trader', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026', review: russianPublishedHref('/ru/obzor-goat-funded-trader') ?? undefined },
   { name: 'Blue Guardian', status: 'unclear', note: 'Prop Firm Tracker, проверено 14.10.2026: доступ для РФ не ясен' },
 ]
 const RU_ACCESS_STATUS_ORDER: RuAccessRow['status'][] = ['available', 'unclear', 'unverified', 'restricted']
