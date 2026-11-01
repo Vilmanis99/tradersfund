@@ -73,8 +73,8 @@
       "first": "2026-06-05"
     },
     "challenges:compare:ofp-funding": {
-      "hash": "177397fd0744614a",
-      "changed": "2026-10-29",
+      "hash": "fb55e959c8b30364",
+      "changed": "2026-11-01",
       "first": "2026-06-05"
     },
     "challenges:compare:take-profit-trader": {
@@ -173,8 +173,8 @@
       "first": "2026-06-05"
     },
     "challenges:full:ofp-funding": {
-      "hash": "177397fd0744614a",
-      "changed": "2026-10-29",
+      "hash": "fb55e959c8b30364",
+      "changed": "2026-11-01",
       "first": "2026-06-05"
     },
     "challenges:full:take-profit-trader": {
@@ -273,8 +273,8 @@
       "first": "2026-06-05"
     },
     "challenges:landing:ofp-funding": {
-      "hash": "544c7a69a8535235",
-      "changed": "2026-10-29",
+      "hash": "104818e3b7fdfe5e",
+      "changed": "2026-11-01",
       "first": "2026-06-05"
     },
     "challenges:landing:take-profit-trader": {
@@ -688,33 +688,33 @@
       "first": "2026-09-16"
     },
     "challenges:product:ofp-funding:instant-classic-3-daily-6-max-drawdown": {
-      "hash": "e17743c2ee78751f",
-      "changed": "2026-10-29",
+      "hash": "6a0e138b5245d7cc",
+      "changed": "2026-11-01",
       "first": "2026-07-27"
     },
     "challenges:product:ofp-funding:instant-classic-5-daily-10-max-drawdown": {
-      "hash": "92f183d69c9e6f88",
-      "changed": "2026-10-29",
+      "hash": "53a19fd90302750b",
+      "changed": "2026-11-01",
       "first": "2026-07-27"
     },
     "challenges:product:ofp-funding:instant-lite": {
-      "hash": "14f9d8cb24293484",
-      "changed": "2026-10-29",
+      "hash": "dd8e9368a255032c",
+      "changed": "2026-11-01",
       "first": "2026-07-27"
     },
     "challenges:product:ofp-funding:instant-lite-5-daily-10-max-drawdown": {
-      "hash": "25606447334b009b",
-      "changed": "2026-10-29",
+      "hash": "4f9f8ad17bd5d7b3",
+      "changed": "2026-11-01",
       "first": "2026-10-14"
     },
     "challenges:product:ofp-funding:instant-plus-3-daily-5-max-drawdown": {
-      "hash": "fa1b71da66251596",
-      "changed": "2026-10-29",
+      "hash": "ac363e182864cf73",
+      "changed": "2026-11-01",
       "first": "2026-07-27"
     },
     "challenges:product:ofp-funding:instant-plus-5-daily-10-max-drawdown": {
-      "hash": "2e7c7cc2667d5ec7",
-      "changed": "2026-10-29",
+      "hash": "031fff78d9e0ebb8",
+      "changed": "2026-11-01",
       "first": "2026-07-27"
     },
     "challenges:product:take-profit-trader:the-test": {
@@ -3010,8 +3010,8 @@
   },
   "urls": {
     "/": {
-      "hash": "12f8d097622cf052",
-      "lastmod": "2026-10-30"
+      "hash": "dd39ec88cf2e882f",
+      "lastmod": "2026-11-01"
     },
     "/about": {
       "hash": "37164e41344606b2",
@@ -3030,20 +3030,20 @@
       "lastmod": "2026-09-14"
     },
     "/best-crypto-prop-firms": {
-      "hash": "c8a16575a5e09d60",
-      "lastmod": "2026-10-29"
+      "hash": "5ce84a62fde5be14",
+      "lastmod": "2026-11-01"
     },
     "/best-futures-prop-firms": {
       "hash": "b18d3c72cb91d051",
       "lastmod": "2026-10-29"
     },
     "/best-instant-funding-prop-firms": {
-      "hash": "1b85a52c18d6c8a9",
-      "lastmod": "2026-10-29"
+      "hash": "7a9bb85b3af41d9c",
+      "lastmod": "2026-11-01"
     },
     "/best-prop-firms-2026": {
-      "hash": "98f5d9c78e1b5951",
-      "lastmod": "2026-10-30"
+      "hash": "ff5a5105ad438706",
+      "lastmod": "2026-11-01"
     },
     "/best-prop-firms-in-india": {
       "hash": "4229672544891b9f",
@@ -3090,8 +3090,8 @@
       "lastmod": "2026-10-30"
     },
     "/blog": {
-      "hash": "f354dad57bdd5409",
-      "lastmod": "2026-10-30"
+      "hash": "031b2f7dc6bafd83",
+      "lastmod": "2026-11-01"
     },
     "/blog/3commas-review": {
       "hash": "39d1217a236e078b",
@@ -3198,8 +3198,8 @@
       "lastmod": "2026-10-22"
     },
     "/blog/ofp-funding-review": {
-      "hash": "ddc069e77bde1dfb",
-      "lastmod": "2026-10-29"
+      "hash": "b17a1c5c4357013c",
+      "lastmod": "2026-11-01"
     },
     "/blog/prop-firm-free-trial": {
       "hash": "f22958b9f730a0d4",
@@ -3294,12 +3294,12 @@
       "lastmod": "2026-08-18"
     },
     "/cheapest-prop-firms": {
-      "hash": "474429900d7f91a3",
-      "lastmod": "2026-10-29"
+      "hash": "d42e1e64e6e171c1",
+      "lastmod": "2026-11-01"
     },
     "/compare": {
-      "hash": "e01b75b6872a5557",
-      "lastmod": "2026-10-30"
+      "hash": "9d786d150817f195",
+      "lastmod": "2026-11-01"
     },
     "/compare/alpha-capital-vs-apex-trader-funding": {
       "hash": "6d599ee1c4b459be",
@@ -3350,8 +3350,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/alpha-capital-vs-ofp-funding": {
-      "hash": "daa266fc897795cb",
-      "lastmod": "2026-10-29"
+      "hash": "506e1fffaa8839c6",
+      "lastmod": "2026-11-01"
     },
     "/compare/alpha-capital-vs-take-profit-trader": {
       "hash": "f9bf4e9256417e0f",
@@ -3418,8 +3418,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/apex-trader-funding-vs-ofp-funding": {
-      "hash": "eb6bf24efcdcd7fe",
-      "lastmod": "2026-10-29"
+      "hash": "57236e4e64356f08",
+      "lastmod": "2026-11-01"
     },
     "/compare/apex-trader-funding-vs-take-profit-trader": {
       "hash": "4f3c376bcad064f8",
@@ -3482,8 +3482,8 @@
       "lastmod": "2026-10-30"
     },
     "/compare/bright-funded-vs-ofp-funding": {
-      "hash": "a7ac8e16ce716bb0",
-      "lastmod": "2026-10-30"
+      "hash": "fa2746432a6f3885",
+      "lastmod": "2026-11-01"
     },
     "/compare/bright-funded-vs-take-profit-trader": {
       "hash": "2c00e366f7b67782",
@@ -3542,8 +3542,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/city-traders-imperium-vs-ofp-funding": {
-      "hash": "2528f2003cfb1e2d",
-      "lastmod": "2026-10-29"
+      "hash": "48f45f079f1b893e",
+      "lastmod": "2026-11-01"
     },
     "/compare/city-traders-imperium-vs-take-profit-trader": {
       "hash": "70ca0aa21b471bd0",
@@ -3598,8 +3598,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/crypto-fund-trader-vs-ofp-funding": {
-      "hash": "8ce8d1cbdb08ee3a",
-      "lastmod": "2026-10-29"
+      "hash": "ceecb46b7f68383d",
+      "lastmod": "2026-11-01"
     },
     "/compare/crypto-fund-trader-vs-take-profit-trader": {
       "hash": "f4e59730e3b3726c",
@@ -3650,8 +3650,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/e8-markets-vs-ofp-funding": {
-      "hash": "23fe9dbd484fd5eb",
-      "lastmod": "2026-10-29"
+      "hash": "2eff3436223af125",
+      "lastmod": "2026-11-01"
     },
     "/compare/e8-markets-vs-take-profit-trader": {
       "hash": "eb477c31f2b89b04",
@@ -3698,8 +3698,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/ftmo-vs-ofp-funding": {
-      "hash": "2b2c3d42cd8d1705",
-      "lastmod": "2026-10-29"
+      "hash": "2a7bc1e931474004",
+      "lastmod": "2026-11-01"
     },
     "/compare/ftmo-vs-take-profit-trader": {
       "hash": "8df47e2a8b768b45",
@@ -3742,8 +3742,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/fundednext-vs-ofp-funding": {
-      "hash": "eaf1e70022824ed7",
-      "lastmod": "2026-10-29"
+      "hash": "c4d946a7ed70ca5c",
+      "lastmod": "2026-11-01"
     },
     "/compare/fundednext-vs-take-profit-trader": {
       "hash": "6c9c7f461b3dd513",
@@ -3782,8 +3782,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/fundingpips-vs-ofp-funding": {
-      "hash": "3c734e6d4cbc7818",
-      "lastmod": "2026-10-29"
+      "hash": "4d98f07bf352cb30",
+      "lastmod": "2026-11-01"
     },
     "/compare/fundingpips-vs-take-profit-trader": {
       "hash": "abe9b04f516d5d78",
@@ -3818,8 +3818,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/fxify-vs-ofp-funding": {
-      "hash": "088c85001a6b7d78",
-      "lastmod": "2026-10-29"
+      "hash": "d285b94b379b846e",
+      "lastmod": "2026-11-01"
     },
     "/compare/fxify-vs-take-profit-trader": {
       "hash": "5a0e6f77ca2e88c2",
@@ -3850,8 +3850,8 @@
       "lastmod": "2026-10-29"
     },
     "/compare/lucid-trading-vs-ofp-funding": {
-      "hash": "74054f27b64d8b77",
-      "lastmod": "2026-10-29"
+      "hash": "708f39b1b5a7b51b",
+      "lastmod": "2026-11-01"
     },
     "/compare/lucid-trading-vs-take-profit-trader": {
       "hash": "633548189a3c1701",
@@ -3878,8 +3878,8 @@
       "lastmod": "2026-10-28"
     },
     "/compare/maven-vs-ofp-funding": {
-      "hash": "2fd53235dbc33d3e",
-      "lastmod": "2026-10-29"
+      "hash": "c5b083e3c6d1dca7",
+      "lastmod": "2026-11-01"
     },
     "/compare/maven-vs-take-profit-trader": {
       "hash": "4aec911ae6978b70",
@@ -3902,8 +3902,8 @@
       "lastmod": "2026-10-27"
     },
     "/compare/my-funded-futures-vs-ofp-funding": {
-      "hash": "dd3b61d58dfd831c",
-      "lastmod": "2026-10-29"
+      "hash": "66cb9be3a0596a20",
+      "lastmod": "2026-11-01"
     },
     "/compare/my-funded-futures-vs-take-profit-trader": {
       "hash": "d92e44e11267c594",
@@ -3926,24 +3926,24 @@
       "lastmod": "2026-10-28"
     },
     "/compare/ofp-funding-vs-take-profit-trader": {
-      "hash": "a1616c24edc2c03b",
-      "lastmod": "2026-10-29"
+      "hash": "5bdcfc01e08d7d4e",
+      "lastmod": "2026-11-01"
     },
     "/compare/ofp-funding-vs-the5ers": {
-      "hash": "4f52b47bbfac2223",
-      "lastmod": "2026-10-30"
+      "hash": "3771cc239fd1228d",
+      "lastmod": "2026-11-01"
     },
     "/compare/ofp-funding-vs-topstep": {
-      "hash": "0c0b2dce88d2e38e",
-      "lastmod": "2026-10-29"
+      "hash": "b91baae5a2afe1d4",
+      "lastmod": "2026-11-01"
     },
     "/compare/ofp-funding-vs-tradeday": {
-      "hash": "ca52cc663cd8a379",
-      "lastmod": "2026-10-29"
+      "hash": "cab64b013b4958cf",
+      "lastmod": "2026-11-01"
     },
     "/compare/ofp-funding-vs-tradeify": {
-      "hash": "19d9b71f3a7c0e6d",
-      "lastmod": "2026-10-29"
+      "hash": "79f4bdfbb1dab4ca",
+      "lastmod": "2026-11-01"
     },
     "/compare/take-profit-trader-vs-the5ers": {
       "hash": "297a9e7eec852610",
@@ -4022,48 +4022,48 @@
       "lastmod": "2026-10-28"
     },
     "/prop-firm-challenges": {
-      "hash": "12f8d097622cf052",
-      "lastmod": "2026-10-30"
+      "hash": "dd39ec88cf2e882f",
+      "lastmod": "2026-11-01"
     },
     "/prop-firm-discount-codes": {
       "hash": "7a790722bfc9f0e6",
       "lastmod": "2026-10-28"
     },
     "/prop-firms": {
-      "hash": "335a7c01e5b66111",
-      "lastmod": "2026-10-30"
+      "hash": "8bb39087d1ac3d3f",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/closed": {
       "hash": "7099aa6621406651",
       "lastmod": "2026-10-21"
     },
     "/prop-firms/copy-trading": {
-      "hash": "443f42842dca9248",
-      "lastmod": "2026-10-30"
+      "hash": "0f368a042eaa34eb",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/crypto-payouts": {
       "hash": "308e41e8299720eb",
       "lastmod": "2026-10-29"
     },
     "/prop-firms/ea-allowed": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/high-profit-split": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/news-trading": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/overnight-holding": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/static-drawdown": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/prop-firms/take-profit-trader/rules": {
       "hash": "9bc29612bfffffc5",
@@ -4078,12 +4078,12 @@
       "lastmod": "2026-10-28"
     },
     "/prop-firms/weekend-holding": {
-      "hash": "2795156a4d16182e",
-      "lastmod": "2026-10-30"
+      "hash": "c5cdc71f3ff09644",
+      "lastmod": "2026-11-01"
     },
     "/ru": {
-      "hash": "738820f6c8939687",
-      "lastmod": "2026-10-30"
+      "hash": "09e6036b4988fe39",
+      "lastmod": "2026-11-01"
     },
     "/ru/chto-takoe-prop-firma": {
       "hash": "e3d8d0d1a8fd024f",
@@ -4150,8 +4150,8 @@
       "lastmod": "2026-10-30"
     },
     "/ru/luchshie-prop-firmy": {
-      "hash": "0547883fa30d680f",
-      "lastmod": "2026-10-30"
+      "hash": "71f1c5d6d27f95c8",
+      "lastmod": "2026-11-01"
     },
     "/ru/obzor-bright-funded": {
       "hash": "4daa267b950ce82b",
