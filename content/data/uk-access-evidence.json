@@ -5,91 +5,143 @@
       "firmSlug": "ftmo",
       "firmName": "FTMO",
       "accessStatus": "policy-supported",
-      "productSlugs": ["ftmo-challenge-2-step", "ftmo-challenge-1-step", "ftmo-instant-account"],
+      "productSlugs": [
+        "ftmo-challenge-2-step",
+        "ftmo-challenge-1-step",
+        "ftmo-instant-account"
+      ],
       "sourceUrl": "https://ftmo.com/en/faq/who-can-join-ftmo/",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Global eligibility policy",
-      "evidenceSummary": "FTMO says it accepts clients globally apart from named country, sanctions, conduct, age, and entity exceptions; the United Kingdom is not among the named country exclusions.",
-      "decisionNote": "All 3 current FTMO products (2-Step, 1-Step and Instant Account) are mapped; the eligibility policy is firm-wide, not product-specific. Recheck residency, nationality, sanctions screening, identity documents, platform availability, and the EUR checkout before paying."
+      "evidenceSummary": "FTMO says FTMO CFDs is available to clients globally apart from named country, sanctions, conduct, age, and entity exceptions; United Kingdom is not among the named nationality/residence exclusions or the residency-based restriction table.",
+      "decisionNote": "All 3 current FTMO products (2-Step, 1-Step and Instant Account) are mapped; the eligibility policy is firm-wide, not product-specific. Recheck residency, nationality, sanctions screening, identity documents, platform availability, and the EUR checkout before paying. Page dateModified 2026-09-30 (schema)."
     },
     {
       "firmSlug": "fundednext",
       "firmName": "FundedNext",
       "accessStatus": "policy-supported",
-      "productSlugs": ["stellar-2-step", "stellar-1-step", "stellar-lite", "stellar-instant"],
+      "productSlugs": [
+        "stellar-2-step",
+        "stellar-1-step",
+        "stellar-lite",
+        "stellar-instant"
+      ],
       "sourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
       "sourcePublishedAt": "2026-08-27",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "CFD country policy",
       "evidenceSummary": "FundedNext publishes a resident-and-citizen restriction list for its CFD service; the United Kingdom is not on that list.",
-      "decisionNote": "All 4 current global CFD products are mapped. Recheck the selected platform, add-ons, KYC identity, payout route, and final USD checkout configuration."
+      "decisionNote": "All 4 current global CFD products are mapped. Recheck the selected platform, add-ons, KYC identity, payout route, and final USD checkout configuration. Help article dated 27 August 2026."
     },
     {
       "firmSlug": "fundingpips",
       "firmName": "FundingPips",
       "accessStatus": "policy-supported",
-      "productSlugs": ["1-step-flex", "2-step-flex", "2-step-pro", "2-step-standard", "zero"],
+      "productSlugs": [
+        "1-step-flex",
+        "2-step-flex",
+        "2-step-pro",
+        "2-step-standard",
+        "zero"
+      ],
       "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Onboarding eligibility policy",
       "evidenceSummary": "FundingPips says it serves more than 195 countries and names Iran, Vietnam, and the United Arab Emirates as restricted resident countries; the United Kingdom is not named.",
-      "decisionNote": "All 5 current models are mapped. Payment methods vary by region, and MT5 or cTrader availability must still be checked for the chosen account and current UK location."
+      "decisionNote": "All 5 current models are mapped. Payment methods vary by region, and MT5 or cTrader availability must still be checked for the chosen account and current UK location. Accounts are issued in USD regardless of checkout currency."
     },
     {
       "firmSlug": "fxify",
       "firmName": "FXIFY",
       "accessStatus": "policy-supported",
-      "productSlugs": ["one-phase", "two-phase-classic", "two-phase-standard", "two-phase-pro", "three-phase", "instant-funding-standard", "instant-funding-lite", "lightning-challenge", "crypto-standard-1-step", "crypto-instant-funding"],
+      "productSlugs": [
+        "one-phase",
+        "two-phase-classic",
+        "two-phase-standard",
+        "two-phase-pro",
+        "three-phase",
+        "instant-funding-standard",
+        "instant-funding-lite",
+        "lightning-challenge",
+        "crypto-standard-1-step",
+        "crypto-instant-funding"
+      ],
       "sourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
-      "sourceCapturedAt": "2026-10-26",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Restricted-jurisdiction policy",
       "evidenceSummary": "FXIFY publishes the jurisdictions it does not accept (\"prohibited from trading with FXIFY\"), and the United Kingdom is not among the current prohibited countries; the list is firm-wide, with no separate country list for crypto accounts.",
-      "decisionNote": "All 10 current structured product rows (8 FOREX-labelled plus 2 crypto) are mapped. A UK registered payment agent or office address does not by itself establish FCA authorisation or customer protection."
+      "decisionNote": "All 10 current structured product rows (8 FOREX-labelled plus 2 crypto) are mapped. FXIFY Solutions Limited appears on the FAQ footer with a London address; a UK company presence is not an FCA permission check."
     },
     {
       "firmSlug": "alpha-capital",
       "firmName": "Alpha Capital",
       "accessStatus": "policy-supported",
-      "productSlugs": ["alpha-one", "alpha-pro-6", "alpha-pro-6-on-demand", "alpha-pro-8-bi-weekly", "alpha-pro-8-on-demand", "alpha-pro-10-bi-weekly", "alpha-pro-10-on-demand", "alpha-swing", "alpha-three", "alpha-direct"],
+      "productSlugs": [
+        "alpha-one",
+        "alpha-pro-6",
+        "alpha-pro-6-on-demand",
+        "alpha-pro-8-bi-weekly",
+        "alpha-pro-8-on-demand",
+        "alpha-pro-10-bi-weekly",
+        "alpha-pro-10-on-demand",
+        "alpha-swing",
+        "alpha-three",
+        "alpha-direct"
+      ],
       "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Country-limitations policy",
-      "evidenceSummary": "Alpha Capital says it is available in more than 150 countries and lists its nationality and residency exclusions; the United Kingdom is not excluded.",
-      "decisionNote": "All 10 captured configurations are mapped; this mapping update does not refresh the October 1 country-policy date. Exact purchase availability remains unsettled for One variants, Swing and Three. A .uk domain or UK company presence is not an FCA permission check."
+      "evidenceSummary": "Alpha Capital says it is available in more than 150 countries and lists its nationality and residency exclusions; the United Kingdom is not excluded. A separate Alpha guide (updated 30 June 2026) also lists United Kingdom among 203 checkout-selectable countries.",
+      "decisionNote": "All 10 captured configurations are mapped. Help Centre countries-with-limitations article shows page date 6 July 2026 (not an October 1 capture). Exact purchase availability remains unsettled for One variants, Swing and Three. A .uk domain or UK company presence is not an FCA permission check."
     },
     {
       "firmSlug": "city-traders-imperium",
       "firmName": "City Traders Imperium",
       "accessStatus": "policy-supported",
-      "productSlugs": ["1-step-challenge", "2-step-challenge", "instant-funding", "direct-funding"],
+      "productSlugs": [
+        "1-step-challenge",
+        "2-step-challenge",
+        "instant-funding",
+        "direct-funding"
+      ],
       "sourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
-      "sourceCapturedAt": "2026-10-14",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Current service terms",
-      "evidenceSummary": "CTI's current terms name Syria, North Korea, Cuba, and Iran as restricted jurisdictions; the United Kingdom is not listed.",
-      "decisionNote": "All 4 current product records are mapped. CTI's terms also require clients to use the service only where lawful, so a London history or address is not a regulatory conclusion."
+      "evidenceSummary": "CTI's current terms name Syria, North Korea, Cuba, and Iran as restricted jurisdictions for nationals or residents; the United Kingdom is not listed.",
+      "decisionNote": "All 4 current product records are mapped. Contracting entity for the assessment programme is City Traders Imperium Limited (Comoros); CTI FZCO (Dubai) operates the Academy. Governing law: UAE. A London history or address is not a regulatory conclusion."
     },
     {
       "firmSlug": "bright-funded",
       "firmName": "BrightFunded",
       "accessStatus": "policy-supported",
-      "productSlugs": ["bright-funded-1-step", "bright-funded-2-step-bright", "bright-funded-2-step-classic"],
+      "productSlugs": [
+        "bright-funded-1-step",
+        "bright-funded-2-step-bright",
+        "bright-funded-2-step-classic"
+      ],
       "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
-      "sourcePublishedAt": "2026-04-20",
-      "sourceCapturedAt": "2026-10-14",
+      "sourcePublishedAt": "2026-09-15",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Challenge-purchase policy",
       "evidenceSummary": "BrightFunded's policy names Cuba, Iran, North Korea, Syria, Vietnam and Pakistan for residence or nationality restrictions on challenge purchases and registration; it does not name the United Kingdom. This is not a completed UK checkout or individual eligibility approval.",
-      "decisionNote": "All 3 current EUR products are mapped. Keep the EUR list price separate from GBP card conversion, payment-provider fees, promotions, and any final checkout adjustment."
+      "decisionNote": "All 3 current EUR products are mapped. Keep the EUR list price separate from GBP card conversion, payment-provider fees, promotions, and any final checkout adjustment. Help article dated 15 September 2026."
     },
     {
       "firmSlug": "e8-markets",
       "firmName": "E8 Markets",
       "accessStatus": "policy-supported",
-      "productSlugs": ["e8-one", "e8-one-perpetuals", "e8-pro", "e8-pro-perpetuals", "e8-signature"],
+      "productSlugs": [
+        "e8-one",
+        "e8-one-perpetuals",
+        "e8-pro",
+        "e8-pro-perpetuals",
+        "e8-signature"
+      ],
       "sourceUrl": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
-      "sourceCapturedAt": "2026-10-26",
+      "sourceCapturedAt": "2026-11-01",
       "evidenceLabel": "Accepted-countries policy",
       "evidenceSummary": "E8 publishes current restricted-country lists for Classic markets + Perpetuals and for Futures; the United Kingdom is not restricted in those lists.",
-      "decisionNote": "The 5 current structured products (E8 One, E8 Pro and E8 Signature, plus the E8 One and E8 Pro Perpetuals variants) are mapped. KYC, platform-provider eligibility, payout-processor coverage, and any product-specific limitation still apply."
+      "decisionNote": "The 5 current structured products (E8 One, E8 Pro and E8 Signature, plus the E8 One and E8 Pro Perpetuals variants) are mapped. KYC, platform-provider eligibility, payout-processor coverage, and any product-specific limitation still apply. Help article dated 1 October 2026."
     }
   ]
 }
