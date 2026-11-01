@@ -2593,6 +2593,7 @@
       "Crypto"
     ],
     "maxAllocation": "$300,000",
+    "maxAllocationNote": "Rechecked 1 November 2026: OFP's own pages give three different answers on maximum allocation, so maxAllocation stays $300,000 pending review. (a) Trading rules https://ofpfunding.com/trading-rules: \"The total manageable accounts are capped at $300,000.\" (b) Help centre https://help.ofpfunding.com/account-models/: \"The maximum total allocation per trader is $400,000 across all Instant accounts combined.\" (c) Pricing widget https://ofpfunding.com/: the account size selector now sells $400,000 and $500,000 Instant Lite, Instant Classic and Instant Plus accounts (\"Select Account Size $5,000 ... $300,000 $400,000 $500,000\"; Instant Classic $500,000 3% listed at $1,665). Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json",
     "platforms": [
       "OFP Platform (Sirix)"
     ],
