@@ -20,7 +20,9 @@ function isBasisFresh(checkedAt: string | undefined, now: Date = new Date(), max
   const captured = new Date(`${checkedAt}T00:00:00Z`)
   if (!Number.isFinite(captured.getTime()) || captured.toISOString().slice(0, 10) !== checkedAt) return false
   const ageDays = Math.floor((now.getTime() - captured.getTime()) / DAY)
-  return ageDays >= 0 && ageDays <= maxAgeDays
+  // Allow a small future skew (timezone / build-clock lag vs Tracker's calendar checkedAt).
+  // Without this, a build whose wall clock is still on yesterday rejects today's fresh captures.
+  return ageDays >= -2 && ageDays <= maxAgeDays
 }
 
 function findFirm(firms: Firm[], slug: string) {
@@ -165,7 +167,7 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
       limitPct: combine.consistencyRulePct,
       now,
       stageNote:
-        'Evaluation 55%. A secondary 40% XFA Consistency payout path exists on the same help article; its reset-after-payout basis is not stored on the primary basis fields.',
+        'Evaluation 55%. A secondary 40% XFA Consistency payout path on the same help article resets after payout; that path is separate from this 55% preset, so the profit base is left empty rather than guessed.',
     })
     if (built) presets.push(built)
     else gaps.push('Topstep Combine: failed freshness/basis checks.')
@@ -197,11 +199,6 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
   const lucidDaily = findProduct(challenges, 'lucid-trading', 'luciddaily-dll-on-intraday')
     ?? findProduct(challenges, 'lucid-trading', 'luciddaily-dll-on-eod')
   if (lucid && lucidDaily && lucidDaily.consistencyRulePct != null) {
-    if (lucidDaily.consistencyBasis !== null) {
-      gaps.push(
-        'LucidDaily: EN Writer final copy (29 Oct) says Flex/Daily evaluation basis is unset → “not stated by the firm” (articles 16033858 + 12945790). On main, LucidDaily products still store consistencyBasis total-profit (checked 2026-10-28). Preset follows the challenge data (total-profit) until Tracker nulls it; LucidFlex already has null and shows not-stated.',
-      )
-    }
     const built = rulePreset({
       id: 'lucid-daily',
       label: 'LucidDaily evaluation · 40% standard (50% paid add-on)',
@@ -218,34 +215,52 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
     gaps.push('LucidDaily: missing product or consistencyRulePct.')
   }
 
-  // ── Apex: firm.consistencyRule states no-eval + 50% PA; challenge pct null ──
+  // ── Apex: firm.consistencyRule states no-eval + 50% PA; challenge pct usually null ──
+  // When Tracker stores a structured PA row (consistencyRulePct + consistencyBasis), prefer that
+  // so Measured against prefills automatically; until then keep not-stated (do not invent a basis).
   const apex = findFirm(firms, 'apex-trader-funding')
   const apexProducts = challenges.filter(c => c.firmSlug === 'apex-trader-funding' && isChallengeFresh(c, now))
   if (apex && apex.consistencyRule && /50\s*%/.test(apex.consistencyRule) && apexProducts.length > 0) {
     const latest = [...apexProducts].sort((a, b) => b.sourceCapturedAt.localeCompare(a.sourceCapturedAt))[0]
-    const hasStructuredPa =
-      apexProducts.some(p => p.consistencyRulePct === 50 && p.consistencyBasis != null)
-    if (!hasStructuredPa) {
+    const structuredPa = apexProducts.find(
+      p => p.consistencyRulePct === 50 && p.consistencyBasis != null && isBasisFresh(p.consistencyBasisCheckedAt ?? p.sourceCapturedAt, now),
+    )
+    const apexStageNote =
+      'Evaluation: no consistency rule. Performance Account payouts: largest profitable day must be less than 50% of net profit since the last payout request (or inception). Breaking it blocks the payout request; it does not fail the account. Legacy PAs from before 1 Mar 2026 used 30% — note only, not this preset.'
+    if (structuredPa) {
+      const built = rulePreset({
+        id: 'apex-pa-payout',
+        label: 'Apex Trader Funding · no evaluation rule; 50% at Performance Account payout',
+        product: structuredPa,
+        firm: apex,
+        limitPct: structuredPa.consistencyRulePct!,
+        now,
+        inequality: 'lt',
+        stageNote: apexStageNote,
+      })
+      if (built) presets.push(built)
+      else gaps.push('Apex PA 50%: structured product present but failed freshness/basis checks.')
+    } else {
       gaps.push(
-        'Apex PA 50%: firms.json consistencyRule states “No evaluation consistency rule; 50% consistency applies when requesting Performance Account payouts.” Challenge products keep consistencyRulePct null (eval). Structured basis / sourceUrl / check date for the PA payout rule are not on challenge JSON (Tracker 2026-10-29 recheck left them in notes). Preset limit 50% and inequality “lt” come from the firm field + first-party “less than 50%” wording in the EN copy; basis left not-stated so we do not invent payout-cycle-profit on the client.',
+        'Apex PA 50%: firm field states no evaluation rule and 50% at Performance Account payouts; challenge products still have null eval %. Basis left not-stated until Tracker stores a structured PA consistencyBasis (then this preset prefills automatically).',
       )
+      presets.push({
+        id: 'apex-pa-payout',
+        label: 'Apex Trader Funding · no evaluation rule; 50% at Performance Account payout',
+        kind: 'rule',
+        limitPct: 50,
+        basis: 'not-stated',
+        inequality: 'lt',
+        stageNote: apexStageNote,
+        basisNote:
+          'Apex’s help page names the PA profit base as net profit since the last payout request (or since account inception). Choose “Profit in current payout / reward cycle” if that matches your dashboard, or confirm on the live help page.',
+        sourceUrl: 'https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/',
+        // Product captures are 2026-10-22; do not invent 2026-10-29 here.
+        sourceCapturedAt: latest.sourceCapturedAt,
+        firmName: apex.name,
+        reviewHref: apex.reviewUrl,
+      })
     }
-    presets.push({
-      id: 'apex-pa-payout',
-      label: 'Apex Trader Funding · no evaluation rule; 50% at Performance Account payout',
-      kind: 'rule',
-      limitPct: 50,
-      basis: 'not-stated',
-      inequality: 'lt',
-      stageNote:
-        'Evaluation: no consistency rule. Performance Account payouts: largest profitable day must be less than 50% of net profit since the last payout request (or inception). Breaking it blocks the payout request; it does not fail the account. Legacy PAs from before 1 Mar 2026 used 30% — note only, not this preset.',
-      basisNote:
-        'This product’s help page states the PA profit base (net profit since last payout request or inception), but that basis is not stored on the challenge basis fields yet — choose “Profit in current payout / reward cycle” manually if it matches your dashboard, or confirm on the live help page.',
-      sourceUrl: 'https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/',
-      sourceCapturedAt: latest.sourceCapturedAt,
-      firmName: apex.name,
-      reviewHref: apex.reviewUrl,
-    })
   } else {
     gaps.push('Apex: missing firm.consistencyRule with 50% or no fresh challenge products.')
   }

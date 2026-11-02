@@ -55,6 +55,17 @@ const {
 const { splitArticleDiagrams } = require(path.join(root, 'lib/articleContent.ts'))
 const ConsistencyCalculator = require(path.join(root, 'components/ConsistencyCalculator.tsx')).default
 const { buildConsistencyCalculatorPresets } = require(path.join(root, 'lib/consistencyCalculatorPresets.ts'))
+const { getAllChallenges } = require(path.join(root, 'lib/firms.ts'))
+
+/** Noon UTC the day after the newest challenge basis/source check date — survives Tracker refreshes. */
+function presetTestNow() {
+  const dates = getAllChallenges()
+    .flatMap(c => [c.consistencyBasisCheckedAt, c.sourceCapturedAt])
+    .filter(d => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d))
+  const max = dates.sort().at(-1) || '2026-11-02'
+  const [y, m, d] = max.split('-').map(Number)
+  return new Date(Date.UTC(y, m - 1, d + 1, 12, 0, 0))
+}
 
 // FTMO worked example from EN Writer copy: 2400/3600 at 50% → 66.7%, need 1200 more
 const ftmo = calculateConsistencyShare({ bestDay: 2400, applicable: 3600, limitPct: 50 })
@@ -100,8 +111,10 @@ assert.match(post, /data-article-diagram="consistency-calculator"/)
 assert.match(post, /^title: "What Is the Prop Firm Consistency Rule\? Formulas and Examples \(2026\)"$/m)
 assert.doesNotMatch(post, /Prop Firm Consistency Rule Calculator \(\+ How the Rule Works\)/)
 
-// Presets from live data (no Lucid; BrightFunded first; no "Tracker" in labels)
-const { presets, defaultPreset, gaps } = buildConsistencyCalculatorPresets(new Date('2026-10-30T12:00:00Z'))
+// Presets from live data (BrightFunded first; no "Tracker" in labels).
+// Clock is derived from challenge check dates so a Tracker refresh with a newer
+// consistencyBasisCheckedAt cannot make isBasisFresh reject presets (ageDays < 0).
+const { presets, defaultPreset, gaps } = buildConsistencyCalculatorPresets(presetTestNow())
 assert.ok(presets.length >= 3, `expected curated presets, got ${presets.length}`)
 assert.equal(presets[0].id, 'bright-funded-no-rule')
 assert.ok(presets.some(p => p.id === 'ftmo-1-step'))
@@ -117,11 +130,10 @@ for (const p of presets) {
 }
 const lucidFlex = presets.find(p => p.id === 'lucid-flex')
 assert.equal(lucidFlex.limitPct, 40)
-assert.equal(lucidFlex.basis, 'not-stated')
+assert.equal(lucidFlex.basis, 'total-profit')
 const lucidDaily = presets.find(p => p.id === 'lucid-daily')
 assert.equal(lucidDaily.limitPct, 40)
-// Follow challenge data: LucidDaily currently stores total-profit on main
-assert.ok(['total-profit', 'not-stated'].includes(lucidDaily.basis))
+assert.equal(lucidDaily.basis, 'total-profit')
 
 const topstep = presets.find(p => p.id === 'topstep-combine')
 assert.equal(topstep.basis, 'not-stated')
@@ -132,8 +144,23 @@ const apex = presets.find(p => p.id === 'apex-pa-payout')
 assert.equal(apex.limitPct, 50)
 assert.equal(apex.inequality, 'lt')
 assert.equal(apex.basis, 'not-stated') // until Tracker stores PA consistencyBasis*
+assert.match(apex.basisNote || '', /Apex.s help page names the PA profit base/)
+assert.doesNotMatch(apex.basisNote || '', /challenge basis fields|primary basis fields|Tracker|firms\.json|consistencyBasis/)
+const topstepNote = presets.find(p => p.id === 'topstep-combine')
+assert.match(topstepNote.stageNote || '', /left empty rather than guessed/)
+assert.doesNotMatch(topstepNote.stageNote || '', /primary basis fields|challenge basis fields|Tracker|consistencyBasis/)
+assert.doesNotMatch(lucidFlex.basisNote || '', /does not state a single profit base/)
+assert.doesNotMatch(lucidDaily.basisNote || '', /does not state a single profit base/)
+assert.equal(lucidFlex.basisNote, undefined)
+assert.equal(lucidDaily.basisNote, undefined)
 assert.ok(gaps.some(g => /Apex PA 50%/.test(g)))
 assert.equal(defaultPreset, 'ftmo-1-step')
+
+// No internal jargon in any rendered preset string passed to the client
+for (const p of presets) {
+  const blob = JSON.stringify(p)
+  assert.doesNotMatch(blob, /primary basis fields|challenge basis fields|firms\.json|consistencyBasisCheckedAt|consistencyRulePct/)
+}
 
 // Client component renders without firm-internal keys
 const html = renderToStaticMarkup(React.createElement(ConsistencyCalculator, {
