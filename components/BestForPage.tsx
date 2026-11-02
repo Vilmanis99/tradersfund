@@ -16,6 +16,7 @@ import { goLinkRel } from '@/lib/russiaAvailability'
 import { itemListSchema, jsonLd } from '@/lib/schema'
 import { renderVerdictMarkdown } from '@/lib/verdicts'
 import { ruPlatformList, ruRedactExchanges } from '@/lib/ruRulesText'
+import { localeDate } from '@/lib/ruDate'
 
 function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
   if (value == null || value === '') return lang === 'ru' ? 'Не подтверждено' : 'Unverified'
@@ -84,7 +85,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
             {lang === 'ru' ? ruRedactExchanges(intro) : intro}
           </p>
           <p className="rules-meta" style={{ marginTop: '0.75rem' }}>
-            {lang === 'ru' ? 'Обновлено' : 'Reviewed'} {useCase.lastReviewed}
+            {lang === 'ru' ? 'Обновлено' : 'Reviewed'} {localeDate(useCase.lastReviewed, lang)}
             {' · '}
             {ranked.length}{' '}
             {lang === 'ru' ? 'фирм' : ranked.length === 1 ? 'firm' : 'firms'}
@@ -143,14 +144,33 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
           {model.sortRule}
         </p>
         {model.excludedRestrictedFirms && model.excludedRestrictedFirms.length > 0 ? (
-          <p
+          <div
             data-best-for-excluded-restricted="true"
             style={{ marginTop: '0.75rem', color: 'var(--muted)', fontSize: '0.92rem', maxWidth: 720 }}
           >
-            {lang === 'ru'
-              ? `Исключены из рейтинга из‑за russiaStatus = restricted: ${model.excludedRestrictedFirms.map(f => f.name).join(', ')}.`
-              : `Excluded because russiaStatus = restricted: ${model.excludedRestrictedFirms.map(f => f.name).join(', ')}.`}
-          </p>
+            <p style={{ margin: 0 }}>
+              {lang === 'ru'
+                ? 'Исключены из рейтинга (russiaStatus = restricted) — без CTA регистрации:'
+                : 'Excluded (russiaStatus = restricted) — no sign-up CTA:'}
+            </p>
+            <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
+              {model.excludedRestrictedFirms.map(firm => (
+                <li key={firm.slug} data-excluded-restricted={firm.slug}>
+                  {firm.reviewPath ? (
+                    <Link href={firm.reviewPath}>{firm.name}</Link>
+                  ) : (
+                    <span>{firm.name}</span>
+                  )}
+                  {' '}
+                  {lang === 'ru' ? (
+                    <RuAccessBadge firm={firm.slug} />
+                  ) : (
+                    <span data-russia-badge="restricted-en">Unavailable for RF</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
         {(model.usedScalpingProxy || model.usedTimeLimitProxy) && (
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }} data-best-for-proxy="true">
@@ -206,7 +226,6 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                       <p style={{ margin: '0.35rem 0 0', color: 'var(--muted)', fontSize: '0.92rem' }}>
                         {row.highlight}
                       </p>
-                      {lang === 'ru' && !row.showRuSignupCta ? <RuAccessBadge firm={row.slug} /> : null}
                     </div>
                     <div className="feature-firm-actions">
                       {lang === 'en' ? (
@@ -214,7 +233,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                           <Link
                             href={`/go/${row.slug}?from=best-for-${useCase.id}`}
                             prefetch={false}
-                            rel={row.firm.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+                            rel={goLinkRel(row.slug)}
                             target="_blank"
                             className="btn-primary feature-firm-cta"
                           >
@@ -226,7 +245,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                             </Link>
                           ) : null}
                         </>
-                      ) : row.showRuSignupCta ? (
+                      ) : (
                         <RuGoLink
                           firm={row.slug}
                           href={`/go/${row.slug}?from=ru-best-for-${useCase.id}`}
@@ -235,12 +254,6 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                         >
                           Проверить {row.firm.name} <ArrowRight size={13} aria-hidden="true" />
                         </RuGoLink>
-                      ) : (
-                        <span className="feature-firm-secondary" data-ru-cta="hidden-not-available">
-                          {row.russiaStatus === 'restricted'
-                            ? 'Регистрация для РФ ограничена'
-                            : 'Статус для РФ не подтверждён — без CTA'}
-                        </span>
                       )}
                     </div>
                   </div>

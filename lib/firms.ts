@@ -371,12 +371,18 @@ export interface EvaluationTimeLimit {
   checkedAt?: string
 }
 
-/** Per-phase evaluation limits when phases differ on the same product. */
+/** Per-phase evaluation limits when phases differ on the same product (legacy shape). */
 export interface ChallengePhaseEvaluation {
   /** 1-based phase index when known. */
   phase?: number
   evaluationTimeLimit?: EvaluationTimeLimit | null
 }
+
+/**
+ * Tracker/schema per-phase time limit (`feat/hold-time-limit-schema-2026-11-02`).
+ * `phases` on Challenge is a count — use this array, not phases[].
+ */
+export type PhaseEvaluationTimeLimit = EvaluationTimeLimit & { phase: 1 | 2 | 3 }
 
 export interface Challenge {
   /** Foreign key to Firm — same slug as elsewhere on the site. */
@@ -434,10 +440,15 @@ export interface Challenge {
   /**
    * Product-level evaluation time limit (Tracker W45). Prefer over legacy
    * maxTradingDays / maxTradingDaysUnlimited when present. When phases differ,
-   * use phasesDetail[].evaluationTimeLimit — unlimited only if every phase is.
+   * use phaseEvaluationTimeLimits — unlimited only if every phase entry is.
    */
   evaluationTimeLimit?: EvaluationTimeLimit | null
-  /** Per-phase time limits when they differ across evaluation steps. */
+  /**
+   * Per-phase time limits (schema + Tracker). `phases` remains the phase count.
+   * Prefer this over phasesDetail when present.
+   */
+  phaseEvaluationTimeLimits?: PhaseEvaluationTimeLimit[]
+  /** Legacy per-phase shape; read only when phaseEvaluationTimeLimits is absent. */
   phasesDetail?: ChallengePhaseEvaluation[]
   /** Consistency rule as a % cap on a single day's contribution to total profit. */
   consistencyRulePct: number | null

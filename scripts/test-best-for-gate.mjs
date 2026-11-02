@@ -15,8 +15,10 @@ import {
   BEST_FOR_SORT_RULES,
   BEST_FOR_USE_CASES,
   BEST_FOR_RETIRED_NESTED_PATHS,
+  BEGINNER_MAX_ENTRY_PRICE_EUR,
   BEGINNER_MAX_ENTRY_PRICE_USD,
   BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS,
+  beginnerEntryQuote,
   allBestForPaths,
   bestForIndexableFeatureLink,
   bestForPath,
@@ -243,6 +245,28 @@ ${body}
     }),
     { ok: false, viaProxy: false },
   )
+  // phaseEvaluationTimeLimits (schema) preferred over phasesDetail
+  assert.deepEqual(
+    productHasNoTimeLimit({
+      ...baseProduct,
+      phaseEvaluationTimeLimits: [
+        { phase: 1, days: null, unlimited: true, sourceUrl: 'https://example.com', checkedAt: '2026-11-02' },
+        { phase: 2, days: null, unlimited: true, sourceUrl: 'https://example.com', checkedAt: '2026-11-02' },
+      ],
+      phasesDetail: [{ phase: 1, evaluationTimeLimit: { days: 30, unlimited: false } }],
+      maxTradingDaysUnlimited: false,
+    }),
+    { ok: true, viaProxy: false },
+  )
+  assert.deepEqual(
+    productHasNoTimeLimit({
+      ...baseProduct,
+      phaseEvaluationTimeLimits: [
+        { phase: 1, days: 30, unlimited: false, sourceUrl: 'https://example.com', checkedAt: '2026-11-02' },
+      ],
+    }),
+    { ok: false, viaProxy: false },
+  )
   // Legacy proxy only when field absent
   assert.deepEqual(
     productHasNoTimeLimit({ ...baseProduct, maxTradingDaysUnlimited: true, maxTradingDays: null }),
@@ -277,6 +301,7 @@ ${body}
 {
   assert.equal(BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS, 5)
   assert.equal(BEGINNER_MAX_ENTRY_PRICE_USD, 99)
+  assert.equal(BEGINNER_MAX_ENTRY_PRICE_EUR, 99)
   const passingEn = listBeginnerFriendlyFirms(new Date(), { applyRussiaFilter: false })
   const passingRu = listBeginnerFriendlyFirms(new Date(), { applyRussiaFilter: true })
   console.log('  beginners EN pass:', passingEn.map(f => f.firmSlug).join(', ') || '(none)')
@@ -297,14 +322,17 @@ ${body}
     console.log(`  beginners target ${slug}: productPass=${productPass} ruFail=${JSON.stringify(firmRu)} enFail=${JSON.stringify(firmEn)}`, JSON.stringify(fails.filter(f => f.reasons.length).slice(0, 2)))
   }
 
-  // Hard product filter: BF has only priceEur → price-usd-missing
-  assert.equal(
-    getChallengesByFirm('bright-funded').every(p => beginnerProductFailures(p).includes('price-usd-missing')),
-    true,
-    'BrightFunded CFD must fail on missing priceUsd',
-  )
-  // CFT / FundingPips / Hash Hedge pass product filter
-  for (const slug of ['crypto-fund-trader', 'fundingpips', 'hash-hedge']) {
+  // BF CFD: EUR-only ≤ €99 → qualifies via EUR cap (never converts)
+  {
+    const bfProducts = getChallengesByFirm('bright-funded')
+    assert.ok(bfProducts.some(isBeginnerFriendlyProduct), 'BrightFunded CFD should pass via EUR cap')
+    const pass = bfProducts.find(isBeginnerFriendlyProduct)
+    const quote = beginnerEntryQuote(pass)
+    assert.equal(quote?.currency, 'EUR')
+    assert.ok(quote.price <= BEGINNER_MAX_ENTRY_PRICE_EUR)
+    console.log('  BrightFunded EUR quote', quote)
+  }
+  for (const slug of ['crypto-fund-trader', 'fundingpips', 'hash-hedge', 'bright-funded']) {
     assert.ok(
       getChallengesByFirm(slug).some(isBeginnerFriendlyProduct),
       `${slug} should pass beginners product hard filters`,
@@ -347,14 +375,20 @@ ${body}
     indexable: enModel.indexable,
     reasons: enModel.reasons,
   })
-  assert.ok(ruModel.ranked.length >= 3, 'RU beginners should include FP, CFT, HH')
+  assert.ok(ruModel.ranked.length >= 4, 'RU beginners should include FP, CFT, HH, BF')
   assert.ok(ruModel.ranked.every(r => r.russiaStatus !== 'restricted'))
   assert.ok(ruModel.excludedRestrictedFirms?.some(f => f.slug === 'the5ers'))
-  // unclear → no RU CTA; available → CTA
+  // Site rule 2026-10-14: every listed RU firm gets a sign-up CTA (+ badge via RuGoLink)
   for (const row of ruModel.ranked) {
-    if (row.russiaStatus === 'available') assert.equal(row.showRuSignupCta, true, row.slug)
-    if (row.russiaStatus === 'unclear') assert.equal(row.showRuSignupCta, false, row.slug)
+    assert.equal(row.showRuSignupCta, true, `${row.slug} must keep RU CTA`)
   }
+  assert.ok(ruModel.ranked.some(r => r.slug === 'bright-funded'), 'BF CFD now on RU beginners')
+  const bfRank = ruModel.ranked.findIndex(r => r.slug === 'bright-funded') + 1
+  console.log('  BrightFunded RU beginners rank', bfRank, '/', ruModel.ranked.length, 'sortKeys=', ruModel.ranked[bfRank - 1]?.sortKeys)
+  // Excluded restricted note carries reviewPath when RU obzor exists
+  const the5ex = ruModel.excludedRestrictedFirms?.find(f => f.slug === 'the5ers')
+  assert.ok(the5ex, 'The5ers on excluded list')
+  assert.equal(the5ex.reviewPath, '/ru/obzor-the5ers')
   // EN includes restricted firms that pass product filters (no Russia filter)
   assert.ok(enModel.ranked.some(r => r.slug === 'the5ers'), 'EN beginners keeps The5ers (no Russia filter)')
   // Ranking deterministic + no affiliate in sort keys
