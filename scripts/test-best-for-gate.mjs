@@ -13,6 +13,7 @@ import {
   BEST_FOR_MIN_FIRMS,
   BEST_FOR_SLUGS,
   BEST_FOR_SORT_RULES,
+  RU_BEST_FOR_CTA_RANK_NOTE,
   BEST_FOR_USE_CASES,
   BEST_FOR_RETIRED_NESTED_PATHS,
   BEGINNER_MAX_ENTRY_PRICE_EUR,
@@ -385,6 +386,15 @@ ${body}
   assert.ok(ruModel.ranked.some(r => r.slug === 'bright-funded'), 'BF CFD now on RU beginners')
   const bfRank = ruModel.ranked.findIndex(r => r.slug === 'bright-funded') + 1
   console.log('  BrightFunded RU beginners rank', bfRank, '/', ruModel.ranked.length, 'sortKeys=', ruModel.ranked[bfRank - 1]?.sortKeys)
+  assert.deepEqual(
+    ruModel.ranked.map(r => r.slug),
+    ['bright-funded', 'crypto-fund-trader', 'hash-hedge', 'fundingpips'],
+    'RU beginners CTA order: available+pin first, then data within groups',
+  )
+  assert.ok(BEST_FOR_SORT_RULES.beginners.ru.includes(RU_BEST_FOR_CTA_RANK_NOTE))
+  assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES.beginners.ru))
+  // EN keeps pure data order (BrightFunded not forced first)
+  assert.notEqual(enModel.ranked[0]?.slug, 'bright-funded')
   // Excluded restricted note carries reviewPath when RU obzor exists
   const the5ex = ruModel.excludedRestrictedFirms?.find(f => f.slug === 'the5ers')
   assert.ok(the5ex, 'The5ers on excluded list')
@@ -486,6 +496,8 @@ ${body}
 for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(BEST_FOR_SORT_RULES[id]?.en)
   assert.ok(BEST_FOR_SORT_RULES[id]?.ru)
+  assert.ok(BEST_FOR_SORT_RULES[id].ru.includes(RU_BEST_FOR_CTA_RANK_NOTE), `${id} RU sort rule must disclose Russia-open + BrightFunded pin`)
+  assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES[id].ru), `${id} RU must not claim affiliate does not affect order`)
 }
 
 assertVerdictsUnchanged(verdictsBefore)

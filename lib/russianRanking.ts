@@ -1,4 +1,4 @@
-import config from '../content/data/ru-ranking.json'
+import config from '../content/data/ru-ranking.json' with { type: 'json' }
 
 export type RankingRussiaStatus = 'available' | 'restricted' | 'unclear' | 'unverified'
 

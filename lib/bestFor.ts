@@ -10,6 +10,7 @@ import {
   type RuleAvailability,
 } from './firms.ts'
 import { firmSlug } from './firmSlug.ts'
+import { activePinIndex, type RankingRussiaStatus } from './russianRanking.ts'
 import { RU_REVIEW_FIRMS } from './ruRelatedLinks.ts'
 import { loadVerdict, type Verdict } from './verdicts.ts'
 
@@ -23,11 +24,17 @@ import { loadVerdict, type Verdict } from './verdicts.ts'
  * comparison fields across ≥2 ranked firms. Hreflang only when BOTH langs pass.
  *
  * Sort rules are explicit per id (see BEST_FOR_SORT_RULES) and rendered on the
- * page. Affiliate status never affects order.
+ * page. EN order is pure data. RU order: Russia-open firms first (active
+ * RU_RANKING_PINS ahead within that group), then non-open — data sort inside
+ * each group (lib/russianRanking.ts activePinIndex; RuGoLink 2026-10-14).
  */
 
 export const BEST_FOR_MIN_DIFF_FIELDS = 5
 export const BEST_FOR_MIN_FIRMS = 2
+
+/** Honest RU ranking disclosure appended to every BEST_FOR_SORT_RULES.ru string. */
+export const RU_BEST_FOR_CTA_RANK_NOTE =
+  'Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.'
 
 /**
  * Beginners — RU SEO Lead (2026-11-02).
@@ -96,35 +103,35 @@ export const BEST_FOR_SLUGS: Record<BestForUseCaseId, { en: string | null; ru: s
 export const BEST_FOR_SORT_RULES: Record<BestForUseCaseId, { en: string; ru: string }> = {
   eas: {
     en: 'How we ranked: highest profit split first, then fewest min trading days, then firm name A–Z. Editorial score and affiliate status are not used.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум торговых дней, затем имя A–Z. Редакционный скор и партнёрский статус не влияют.',
+    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум торговых дней, затем имя A–Z. Редакционный скор не влияет. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   'news-trading': {
     en: 'How we ranked: highest profit split first, then fewest days to first payout, then firm name A–Z. Affiliate status is not used.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z. Партнёрский статус не влияет.',
+    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   scalping: {
     en: 'How we ranked: products with minHoldSeconds = 0 first (explicitly no minimum hold), then highest profit split, then firm name A–Z. When minHoldSeconds is absent we fall back to a labelled proxy; null never ranks as zero.',
-    ru: 'Как ранжируем: сначала продукты с minHoldSeconds = 0 (явный «без минимума»), затем больший сплит, затем имя A–Z. Если поля ещё нет — помеченный прокси; null никогда не равен нулю.',
+    ru: 'Как ранжируем: сначала продукты с minHoldSeconds = 0 (явный «без минимума»), затем больший сплит, затем имя A–Z. Если поля ещё нет — помеченный прокси; null никогда не равен нулю. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   beginners: {
     en: 'How we ranked: no evaluation time limit first, then min trading days ≤5 preferred (then fewer days), then static/EOD drawdown preferred (null/unknown last), then fewest days to first payout, then lowest entry as a fraction of its own currency cap (USD ≤$99 or EUR ≤€99 — never converted), then firm name A–Z. Affiliate status is not used. Hard filters: russiaStatus ≠ restricted on RU only, price within the matching currency cap, required price present, fresh Tracker capture.',
-    ru: 'Как ранжируем: сначала без лимита срока оценки, затем минимум дней ≤5, затем static/EOD (null/unknown в конце), затем меньше дней до первой выплаты, затем меньшая доля от своего ценового потолка (USD ≤$99 или EUR ≤€99 — без конвертации), затем имя A–Z. Партнёрский статус не влияет. Жёсткие фильтры: russiaStatus ≠ restricted (только RU), цена в пределах потолка своей валюты, цена обязательна, свежий Tracker.',
+    ru: 'Как ранжируем: сначала без лимита срока оценки, затем минимум дней ≤5, затем static/EOD (null/unknown в конце), затем меньше дней до первой выплаты, затем меньшая доля от своего ценового потолка (USD ≤$99 или EUR ≤€99 — без конвертации), затем имя A–Z. Жёсткие фильтры: russiaStatus ≠ restricted (только RU), цена в пределах потолка своей валюты, цена обязательна, свежий Tracker. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   'weekly-payouts': {
     en: 'How we ranked: highest profit split first, then fewest days to first payout, then firm name A–Z. Only payoutFrequency = weekly qualifies.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z. Подходит только payoutFrequency = weekly.',
+    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z. Подходит только payoutFrequency = weekly. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   'no-time-limit': {
     en: 'How we ranked: highest profit split first, then fewest min trading days, then firm name A–Z among products with an unlimited evaluation time limit.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум дней, затем имя A–Z среди продуктов без лимита срока оценки.',
+    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум дней, затем имя A–Z среди продуктов без лимита срока оценки. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   'low-drawdown': {
     en: 'How we ranked: among %-based products, lowest maxLossPct first, then lowest dailyLossPct, then firm name A–Z. USD-cap (futures) products are listed in a separate unranked group — dollar caps are never converted to %.',
-    ru: 'Как ранжируем: среди продуктов с % — сначала меньший maxLossPct, затем dailyLossPct, затем имя A–Z. Продукты с USD-капами (фьючерсы) — отдельная группа без ранга; доллары в % не переводим.',
+    ru: 'Как ранжируем: среди продуктов с % — сначала меньший maxLossPct, затем dailyLossPct, затем имя A–Z. Продукты с USD-капами (фьючерсы) — отдельная группа без ранга; доллары в % не переводим. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
   'small-accounts': {
     en: 'How we ranked: smallest available accountSizes.sizeUsd first, then highest profit split, then firm name A–Z. Price is not used for this ranking.',
-    ru: 'Как ранжируем: сначала наименьший accountSizes.sizeUsd, затем больший сплит, затем имя A–Z. Цена в этом рейтинге не используется.',
+    ru: 'Как ранжируем: сначала наименьший accountSizes.sizeUsd, затем больший сплит, затем имя A–Z. Цена в этом рейтинге не используется. Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр BrightFunded. Внутри групп порядок определяется данными, указанными выше.',
   },
 }
 
@@ -1348,6 +1355,28 @@ export function rankBestFor(
     return a.firm.name.localeCompare(b.firm.name)
   }
   ranked.sort(byRule)
+  // RU CTA standing rule (RuGoLink 2026-10-14): available first, active pins
+  // ahead within that group, then existing data sort inside each group.
+  // EN keeps the pure data order above.
+  if (lang === 'ru') {
+    const statusBySlug = new Map<string, RankingRussiaStatus>(
+      ranked.map(row => [row.slug, row.russiaStatus]),
+    )
+    const statusFor = (slug: string): RankingRussiaStatus => statusBySlug.get(slug) ?? 'unverified'
+    ranked.sort((a, b) => {
+      const aOpen = statusFor(a.slug) === 'available'
+      const bOpen = statusFor(b.slug) === 'available'
+      if (aOpen !== bOpen) return aOpen ? -1 : 1
+      if (aOpen) {
+        const pinA = activePinIndex(a.slug, statusFor)
+        const pinB = activePinIndex(b.slug, statusFor)
+        const pinRank = (pin: number) => (pin < 0 ? Number.POSITIVE_INFINITY : pin)
+        const pinCmp = pinRank(pinA) - pinRank(pinB)
+        if (pinCmp !== 0) return pinCmp
+      }
+      return byRule(a, b)
+    })
+  }
   unrankedUsd.sort((a, b) => a.firm.name.localeCompare(b.firm.name))
   excludedRestricted.sort((a, b) => a.name.localeCompare(b.name))
   return { ranked, unrankedUsd, excludedRestricted }
