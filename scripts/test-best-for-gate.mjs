@@ -13,7 +13,9 @@ import {
   BEST_FOR_MIN_FIRMS,
   BEST_FOR_SLUGS,
   BEST_FOR_SORT_RULES,
-  RU_BEST_FOR_CTA_RANK_NOTE,
+  RU_BEST_FOR_CTA_RANK_NOTE_OPEN,
+  ruBestForCtaRankNote,
+  ruBestForCtaRankNotePinned,
   BEST_FOR_USE_CASES,
   BEST_FOR_RETIRED_NESTED_PATHS,
   BEGINNER_MAX_ENTRY_PRICE_EUR,
@@ -391,8 +393,9 @@ ${body}
     ['bright-funded', 'crypto-fund-trader', 'hash-hedge', 'fundingpips'],
     'RU beginners CTA order: available+pin first, then data within groups',
   )
-  assert.ok(BEST_FOR_SORT_RULES.beginners.ru.includes(RU_BEST_FOR_CTA_RANK_NOTE))
   assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES.beginners.ru))
+  assert.ok(ruModel.sortRule.includes(ruBestForCtaRankNotePinned('BrightFunded')))
+  assert.ok(!BEST_FOR_SORT_RULES.beginners.ru.includes('Сначала идут фирмы'))
   // EN keeps pure data order (BrightFunded not forced first)
   assert.notEqual(enModel.ranked[0]?.slug, 'bright-funded')
   // Excluded restricted note carries reviewPath when RU obzor exists
@@ -492,12 +495,55 @@ ${body}
   }
 }
 
-// Sort rules present for every id
+// Sort rules present for every id (base RU copy has no CTA overlay — that is data-driven)
 for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(BEST_FOR_SORT_RULES[id]?.en)
   assert.ok(BEST_FOR_SORT_RULES[id]?.ru)
-  assert.ok(BEST_FOR_SORT_RULES[id].ru.includes(RU_BEST_FOR_CTA_RANK_NOTE), `${id} RU sort rule must disclose Russia-open + BrightFunded pin`)
+  assert.ok(!BEST_FOR_SORT_RULES[id].ru.includes('Сначала идут фирмы'), `${id} base RU rule must not hardcode CTA overlay`)
   assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES[id].ru), `${id} RU must not claim affiliate does not affect order`)
+}
+
+// ruBestForCtaRankNote — three cases (pin / open-no-pin / no-open)
+{
+  const pinName = 'BrightFunded'
+  const withPin = ruBestForCtaRankNote([
+    { slug: 'bright-funded', russiaStatus: 'available', firm: { name: pinName } },
+    { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+    { slug: 'fundingpips', russiaStatus: 'unclear', firm: { name: 'FundingPips' } },
+  ])
+  assert.equal(withPin, ruBestForCtaRankNotePinned(pinName))
+  assert.match(withPin, /наш партнёр BrightFunded/)
+
+  const openNoPin = ruBestForCtaRankNote([
+    { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+    { slug: 'hash-hedge', russiaStatus: 'unclear', firm: { name: 'Hash Hedge' } },
+  ])
+  assert.equal(openNoPin, RU_BEST_FOR_CTA_RANK_NOTE_OPEN)
+  assert.ok(!openNoPin.includes('партнёр'))
+
+  const noOpen = ruBestForCtaRankNote([
+    { slug: 'fundednext', russiaStatus: 'restricted', firm: { name: 'FundedNext' } },
+    { slug: 'fundingpips', russiaStatus: 'unclear', firm: { name: 'FundingPips' } },
+  ])
+  assert.equal(noOpen, '')
+
+  // Pin present but not available → treat as open-no-pin when another firm is open
+  const pinRestricted = ruBestForCtaRankNote([
+    { slug: 'bright-funded', russiaStatus: 'restricted', firm: { name: pinName } },
+    { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+  ])
+  assert.equal(pinRestricted, RU_BEST_FOR_CTA_RANK_NOTE_OPEN)
+
+  // Live pages: pin / open-no-pin / none
+  const beginnersRu = buildBestForPageModel('beginners', 'ru')
+  assert.ok(beginnersRu.sortRule.includes(ruBestForCtaRankNotePinned('BrightFunded')))
+  const newsRu = buildBestForPageModel('news-trading', 'ru')
+  assert.ok(newsRu.sortRule.includes(RU_BEST_FOR_CTA_RANK_NOTE_OPEN))
+  assert.ok(!newsRu.sortRule.includes('партнёр'))
+  const weeklyRu = buildBestForPageModel('weekly-payouts', 'ru')
+  assert.equal(weeklyRu.sortRule, BEST_FOR_SORT_RULES['weekly-payouts'].ru)
+  assert.ok(!weeklyRu.sortRule.includes('Сначала идут фирмы'))
+  console.log('  ruBestForCtaRankNote cases: pin / open-no-pin / no-open OK')
 }
 
 assertVerdictsUnchanged(verdictsBefore)
