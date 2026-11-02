@@ -22,6 +22,7 @@ import {
 } from '@/lib/localizedRoutes'
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
 import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
+import { getBestForPageModels, bestForRoutePair } from '@/lib/bestFor'
 import { RUSSIAN_ROUTE_EXTRA_EDITORIAL } from '@/lib/russianRouteLastmod'
 import { fileSource, firmSources, firmListingOnlySources, landingFirmChallengeSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
 
@@ -263,9 +264,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(model.ru && !model.ru.indexable ? [model.ru.path] : []),
   ]))
 
+  // Best-for-X pages: only indexable when writer verdict + ≥5 differing fields (lib/bestFor.ts).
+  const bestForModels = getBestForPageModels()
+  const bestForRoutes: MetadataRoute.Sitemap = bestForModels
+    .filter(model => model.indexable)
+    .map(model => ({
+      url: `${BASE_URL}${model.path}`,
+      lastModified: lm(
+        `${BASE_URL}${model.path}`,
+        model.lastReviewed,
+        [
+          data('firms.json'),
+          fileSource(`content/verdicts/best-for/${model.useCase.id}${model.lang === 'ru' ? '.ru' : ''}.md`),
+        ],
+      ),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    }))
+  const nonIndexableBestForPaths = new Set(
+    bestForModels.filter(model => !model.indexable).map(model => model.path),
+  )
+
   const baseRoutes: MetadataRoute.Sitemap = [
     ...staticRoutes,
     ...rulesRoutes,
+    ...bestForRoutes,
     ...featureRoutes,
     ...indiaMatchupRoutes,
     ...landingRoutes,
@@ -323,6 +346,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes, ...russianClosedFirmsRoutes]) {
     // A noindex rules page never enters the sitemap, even if its RU path gets registered early.
     if (nonIndexableRulesPaths.has(new URL(route.url).pathname)) continue
+    if (nonIndexableBestForPaths.has(new URL(route.url).pathname)) continue
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)
@@ -341,7 +365,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...uniqueRoutes.values()].map(route => {
     const pathname = new URL(route.url).pathname
-    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname)
+    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname) ?? bestForRoutePair(pathname)
     if (!routePair) return route
     // The home page canonical renders without a trailing slash, so its alternates must too.
     const pair = { en: routePair.en === '/' ? '' : routePair.en, ru: routePair.ru }

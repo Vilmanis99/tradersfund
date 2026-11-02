@@ -68,6 +68,7 @@
     "test:rules-pages": "node scripts/test-rules-pages.mjs",
     "test:split-tiers-display": "node scripts/test-split-tiers-display.mjs",
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",
+    "test:best-for-gate": "node scripts/test-best-for-gate.mjs",
     "test:ru-rules-routes": "node scripts/test-ru-rules-routes.mjs",
     "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs",
     "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs",
