@@ -104,6 +104,7 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-topstep',
   '/ru/obzor-crypto-fund-trader',
   '/ru/obzor-hash-hedge',
+  '/ru/obzor-blue-guardian',
   '/ru/obzor-spice-prop',
   '/ru/obzor-goat-funded-trader',
   '/ru/otzyvy-prop-firm',

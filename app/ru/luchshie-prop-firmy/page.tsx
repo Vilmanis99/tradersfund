@@ -64,7 +64,7 @@ const RU_ACCESS_EXTRA: RuAccessRow[] = [
   { name: 'The5ers', status: 'restricted', note: 'Россия и Беларусь в списке «Forbidden Territories»' },
   { name: 'Funded Trading Plus', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },
   { name: 'Goat Funded Trader', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026', review: russianPublishedHref('/ru/obzor-goat-funded-trader') ?? undefined },
-  { name: 'Blue Guardian', status: 'unclear', note: 'Prop Firm Tracker, проверено 14.10.2026: доступ для РФ не ясен' },
+  { name: 'Blue Guardian', status: 'unclear', note: 'Prop Firm Tracker, проверено 14.10.2026: доступ для РФ не ясен', review: russianPublishedHref('/ru/obzor-blue-guardian') ?? undefined },
 ]
 const RU_ACCESS_STATUS_ORDER: RuAccessRow['status'][] = ['available', 'unclear', 'unverified', 'restricted']
 /**

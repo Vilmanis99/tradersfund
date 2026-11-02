@@ -62,6 +62,7 @@ export const RU_REVIEW_FIRMS: ReadonlyArray<{ path: string; firm: string; name: 
   { path: '/ru/obzor-bright-funded', firm: 'bright-funded', name: 'BrightFunded' },
   { path: '/ru/obzor-crypto-fund-trader', firm: 'crypto-fund-trader', name: 'Crypto Fund Trader' },
   { path: '/ru/obzor-hash-hedge', firm: 'hash-hedge', name: 'Hash Hedge' },
+  { path: '/ru/obzor-blue-guardian', firm: 'blue-guardian', name: 'Blue Guardian' },
   { path: '/ru/obzor-spice-prop', firm: 'spice-prop', name: 'Spice Prop' },
   { path: '/ru/obzor-goat-funded-trader', firm: 'goat-funded-trader', name: 'Goat Funded Trader' },
   { path: '/ru/obzor-fundingpips', firm: 'fundingpips', name: 'FundingPips' },
@@ -233,6 +234,13 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     rel('/ru/luchshie-kripto-prop-firmy', 'Крипто проп компании'),
     rel('/ru/prop-firmy-bez-kyc', 'Проп-фирмы и KYC'),
   ],
+  '/ru/obzor-blue-guardian': [
+    alt('/ru/obzor-bright-funded', 'BrightFunded отзывы'),
+    alt('/ru/obzor-crypto-fund-trader', 'Обзор Crypto Fund Trader'),
+    rel('/ru/luchshie-prop-firmy', 'лучшие проп-фирмы'),
+    rel('/ru/vyplaty-prop-firm', 'как выводят прибыль проп-фирмы'),
+    rel('/ru/otzyvy-prop-firm', 'отзывы трейдеров о проп-фирмах'),
+  ],
   '/ru/obzor-hash-hedge': [
     alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),
     alt('/ru/obzor-crypto-fund-trader', 'CFT проп'),
@@ -261,6 +269,7 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     ...RUSSIA_ALTERNATIVES,
     rel('/ru/luchshie-prop-firmy', 'Рейтинг проп-компаний'),
     rel('/ru/otzyvy-prop-firm', 'Отзывы о проп-фирмах'),
+    rel('/ru/obzor-blue-guardian', 'Blue Guardian отзывы'),
   ],
   '/ru/fundingpips-pravila': [
     alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),

@@ -1477,6 +1477,40 @@ const russianExpectations = new Map([
       'по данным на 19.10.2026',
     ],
   }],
+  ['/ru/obzor-blue-guardian', {
+    title: 'Blue Guardian: обзор 2026 — правила, цены и доступ из РФ',
+    h1: 'Blue Guardian: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="blue-guardian"',
+      'data-russian-bg-verdict="summary"',
+      'data-russian-bg-access="unclear"',
+      'data-russian-bg-futures-access="restricted"',
+      'data-russia-status="unclear"',
+      'data-russia-firm="blue-guardian"',
+      'РФ: неясно',
+      'Недоступно для РФ',
+      'по данным на 28.10.2026',
+      'по данным на 01.11.2026',
+      '"datePublished":"2026-11-03"',
+      'data-russian-bg-product-count="8"',
+      'data-russian-bg-legacy="2026-10-28"',
+      'data-russian-bg-conflicts="2026-10-28"',
+      'Скидка зависит от действующего промокода',
+      'Условия расходятся, уточните у поддержки',
+      'на сайте не указано',
+      'data-russian-bg-example="2-step-standard-100k"',
+      'Пример, не прогноз',
+      'data-russian-bg-payout-risks="stage-checks"',
+      'data-russian-bg-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-blue-guardian-alternative-bright-funded"',
+      'data-russian-bg-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="blue-guardian-review"',
+      'data-russian-risk-disclaimer="blue-guardian-review"',
+      'Iconic Exchange FZCO',
+      'Проверено 28.10.2026 по официальным страницам',
+    ],
+  }],
   ['/ru/obzor-spice-prop', {
     title: 'Spice Prop: отзывы и обзор 2026 — условия и доступ из РФ',
     h1: 'Spice Prop (Спайс Проп): обзор и отзывы 2026',
@@ -2130,7 +2164,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 
