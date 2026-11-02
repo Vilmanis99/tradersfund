@@ -1045,9 +1045,8 @@ const russianExpectations = new Map([
     ],
   }],
   ['/ru/promokody-prop-firm', {
-    // Month of the build/regeneration (lib/ruDate.ts ruMonthYear, Europe/Riga); the crawl runs against a fresh build.
-    title: `Промокоды проп-фирм — ${ruMonthYearForCrawl()}: коды с датой проверки`,
-    h1: `Промокоды проп-фирм — ${ruMonthYearForCrawl()}`,
+    title: 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ',
+    h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
       'data-russian-country-boundary="deals-not-access"',

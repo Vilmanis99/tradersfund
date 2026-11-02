@@ -20,7 +20,7 @@ import { FUNDEDNEXT_RU_ACCESS_NOTE } from '@/components/RuFundedNextAccessCaveat
 import { ruNotListedDates } from '@/lib/ruBasisWording'
 import { ruAccessDate } from '@/lib/ruAccessLabel'
 import { RuAccessBadgeView } from '@/components/RuAccessBadgeView'
-import { formatRuDate, ruMonthYear } from '@/lib/ruDate'
+import { formatRuDate } from '@/lib/ruDate'
 
 export const revalidate = 86400
 
@@ -28,7 +28,7 @@ const PATH = '/ru/promokody-prop-firm'
 // Месяц выпуска берётся из даты сборки/перегенерации (Europe/Riga): сборка в ноябре даёт «ноябрь 2026».
 // Коды — только из content/data/deals.json; даты проверки — из deals.json (verifiedOn), сверки Tracker
 // (content/data/ru-promo-recheck.json) и firms.json discountCodeCapturedAt.
-const MONTH_LABEL = ruMonthYear()
+const MONTH_LABEL = 'октябрь 2026'
 // Per-firm Russia-source dates: CFT from firms.json russiaSourceCapturedAt (FAQ/Terms 7.3 re-read 23.10.2026,
 // research/russia-evidence-brightfunded-cft-2026-10-23.md); FundingPips from russian-fundingpips-access-evidence.json.
 const CFT_RU_SOURCE_DATE = ruAccessDate(russiaSourceDateFor('crypto-fund-trader') ?? promoRecheck.checkedAt)
@@ -39,18 +39,12 @@ const FTMO_CHECKED = russiaSourceDateFor('ftmo') ?? promoRecheck.checkedAt
 const BF_FUTURES_RU_RESTRICTED = futuresRestrictedInRussia('bright-funded')
 const BF_FUTURES_FIRM = getAllFirms().find(firm => firmSlug(firm.name) === 'bright-funded')
 const BF_FUTURES_CHECKED = BF_FUTURES_FIRM?.futuresCountriesRestrictedCapturedAt ?? null
-// TITLE/DESCRIPTION — статичные строки (их читает аудит, 120–160 и ≤60 символов) с месяцем выпуска ISSUE_MONTH;
-// на странице месяц подставляется из ruMonthYear(), поэтому сборка в ноябре даёт «ноябрь 2026», в декабре — «декабрь 2026».
-// Самый длинный месяц («сентябрь») удлиняет строки на 2 символа: DESCRIPTION держим ≤158 символов.
-const ISSUE_MONTH = 'ноябрь 2026'
-const TITLE = 'Промокоды проп-фирм — ноябрь 2026: коды с датой проверки'
-const DESCRIPTION = 'Промокоды проп-фирм, ноябрь 2026, с датой проверки: BrightFunded и Crypto Fund Trader — РФ нет в списках ограничений. Upscale: статус неясен. Почему нет FTMO.'
-const PAGE_TITLE = TITLE.replace(ISSUE_MONTH, MONTH_LABEL)
-const PAGE_DESCRIPTION = DESCRIPTION.replace(ISSUE_MONTH, MONTH_LABEL)
+const TITLE = 'Промокоды проп-фирм — октябрь 2026: BrightFunded для РФ'
+const DESCRIPTION = 'Промокоды проп-фирм, октябрь 2026: BrightFunded и Crypto Fund Trader — РФ нет в их списках ограничений. У Upscale статус для РФ неясен. Почему нет FTMO.'
 
 export const metadata: Metadata = {
-  title: { absolute: PAGE_TITLE },
-  description: PAGE_DESCRIPTION,
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   keywords: [
     'промокоды проп фирм',
     'промокод fundingpips',
@@ -60,8 +54,8 @@ export const metadata: Metadata = {
     'промокод ftmo',
   ],
   alternates: { canonical: PATH, languages: getLanguageAlternates(PATH) },
-  openGraph: { title: PAGE_TITLE, description: PAGE_DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
-  twitter: { card: 'summary_large_image', title: PAGE_TITLE, description: PAGE_DESCRIPTION },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', locale: 'ru_RU' },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
 }
 
 type HubFirm = {
@@ -216,8 +210,8 @@ export default function RussianPromoHubPage() {
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
+    headline: TITLE,
+    description: DESCRIPTION,
     url: `https://tradersfundhub.com${PATH}`,
     inLanguage: 'ru',
     author: { '@type': 'Person', name: 'Edris Derakhshi', url: 'https://tradersfundhub.com/authors/edris-derakhshi' },
@@ -235,7 +229,7 @@ export default function RussianPromoHubPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-promo-hub={latestCheck}>
           <div className="ru-eyebrow"><CalendarCheck size={14} aria-hidden="true" /> Выпуск: {MONTH_LABEL} · последняя проверка кодов {formatRuDate(latestCheck)}</div>
-          <h1>Промокоды проп-фирм — {MONTH_LABEL}</h1>
+          <h1>Промокоды проп-фирм — октябрь 2026</h1>
           <p className="ru-lead">
             Большинство «промокодов» в выдаче — это коды без даты, которые давно не работают. Здесь их нет: каждый код
             стоит рядом с датой, когда мы сверили его условия на официальной странице фирмы. У каждой фирмы — отметка доступа из РФ: это страница для русскоязычных трейдеров в любой стране.
