@@ -33,15 +33,16 @@ export const metadata: Metadata = {
 /**
  * Facts: Prop Firm Tracker final capture /workspace/ru-data/2026-10-27-goat-funded-trader-final.md
  * (+ interim 2026-10-26) and content/data/challenges/_captures/goat-funded-trader-2026-10-27.json;
- * list prices and the restricted-countries list re-checked 30.10.2026 (evidence goat-2026-10-30/VERDICT.md).
+ * list prices re-checked 02.11.2026 (evidence goat-2026-11-02/premium-price-diff-2026-11-02.md);
+ * restricted-countries list re-checked 30.10.2026 (evidence goat-2026-10-30/VERDICT.md).
  * Goat is only in firms-pending.json (russiaStatus 'restricted'): info-only page, no /go route, no affiliate,
  * official link nofollow and below the alternatives. List prices only; the discount depends on the current code.
  */
 const CHECKED = '2026-10-27'
 const RESTRICTED_LIST_UPDATED = '2026-10-01'
 const DATE_PUBLISHED = '2026-11-02'
-/** Tracker re-check 30.10.2026 (evidence goat-2026-10-30/VERDICT.md): list prices unchanged; RU/BY/UA still restricted. */
-const PRICES_CHECKED = '2026-10-30'
+/** Tracker price re-check 02.11.2026 (evidence goat-2026-11-02/premium-price-diff-2026-11-02.md): Instant Premium list prices up; Blitz not in selector. Access still 30.10.2026. */
+const PRICES_CHECKED = '2026-11-02'
 const ACCESS_CHECKED = '2026-10-30'
 
 const HELP = 'https://help.goatfundedtrader.com/en/articles/'
@@ -156,7 +157,7 @@ const PROGRAMS: ProgramRow[] = [
     href: SOURCES.instantPremium,
     rules: 'без этапов; дневной 3%; 6% внутридневной trailing; плавающий убыток 1% (для покупок с 02.09.2026, раньше 1,5%); без consistency; 5 прибыльных дней',
     payout: '80% / 14 дней (для покупок с 21.09.2026, раньше 10)',
-    price: prices([['$5K', 158], ['$10K', 297], ['$15K', 397], ['$25K', 563], ['$50K', 813], ['$100K', 1_313], ['$150K', 2_130]]),
+    price: prices([['$5K', 196], ['$10K', 396], ['$15K', 516], ['$25K', 716], ['$50K', 1_036], ['$100K', 1_656], ['$150K', 2_696]]),
   },
   {
     key: 'instant-daily',
@@ -172,7 +173,7 @@ const PROGRAMS: ProgramRow[] = [
     href: SOURCES.blitz,
     rules: 'цель 3%; дневной 3%; 5% trailing; плавающий убыток 2% — жёсткое нарушение; 5 прибыльных дней; на funded consistency 15%; продаётся только в два «случайных» уикенда в месяц',
     payout: '80%',
-    price: prices([['$2,5K', 47], ['$5K', 77], ['$10K', 117], ['$25K', 247], ['$50K', 387], ['$100K', 617]]),
+    price: 'сезонная, цены на 30.10.2026 — на 02.11.2026 в селекторе не отображается',
   },
 ]
 
@@ -666,7 +667,7 @@ export default function RussianGoatFundedTraderReviewPage() {
         <section className="ru-section" id="sources">
           <div className="ru-shell ru-content">
             <h2>Источники и дата проверки</h2>
-            <p>Проверено {ruDate(CHECKED)} по официальным страницам Goat Funded Trader; лист-цены и список стран повторно сверены {ruDate(PRICES_CHECKED)}.</p>
+            <p>Проверено {ruDate(CHECKED)} по официальным страницам Goat Funded Trader; лист-цены повторно сверены {ruDate(PRICES_CHECKED)}; список стран — {ruDate(ACCESS_CHECKED)}.</p>
             <ul>
               <li>{src(SOURCES.terms, 'Terms and Conditions')}: §1.1, §2.2, §7.4, §7.5, §15.1 — {asOf(CHECKED)}.</li>
               <li>{src(SOURCES.model, 'Страница моделей')} и {src(SOURCES.home, 'главная')}: лист-цены — {asOf(PRICES_CHECKED)}; пометка «retired» у 3-Step, виджеты рейтингов, подвал — {asOf(CHECKED)}.</li>

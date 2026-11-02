@@ -1428,6 +1428,7 @@ const russianExpectations = new Map([
       'Россия в списке ограничений',
       'по данным на 27.10.2026',
       'по данным на 30.10.2026',
+      'по данным на 02.11.2026',
       '"datePublished":"2026-11-02"',
       'data-russian-goat-product-count="9"',
       'data-russian-goat-product="instant-daily"',
