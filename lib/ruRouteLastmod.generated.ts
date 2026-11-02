@@ -8,7 +8,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/ftmo-dlya-rossiyan': '2026-10-20',
   '/ru/ftmo-vs-bright-funded': '2026-10-30',
   '/ru/ftmo-vs-fundednext': '2026-10-21',
-  '/ru/funded-account': '2026-10-29',
+  '/ru/funded-account': '2026-11-02',
   '/ru/fundednext-mt5': '2026-10-20',
   '/ru/fundednext-stellar-instant': '2026-10-29',
   '/ru/fundednext-vs-bright-funded': '2026-10-20',
