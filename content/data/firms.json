@@ -131,16 +131,16 @@
     "russiaSourceQuote": "Residency-based restrictions Due to business decisions based on risk management considerations, FTMO does not provide FTMO CFDs to clients in the countries and regions listed in the following table. ... Russian Federation",
     "russiaSourceCapturedAt": "2026-10-21",
     "russiaSourceNote": "FAQ modified 2026-09-30, read 2026-10-21 from a US IP. The table also names Belarus and Kazakhstan, and Ukraine only for Crimea, Sevastopol, Donetsk, Kherson, Luhansk and Zaporizhzhia. The 75 stored countriesRestricted names match the page (4 names are stored in a longer form, e.g. 'Republic of Belarus').",
-    "legalEntity": "FTMO Evaluation Global s.r.o.",
+    "legalEntity": "FTMO s.r.o.",
     "headquarters": "Prague, Czech Republic",
     "country": "Czech Republic",
     "regulation": null,
     "corporateSourceUrl": "https://ftmo.com/en/imprint/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-11-02",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/ftmo-2026-10-14.json",
+      "capturedAt": "2026-11-02",
+      "captureFile": "content/data/challenges/_captures/ftmo-2026-11-02.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: static on FTMO Challenge: 2-Step; eod-trailing on FTMO Challenge: 1-Step",
@@ -153,16 +153,16 @@
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "[2-Step] The Maximum Loss rule establishes a static limit (the Maximum Loss Limit) below which your account equity ... cannot drop.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "[1-Step] The Maximum Loss rule establishes an end-of-day trailing limit (the Maximum Loss Limit) below which your account equity ... cannot drop.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -179,16 +179,16 @@
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "[2-Step] the Maximum Daily Loss Amount, which is 5% of the Initial Simulated Capital.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "[1-Step] the** Maximum Daily Loss Amount**, which is 3% of the Initial Simulated Capital.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -205,16 +205,16 @@
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
             "quote": "Max Loss 10%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
             "quote": "10% Max Loss to manage risk",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -231,16 +231,16 @@
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/trading-objectives/",
             "quote": "Consistency Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -257,16 +257,16 @@
             "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
             "quote": "FTMO Account initiated from the 1-Step FTMO Challenge and FTMO Instant Account: You receive a Reward according to 90% of the simulated profit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
             "quote": "FTMO Account initiated from the 2-Step FTMO Challenge: By default, you receive a Reward according to 80% of the simulated profit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -284,8 +284,8 @@
             "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
             "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
@@ -318,16 +318,16 @@
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
             "quote": "Restrictions for trading during selected news releases apply only to the Standard account type. The Swing account type have no restrictions on trading during news releases.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
             "quote": "For Standard accounts, these restrictions apply only once you start trading on an FTMO Account. They do not apply during the Evaluation Process.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -344,8 +344,8 @@
             "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
             "quote": "Overnight and weekend position restrictions apply only to the Standard account type. The Swing account type does not have any restrictions on holding positions overnight or over the weekend.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -376,22 +376,22 @@
             "sourceUrl": "https://ftmo.com/en/trading-platforms/",
             "quote": "FTMO MetaTrader 5 ... FTMO MetaTrader 4 ... TradingView ... FTMO cTrader",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://ftmo.com/en/trading-platforms/",
             "quote": "Execute your FTMO simulated trades directly on TradingView via the OANDA Broker Profile.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json"
     },
     "freeTrialPlatforms": [
       "MT4",
@@ -406,7 +406,8 @@
     "payoutMethodsCapturedAt": "2026-10-20",
     "payoutFrequencyNote": "On demand once 14 days have passed since the first trade (checked 2026-10-20). promo.ftmo.com: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\". ftmo.com FAQ (https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/): \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\"",
     "payoutFrequencySourceUrl": "https://promo.ftmo.com/m26b-practice-trading-without-risk/",
-    "payoutFrequencyQuote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade"
+    "payoutFrequencyQuote": "Rewards can be requested on demand after a minimum of 14 days from your first demo trade",
+    "corporateNote": "The FTMO Challenge Terms and Conditions (last updated 1 November 2026) state: \"We are FTMO s.r.o., a company established and existing under the laws of the Czech Republic, with its registered office at Purkyňova 2121/3, Nové Město, 110 00 Prague 1, Czech Republic, Identification No.: 092 13 651\". The Imprint (modified 2 November 2026) lists FTMO s.r.o. (Business ID 092 13 651, Prague) and JV Prop Corporation, a Delaware corporation. Until 2 November 2026 this field named FTMO Evaluation Global s.r.o., which no longer appears on the Imprint or in the Terms."
   },
   {
     "name": "FundedNext",
