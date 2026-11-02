@@ -54,13 +54,14 @@ export const BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS = 5
 /** @deprecated alias — prefer BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS */
 export const BEGINNER_MAX_MIN_TRADING_DAYS = BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS
 /**
- * USD entry ceiling. Fresh firm-mins 2026-11-02: p25≈29, p50≈38, p75≈97;
- * non-restricted: FP $29, CFT $40, HH $79. $99 ≈ p75.
+ * USD entry ceiling for the beginners hard filter (not a firm quote).
+ * Prices shown on pages always come from challenge captures — never hardcode
+ * a firm’s fee here.
  */
 export const BEGINNER_MAX_ENTRY_PRICE_USD = 99
 /**
- * EUR entry ceiling for products that publish only priceEur (never convert to USD).
- * Same numeric level as the USD cap so EUR-only CFDs (e.g. BrightFunded) can qualify.
+ * EUR entry ceiling for products that publish only a EUR fee (never convert to USD).
+ * Same numeric level as the USD cap so EUR-only CFDs can qualify.
  */
 export const BEGINNER_MAX_ENTRY_PRICE_EUR = 99
 /** Preferred drawdown types for the beginners ranking signal (not a hard filter). */
@@ -128,39 +129,39 @@ export const BEST_FOR_SLUGS: Record<BestForUseCaseId, { en: string | null; ru: s
   'small-accounts': { en: 'best-prop-firms-for-small-accounts', ru: null },
 }
 
-/** Visible "How we ranked" copy — must match the comparator exactly. */
+/** Visible "How we ranked" copy — plain reader language; must match the comparator. */
 export const BEST_FOR_SORT_RULES: Record<BestForUseCaseId, { en: string; ru: string }> = {
   eas: {
-    en: 'How we ranked: highest profit split first, then fewest min trading days, then firm name A–Z. Editorial score and affiliate status are not used.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум торговых дней, затем имя A–Z. Редакционный скор не влияет.',
+    en: 'How we ranked: highest profit share first, then fewer required trading days, then firm name A–Z. Editorial score and affiliate status are not used.',
+    ru: 'Как ранжируем: сначала большая доля прибыли, затем меньше обязательных торговых дней, затем имя A–Z. Редакционный скор не влияет.',
   },
   'news-trading': {
-    en: 'How we ranked: highest profit split first, then fewest days to first payout, then firm name A–Z. Affiliate status is not used.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z.',
+    en: 'How we ranked: highest profit share first, then fewer days to the first payout, then firm name A–Z. Affiliate status is not used.',
+    ru: 'Как ранжируем: сначала большая доля прибыли, затем меньше дней до первой выплаты, затем имя A–Z.',
   },
   scalping: {
-    en: 'How we ranked: products with minHoldSeconds = 0 first (explicitly no minimum hold), then highest profit split, then firm name A–Z. When minHoldSeconds is absent we fall back to a labelled proxy; null never ranks as zero.',
-    ru: 'Как ранжируем: сначала продукты с minHoldSeconds = 0 (явный «без минимума»), затем больший сплит, затем имя A–Z. Если поля ещё нет — помеченный прокси; null никогда не равен нулю.',
+    en: 'How we ranked: programmes that explicitly require no minimum hold time first, then highest profit share, then firm name A–Z. If a firm has not published a hold-time rule yet, we may use a labelled stand-in; a missing rule is never treated as “no minimum”.',
+    ru: 'Как ранжируем: сначала программы с явным «без минимума удержания», затем большая доля прибыли, затем имя A–Z. Если правило удержания ещё не опубликовано, возможен помеченный запасной критерий; отсутствие правила никогда не считается «без минимума».',
   },
   beginners: {
-    en: 'How we ranked: no evaluation time limit first, then min trading days ≤5 preferred (then fewer days), then static/EOD drawdown preferred (null/unknown last), then fewest days to first payout, then lowest entry as a fraction of its own currency cap (USD ≤$99 or EUR ≤€99 — never converted), then firm name A–Z. Affiliate status is not used. Hard filters: russiaStatus ≠ restricted on RU only, price within the matching currency cap, required price present, fresh Tracker capture.',
-    ru: 'Как ранжируем: сначала без лимита срока оценки, затем минимум дней ≤5, затем static/EOD (null/unknown в конце), затем меньше дней до первой выплаты, затем меньшая доля от своего ценового потолка (USD ≤$99 или EUR ≤€99 — без конвертации), затем имя A–Z. Жёсткие фильтры: russiaStatus ≠ restricted (только RU), цена в пределах потолка своей валюты, цена обязательна, свежий Tracker.',
+    en: 'How we ranked: programmes with no evaluation time limit first, then those with at most 5 minimum trading days (fewer ranks higher), then static or end-of-day drawdown (if the type is not stated, they rank last), then faster first payout, then lower entry relative to the cap in that programme’s own currency ($99 or €99, never converted), then firm name A–Z. Affiliate status is not used. We leave out programmes above the price cap, without a published price, or with data older than 30 days.',
+    ru: 'Как ранжируем: сначала программы без лимита срока оценки, затем с минимумом торговых дней не больше 5 (чем меньше, тем выше), затем со статичной просадкой или просадкой по закрытию дня (если тип не указан — в конце), затем с более быстрой первой выплатой, затем дешевле относительно потолка в своей валюте ($99 или €99, без конвертации). В список не попадают фирмы, закрытые для РФ, программы дороже потолка или без цены, а также данные старше 30 дней.',
   },
   'weekly-payouts': {
-    en: 'How we ranked: highest profit split first, then fewest days to first payout, then firm name A–Z. Only payoutFrequency = weekly qualifies.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньше дней до первой выплаты, затем имя A–Z. Подходит только payoutFrequency = weekly.',
+    en: 'How we ranked: highest profit share first, then fewer days to the first payout, then firm name A–Z. Only programmes that pay every week qualify.',
+    ru: 'Как ранжируем: сначала большая доля прибыли, затем меньше дней до первой выплаты, затем имя A–Z. Подходят только программы с еженедельными выплатами.',
   },
   'no-time-limit': {
-    en: 'How we ranked: highest profit split first, then fewest min trading days, then firm name A–Z among products with an unlimited evaluation time limit.',
-    ru: 'Как ранжируем: сначала больший сплит, затем меньший минимум дней, затем имя A–Z среди продуктов без лимита срока оценки.',
+    en: 'How we ranked: among programmes with no evaluation time limit — highest profit share first, then fewer required trading days, then firm name A–Z.',
+    ru: 'Как ранжируем: среди программ без лимита срока оценки — сначала большая доля прибыли, затем меньше обязательных дней, затем имя A–Z.',
   },
   'low-drawdown': {
-    en: 'How we ranked: among %-based products, lowest maxLossPct first, then lowest dailyLossPct, then firm name A–Z. USD-cap (futures) products are listed in a separate unranked group — dollar caps are never converted to %.',
-    ru: 'Как ранжируем: среди продуктов с % — сначала меньший maxLossPct, затем dailyLossPct, затем имя A–Z. Продукты с USD-капами (фьючерсы) — отдельная группа без ранга; доллары в % не переводим.',
+    en: 'How we ranked: among programmes that publish loss limits as percentages — lowest overall loss limit first, then lowest daily loss limit, then firm name A–Z. Programmes that only publish dollar caps (common on futures) are listed in a separate unranked group; we never convert dollars into percentages.',
+    ru: 'Как ранжируем: среди программ с лимитами убытка в процентах — сначала меньший общий лимит, затем меньший дневной, затем имя A–Z. Программы только с лимитами в долларах (часто фьючерсы) — отдельная группа без ранга; доллары в проценты не переводим.',
   },
   'small-accounts': {
-    en: 'How we ranked: smallest available accountSizes.sizeUsd first, then highest profit split, then firm name A–Z. Price is not used for this ranking.',
-    ru: 'Как ранжируем: сначала наименьший accountSizes.sizeUsd, затем больший сплит, затем имя A–Z. Цена в этом рейтинге не используется.',
+    en: 'How we ranked: smallest published account size first, then highest profit share, then firm name A–Z. Challenge price is not used for this ranking.',
+    ru: 'Как ранжируем: сначала наименьший опубликованный размер счёта, затем большая доля прибыли, затем имя A–Z. Цена челленджа в этом рейтинге не используется.',
   },
 }
 
@@ -877,16 +878,16 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы с EA 2026 — рейтинг',
     },
     metaDescription: {
-      en: 'Prop firms that explicitly allow Expert Advisors. Compare profit splits, payouts, drawdown and platforms — every figure from firm data.',
+      en: 'Prop firms that explicitly allow Expert Advisors. Compare profit shares, payouts, drawdown and platforms — every figure from firm data.',
       ru: 'Проп-фирмы, где явно разрешены советники. Сравниваем долю прибыли, выплаты, просадку и платформы — только из данных фирм.',
     },
     intro: {
-      en: 'These firms explicitly allow Expert Advisors on at least one current product. Restricted or unverified EA rules do not qualify.',
-      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Ограничения и «не подтверждено» не подходят.',
+      en: 'These firms explicitly allow Expert Advisors on at least one current product. Firms that ban EAs or leave EA permission unconfirmed do not qualify.',
+      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Запрет советников или «не подтверждено» не подходят.',
     },
     methodology: {
-      en: 'A firm qualifies when firms.json eaAllowed is true, or a challenge captured within 30 days sets EA permission to allowed.',
-      ru: 'Фирма попадает в список, если eaAllowed = true в firms.json или в челлендже не старше 30 дней EA явно разрешены.',
+      en: 'A firm qualifies when its profile marks EAs as allowed, or a challenge captured within 30 days explicitly allows EAs.',
+      ru: 'Фирма попадает в список, если в профиле советники разрешены или в челлендже не старше 30 дней это явно указано.',
     },
     fields: ['eaAllowed', 'profitSplitPct', 'drawdownType', 'payoutFrequency', 'platforms', 'newsTradingAllowed', 'phases', 'minTradingDays'],
     qualifies: allowsEa,
@@ -913,8 +914,8 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'В списке только фирмы с явным разрешением торговли на новостях на актуальном продукте.',
     },
     methodology: {
-      en: 'Qualification: newsTradingAllowed === true on the firm, or a fresh challenge with news allowed.',
-      ru: 'Критерий: newsTradingAllowed === true у фирмы или в свежем челлендже news = allowed.',
+      en: 'A firm qualifies when its profile allows news trading, or a challenge captured within 30 days explicitly allows it.',
+      ru: 'Фирма попадает в список, если в профиле разрешена торговля на новостях или это явно указано в челлендже не старше 30 дней.',
     },
     fields: ['newsTradingAllowed', 'profitSplitPct', 'drawdownType', 'payoutFrequency', 'payoutFirstDays', 'eaAllowed', 'platforms', 'minTradingDays', 'phases'],
     qualifies: allowsNews,
@@ -933,20 +934,20 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы для скальпинга 2026',
     },
     metaDescription: {
-      en: 'Prop firms with an explicit no-minimum hold (minHoldSeconds = 0). Null means not stated — never treated as zero.',
-      ru: 'Проп-фирмы с явным «без минимума удержания» (minHoldSeconds = 0). null = не заявлено, никогда не ноль.',
+      en: 'Prop firms with an explicit no-minimum hold time. A missing hold rule is never treated as “no minimum”.',
+      ru: 'Проп-фирмы с явным «без минимума удержания». Если правило не заявлено, это никогда не считается нулём.',
     },
     intro: {
-      en: 'Scalping-friendly means rules.minHoldSeconds === 0 on a fresh product. When Tracker has not filled the field yet, a labelled proxy may appear; null never counts as zero.',
-      ru: '«Для скальпинга» — это rules.minHoldSeconds === 0 на свежем продукте. Пока Tracker не заполнил поле, возможен помеченный прокси; null не равен нулю.',
+      en: 'Scalping-friendly means a fresh product that explicitly requires no minimum hold time. If the firm has not published that rule yet, a labelled stand-in may appear; a missing rule never counts as “no minimum”.',
+      ru: '«Для скальпинга» — свежий продукт с явным «без минимума удержания». Если правило ещё не опубликовано, возможен помеченный запасной критерий; отсутствие правила не считается «без минимума».',
     },
     methodology: {
-      en: 'Uses Tracker rules.minHoldSeconds (not scalpingAllowed). 0 = no minimum; null = not stated. Absent field → labelled proxy until Tracker lands.',
-      ru: 'Поле Tracker rules.minHoldSeconds (не scalpingAllowed). 0 = без минимума; null = не заявлено. Нет поля → помеченный прокси.',
+      en: 'We prefer the published minimum-hold rule on each product (not a generic “scalping allowed” flag). Explicit “no minimum” ranks first; not stated never ranks as zero. If the field is still missing, a labelled stand-in may qualify the firm.',
+      ru: 'Берём опубликованное правило минимального удержания по продукту (не общий флаг «скальпинг разрешён»). Явное «без минимума» — выше; «не заявлено» никогда не ноль. Если поля ещё нет — возможен помеченный запасной критерий.',
     },
     fields: ['minHoldSeconds', 'profitSplitPct', 'drawdownType', 'payoutFrequency', 'eaAllowed', 'newsTradingAllowed', 'platforms', 'minTradingDays', 'phases'],
     qualifies: scalpingProxy,
-    dataNote: 'Tracker fills rules.minHoldSeconds per product. Until present, a labelled proxy (news/EA + known payout) may qualify firms — never treat null as 0.',
+    dataNote: 'Minimum-hold rules come from product captures. Until published, a labelled stand-in (news/EA plus a known payout path) may qualify a firm — a missing rule is never treated as zero.',
     lastReviewed: '2026-11-02',
   },
   {
@@ -961,20 +962,20 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы для новичков 2026',
     },
     metaDescription: {
-      en: 'Low USD entry from fresh Tracker data. No time limit, min days, static/EOD and payout speed rank the list — they are not hard filters.',
-      ru: 'Низкий вход в USD по свежим данным Tracker. Без лимита срока, минимум дней, static/EOD и скорость выплат ранжируют список — это не жёсткие фильтры.',
+      en: 'Lower-priced prop programmes for beginners, ranked by time limit, trading days, drawdown type and payout speed from fresh firm data.',
+      ru: 'Более доступные программы для новичков: рейтинг по лимиту срока, торговым дням, типу просадки и скорости выплат по свежим данным фирм.',
     },
     intro: {
-      en: 'Beginner-friendly means a fresh product with a published USD entry at or under our ceiling. No time limit, low min trading days, static/EOD drawdown and payout speed rank the list — they are not hard filters. EN does not filter on Russia access.',
-      ru: '«Для новичков» — свежий продукт с опубликованным входом в USD не выше потолка. Без лимита срока, низкий минимум дней, static/EOD и скорость выплат ранжируют список, но не отсекают. Фирмы с russiaStatus = restricted исключены (список ниже).',
+      en: 'Beginner-friendly means a fresh product with a published entry fee at or under our ceiling. No time limit, low minimum trading days, static or end-of-day drawdown and payout speed rank the list — they are not hard filters. The English page does not filter on Russia access.',
+      ru: '«Для новичков» — свежий продукт с опубликованным входом не выше потолка. Без лимита срока, низкий минимум дней, статичная или дневная просадка и скорость выплат ранжируют список, но не отсекают. Фирмы, закрытые для РФ, исключены (список ниже).',
     },
     methodology: {
-      en: `Hard filters: fresh Tracker capture (isChallengeFresh, 30 days); price within BEGINNER_MAX_ENTRY_PRICE_USD ($${BEGINNER_MAX_ENTRY_PRICE_USD}) or BEGINNER_MAX_ENTRY_PRICE_EUR (€${BEGINNER_MAX_ENTRY_PRICE_EUR}) — USD preferred when both exist, never convert. Ranking: unlimited → minDays≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} → static|eod-trailing → payoutFirstDays → entry as fraction of own cap. Russia filter RU-only. Every RU listed firm gets a /go/ CTA + Russia-access badge.`,
-      ru: `Жёсткие фильтры: свежий Tracker; цена ≤$${BEGINNER_MAX_ENTRY_PRICE_USD} или ≤€${BEGINNER_MAX_ENTRY_PRICE_EUR} (USD предпочтителен при обоих; без конвертации). Ранжирование: без лимита → minDays≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} → static|eod-trailing → payoutFirstDays → доля от своего потолка. Фильтр РФ только на RU. У каждой фирмы в рейтинге — CTA /go/ и бейдж доступа для РФ.`,
+      en: `Hard filters: data captured within 30 days; entry fee within $${BEGINNER_MAX_ENTRY_PRICE_USD} or €${BEGINNER_MAX_ENTRY_PRICE_EUR} in the fee’s own currency (USD preferred when both exist, never converted). Ranking signals: no time limit, then at most ${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} minimum trading days, then static or end-of-day drawdown, then faster first payout, then lower fee relative to that currency’s cap. Every Russian-page firm keeps a sign-up link with a Russia-access badge.`,
+      ru: `Жёсткие фильтры: данные не старше 30 дней; вход ≤$${BEGINNER_MAX_ENTRY_PRICE_USD} или ≤€${BEGINNER_MAX_ENTRY_PRICE_EUR} в валюте цены (при обеих предпочитаем доллары; без конвертации). Ранжирование: без лимита срока → минимум дней ≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} → статичная или дневная просадка → быстрее первая выплата → ниже доля от потолка своей валюты. У каждой фирмы в RU-рейтинге — ссылка регистрации и бейдж доступа для РФ.`,
     },
     fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'consistencyRule', 'phases'],
     qualifies: (firm, products) => beginnerFriendly(firm, products, { applyRussiaFilter: false }),
-    dataNote: `RU SEO Lead: caps USD≤$${BEGINNER_MAX_ENTRY_PRICE_USD} / EUR≤€${BEGINNER_MAX_ENTRY_PRICE_EUR}; rank by price/cap (no FX). CTA+badge on every RU listed firm; restricted exclusions note + «Недоступно для РФ».`,
+    dataNote: `Entry caps: $${BEGINNER_MAX_ENTRY_PRICE_USD} / €${BEGINNER_MAX_ENTRY_PRICE_EUR}; we rank by fee ÷ that currency’s cap (no FX). Every RU listed firm keeps a sign-up link and Russia-access badge; firms closed to Russia are noted without a sign-up link.`,
     lastReviewed: '2026-11-02',
   },
   {
@@ -993,17 +994,17 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы с еженедельными выплатами на актуальных продуктах. EN — в блоге; здесь RU-рейтинг с гейтом.',
     },
     intro: {
-      en: 'A firm qualifies only when payoutFrequency is weekly. Bi-weekly and on-demand do not qualify.',
-      ru: 'Только payoutFrequency = weekly. Bi-weekly и on-demand не подходят.',
+      en: 'A firm qualifies only when it pays every week. Bi-weekly and on-demand schedules do not qualify.',
+      ru: 'Подходят только программы с выплатами каждую неделю. Раз в две недели и по запросу — нет.',
     },
     methodology: {
-      en: 'Weekly only. EN slug unset to avoid duplicating /blog/prop-firms-with-weekly-payouts.',
-      ru: 'Только weekly. EN-страница не строится — есть гайд /blog/prop-firms-with-weekly-payouts.',
+      en: 'Weekly payouts only. The English URL is left unset so we do not duplicate the blog guide at /blog/prop-firms-with-weekly-payouts.',
+      ru: 'Только еженедельные выплаты. Отдельной EN-страницы нет — есть гайд /blog/prop-firms-with-weekly-payouts.',
     },
     fields: ['payoutFrequency', 'payoutFirstDays', 'profitSplitPct', 'drawdownType', 'eaAllowed', 'newsTradingAllowed', 'platforms', 'minTradingDays', 'phases'],
     qualifies: hasWeeklyPayout,
     relatedPaths: { ru: ['/blog/prop-firms-with-weekly-payouts'] },
-    dataNote: 'EN route intentionally unset (blog duplicate). RU only until EN Writer decides otherwise.',
+    dataNote: 'English route intentionally unset (blog duplicate). Russian page only until EN Writer decides otherwise.',
     lastReviewed: '2026-11-02',
   },
   {
@@ -1018,16 +1019,16 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы без лимита времени 2026',
     },
     metaDescription: {
-      en: 'Prop firms with unlimited evaluation time (evaluationTimeLimit.unlimited or legacy flag).',
-      ru: 'Проп-фирмы без лимита срока оценки (evaluationTimeLimit.unlimited или legacy-флаг).',
+      en: 'Prop firms with no evaluation time limit on a current product.',
+      ru: 'Проп-фирмы без лимита срока оценки на актуальном продукте.',
     },
     intro: {
-      en: 'Unlimited means evaluationTimeLimit {days:null, unlimited:true}, or every phaseEvaluationTimeLimits entry unlimited. Legacy maxTradingDaysUnlimited is a labelled fallback only when the new field is absent.',
-      ru: 'Без лимита — evaluationTimeLimit {days:null, unlimited:true} или все phaseEvaluationTimeLimits. Legacy maxTradingDaysUnlimited — только помеченный запасной вариант.',
+      en: '“No time limit” means the firm publishes an unlimited evaluation window on the product (or on every phase). An older “unlimited days” flag is only a labelled stand-in when the newer field is still missing.',
+      ru: '«Без лимита» — у продукта (или у каждого этапа) опубликован неограниченный срок оценки. Старый флаг «без лимита дней» — только помеченный запасной вариант, если нового поля ещё нет.',
     },
     methodology: {
-      en: 'Tracker phaseEvaluationTimeLimits / evaluationTimeLimit preferred. {null,false} = unknown (never a pass). Legacy proxy only when field absent.',
-      ru: 'Предпочтительно phaseEvaluationTimeLimits / evaluationTimeLimit. {null,false} = неизвестно. Legacy-прокси только если поля нет.',
+      en: 'We prefer the structured evaluation time-limit fields on each product. “Not stated” never counts as unlimited. An older unlimited-days flag is only a labelled stand-in when those fields are missing.',
+      ru: 'Предпочитаем структурированные поля срока оценки по продукту. «Не заявлено» никогда не считается «без лимита». Старый флаг — только помеченный запасной вариант, если новых полей нет.',
     },
     fields: ['maxTradingDays', 'profitSplitPct', 'drawdownType', 'payoutFrequency', 'minTradingDays', 'consistencyRule', 'eaAllowed', 'platforms'],
     qualifies: hasNoTimeLimitFirm,
@@ -1045,16 +1046,16 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы с низкой просадкой 2026',
     },
     metaDescription: {
-      en: 'Ranked by maxLossPct then dailyLossPct. Futures USD caps listed separately — never converted to %.',
-      ru: 'Ранг по maxLossPct и dailyLossPct. USD-капы фьючерсов — отдельно, без перевода в %.',
+      en: 'Ranked by overall then daily percentage loss limits. Futures dollar caps are listed separately — never converted to percentages.',
+      ru: 'Ранг по общему, затем дневному лимиту убытка в процентах. Долларные лимиты фьючерсов — отдельно, без перевода в проценты.',
     },
     intro: {
-      en: 'We rank %-based max/daily loss products from lowest to highest. Products that only publish USD caps (common for futures) appear in a separate unranked group — dollar amounts are never converted into percentages.',
-      ru: 'Ранжируем продукты с % max/daily loss от меньшего к большему. Только USD-капы (часто фьючерсы) — отдельная группа без ранга; доллары в проценты не переводим.',
+      en: 'We rank programmes that publish max and daily loss as percentages, from lowest to highest. Programmes that only publish dollar caps (common for futures) appear in a separate unranked group — dollar amounts are never converted into percentages.',
+      ru: 'Ранжируем программы с лимитами убытка в процентах — от меньшего к большему. Только долларовые лимиты (часто фьючерсы) — отдельная группа без ранга; доллары в проценты не переводим.',
     },
     methodology: {
-      en: 'Fields: maxLossPct, dailyLossPct, drawdownType, profitSplitPct, payoutFrequency/payoutFirstDays, minTradingDays/phases. USD caps via accountSizes.maxLossUsd/dailyLossUsd stay unranked.',
-      ru: 'Поля: maxLossPct, dailyLossPct, drawdownType, profitSplitPct, payoutFrequency/payoutFirstDays, minTradingDays/phases. USD-капы не ранжируются.',
+      en: 'Comparison columns: overall loss %, daily loss %, drawdown type, profit share, payout timing, minimum trading days and phases. Dollar caps stay in the unranked group.',
+      ru: 'Сравниваем: общий лимит убытка %, дневной %, тип просадки, долю прибыли, сроки выплат, минимум дней и этапы. Долларовые лимиты остаются в группе без ранга.',
     },
     fields: ['maxLossPct', 'dailyLossPct', 'drawdownType', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'minTradingDays', 'phases', 'maxLossUsd', 'dailyLossUsd'],
     qualifies: lowDrawdownQualifies,
@@ -1072,16 +1073,16 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы для небольших счетов 2026',
     },
     metaDescription: {
-      en: 'Ranked by the smallest available account size (sizeUsd), not by challenge price.',
-      ru: 'Ранг по наименьшему доступному размеру счёта (sizeUsd), не по цене челленджа.',
+      en: 'Ranked by the smallest published account size, not by challenge price.',
+      ru: 'Ранг по наименьшему опубликованному размеру счёта, не по цене челленджа.',
     },
     intro: {
-      en: 'Smallest published accountSizes.sizeUsd wins. Challenge fee is shown when known but never drives this ranking.',
-      ru: 'Побеждает наименьший accountSizes.sizeUsd. Цена челленджа показывается, но не определяет порядок.',
+      en: 'The smallest published account size wins. Challenge fee is shown when known but never drives this ranking.',
+      ru: 'Побеждает наименьший опубликованный размер счёта. Цена челленджа показывается, но не определяет порядок.',
     },
     methodology: {
-      en: 'Sort key = min(accountSizes.sizeUsd). Tie-break: profitSplitPct desc, then name.',
-      ru: 'Ключ сортировки = min(accountSizes.sizeUsd). Тай-брейк: сплит по убыванию, затем имя.',
+      en: 'We sort by the smallest published account size. Ties break on higher profit share, then firm name.',
+      ru: 'Сортируем по наименьшему опубликованному размеру счёта. При равенстве — большая доля прибыли, затем имя.',
     },
     fields: ['smallestAccountUsd', 'profitSplitPct', 'drawdownType', 'payoutFrequency', 'minTradingDays', 'phases', 'entryPriceUsd', 'eaAllowed'],
     qualifies: smallAccountQualifies,
@@ -1451,7 +1452,8 @@ export function buildBestForPageModel(
     reasons.push(`need at least ${BEST_FOR_MIN_FIRMS} ranked firms (have ${gatePool.length})`)
   }
   if (count < BEST_FOR_MIN_DIFF_FIELDS) {
-    reasons.push(`need ≥${BEST_FOR_MIN_DIFF_FIELDS} differing fields (have ${count}: ${fields.join(', ') || 'none'})`)
+    const fieldLabels = fields.map(key => BEST_FOR_FIELD_SPECS[key].label[lang]).join(', ')
+    reasons.push(`need ≥${BEST_FOR_MIN_DIFF_FIELDS} differing fields (have ${count}: ${fieldLabels || 'none'})`)
   }
   if (!hasVerdict) {
     reasons.push(`missing writer verdict content/verdicts/best-for/${useCase.id}${lang === 'ru' ? '.ru' : ''}.md`)

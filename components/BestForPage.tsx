@@ -18,6 +18,19 @@ import { renderVerdictMarkdown } from '@/lib/verdicts'
 import { ruPlatformList, ruRedactExchanges } from '@/lib/ruRulesText'
 import { localeDate } from '@/lib/ruDate'
 
+const RULE_AVAILABILITY_LABEL: Record<string, { en: string; ru: string }> = {
+  allowed: { en: 'Allowed', ru: 'Разрешено' },
+  blocked: { en: 'Blocked', ru: 'Запрещено' },
+  // Challenge/firm RuleAvailability "restricted" — never print the raw token.
+  restricted: { en: 'Limited', ru: 'С ограничениями' },
+}
+
+function humanizeFieldToken(token: string, lang: 'en' | 'ru'): string {
+  const key = token.trim().toLowerCase()
+  if (RULE_AVAILABILITY_LABEL[key]) return RULE_AVAILABILITY_LABEL[key][lang]
+  return token.replace(/-/g, ' ')
+}
+
 function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
   if (value == null || value === '') return lang === 'ru' ? 'Не подтверждено' : 'Unverified'
   if (key === 'platforms' && lang === 'ru') return ruPlatformList(value.split('|'))
@@ -32,8 +45,9 @@ function displayField(key: BestForFieldKey, value: string | null | undefined, la
     return lang === 'ru' ? 'Без лимита' : 'Unlimited'
   }
   if (value.startsWith('mixed:')) {
-    return value.slice(6).replace(/,/g, ' / ')
+    return value.slice(6).split(',').map(token => humanizeFieldToken(token, lang)).join(' / ')
   }
+  if (RULE_AVAILABILITY_LABEL[value]) return RULE_AVAILABILITY_LABEL[value][lang]
   return value.replace(/-/g, ' ')
 }
 
@@ -150,8 +164,8 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
           >
             <p style={{ margin: 0 }}>
               {lang === 'ru'
-                ? 'Исключены из рейтинга (russiaStatus = restricted) — без CTA регистрации:'
-                : 'Excluded (russiaStatus = restricted) — no sign-up CTA:'}
+                ? 'Исключены из рейтинга (закрыты для РФ) — без ссылки регистрации:'
+                : 'Excluded (closed to Russia) — no sign-up link:'}
             </p>
             <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
               {model.excludedRestrictedFirms.map(firm => (
@@ -175,8 +189,8 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
         {(model.usedScalpingProxy || model.usedTimeLimitProxy) && (
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }} data-best-for-proxy="true">
             {lang === 'ru'
-              ? 'Часть строк использует помеченный запасной критерий, пока Tracker не заполнит новое поле.'
-              : 'Some rows use a labelled fallback until Tracker fills the new structured field.'}
+              ? 'Часть строк использует помеченный запасной критерий, пока фирма не опубликует новое поле.'
+              : 'Some rows use a labelled stand-in until the firm publishes the newer rule field.'}
           </p>
         )}
         {useCase.relatedPaths?.[lang]?.length ? (
