@@ -1,0 +1,207 @@
+{
+  "firmSlug": "fundingpips",
+  "officialDomain": "https://fundingpips.com",
+  "capturedAt": "2026-11-02",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Help Centre articles read 2026-11-02 12:50-13:05 Riga as Help Center API JSON with curl (HTTP 200), same method as firm-rules-2026-10-28.json; the article HTML pages returned HTTP 403 to curl and were not retried another way. The Get Started corporate footer (theme text, not in the article body) was read with WebFetch (standard fetch). No account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation.",
+  "pagesRead": [
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+    "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+  ],
+  "pageDates": {
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex": "updated_at 2026-11-02T09:16:20Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex": "updated_at 2026-11-02T09:12:07Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model": "updated_at 2026-11-02T09:13:45Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard": "updated_at 2026-11-02T09:14:58Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero": "updated_at 2026-11-02T09:05:06Z",
+    "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace": "updated_at 2026-10-28T09:30:24Z",
+    "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started": "updated_at 2026-09-24T09:41:29Z"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not re-read: https://fundingpips.com/ returned HTTP 429 (Vercel Security Checkpoint) on 2026-11-02; not bypassed. Challenge product prices keep their 2026-10-19/20 capture dates.",
+  "blocks": [
+    {
+      "url": "https://fundingpips.com/",
+      "status": "HTTP 429 Vercel Security Checkpoint",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "status": "HTTP 403 to plain curl for the article HTML (Help Center API JSON and WebFetch returned 200)",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "productsScope": "Products carry rules evidence only (productSlug + fieldEvidence); prices were not re-read, so no price or product values are recorded in this capture.",
+  "changes": [
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "oldQuote": "Max Loss Limit: 12% . This is a static floor; it never moves.",
+      "newQuote": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves.",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "oldQuote": "Daily Loss Limit: 4% .",
+      "newQuote": "Daily Loss Limit: 4% of the higher value between the opening balance or opening equity for that day.",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "oldQuote": "Daily Loss Limit 3% or 5% .",
+      "newQuote": "Daily Loss Limit 3% or 5% (based on the configuration you purchased) of the higher value between the opening balance or opening equity for that day.",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "oldQuote": "Max Loss Limit: 6% .",
+      "newQuote": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves.",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "oldQuote": "Max Loss Limit: 10% .",
+      "newQuote": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves.",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "rules evidence quote wording (values unchanged)",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "oldQuote": "News Trading: Prohibited on all instruments .",
+      "newQuote": "News Trading: Prohibited on all instruments No position may be opened, closed, or held within the restricted window around any high-impact news event on the affected currency. Scheduled news releases: the window runs from 10 minutes before the event to 10 minutes after.",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "unchanged": [
+    "All 13 FundingPips firm-rules quotes dated 2026-10-15 confirm the same values (6 re-quoted because the articles were reworded on 2 Nov 2026; percentages unchanged): drawdownType, dailyLossPct, maxLossPct, newsTrading, weekendHolding, platforms",
+    "The 18 quotes from firm-rules-2026-10-28.json (consistency, split, payout frequency) still read verbatim (dates left at 2026-10-28)",
+    "Corporate: FundingPips Corp, Comoros company HY01223081, IBC licence Bfx2024004, registered address IFZA Business Park, DDP Dubai, UAE (Get Started footer, WebFetch)",
+    "Restricted countries on Get Started: Iran, Vietnam, United Arab Emirates (matches countriesRestricted)"
+  ],
+  "notReread": [
+    "Prices (fundingpips.com blocked, HTTP 429)",
+    "trustpilotScore/trustpilotCount (third-party site)"
+  ],
+  "products": [
+    {
+      "productName": "1 Step Flex",
+      "productSlug": "1-step-flex",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+          "quote": "The 3% Daily Loss Limit uses the balance or equity at the start of the day, whichever is higher, and resets at 00:00 Platform Time."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+          "quote": "The 12% Max Loss Limit sits 12% below the starting balance and does not reset."
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+          "quote": "Overnight and weekend holding on Master Accounts can be enabled at the time of purchase through an Add-on."
+        }
+      }
+    },
+    {
+      "productName": "2 Step Flex",
+      "productSlug": "2-step-flex",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+          "quote": "Daily Loss Limit: 4% of the higher value between the opening balance or opening equity for that day."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+          "quote": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+          "quote": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves."
+        }
+      }
+    },
+    {
+      "productName": "2 Step Pro",
+      "productSlug": "2-step-pro",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+      "fieldEvidence": {
+        "maxLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+          "quote": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+          "quote": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves."
+        }
+      }
+    },
+    {
+      "productName": "2 Step Standard",
+      "productSlug": "2-step-standard",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+          "quote": "Daily Loss Limit 3% or 5% (based on the configuration you purchased) of the higher value between the opening balance or opening equity for that day."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+          "quote": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+          "quote": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves."
+        },
+        "rules.news": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+          "quote": "Purposely trading news in both evaluation phase and master phase is prohibited and will lead to account closure."
+        }
+      }
+    },
+    {
+      "productName": "FundingPips Zero",
+      "productSlug": "zero",
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+      "fieldEvidence": {
+        "drawdownType": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+          "quote": "The Trailing Loss Limit moves up when equity reaches a new high."
+        },
+        "rules.news": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+          "quote": "News Trading: Prohibited on all instruments No position may be opened, closed, or held within the restricted window around any high-impact news event on the affected currency. Scheduled news releases: the window runs from 10 minutes before the event to 10 minutes after."
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+          "quote": "Leaving any position open into the weekend is an immediate account termination, regardless of instrument."
+        }
+      }
+    }
+  ],
+  "corporateQuotes": [
+    {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "quote": "FundingPips Corp is a limited liability company incorporated under the laws of the Comoros Union with company number: HY01223081, having its registered address at Bonovo Road, Fomboni Island of Mohéli, Comoros Union. The Company holds an International Brokerage and Clearing House License, Ibc Regulation Act 2014 (License No. Bfx2024004)."
+    },
+    {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "quote": "Note: Although licensed, FundingPips Corp does not conduct brokerage services or offer real trading accounts on this website."
+    },
+    {
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "quote": "Registered Address of FundingPips: Premises NO. 19948-001, IFZA Business Park, DDP Dubai, UAE"
+    }
+  ]
+}

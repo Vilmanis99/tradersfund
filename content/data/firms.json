@@ -852,15 +852,15 @@
     "country": "Comoros",
     "regulation": "International Brokerage and Clearing House License, Ibc Regulation Act 2014 (License No. Bfx2024004); the firm states it does not conduct brokerage services",
     "corporateSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-11-02",
     "affiliateStatus": "active",
     "discountCode": "HELLO",
     "discountCodeSourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
     "discountCodeCapturedAt": "2026-10-30",
     "discountCodeNote": "20% off first purchase; excludes $100K accounts. Help Centre Get Started page still says: \"Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts.\" (read 30 October 2026). INTERN was not found on the firm's own help pages, so it was not added.",
     "rules": {
-      "capturedAt": "2026-10-15",
-      "captureFile": "content/data/challenges/_captures/fundingpips-2026-10-15.json",
+      "capturedAt": "2026-11-02",
+      "captureFile": "content/data/challenges/_captures/fundingpips-2026-11-02.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: static on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; trailing on FundingPips Zero",
@@ -874,18 +874,18 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Max Loss Limit: 12% . This is a static floor; it never moves.",
+            "quote": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
             "quote": "The Trailing Loss Limit moves up when equity reaches a new high.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -905,24 +905,24 @@
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
             "quote": "The 3% Daily Loss Limit uses the balance or equity at the start of the day, whichever is higher, and resets at 00:00 Platform Time.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
-            "quote": "Daily Loss Limit: 4% .",
+            "quote": "Daily Loss Limit: 4% of the higher value between the opening balance or opening equity for that day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Daily Loss Limit 3% or 5% .",
+            "quote": "Daily Loss Limit 3% or 5% (based on the configuration you purchased) of the higher value between the opening balance or opening equity for that day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -942,24 +942,24 @@
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
             "quote": "The 12% Max Loss Limit sits 12% below the starting balance and does not reset.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
-            "quote": "Max Loss Limit: 6% .",
+            "quote": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
-            "quote": "Max Loss Limit: 10% .",
+            "quote": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -1162,16 +1162,16 @@
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
             "quote": "Purposely trading news in both evaluation phase and master phase is prohibited and will lead to account closure.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
-            "quote": "News Trading: Prohibited on all instruments .",
+            "quote": "News Trading: Prohibited on all instruments No position may be opened, closed, or held within the restricted window around any high-impact news event on the affected currency. Scheduled news releases: the window runs from 10 minutes before the event to 10 minutes after.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -1191,16 +1191,16 @@
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
             "quote": "Overnight and weekend holding on Master Accounts can be enabled at the time of purchase through an Add-on.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
             "quote": "Leaving any position open into the weekend is an immediate account termination, regardless of instrument.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -1230,14 +1230,14 @@
             "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
             "quote": "FundingPips supports three platforms: MT5, cTrader, and Match-Trader.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json"
     },
     "regionalDiscountCode": "FP",
     "discountCodeRegion": "us-only-unconfirmed",

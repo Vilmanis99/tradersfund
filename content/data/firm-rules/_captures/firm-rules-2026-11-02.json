@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-02",
-  "accessNotes": "FTMO rolling recheck 2026-11-02 12:05-12:20 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 16 FTMO quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/ftmo/. | FundedNext rolling recheck 2026-11-02 12:25-12:45 Riga: standard HTTP GET of public English pages on the global fundednext.com site and help.fundednext.com, no account/checkout, no VPN or proxy; all 14 FundedNext quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised, direction marks removed). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/fundednext/.",
+  "accessNotes": "FTMO rolling recheck 2026-11-02 12:05-12:20 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 16 FTMO quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/ftmo/. | FundedNext rolling recheck 2026-11-02 12:25-12:45 Riga: standard HTTP GET of public English pages on the global fundednext.com site and help.fundednext.com, no account/checkout, no VPN or proxy; all 14 FundedNext quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised, direction marks removed). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/fundednext/. | FundingPips rolling recheck 2026-11-02 12:50-13:05 Riga: Help Centre articles as Help Center API JSON (curl, HTTP 200); the 1-Step Flex, 2-Step Flex, 2-Step Pro, 2-Step Standard and Zero articles were edited 2026-11-02 09:05-09:16 UTC; 6 of 13 quotes from firm-rules-2026-10-15.json were reworded and are replaced by today's verbatim text with the same percentages. fundingpips.com returned HTTP 429 (Vercel Security Checkpoint) and was not read (not bypassed). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/fundingpips/.",
   "pagesRead": [
     "https://ftmo.com/en/2-step-challenge/",
     "https://ftmo.com/en/1-step-challenge/",
@@ -20,7 +20,14 @@
     "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
     "https://fundednext.com/company",
     "https://fundednext.com/terms-of-service",
-    "https://fundednext.com/cfd-challenge-terms"
+    "https://fundednext.com/cfd-challenge-terms",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+    "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+    "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
   ],
   "pageDates": {
     "https://ftmo.com/en/2-step-challenge/": "dateModified 2026-10-22T16:45:44+00:00",
@@ -29,7 +36,14 @@
     "https://ftmo.com/en/imprint/": "dateModified 2026-11-02T08:26:08+00:00",
     "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b": "FTMO Challenge Terms and Conditions, LAST UPDATED ON 1 NOVEMBER 2026",
     "https://fundednext.com/terms-of-service": "Last updated: 5 May 2026 (as shown on the page)",
-    "https://fundednext.com/cfd-challenge-terms": "Last updated: 5 May 2026 (as shown on the page)"
+    "https://fundednext.com/cfd-challenge-terms": "Last updated: 5 May 2026 (as shown on the page)",
+    "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex": "updated_at 2026-11-02T09:16:20Z (Help Center API)",
+    "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex": "updated_at 2026-11-02T09:12:07Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model": "updated_at 2026-11-02T09:13:45Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard": "updated_at 2026-11-02T09:14:58Z",
+    "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero": "updated_at 2026-11-02T09:05:06Z",
+    "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace": "updated_at 2026-10-28T09:30:24Z",
+    "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started": "updated_at 2026-09-24T09:41:29Z"
   },
   "firms": {
     "ftmo": {
@@ -326,6 +340,136 @@
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
             "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account"
+          }
+        ]
+      }
+    },
+    "fundingpips": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; trailing on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "static",
+          "2-step-flex": "static",
+          "2-step-pro": "static",
+          "2-step-standard": "static",
+          "zero": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Max Loss Limit: 12% of the starting account size. This is a static floor; it never moves."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "The Trailing Loss Limit moves up when equity reaches a new high."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on 1 Step Flex, 2 Step Pro, FundingPips Zero; 4% on 2 Step Flex; 5% on 2 Step Standard",
+        "byProduct": {
+          "1-step-flex": 3,
+          "2-step-flex": 4,
+          "2-step-pro": 3,
+          "2-step-standard": 5,
+          "zero": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "The 3% Daily Loss Limit uses the balance or equity at the start of the day, whichever is higher, and resets at 00:00 Platform Time."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex",
+            "quote": "Daily Loss Limit: 4% of the higher value between the opening balance or opening equity for that day."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Daily Loss Limit 3% or 5% (based on the configuration you purchased) of the higher value between the opening balance or opening equity for that day."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 12% on 1 Step Flex, 2 Step Flex; 6% on 2 Step Pro; 10% on 2 Step Standard; 5% on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": 12,
+          "2-step-flex": 12,
+          "2-step-pro": 6,
+          "2-step-standard": 10,
+          "zero": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "The 12% Max Loss Limit sits 12% below the starting balance and does not reset."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model",
+            "quote": "Max Loss Limit: 6% of the starting account size. This is a static floor; it never moves."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Max Loss Limit: 10% of the starting account size. This is a static floor; it never moves."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; not allowed on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "restricted",
+          "2-step-flex": "restricted",
+          "2-step-pro": "restricted",
+          "2-step-standard": "restricted",
+          "zero": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard",
+            "quote": "Purposely trading news in both evaluation phase and master phase is prohibited and will lead to account closure."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "News Trading: Prohibited on all instruments No position may be opened, closed, or held within the restricted window around any high-impact news event on the affected currency. Scheduled news releases: the window runs from 10 minutes before the event to 10 minutes after."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: restricted on 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard; not allowed on FundingPips Zero",
+        "byProduct": {
+          "1-step-flex": "restricted",
+          "2-step-flex": "restricted",
+          "2-step-pro": "restricted",
+          "2-step-standard": "restricted",
+          "zero": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex",
+            "quote": "Overnight and weekend holding on Master Accounts can be enabled at the time of purchase through an Add-on."
+          },
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/34502157694865-FundingPips-Zero",
+            "quote": "Leaving any position open into the weekend is an immediate account termination, regardless of instrument."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "summary": "MT5, cTrader, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/43468639481105-Account-Workspace",
+            "quote": "FundingPips supports three platforms: MT5, cTrader, and Match-Trader."
           }
         ]
       }
