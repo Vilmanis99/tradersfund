@@ -73,7 +73,17 @@
       "code": "SCARY30",
       "bannerQuote": "Offer is valid until 11:59 PM on 31 October 2026 (CET)",
       "checkoutVerified": false,
-      "note": "New since 26.10 capture. Site-wide Halloween banner + SCARY30 30% OFF (+1% total DD, +5% performance reward; except Spice 3-Step). Not for deals.json. Article correctly omits promo codes and prints list prices only."
+      "note": "ENDED: published window October 29 – October 31, 23:59 CET / \"Offer is valid until 11:59 PM on 31 October 2026 (CET)\". Rechecked 2 November 2026: SCARY30 absent from https://spiceprop.com/ homepage HTML; blog https://spiceprop.com/blog/280-halloween-promo-30-off-extra-rewards still documents the code as archive. Never checkout-verified; not in firms.json or deals.json. RU article correctly omits promo codes.",
+      "endedRecheck": {
+        "checkedAt": "2026-11-02",
+        "homepageUrl": "https://spiceprop.com/",
+        "blogUrl": "https://spiceprop.com/blog/280-halloween-promo-30-off-extra-rewards",
+        "status": "ended",
+        "reason": "Past published end and code gone from homepage",
+        "periodQuote": "Promotion Period: October 29 – October 31, 23:59 CET",
+        "bannerQuote": "Offer is valid until 11:59 PM on 31 October 2026 (CET)",
+        "homepageNote": "Homepage on 2 November 2026 no longer contains the SCARY30 code string; a leftover banner line still quotes the 31 October end. Blog post remains as archive. Not in firms.json or deals.json."
+      }
     },
     "seriousOfferArchive": {
       "url": "https://spiceprop.com/blog/270-serious-offer-to-serious-traders-big-accounts-smaller-prices",

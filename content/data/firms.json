@@ -2128,8 +2128,8 @@
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-11-01",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 1 November 2026: \"Active codes — No codes in this section right now.\" HALLOWEEN45 (to 31 Oct) has ended, and FUNDED40, ALPHA20 and 10KFOR40 were all published for 1–31 Oct only. The homepage https://alphacapitalgroup.uk/ banner on 1 November 2026 still reads \"20% Off All Accounts · Use code ALPHA20\"; this conflicts with the codes page and the published 31 Oct end date and is not checkout-verified, so no live code is set and nothing is added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-02",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 2 November 2026: \"Active codes — No codes in this section right now.\" / \"Last updated 27 October 2026\" / \"Codes are removed when their published end date passes.\" HALLOWEEN45 (to 31 Oct) has ended, and FUNDED40, ALPHA20 and 10KFOR40 were all published for 1–31 Oct only — none are set as live codes. Homepage markup on 2 November 2026 still contains a past-dated promo string (\"45% Off · Use code HALLOWEEN45\", data-promo-until 2026-11-01) with data-fallback-coupon ALPHA20; that is not treated as a live published code with terms, so no discountCode is set and nothing is added to deals.json.",
     "previousDiscountCode": "HALLOWEEN45",
     "previousDiscountCodeStatus": "ended: the official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes listed it as \"45% off … 26 Oct 2026 – 31 Oct 2026 … Live until midnight UK time on 31 October.\"; on 2026-11-01 the page (\"Last updated 27 October 2026\", \"Codes are removed when their published end date passes.\") shows \"Active codes — No codes in this section right now.\" and the homepage banner no longer shows it; never checkout-verified. Earlier code MYALPHA ended 26 October 2026"
   },
@@ -2275,11 +2275,11 @@
     "discountCode": "HW30",
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://brightfunded.com/",
-    "discountCodeCapturedAt": "2026-11-01",
-    "discountCodeNote": "Homepage observation 1 November 2026: top banner still shows \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\". No end date, countdown or terms link on the homepage (also checked 30 October 2026). Checkout not verified; kept out of deals.json. Previous homepage code DOUBLE25: not shown on site since 22 October 2026; expiry unconfirmed.",
+    "discountCodeCapturedAt": "2026-11-02",
+    "discountCodeNote": "Homepage observation 2 November 2026: top banner still shows \"Halloween Offer: 30% Off\" with \"Code: HW30\"; hero \"Claim Your 30% Off\". No end date, countdown or terms link on the homepage (also checked 30 October and 1 November 2026). Checkout not verified; kept out of deals.json. Previous homepage code DOUBLE25: not shown on site since 22 October 2026; expiry unconfirmed.",
     "discountPct": 30,
-    "discountCodeValidity": "limited time (Halloween offer, no end date published)",
-    "discountCodeEvidence": "https://brightfunded.com/; homepage banner \"Halloween Offer: Code: HW30 30% Off\", rechecked 1 November 2026",
+    "discountCodeValidity": "limited time (Halloween offer, no end date published; still present 2 November 2026)",
+    "discountCodeEvidence": "https://brightfunded.com/; homepage banner \"Halloween Offer: Code: HW30 30% Off\", rechecked 2 November 2026",
     "previousDiscountCode": "DOUBLE25",
     "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
@@ -3936,8 +3936,8 @@
     "regionalDiscountCode": "ONESTEP35",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
-    "discountCodeCapturedAt": "2026-10-30",
-    "discountCodeNote": "Seen on https://fxify.com/ on 30 October 2026; not checkout-verified and may be region-specific, so not shown as a universal code. Homepage still shows \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\"; \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\"; and \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) --> AGHHH35 Expires: 2 November\". Primary regionalDiscountCode remains ONESTEP35; AGHHH35/FUNDED40 stay in the note only. Not in deals.json.",
+    "discountCodeCapturedAt": "2026-11-02",
+    "discountCodeNote": "Seen on https://fxify.com/; not checkout-verified and may be region-specific, so not shown as a universal code. Homepage observation 2 November 2026 still shows \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\"; \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\"; and \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) --> AGHHH35 Expires: 2 November\". Primary regionalDiscountCode remains ONESTEP35; AGHHH35 stays in the note until 3 November and FUNDED40 Instant until 4 November per published ends. Not in deals.json.",
     "regionalDiscountPct": 35
   },
   {
@@ -4282,9 +4282,9 @@
     "discountPct": 20,
     "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://cryptofundtrader.com/",
-    "discountCodeCapturedAt": "2026-11-01",
-    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 1 November 2026: \"Find the exit to reveal your discount code!\" with \"Copy code: BOO20\" still in the page. Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay; Halloween-named, so it is rechecked daily and moves to previous codes once the overlay is gone.",
-    "discountCodeValidity": "Halloween overlay, no published end date (still present 1 November 2026); recheck daily"
+    "discountCodeCapturedAt": "2026-11-02",
+    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 2 November 2026: \"Find the exit to reveal your discount code!\" with \"Copy code: BOO20\" still in the page. Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay; Halloween-named, so it is rechecked daily and moves to previous codes once the overlay is gone.",
+    "discountCodeValidity": "Halloween overlay, no published end date (still present 2 November 2026); recheck daily"
   },
   {
     "name": "Topstep",
@@ -5524,8 +5524,8 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
     },
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-11-01",
-    "discountCodeNote": "Homepage https://citytradersimperium.com/, read 1 November 2026: the previous code FEARLESS15 (valid until 31 Oct 2026, 23:59 UK time) has ended and its pop-up is no longer shown; no replacement code is shown, so no live code is set and nothing is added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-02",
+    "discountCodeNote": "Homepage https://citytradersimperium.com/, read 2 November 2026: no live discount code. FEARLESS15 (valid until 31 Oct 2026, 23:59 UK time) remains previous only. The Halloween Special game copy (\"Fri 23 Oct → Sun 1 Nov\") is past its window and still shows no replacement code string. Nothing is added to deals.json.",
     "previousDiscountCode": "FEARLESS15",
     "previousDiscountCodeStatus": "ended: the official homepage pop-up said \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" … \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\"; on 2026-11-01 the pop-up is no longer in the https://citytradersimperium.com/ page (only a script comment still names it); never checkout-verified. Earlier code BREAK15 expired 25 October 2026"
   },
