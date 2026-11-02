@@ -142,6 +142,16 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
         >
           {model.sortRule}
         </p>
+        {model.excludedRestrictedFirms && model.excludedRestrictedFirms.length > 0 ? (
+          <p
+            data-best-for-excluded-restricted="true"
+            style={{ marginTop: '0.75rem', color: 'var(--muted)', fontSize: '0.92rem', maxWidth: 720 }}
+          >
+            {lang === 'ru'
+              ? `Исключены из рейтинга из‑за russiaStatus = restricted: ${model.excludedRestrictedFirms.map(f => f.name).join(', ')}.`
+              : `Excluded because russiaStatus = restricted: ${model.excludedRestrictedFirms.map(f => f.name).join(', ')}.`}
+          </p>
+        ) : null}
         {(model.usedScalpingProxy || model.usedTimeLimitProxy) && (
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }} data-best-for-proxy="true">
             {lang === 'ru'

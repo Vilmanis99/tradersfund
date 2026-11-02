@@ -4,7 +4,9 @@
  * Live: node scripts/test-best-for-gate.mjs http://127.0.0.1:PORT
  */
 import assert from 'node:assert/strict'
+import crypto from 'node:crypto'
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import {
   BEST_FOR_MIN_DIFF_FIELDS,
@@ -14,12 +16,13 @@ import {
   BEST_FOR_USE_CASES,
   BEST_FOR_RETIRED_NESTED_PATHS,
   BEGINNER_MAX_ENTRY_PRICE_USD,
-  BEGINNER_MAX_MIN_TRADING_DAYS,
+  BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS,
   allBestForPaths,
   bestForIndexableFeatureLink,
   bestForPath,
   bestForRoutePair,
   bestForSlugManifest,
+  beginnerFirmFailures,
   beginnerProductFailures,
   buildBestForPageModel,
   countDifferingFields,
@@ -29,12 +32,59 @@ import {
   isBeginnerFriendlyProduct,
   isScalpingFriendlyProduct,
   listBeginnerFriendlyFirms,
+  listBeginnersExcludedRestricted,
   productHasNoTimeLimit,
   rankBestFor,
 } from '../lib/bestFor.ts'
-import { getChallengesByFirm } from '../lib/firms.ts'
+import { getAllFirms, getChallengesByFirm } from '../lib/firms.ts'
+import { firmSlug } from '../lib/firmSlug.ts'
 
 const base = process.argv.slice(2).find(arg => arg.startsWith('http')) ?? null
+
+/** Fingerprint every file under content/verdicts — tests must leave this tree untouched. */
+function fingerprintVerdictsTree(root = path.join(process.cwd(), 'content/verdicts')) {
+  const files = []
+  function walk(dir) {
+    if (!fs.existsSync(dir)) return
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (entry.isFile()) {
+        const rel = path.relative(root, full).split(path.sep).join('/')
+        const buf = fs.readFileSync(full)
+        files.push({
+          rel,
+          sha256: crypto.createHash('sha256').update(buf).digest('hex'),
+          size: buf.length,
+        })
+      }
+    }
+  }
+  walk(root)
+  files.sort((a, b) => a.rel.localeCompare(b.rel))
+  return files
+}
+
+function assertVerdictsUnchanged(before, label = 'content/verdicts') {
+  const after = fingerprintVerdictsTree()
+  assert.deepEqual(after, before, `${label} must be byte-identical after tests (no create/delete/move)`)
+}
+
+const verdictsBefore = fingerprintVerdictsTree()
+
+/** Isolated verdict root — never point this at the real content/ tree for writes. */
+function makeVerdictFixtureRoot(files = {}) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'best-for-verdicts-'))
+  const dir = path.join(root, 'content/verdicts/best-for')
+  fs.mkdirSync(dir, { recursive: true })
+  for (const [name, body] of Object.entries(files)) {
+    fs.writeFileSync(path.join(dir, name), body)
+  }
+  return root
+}
+
+const emptyVerdictRoot = makeVerdictFixtureRoot()
+
 
 assert.equal(BEST_FOR_MIN_DIFF_FIELDS, 5)
 assert.ok(BEST_FOR_USE_CASES.length >= 8)
@@ -64,17 +114,18 @@ assert.ok(!fs.existsSync('content/posts/prop-firms-with-low-drawdown.md'))
 assert.ok(fs.existsSync('app/best-prop-firms-for-low-drawdown/page.tsx'))
 assert.ok(fs.existsSync('app/prop-firms/[feature]/page.tsx'))
 
-// Without verdicts → every built page noindex
-for (const model of getBestForPageModels()) {
+// Without verdicts (isolated empty root) → every built page noindex
+// Real content/verdicts may already have writer files — never assume the repo tree is empty.
+for (const model of getBestForPageModels(new Date(), emptyVerdictRoot)) {
   assert.equal(model.indexable, false, model.path)
   assert.ok(model.reasons.some(r => /missing writer verdict/.test(r)))
 }
-assert.deepEqual(indexableBestForPaths(), [])
-assert.equal(bestForRoutePair('/best-prop-firms-for-eas'), undefined)
-assert.equal(bestForIndexableFeatureLink('ea-allowed'), null)
-assert.equal(bestForIndexableFeatureLink('news-trading'), null)
+assert.deepEqual(indexableBestForPaths(new Date(), emptyVerdictRoot), [])
+assert.equal(bestForRoutePair('/best-prop-firms-for-eas', new Date(), emptyVerdictRoot), undefined)
+assert.equal(bestForIndexableFeatureLink('ea-allowed', emptyVerdictRoot), null)
+assert.equal(bestForIndexableFeatureLink('news-trading', emptyVerdictRoot), null)
 
-// Per-language gate: RU verdict alone can unlock RU when data passes
+// Per-language gate: RU verdict alone can unlock RU when data passes (fixture root only)
 {
   const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'news-trading')
   const { ranked } = rankBestFor(useCase, 'ru')
@@ -82,11 +133,7 @@ assert.equal(bestForIndexableFeatureLink('news-trading'), null)
   const dataOk = ranked.length >= BEST_FOR_MIN_FIRMS && count >= BEST_FOR_MIN_DIFF_FIELDS
   assert.ok(dataOk, `news-trading needs data gate for per-lang test (firms=${ranked.length} diffs=${count})`)
 
-  const dir = path.join(process.cwd(), 'content/verdicts/best-for')
-  fs.mkdirSync(dir, { recursive: true })
   const body = Array.from({ length: 130 }, (_, i) => `слово${i}`).join(' ')
-  const ruFile = path.join(dir, 'news-trading.ru.md')
-  const enFile = path.join(dir, 'news-trading.md')
   const fm = (lang, extra = '') => `---
 slug: news-trading
 lang: ${lang}
@@ -99,33 +146,32 @@ ${extra}---
 
 ${body}
 `
-  fs.writeFileSync(ruFile, fm('ru', `title: 'RU Title From Frontmatter'
+  const fixtureRoot = makeVerdictFixtureRoot({
+    'news-trading.ru.md': fm('ru', `title: 'RU Title From Frontmatter'
 h1: 'RU H1 From Frontmatter'
 description: 'RU meta from frontmatter for news trading page.'
-`))
+`),
+  })
   try {
-    const ru = buildBestForPageModel('news-trading', 'ru')
-    const en = buildBestForPageModel('news-trading', 'en')
+    const ru = buildBestForPageModel('news-trading', 'ru', new Date(), fixtureRoot)
+    const en = buildBestForPageModel('news-trading', 'en', new Date(), fixtureRoot)
     assert.equal(ru.indexable, true, `RU should index with verdict+data: ${ru.reasons}`)
     assert.equal(en.indexable, false, 'EN must stay noindex without its own verdict')
-    assert.equal(bestForRoutePair(ru.path), undefined, 'hreflang only when BOTH pass')
+    assert.equal(bestForRoutePair(ru.path, new Date(), fixtureRoot), undefined, 'hreflang only when BOTH pass')
     assert.equal(ru.h1, 'RU H1 From Frontmatter')
     assert.equal(ru.metaTitle, 'RU Title From Frontmatter')
     assert.equal(ru.metaDescription, 'RU meta from frontmatter for news trading page.')
-    // EN still placeholders
     assert.notEqual(en.h1, 'RU H1 From Frontmatter')
   } finally {
-    fs.rmSync(ruFile, { force: true })
-    fs.rmSync(enFile, { force: true })
+    fs.rmSync(fixtureRoot, { recursive: true, force: true })
   }
 }
 
-// Frontmatter title on beginners RU path shape
+// Frontmatter title on beginners RU path shape (fixture root only)
 {
-  const dir = path.join(process.cwd(), 'content/verdicts/best-for')
   const body = Array.from({ length: 130 }, (_, i) => `word${i}`).join(' ')
-  const file = path.join(dir, 'beginners.ru.md')
-  fs.writeFileSync(file, `---
+  const fixtureRoot = makeVerdictFixtureRoot({
+    'beginners.ru.md': `---
 slug: beginners
 lang: ru
 checkedAt: '2026-11-02'
@@ -139,16 +185,16 @@ sources:
 ---
 
 ${body}
-`)
+`,
+  })
   try {
-    const model = buildBestForPageModel('beginners', 'ru')
+    const model = buildBestForPageModel('beginners', 'ru', new Date(), fixtureRoot)
     assert.equal(model.path, '/ru/luchshie-prop-firmy-dlya-novichkov')
     assert.equal(model.h1, 'Кастомный H1 новичков')
     assert.equal(model.metaTitle, 'Кастомный title новичков')
-    // indexable depends on data gate with new beginners filter
     console.log('  beginners RU gate', { firms: model.ranked.length, diffs: model.differingFieldCount, indexable: model.indexable, reasons: model.reasons })
   } finally {
-    fs.rmSync(file, { force: true })
+    fs.rmSync(fixtureRoot, { recursive: true, force: true })
   }
 }
 
@@ -227,23 +273,96 @@ ${body}
   assert.equal(hasMinHoldSecondsField(withHold(null)), true)
 }
 
-// Beginners filter constants + BrightFunded exclusion note
+// Beginners — RU SEO Lead hard filters + ranking signals
 {
-  assert.equal(BEGINNER_MAX_MIN_TRADING_DAYS, 5)
+  assert.equal(BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS, 5)
   assert.equal(BEGINNER_MAX_ENTRY_PRICE_USD, 99)
-  const passing = listBeginnerFriendlyFirms()
-  console.log('  beginners pass firms:', passing.map(f => f.firmSlug).join(', ') || '(none)')
-  const target = {
-    'bright-funded': getChallengesByFirm('bright-funded'),
-    'fundingpips': getChallengesByFirm('fundingpips'),
-    'hash-hedge': getChallengesByFirm('hash-hedge'),
-    'crypto-fund-trader': getChallengesByFirm('crypto-fund-trader'),
-  }
-  for (const [slug, products] of Object.entries(target)) {
-    const any = products.some(isBeginnerFriendlyProduct)
+  const passingEn = listBeginnerFriendlyFirms(new Date(), { applyRussiaFilter: false })
+  const passingRu = listBeginnerFriendlyFirms(new Date(), { applyRussiaFilter: true })
+  console.log('  beginners EN pass:', passingEn.map(f => f.firmSlug).join(', ') || '(none)')
+  console.log('  beginners RU pass:', passingRu.map(f => f.firmSlug).join(', ') || '(none)')
+  const excluded = listBeginnersExcludedRestricted()
+  console.log('  beginners RU excluded restricted:', excluded.map(f => f.slug).join(', ') || '(none)')
+  assert.ok(excluded.some(f => f.slug === 'the5ers'), 'The5ers must be listed as restricted exclusion when product filters pass')
+
+  const targetSlugs = ['bright-funded', 'crypto-fund-trader', 'fundingpips', 'hash-hedge', 'the5ers']
+  for (const slug of targetSlugs) {
+    const firm = getAllFirms().find(f => firmSlug(f.name) === slug)
+    assert.ok(firm, `missing firm ${slug}`)
+    const products = getChallengesByFirm(slug)
+    const productPass = products.some(isBeginnerFriendlyProduct)
     const fails = products.map(p => ({ product: p.productSlug, reasons: beginnerProductFailures(p) }))
-    console.log(`  beginners target ${slug}: pass=${any}`, JSON.stringify(fails.filter(f => f.reasons.length).slice(0, 3)))
+    const firmRu = beginnerFirmFailures(firm, products, { applyRussiaFilter: true })
+    const firmEn = beginnerFirmFailures(firm, products, { applyRussiaFilter: false })
+    console.log(`  beginners target ${slug}: productPass=${productPass} ruFail=${JSON.stringify(firmRu)} enFail=${JSON.stringify(firmEn)}`, JSON.stringify(fails.filter(f => f.reasons.length).slice(0, 2)))
   }
+
+  // Hard product filter: BF has only priceEur → price-usd-missing
+  assert.equal(
+    getChallengesByFirm('bright-funded').every(p => beginnerProductFailures(p).includes('price-usd-missing')),
+    true,
+    'BrightFunded CFD must fail on missing priceUsd',
+  )
+  // CFT / FundingPips / Hash Hedge pass product filter
+  for (const slug of ['crypto-fund-trader', 'fundingpips', 'hash-hedge']) {
+    assert.ok(
+      getChallengesByFirm(slug).some(isBeginnerFriendlyProduct),
+      `${slug} should pass beginners product hard filters`,
+    )
+  }
+  // Hash Hedge drawdownType is null on purpose (Tracker) — ranking signal only, never a hard filter
+  {
+    const hhProducts = getChallengesByFirm('hash-hedge')
+    assert.ok(hhProducts.every(p => p.drawdownType == null), 'HH drawdownType expected null (unknown)')
+    const ruRanked = rankBestFor(BEST_FOR_USE_CASES.find(u => u.id === 'beginners'), 'ru').ranked
+    const hh = ruRanked.find(r => r.slug === 'hash-hedge')
+    assert.ok(hh, 'Hash Hedge must remain on RU beginners with unknown drawdown')
+    // preferredDd key is index 3 → 1 means non-preferred / unknown
+    assert.equal(hh.sortKeys[3], 1, 'unknown drawdown ranks lowest on that signal')
+  }
+  // The5ers: product ok, RU restricted
+  assert.ok(getChallengesByFirm('the5ers').some(isBeginnerFriendlyProduct), 'The5ers products pass price/freshness')
+  const the5 = getAllFirms().find(f => firmSlug(f.name) === 'the5ers')
+  assert.deepEqual(
+    beginnerFirmFailures(the5, getChallengesByFirm('the5ers'), { applyRussiaFilter: true }),
+    ['russia-restricted'],
+  )
+  assert.deepEqual(
+    beginnerFirmFailures(the5, getChallengesByFirm('the5ers'), { applyRussiaFilter: false }),
+    [],
+  )
+
+  const ruModel = buildBestForPageModel('beginners', 'ru', new Date(), emptyVerdictRoot)
+  const enModel = buildBestForPageModel('beginners', 'en', new Date(), emptyVerdictRoot)
+  console.log('  beginners RU gate', {
+    firms: ruModel.ranked.length,
+    diffs: ruModel.differingFieldCount,
+    indexable: ruModel.indexable,
+    reasons: ruModel.reasons,
+    excluded: (ruModel.excludedRestrictedFirms || []).map(f => f.slug),
+  })
+  console.log('  beginners EN gate', {
+    firms: enModel.ranked.length,
+    diffs: enModel.differingFieldCount,
+    indexable: enModel.indexable,
+    reasons: enModel.reasons,
+  })
+  assert.ok(ruModel.ranked.length >= 3, 'RU beginners should include FP, CFT, HH')
+  assert.ok(ruModel.ranked.every(r => r.russiaStatus !== 'restricted'))
+  assert.ok(ruModel.excludedRestrictedFirms?.some(f => f.slug === 'the5ers'))
+  // unclear → no RU CTA; available → CTA
+  for (const row of ruModel.ranked) {
+    if (row.russiaStatus === 'available') assert.equal(row.showRuSignupCta, true, row.slug)
+    if (row.russiaStatus === 'unclear') assert.equal(row.showRuSignupCta, false, row.slug)
+  }
+  // EN includes restricted firms that pass product filters (no Russia filter)
+  assert.ok(enModel.ranked.some(r => r.slug === 'the5ers'), 'EN beginners keeps The5ers (no Russia filter)')
+  // Ranking deterministic + no affiliate in sort keys
+  const a = rankBestFor(BEST_FOR_USE_CASES.find(u => u.id === 'beginners'), 'ru')
+  const b = rankBestFor(BEST_FOR_USE_CASES.find(u => u.id === 'beginners'), 'ru')
+  assert.deepEqual(a.ranked.map(r => r.slug), b.ranked.map(r => r.slug))
+  assert.deepEqual(a.ranked.map(r => r.sortKeys), b.ranked.map(r => r.sortKeys))
+  assert.ok(BEST_FOR_SORT_RULES.beginners.en.includes('Affiliate status is not used'))
 }
 
 // Ranking determinism + BrightFunded position from rule only (low-drawdown / small-accounts / eas)
@@ -335,7 +454,8 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(BEST_FOR_SORT_RULES[id]?.ru)
 }
 
-console.log('PASS best-for gate (unit)')
+assertVerdictsUnchanged(verdictsBefore)
+console.log('PASS best-for gate (unit) — content/verdicts unchanged')
 console.log(`  built paths (${allBestForPaths().length}):`)
 for (const row of bestForSlugManifest()) {
   console.log(`    ${row.id}: EN=${row.en ?? '—'} RU=${row.ru ?? '—'}`)

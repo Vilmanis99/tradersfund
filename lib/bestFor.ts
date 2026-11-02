@@ -28,11 +28,29 @@ import { loadVerdict, type Verdict } from './verdicts.ts'
 export const BEST_FOR_MIN_DIFF_FIELDS = 5
 export const BEST_FOR_MIN_FIRMS = 2
 
-/** Beginners thresholds — RU SEO Lead's final call. */
-export const BEGINNER_MAX_MIN_TRADING_DAYS = 5
-/** Default $99 ≈ ~p40 of published accountSizes.priceUsd (p25≈59, p50≈110). */
+/**
+ * Beginners — RU SEO Lead (2026-11-02).
+ * Hard filters only: (1) russiaStatus !== restricted (RU page; EN skips — not a
+ * natural EN filter), (2) entry priceUsd ≤ BEGINNER_MAX_ENTRY_PRICE_USD,
+ * (3) required fields present (priceUsd). Freshness via isChallengeFresh (30d).
+ * Ranking signals (not filters): no time limit, min trading days ≤5 preferred,
+ * static/EOD drawdown, payout speed. priceEur is never converted to USD.
+ */
+/** Ranking preference: ≤ this many min trading days scores best. */
+export const BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS = 5
+/** @deprecated alias — kept so older imports keep working; prefer BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS */
+export const BEGINNER_MAX_MIN_TRADING_DAYS = BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS
+/**
+ * Hard entry-price ceiling (USD). Chosen from Tracker firm-min priceUsd on
+ * 2026-11-02: fresh firm mins p25≈29, p50≈38, p75≈97; non-restricted fresh
+ * mins are FundingPips $29, Crypto Fund Trader $40, Hash Hedge $79. $99 is
+ * ~p75 of the market and includes all three non-restricted candidates.
+ */
 export const BEGINNER_MAX_ENTRY_PRICE_USD = 99
-export const BEGINNER_ALLOWED_DRAWDOWN_TYPES = ['static', 'eod-trailing'] as const
+/** Preferred drawdown types for the beginners ranking signal (not a hard filter). */
+export const BEGINNER_PREFERRED_DRAWDOWN_TYPES = ['static', 'eod-trailing'] as const
+/** @deprecated alias */
+export const BEGINNER_ALLOWED_DRAWDOWN_TYPES = BEGINNER_PREFERRED_DRAWDOWN_TYPES
 
 export type BestForLang = 'en' | 'ru'
 export type BestForRussiaStatus = 'available' | 'restricted' | 'unclear' | 'unverified'
@@ -85,8 +103,8 @@ export const BEST_FOR_SORT_RULES: Record<BestForUseCaseId, { en: string; ru: str
     ru: 'Как ранжируем: сначала продукты с minHoldSeconds = 0 (явный «без минимума»), затем больший сплит, затем имя A–Z. Если поля ещё нет — помеченный прокси; null никогда не равен нулю.',
   },
   beginners: {
-    en: 'How we ranked: lowest USD entry fee first, then fewest min trading days, then firm name A–Z among firms that pass the beginners filter. Affiliate status is not used.',
-    ru: 'Как ранжируем: сначала низкий вход в USD, затем меньший минимум дней, затем имя A–Z среди фирм, прошедших фильтр для новичков. Партнёрский статус не влияет.',
+    en: 'How we ranked: no evaluation time limit first, then min trading days ≤5 preferred (then fewer days), then static/EOD drawdown preferred, then fewest days to first payout, then lowest USD entry, then firm name A–Z. Affiliate status is not used. Hard filters (not ranking): russiaStatus ≠ restricted on RU only, priceUsd ≤ $99, required priceUsd present, fresh Tracker capture.',
+    ru: 'Как ранжируем: сначала без лимита срока оценки, затем минимум дней ≤5 (потом меньше дней), затем предпочтение static/EOD, затем меньше дней до первой выплаты, затем низкий вход в USD, затем имя A–Z. Партнёрский статус не влияет. Жёсткие фильтры: russiaStatus ≠ restricted (только RU), priceUsd ≤ $99, поле priceUsd обязательно, свежий захват Tracker.',
   },
   'weekly-payouts': {
     en: 'How we ranked: highest profit split first, then fewest days to first payout, then firm name A–Z. Only payoutFrequency = weekly qualifies.',
@@ -183,6 +201,8 @@ export interface BestForPageModel {
   sortRule: string
   usedScalpingProxy?: boolean
   usedTimeLimitProxy?: boolean
+  /** Beginners RU: firms excluded solely because russiaStatus === restricted. */
+  excludedRestrictedFirms?: { slug: string; name: string }[]
 }
 
 function russiaStatusOf(firm: Firm): BestForRussiaStatus {
@@ -560,33 +580,33 @@ function hasNoTimeLimitFirm(_firm: Firm, products: Challenge[]): boolean {
 
 export type BeginnerFilterFailReason =
   | 'not-fresh'
-  | 'no-unlimited'
-  | 'min-trading-days-missing'
-  | 'min-trading-days-too-high'
-  | 'drawdown-missing'
-  | 'drawdown-not-static-or-eod'
   | 'price-usd-missing'
   | 'price-usd-too-high'
+  | 'russia-restricted'
 
+export type BeginnerProductOpts = {
+  maxEntryPriceUsd?: number
+  now?: Date
+}
+
+export type BeginnerFirmOpts = BeginnerProductOpts & {
+  /** RU page applies this; EN beginners skips (Russia access is not a natural EN filter). */
+  applyRussiaFilter?: boolean
+}
+
+/**
+ * Hard product filters for beginners: fresh capture + published priceUsd ≤ ceiling.
+ * Unlimited time / min days / drawdown / payout are ranking signals only.
+ * priceEur is never converted.
+ */
 export function beginnerProductFailures(
   product: Challenge,
-  opts: { maxMinTradingDays?: number; maxEntryPriceUsd?: number; now?: Date } = {},
+  opts: BeginnerProductOpts = {},
 ): BeginnerFilterFailReason[] {
-  const maxMin = opts.maxMinTradingDays ?? BEGINNER_MAX_MIN_TRADING_DAYS
   const maxPrice = opts.maxEntryPriceUsd ?? BEGINNER_MAX_ENTRY_PRICE_USD
   const now = opts.now ?? new Date()
   const reasons: BeginnerFilterFailReason[] = []
   if (!isChallengeFresh(product, now)) reasons.push('not-fresh')
-  if (!productHasNoTimeLimit(product).ok) reasons.push('no-unlimited')
-  if (typeof product.minTradingDays !== 'number' || !Number.isInteger(product.minTradingDays) || product.minTradingDays < 0) {
-    reasons.push('min-trading-days-missing')
-  } else if (product.minTradingDays > maxMin) {
-    reasons.push('min-trading-days-too-high')
-  }
-  if (product.drawdownType == null) reasons.push('drawdown-missing')
-  else if (!(BEGINNER_ALLOWED_DRAWDOWN_TYPES as readonly string[]).includes(product.drawdownType)) {
-    reasons.push('drawdown-not-static-or-eod')
-  }
   const price = lowestEntryPriceUsd(product)
   if (price == null) reasons.push('price-usd-missing')
   else if (price > maxPrice) reasons.push('price-usd-too-high')
@@ -595,35 +615,84 @@ export function beginnerProductFailures(
 
 export function isBeginnerFriendlyProduct(
   product: Challenge,
-  opts?: { maxMinTradingDays?: number; maxEntryPriceUsd?: number; now?: Date },
+  opts?: BeginnerProductOpts,
 ): boolean {
   return beginnerProductFailures(product, opts).length === 0
 }
 
-export function beginnerFriendly(
-  _firm: Firm,
+export function beginnerFirmFailures(
+  firm: Firm,
   products: Challenge[],
-  opts?: { maxMinTradingDays?: number; maxEntryPriceUsd?: number; now?: Date },
-): boolean {
-  return products.some(product => isBeginnerFriendlyProduct(product, opts))
+  opts: BeginnerFirmOpts = {},
+): BeginnerFilterFailReason[] {
+  const reasons: BeginnerFilterFailReason[] = []
+  if (opts.applyRussiaFilter && russiaStatusOf(firm) === 'restricted') {
+    reasons.push('russia-restricted')
+  }
+  const passing = products.filter(product => isBeginnerFriendlyProduct(product, opts))
+  if (passing.length) return reasons
+
+  if (!products.length) {
+    reasons.push('not-fresh')
+    return [...new Set(reasons)]
+  }
+  const allReasons = products.map(product => beginnerProductFailures(product, opts))
+  if (allReasons.every(list => list.includes('not-fresh'))) reasons.push('not-fresh')
+  else if (allReasons.every(list => list.includes('price-usd-missing'))) reasons.push('price-usd-missing')
+  else if (allReasons.some(list => list.includes('price-usd-too-high'))) reasons.push('price-usd-too-high')
+  else if (allReasons.some(list => list.includes('price-usd-missing'))) reasons.push('price-usd-missing')
+  else reasons.push('not-fresh')
+  return [...new Set(reasons)]
 }
 
-export function listBeginnerFriendlyFirms(now = new Date()) {
+export function beginnerFriendly(
+  firm: Firm,
+  products: Challenge[],
+  opts: BeginnerFirmOpts = {},
+): boolean {
+  return beginnerFirmFailures(firm, products, opts).length === 0
+}
+
+export function listBeginnerFriendlyFirms(
+  now = new Date(),
+  opts: { applyRussiaFilter?: boolean; maxEntryPriceUsd?: number } = {},
+) {
   return getAllFirms().flatMap(firm => {
-    const products = primaryProducts(firm, now).filter(product => isBeginnerFriendlyProduct(product, { now }))
+    const products = primaryProducts(firm, now).filter(product =>
+      isBeginnerFriendlyProduct(product, { now, maxEntryPriceUsd: opts.maxEntryPriceUsd }),
+    )
+    if (!beginnerFriendly(firm, products, { now, ...opts })) return []
     if (!products.length) return []
     return [{
       firmSlug: firmSlug(firm.name),
       firmName: firm.name,
+      russiaStatus: russiaStatusOf(firm),
       products: products.map(product => ({
         productSlug: product.productSlug,
-        minTradingDays: product.minTradingDays as number,
-        drawdownType: String(product.drawdownType),
+        minTradingDays: product.minTradingDays ?? null,
+        drawdownType: product.drawdownType == null ? null : String(product.drawdownType),
         entryPriceUsd: lowestEntryPriceUsd(product) as number,
+        noTimeLimit: productHasNoTimeLimit(product).ok,
         viaTimeLimitProxy: productHasNoTimeLimit(product).viaProxy,
+        payoutFirstDays: product.payoutFirstDays ?? null,
       })),
     }]
   })
+}
+
+/** Firms that would pass beginners hard product filters but are russiaStatus === restricted. */
+export function listBeginnersExcludedRestricted(
+  now = new Date(),
+  opts: { maxEntryPriceUsd?: number } = {},
+) {
+  return getAllFirms().flatMap(firm => {
+    if (russiaStatusOf(firm) !== 'restricted') return []
+    const products = primaryProducts(firm, now).filter(product =>
+      isBeginnerFriendlyProduct(product, { now, maxEntryPriceUsd: opts.maxEntryPriceUsd }),
+    )
+    if (!products.length) return []
+    return [{ slug: firmSlug(firm.name), name: firm.name }]
+  }).sort((a, b) => a.name.localeCompare(b.name))
 }
 
 /** Scalping: structured minHoldSeconds===0, else labelled proxy when field absent. */
@@ -756,20 +825,20 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
       ru: 'Проп-фирмы для новичков 2026',
     },
     metaDescription: {
-      en: 'No time limit, low min trading days, static/EOD drawdown, low USD entry — from firm data only.',
-      ru: 'Без лимита срока, низкий минимум дней, static/EOD просадка, низкий вход в USD — только из данных.',
+      en: 'Low USD entry from fresh Tracker data. No time limit, min days, static/EOD and payout speed rank the list — they are not hard filters.',
+      ru: 'Низкий вход в USD по свежим данным Tracker. Без лимита срока, минимум дней, static/EOD и скорость выплат ранжируют список — это не жёсткие фильтры.',
     },
     intro: {
-      en: 'Beginner-friendly means one fresh product with no time limit, min trading days at or under our threshold, static or EOD drawdown, and a low published USD entry fee.',
-      ru: '«Для новичков» — один свежий продукт без лимита срока, с минимумом дней не выше порога, просадкой static/EOD и низким входом в USD.',
+      en: 'Beginner-friendly means a fresh product with a published USD entry at or under our ceiling. No time limit, low min trading days, static/EOD drawdown and payout speed rank the list — they are not hard filters. EN does not filter on Russia access.',
+      ru: '«Для новичков» — свежий продукт с опубликованным входом в USD не выше потолка. Без лимита срока, низкий минимум дней, static/EOD и скорость выплат ранжируют список, но не отсекают. Фирмы с russiaStatus = restricted исключены (список ниже).',
     },
     methodology: {
-      en: `See isBeginnerFriendlyProduct: unlimited evaluationTimeLimit (or labelled legacy proxy), minTradingDays≤${BEGINNER_MAX_MIN_TRADING_DAYS}, drawdown static|eod-trailing, priceUsd≤$${BEGINNER_MAX_ENTRY_PRICE_USD}. Missing fields fail closed.`,
-      ru: `См. isBeginnerFriendlyProduct: unlimited evaluationTimeLimit (или помеченный legacy-прокси), minTradingDays≤${BEGINNER_MAX_MIN_TRADING_DAYS}, drawdown static|eod-trailing, priceUsd≤$${BEGINNER_MAX_ENTRY_PRICE_USD}.`,
+      en: `Hard filters: fresh Tracker capture (isChallengeFresh, 30 days), accountSizes.priceUsd present and ≤$${BEGINNER_MAX_ENTRY_PRICE_USD} (priceEur never converted). Ranking signals: no time limit first, minTradingDays≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} preferred, static|eod-trailing preferred, then payoutFirstDays, then entry price. Affiliate status unused. Russia filter is RU-only.`,
+      ru: `Жёсткие фильтры: свежий захват Tracker (isChallengeFresh, 30 дней), accountSizes.priceUsd есть и ≤$${BEGINNER_MAX_ENTRY_PRICE_USD} (priceEur не конвертируем). Ранжирование: без лимита срока, minTradingDays≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS}, static|eod-trailing, затем payoutFirstDays, затем цена. Партнёрский статус не влияет. Фильтр РФ — только на RU.`,
     },
-    fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'consistencyRule', 'phases', 'eaAllowed'],
-    qualifies: beginnerFriendly,
-    dataNote: `Thresholds: minDays≤${BEGINNER_MAX_MIN_TRADING_DAYS}, priceUsd≤$${BEGINNER_MAX_ENTRY_PRICE_USD} (RU SEO Lead). Uses evaluationTimeLimit when present.`,
+    fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'consistencyRule', 'phases'],
+    qualifies: (firm, products) => beginnerFriendly(firm, products, { applyRussiaFilter: false }),
+    dataNote: `RU SEO Lead 2026-11-02: hard filters = not restricted (RU) + priceUsd≤$${BEGINNER_MAX_ENTRY_PRICE_USD} + required priceUsd + fresh. Ranking: unlimited, minDays≤${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS}, static/EOD, payout speed.`,
     lastReviewed: '2026-11-02',
   },
   {
@@ -993,8 +1062,31 @@ function buildSortKeys(id: BestForUseCaseId, firm: Firm, products: Challenge[]):
       return [hasZero, -numOrInf(split, -1)]
     }
     case 'beginners': {
+      // Lexicographic ranking signals (not filters): unlimited → minDays≤5 →
+      // minDays asc → preferred drawdown → payoutFirstDays → entry price.
+      const unlimited = products.some(product => productHasNoTimeLimit(product).ok) ? 0 : 1
+      const daysList = products
+        .map(product => product.minTradingDays)
+        .filter((value): value is number => typeof value === 'number' && Number.isInteger(value) && value >= 0)
+      const bestDays = daysList.length ? Math.min(...daysList) : null
+      const daysPreferred = bestDays != null && bestDays <= BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS ? 0 : 1
+      const preferredDd = products.some(product =>
+        product.drawdownType != null
+        && (BEGINNER_PREFERRED_DRAWDOWN_TYPES as readonly string[]).includes(product.drawdownType),
+      ) ? 0 : 1
+      const firstDays = products
+        .map(product => product.payoutFirstDays)
+        .filter((value): value is number => typeof value === 'number' && Number.isFinite(value) && value >= 0)
+      const bestFirst = firstDays.length ? Math.min(...firstDays) : null
       const price = entryPriceUsdValue(firm, products)
-      return [numOrInf(price == null ? null : Number(price), 999999), numOrInf(minDay, 9999)]
+      return [
+        unlimited,
+        daysPreferred,
+        numOrInf(bestDays, 9999),
+        preferredDd,
+        numOrInf(bestFirst, 9999),
+        numOrInf(price == null ? null : Number(price), 999999),
+      ]
     }
     case 'no-time-limit':
       return [-numOrInf(split, -1), numOrInf(minDay, 9999)]
@@ -1079,14 +1171,28 @@ export function rankBestFor(
   useCase: BestForUseCase,
   lang: BestForLang = 'en',
   now = new Date(),
-): { ranked: BestForRankedFirm[]; unrankedUsd: BestForRankedFirm[] } {
+): { ranked: BestForRankedFirm[]; unrankedUsd: BestForRankedFirm[]; excludedRestricted: { slug: string; name: string }[] } {
   const ranked: BestForRankedFirm[] = []
   const unrankedUsd: BestForRankedFirm[] = []
 
+  const excludedRestricted: { slug: string; name: string }[] = []
+
   for (const firm of getAllFirms()) {
     const products = primaryProducts(firm, now)
-    if (!useCase.qualifies(firm, products)) continue
     const slug = firmSlug(firm.name)
+    if (useCase.id === 'beginners') {
+      // EN skips Russia filter (not a natural EN criterion). RU excludes restricted
+      // firms that otherwise pass hard product filters, and lists them in a note.
+      const applyRussia = lang === 'ru'
+      if (applyRussia && russiaStatusOf(firm) === 'restricted') {
+        const wouldPass = products.some(product => isBeginnerFriendlyProduct(product, { now }))
+        if (wouldPass) excludedRestricted.push({ slug, name: firm.name })
+        continue
+      }
+      if (!beginnerFriendly(firm, products, { now, applyRussiaFilter: false })) continue
+    } else if (!useCase.qualifies(firm, products)) {
+      continue
+    }
     const qualified = qualifyingProductsFor(useCase, firm, products, now)
     if (!qualified.length && useCase.id !== 'low-drawdown') continue
 
@@ -1141,7 +1247,8 @@ export function rankBestFor(
   }
   ranked.sort(byRule)
   unrankedUsd.sort((a, b) => a.firm.name.localeCompare(b.firm.name))
-  return { ranked, unrankedUsd }
+  excludedRestricted.sort((a, b) => a.name.localeCompare(b.name))
+  return { ranked, unrankedUsd, excludedRestricted }
 }
 
 function displayCopy(useCase: BestForUseCase, lang: BestForLang, verdict: Verdict | null) {
@@ -1156,13 +1263,15 @@ export function buildBestForPageModel(
   useCaseId: string,
   lang: BestForLang,
   now = new Date(),
+  /** Override content/ root for tests — never write into the real content/ tree from tests. */
+  verdictRoot = process.cwd(),
 ): BestForPageModel | null {
   const useCase = getBestForUseCase(useCaseId)
   if (!useCase) return null
   const path = bestForPath(useCase.id, lang)
   if (!path) return null // language slug unset → no page
 
-  const { ranked, unrankedUsd } = rankBestFor(useCase, lang, now)
+  const { ranked, unrankedUsd, excludedRestricted } = rankBestFor(useCase, lang, now)
   const gatePool = useCase.id === 'low-drawdown' ? ranked : ranked
   const { count, fields } = countDifferingFields(gatePool, useCase.fields.filter(key => {
     // USD-only columns don't count toward the %-ranking gate
@@ -1172,7 +1281,7 @@ export function buildBestForPageModel(
 
   let verdict: Verdict | null = null
   try {
-    verdict = loadVerdict('best-for', useCase.id, lang)
+    verdict = loadVerdict('best-for', useCase.id, lang, verdictRoot)
   } catch (error) {
     throw error
   }
@@ -1216,44 +1325,45 @@ export function buildBestForPageModel(
     sortRule: BEST_FOR_SORT_RULES[useCase.id][lang],
     usedScalpingProxy,
     usedTimeLimitProxy,
+    excludedRestrictedFirms: useCase.id === 'beginners' && lang === 'ru' ? excludedRestricted : undefined,
   }
 }
 
-export function getBestForPageModels(now = new Date()): BestForPageModel[] {
+export function getBestForPageModels(now = new Date(), verdictRoot = process.cwd()): BestForPageModel[] {
   const models: BestForPageModel[] = []
   for (const useCase of BEST_FOR_USE_CASES) {
     for (const lang of ['en', 'ru'] as BestForLang[]) {
-      const model = buildBestForPageModel(useCase.id, lang, now)
+      const model = buildBestForPageModel(useCase.id, lang, now, verdictRoot)
       if (model) models.push(model)
     }
   }
   return models
 }
 
-export function indexableBestForPaths(now = new Date()): string[] {
-  return getBestForPageModels(now).filter(model => model.indexable).map(model => model.path)
+export function indexableBestForPaths(now = new Date(), verdictRoot = process.cwd()): string[] {
+  return getBestForPageModels(now, verdictRoot).filter(model => model.indexable).map(model => model.path)
 }
 
 /**
  * EN↔RU hreflang only when BOTH sides exist AND both are indexable.
  * weekly-payouts (EN unset) and low-drawdown/small-accounts (RU unset) never pair.
  */
-export function bestForRoutePair(pathname: string, now = new Date()): { en: string; ru: string } | undefined {
+export function bestForRoutePair(pathname: string, now = new Date(), verdictRoot = process.cwd()): { en: string; ru: string } | undefined {
   const id = bestForUseCaseIdFromPath(pathname)
   if (!id) return undefined
   const enPath = bestForPath(id, 'en')
   const ruPath = bestForPath(id, 'ru')
   if (!enPath || !ruPath) return undefined
-  const en = buildBestForPageModel(id, 'en', now)
-  const ru = buildBestForPageModel(id, 'ru', now)
+  const en = buildBestForPageModel(id, 'en', now, verdictRoot)
+  const ru = buildBestForPageModel(id, 'ru', now, verdictRoot)
   if (!en?.indexable || !ru?.indexable) return undefined
   return { en: en.path, ru: ru.path }
 }
 
 /** Feature-page reverse link target — only when the EN best-for page is indexable. */
-export function bestForIndexableFeatureLink(featureSlug: 'ea-allowed' | 'news-trading'): string | null {
+export function bestForIndexableFeatureLink(featureSlug: 'ea-allowed' | 'news-trading', verdictRoot = process.cwd()): string | null {
   const id: BestForUseCaseId = featureSlug === 'ea-allowed' ? 'eas' : 'news-trading'
-  const model = buildBestForPageModel(id, 'en')
+  const model = buildBestForPageModel(id, 'en', new Date(), verdictRoot)
   if (!model?.indexable) return null
   return model.path
 }
