@@ -42,7 +42,20 @@
     "fundedDrawdownType": "trailing",
     "minTradingDays": 0,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
+    "consistencyRulePct": 50,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Performance Account payouts",
+        "sourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/"
+      }
+    ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest profitable trading day must represent less than 50% of your net profit since your last payout request, or since account inception if no payout has been made. Once a payout is approved: The consistency calculation resets. Future payout eligibility is based only on profits earned after the last approved payout.",
+    "consistencyBasisSourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/",
+    "consistencyBasisCheckedAt": "2026-11-02",
     "profitSplitPct": 100,
     "payoutFirstDays": 5,
     "payoutFrequency": "weekly",
@@ -128,7 +141,20 @@
     "fundedDrawdownType": "eod-trailing",
     "minTradingDays": 0,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
+    "consistencyRulePct": 50,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Performance Account payouts",
+        "sourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/"
+      }
+    ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest profitable trading day must represent less than 50% of your net profit since your last payout request, or since account inception if no payout has been made. Once a payout is approved: The consistency calculation resets. Future payout eligibility is based only on profits earned after the last approved payout.",
+    "consistencyBasisSourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/",
+    "consistencyBasisCheckedAt": "2026-11-02",
     "profitSplitPct": 100,
     "payoutFirstDays": 5,
     "payoutFrequency": "weekly",
@@ -208,7 +234,20 @@
     "fundedDrawdownType": "trailing",
     "minTradingDays": 0,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
+    "consistencyRulePct": 50,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Performance Account payouts",
+        "sourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/"
+      }
+    ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest profitable trading day must represent less than 50% of your net profit since your last payout request, or since account inception if no payout has been made. Once a payout is approved: The consistency calculation resets. Future payout eligibility is based only on profits earned after the last approved payout.",
+    "consistencyBasisSourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/",
+    "consistencyBasisCheckedAt": "2026-11-02",
     "profitSplitPct": 100,
     "payoutFirstDays": 5,
     "payoutFrequency": "weekly",
@@ -286,7 +325,20 @@
     "fundedDrawdownType": "eod-trailing",
     "minTradingDays": 0,
     "maxTradingDays": null,
-    "consistencyRulePct": null,
+    "consistencyRulePct": 50,
+    "consistencyScope": "funded",
+    "consistencyRules": [
+      {
+        "percent": 50,
+        "scope": "funded",
+        "appliesTo": "Performance Account payouts",
+        "sourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/"
+      }
+    ],
+    "consistencyBasis": "payout-cycle-profit",
+    "consistencyBasisQuote": "Your largest profitable trading day must represent less than 50% of your net profit since your last payout request, or since account inception if no payout has been made. Once a payout is approved: The consistency calculation resets. Future payout eligibility is based only on profits earned after the last approved payout.",
+    "consistencyBasisSourceUrl": "https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/",
+    "consistencyBasisCheckedAt": "2026-11-02",
     "profitSplitPct": 100,
     "payoutFirstDays": 5,
     "payoutFrequency": "weekly",
