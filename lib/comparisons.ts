@@ -335,10 +335,10 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     whenToPickA:
       'Pick FTMO if you need MT4 or TradingView, or want a 90% base split on 1-Step or the Instant Account. 2-Step costs €540 at $100K with a refundable fee, an 80% split and a 10% static maximum loss; 1-Step costs €499, is non-refundable and uses a 10% end-of-day trailing line with a 50% consistency rule. The Instant Account skips the evaluation for €2,999 at $100K, with a non-refundable fee and a 10% trailing limit.',
     whenToPickB:
-      'Pick FundingPips if a 7-day first-payout gate, a 95% split or a 12% maximum loss matters. At $100K, 2 Step Pro lists $422 with a weekly 80% route, Zero $444 with a 95% split, Standard $544, 2 Step Flex $555 and 1 Step Flex $566. A 2 Step Standard fee refund is unconfirmed: the help centre (updated 24 Sep 2026) promises it at the fourth reward, but the Terms (effective 15 May 2026) rule out registration-fee refunds.',
+      'Pick FundingPips if a 7-day first-payout gate, a 95% split or a 12% maximum loss matters. At $100K, Zero lists $444 with a 95% split, 2 Step Pro $466 with a weekly 80% route (checkout 2 November 2026), Standard $652, 2 Step Flex $555 and 1 Step Flex $666. A 2 Step Standard fee refund is unconfirmed: the help centre (updated 24 Sep 2026) promises it at the fourth reward, but the Terms (effective 15 May 2026) rule out registration-fee refunds.',
     faqs: [
       { q: 'Does FundingPips pay 100%?', a: 'Only on conditional On Demand routes. 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard list an On Demand 100% option with extra eligibility conditions; the stored routes are 80% (1 Step Flex, 2 Step Pro) and 95% (Zero), while 2 Step Flex and Standard have no single split.' },
-      { q: 'Which is cheaper at $100K?', a: 'FTMO lists €540 (2-Step) and €499 (1-Step); the Instant Account, which has no evaluation, is €2,999. FundingPips lists $422 to $566 across its 5 models. The currencies differ, so convert at a dated rate before comparing.' },
+      { q: 'Which is cheaper at $100K?', a: 'FTMO lists €540 (2-Step) and €499 (1-Step); the Instant Account, which has no evaluation, is €2,999. FundingPips lists $444 to $666 across its 5 models (checkout 2 November 2026 for the evaluation fees; Zero unchanged). The currencies differ, so convert at a dated rate before comparing.' },
       { q: 'Are the fees refundable?', a: `${feeRefundSummary('ftmo', 'FTMO')} ${feeRefundSummary('fundingpips', 'FundingPips')} ${FUNDINGPIPS_STANDARD_REFUND_CONFLICT}` },
     ],
   },
@@ -438,10 +438,10 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     metaDescription:
       'FundedNext vs FundingPips using 2026 prices, 9 captured products, base or selectable splits, payout gates, drawdowns, platforms and refund timing.',
     tlDr:
-      'FundedNext’s 4 paths use an 80% base split on 3 evaluations and 70% on Instant; add-ons can raise the share to 95%. FundingPips has 5 models: captured base splits of 80% on 1 Step Flex and 2 Step Pro and 95% on Zero, plus buyer-selected split-and-payout structures on 2 Step Flex and Standard. At $100K, FundedNext Lite lists $399.99 against FundingPips 2 Step Pro at $422, while FundingPips offers the wider 12% static cap on its Flex products. Choose the exact product, not one firm-wide split or payout label.',
+      'FundedNext’s 4 paths use an 80% base split on 3 evaluations and 70% on Instant; add-ons can raise the share to 95%. FundingPips has 5 models: captured base splits of 80% on 1 Step Flex and 2 Step Pro and 95% on Zero, plus buyer-selected split-and-payout structures on 2 Step Flex and Standard. At $100K, FundedNext Lite lists $399.99 against FundingPips Zero at $444 and 2 Step Pro at $466 (checkout 2 November 2026), while FundingPips offers the wider 12% static cap on its Flex products. Choose the exact product, not one firm-wide split or payout label.',
     verdictByCategory: [
       { category: 'Highest Captured Split Option', winner: 'b', reason: 'FundingPips lists a conditional On Demand 100% route on 4 models and Zero records 95%. FundedNext evaluations start at 80%; 95% needs a paid add-on.' },
-      { category: 'Cheapest $100K List Fee', winner: 'a', reason: 'FundedNext Stellar Lite lists $399.99. FundingPips 2 Step Pro is its cheapest $100K route at $422; the products carry different targets and loss caps.' },
+      { category: 'Cheapest $100K List Fee', winner: 'a', reason: 'FundedNext Stellar Lite lists $399.99. FundingPips’ cheapest $100K list fee is Zero at $444; 2 Step Pro is $466 (checkout 2 November 2026). The products carry different targets and loss caps.' },
       { category: 'Shortest Numeric First-Payout Gate', winner: 'a', reason: 'FundedNext Stellar 1-Step records 5 business days. FundingPips 2 Step Pro records 7 days; its other numeric gates are 14 days.' },
       { category: 'Widest Static Maximum Loss', winner: 'b', reason: 'FundingPips 1 Step Flex and 2 Step Flex record 12% static caps. FundedNext’s widest captured static cap is 10% on Stellar 2-Step.' },
       { category: 'Product Choice', winner: 'b', reason: 'FundingPips has 5 captured models against FundedNext’s 4 paths, including selectable payout structures that cannot be flattened into one firm-wide rate.' },
@@ -451,9 +451,9 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     whenToPickA:
       withSentence('Pick FundedNext if a lower $100K list fee, MT4 or an earlier numeric payout gate matters. Stellar Lite is $399.99 at $100K with an 8% static cap and a 10-business-day first reward; Stellar 1-Step is $569.99 with a 6% static cap, 2 minimum evaluation days and a 5-business-day first reward. All evaluations start at 80%, and new 1-Step fees are refunded with the third reward. Do not price the paid 95% add-on as the base product.', FUNDEDNEXT_NEWS_CREDIT),
     whenToPickB:
-      'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $422 at $100K with 6% and 6% targets, a 6% static cap, 0 minimum days, an 80% split and a 7-day weekly reward cycle. Standard instead offers Weekly 60%, Bi-Weekly 80% or On Demand 100%, each with its own conditions. The 12% Flex caps provide more starting room. Do not count on a Standard fee refund: the help centre and the Terms conflict on it.',
+      'Pick FundingPips if the chosen split-and-payout structure fits the strategy. 2 Step Pro lists $466 at $100K (checkout 2 November 2026) with 6% and 6% targets, a 6% static cap, 0 minimum days, an 80% split and a 7-day weekly reward cycle. Standard instead offers Weekly 60%, Bi-Weekly 80% or On Demand 100%, each with its own conditions. The 12% Flex caps provide more starting room. Do not count on a Standard fee refund: the help centre and the Terms conflict on it.',
     faqs: [
-      { q: 'Which is cheaper at the $100K tier?', a: 'FundedNext Stellar Lite is the lowest captured list fee at $399.99. FundingPips 2 Step Pro is $422, Zero is $444, Standard is $544, 2 Step Flex is $555 and 1 Step Flex is $566. Compare targets, split and drawdown before using fee alone.' },
+      { q: 'Which is cheaper at the $100K tier?', a: 'FundedNext Stellar Lite is the lowest captured list fee at $399.99. FundingPips Zero is $444, 2 Step Pro is $466 at checkout on 2 November 2026 (the help-centre Compare Account Models table still lists that Pro size at $422), 2 Step Flex is $555, Standard is $652 and 1 Step Flex is $666. Compare targets, split and drawdown before using fee alone.' },
       { q: 'Which has the higher profit split?', a: 'It depends on the product. FundedNext evaluations start at 80% and Instant at 70%. FundingPips records base splits of 80% on 1 Step Flex and 2 Step Pro (each with a conditional On Demand 100% route) and 95% on Zero; 2 Step Flex and Standard use selectable structures, including an On Demand 100% choice.' },
       { q: 'Which gets to a first payout sooner?', a: 'The shortest numeric capture is FundedNext Stellar 1-Step at 5 business days, followed by FundingPips 2 Step Pro at 7 days. FundedNext Lite records 10 business days and 2-Step 21 days; FundingPips 1 Step Flex, 2 Step Flex and Zero record 14 days.' },
       { q: 'Do both refund the challenge fee?', a: `${feeRefundSummary('fundednext', 'FundedNext')} ${feeRefundSummary('fundingpips', 'FundingPips')} ${FUNDINGPIPS_STANDARD_REFUND_CONFLICT}` },
@@ -561,19 +561,19 @@ export const COMPARISON_OVERLAYS: Record<string, ComparisonOverlay> = {
     verdictByCategory: [
       // Matchup is alphabetical, so "a" = FundingPips and "b" = FXIFY.
       { category: 'Highest Captured Base Split', winner: 'a', reason: 'FundingPips Zero records 95%. FXIFY’s phase products record an 80% standard split.' },
-      { category: 'Cheapest $100K List Fee', winner: 'b', reason: 'FXIFY Three Phase and Lightning list $399. FundingPips’ cheapest $100K route is 2 Step Pro at $422.' },
+      { category: 'Cheapest $100K List Fee', winner: 'b', reason: 'FXIFY Three Phase and Lightning list $399. FundingPips’ cheapest $100K list fee is Zero at $444; 2 Step Pro is $466 (checkout 2 November 2026).' },
       { category: 'Widest Maximum Loss', winner: 'a', reason: 'FundingPips 1 Step Flex and 2 Step Flex record a 12% static cap. FXIFY’s widest is 10% (Two Phase Classic and Two Phase Standard).' },
       { category: 'Shortest Numeric First-Payout Gate', winner: 'tie', reason: 'FundingPips 2 Step Pro and FXIFY Lightning both record 7 days.' },
       { category: 'Max Allocation', winner: 'b', reason: 'The firm records list $4,000,000 for FXIFY and $2,000,000 for FundingPips.' },
       { category: 'Platform Coverage', winner: 'tie', reason: 'Both list MT5. FundingPips adds cTrader and Match-Trader; FXIFY adds MT4, DXTrade and TradingView.' },
     ],
     whenToPickA:
-      'Pick FundingPips if a 95% split (Zero), a 12% static maximum loss (Flex) or cTrader matters. 2 Step Pro lists $422 at $100K with a weekly 80% route and a 7-day first-payout gate. A 2 Step Standard fee refund is unconfirmed because the help centre and the Terms conflict on it.',
+      'Pick FundingPips if a 95% split (Zero), a 12% static maximum loss (Flex) or cTrader matters. 2 Step Pro lists $466 at $100K (checkout 2 November 2026) with a weekly 80% route and a 7-day first-payout gate. A 2 Step Standard fee refund is unconfirmed because the help centre and the Terms conflict on it.',
     whenToPickB:
       'Pick FXIFY if the $399 $100K entry, the larger $4,000,000 allocation, MT4, DXTrade or TradingView matters. Its phase products record 80% as standard; EAs need pre-approval and are prohibited on DXTrade.',
     faqs: [
       { q: 'Does FundingPips pay 100%?', a: 'Only on conditional On Demand routes, which need extra eligibility conditions. The stored splits are 80% on 1 Step Flex and 2 Step Pro and 95% on Zero; 2 Step Flex and Standard have no single split.' },
-      { q: 'Which is cheaper at $100K?', a: 'FXIFY Three Phase and Lightning list $399. FundingPips lists $422 (2 Step Pro), $444 (Zero), $544 (Standard), $555 (2 Step Flex) and $566 (1 Step Flex).' },
+      { q: 'Which is cheaper at $100K?', a: 'FXIFY Three Phase and Lightning list $399. FundingPips lists $444 (Zero), $466 (2 Step Pro), $555 (2 Step Flex), $652 (Standard) and $666 (1 Step Flex); evaluation fees from checkout 2 November 2026.' },
       { q: 'Are the fees refundable?', a: `${feeRefundSummary('fundingpips', 'FundingPips')} ${feeRefundSummary('fxify', 'FXIFY')} ${FUNDINGPIPS_STANDARD_REFUND_CONFLICT}` },
     ],
   },

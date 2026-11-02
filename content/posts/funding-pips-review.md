@@ -44,7 +44,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The challenge file verifies a USD fee for all 27 rows (prices rechecked 2026-11-02). Fees below are the checkout USD totals from 2 November 2026; confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
+<p>Twenty-six of the 27 fees below are FundingPips checkout totals in USD from 2 November 2026. The 2 Step Pro $200K <strong>$844</strong> figure comes only from FundingPips' help-centre Compare Account Models table (updated 21 October 2026; re-read 2 November 2026) — we did not open that size at checkout that day. Confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">FundingPips products and account sizes</caption>
@@ -65,7 +65,7 @@ type: "post"
     <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$145</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$249</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$466</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844†</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$5K</td><td>$39</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$10K</td><td>$72</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>2 Step Standard</td><td>2</td><td>$25K</td><td>$195</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
@@ -80,7 +80,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Prices were rechecked on 2026-11-02 from FundingPips checkout (USD); the Help Centre Compare Account Models table (updated 21 October 2026) still lists lower fees for most sizes. The 27 listed fees do not reuse temporary coupons or competitor data. We used to carry 2 unpriced $2.5K rows (2 Step Pro and 2 Step Standard). On 2026-10-23 FundingPips’ Get Started article said “Sizes from $5,000 up to $200K”, its Compare Account Models price table started at $5K, and its Free Trial article no longer described a $2,500 size, so those rows were removed.</p>
+<p>Prices were rechecked on 2026-11-02 from FundingPips checkout (USD); the help-centre Compare Account Models table (updated 21 October 2026; re-read 2 November 2026) still lists lower fees for most sizes. †2 Step Pro $200K ($844) was not opened at checkout on 2 November 2026 — that figure is the help-table value only. The other 26 listed fees are checkout totals and do not reuse temporary coupons or competitor data. We used to carry 2 unpriced $2.5K rows (2 Step Pro and 2 Step Standard). On 2026-10-23 FundingPips’ Get Started article said “Sizes from $5,000 up to $200K”, its Compare Account Models price table started at $5K, and its Free Trial article no longer described a $2,500 size, so those rows were removed.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places FundingPips Zero’s 6 priced tiers, 95% split, 5% trailing maximum loss, and 14-day first-payout field beside all other current no-evaluation products.</p>
 
@@ -125,7 +125,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$145</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$181</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$249</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$311</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$466</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$583</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$844</td><td style="padding: 8px 12px;">$1,055</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$844†</td><td style="padding: 8px 12px;">$1,055</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 

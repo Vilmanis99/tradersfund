@@ -64,7 +64,7 @@ type: "post"
 
 <p><strong>The gotcha:</strong> the trial "can't run at the same time as a paid evaluation, Master, giveaway, or competition accounts". If you already hold a funded FundingPips account, you can't use the trial to test a second model alongside it. The trial's 0 minimum trading days per phase matches the paid model: FundingPips' 2-Step Pro article, rechecked on 2026-10-20, says 2 Step Pro has 0 minimum trading days for new and reset accounts, while accounts bought before 26 Aug 2026 keep 1 day.</p>
 
-<p><strong>Converting:</strong> FundingPips says the trial "cannot be converted into an evaluation account or a Master Account under any circumstances". Our capture prices the $100K 2 Step Standard at $544 and the $100K 2 Step Pro at $422. Details are in the <a href="/blog/funding-pips-review">FundingPips review</a>.</p>
+<p><strong>Converting:</strong> FundingPips says the trial "cannot be converted into an evaluation account or a Master Account under any circumstances". Our checkout capture on 2 November 2026 prices the $100K 2 Step Standard at $652 and the $100K 2 Step Pro at $466. Details are in the <a href="/blog/funding-pips-review">FundingPips review</a>.</p>
 
 <h2 class="wp-block-heading"><strong>Alpha Capital and E8 Markets: longer windows, fewer guarantees</strong></h2>
 
