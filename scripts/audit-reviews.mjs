@@ -9989,7 +9989,7 @@ function checkFundedNextComparisonOverlay() {
         '4 paths',
         '5 models',
         '$399.99',
-        '$422',
+        '$466',
         '5 business days',
         '7 days',
         '12% static',
