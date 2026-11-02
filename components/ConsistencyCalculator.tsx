@@ -19,6 +19,8 @@ import {
 export type ConsistencyCalculatorProps = {
   presets: ConsistencyPreset[]
   defaultPreset?: string
+  /** Hide the widget's own title + lede when the host page already shows them. */
+  hideHeader?: boolean
 }
 
 const CUSTOM_ID = 'custom'
@@ -48,6 +50,7 @@ function parseLimit(raw: string): number | null {
 export default function ConsistencyCalculator({
   presets,
   defaultPreset,
+  hideHeader = false,
 }: ConsistencyCalculatorProps) {
   const uid = useId()
   const presetId = defaultPreset && presets.some(p => p.id === defaultPreset)
@@ -116,21 +119,27 @@ export default function ConsistencyCalculator({
 
   const showMath = selected?.kind !== 'no-rule' && activeBasis !== 'not-stated'
 
+  const sectionAria = hideHeader
+    ? { 'aria-label': 'Consistency rule calculator' as const }
+    : { 'aria-labelledby': `${uid}-title` as const }
+
   return (
     <section
       className="consistency-calc"
       id="consistency-rule-calculator"
       data-article-diagram-rendered="consistency-calculator"
-      aria-labelledby={`${uid}-title`}
+      {...sectionAria}
     >
-      <div className="consistency-calc__header">
-        <h3 className="consistency-calc__title" id={`${uid}-title`}>
-          Consistency rule calculator
-        </h3>
-        <p className="consistency-calc__lede">
-          Pick a firm preset or enter a custom limit, then plug in your best closed day and the profit figure the firm names. Pass/fail here is an estimate. The firm’s own dashboard, timezone cut-off, and open-position rules decide eligibility.
-        </p>
-      </div>
+      {!hideHeader && (
+        <div className="consistency-calc__header">
+          <h3 className="consistency-calc__title" id={`${uid}-title`}>
+            Consistency rule calculator
+          </h3>
+          <p className="consistency-calc__lede">
+            Pick a firm preset or enter a custom limit, then plug in your best closed day and the profit figure the firm names. Pass/fail here is an estimate. The firm’s own dashboard, timezone cut-off, and open-position rules decide eligibility.
+          </p>
+        </div>
+      )}
 
       <div className="consistency-calc__grid">
         <div className="consistency-calc__fields">
@@ -148,7 +157,7 @@ export default function ConsistencyCalculator({
               <option value={CUSTOM_ID}>Custom (enter your own limit %)</option>
             </select>
             <span className="consistency-calc__help">
-              Prefills the limit % and, when the firm states one, the profit base. BrightFunded is listed first because it publishes no consistency rule — the calculator has nothing to check.
+              Prefills the limit % and, when the firm states one, the profit base. Firms that publish no consistency rule are listed at the end; there is nothing to check for them.
             </span>
           </label>
 

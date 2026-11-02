@@ -72,7 +72,8 @@ function rulePreset(opts: {
 }
 
 /**
- * Curated presets for the in-article calculator (BrightFunded first).
+ * Curated presets for the in-article calculator (rule-bearing firms first;
+ * no-rule presets such as BrightFunded are appended at the end).
  * LucidFlex + LucidDaily evaluation presets included. Apex PA 50% limit comes from firms.json
  * `consistencyRule` (Tracker-maintained); challenge products have null eval %.
  */
@@ -86,7 +87,8 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
   const presets: ConsistencyPreset[] = []
   const gaps: string[] = []
 
-  // ── BrightFunded: no structured consistencyRuleApplies:false; all pct null ──
+  // ── BrightFunded (no-rule): built first, appended after rule-bearing presets ──
+  const pendingNoRule: ConsistencyPreset[] = []
   const bf = findFirm(firms, 'bright-funded')
   const bfProducts = challenges.filter(c => c.firmSlug === 'bright-funded' && isChallengeFresh(c, now))
   if (bf && bfProducts.length > 0 && bfProducts.every(p => p.consistencyRulePct == null && !p.consistencyRules?.length)) {
@@ -96,7 +98,7 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
       )
     }
     const latest = [...bfProducts].sort((a, b) => b.sourceCapturedAt.localeCompare(a.sourceCapturedAt))[0]
-    presets.push({
+    pendingNoRule.push({
       id: 'bright-funded-no-rule',
       label: 'BrightFunded (all captured plans) — no consistency rule',
       kind: 'no-rule',
@@ -230,7 +232,7 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
         && isBasisFresh(p.consistencyBasisCheckedAt ?? p.sourceCapturedAt, now),
     )
     const apexStageNote =
-      'Evaluation: no consistency rule. Performance Account payouts: largest profitable day must be less than 50% of net profit since the last payout request (or inception). Breaking it blocks the payout request; it does not fail the account. Legacy PAs from before 1 Mar 2026 used 30% — note only, not this preset.'
+      'Evaluation: no consistency rule. Performance Account payouts: largest profitable day must be less than 50% of net profit since the last payout request (or inception). Breaking it blocks the payout request; it does not fail the account. Performance Accounts opened before 1 March 2026 used a 30% limit; this preset uses the current 50%.'
     const apexStructuredBasisNote =
       'Apex measures your largest profitable day against net profit since your last payout request (or since the account opened), and the count resets after an approved payout.'
     const apexFallbackBasisNote =
@@ -276,6 +278,9 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
   } else {
     gaps.push('Apex: missing firm.consistencyRule with 50% or no fresh challenge products.')
   }
+
+  // No-rule presets (e.g. BrightFunded) stay at the end so the default is a rule-bearing firm.
+  presets.push(...pendingNoRule)
 
   const defaultPreset =
     presets.find(p => p.id === 'ftmo-1-step')?.id

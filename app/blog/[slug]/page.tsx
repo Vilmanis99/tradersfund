@@ -297,6 +297,7 @@ export default async function BlogPostPage({ params }: Props) {
                         key={`diagram-${index}`}
                         presets={consistencyTool.presets}
                         defaultPreset={consistencyTool.defaultPreset}
+                        hideHeader
                       />
                     )
                   }

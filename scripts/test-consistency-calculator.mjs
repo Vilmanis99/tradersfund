@@ -111,12 +111,14 @@ assert.match(post, /data-article-diagram="consistency-calculator"/)
 assert.match(post, /^title: "What Is the Prop Firm Consistency Rule\? Formulas and Examples \(2026\)"$/m)
 assert.doesNotMatch(post, /Prop Firm Consistency Rule Calculator \(\+ How the Rule Works\)/)
 
-// Presets from live data (BrightFunded first; no "Tracker" in labels).
+// Presets from live data (no-rule presets last; no "Tracker" in labels).
 // Clock is derived from challenge check dates so a Tracker refresh with a newer
 // consistencyBasisCheckedAt cannot make isBasisFresh reject presets (ageDays < 0).
 const { presets, defaultPreset, gaps } = buildConsistencyCalculatorPresets(presetTestNow())
 assert.ok(presets.length >= 3, `expected curated presets, got ${presets.length}`)
-assert.equal(presets[0].id, 'bright-funded-no-rule')
+assert.equal(presets[presets.length - 1].id, 'bright-funded-no-rule')
+assert.notEqual(presets[0].id, 'bright-funded-no-rule')
+assert.equal(presets[0].kind, 'rule')
 assert.ok(presets.some(p => p.id === 'ftmo-1-step'))
 assert.ok(presets.some(p => p.id === 'fundingpips-2-step-standard'))
 assert.ok(presets.some(p => p.id === 'topstep-combine'))
@@ -149,6 +151,11 @@ assert.match(
   /Apex measures your largest profitable day against net profit since your last payout request \(or since the account opened\), and the count resets after an approved payout\./,
 )
 assert.doesNotMatch(apex.basisNote || '', /help page names the PA profit base|challenge basis fields|primary basis fields|Tracker|firms\.json|consistencyBasis/)
+assert.match(
+  apex.stageNote || '',
+  /Performance Accounts opened before 1 March 2026 used a 30% limit; this preset uses the current 50%\./,
+)
+assert.doesNotMatch(apex.stageNote || '', /Legacy PAs|note only, not this preset/)
 const topstepNote = presets.find(p => p.id === 'topstep-combine')
 assert.match(topstepNote.stageNote || '', /left empty rather than guessed/)
 assert.doesNotMatch(topstepNote.stageNote || '', /primary basis fields|challenge basis fields|Tracker|consistencyBasis/)
@@ -172,7 +179,19 @@ const html = renderToStaticMarkup(React.createElement(ConsistencyCalculator, {
 }))
 assert.match(html, /data-article-diagram-rendered="consistency-calculator"/)
 assert.match(html, /aria-live="polite"/)
+assert.match(html, /Firms that publish no consistency rule are listed at the end; there is nothing to check for them\./)
+assert.doesNotMatch(html, /BrightFunded is listed first/)
 assert.doesNotMatch(html, /consistencyBasis|previousDiscountCode|"notes":|\/workspace\//)
 assert.doesNotMatch(html, /Tracker/)
+
+const htmlHidden = renderToStaticMarkup(React.createElement(ConsistencyCalculator, {
+  presets,
+  defaultPreset,
+  hideHeader: true,
+}))
+assert.doesNotMatch(htmlHidden, /consistency-calc__title/)
+assert.doesNotMatch(htmlHidden, /consistency-calc__lede/)
+assert.match(htmlHidden, /aria-label="Consistency rule calculator"/)
+assert.match(html, /consistency-calc__title/)
 
 console.log(`test:consistency-calculator ok (${presets.length} presets, ${gaps.length} data gaps noted)`)
