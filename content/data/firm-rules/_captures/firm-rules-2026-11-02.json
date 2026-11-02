@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-02",
-  "accessNotes": "FTMO rolling recheck 2026-11-02 12:05-12:20 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 16 FTMO quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/ftmo/.",
+  "accessNotes": "FTMO rolling recheck 2026-11-02 12:05-12:20 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 16 FTMO quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/ftmo/. | FundedNext rolling recheck 2026-11-02 12:25-12:45 Riga: standard HTTP GET of public English pages on the global fundednext.com site and help.fundednext.com, no account/checkout, no VPN or proxy; all 14 FundedNext quotes carried from firm-rules-2026-10-15.json still read verbatim (whitespace-normalised, direction marks removed). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-02/fundednext/.",
   "pagesRead": [
     "https://ftmo.com/en/2-step-challenge/",
     "https://ftmo.com/en/1-step-challenge/",
@@ -9,14 +9,27 @@
     "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
     "https://ftmo.com/en/trading-platforms/",
     "https://ftmo.com/en/imprint/",
-    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b"
+    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b",
+    "https://fundednext.com/cfds/stellar-2-step",
+    "https://fundednext.com/cfds/stellar-1-step",
+    "https://fundednext.com/cfds/stellar-lite",
+    "https://fundednext.com/cfds/stellar-instant",
+    "https://fundednext.com/general-rules/cfds/trading-objectives",
+    "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+    "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+    "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+    "https://fundednext.com/company",
+    "https://fundednext.com/terms-of-service",
+    "https://fundednext.com/cfd-challenge-terms"
   ],
   "pageDates": {
     "https://ftmo.com/en/2-step-challenge/": "dateModified 2026-10-22T16:45:44+00:00",
     "https://ftmo.com/en/trading-objectives/": "dateModified 2026-11-02T08:13:35+00:00",
     "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/": "dateModified 2026-10-13T09:35:48+00:00",
     "https://ftmo.com/en/imprint/": "dateModified 2026-11-02T08:26:08+00:00",
-    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b": "FTMO Challenge Terms and Conditions, LAST UPDATED ON 1 NOVEMBER 2026"
+    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b": "FTMO Challenge Terms and Conditions, LAST UPDATED ON 1 NOVEMBER 2026",
+    "https://fundednext.com/terms-of-service": "Last updated: 5 May 2026 (as shown on the page)",
+    "https://fundednext.com/cfd-challenge-terms": "Last updated: 5 May 2026 (as shown on the page)"
   },
   "firms": {
     "ftmo": {
@@ -174,6 +187,145 @@
           {
             "sourceUrl": "https://ftmo.com/en/trading-platforms/",
             "quote": "Execute your FTMO simulated trades directly on TradingView via the OANDA Broker Profile."
+          }
+        ]
+      }
+    },
+    "fundednext": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on Stellar 2-Step, Stellar 1-Step, Stellar Lite; trailing on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": "static",
+          "stellar-1-step": "static",
+          "stellar-lite": "static",
+          "stellar-instant": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Stellar 2-Step; 3% on Stellar 1-Step; 4% on Stellar Lite; not stated on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": 5,
+          "stellar-1-step": 3,
+          "stellar-lite": 4,
+          "stellar-instant": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step: 3% of initial balance"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 2-Step: 5% of initial balance"
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "4% Daily Loss limit."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "No daily loss limit."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 10% on Stellar 2-Step; 6% on Stellar 1-Step, Stellar Instant; 8% on Stellar Lite",
+        "byProduct": {
+          "stellar-2-step": 10,
+          "stellar-1-step": 6,
+          "stellar-lite": 8,
+          "stellar-instant": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+            "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% best-day rule only when the On-Demand Performance Reward option is chosen on Stellar 2-Step and Stellar Lite; none on Stellar Instant; Stellar 1-Step not re-confirmed",
+        "byProduct": {
+          "stellar-2-step": null,
+          "stellar-1-step": null,
+          "stellar-lite": null,
+          "stellar-instant": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+            "quote": "For traders using the Stellar 2-Step or Stellar Lite Account, the On-Demand Performance Reward is now a built-in payout option ... You must have maintained the 40% consistency rule across your trades."
+          },
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+            "quote": "There are no consistency rules in the Stellar Instant Account"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Stellar 2-Step, Stellar 1-Step, Stellar Lite; 70% on Stellar Instant",
+        "note": "Challenge data stores 80% (base) for 2-Step/1-Step/Lite; official product pages advertise \"up to 95%\". Base split not re-quoted.",
+        "byProduct": {
+          "stellar-2-step": 80,
+          "stellar-1-step": 80,
+          "stellar-lite": 80,
+          "stellar-instant": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: bi-weekly on Stellar 2-Step; weekly on Stellar 1-Step; not stated on Stellar Lite; on-demand on Stellar Instant",
+        "byProduct": {
+          "stellar-2-step": "bi-weekly",
+          "stellar-1-step": "weekly",
+          "stellar-lite": null,
+          "stellar-instant": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+            "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward, paid every 5 business days."
+          },
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+            "quote": "On-demand reward at 5% or on the usual 14-day cycle"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "stellar-2-step": true,
+          "stellar-1-step": true,
+          "stellar-lite": true,
+          "stellar-instant": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+            "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account"
           }
         ]
       }

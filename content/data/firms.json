@@ -490,13 +490,13 @@
     "russiaStatus": "restricted",
     "russiaSourceUrl": "https://fundednext.com/",
     "russiaSourceQuote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam.",
-    "legalEntity": "FundedNext Ltd",
-    "headquarters": "Wan Chai, Hong Kong",
-    "country": "Comoros",
+    "legalEntity": "GrowthNext - F.Z.E.",
+    "headquarters": "Ajman, United Arab Emirates",
+    "country": "United Arab Emirates",
     "regulation": null,
-    "corporateSourceUrl": "https://fundednext.com/company",
-    "corporateCapturedAt": "2026-10-14",
-    "corporateNote": "Hong Kong office belongs to sister company FundedNext Limited (operates fundednext.com); the contracting entity FundedNext Ltd is registered in Comoros.",
+    "corporateSourceUrl": "https://fundednext.com/terms-of-service",
+    "corporateCapturedAt": "2026-11-02",
+    "corporateNote": "FundedNext Terms of Service, section 2.1: \"The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext - F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party\". The same section names FundedNext Ltd (reg. HY01023052, Comoros) for operational aspects of the simulated trading environment and FundedNext Limited (Wan Chai, Hong Kong), which processes payments. Until 2 November 2026 this field named FundedNext Ltd (Comoros) as the contracting entity and Hong Kong as the office.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
     "discountCodeCapturedAt": "2026-11-01",
@@ -504,8 +504,8 @@
     "previousDiscountCode": "FNTRICK",
     "previousDiscountCodeStatus": "no longer shown: the Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step said \"SAVE UP TO 41% WITH CODE FNTRICK\" on 2026-10-30/31 (no end date published); on 2026-11-01 the code is gone from the Stellar 1-Step, 2-Step, Lite and Instant pages and the $6K 2-Step card is back to $59.99; never checkout-verified. Earlier code STRTN ended 25 October 2026",
     "rules": {
-      "capturedAt": "2026-10-15",
-      "captureFile": "content/data/challenges/_captures/fundednext-2026-10-15.json",
+      "capturedAt": "2026-11-02",
+      "captureFile": "content/data/challenges/_captures/fundednext-2026-11-02.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: static on Stellar 2-Step, Stellar 1-Step, Stellar Lite; trailing on Stellar Instant",
@@ -520,8 +520,8 @@
             "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
             "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -540,32 +540,32 @@
             "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
             "quote": "Stellar 1-Step: 3% of initial balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
             "quote": "Stellar 2-Step: 5% of initial balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
             "quote": "4% Daily Loss limit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
             "quote": "No daily loss limit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -584,8 +584,8 @@
             "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
             "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -604,16 +604,16 @@
             "sourceUrl": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
             "quote": "For traders using the Stellar 2-Step or Stellar Lite Account, the On-Demand Performance Reward is now a built-in payout option ... You must have maintained the 40% consistency rule across your trades.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
             "quote": "There are no consistency rules in the Stellar Instant Account",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -633,16 +633,16 @@
             "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
             "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
             "quote": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -661,16 +661,16 @@
             "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
             "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward, paid every 5 business days.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
             "quote": "On-demand reward at 5% or on the usual 14-day cycle",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -750,8 +750,8 @@
             "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
             "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-02",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json",
             "productSlug": null
           }
         ]
@@ -789,7 +789,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-22.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json"
     }
   },
   {

@@ -1,0 +1,378 @@
+{
+  "firmSlug": "fundednext",
+  "officialDomain": "https://fundednext.com",
+  "capturedAt": "2026-11-02",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET of public English pages on 2026-11-02 12:25-12:45 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML (Unicode direction marks removed).",
+  "pagesRead": [
+    "https://fundednext.com/cfds/stellar-2-step",
+    "https://fundednext.com/cfds/stellar-1-step",
+    "https://fundednext.com/cfds/stellar-lite",
+    "https://fundednext.com/cfds/stellar-instant",
+    "https://fundednext.com/general-rules/cfds/trading-objectives",
+    "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+    "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+    "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+    "https://fundednext.com/company",
+    "https://fundednext.com/terms-of-service",
+    "https://fundednext.com/cfd-challenge-terms"
+  ],
+  "pageDates": {
+    "https://fundednext.com/terms-of-service": "Last updated: 5 May 2026 (as shown on the page)",
+    "https://fundednext.com/cfd-challenge-terms": "Last updated: 5 May 2026 (as shown on the page)"
+  },
+  "pricesMatchStored": true,
+  "priceCheck": "Structured data (Offer price, priceCurrency USD) on the global fundednext.com product pages: Stellar 2-Step 59.99/119.99/199.99/299.99/549.99/1099.99, Stellar 1-Step 65.99/129.99/219.99/329.99/569.99/1099.99, Stellar Lite 32.99/59.99/139.99/229.99/399.99/798.99, Stellar Instant 59.99/149.99/299.99/599.99; identical to challenges/fundednext.json list prices. Promo-card sale prices were not used.",
+  "changes": [
+    {
+      "field": "legalEntity",
+      "old": "FundedNext Ltd",
+      "new": "GrowthNext - F.Z.E.",
+      "sourceUrl": "https://fundednext.com/terms-of-service",
+      "quote": "2.1. The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext - F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party",
+      "pageDate": "Last updated: 5 May 2026",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "country",
+      "old": "Comoros",
+      "new": "United Arab Emirates",
+      "sourceUrl": "https://fundednext.com/terms-of-service",
+      "quote": "2.1. The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext - F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party",
+      "checkedAt": "2026-11-02"
+    },
+    {
+      "field": "headquarters",
+      "old": "Wan Chai, Hong Kong",
+      "new": "Ajman, United Arab Emirates",
+      "sourceUrl": "https://fundednext.com/terms-of-service",
+      "quote": "2.1. The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext - F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party",
+      "checkedAt": "2026-11-02",
+      "note": "Registered address of the contracting party; the Hong Kong address belongs to FundedNext Limited, which the Terms say processes payments."
+    },
+    {
+      "field": "corporateSourceUrl",
+      "old": "https://fundednext.com/company",
+      "new": "https://fundednext.com/terms-of-service",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "unchanged": [
+    "All 14 firm-rules quotes for FundedNext dated 2026-10-15 still read verbatim (drawdownType, dailyLossPct, maxLossPct, consistencyPct, profitSplitPct, payoutFrequency, weekendHolding)",
+    "List prices for all four Stellar products"
+  ],
+  "notReread": [
+    "trustpilotScore/trustpilotCount (third-party site)",
+    "newsTrading evidence (from 2026-10-22, not part of the 14-15 Oct set)"
+  ],
+  "products": [
+    {
+      "firmSlug": "fundednext",
+      "productName": "Stellar 2-Step",
+      "productSlug": "stellar-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 59.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 119.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 199.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 299.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 549.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1099.99,
+          "refundable": true
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 5,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 21,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 2-Step: 5% of initial balance"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
+          "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward."
+        }
+      }
+    },
+    {
+      "firmSlug": "fundednext",
+      "productName": "Stellar 1-Step",
+      "productSlug": "stellar-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 6000,
+          "priceUsd": 65.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 15000,
+          "priceUsd": 129.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 219.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 329.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 569.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 1099.99,
+          "refundable": true
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 6,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 5,
+      "payoutFrequency": "weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step: 3% of initial balance"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
+          "quote": "Pass, get a FundedNext Account and keep up to 95% of your performance reward, paid every 5 business days."
+        }
+      }
+    },
+    {
+      "firmSlug": "fundednext",
+      "productName": "Stellar Lite",
+      "productSlug": "stellar-lite",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 32.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 59.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": 139.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": 229.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": 399.99,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 200000,
+          "priceUsd": 798.99,
+          "refundable": true
+        }
+      ],
+      "profitTargets": {
+        "phase1": 8,
+        "phase2": 4
+      },
+      "dailyLossPct": 4,
+      "maxLossPct": 8,
+      "drawdownType": "static",
+      "minTradingDays": 2,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 10,
+      "payoutFrequency": "bi-weekly",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+          "quote": "4% Daily Loss limit."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
+          "quote": "Weekend holding allowed during the Challenge phase and FundedNext Account"
+        }
+      }
+    },
+    {
+      "firmSlug": "fundednext",
+      "productName": "Stellar Instant",
+      "productSlug": "stellar-instant",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 2000,
+          "priceUsd": 59.99,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": 149.99,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": 299.99,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 20000,
+          "priceUsd": 599.99,
+          "refundable": false
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": null,
+      "maxLossPct": 6,
+      "drawdownType": "trailing",
+      "minTradingDays": 0,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 70,
+      "payoutFirstDays": 0,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": true,
+        "overnight": true,
+        "ea": "restricted",
+        "copyTrading": "restricted"
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+          "quote": "No daily loss limit."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://fundednext.com/general-rules/cfds/trading-objectives",
+          "quote": "Stellar 1-Step : 6% (Static) Stellar 2-Step : 10% (Static) Stellar Lite : 8% (Static) Stellar Instant : 6% (Trailing)"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+          "quote": "There are no consistency rules in the Stellar Instant Account"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+          "quote": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards"
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
+          "quote": "On-demand reward at 5% or on the usual 14-day cycle"
+        }
+      }
+    }
+  ]
+}
