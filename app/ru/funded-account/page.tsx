@@ -32,7 +32,7 @@ const sizeRows = [
   { firm: 'BrightFunded', product: '2-Step Classic', sizes: '$5K–$200K', from: '€49 за $5K', top: '€997 за $200K', checked: '14.10.2026' },
   { firm: 'FundedNext', product: 'Stellar Lite', sizes: '$5K–$200K', from: '$32.99 за $5K', top: '$798.99 за $200K', checked: '15.10.2026' },
   { firm: 'Crypto Fund Trader', product: 'Evaluation', sizes: '$5K–$200K', from: '$58 за $5K', top: '$1 250 за $200K', checked: '14.10.2026' },
-  { firm: 'FundingPips', product: '2 Step Pro', sizes: '$5K–$200K', from: '$29 за $5K', top: '$844 за $200K', checked: '15.10.2026' },
+  { firm: 'FundingPips', product: '2 Step Pro', sizes: '$5K–$200K', from: '$29 за $5K', top: '$844 за $200K (только таблица справки)', checked: '02.11.2026' },
 ]
 
 const payouts = [

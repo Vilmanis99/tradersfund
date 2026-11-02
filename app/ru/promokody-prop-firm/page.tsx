@@ -25,7 +25,7 @@ import { formatRuDate } from '@/lib/ruDate'
 export const revalidate = 86400
 
 const PATH = '/ru/promokody-prop-firm'
-// Месяц выпуска берётся из даты сборки/перегенерации (Europe/Riga): сборка в ноябре даёт «ноябрь 2026».
+// Обновлять каждый месяц: MONTH_LABEL и проверенные коды в content/data/deals.json.
 // Коды — только из content/data/deals.json; даты проверки — из deals.json (verifiedOn), сверки Tracker
 // (content/data/ru-promo-recheck.json) и firms.json discountCodeCapturedAt.
 const MONTH_LABEL = 'октябрь 2026'
@@ -229,7 +229,7 @@ export default function RussianPromoHubPage() {
       <section className="ru-hero">
         <div className="ru-shell" data-russian-promo-hub={latestCheck}>
           <div className="ru-eyebrow"><CalendarCheck size={14} aria-hidden="true" /> Выпуск: {MONTH_LABEL} · последняя проверка кодов {formatRuDate(latestCheck)}</div>
-          <h1>Промокоды проп-фирм — октябрь 2026</h1>
+          <h1>Промокоды проп-фирм — {MONTH_LABEL}</h1>
           <p className="ru-lead">
             Большинство «промокодов» в выдаче — это коды без даты, которые давно не работают. Здесь их нет: каждый код
             стоит рядом с датой, когда мы сверили его условия на официальной странице фирмы. У каждой фирмы — отметка доступа из РФ: это страница для русскоязычных трейдеров в любой стране.

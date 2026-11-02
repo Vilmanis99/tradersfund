@@ -36,7 +36,7 @@ const priceRows = [
   { firm: 'BrightFunded', product: '2-Step Classic', p10: '€97', p100: '€497', split: '80%', checked: '14.10.2026', review: '/ru/obzor-bright-funded' },
   { firm: 'FundedNext', product: 'Stellar Lite (2 фазы)', p10: '$59.99', p100: '$399.99', split: '80%', checked: '15.10.2026', review: '/ru/obzor-fundednext' },
   { firm: 'Crypto Fund Trader', product: 'Evaluation (2 фазы)', p10: '$110', p100: '$660', split: '80%', checked: '14.10.2026', review: '/blog/crypto-fund-trader-review' },
-  { firm: 'FundingPips', product: '2 Step Pro', p10: '$55', p100: '$422', split: '80%', checked: '15.10.2026', review: '/ru/obzor-fundingpips' },
+  { firm: 'FundingPips', product: '2 Step Pro', p10: '$55', p100: '$466', split: '80%', checked: '02.11.2026', review: '/ru/obzor-fundingpips' },
   { firm: 'FTMO', product: '2-Step', p10: '€89', p100: '€540', split: '80%', checked: '14.10.2026', review: '/ru/obzor-ftmo' },
 ]
 
