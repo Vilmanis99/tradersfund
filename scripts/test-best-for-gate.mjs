@@ -394,7 +394,13 @@ ${body}
     'RU beginners CTA order: available+pin first, then data within groups',
   )
   assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES.beginners.ru))
-  assert.ok(ruModel.sortRule.includes(ruBestForCtaRankNotePinned('BrightFunded')))
+  const beginnersExpectedNote = ruBestForCtaRankNotePinned('BrightFunded')
+  assert.equal(
+    beginnersExpectedNote,
+    'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки; среди них первым стоит наш партнёр BrightFunded. Затем — фирмы, у которых статус для РФ неясен. Внутри групп порядок определяется данными, указанными выше.',
+  )
+  assert.ok(ruModel.sortRule.includes(beginnersExpectedNote))
+  assert.equal(ruBestForCtaRankNote(ruModel.ranked), beginnersExpectedNote)
   assert.ok(!BEST_FOR_SORT_RULES.beginners.ru.includes('Сначала идут фирмы'))
   // EN keeps pure data order (BrightFunded not forced first)
   assert.notEqual(enModel.ranked[0]?.slug, 'bright-funded')
@@ -503,7 +509,7 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(!/партнёрский статус не/i.test(BEST_FOR_SORT_RULES[id].ru), `${id} RU must not claim affiliate does not affect order`)
 }
 
-// ruBestForCtaRankNote — three cases (pin / open-no-pin / no-open)
+// ruBestForCtaRankNote — combinations (pin+unclear / open+unclear / no-open / pin-restricted / mixed / unclear-then-restricted)
 {
   const pinName = 'BrightFunded'
   const withPin = ruBestForCtaRankNote([
@@ -512,7 +518,10 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
     { slug: 'fundingpips', russiaStatus: 'unclear', firm: { name: 'FundingPips' } },
   ])
   assert.equal(withPin, ruBestForCtaRankNotePinned(pinName))
-  assert.match(withPin, /наш партнёр BrightFunded/)
+  assert.equal(
+    withPin,
+    'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки; среди них первым стоит наш партнёр BrightFunded. Затем — фирмы, у которых статус для РФ неясен. Внутри групп порядок определяется данными, указанными выше.',
+  )
 
   const openNoPin = ruBestForCtaRankNote([
     { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
@@ -520,6 +529,7 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
   ])
   assert.equal(openNoPin, RU_BEST_FOR_CTA_RANK_NOTE_OPEN)
   assert.ok(!openNoPin.includes('партнёр'))
+  assert.match(openNoPin, /России нет в списке ограничений на дату проверки/)
 
   const noOpen = ruBestForCtaRankNote([
     { slug: 'fundednext', russiaStatus: 'restricted', firm: { name: 'FundedNext' } },
@@ -527,23 +537,66 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
   ])
   assert.equal(noOpen, '')
 
-  // Pin present but not available → treat as open-no-pin when another firm is open
+  // Pin present but not available → open lead without partner; restricted-only follow
   const pinRestricted = ruBestForCtaRankNote([
     { slug: 'bright-funded', russiaStatus: 'restricted', firm: { name: pinName } },
     { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
   ])
-  assert.equal(pinRestricted, RU_BEST_FOR_CTA_RANK_NOTE_OPEN)
+  assert.equal(
+    pinRestricted,
+    'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки. Затем — фирмы, у которых Россия в списке ограничений. Внутри групп порядок определяется данными, указанными выше.',
+  )
+  assert.ok(!pinRestricted.includes('партнёр'))
 
-  // Live pages: pin / open-no-pin / none
+  // Mixed non-open order (restricted before unclear) — matches best-for RU data sort
+  const mixed = ruBestForCtaRankNote([
+    { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+    { slug: 'the5ers', russiaStatus: 'restricted', firm: { name: 'The5ers' } },
+    { slug: 'hash-hedge', russiaStatus: 'unclear', firm: { name: 'Hash Hedge' } },
+  ])
+  assert.equal(
+    mixed,
+    'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки. Затем — остальные фирмы (статус для РФ неясен или Россия в списке ограничений). Внутри групп порядок определяется данными, указанными выше.',
+  )
+
+  // Unclear then restricted in listed order
+  const unclearThenRestricted = ruBestForCtaRankNote([
+    { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+    { slug: 'hash-hedge', russiaStatus: 'unclear', firm: { name: 'Hash Hedge' } },
+    { slug: 'the5ers', russiaStatus: 'restricted', firm: { name: 'The5ers' } },
+  ])
+  assert.equal(
+    unclearThenRestricted,
+    'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки. Затем — фирмы, у которых статус для РФ неясен. В конце — фирмы, у которых Россия в списке ограничений. Внутри групп порядок определяется данными, указанными выше.',
+  )
+
+  // Only available → omit note
+  assert.equal(
+    ruBestForCtaRankNote([
+      { slug: 'crypto-fund-trader', russiaStatus: 'available', firm: { name: 'Crypto Fund Trader' } },
+    ]),
+    '',
+  )
+
+  // Live pages
   const beginnersRu = buildBestForPageModel('beginners', 'ru')
+  assert.equal(ruBestForCtaRankNote(beginnersRu.ranked), ruBestForCtaRankNotePinned('BrightFunded'))
   assert.ok(beginnersRu.sortRule.includes(ruBestForCtaRankNotePinned('BrightFunded')))
   const newsRu = buildBestForPageModel('news-trading', 'ru')
-  assert.ok(newsRu.sortRule.includes(RU_BEST_FOR_CTA_RANK_NOTE_OPEN))
-  assert.ok(!newsRu.sortRule.includes('партнёр'))
+  const newsNote = ruBestForCtaRankNote(newsRu.ranked)
+  assert.ok(newsNote.includes('остальные фирмы (статус для РФ неясен или Россия в списке ограничений)'))
+  assert.ok(!newsNote.includes('партнёр'))
+  assert.ok(newsRu.sortRule.includes(newsNote))
   const weeklyRu = buildBestForPageModel('weekly-payouts', 'ru')
   assert.equal(weeklyRu.sortRule, BEST_FOR_SORT_RULES['weekly-payouts'].ru)
+  assert.equal(ruBestForCtaRankNote(weeklyRu.ranked), '')
   assert.ok(!weeklyRu.sortRule.includes('Сначала идут фирмы'))
-  console.log('  ruBestForCtaRankNote cases: pin / open-no-pin / no-open OK')
+  // No «открыты/закрыты для РФ» on any RU best-for model copy
+  for (const model of getBestForPageModels().filter(m => m.lang === 'ru')) {
+    assert.ok(!/открыт[аы]? для РФ|закрыт[аы]? для РФ|открытые для трейдеров из РФ/i.test(model.sortRule), model.path)
+    assert.ok(!/открыт[аы]? для РФ|закрыт[аы]? для РФ/i.test(model.useCase.intro.ru), model.path + ' intro')
+  }
+  console.log('  ruBestForCtaRankNote cases: pin / open-no-pin / no-open / mixed / ordered OK')
 }
 
 assertVerdictsUnchanged(verdictsBefore)

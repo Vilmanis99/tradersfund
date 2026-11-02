@@ -5,7 +5,6 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import FirmLogo from '@/components/FirmLogo'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import { RuGoLink } from '@/components/RuGoLink'
-import { RuAccessBadge } from '@/components/RuGoLink'
 import {
   BEST_FOR_FIELD_SPECS,
   BEST_FOR_MIN_DIFF_FIELDS,
@@ -164,7 +163,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
           >
             <p style={{ margin: 0 }}>
               {lang === 'ru'
-                ? 'Исключены из рейтинга (закрыты для РФ) — без ссылки регистрации:'
+                ? 'Исключены из рейтинга (Россия в списке ограничений) — без ссылки регистрации:'
                 : 'Excluded (closed to Russia) — no sign-up link:'}
             </p>
             <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
@@ -177,7 +176,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                   )}
                   {' '}
                   {lang === 'ru' ? (
-                    <RuAccessBadge firm={firm.slug} />
+                    <span data-russia-badge="restricted-excluded-ru">В списке ограничений</span>
                   ) : (
                     <span data-russia-badge="restricted-en">Unavailable for RF</span>
                   )}

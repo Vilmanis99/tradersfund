@@ -87,6 +87,15 @@ for (const model of getBestForPageModels()) {
   for (const reason of model.reasons) assertClean(`${model.path} reason`, reason)
 }
 
+// RU Writer: never «открыты/закрыты для РФ» on best-for copy
+for (const model of getBestForPageModels().filter(m => m.lang === 'ru')) {
+  assert.ok(!/открыт[аы]? для РФ|закрыт[аы]? для РФ|открытые для трейдеров из РФ/i.test(model.sortRule), model.path)
+  assert.ok(!/открыт[аы]? для РФ|закрыт[аы]? для РФ/i.test(model.useCase.intro.ru), `${model.path} intro`)
+  assert.ok(!/Недоступно для РФ/.test(model.sortRule))
+}
+assert.ok(!/закрыт[аы]? для РФ/.test(BEST_FOR_SORT_RULES.beginners.ru))
+assert.match(BEST_FOR_SORT_RULES.beginners.ru, /у которых Россия в списке ограничений/)
+
 // EN keeps affiliate line; RU beginners does not
 assert.match(BEST_FOR_SORT_RULES.beginners.en, /Affiliate status is not used/)
 assert.ok(!/Affiliate status is not used|партнёрский статус не/i.test(BEST_FOR_SORT_RULES.beginners.ru))

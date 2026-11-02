@@ -32,13 +32,35 @@ import { loadVerdict, type Verdict } from './verdicts.ts'
 export const BEST_FOR_MIN_DIFF_FIELDS = 5
 export const BEST_FOR_MIN_FIRMS = 2
 
-/** RU CTA overlay when open firms are listed but no active pin is on the page. */
-export const RU_BEST_FOR_CTA_RANK_NOTE_OPEN =
-  'Сначала идут фирмы, открытые для трейдеров из РФ. Внутри групп порядок определяется данными, указанными выше.'
+/** Lead sentence when ≥1 listed firm is russiaStatus available (RU Writer 2026-11-02). */
+export const RU_BEST_FOR_NOTE_OPEN_LEAD =
+  'Сначала идут фирмы, у которых России нет в списке ограничений на дату проверки'
 
-/** RU CTA overlay when an active pin firm is listed and available — name from firm data. */
+export const RU_BEST_FOR_NOTE_THEN_UNCLEAR =
+  'Затем — фирмы, у которых статус для РФ неясен.'
+
+export const RU_BEST_FOR_NOTE_THEN_RESTRICTED =
+  'Затем — фирмы, у которых Россия в списке ограничений.'
+
+export const RU_BEST_FOR_NOTE_END_RESTRICTED =
+  'В конце — фирмы, у которых Россия в списке ограничений.'
+
+export const RU_BEST_FOR_NOTE_THEN_MIXED =
+  'Затем — остальные фирмы (статус для РФ неясен или Россия в списке ограничений).'
+
+export const RU_BEST_FOR_NOTE_INSIDE_GROUPS =
+  'Внутри групп порядок определяется данными, указанными выше.'
+
+/**
+ * @deprecated Prefer ruBestForCtaRankNote(ranked). Kept as the open+unclear (no pin) composition
+ * for older call sites / docs.
+ */
+export const RU_BEST_FOR_CTA_RANK_NOTE_OPEN =
+  `${RU_BEST_FOR_NOTE_OPEN_LEAD}. ${RU_BEST_FOR_NOTE_THEN_UNCLEAR} ${RU_BEST_FOR_NOTE_INSIDE_GROUPS}`
+
+/** Full note when an active pin is listed+available and only unclear firms follow (beginners shape). */
 export function ruBestForCtaRankNotePinned(partnerDisplayName: string): string {
-  return `Сначала идут фирмы, открытые для трейдеров из РФ; среди них первым стоит наш партнёр ${partnerDisplayName}. Внутри групп порядок определяется данными, указанными выше.`
+  return `${RU_BEST_FOR_NOTE_OPEN_LEAD}; среди них первым стоит наш партнёр ${partnerDisplayName}. ${RU_BEST_FOR_NOTE_THEN_UNCLEAR} ${RU_BEST_FOR_NOTE_INSIDE_GROUPS}`
 }
 
 /**
@@ -72,28 +94,80 @@ export const BEGINNER_ALLOWED_DRAWDOWN_TYPES = BEGINNER_PREFERRED_DRAWDOWN_TYPES
 export type BestForLang = 'en' | 'ru'
 export type BestForRussiaStatus = 'available' | 'restricted' | 'unclear' | 'unverified'
 
+function isRuNoteUnclearStatus(status: BestForRussiaStatus): boolean {
+  return status === 'unclear' || status === 'unverified'
+}
+
 /**
- * Data-driven RU ranking disclosure for the rendered sort-rule block.
- * - active pin listed + available → pin sentence with that firm's display name
- * - some listed firm is available, no pin → open-only sentence
- * - no listed firm is available → empty (no extra sentence)
+ * Whether non-open listed firms are unclear-then-restricted in list order, or mixed by data.
+ * Best-for RU sort only splits available vs not; inside non-open it keeps the data comparator,
+ * so live lists are usually mixed when both statuses appear.
+ */
+export function ruBestForNonOpenOrder(
+  nonOpen: ReadonlyArray<{ russiaStatus: BestForRussiaStatus }>,
+): 'unclear-only' | 'restricted-only' | 'unclear-then-restricted' | 'mixed' | 'none' {
+  if (!nonOpen.length) return 'none'
+  const hasUnclear = nonOpen.some(row => isRuNoteUnclearStatus(row.russiaStatus))
+  const hasRestricted = nonOpen.some(row => row.russiaStatus === 'restricted')
+  if (hasUnclear && !hasRestricted) return 'unclear-only'
+  if (hasRestricted && !hasUnclear) return 'restricted-only'
+  let seenRestricted = false
+  for (const row of nonOpen) {
+    if (row.russiaStatus === 'restricted') seenRestricted = true
+    else if (isRuNoteUnclearStatus(row.russiaStatus) && seenRestricted) return 'mixed'
+  }
+  return 'unclear-then-restricted'
+}
+
+/**
+ * Data-driven RU ranking disclosure for the rendered sort-rule block (RU Writer 2026-11-02).
+ * Composes only sentences that match the firms actually listed. Does not change sort order.
+ * Empty when fewer than two status groups appear (e.g. no available firms, or only available).
  */
 export function ruBestForCtaRankNote(
   ranked: ReadonlyArray<{ slug: string; russiaStatus: BestForRussiaStatus; firm: { name: string } }>,
 ): string {
+  if (!ranked.length) return ''
+  const hasAvailable = ranked.some(row => row.russiaStatus === 'available')
+  const nonOpen = ranked.filter(row => row.russiaStatus !== 'available')
+  const order = ruBestForNonOpenOrder(nonOpen)
+  if (!hasAvailable) return ''
+  if (order === 'none') return ''
+
   const statusBySlug = new Map<string, RankingRussiaStatus>(
     ranked.map(row => [row.slug, row.russiaStatus]),
   )
   const statusFor = (slug: string): RankingRussiaStatus => statusBySlug.get(slug) ?? 'unverified'
-  const hasOpen = ranked.some(row => row.russiaStatus === 'available')
-  if (!hasOpen) return ''
+
+  let partnerName: string | null = null
   for (const pin of RU_RANKING_PINS) {
     const row = ranked.find(item => item.slug === pin)
     if (!row) continue
     if (activePinIndex(pin, statusFor) < 0) continue
-    return ruBestForCtaRankNotePinned(row.firm.name)
+    partnerName = row.firm.name
+    break
   }
-  return RU_BEST_FOR_CTA_RANK_NOTE_OPEN
+
+  const parts: string[] = []
+  let open = RU_BEST_FOR_NOTE_OPEN_LEAD
+  if (partnerName) open += `; среди них первым стоит наш партнёр ${partnerName}`
+  open += '.'
+  parts.push(open)
+
+  if (order === 'unclear-only') {
+    parts.push(RU_BEST_FOR_NOTE_THEN_UNCLEAR)
+  } else if (order === 'restricted-only') {
+    parts.push(RU_BEST_FOR_NOTE_THEN_RESTRICTED)
+  } else if (order === 'unclear-then-restricted') {
+    parts.push(RU_BEST_FOR_NOTE_THEN_UNCLEAR)
+    parts.push(RU_BEST_FOR_NOTE_END_RESTRICTED)
+  } else if (order === 'mixed') {
+    parts.push(RU_BEST_FOR_NOTE_THEN_MIXED)
+  }
+
+  // available + non-open description ⇒ ≥2 groups
+  parts.push(RU_BEST_FOR_NOTE_INSIDE_GROUPS)
+  return parts.join(' ')
 }
 
 export type BestForUseCaseId =
@@ -145,7 +219,7 @@ export const BEST_FOR_SORT_RULES: Record<BestForUseCaseId, { en: string; ru: str
   },
   beginners: {
     en: 'How we ranked: programmes with no evaluation time limit first, then those with at most 5 minimum trading days (fewer ranks higher), then static or end-of-day drawdown (if the type is not stated, they rank last), then faster first payout, then lower entry relative to the cap in that programme’s own currency ($99 or €99, never converted), then firm name A–Z. Affiliate status is not used. We leave out programmes above the price cap, without a published price, or with data older than 30 days.',
-    ru: 'Как ранжируем: сначала программы без лимита срока оценки, затем с минимумом торговых дней не больше 5 (чем меньше, тем выше), затем со статичной просадкой или просадкой по закрытию дня (если тип не указан — в конце), затем с более быстрой первой выплатой, затем дешевле относительно потолка в своей валюте ($99 или €99, без конвертации). В список не попадают фирмы, закрытые для РФ, программы дороже потолка или без цены, а также данные старше 30 дней.',
+    ru: 'Как ранжируем: сначала программы без лимита срока оценки, затем с минимумом торговых дней не больше 5 (чем меньше, тем выше), затем со статичной просадкой или просадкой по закрытию дня (если тип не указан — в конце), затем с более быстрой первой выплатой, затем дешевле относительно потолка в своей валюте ($99 или €99, без конвертации). В список не попадают фирмы, у которых Россия в списке ограничений, программы дороже потолка или без цены, а также данные старше 30 дней.',
   },
   'weekly-payouts': {
     en: 'How we ranked: highest profit share first, then fewer days to the first payout, then firm name A–Z. Only programmes that pay every week qualify.',
@@ -967,7 +1041,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     },
     intro: {
       en: 'Beginner-friendly means a fresh product with a published entry fee at or under our ceiling. No time limit, low minimum trading days, static or end-of-day drawdown and payout speed rank the list — they are not hard filters. The English page does not filter on Russia access.',
-      ru: '«Для новичков» — свежий продукт с опубликованным входом не выше потолка. Без лимита срока, низкий минимум дней, статичная или дневная просадка и скорость выплат ранжируют список, но не отсекают. Фирмы, закрытые для РФ, исключены (список ниже).',
+      ru: '«Для новичков» — свежий продукт с опубликованным входом не выше потолка. Без лимита срока, низкий минимум дней, статичная или дневная просадка и скорость выплат ранжируют список, но не отсекают. Фирмы, у которых Россия в списке ограничений, исключены (список ниже).',
     },
     methodology: {
       en: `Hard filters: data captured within 30 days; entry fee within $${BEGINNER_MAX_ENTRY_PRICE_USD} or €${BEGINNER_MAX_ENTRY_PRICE_EUR} in the fee’s own currency (USD preferred when both exist, never converted). Ranking signals: no time limit, then at most ${BEGINNER_PREFERRED_MAX_MIN_TRADING_DAYS} minimum trading days, then static or end-of-day drawdown, then faster first payout, then lower fee relative to that currency’s cap. Every Russian-page firm keeps a sign-up link with a Russia-access badge.`,
