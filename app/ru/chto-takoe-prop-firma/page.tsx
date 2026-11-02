@@ -31,6 +31,7 @@ const TITLE = 'Что такое проп-фирма (проп-компания)
 const DESCRIPTION = 'Что такое проп-фирма и проп-компания простыми словами: как устроен челлендж, чем он отличается от проп-деска, как проверить цену, просадку, KYC и выплату.'
 
 const FUNDEDNEXT_ACCESS_URL = 'https://fundednext.com/company'
+const FUNDEDNEXT_TERMS_URL = 'https://fundednext.com/terms-of-service'
 const FUNDEDNEXT_KYC_URL = 'https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process'
 const BRIGHT_KYC_URL = 'https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work'
 
@@ -377,7 +378,8 @@ export default function RussianWhatIsPropFirmPage() {
           </p>
           <p>
             Для российского резидентства действует отдельная осторожность: страница компании FundedNext заявляет,
-            что FundedNext Ltd не обслуживает российских резидентов, тогда как отдельный CFD FAQ формулирует список иначе.
+            что компании группы FundedNext не обслуживают российских резидентов, тогда как отдельный CFD FAQ формулирует список иначе.
+            Договорная сторона по <a href={FUNDEDNEXT_TERMS_URL} target="_blank" rel="nofollow noopener">условиям сервиса FundedNext</a> (п. 2.1, редакция от 05.05.2026) — GrowthNext – F.Z.E. (свободная зона Аджман, ОАЭ).
             <a href={FUNDEDNEXT_ACCESS_URL} target="_blank" rel="nofollow noopener"> Официальное раскрытие компании</a> важнее языковой версии сайта;
             до разрешения конфликта нельзя обещать доступ.
           </p>

@@ -55,6 +55,7 @@ const SRC = {
   brightCountries: 'https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded',
   fnSite: 'https://fundednext.com/',
   fnTerms: 'https://fundednext.com/api_docs/terms-of-service',
+  fnTermsEntity: 'https://fundednext.com/terms-of-service',
   fnAllocationCap: 'https://help.fundednext.com/en/articles/8027523',
   fnScaleUp: 'https://help.fundednext.com/en/articles/13349186',
   fnScaleUpOld: 'https://help.fundednext.com/en/articles/8019659',
@@ -258,7 +259,7 @@ export default function RussianFtmoVsFundedNextPage() {
       ftmo: <><RuAccessBadge firm="ftmo" />: Российская Федерация в официальном списке ограничений FTMO (по данным на {formatRuDate(CHECKED)})</>,
       fn: <><RuAccessBadge firm="fundednext" />: подвал сайта исключает Россию, список в условиях CFD (п. 5.3) её не называет (по данным на {TRACKER_0920}); Futures Россию тоже ограничивает</>,
     },
-    { field: 'Основана / офис', ftmo: corporate(ftmoFirm), fn: corporate(fnFirm, '; договорное лицо FundedNext Ltd зарегистрировано на Коморах') },
+    { field: 'Основана / офис', ftmo: corporate(ftmoFirm), fn: <>{corporate(fnFirm)}; договорная сторона по <a href={SRC.fnTermsEntity} target="_blank" rel="noopener noreferrer">условиям сервиса FundedNext</a> (п. 2.1, редакция от 05.05.2026) — GrowthNext – F.Z.E. (свободная зона Аджман, ОАЭ)</> },
     { field: 'Платформы', ftmo: ftmoFirm?.platforms.join(', ') ?? '—', fn: fnFirm?.platforms.join(', ') ?? '—' },
     { field: 'Потолок капитала', ftmo: `до $2,000,000 через Scaling Plan (+25% каждые 4 месяца при условиях плана; по данным на ${formatRuDate(CHECKED)})`, fn: `$300K — общий лимит капитала на одновременно открытых funded-счетах (у Lite — $200K); $4M — потолок роста одного счёта через Scale-Up, +25% за каждый подходящий цикл (с 12.01.2026), купить такой счёт нельзя. Более старая статья справки говорит о +40% раз в 4 месяца (по данным на ${TRACKER_0920})` },
     { field: 'Программы (свежие записи)', ftmo: productsLabel(ftmoRows), fn: productsLabel(fnRows) },
@@ -641,6 +642,7 @@ export default function RussianFtmoVsFundedNextPage() {
             <li><a href={SRC.ftmoInstant} target="_blank" rel="noopener noreferrer">FTMO Instant Account</a> — {ftmoInstant ? ruDate(ftmoInstant.sourceCapturedAt) : CHECKED}.</li>
             <li><a href={SRC.brightCountries} target="_blank" rel="noopener noreferrer">BrightFunded: ограничения по странам</a> — {TRACKER_BRIGHT_COUNTRIES}.</li>
             <li><a href={SRC.fnSite} target="_blank" rel="noopener noreferrer">fundednext.com: подвал (Jurisdictional Restrictions)</a> и <a href={SRC.fnTerms} target="_blank" rel="noopener noreferrer">условия FundedNext, п. 5.3</a> — Prop Firm Tracker, {TRACKER_0920}.</li>
+            <li><a href={SRC.fnTermsEntity} target="_blank" rel="noopener noreferrer">FundedNext: условия сервиса, п. 2.1 (договорная сторона GrowthNext – F.Z.E.)</a> — редакция от 05.05.2026, проверено 02.11.2026.</li>
             <li><a href={SRC.fnAllocationCap} target="_blank" rel="noopener noreferrer">FundedNext: лимит капитала $300K</a>, <a href={SRC.fnScaleUp} target="_blank" rel="noopener noreferrer">Scale-Up до $4M (+25%)</a> и <a href={SRC.fnScaleUpOld} target="_blank" rel="noopener noreferrer">старая статья (+40%)</a> — {TRACKER_0920}.</li>
             <li><a href={SRC.fnWithdraw} target="_blank" rel="noopener noreferrer">FundedNext: способы вывода</a> и <a href={SRC.riseCountries} target="_blank" rel="noopener noreferrer">Rise: неподдерживаемые страны</a> — {TRACKER_0920}.</li>
             <li><a href={SRC.ftmoWithdraw} target="_blank" rel="noopener noreferrer">FTMO: запрос вознаграждения</a> и <a href={SRC.ftmoPromoOnDemand} target="_blank" rel="noopener noreferrer">FTMO: on demand после 14 дней</a> — {TRACKER_0920}.</li>
