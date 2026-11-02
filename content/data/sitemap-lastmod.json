@@ -1688,8 +1688,8 @@
       "first": "2026-08-24"
     },
     "file:app/ru/luchshie-prop-firmy/page.tsx": {
-      "hash": "3ed67a852bc67c05",
-      "changed": "2026-10-29",
+      "hash": "719b5901b9db6d56",
+      "changed": "2026-11-02",
       "first": "2026-08-24"
     },
     "file:app/ru/obzor-bright-funded/page.tsx": {
@@ -1698,8 +1698,8 @@
       "first": "2026-08-24"
     },
     "file:app/ru/obzor-crypto-fund-trader/page.tsx": {
-      "hash": "2b61e71a0af2f12a",
-      "changed": "2026-10-28",
+      "hash": "1e8aa84b879680d7",
+      "changed": "2026-11-02",
       "first": "2026-10-26"
     },
     "file:app/ru/obzor-eratrade/page.tsx": {
@@ -1722,9 +1722,14 @@
       "changed": "2026-10-28",
       "first": "2026-08-24"
     },
+    "file:app/ru/obzor-goat-funded-trader/page.tsx": {
+      "hash": "7a65b4079b7a3d71",
+      "changed": "2026-10-30",
+      "first": "2026-10-30"
+    },
     "file:app/ru/obzor-hash-hedge/page.tsx": {
-      "hash": "344b240999d972f9",
-      "changed": "2026-10-28",
+      "hash": "03bdc1819ffa5f45",
+      "changed": "2026-11-02",
       "first": "2026-10-28"
     },
     "file:app/ru/obzor-kascapital/page.tsx": {
@@ -1753,8 +1758,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/obzor-topstep/page.tsx": {
-      "hash": "f25b754290ec5ad8",
-      "changed": "2026-10-25",
+      "hash": "4babae97b5626590",
+      "changed": "2026-11-02",
       "first": "2026-10-29"
     },
     "file:app/ru/otzyvy-prop-firm/page.tsx": {
@@ -1768,8 +1773,8 @@
       "first": "2026-08-24"
     },
     "file:app/ru/promokody-prop-firm/page.tsx": {
-      "hash": "72c341f426d8a589",
-      "changed": "2026-10-29",
+      "hash": "90f90bbc59f0ccd5",
+      "changed": "2026-11-02",
       "first": "2026-08-24"
     },
     "file:app/ru/prop-firmy-bez-chelendzha/page.tsx": {
@@ -1962,6 +1967,11 @@
       "changed": "2026-10-25",
       "first": "2026-10-21"
     },
+    "file:content/data/ru-promo-recheck.json": {
+      "hash": "b18ff41c51e18238",
+      "changed": "2026-10-29",
+      "first": "2026-10-30"
+    },
     "file:content/data/ru-ranking.json": {
       "hash": "fc9e0546fc53bb48",
       "changed": "2026-10-20",
@@ -2032,6 +2042,11 @@
       "changed": "2026-10-21",
       "first": "2026-10-21"
     },
+    "file:content/data/ru-verdicts/obzor-goat-funded-trader.json": {
+      "hash": "0e7170e16b9956b0",
+      "changed": "2026-10-30",
+      "first": "2026-10-30"
+    },
     "file:content/data/ru-verdicts/obzor-hash-hedge.json": {
       "hash": "90f7106afe5e84a3",
       "changed": "2026-10-27",
@@ -2058,8 +2073,8 @@
       "first": "2026-10-21"
     },
     "file:content/data/ru-verdicts/obzor-topstep.json": {
-      "hash": "ef8f113a31fd14f4",
-      "changed": "2026-10-24",
+      "hash": "12d40b6e9130dea2",
+      "changed": "2026-11-02",
       "first": "2026-10-29"
     },
     "file:content/data/russian-bright-funded-evidence.json": {
@@ -2128,8 +2143,8 @@
       "first": "2026-10-21"
     },
     "file:content/data/uk-access-evidence.json": {
-      "hash": "54d256f9841cdfe2",
-      "changed": "2026-10-26",
+      "hash": "de9b8ff30ebf66e2",
+      "changed": "2026-11-02",
       "first": "2026-08-17"
     },
     "file:content/data/us-access-evidence.json": {
@@ -2253,8 +2268,8 @@
       "first": "2026-06-05"
     },
     "file:content/posts/bright-funded-prop-firm.md": {
-      "hash": "a421f581ce07cfd9",
-      "changed": "2026-10-27",
+      "hash": "826dfbe7ee978753",
+      "changed": "2026-11-02",
       "first": "2026-06-05"
     },
     "file:content/posts/brightfunded-discount-code.md": {
@@ -2328,8 +2343,8 @@
       "first": "2026-06-05"
     },
     "file:content/posts/hash-hedge-review.md": {
-      "hash": "b4210bd76fa96b1e",
-      "changed": "2026-10-27",
+      "hash": "98ba3eb004d70185",
+      "changed": "2026-11-02",
       "first": "2026-10-28"
     },
     "file:content/posts/is-prop-firm-trading-profitable.md": {
@@ -2338,8 +2353,8 @@
       "first": "2026-06-05"
     },
     "file:content/posts/lucid-trading-review.md": {
-      "hash": "891ee24416853d65",
-      "changed": "2026-10-29",
+      "hash": "7158c024439b04a0",
+      "changed": "2026-11-02",
       "first": "2026-07-29"
     },
     "file:content/posts/maven-prop-firm-review.md": {
@@ -2388,8 +2403,8 @@
       "first": "2026-10-19"
     },
     "file:content/posts/prop-firms-with-weekly-payouts.md": {
-      "hash": "39cbdc6e7170080a",
-      "changed": "2026-10-29",
+      "hash": "b42763899de1b562",
+      "changed": "2026-11-02",
       "first": "2026-10-21"
     },
     "file:content/posts/take-profit-trader-review.md": {
@@ -2438,8 +2453,8 @@
       "first": "2026-06-05"
     },
     "file:content/posts/what-is-prop-firm-consistency-rule.md": {
-      "hash": "08ad8be27f9eb699",
-      "changed": "2026-10-29",
+      "hash": "26e90d7d8df43425",
+      "changed": "2026-11-02",
       "first": "2026-06-05"
     },
     "file:content/posts/wyckoff-pattern.md": {
@@ -3078,8 +3093,8 @@
       "lastmod": "2026-10-28"
     },
     "/best-prop-firms-in-uk": {
-      "hash": "de09010e963b4c07",
-      "lastmod": "2026-10-26"
+      "hash": "78f685c8e5094308",
+      "lastmod": "2026-11-02"
     },
     "/best-prop-firms-in-us": {
       "hash": "5e660d345e6f02ff",
@@ -3090,8 +3105,8 @@
       "lastmod": "2026-10-30"
     },
     "/blog": {
-      "hash": "031b2f7dc6bafd83",
-      "lastmod": "2026-11-01"
+      "hash": "1ee2d48f0c31e98a",
+      "lastmod": "2026-11-02"
     },
     "/blog/3commas-review": {
       "hash": "39d1217a236e078b",
@@ -3118,8 +3133,8 @@
       "lastmod": "2026-09-29"
     },
     "/blog/bright-funded-prop-firm": {
-      "hash": "1dcc5d9545521936",
-      "lastmod": "2026-10-30"
+      "hash": "983b2f1195404aee",
+      "lastmod": "2026-11-02"
     },
     "/blog/brightfunded-discount-code": {
       "hash": "9bcbeabfb4de7b9c",
@@ -3174,16 +3189,16 @@
       "lastmod": "2026-10-20"
     },
     "/blog/hash-hedge-review": {
-      "hash": "86c4a70dfc01ce51",
-      "lastmod": "2026-10-27"
+      "hash": "82f43876ed18c281",
+      "lastmod": "2026-11-02"
     },
     "/blog/is-prop-firm-trading-profitable": {
       "hash": "e9fffca7461b316f",
       "lastmod": "2026-09-08"
     },
     "/blog/lucid-trading-review": {
-      "hash": "6a71d4fc6dbb4602",
-      "lastmod": "2026-10-30"
+      "hash": "094fafa7ed2056a1",
+      "lastmod": "2026-11-02"
     },
     "/blog/maven-prop-firm-review": {
       "hash": "912c9598e8bd86e7",
@@ -3222,8 +3237,8 @@
       "lastmod": "2026-10-30"
     },
     "/blog/prop-firms-with-weekly-payouts": {
-      "hash": "bd9af75100c06248",
-      "lastmod": "2026-10-22"
+      "hash": "86c2447ccbc15e79",
+      "lastmod": "2026-11-02"
     },
     "/blog/take-profit-trader-review": {
       "hash": "86dbe8285d4003d5",
@@ -3262,8 +3277,8 @@
       "lastmod": "2026-10-20"
     },
     "/blog/what-is-prop-firm-consistency-rule": {
-      "hash": "f22958b9f730a0d4",
-      "lastmod": "2026-10-27"
+      "hash": "1ee2d48f0c31e98a",
+      "lastmod": "2026-11-02"
     },
     "/blog/wyckoff-pattern": {
       "hash": "39d1217a236e078b",
@@ -4150,16 +4165,16 @@
       "lastmod": "2026-10-30"
     },
     "/ru/luchshie-prop-firmy": {
-      "hash": "71f1c5d6d27f95c8",
-      "lastmod": "2026-11-01"
+      "hash": "ec12f0660fafb436",
+      "lastmod": "2026-11-02"
     },
     "/ru/obzor-bright-funded": {
       "hash": "4daa267b950ce82b",
       "lastmod": "2026-10-30"
     },
     "/ru/obzor-crypto-fund-trader": {
-      "hash": "2e3f17b0d4033e16",
-      "lastmod": "2026-10-30"
+      "hash": "29c5a5c8f46dbae8",
+      "lastmod": "2026-11-02"
     },
     "/ru/obzor-eratrade": {
       "hash": "00b11f3d4be40bb9",
@@ -4177,9 +4192,13 @@
       "hash": "a53b051302999b68",
       "lastmod": "2026-10-28"
     },
+    "/ru/obzor-goat-funded-trader": {
+      "hash": "156260607b5386ce",
+      "lastmod": "2026-11-02"
+    },
     "/ru/obzor-hash-hedge": {
-      "hash": "9331942bdd27dd77",
-      "lastmod": "2026-10-30"
+      "hash": "2131865cb424138a",
+      "lastmod": "2026-11-02"
     },
     "/ru/obzor-kascapital": {
       "hash": "fc1a9e9efc2056d1",
@@ -4202,16 +4221,16 @@
       "lastmod": "2026-10-30"
     },
     "/ru/obzor-topstep": {
-      "hash": "7a71c4aacd8dc271",
-      "lastmod": "2026-10-29"
+      "hash": "abd8b3f2c20d905b",
+      "lastmod": "2026-11-02"
     },
     "/ru/otzyvy-prop-firm": {
       "hash": "986f54833db938a3",
       "lastmod": "2026-10-30"
     },
     "/ru/promokody-prop-firm": {
-      "hash": "79cf267ff9be10c8",
-      "lastmod": "2026-10-30"
+      "hash": "5c2b3c5c4750aefb",
+      "lastmod": "2026-11-02"
     },
     "/ru/prop-firmy-bez-chelendzha": {
       "hash": "bebc09ab081e870a",
