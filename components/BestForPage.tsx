@@ -20,7 +20,13 @@ import { ruPlatformList, ruRedactExchanges } from '@/lib/ruRulesText'
 function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
   if (value == null || value === '') return lang === 'ru' ? 'Не подтверждено' : 'Unverified'
   if (key === 'platforms' && lang === 'ru') return ruPlatformList(value.split('|'))
-  if (key === 'profitSplitPct') return `${value}%`
+  if (key === 'profitSplitPct' || key === 'maxLossPct' || key === 'dailyLossPct') return `${value}%`
+  if (key === 'entryPriceUsd' || key === 'smallestAccountUsd' || key === 'maxLossUsd' || key === 'dailyLossUsd') {
+    return `$${Number(value).toLocaleString('en-US')}`
+  }
+  if (key === 'minHoldSeconds' && value === 'not-stated') {
+    return lang === 'ru' ? 'Не заявлено' : 'Not stated'
+  }
   if (key === 'maxTradingDays' && value === 'unlimited') {
     return lang === 'ru' ? 'Без лимита' : 'Unlimited'
   }
@@ -32,7 +38,7 @@ function displayField(key: BestForFieldKey, value: string | null | undefined, la
 
 export default function BestForPage({ model }: { model: BestForPageModel }) {
   const { useCase, lang, ranked, indexable, verdict, reasons, differingFieldCount, differingFields } = model
-  const h1 = useCase.h1[lang]
+  const h1 = model.h1
   const intro = useCase.intro[lang]
   const methodology = useCase.methodology[lang]
   const fieldKeys = useCase.fields
@@ -129,6 +135,31 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
         )}
 
         <AffiliateDisclosure />
+
+        <p
+          data-best-for-sort-rule={useCase.id}
+          style={{ marginTop: '1.25rem', color: 'var(--muted)', fontSize: '0.95rem', maxWidth: 720 }}
+        >
+          {model.sortRule}
+        </p>
+        {(model.usedScalpingProxy || model.usedTimeLimitProxy) && (
+          <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }} data-best-for-proxy="true">
+            {lang === 'ru'
+              ? 'Часть строк использует помеченный запасной критерий, пока Tracker не заполнит новое поле.'
+              : 'Some rows use a labelled fallback until Tracker fills the new structured field.'}
+          </p>
+        )}
+        {useCase.relatedPaths?.[lang]?.length ? (
+          <p style={{ marginTop: '0.75rem', fontSize: '0.95rem' }} data-best-for-related="true">
+            {lang === 'ru' ? 'См. также:' : 'See also:'}{' '}
+            {useCase.relatedPaths[lang]!.map((href, index) => (
+              <span key={href}>
+                {index > 0 ? ' · ' : null}
+                <Link href={href}>{href}</Link>
+              </span>
+            ))}
+          </p>
+        ) : null}
 
         <section aria-labelledby="best-for-list-title" style={{ marginTop: '2rem' }}>
           <h2 id="best-for-list-title">
@@ -241,6 +272,31 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
                 </tbody>
               </table>
             </div>
+          </section>
+        )}
+
+        {model.unrankedUsd && model.unrankedUsd.length > 0 && (
+          <section aria-labelledby="best-for-usd-title" style={{ marginTop: '2.5rem' }} data-best-for-usd-group="true">
+            <h2 id="best-for-usd-title">
+              {lang === 'ru' ? 'Отдельно: лимиты в USD (без ранга)' : 'Separate: USD-cap products (unranked)'}
+            </h2>
+            <p style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>
+              {lang === 'ru'
+                ? 'Долларовые капы (часто фьючерсы) не переводим в % и не смешиваем с %-рейтингом.'
+                : 'Dollar caps (common on futures) are never converted to % and are not mixed into the %-based ranking.'}
+            </p>
+            <ol style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {model.unrankedUsd.map(row => (
+                <li key={`usd-${row.slug}`} className="feature-firm-card card" data-firm={row.slug} data-drawdown-basis="usd" style={{ padding: '1.25rem 1.5rem' }}>
+                  <strong>{row.firm.name}</strong>
+                  <p style={{ margin: '0.35rem 0 0', color: 'var(--muted)', fontSize: '0.92rem' }}>{row.highlight}</p>
+                  <p style={{ margin: '0.35rem 0 0', fontSize: '0.9rem' }}>
+                    {row.fieldValues.maxLossUsd ? `max loss $${Number(row.fieldValues.maxLossUsd).toLocaleString('en-US')}` : null}
+                    {row.fieldValues.dailyLossUsd ? ` · daily $${Number(row.fieldValues.dailyLossUsd).toLocaleString('en-US')}` : null}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </section>
         )}
 

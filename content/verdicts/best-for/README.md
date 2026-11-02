@@ -1,35 +1,42 @@
 # Best-for-X verdicts
 
-Hand-written 120–250 word verdicts that unlock indexing on
-`/best-prop-firms-for/<slug>` and `/ru/luchshie-prop-firmy-dlya/<slug>`.
+Hand-written 120–250 word verdicts that unlock indexing on flat best-for routes.
 
-## File names (use-case id, not the URL slug)
+Slugs are configured in `lib/bestFor.ts` → `BEST_FOR_SLUGS` (per id × language).
+`null` means that language has no page.
 
-| File | Page |
-|------|------|
-| `eas.md` / `eas.ru.md` | EAs & bots |
-| `news-trading.md` / `news-trading.ru.md` | News trading |
-| `scalping.md` / `scalping.ru.md` | Scalping |
-| `beginners.md` / `beginners.ru.md` | Beginners |
-| `weekly-payouts.md` / `weekly-payouts.ru.md` | Weekly payouts |
-| `no-time-limit.md` / `no-time-limit.ru.md` | No time limit |
+## File names (use-case id)
 
-## Frontmatter (required)
+| File | Notes |
+|------|-------|
+| `eas.md` / `eas.ru.md` | Links to `/prop-firms/ea-allowed` |
+| `news-trading.md` / `.ru.md` | Links to `/prop-firms/news-trading` |
+| `scalping.md` / `.ru.md` | Uses `rules.minHoldSeconds` (not scalpingAllowed) |
+| `beginners.md` / `.ru.md` | RU URL fixed: `/ru/luchshie-prop-firmy-dlya-novichkov` |
+| `weekly-payouts.ru.md` | **RU only** — EN unset (blog duplicate) |
+| `no-time-limit.md` / `.ru.md` | Uses `evaluationTimeLimit` |
+| `low-drawdown.md` | **EN only** until RU SEO Lead sets slug |
+| `small-accounts.md` | **EN only** until RU SEO Lead sets slug |
 
-Same shape as `content/verdicts/rules/`:
+## Frontmatter
+
+Required: `slug`, `lang`, `checkedAt`, `author`, `sources`.
+Optional (best-for): `title`, `h1`, `description` — override placeholders; RU SEO Lead owns RU.
 
 ```yaml
 ---
-slug: eas
-lang: en
-checkedAt: '2026-11-0x'
-author: Your Name
+slug: beginners
+lang: ru
+checkedAt: '2026-11-05'
+author: RU Writer
+title: '…'
+h1: '…'
+description: '…'
 sources:
-  - title: Firm rules page
+  - title: Firm rules
     url: https://…
 ---
 ```
 
-Body: 120–250 words. Every claim must trace to `firms.json` / challenge JSON.
-A missing file keeps the page **noindex** even when the 5-field data gate passes.
-See `/workspace/tradersfundhub/drafts/best-for-x-template-guide.md`.
+A missing file keeps that language **noindex** even when the 5-field data gate passes.
+Hreflang is emitted only when **both** languages pass.

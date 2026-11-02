@@ -344,6 +344,38 @@ export interface ChallengeRules {
   ea: RuleAvailability
   /** Mirror/copy-trade other traders' positions allowed? */
   copyTrading: RuleAvailability
+  /**
+   * Minimum hold time in seconds (Tracker schema, W45).
+   * 0 = firm explicitly says no minimum (scalping-friendly).
+   * null = not published / unclear — NEVER treat as 0.
+   * Absent key = not yet researched (callers may use a labelled proxy).
+   */
+  minHoldSeconds?: number | null
+  /** Public-safe note accompanying minHoldSeconds. */
+  scalpingNote?: string | null
+  /** First-party URL for the scalping / min-hold rule. */
+  scalpingSourceUrl?: string
+  /** ISO date scalpingSourceUrl was checked. */
+  scalpingCheckedAt?: string
+}
+
+/**
+ * Evaluation time-limit object (Tracker schema, W45).
+ * Valid states: {days:N, unlimited:false}, {days:null, unlimited:true},
+ * {days:null, unlimited:false} = unknown. Missing object = unknown.
+ */
+export interface EvaluationTimeLimit {
+  days: number | null
+  unlimited: boolean
+  sourceUrl?: string
+  checkedAt?: string
+}
+
+/** Per-phase evaluation limits when phases differ on the same product. */
+export interface ChallengePhaseEvaluation {
+  /** 1-based phase index when known. */
+  phase?: number
+  evaluationTimeLimit?: EvaluationTimeLimit | null
 }
 
 export interface Challenge {
@@ -399,6 +431,14 @@ export interface Challenge {
   maxTradingDays: number | null
   /** Explicit source confirmation of no time limit; absent/null = unverified. */
   maxTradingDaysUnlimited?: boolean | null
+  /**
+   * Product-level evaluation time limit (Tracker W45). Prefer over legacy
+   * maxTradingDays / maxTradingDaysUnlimited when present. When phases differ,
+   * use phasesDetail[].evaluationTimeLimit — unlimited only if every phase is.
+   */
+  evaluationTimeLimit?: EvaluationTimeLimit | null
+  /** Per-phase time limits when they differ across evaluation steps. */
+  phasesDetail?: ChallengePhaseEvaluation[]
   /** Consistency rule as a % cap on a single day's contribution to total profit. */
   consistencyRulePct: number | null
   /** false explicitly confirms no rule; null/absent does not. See notes for stage scope. */

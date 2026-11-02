@@ -9,8 +9,8 @@ import matter from 'gray-matter'
  *   content/verdicts/rules/<firm-slug>.md      EN verdict on /prop-firms/<firm-slug>/rules
  *   content/verdicts/rules/<firm-slug>.ru.md   RU verdict on the RU rules twin (/ru/<firm>-pravila)
  *   content/verdicts/vs/<pair-slug>.md         EN verdict on /compare/<pair-slug>
- *   content/verdicts/best-for/<use-case>.md    EN verdict on /best-prop-firms-for/<use-case>
- *   content/verdicts/best-for/<use-case>.ru.md RU verdict on /ru/luchshie-prop-firmy-dlya/<use-case>
+ *   content/verdicts/best-for/<use-case>.md    EN verdict on /best-prop-firms-for-<use-case>
+ *   content/verdicts/best-for/<use-case>.ru.md RU verdict on flat /ru/luchshie-prop-firmy-… routes
  *
  * <pair-slug> is the canonical alphabetical matchup from lib/comparisons.ts
  * (canonicalMatchupSlug), e.g. bright-funded-vs-ftmo.
@@ -21,6 +21,7 @@ import matter from 'gray-matter'
  *   checkedAt: YYYY-MM-DD, the date the writer checked every claim against the data
  *   sources:   [{ title, url }], at least one; url is https://… or a site path (/blog/…)
  *   author:    display name
+ * Optional: title, h1, description (best-for pages use these for meta/H1; RU SEO Lead owns RU).
  * Optional, not rendered: firm, dataAsOf (YYYY-MM-DD), fieldsUsed [], dataFiles []
  * (repo files the writer read, e.g. content/data/firms.json — never put repo paths in sources).
  * Body: markdown, 120–250 words (paragraphs, **bold**, *italic*, [links](url), "- " lists).
@@ -43,6 +44,12 @@ export interface Verdict {
   body: string
   wordCount: number
   file: string
+  /** Optional page title (document title / og:title). RU SEO Lead owns RU. */
+  title?: string
+  /** Optional H1 override. RU SEO Lead owns RU. */
+  h1?: string
+  /** Optional meta description. RU SEO Lead owns RU. */
+  description?: string
 }
 
 export const VERDICT_MIN_WORDS = 120
@@ -100,6 +107,13 @@ export function verdictProblems(
     const dataAsOf = data.dataAsOf instanceof Date ? data.dataAsOf.toISOString().slice(0, 10) : data.dataAsOf
     if (typeof dataAsOf !== 'string' || !isRealIsoDate(dataAsOf)) problems.push('dataAsOf must be a real YYYY-MM-DD date when present')
   }
+  for (const key of ['title', 'h1', 'description'] as const) {
+    if (data[key] !== undefined) {
+      if (typeof data[key] !== 'string' || !String(data[key]).trim()) {
+        problems.push(`${key} must be a non-empty string when present`)
+      }
+    }
+  }
   const words = verdictWordCount(body)
   if (words < VERDICT_MIN_WORDS || words > VERDICT_MAX_WORDS) {
     problems.push(`body must be ${VERDICT_MIN_WORDS}–${VERDICT_MAX_WORDS} words (got ${words})`)
@@ -119,6 +133,12 @@ export function loadVerdict(kind: VerdictKind, slug: string, lang: VerdictLang =
     throw new Error(`Invalid verdict ${path.relative(root, file)}: ${problems.join('; ')}`)
   }
   const checkedAt = data.checkedAt instanceof Date ? data.checkedAt.toISOString().slice(0, 10) : String(data.checkedAt)
+  const optionalString = (key: 'title' | 'h1' | 'description'): string | undefined => {
+    const value = data[key]
+    if (typeof value !== 'string') return undefined
+    const trimmed = value.trim()
+    return trimmed || undefined
+  }
   return {
     kind,
     slug,
@@ -129,6 +149,9 @@ export function loadVerdict(kind: VerdictKind, slug: string, lang: VerdictLang =
     body,
     wordCount: verdictWordCount(body),
     file: path.relative(root, file),
+    title: optionalString('title'),
+    h1: optionalString('h1'),
+    description: optionalString('description'),
   }
 }
 
