@@ -215,18 +215,26 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
     gaps.push('LucidDaily: missing product or consistencyRulePct.')
   }
 
-  // ── Apex: firm.consistencyRule states no-eval + 50% PA; challenge pct usually null ──
-  // When Tracker stores a structured PA row (consistencyRulePct + consistencyBasis), prefer that
-  // so Measured against prefills automatically; until then keep not-stated (do not invent a basis).
+  // ── Apex: firm.consistencyRule states no-eval + 50% PA; challenge eval % usually null ──
+  // Prefill Measured against from structured PA rows (consistencyBasis + 50% funded).
+  // Inequality `lt` stays in the preset (not stored in challenge data). Fallback not-stated
+  // only when no fresh product carries a basis yet.
   const apex = findFirm(firms, 'apex-trader-funding')
   const apexProducts = challenges.filter(c => c.firmSlug === 'apex-trader-funding' && isChallengeFresh(c, now))
   if (apex && apex.consistencyRule && /50\s*%/.test(apex.consistencyRule) && apexProducts.length > 0) {
     const latest = [...apexProducts].sort((a, b) => b.sourceCapturedAt.localeCompare(a.sourceCapturedAt))[0]
     const structuredPa = apexProducts.find(
-      p => p.consistencyRulePct === 50 && p.consistencyBasis != null && isBasisFresh(p.consistencyBasisCheckedAt ?? p.sourceCapturedAt, now),
+      p =>
+        p.consistencyRulePct === 50
+        && p.consistencyBasis != null
+        && isBasisFresh(p.consistencyBasisCheckedAt ?? p.sourceCapturedAt, now),
     )
     const apexStageNote =
       'Evaluation: no consistency rule. Performance Account payouts: largest profitable day must be less than 50% of net profit since the last payout request (or inception). Breaking it blocks the payout request; it does not fail the account. Legacy PAs from before 1 Mar 2026 used 30% — note only, not this preset.'
+    const apexStructuredBasisNote =
+      'Apex measures your largest profitable day against net profit since your last payout request (or since the account opened), and the count resets after an approved payout.'
+    const apexFallbackBasisNote =
+      'Apex’s help page names the PA profit base as net profit since the last payout request (or since account inception). Choose “Profit in current payout / reward cycle” if that matches your dashboard, or confirm on the live help page.'
     if (structuredPa) {
       const built = rulePreset({
         id: 'apex-pa-payout',
@@ -238,11 +246,16 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
         inequality: 'lt',
         stageNote: apexStageNote,
       })
-      if (built) presets.push(built)
-      else gaps.push('Apex PA 50%: structured product present but failed freshness/basis checks.')
+      if (built) {
+        // rulePreset omits basisNote when a basis is set; Apex still needs the reset explanation.
+        built.basisNote = apexStructuredBasisNote
+        presets.push(built)
+      } else {
+        gaps.push('Apex PA 50%: structured product present but failed freshness/basis checks.')
+      }
     } else {
       gaps.push(
-        'Apex PA 50%: firm field states no evaluation rule and 50% at Performance Account payouts; challenge products still have null eval %. Basis left not-stated until Tracker stores a structured PA consistencyBasis (then this preset prefills automatically).',
+        'Apex PA 50%: firm field states no evaluation rule and 50% at Performance Account payouts; challenge products still have null eval % / null consistencyBasis. Basis left not-stated until Tracker stores a structured PA consistencyBasis (then this preset prefills automatically).',
       )
       presets.push({
         id: 'apex-pa-payout',
@@ -252,10 +265,9 @@ export function buildConsistencyCalculatorPresets(now = new Date()): {
         basis: 'not-stated',
         inequality: 'lt',
         stageNote: apexStageNote,
-        basisNote:
-          'Apex’s help page names the PA profit base as net profit since the last payout request (or since account inception). Choose “Profit in current payout / reward cycle” if that matches your dashboard, or confirm on the live help page.',
+        basisNote: apexFallbackBasisNote,
         sourceUrl: 'https://apextraderfunding.com/help-center/additional-helpful-items/50-consistency-requirement/',
-        // Product captures are 2026-10-22; do not invent 2026-10-29 here.
+        // Fallback path only: use latest product capture; do not invent a newer checked date.
         sourceCapturedAt: latest.sourceCapturedAt,
         firmName: apex.name,
         reviewHref: apex.reviewUrl,

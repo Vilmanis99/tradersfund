@@ -143,9 +143,12 @@ assert.equal(ftmoPreset.limitPct, 50)
 const apex = presets.find(p => p.id === 'apex-pa-payout')
 assert.equal(apex.limitPct, 50)
 assert.equal(apex.inequality, 'lt')
-assert.equal(apex.basis, 'not-stated') // until Tracker stores PA consistencyBasis*
-assert.match(apex.basisNote || '', /Apex.s help page names the PA profit base/)
-assert.doesNotMatch(apex.basisNote || '', /challenge basis fields|primary basis fields|Tracker|firms\.json|consistencyBasis/)
+assert.equal(apex.basis, 'payout-cycle-profit')
+assert.match(
+  apex.basisNote || '',
+  /Apex measures your largest profitable day against net profit since your last payout request \(or since the account opened\), and the count resets after an approved payout\./,
+)
+assert.doesNotMatch(apex.basisNote || '', /help page names the PA profit base|challenge basis fields|primary basis fields|Tracker|firms\.json|consistencyBasis/)
 const topstepNote = presets.find(p => p.id === 'topstep-combine')
 assert.match(topstepNote.stageNote || '', /left empty rather than guessed/)
 assert.doesNotMatch(topstepNote.stageNote || '', /primary basis fields|challenge basis fields|Tracker|consistencyBasis/)
@@ -153,7 +156,7 @@ assert.doesNotMatch(lucidFlex.basisNote || '', /does not state a single profit b
 assert.doesNotMatch(lucidDaily.basisNote || '', /does not state a single profit base/)
 assert.equal(lucidFlex.basisNote, undefined)
 assert.equal(lucidDaily.basisNote, undefined)
-assert.ok(gaps.some(g => /Apex PA 50%/.test(g)))
+assert.ok(!gaps.some(g => /Apex PA 50%/.test(g)), 'structured Apex PA should not leave a Tracker-waiting gap')
 assert.equal(defaultPreset, 'ftmo-1-step')
 
 // No internal jargon in any rendered preset string passed to the client
