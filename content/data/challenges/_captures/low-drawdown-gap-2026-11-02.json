@@ -1,0 +1,175 @@
+{
+  "title": "Low-drawdown gap audit for EN best-for-X /blog/prop-firms-with-low-drawdown",
+  "checkedAt": "2026-11-02",
+  "baseCommit": "455f9854",
+  "branch": "data/low-drawdown-2026-11-02",
+  "scope": "Fill maxLossPct / dailyLossPct only where a first-party page publishes a percentage; do not convert futures USD caps to %; refresh candidate sourceCapturedAt older than 2026-10-10.",
+  "candidateCountMaxLossPctLte6": 41,
+  "staleCandidatesBefore2026-10-10": [],
+  "pagesRead": [
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://fundednext.com/cfds/stellar-instant",
+    "https://fundednext.com/cfds/stellar-1-step",
+    "https://the5ers.com/bootcamp/",
+    "https://the5ers.com/futures/",
+    "https://e8markets.com/e8-signature",
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://hashhedge.com/",
+    "https://hashhedge.gitbook.io/hashhedge-user-guide/introduction/challenge-type",
+    "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules",
+    "https://hashhedge.gitbook.io/hashhedge-user-guide/daily-loss-calculation",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/faqs"
+  ],
+  "fieldDecisions": [
+    {
+      "firmSlug": "city-traders-imperium",
+      "products": ["1-step-challenge", "instant-funding", "direct-funding"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "Page prints Max Daily Drawdown None / No daily drawdown",
+      "quote": "Max Daily Drawdown None",
+      "sourceUrl": "https://citytradersimperium.com/1-step-challenge/"
+    },
+    {
+      "firmSlug": "fundednext",
+      "products": ["stellar-instant"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "Page prints Daily Loss Limit None",
+      "quote": "Daily Loss Limit None",
+      "sourceUrl": "https://fundednext.com/cfds/stellar-instant"
+    },
+    {
+      "firmSlug": "maven",
+      "products": ["buy-now-pay-later"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "Evaluation has no daily limit; funded 4% already in fundedDailyLossPct",
+      "quote": "Daily loss Phase 1 N/A Funded 4%",
+      "sourceUrl": "https://maventrading.com/pricing"
+    },
+    {
+      "firmSlug": "maven",
+      "products": ["predictions-1-step", "predictions-elite-1-step"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "FAQ: no daily drawdown limits on Prediction Markets",
+      "quote": "There are: No daily drawdown limits",
+      "sourceUrl": "https://maventrading.com/faqs"
+    },
+    {
+      "firmSlug": "the5ers",
+      "products": ["bootcamp"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "Evaluation Daily Pause is a dash; funded 3% already in fundedDailyLossPct",
+      "quote": "Daily Pause – – – 3%",
+      "sourceUrl": "https://the5ers.com/bootcamp/"
+    },
+    {
+      "firmSlug": "the5ers",
+      "products": ["futures-day-trade", "futures-swing"],
+      "field": "dailyLossPct",
+      "value": null,
+      "reason": "Futures table publishes Max Loss Limit 4% and EOD drawdown with no daily % row",
+      "quote": "Max Loss Limit 4% 4%",
+      "sourceUrl": "https://the5ers.com/futures/"
+    },
+    {
+      "firmSlug": "e8-markets",
+      "products": ["e8-signature"],
+      "field": "maxLossPct",
+      "value": null,
+      "reason": "Tier USD EOD caps are 4%/4%/3%/3%; no single product-wide %",
+      "quote": "tier-specific EOD drawdown $1,000 / $2,000 / $3,000 / $4,500",
+      "sourceUrl": "https://e8markets.com/e8-signature",
+      "schemaFieldUsed": "accountSizes[].maxLossUsd"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "products": ["break"],
+      "field": "maxLossPct",
+      "value": null,
+      "reason": "Trailing drawdown published in dollars only; no daily loss limit",
+      "quote": "Trailing drawdown $1,000",
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "schemaFieldUsed": "accountSizes[].maxLossUsd"
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "products": ["instant"],
+      "field": "drawdownType",
+      "value": null,
+      "reason": "Homepage says Maximum overall loss 6%; FAQ reserves trailing for 1-Phase and Break only; Instant floor basis must not be invented (scripts/test-cft-correction.mjs)",
+      "quote": "Maximum daily loss 4% Maximum overall loss 6%",
+      "sourceUrl": "https://cryptofundtrader.com/"
+    },
+    {
+      "firmSlug": "hash-hedge",
+      "products": ["one-stage", "two-stage", "two-stage-us-stocks"],
+      "field": "drawdownType",
+      "value": null,
+      "reason": "Guide measures total loss against account size; homepage labels Peak-to-trough; conflict unresolved",
+      "quote": "All percentages are measured against your account size. ... Max Overall Drawdown Peak-to-trough loss limit across the full challenge.",
+      "sourceUrl": "https://hashhedge.gitbook.io/hashhedge-user-guide/rules/challenge-rules"
+    }
+  ],
+  "usdCapOnlyFirms": [
+    {
+      "firmSlug": "apex-trader-funding",
+      "assetClass": "futures",
+      "note": "All products: maxLossPct null; tiers carry maxLossUsd (and some dailyLossUsd). Do not convert to %."
+    },
+    {
+      "firmSlug": "lucid-trading",
+      "assetClass": "futures",
+      "note": "All products: maxLossPct null; tiers carry maxLossUsd / optional dailyLossUsd."
+    },
+    {
+      "firmSlug": "my-funded-futures",
+      "assetClass": "futures",
+      "note": "Rapid / Pro / Builder: maxLossPct null because USD MLL is not one product-wide % across sizes; Rapid EOD / Flex already store maxLossPct 4 where consistent. dailyLossPct null (no hard daily % / soft pause only)."
+    },
+    {
+      "firmSlug": "take-profit-trader",
+      "assetClass": "futures",
+      "note": "The Test: maxLossPct null; maxLossUsd on tiers."
+    },
+    {
+      "firmSlug": "topstep",
+      "assetClass": "futures",
+      "note": "Both Combine paths: maxLossPct null; maxLossUsd on tiers."
+    },
+    {
+      "firmSlug": "tradeday",
+      "assetClass": "futures",
+      "note": "All products: maxLossPct null; maxLossUsd on tiers."
+    },
+    {
+      "firmSlug": "tradeify",
+      "assetClass": "futures",
+      "note": "All products: maxLossPct null; maxLossUsd / optional dailyLossUsd on tiers."
+    },
+    {
+      "firmSlug": "e8-markets",
+      "products": ["e8-signature"],
+      "assetClass": "cfd",
+      "note": "Signature Forex only: USD EOD caps, not a single %."
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "products": ["break"],
+      "assetClass": "crypto",
+      "note": "Break only: USD trailing caps."
+    }
+  ],
+  "valuesChanged": [],
+  "blockedOrBrowserNeeded": [],
+  "evidenceDir": "Capture provenance: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json (HTML/text snapshots kept in the evidence pack for this check date)."
+}

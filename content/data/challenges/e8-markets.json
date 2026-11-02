@@ -410,7 +410,8 @@
       "The current E8 Signature product page and updated custom-account table show undiscounted base prices of $120/$160/$280/$450 for $25K/$50K/$100K/$150K; the displayed 25% code prices are promotional and are not stored as list prices.",
       "The current Accepted Countries article now says India and Kenya may purchase E8 Signature in all listed sizes; country eligibility follows verification documents.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/e8-markets-2026-10-20.json",
-      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json"
+      "Daily recheck 2026-10-19: prices and source pages re-read; recheck log: content/data/challenges/_captures/e8-markets-2026-10-19.json",
+      "Low-drawdown gap audit 2 November 2026: E8 Signature still publishes tier USD EOD drawdowns ($1,000 / $2,000 / $3,000 / $4,500) that are not one product-wide %, and the Performance Daily Pause remains a soft pause, so maxLossPct and dailyLossPct stay null with maxLossUsd on the tiers. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
     ]
   }
 ]
