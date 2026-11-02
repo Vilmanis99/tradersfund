@@ -1251,7 +1251,7 @@
       "Indices",
       "Commodities"
     ],
-    "maxAllocation": "$1,000,000",
+    "maxAllocation": "$500,000 per product per market; up to $3,900,000 across products per household",
     "platforms": [
       "TradeLocker",
       "Match-Trader",
@@ -1272,7 +1272,7 @@
     "drawdownType": null,
     "minTradingDays": 0,
     "consistencyRule": "Product-specific: 35% on E8 Signature Forex; 40% on E8 One (Forex), E8 One (Perpetuals); no consistency percentage on the other 2 products.",
-    "scalingPlan": true,
+    "scalingPlan": null,
     "newsTradingAllowed": "restricted",
     "eaAllowed": "restricted",
     "overnightAllowed": "restricted",
