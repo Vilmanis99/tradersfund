@@ -408,6 +408,10 @@ ${body}
   const the5ex = ruModel.excludedRestrictedFirms?.find(f => f.slug === 'the5ers')
   assert.ok(the5ex, 'The5ers on excluded list')
   assert.equal(the5ex.reviewPath, '/ru/obzor-the5ers')
+  const excludedSlugs = (ruModel.excludedRestrictedFirms || []).map(f => f.slug)
+  assert.ok(excludedSlugs.includes('fundednext'), 'FundedNext on excluded restricted list')
+  assert.equal(excludedSlugs.at(-1), 'fundednext', 'FundedNext last among excluded (CR)')
+  assert.ok(!/without a sign-up link|без ссылки регистрации/i.test(BEST_FOR_USE_CASES.find(u => u.id === 'beginners').dataNote || ''))
   // EN includes restricted firms that pass product filters (no Russia filter)
   assert.ok(enModel.ranked.some(r => r.slug === 'the5ers'), 'EN beginners keeps The5ers (no Russia filter)')
   // Ranking deterministic + no affiliate in sort keys
@@ -631,6 +635,18 @@ for (const model of getBestForPageModels()) {
   assert.match(html, /AffiliateDisclosure|affiliate|disclosure/i)
   if (!model.indexable) assert.ok(!locs.has(model.path), `${model.path} in sitemap while noindex`)
   if (model.lang === 'ru') assert.ok(!/bybit/i.test(html))
+  if (model.path === '/ru/luchshie-prop-firmy-dlya-novichkov') {
+    assert.match(html, /data-best-for-excluded-restricted="true"/)
+    assert.ok(!/без ссылки регистрации/i.test(html), 'excluded firms must keep sign-up CTAs')
+    const excludedCtas = [...html.matchAll(/href="\/go\/([a-z0-9-]+)\?from=ru-best-for-beginners-excluded"/g)].map(m => m[1])
+    assert.ok(excludedCtas.includes('the5ers'), 'excluded The5ers keeps /go/ CTA')
+    assert.ok(excludedCtas.includes('fundednext'), 'excluded FundedNext keeps /go/ CTA')
+    assert.equal(excludedCtas.at(-1), 'fundednext', 'FundedNext last among excluded CTAs')
+    // Ranked available CTAs must appear before excluded CTAs (russiaCtaIssues order).
+    const firstRanked = html.indexOf('href="/go/bright-funded?from=ru-best-for-beginners"')
+    const firstExcludedBlock = html.indexOf('data-best-for-excluded-restricted="true"')
+    assert.ok(firstRanked >= 0 && firstExcludedBlock > firstRanked, 'excluded CTA block after ranked list')
+  }
 }
 
 for (const nested of BEST_FOR_RETIRED_NESTED_PATHS) {

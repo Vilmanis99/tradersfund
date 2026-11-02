@@ -1049,7 +1049,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     },
     fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'consistencyRule', 'phases'],
     qualifies: (firm, products) => beginnerFriendly(firm, products, { applyRussiaFilter: false }),
-    dataNote: `Entry caps: $${BEGINNER_MAX_ENTRY_PRICE_USD} / €${BEGINNER_MAX_ENTRY_PRICE_EUR}; we rank by fee ÷ that currency’s cap (no FX). Every RU listed firm keeps a sign-up link and Russia-access badge; firms closed to Russia are noted without a sign-up link.`,
+    dataNote: `Entry caps: $${BEGINNER_MAX_ENTRY_PRICE_USD} / €${BEGINNER_MAX_ENTRY_PRICE_EUR}; we rank by fee ÷ that currency’s cap (no FX). Every RU firm — ranked or excluded for listing Russia on its restriction list — keeps a sign-up link and Russia-access badge.`,
     lastReviewed: '2026-11-02',
   },
   {
@@ -1482,7 +1482,12 @@ export function rankBestFor(
     })
   }
   unrankedUsd.sort((a, b) => a.firm.name.localeCompare(b.firm.name))
-  excludedRestricted.sort((a, b) => a.name.localeCompare(b.name))
+  // FundedNext last among excluded (CR 2026-11-02); otherwise name A–Z.
+  excludedRestricted.sort((a, b) => {
+    if (a.slug === 'fundednext') return 1
+    if (b.slug === 'fundednext') return -1
+    return a.name.localeCompare(b.name)
+  })
   return { ranked, unrankedUsd, excludedRestricted }
 }
 

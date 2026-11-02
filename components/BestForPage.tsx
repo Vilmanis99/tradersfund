@@ -156,35 +156,6 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
         >
           {model.sortRule}
         </p>
-        {model.excludedRestrictedFirms && model.excludedRestrictedFirms.length > 0 ? (
-          <div
-            data-best-for-excluded-restricted="true"
-            style={{ marginTop: '0.75rem', color: 'var(--muted)', fontSize: '0.92rem', maxWidth: 720 }}
-          >
-            <p style={{ margin: 0 }}>
-              {lang === 'ru'
-                ? 'Исключены из рейтинга (Россия в списке ограничений) — без ссылки регистрации:'
-                : 'Excluded (closed to Russia) — no sign-up link:'}
-            </p>
-            <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
-              {model.excludedRestrictedFirms.map(firm => (
-                <li key={firm.slug} data-excluded-restricted={firm.slug}>
-                  {firm.reviewPath ? (
-                    <Link href={firm.reviewPath}>{firm.name}</Link>
-                  ) : (
-                    <span>{firm.name}</span>
-                  )}
-                  {' '}
-                  {lang === 'ru' ? (
-                    <span data-russia-badge="restricted-excluded-ru">В списке ограничений</span>
-                  ) : (
-                    <span data-russia-badge="restricted-en">Unavailable for RF</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
         {(model.usedScalpingProxy || model.usedTimeLimitProxy) && (
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }} data-best-for-proxy="true">
             {lang === 'ru'
@@ -275,6 +246,72 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
             </ol>
           )}
         </section>
+
+        {model.excludedRestrictedFirms && model.excludedRestrictedFirms.length > 0 ? (
+          <section
+            aria-labelledby="best-for-excluded-title"
+            data-best-for-excluded-restricted="true"
+            style={{ marginTop: '2.5rem' }}
+          >
+            <h2 id="best-for-excluded-title">
+              {lang === 'ru' ? 'Исключены из рейтинга' : 'Excluded from ranking'}
+            </h2>
+            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', maxWidth: 720 }}>
+              {lang === 'ru'
+                ? 'У этих фирм Россия в списке ограничений на дату проверки — в рейтинг они не входят. Ссылка регистрации и бейдж доступа для РФ остаются:'
+                : 'These firms list Russia on their restriction list (checked on the capture date), so they stay out of the ranking. Each still keeps a sign-up link with a Russia-access badge:'}
+            </p>
+            <ul
+              className="feature-firm-list"
+              style={{ listStyle: 'none', margin: '1rem 0 0', padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}
+            >
+              {model.excludedRestrictedFirms.map(firm => (
+                <li
+                  key={firm.slug}
+                  className="feature-firm-card card"
+                  data-excluded-restricted={firm.slug}
+                  data-firm={firm.slug}
+                  data-russia-status="restricted"
+                  style={{ padding: '1rem 1.25rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', justifyContent: 'space-between' }}
+                >
+                  <div>
+                    {firm.reviewPath ? (
+                      <Link href={firm.reviewPath}><strong>{firm.name}</strong></Link>
+                    ) : (
+                      <strong>{firm.name}</strong>
+                    )}
+                    {' '}
+                    {lang === 'ru' ? (
+                      <span data-best-for-excluded-note="restricted-list">В списке ограничений</span>
+                    ) : (
+                      <span data-best-for-excluded-note="restricted-list">On restriction list</span>
+                    )}
+                  </div>
+                  {lang === 'ru' ? (
+                    <RuGoLink
+                      firm={firm.slug}
+                      href={`/go/${firm.slug}?from=ru-best-for-${useCase.id}-excluded`}
+                      rel={goLinkRel(firm.slug)}
+                      className="btn-primary feature-firm-cta"
+                    >
+                      Проверить {firm.name} <ArrowRight size={13} aria-hidden="true" />
+                    </RuGoLink>
+                  ) : (
+                    <Link
+                      href={`/go/${firm.slug}?from=best-for-${useCase.id}-excluded`}
+                      prefetch={false}
+                      rel={goLinkRel(firm.slug)}
+                      target="_blank"
+                      className="btn-primary feature-firm-cta"
+                    >
+                      Visit {firm.name} <ExternalLink size={13} aria-hidden="true" />
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         {ranked.length > 0 && (
           <section aria-labelledby="best-for-table-title" style={{ marginTop: '2.5rem' }}>
