@@ -159,7 +159,7 @@ type: "post"
 
 <h3>How do I calculate a 30% consistency rule?</h3>
 
-<p>Use the same share formula as the on-page calculator (best day ÷ applicable profit). For a 50% FTMO 1-Step rule the denominator is total profit; if the firm does not name the base, treat it as not stated. Only for a best-day share formula, divide the best-day profit by the firm's named applicable profit total and multiply by 100. A $1,200 best day divided by $3,000 is 40%; reducing that to 30% with the same best day requires a $4,000 applicable total.</p>
+<p>Only for a best-day share formula, divide the best-day profit by the firm's named applicable profit total and multiply by 100. A $1,200 best day divided by $3,000 is 40%; reducing that to 30% with the same best day requires a $4,000 applicable total.</p>
 
 <h3>Does exceeding a consistency percentage fail the account?</h3>
 
@@ -172,6 +172,19 @@ type: "post"
 <h3>Is a lot-size consistency rule the same as a best-day rule?</h3>
 
 <p>No. A best-day rule measures profit concentration, while a lot-size rule measures changes in position or contract size. A product may use either test, both tests, or neither.</p>
+
+
+<h3>Is there a free prop firm consistency rule calculator?</h3>
+
+<p>Yes — the calculator on this page runs the best-day share formula in your browser. Choose a preset (BrightFunded, FTMO 1-Step, FundingPips 2-Step Standard, Topstep Combine, Apex Performance Account payouts, LucidFlex/LucidDaily, or Custom), enter best-day profit and the profit figure the firm names, and read pass/fail plus how much more applicable profit you need. It does not replace the firm’s dashboard.</p>
+
+<h3>How do I calculate a 50% consistency rule (FTMO 1-Step)?</h3>
+
+<p>For FTMO 1-Step accounts ordered from 12 Oct 2026, divide best-day profit by <strong>total profit</strong> (sum of closed profits and losses) and multiply by 100. A $2,400 best day on $3,600 total is 66.7%; getting back to 50% with the same best day needs $4,800 total profit ($1,200 more). Older accounts still on Positive Days' Profit must use that denominator instead.</p>
+
+<h3>What if the firm does not say what the percentage is measured against?</h3>
+
+<p>Treat the basis as <strong>not stated</strong>. Topstep’s 55% Trading Combine wording is the live example in our 2026-10-28 check: the help article names both the profit target and total profit, so we leave the basis empty rather than guess. Do not size trades from a calculator preset until the firm’s page is unambiguous or the firm clarifies the basis.</p>
 
 <h3>Which prop-firm products have no consistency rule?</h3>
 
