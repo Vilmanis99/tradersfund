@@ -38,7 +38,7 @@
       },
       {
         "productSlug": "ftmo-free-trial-instant",
-        "mapsToChallenge": null,
+        "mapsToChallenge": "ftmo-instant-account",
         "phases": 1,
         "profitTargetPct": null,
         "minTradingDays": null,
@@ -53,7 +53,8 @@
       "FTMO's FAQ says the 1-Step trial uses paid 1-Step objectives except that the 10% target becomes 5%.",
       "The landing page says each trader may have one active trial, may delete it and start another, and receives no automatic FTMO Account eligibility after passing.",
       "Rechecked on 2026-10-19 against the FTMO Free Trial landing page (Last updated 16 October 2026) and the Free Trial FAQ: 14 days, unlimited trials one at a time, up to $200,000.",
-      "2026-10-19 change: the landing page now offers a third Free Trial that mirrors the FTMO Instant Account (no profit target, 3% daily loss, 10% balance-based intraday trailing maximum loss, 30% consistency). FTMO Instant Account paid pricing is not captured in content/data/challenges/ftmo.json, so mapsToChallenge is null.",
+      "2026-10-19 change: the landing page now offers a third Free Trial that mirrors the FTMO Instant Account (no profit target, 3% daily loss, 10% balance-based intraday trailing maximum loss, 30% consistency).",
+      "Rechecked 2026-11-03: Instant Free Trial linked to paid product ftmo-instant-account (captured 2026-10-21). Landing Instant column: Profit Target None; Max Loss 10% balance-based intraday trailing; Max Daily Loss 3%; Min Trading Days None; Consistency 30%; Duration 14 days.",
       "2026-10-19 change: the landing-page FAQ says the Free Trial runs on MT4, MT5 and cTrader and that TradingView is not supported for a Free Trial; TradingView was removed from platforms.",
       "2026-10-19: the landing page says a trial also ends if the trader does not trade in the first 7 days (inactivityCloseDays).",
       "Rechecked 2026-11-03 against https://ftmo.com/en/ftmo-free-trial/ (WordPress modified 2026-11-02), https://ftmo.com/en/faq/do-you-offer-a-free-trial/ (replaces the old /how-about-a-free-trial/ URL that 301s), https://ftmo.com/en/trading-objectives/ and https://ftmo.com/en/terms-and-conditions/. No material rule change vs 2026-10-19: Instant trial still None/3%/10% intraday trailing/30%/14 days; platforms MT4/MT5/cTrader; TradingView not supported for Free Trial; ends on 14 days, objectives met, breach, or no trade in first 7 days; demo with fictitious funds."
