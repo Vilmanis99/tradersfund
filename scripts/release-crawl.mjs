@@ -1424,7 +1424,7 @@ const russianExpectations = new Map([
       'data-russian-goat-access="restricted"',
       'data-russia-status="restricted"',
       'data-russia-firm="goat-funded-trader"',
-      'Недоступно для РФ',
+      'В списке ограничений',
       'Россия в списке ограничений',
       'по данным на 27.10.2026',
       'по данным на 30.10.2026',
