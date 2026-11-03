@@ -1717,7 +1717,7 @@
     "trustpilotScore": null,
     "trustpilotCount": null,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-29",
+    "lastUpdated": "2026-11-03",
     "trustpilotUrl": "https://www.trustpilot.com/review/alphacapitalgroup.uk",
     "trustpilotCapturedAt": "2026-10-20",
     "russiaStatus": "restricted",
@@ -2132,11 +2132,14 @@
     },
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
+    "regionalDiscountCode": "ALPHA20",
+    "discountCodeRegion": "us-only-unconfirmed",
+    "regionalDiscountPct": 20,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-11-02",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 2 November 2026: \"Active codes — No codes in this section right now.\" / \"Last updated 27 October 2026\" / \"Codes are removed when their published end date passes.\" HALLOWEEN45 (to 31 Oct) has ended, and FUNDED40, ALPHA20 and 10KFOR40 were all published for 1–31 Oct only — none are set as live codes. Homepage markup on 2 November 2026 still contains a past-dated promo string (\"45% Off · Use code HALLOWEEN45\", data-promo-until 2026-11-01) with data-fallback-coupon ALPHA20; that is not treated as a live published code with terms, so no discountCode is set and nothing is added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-03",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 3 November 2026 (Last updated 2 November 2026; Active codes 3). Live codes: FUNDED40 — \"40% Off Direct Accounts 1 Nov 2026 – 30 Nov 2026 · Alpha Direct only — not valid on evaluation plans\"; ALPHA20 — \"20% Off All Accounts 1 Nov 2026 – 30 Nov 2026 · Applies to all accounts. Use code at checkout\"; 10KFOR40 — \"10K Account Deal 1 Nov 2026 – 30 Nov 2026 · Qualifying $10K evaluation plans. Use code at checkout or via the campaign page.\" Primary regionalDiscountCode is ALPHA20 (broadest: all accounts, 20%). FUNDED40 and 10KFOR40 stay in this note only. Seen from a US network view; not checkout-verified; discountCodeRegion us-only-unconfirmed; nothing added to deals.json. HALLOWEEN45 (26–31 Oct) remains ended under previousDiscountCode.",
     "previousDiscountCode": "HALLOWEEN45",
-    "previousDiscountCodeStatus": "ended: the official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes listed it as \"45% off … 26 Oct 2026 – 31 Oct 2026 … Live until midnight UK time on 31 October.\"; on 2026-11-01 the page (\"Last updated 27 October 2026\", \"Codes are removed when their published end date passes.\") shows \"Active codes — No codes in this section right now.\" and the homepage banner no longer shows it; never checkout-verified. Earlier code MYALPHA ended 26 October 2026"
+    "previousDiscountCodeStatus": "ended: published on the official codes page as \"45% off … 26 Oct 2026 – 31 Oct 2026 … Live until midnight UK time on 31 October.\"; removed when that window passed; never checkout-verified. Earlier code MYALPHA ended 26 October 2026."
   },
   {
     "name": "BrightFunded",
