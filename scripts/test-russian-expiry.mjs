@@ -279,7 +279,7 @@ try {
   assert(fundedNextKycEvidence.sourceObservations.every(item => item.sourceCapturedAt === fundedNextKycEvidence.sourceCapturedAt), 'FundedNext KYC observations match their scoped capture date')
   assert(fundedNextKycEvidence.scopeNote.includes('not Stellar Instant') && marketEvidence.capturedAt < fundedNextKycEvidence.sourceCapturedAt, 'challenge KYC recheck does not redate the wider market or Instant onboarding')
   const fundedNextPayoutEvidence = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundednext')
-  assert.equal(fundedNextPayoutEvidence?.sourceCapturedAt, '2026-10-01', 'FundedNext payout methods and standard schedule use their first-party recheck date')
+  assert.equal(fundedNextPayoutEvidence?.sourceCapturedAt, '2026-10-28', 'FundedNext payout methods and standard schedule use their first-party recheck date')
   assert.equal(fundedNextPayoutEvidence?.methods.length, 7, 'conditional card payout is a distinct seventh published route')
   assert(fundedNextPayoutEvidence.methods.some(item => item.includes('Card') && item.includes('saved during payment')), 'card payouts retain the payment-stage saved-card condition')
   assert(fundedNextPayoutEvidence.countryBoundary.some(item => item.includes('Card Transfer') && item.includes('Russian Federation')), 'card payout country list is separate from the bank list')
@@ -847,8 +847,9 @@ try {
   assert(!payoutGuideReference.includes('80% против 85%'), 'Russian payout guide does not retain the retired FundingPips split comparison')
   assert(payoutGuideReference.includes('карта (сохранена при оплате)') && payoutGuideReference.includes('Методов: 7'), 'Russian payout guide renders the conditional seventh FundedNext route')
   assert(payoutGuideReference.includes('стандартный вариант; другие опции') && !payoutGuideReference.includes('из 6 опубликованных маршрутов'), 'Russian payout timing and method count do not flatten checkout options or retain the old list')
-  assert(payoutGuideReference.includes('data-russian-guide-source-status="recapture-required"'), 'old payout research is visibly dated even when product captures are fresh')
-  assert(!cryptoSchemas(payoutGuideReference).some(item => item['@type'] === 'FAQPage'), 'old payout research cannot publish current FAQ schema')
+  // 2026-11-03 live recheck; payoutEvidence dated 2026-10-28 (page-clock max on this tip). Notice uses process dates only.
+  assert(payoutGuideReference.includes('data-russian-guide-source-status="dated"'), 'rechecked payout-process dates clear the guide source notice')
+  assert(cryptoSchemas(payoutGuideReference).some(item => item['@type'] === 'FAQPage'), 'fresh payout-process research publishes FAQ schema')
   for (const match of payoutGuideReference.matchAll(/<td data-russian-payout-product="bright-funded:[^"]+">([\s\S]*?)<\/td>/g)) {
     assert(match[1].includes('14 дней также указаны как платное дополнение'), 'each Bright payout row discloses the unresolved 14-day add-on conflict')
   }

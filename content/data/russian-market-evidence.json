@@ -9,16 +9,46 @@
     "estimatedClicks": 180,
     "top50Queries": 41,
     "queries": [
-      { "query": "проп компании", "monthlyFrequency": 255 },
-      { "query": "проп компании для трейдеров в россии", "monthlyFrequency": 162 },
-      { "query": "проп фирма", "monthlyFrequency": 60 },
-      { "query": "проп трейдинг криптовалют", "monthlyFrequency": 28 },
-      { "query": "проп компании это", "monthlyFrequency": 19 },
-      { "query": "рейтинг проп трейдинговых компаний", "monthlyFrequency": 5 },
-      { "query": "ftmo проп компания сайт официальный", "monthlyFrequency": 16 },
-      { "query": "forex prop", "monthlyFrequency": 4 },
-      { "query": "проп форекс", "monthlyFrequency": 17 },
-      { "query": "пипсы проп компания", "monthlyFrequency": 13 }
+      {
+        "query": "проп компании",
+        "monthlyFrequency": 255
+      },
+      {
+        "query": "проп компании для трейдеров в россии",
+        "monthlyFrequency": 162
+      },
+      {
+        "query": "проп фирма",
+        "monthlyFrequency": 60
+      },
+      {
+        "query": "проп трейдинг криптовалют",
+        "monthlyFrequency": 28
+      },
+      {
+        "query": "проп компании это",
+        "monthlyFrequency": 19
+      },
+      {
+        "query": "рейтинг проп трейдинговых компаний",
+        "monthlyFrequency": 5
+      },
+      {
+        "query": "ftmo проп компания сайт официальный",
+        "monthlyFrequency": 16
+      },
+      {
+        "query": "forex prop",
+        "monthlyFrequency": 4
+      },
+      {
+        "query": "проп форекс",
+        "monthlyFrequency": 17
+      },
+      {
+        "query": "пипсы проп компания",
+        "monthlyFrequency": 13
+      }
     ],
     "autocompleteSignals": [
       {
@@ -366,7 +396,11 @@
         "fundedDemoProfitCapPct": 10,
         "profitSharePct": 95,
         "maximumCapitalRub": 2000000,
-        "monthlyPricesRub": [2590, 4890, 8990],
+        "monthlyPricesRub": [
+          2590,
+          4890,
+          8990
+        ],
         "renewalDiscountPct": 20,
         "market": "фьючерсы Московской биржи через Финам"
       },
@@ -883,45 +917,55 @@
         "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
         "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward"
       ],
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-28",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "Card payout is available for traders who have at least one saved card on their account during the payment process"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "payouts are issued within 24 hours"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "every 5 business days"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "First Performance Reward is available after 21 days. Subsequent rewards are available every 14 days."
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "On-Demand Performance Reward"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+          "sourceCapturedAt": "2026-10-28",
+          "quote": "Accounts purchased or reset on or after October 12, 2026 the trading cycle will be 10 business days"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-10-28",
+          "quote": "Each trader must register a unique withdrawal wallet address"
         }
       ],
-      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule only; card payout requires a card saved during payment and is restricted for Russian Federation. This does not recheck Stellar Instant eligibility or resolve conflicting Russian-resident account access statements.",
+      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule on 2026-11-03 against help.fundednext.com articles 8020084 (dateModified 2026-10-22) and 10701585 (dateModified 2026-10-16); sourceCapturedAt dated 2026-10-28 (newest RU page-clock capture on daily/2026-10-30 tip). Card payout requires a card saved during payment and is restricted for Russian Federation. This does not recheck Stellar Instant eligibility. Contracting entity GrowthNext – F.Z.E. (Ajman Free Zone, UAE) per ToS; FundedNext remains restricted for Russian residents.",
       "methods": [
         "USDT ERC20 or TRC20",
         "USDC ERC20",
@@ -934,12 +978,14 @@
       "requestSteps": [
         "Complete the applicable trading cycle and profitability criteria.",
         "Submit the Payout Request in the account dashboard.",
-        "Confirm the request with an OTP sent to the registered email."
+        "Confirm the request with an OTP sent to the registered email.",
+        "Use a unique withdrawal wallet address; a shared address is treated as a compliance violation."
       ],
       "processing": [
-        "FundedNext publishes payout issuance within 24 hours after a valid request.",
-        "Stellar 1-Step rewards are scheduled every 5 business days.",
-        "The standard Stellar 2-Step and Stellar Lite option starts after 21 days and then uses 14-day cycles; separately selectable 3-day and on-demand payout options have different conditions."
+        "FundedNext publishes payout issuance within 24 hours after a valid request (subject to a compliance review by the Risk Management Team).",
+        "Stellar 1-Step FundedNext Account: Performance Rewards every 5 business days from the first trading cycle.",
+        "The standard Stellar 2-Step option starts after 21 days and then uses 14-day cycles; separately selectable 3-day and on-demand payout options have different conditions.",
+        "Standard Stellar Lite: for accounts purchased or reset on or after 12.10.2026, first Performance Reward after 10 business days, then every 10 business days; older accounts keep first after 21 days then every 14 days. Separately selectable 3-day and on-demand options have different conditions."
       ],
       "fees": [
         "The trader is responsible for transfer gateway charges."
@@ -947,7 +993,7 @@
       "countryBoundary": [
         "Bank Transfer is not available as a Performance Reward method for the countries listed by FundedNext, including Russia.",
         "Card Transfer is separately restricted for Russian Federation; a saved payment card does not override this country restriction.",
-        "A listed crypto method does not resolve the separate conflict in FundedNext's official Russian-resident access statements."
+        "A listed crypto method does not make FundedNext available to Russian residents; the site footer restricts Russia, and bank/card payout routes separately list Russia / Russian Federation."
       ]
     },
     {
@@ -958,32 +1004,37 @@
         "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
         "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
       ],
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-10-28",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "first Reward Split after 30 days"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "request a Reward Split bi-weekly (14 days)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "Bi-weeky add-on (Payouts every 14 days)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "maximum of 1 day to be processed by our finance team"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-10-28",
           "quote": "fees range between $5 and $50"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+          "sourceCapturedAt": "2026-10-28",
+          "quote": "Weekly add-on (Payouts every 7 days)"
         }
       ],
       "methods": [
@@ -997,7 +1048,7 @@
       ],
       "processing": [
         "The first standard Reward Split is available 30 days after the first funded-account trade.",
-        "The reward article says another request is possible 14 days after the first Reward Split, but also lists a 14-day bi-weekly add-on; the base follow-up cycle is unresolved for a specific order.",
+        "The reward article says another request is possible 14 days after the first Reward Split, but also lists a Bi-weekly add-on (every 14 days) and a Weekly add-on (every 7 days); the base follow-up cycle for a specific order without an add-on remains unresolved.",
         "BrightFunded publishes a maximum of 1 day for finance-team processing after the request."
       ],
       "fees": [

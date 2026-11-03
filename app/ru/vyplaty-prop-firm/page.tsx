@@ -66,11 +66,11 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Когда можно запросить первую выплату FundedNext?',
-    a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, стандартный вариант Stellar 2-Step — первую дату через 21 день и затем цикл 14 дней, а Stellar Lite — первую дату через 10 рабочих дней для счетов, купленных или сброшенных с 12.10.2026, и через 21 день для более ранних (по данным на 20.10.2026). Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
+    a: 'Срок зависит от продукта и выбранной опции: Stellar 1-Step использует окно в 5 рабочих дней, стандартный вариант Stellar 2-Step — первую дату через 21 день и затем цикл 14 дней, а Stellar Lite — первую дату через 10 рабочих дней для счетов, купленных или сброшенных с 12.10.2026, и через 21 день для более ранних (по данным на 03.11.2026). Для 2-Step и Lite также опубликованы отдельные 3-дневный и вариант по запросу с другими условиями. У Stellar Instant отдельные условия, требующие проверки перед покупкой.',
   },
   {
     q: 'Как BrightFunded выплачивает вознаграждение?',
-    a: 'BrightFunded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный цикл платным дополнением. Уточните базовый цикл выбранного заказа письменно; после заявки финансовая команда указывает до 1 дня на обработку.',
+    a: 'BrightFunded публикует 2 метода: USDC в сети ERC-20 и банковский перевод в EUR. Первая заявка доступна через 30 дней после первой сделки на счёте после оценки. Та же справка (проверка: 03.11.2026) обещает затем запрос каждые 14 дней, но одновременно называет 14-дневный и 7-дневный циклы платными дополнениями. Условия базового цикла расходятся — уточните у поддержки; после заявки финансовая команда указывает до 1 дня на обработку.',
   },
   {
     q: 'Берёт ли BrightFunded комиссию за выплату?',
@@ -194,8 +194,9 @@ export default function RussianPayoutsPage() {
     const products = challenges.filter(product => product.firmSlug === route.slug)
     return isProductSetFresh(products)
   })
+  // Banner / FAQ freshness is driven by payout-process capture dates (payoutEvidence),
+  // not the wider marketEvidence.capturedAt snapshot (search/KYC archive).
   const hasFreshResearch = cards.length === partnerRoutes.length && hasFreshProducts
-    && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
     && cards.every(card => card.evidence && isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }))
 
   const crumbs = breadcrumbSchema([
@@ -251,7 +252,9 @@ export default function RussianPayoutsPage() {
         >
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <RussianEvidenceFreshnessNotice evidence={[
-            { label: 'исследование способов выплаты и KYC', capturedAt: marketEvidence.capturedAt },
+            // Broad Aug snapshot stays disclosed (audit); historical flag keeps process rechecks able to clear the banner.
+            { label: 'широкий рыночный срез (поиск/KYC-архив)', capturedAt: marketEvidence.capturedAt, historical: true },
+            { label: 'исследование способов выплаты', capturedAt: oldestPayoutCapture },
             ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
