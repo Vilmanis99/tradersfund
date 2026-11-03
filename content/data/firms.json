@@ -3941,8 +3941,8 @@
     "regionalDiscountCode": "ONESTEP35",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
-    "discountCodeCapturedAt": "2026-11-02",
-    "discountCodeNote": "Seen on https://fxify.com/; not checkout-verified and may be region-specific, so not shown as a universal code. Homepage observation 2 November 2026 still shows \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\"; \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\"; and \"HALLOWEEN SALE -35% OFF (excl. Instant Lite) --> AGHHH35 Expires: 2 November\". Primary regionalDiscountCode remains ONESTEP35; AGHHH35 stays in the note until 3 November and FUNDED40 Instant until 4 November per published ends. Not in deals.json.",
+    "discountCodeCapturedAt": "2026-11-03",
+    "discountCodeNote": "Seen on https://fxify.com/ on 3 November 2026 (Chrome UA; default curl was Cloudflare-blocked); not checkout-verified and may be region-specific, so not shown as a universal code. Homepage still shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\" and \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\". AGHHH35 / \"HALLOWEEN SALE -35% OFF\" is gone from the homepage (0 matches; was listed with Expires: 2 November on the 30 October capture). Primary regionalDiscountCode remains ONESTEP35; FUNDED40 stays in the note only (kickoff: do not treat Instant FUNDED40 as a site deal before 4 Nov). Not in deals.json.",
     "regionalDiscountPct": 35
   },
   {
