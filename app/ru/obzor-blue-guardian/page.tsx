@@ -17,7 +17,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 const PATH = '/ru/obzor-blue-guardian'
 const TITLE = 'Blue Guardian: обзор 2026 — правила, цены и доступ из РФ'
 const H1 = 'Blue Guardian: обзор и отзывы 2026'
-const DESCRIPTION = 'Blue Guardian на русском: CFD-программы, цены, правила, Guardian Shield и выплаты. Доступ из РФ: CFD — статус неясен, Blue Guardian Futures — закрыт.'
+const DESCRIPTION = 'Blue Guardian на русском: CFD-программы, цены, правила, Guardian Shield и выплаты. CFD — статус для РФ неясен, Futures — Россия в списке ограничений.'
 
 export const revalidate = 3600
 
