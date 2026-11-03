@@ -3,13 +3,18 @@ title: "FTMO Free Trial 2026: 1-Step vs 2-Step Rules"
 seoTitle: "FTMO Free Trial 2026: Is It Free? Rules, Limits & Test"
 slug: "ftmo-free-trial-explained"
 date: "2025-09-30 14:19:47"
-modified: "2026-10-19"
+modified: "2026-11-03"
 author: "Edris Derakhshi"
 excerpt: "The FTMO Free Trial lasts 14 days, grants no funded account, and now has separate 1-Step and 2-Step rules. Compare both before paying."
 seoDescription: "FTMO Free Trial: €0, 14 days, up to $200,000, but it closes if you place no trade in the first 7 days. 1-Step vs 2-Step rules and the 5% target."
 categories: ["Prop Firms"]
 tags: ["FTMO", "Free Trial", "Prop Firm Challenge"]
 type: "post"
+sources:
+  - "https://ftmo.com/en/ftmo-free-trial/"
+  - "https://ftmo.com/en/faq/do-you-offer-a-free-trial/"
+  - "https://ftmo.com/en/trading-objectives/"
+  - "https://ftmo.com/en/terms-and-conditions/"
 ---
 
 <h2>Verdict</h2>
@@ -28,7 +33,7 @@ type: "post"
 <h2>FTMO Free Trial quick facts</h2>
 
 <table data-free-trial-summary="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem;">
-  <caption class="hidden-caption">FTMO Free Trial facts rechecked on 2026-10-20</caption>
+  <caption class="hidden-caption">FTMO Free Trial facts rechecked on 3 November 2026</caption>
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Price</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">€0; no card payment</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">14 days</td></tr>
@@ -41,26 +46,31 @@ type: "post"
   </tbody>
 </table>
 
-<p>The facts above were rechecked on 2026-10-20 against FTMO’s Free Trial landing page and its named Free Trial FAQ. The official FAQ says the trial is an abridged practice experience, allows 1 active account at a time, and does not create eligibility for an FTMO Account. Two changes since our 2026-09-14 capture: the trial platform list is now MT4, MT5 and cTrader only, and any trial closes if you place no trade in its first 7 days. FTMO also added an Instant Account trial (no target, 3% daily loss, 10% intraday trailing maximum loss, 30% consistency); this guide keeps its focus on the 1-Step and 2-Step trials. For every firm that currently offers a free trial or free challenge, see <a href="/blog/prop-firm-free-trial">prop firms with a free trial</a>.</p>
+<p>The facts above were rechecked on 3 November 2026 against FTMO’s Free Trial landing page (https://ftmo.com/en/ftmo-free-trial/, page modified 2 November 2026) and its Free Trial FAQ (https://ftmo.com/en/faq/do-you-offer-a-free-trial/). The FAQ still calls the trial an abridged practice experience, allows 1 active account at a time, and says passing does not grant an FTMO Account. FTMO’s own landing FAQ states the trial platforms are MT4, MT5 and cTrader, and that TradingView is not supported for a Free Trial. FTMO also states the account is a demo with fictitious funds in a simulated environment only (https://ftmo.com/en/terms-and-conditions/). The Instant Account trial sits beside the 1-Step and 2-Step trials: no profit target, 3% daily loss, 10% intraday trailing maximum loss, 30% consistency, and 14 days. For every firm that currently offers a free trial or free challenge, see <a href="/blog/prop-firm-free-trial">prop firms with a free trial</a>.</p>
 
 <h2>FTMO 1-Step vs 2-Step Free Trial rules</h2>
 
-<table data-free-trial-rules="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-  <caption class="hidden-caption">FTMO 1-Step and 2-Step Free Trial rule comparison</caption>
-  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Rule</th><th style="padding: 8px 12px; text-align: left;">1-Step Free Trial</th><th style="padding: 8px 12px; text-align: left;">2-Step Free Trial</th></tr></thead>
+<table data-free-trial-rules="ftmo" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
+  <caption class="hidden-caption">FTMO 1-Step, 2-Step and Instant Free Trial rule comparison rechecked on 3 November 2026</caption>
+  <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Rule</th><th style="padding: 8px 10px; text-align: left;">1-Step Free Trial</th><th style="padding: 8px 10px; text-align: left;">2-Step Free Trial</th><th style="padding: 8px 10px; text-align: left;">Instant Free Trial</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Trial phases</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Minimum trading days</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">No separate minimum captured; 50% Best Day still affects completion</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2 days</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum daily loss</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">5%</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Maximum loss</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% end-of-day trailing</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10% static</td></tr>
-    <tr><td style="padding: 8px 12px;"><strong>Consistency gate</strong></td><td style="padding: 8px 12px;">50% Consistency rule</td><td style="padding: 8px 12px;">No percentage rule captured</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Trial phases</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Profit target</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">None</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Minimum trading days</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">None; 50% Best Day still affects completion</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">2 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">None</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Maximum daily loss</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">3%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">3%</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Maximum loss</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">10% end-of-day trailing</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">10% static</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">10% intraday trailing</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Consistency gate</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">50%</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">None</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">30%</td></tr>
+    <tr><td style="padding: 8px 10px;"><strong>Duration</strong></td><td style="padding: 8px 10px;">14 days</td><td style="padding: 8px 10px;">14 days</td><td style="padding: 8px 10px;">14 days</td></tr>
   </tbody>
 </table>
 
 <p>The 2-Step Free Trial uses the paid 2-Step objectives except for 2 explicit adjustments: the Phase 1 target falls from 10% to 5%, and minimum trading days fall from 4 to 2. It does not include a free Verification phase, so reaching 5% completes only the practice account.</p>
 
 <p>The 1-Step Free Trial uses the paid 1-Step objectives with 1 stated adjustment: the target falls from 10% to 5%. That leaves the 3% Maximum Daily Loss, 10% end-of-day trailing Maximum Loss, and the 50% consistency gate in place; exceeding 50% is a completion gate, not a hard breach. For paid accounts from orders created on or after 12 Oct 2026, FTMO measures that 50% against total profit, losing days included, instead of the old Best Day Rule's positive-days profit. FTMO does not say separately which version the trial uses, so practise against the stricter total-profit version.</p>
+
+<p>The Instant Free Trial mirrors the paid Instant Account objectives with no profit target. FTMO’s landing comparison (https://ftmo.com/en/ftmo-free-trial/, rechecked 3 November 2026) lists a 3% Maximum Daily Loss, a 10% balance-based intraday trailing Maximum Loss, no minimum trading days, a 30% Consistency gate, and a 14-day duration.</p>
+
+<p>FTMO’s Free Trial landing states when a trial ends: 14 days pass, every Trading Objective is met, one objective is breached, or there is no trade in the first 7 days. Passing does not give an FTMO Account, and Free Trial results do not count toward one. FTMO’s terms page (https://ftmo.com/en/terms-and-conditions/) and on-site notice describe every account it provides as a demo with fictitious funds in a simulated environment only.</p>
 
 <h2>Worked rule examples on a $100K trial</h2>
 
@@ -91,7 +101,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>The paid comparison uses FTMO’s structured challenge capture dated 2026-07-27 and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>. FTMO's conditional $100K price cuts, which need no code, are covered in our <a href="/blog/ftmo-discount-code">FTMO discount code check</a>.</p>
+<p>The paid comparison uses FTMO’s challenge list prices from the 20 October 2026 capture (https://ftmo.com/en/2-step-challenge/ and https://ftmo.com/en/1-step-challenge/) and keeps prices in euros. A passed trial does not refund, discount, or replace either €499 1-Step or €540 2-Step at $100K; compare the full fee-recovery math in the <a href="/blog/ftmo-review">FTMO review</a> and <a href="/true-cost-of-prop-firm-challenges">True-Cost guide</a>. FTMO's conditional $100K price cuts, which need no code, are covered in our <a href="/blog/ftmo-discount-code">FTMO discount code check</a>.</p>
 
 <h2>A 14-day test plan that produces a decision</h2>
 
@@ -111,13 +121,13 @@ type: "post"
 <h2>FTMO Free Trial vs FundedNext Free Trial</h2>
 
 <table data-free-trial-comparison="ftmo-fundednext" style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem;">
-  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison (FTMO rechecked on 2026-10-20, FundedNext on 2026-10-19)</caption>
+  <caption class="hidden-caption">FTMO and FundedNext Free Trial comparison (both rechecked on 3 November 2026)</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 10px; text-align: left;">Field</th><th style="padding: 8px 10px; text-align: left;">FTMO 1-Step trial</th><th style="padding: 8px 10px; text-align: left;">FTMO 2-Step trial</th><th style="padding: 8px 10px; text-align: left;">FundedNext trial</th></tr></thead>
   <tbody>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Duration</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">14 days from first trade</td></tr>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Target / minimum days</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / no separate minimum captured</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 2 days</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 3 days</td></tr>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Daily / maximum loss</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">3% / 10% EOD trailing</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 10% static</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">5% / 10% maximum</td></tr>
-    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">4 FTMO choices</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">4 FTMO choices</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">MT5 outside the US; Match-Trader in the US</td></tr>
+    <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>Platform</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader (TradingView not supported for the trial)</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader (TradingView not supported for the trial)</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">MT5 outside the US; Match-Trader in the US</td></tr>
     <tr><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);"><strong>EA test</strong></td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Use must follow FTMO strategy restrictions</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Use must follow FTMO strategy restrictions</td><td style="padding: 8px 10px; border-bottom: 1px solid var(--border);">Not permitted</td></tr>
     <tr><td style="padding: 8px 10px;"><strong>Completion benefit</strong></td><td style="padding: 8px 10px;">No funded account or paid-step credit</td><td style="padding: 8px 10px;">No funded account or paid-step credit</td><td style="padding: 8px 10px;">5% CFD-plan coupon for eligible new users; valid 14 days</td></tr>
   </tbody>
@@ -150,7 +160,7 @@ type: "post"
 
 <h3>Does passing the FTMO Free Trial give me a funded account?</h3>
 
-<p>No. Passing either 1-phase trial grants no FTMO Account and skips no paid stage. A trader must still buy and complete the selected 1-Step or 2-Step Evaluation Process.</p>
+<p>No. FTMO’s Free Trial FAQ (https://ftmo.com/en/faq/do-you-offer-a-free-trial/) and landing FAQ both say passing grants no FTMO Account and that Free Trial results do not count toward one. A trader must still buy and complete the selected 1-Step or 2-Step Challenge, or trade an Instant Account from day one.</p>
 
 <h3>How many FTMO Free Trials can I take?</h3>
 
@@ -162,7 +172,7 @@ type: "post"
 
 <h3>Which FTMO Free Trial should I choose?</h3>
 
-<p>Choose the 2-Step trial to test a 5% daily limit, 10% static floor, and 2 minimum days. Choose the 1-Step trial to test a 3% daily limit, 10% end-of-day trailing floor, and 50% Best Day rule.</p>
+<p>Choose the 2-Step trial to test a 5% daily limit, 10% static floor, and 2 minimum days. Choose the 1-Step trial to test a 3% daily limit, 10% end-of-day trailing floor, and 50% Consistency rule. Choose the Instant trial to test a 3% daily limit, 10% intraday trailing floor, and 30% Consistency rule with no profit target.</p>
 
 <h3>Is FundedNext’s Free Trial the same as FTMO’s?</h3>
 

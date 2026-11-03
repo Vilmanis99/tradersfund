@@ -1,9 +1,9 @@
 [
   {
     "firmSlug": "ftmo",
-    "sourceUrl": "https://ftmo.com/en/faq/how-about-a-free-trial/",
+    "sourceUrl": "https://ftmo.com/en/faq/do-you-offer-a-free-trial/",
     "landingUrl": "https://ftmo.com/en/ftmo-free-trial/",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-11-03",
     "durationDays": 14,
     "maxConcurrentAccounts": 1,
     "maxAccountSizeUsd": 200000,
@@ -55,7 +55,8 @@
       "Rechecked on 2026-10-19 against the FTMO Free Trial landing page (Last updated 16 October 2026) and the Free Trial FAQ: 14 days, unlimited trials one at a time, up to $200,000.",
       "2026-10-19 change: the landing page now offers a third Free Trial that mirrors the FTMO Instant Account (no profit target, 3% daily loss, 10% balance-based intraday trailing maximum loss, 30% consistency). FTMO Instant Account paid pricing is not captured in content/data/challenges/ftmo.json, so mapsToChallenge is null.",
       "2026-10-19 change: the landing-page FAQ says the Free Trial runs on MT4, MT5 and cTrader and that TradingView is not supported for a Free Trial; TradingView was removed from platforms.",
-      "2026-10-19: the landing page says a trial also ends if the trader does not trade in the first 7 days (inactivityCloseDays)."
+      "2026-10-19: the landing page says a trial also ends if the trader does not trade in the first 7 days (inactivityCloseDays).",
+      "Rechecked 2026-11-03 against https://ftmo.com/en/ftmo-free-trial/ (WordPress modified 2026-11-02), https://ftmo.com/en/faq/do-you-offer-a-free-trial/ (replaces the old /how-about-a-free-trial/ URL that 301s), https://ftmo.com/en/trading-objectives/ and https://ftmo.com/en/terms-and-conditions/. No material rule change vs 2026-10-19: Instant trial still None/3%/10% intraday trailing/30%/14 days; platforms MT4/MT5/cTrader; TradingView not supported for Free Trial; ends on 14 days, objectives met, breach, or no trade in first 7 days; demo with fictitious funds."
     ],
     "inactivityCloseDays": 7,
     "totalTrialsLimit": null,
@@ -64,7 +65,7 @@
   {
     "firmSlug": "fundednext",
     "sourceUrl": "https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules",
-    "sourceCapturedAt": "2026-10-19",
+    "sourceCapturedAt": "2026-11-03",
     "durationDays": 14,
     "durationStarts": "first-trade",
     "maxConcurrentAccounts": 1,
@@ -96,7 +97,8 @@
       "FundedNext's Help Center says the account disables after 14 calendar days from the first trade and has no reset option.",
       "The completion coupon is generated after reaching the 5% target, applies to eligible new users and CFD plans, expires after 14 days, and excludes resets.",
       "Non-US trial accounts use MT5; US trial accounts use Match-Trader.",
-      "Rechecked on 2026-10-19 against the FundedNext Help Center free-trial rules page (article dated 2026-04-08); every structured field above still matches."
+      "Rechecked on 2026-10-19 against the FundedNext Help Center free-trial rules page (article dated 2026-04-08); every structured field above still matches.",
+      "Rechecked 2026-11-03 against https://help.fundednext.com/en/articles/8902893-fundednext-free-trial-rules. No material rule change vs 2026-10-19 capture (help article still dated 8 April 2026): 14 days from first trade, 5%/3 days, 5%/10% loss, MT5 / Match-Trader US, no EAs, 30 open positions, 5% CFD coupon for new users, 14-day validity, no resets."
     ]
   }
 ]
