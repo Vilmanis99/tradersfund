@@ -348,7 +348,7 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-10-29",
+    "lastCheckedAt": "2026-10-14",
     "title": "TradeDay monthly prices were tied to a 55%-off promotion",
     "summary": "The 55%-off TDNEW monthly fees were still visible on 14 September, including newly exposed 25K cards ($45/$54/$59), but crossed-out list prices still conflict with TradeDay's support table and reset prices differ across the homepage and billing articles.",
     "traderImpact": "Treat the table price as a dated promotional snapshot. Recheck the first month, renewal, and reset totals before paying.",
