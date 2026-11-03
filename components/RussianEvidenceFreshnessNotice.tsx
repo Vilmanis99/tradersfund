@@ -2,20 +2,14 @@ import Link from '@/components/SafeLink'
 import { isChallengeFresh } from '@/lib/firms'
 import { formatRuDate } from '@/lib/ruDate'
 
-export type RussianEvidenceDate = {
-  label: string
-  capturedAt: string
-  /** Historical broad-market snapshots stay visible but do not alone force recapture-required. */
-  historical?: boolean
-}
+export type RussianEvidenceDate = { label: string; capturedAt: string }
 
 /** Guide rules and access checks are dated separately from challenge prices.
  * Retaining a dated explanation never implies that its terms were recaptured.
  * Article format P2 (merge RU notices): the recheck state is one short visible line;
  * the per-source dates and the explanation stay on the page in a collapsed block. */
 export default function RussianEvidenceFreshnessNotice({ evidence }: { evidence: readonly RussianEvidenceDate[] }) {
-  const statusEvidence = evidence.filter(item => !item.historical)
-  const requiresCheck = !statusEvidence.length || statusEvidence.some(item => !isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
+  const requiresCheck = !evidence.length || evidence.some(item => !isChallengeFresh({ sourceCapturedAt: item.capturedAt }))
   const validDates = evidence
     .map(item => item.capturedAt)
     .filter((date): date is string => /^\d{4}-\d{2}-\d{2}$/.test(date))
@@ -23,14 +17,10 @@ export default function RussianEvidenceFreshnessNotice({ evidence }: { evidence:
   const oldest = validDates[0]
   const latest = validDates.at(-1)
   const staleCount = evidence.filter(item => !isChallengeFresh({ sourceCapturedAt: item.capturedAt })).length
-  const dates = evidence.map(item => {
-    const stamped = /^\d{4}-\d{2}-\d{2}$/.test(item.capturedAt) ? formatRuDate(item.capturedAt) : 'дата не подтверждена'
-    const tag = item.historical ? ' (исторический срез рынка)' : ''
-    return `${item.label} — ${stamped}${tag}`
-  })
+  const dates = evidence.map(item => `${item.label} — ${/^\d{4}-\d{2}-\d{2}$/.test(item.capturedAt) ? formatRuDate(item.capturedAt) : 'дата не подтверждена'}`)
   if (!requiresCheck) return (
     <div className="ru-source-line" data-russian-guide-source-status="dated">
-      Источники проверены по {statusEvidence.length} отдельным пунктам; последний срез — {latest ? formatRuDate(latest) : 'дата не подтверждена'}, самый ранний — {oldest ? formatRuDate(oldest) : 'дата не подтверждена'}.{' '}
+      Источники проверены по {evidence.length} отдельным пунктам; последний срез — {latest ? formatRuDate(latest) : 'дата не подтверждена'}, самый ранний — {oldest ? formatRuDate(oldest) : 'дата не подтверждена'}.{' '}
       Обновление текста не означает повторную проверку всех условий.{' '}
       <details className="ru-source-details">
         <summary>Показать даты отдельных проверок</summary>

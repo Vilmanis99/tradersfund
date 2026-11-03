@@ -194,9 +194,8 @@ export default function RussianPayoutsPage() {
     const products = challenges.filter(product => product.firmSlug === route.slug)
     return isProductSetFresh(products)
   })
-  // Banner / FAQ freshness is driven by payout-process capture dates (payoutEvidence),
-  // not the wider marketEvidence.capturedAt snapshot (search/KYC archive).
   const hasFreshResearch = cards.length === partnerRoutes.length && hasFreshProducts
+    && isChallengeFresh({ sourceCapturedAt: marketEvidence.capturedAt })
     && cards.every(card => card.evidence && isChallengeFresh({ sourceCapturedAt: card.evidence.sourceCapturedAt }))
 
   const crumbs = breadcrumbSchema([
@@ -252,9 +251,7 @@ export default function RussianPayoutsPage() {
         >
           <RussianDataFreshnessNotice firmSlugs={['fundednext', 'bright-funded']} />
           <RussianEvidenceFreshnessNotice evidence={[
-            // Broad Aug snapshot stays disclosed (audit); historical flag keeps process rechecks able to clear the banner.
-            { label: 'широкий рыночный срез (поиск/KYC-архив)', capturedAt: marketEvidence.capturedAt, historical: true },
-            { label: 'исследование способов выплаты', capturedAt: oldestPayoutCapture },
+            { label: 'исследование способов выплаты и KYC', capturedAt: marketEvidence.capturedAt },
             ...cards.map(card => ({ label: `выплаты ${card.name}`, capturedAt: card.evidence?.sourceCapturedAt ?? '' })),
           ]} />
           <div className="ru-eyebrow"><WalletCards size={14} aria-hidden="true" /> 4 этапа от прибыли до зачисления</div>
