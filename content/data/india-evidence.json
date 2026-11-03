@@ -2,7 +2,7 @@
   {
     "firmSlug": "ftmo",
     "firmName": "FTMO",
-    "capturedAt": "2026-10-01",
+    "capturedAt": "2026-11-03",
     "restrictedJurisdictions": [
       "Iran",
       "Syria",
@@ -141,7 +141,7 @@
   {
     "firmSlug": "fundednext",
     "firmName": "FundedNext",
-    "capturedAt": "2026-10-01",
+    "capturedAt": "2026-11-03",
     "restrictedJurisdictions": [
       "Bangladesh",
       "Myanmar",
@@ -225,7 +225,7 @@
   {
     "firmSlug": "fundingpips",
     "firmName": "FundingPips",
-    "capturedAt": "2026-10-01",
+    "capturedAt": "2026-11-03",
     "restrictedJurisdictions": [
       "Iran",
       "Vietnam",
@@ -288,7 +288,7 @@
   {
     "firmSlug": "bright-funded",
     "firmName": "BrightFunded",
-    "capturedAt": "2026-10-01",
+    "capturedAt": "2026-11-03",
     "restrictedJurisdictions": [
       "Cuba",
       "Iran",
