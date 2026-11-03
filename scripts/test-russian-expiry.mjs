@@ -72,15 +72,28 @@ try {
   // recaptures; future-dated captures fail closed by design (asserted below), so
   // fresh data rendered as expired. Pure date-validation unit checks keep literals.
   // The page clock is the newest capture the Russian surfaces can read: the four
-  // challenge-comparison firms plus every top-level capture date in the
-  // content/data/russian-*.json evidence files (the FundingPips country-access check
-  // is one). Derived from data, so a recapture needs no edit here; a capture newer than
-  // the clock would be future-dated and correctly fail closed.
+  // challenge-comparison firms plus every nested source-capture date in the
+  // content/data/russian-*.json evidence files (top-level capturedAt/sourceCapturedAt,
+  // payoutEvidence/kycEvidence/firmAccess, sourceObservations, checkedAt, and any other
+  // nested ISO day). Derived from data, so a nested recapture (e.g. payoutEvidence)
+  // advances the clock without an edit here; a capture newer than the clock would be
+  // future-dated and correctly fail closed. Wall-clock is never used.
+  const collectRuEvidenceCaptureDates = (value) => {
+    if (value == null) return []
+    if (typeof value === 'string') return /^\d{4}-\d{2}-\d{2}$/.test(value) ? [value] : []
+    if (Array.isArray(value)) return value.flatMap(collectRuEvidenceCaptureDates)
+    if (typeof value !== 'object') return []
+    return Object.entries(value).flatMap(([key, nested]) => {
+      if (['sourceCapturedAt', 'capturedAt', 'checkedAt'].includes(key)) {
+        return typeof nested === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(nested) ? [nested] : []
+      }
+      return collectRuEvidenceCaptureDates(nested)
+    })
+  }
   const RU_PAGE_CAPTURE_DATES = [
     ...getAllChallenges().filter(product => ['ftmo', 'fundednext', 'bright-funded', 'fundingpips'].includes(product.firmSlug)).map(product => product.sourceCapturedAt),
     ...fs.readdirSync(path.join(root, 'content/data')).filter(name => /^russian-.*\.json$/.test(name)).flatMap(name => {
-      const evidence = JSON.parse(fs.readFileSync(path.join(root, 'content/data', name), 'utf8'))
-      return [evidence.sourceCapturedAt, evidence.capturedAt].filter(value => /^\d{4}-\d{2}-\d{2}$/.test(value ?? ''))
+      return collectRuEvidenceCaptureDates(JSON.parse(fs.readFileSync(path.join(root, 'content/data', name), 'utf8')))
     }),
   ]
   const RU_PAGE_CLOCK = `${RU_PAGE_CAPTURE_DATES.sort().at(-1)}T12:00:00Z`
@@ -545,10 +558,14 @@ try {
   assert.equal(fundingPipsAccessEvidence.sourceUrl, 'https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started', 'Russian access check cites FundingPips itself')
   assert.match(fundingPipsAccessEvidence.residentRestrictionQuote, /resident in Iran, Vietnam, or the United Arab Emirates/, 'country check records the resident-only rule')
   const rankingClock = clock
-  const rankingKyc = marketEvidence.kycEvidence.find(item => item.firmSlug === 'fundingpips')
-  const rankingPayout = marketEvidence.payoutEvidence.find(item => item.firmSlug === 'fundingpips')
-  assert(rankingKyc && rankingPayout, 'Russian ranking has scoped FundingPips KYC and payout evidence')
-  const rankingOriginalDates = [marketEvidence.capturedAt, rankingKyc.sourceCapturedAt, rankingPayout.sourceCapturedAt]
+  const rankingFaqPartnerSlugs = ['fundednext', 'bright-funded', 'fundingpips']
+  const rankingKycBySlug = Object.fromEntries(rankingFaqPartnerSlugs.map(slug => [slug, marketEvidence.kycEvidence.find(item => item.firmSlug === slug)]))
+  const rankingPayoutBySlug = Object.fromEntries(rankingFaqPartnerSlugs.map(slug => [slug, marketEvidence.payoutEvidence.find(item => item.firmSlug === slug)]))
+  assert(rankingFaqPartnerSlugs.every(slug => rankingKycBySlug[slug] && rankingPayoutBySlug[slug]), 'Russian ranking has scoped KYC and payout evidence for every FAQ partner')
+  const rankingOriginalDates = [
+    marketEvidence.capturedAt,
+    ...rankingFaqPartnerSlugs.flatMap(slug => [rankingKycBySlug[slug].sourceCapturedAt, rankingPayoutBySlug[slug].sourceCapturedAt]),
+  ]
   try {
     clock = RU_PAGE_CLOCK
     const RussianRanking = require(path.join(root, 'app/ru/luchshie-prop-firmy/page.tsx')).default
@@ -560,10 +577,13 @@ try {
     assert(rankingReference.includes('data-russian-ranking-faq-status="recheck-required"'), 'ranking visibly qualifies old KYC and payout evidence')
     assert(!cryptoSchemas(rankingReference).some(item => item['@type'] === 'FAQPage'), 'stale partner evidence cannot publish current ranking FAQ schema')
     // 'Current' fixture dates are relative to the page clock (30-day freshness window), never literals.
+    // Refresh every FAQ-required partner source (FN/BF/FP KYC+payout), not only FundingPips.
     const rankingFreshDate = ruDaysBefore(1)
     marketEvidence.capturedAt = rankingFreshDate
-    rankingKyc.sourceCapturedAt = rankingFreshDate
-    rankingPayout.sourceCapturedAt = rankingFreshDate
+    for (const slug of rankingFaqPartnerSlugs) {
+      rankingKycBySlug[slug].sourceCapturedAt = rankingFreshDate
+      rankingPayoutBySlug[slug].sourceCapturedAt = rankingFreshDate
+    }
     const refreshedRanking = renderToStaticMarkup(React.createElement(RussianRanking))
     assert(refreshedRanking.includes('data-russian-ranking-faq-status="source-checked"'), 'FAQ status recovers when every required source is current')
     assert(cryptoSchemas(refreshedRanking).some(item => item['@type'] === 'FAQPage'), 'complete scoped source fixture restores ranking FAQ schema')
@@ -622,7 +642,11 @@ try {
       firmsModule.getAllChallenges = originalRankingChallenges
     }
   } finally {
-    [marketEvidence.capturedAt, rankingKyc.sourceCapturedAt, rankingPayout.sourceCapturedAt] = rankingOriginalDates
+    marketEvidence.capturedAt = rankingOriginalDates[0]
+    rankingFaqPartnerSlugs.forEach((slug, index) => {
+      rankingKycBySlug[slug].sourceCapturedAt = rankingOriginalDates[1 + index * 2]
+      rankingPayoutBySlug[slug].sourceCapturedAt = rankingOriginalDates[2 + index * 2]
+    })
     clock = rankingClock
   }
   clock = `${Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt).sort().at(-1)}T12:00:00Z`
@@ -755,9 +779,29 @@ try {
   assert(primaryReference.includes(ruDay(fundedNextAccessEvidence.sourceCapturedAt)), 'comparison shows the scoped FundedNext access date')
   const primaryVisible = primaryReference.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ')
   assert(primaryReference.includes('data-russian-primary-comparison-products="7"') && primaryReference.includes('data-russian-primary-comparison-prices="40"'))
-  assert(cryptoSchemas(primaryReference).some(item => item['@type'] === 'FAQPage'), 'current scoped evidence supports the comparison FAQ despite the older broad market snapshot')
-  assert(cryptoSchemas(primaryReference).find(item => item['@type'] === 'FAQPage')?.mainEntity?.some(item => item.name === 'Что лучше: FundedNext или BrightFunded?'), 'comparison FAQ question uses the search-facing brand spelling')
-  assert(!primaryReference.includes('data-russian-primary-comparison-evidence="recapture-required"'), 'an unrelated older market snapshot does not stale the scoped comparison')
+  // FAQ schema follows scoped freshness at RU_PAGE_CLOCK (nested captures included). An older
+  // broad market snapshot alone must not withhold it; a scoped source past the 30-day window must.
+  const primaryScopedFresh = [
+    fundedNextAccessEvidence.sourceCapturedAt,
+    fundedPayoutSource.sourceCapturedAt,
+    ...Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt),
+    ...marketEvidence.payoutEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
+    ...marketEvidence.kycEvidence.filter(source => ['fundednext', 'bright-funded'].includes(source.firmSlug)).map(source => source.sourceCapturedAt),
+    ...getAllChallenges().filter(product => ['fundednext', 'bright-funded'].includes(product.firmSlug)).map(product => product.sourceCapturedAt),
+  ].every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }, new RealDate(RU_PAGE_CLOCK)))
+  assert.equal(
+    cryptoSchemas(primaryReference).some(item => item['@type'] === 'FAQPage'),
+    primaryScopedFresh,
+    primaryScopedFresh
+      ? 'current scoped evidence supports the comparison FAQ despite the older broad market snapshot'
+      : 'stale scoped comparison evidence relative to RU_PAGE_CLOCK withholds FAQ schema',
+  )
+  if (primaryScopedFresh) {
+    assert(cryptoSchemas(primaryReference).find(item => item['@type'] === 'FAQPage')?.mainEntity?.some(item => item.name === 'Что лучше: FundedNext или BrightFunded?'), 'comparison FAQ question uses the search-facing brand spelling')
+    assert(!primaryReference.includes('data-russian-primary-comparison-evidence="recapture-required"'), 'an unrelated older market snapshot does not stale the scoped comparison')
+  } else {
+    assert(primaryReference.includes('data-russian-primary-comparison-evidence="recapture-required"'), 'stale scoped sources mark comparison evidence as recapture-required')
+  }
   assert.doesNotMatch(primaryModule.metadata.description, /7 продукт|40 цен|true cost/)
   assert.equal(primaryModule.metadata.openGraph.description, 'Сравнение FundedNext и Bright Funded по 7 продуктам и 40 ценам: USD или EUR, этапы, просадка, true cost, выплаты, KYC и выбор для трейдера.', 'existing sharing description is preserved pending explicit approval')
   assert.doesNotMatch(primaryVisible, /\b(?:evaluation|checkout|risk buckets?|true cost|cash.flow|gateway|payout window|TradeLocker|highest equity|eligibility|suppressed)\b/i, 'comparison uses reader-facing Russian and does not revive the incorrect TradeLocker contrast')
@@ -959,7 +1003,8 @@ try {
   const fundingPipsReviewClock = clock
   try {
     clock = RU_PAGE_CLOCK
-    fundingPipsPayoutEvidence.sourceCapturedAt = ruDaysBefore(5)
+    // Keep inside the 30-day window relative to RU_PAGE_CLOCK (was literal 2026-09-30 at the old top-level-only clock).
+    fundingPipsPayoutEvidence.sourceCapturedAt = ruDaysBefore(28)
     const freshFundingPipsReview = renderToStaticMarkup(React.createElement(FundingPipsReviewModule.default))
     assert(cryptoSchemas(freshFundingPipsReview).some(item => item['@type'] === 'FAQPage'), 'FAQ schema returns only when product and supporting research dates are current')
     assert(freshFundingPipsReview.includes('data-russian-fundingpips-country-source-status="dated"'), 'review shows the independently dated country source')
