@@ -108,7 +108,7 @@ function RowBadge({ row }: { row: Row }) {
 
 const badge: Record<Exclude<Row['status'], 'open'>, string> = {
   unclear: `Неясно — ждём письменного ответа · проверено ${formatRuDate(CHECKED)}`,
-  closed: `Недоступно для РФ · проверено ${formatRuDate(CHECKED)}`,
+  closed: `В списке ограничений · проверено ${formatRuDate(CHECKED)}`,
 }
 
 // Матрица стран: content/data/russian-diaspora-evidence.json (Tracker). Порядок фирм и статусы — из данных, не из кода.

@@ -34,7 +34,7 @@ const TRACKER_CFT_ACCESS = '21.10.2026' // firms.json Crypto Fund Trader russiaS
 // and challenges/ftmo.json + firms.json FTMO payoutFrequencyNote (on-demand from day 14), all 2026-10-20.
 const TRACKER_0920 = '20.10.2026'
 /** firms.json FundedNext russiaStatus restricted (20.10.2026): the fundednext.com footer excludes Russia (treated as operative), ToS §5.3 (CFD) does not name Russia, Futures bans purchases from Russia. */
-const FN_RU_CAVEAT = `Недоступно для РФ: в подвале сайта fundednext.com сказано, что компании FundedNext не оказывают услуги резидентам России; список в условиях (п. 5.3, CFD) Россию не называет, но действующим мы считаем более строгий источник (по данным на ${TRACKER_0920}). Резидент РФ рискует получить отказ в обслуживании или в выплате.`
+const FN_RU_CAVEAT = `В списке ограничений: в подвале сайта fundednext.com сказано, что компании FundedNext не оказывают услуги резидентам России; список в условиях (п. 5.3, CFD) Россию не называет, но действующим мы считаем более строгий источник (по данным на ${TRACKER_0920}). Резидент РФ рискует получить отказ в обслуживании или в выплате.`
 
 const SRC = {
   ftmoCountries: 'https://ftmo.com/en/faq/who-can-join-ftmo/',

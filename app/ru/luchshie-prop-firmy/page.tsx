@@ -106,7 +106,7 @@ const RU_ACCESS_NOTES: Record<string, string> = {
   // Sources: Terms 4.3 ('Last Updated: October 8, 2026'); date = the latest Prop Firm Tracker capture that re-read the Terms for Russia
   // (hash-hedge-2026-10-26.json 'russia': Terms text identical, 4.3 still does not name Russia). No payment claim: Terms 10.2 and the guide/FAQ disagree.
   'hash-hedge': `Россия в условиях от 08.10.2026 не названа ни среди исключённых, ни среди принятых; регистрацию и KYC не проверяли (Prop Firm Tracker, ${ruAccessDate(hhLatestCapture.russia ? hhLatestCapture.capturedAt : '2026-10-23')})`,
-  topstep: 'Недоступно для РФ по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
+  topstep: 'В списке ограничений по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
 }
 
 /**
@@ -516,7 +516,7 @@ export default function RussianBestPropFirmsPage() {
           <p>
             Статус «Доступ из РФ» взят из официальных списков ограничений и условий фирм. «Нет в списке ограничений (на дату)» значит,
             что на дату проверки Россия не названа в ограничениях фирмы или фирма заявляет об отсутствии географических ограничений, —
-            это не письменное подтверждение для вашего профиля. «Открыта для РФ» ставим только при прямом подтверждении доступа из России. Кнопка есть у каждой фирмы, рядом — бейдж доступа из РФ: страница рассчитана на русскоязычных трейдеров в любой стране. Полная таблица с Беларусью и Казахстаном — на странице{' '}
+            это не письменное подтверждение для вашего профиля. Кнопка есть у каждой фирмы, рядом — бейдж доступа из РФ: страница рассчитана на русскоязычных трейдеров в любой стране. Полная таблица с Беларусью и Казахстаном — на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>.
           </p>
           <div className="ru-table-wrap">

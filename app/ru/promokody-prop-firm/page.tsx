@@ -430,7 +430,7 @@ export default function RussianPromoHubPage() {
         <div className="ru-shell ru-content">
           <h2><ShieldAlert size={20} aria-hidden="true" /> Промокод FTMO: почему его здесь нет</h2>
           <p>
-            <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {formatRuDate(FTMO_CHECKED)}</span>{' '}
+            <span className="ru-badge ru-badge--closed">В списке ограничений · проверено {formatRuDate(FTMO_CHECKED)}</span>{' '}
             Россия, Беларусь и Казахстан — в официальном списке стран, где FTMO не оказывает услуги. Скидка на челлендж
             ничего не даст: до профинансированного этапа FTMO проверяет личность. Подробнее — в разборе{' '}
             <Link href="/ru/ftmo-dlya-rossiyan">«FTMO для россиян»</Link>, полная таблица — на странице{' '}

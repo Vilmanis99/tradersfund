@@ -98,7 +98,7 @@ export default function FtmoForRussiansPage() {
 
       <section className="ru-hero">
         <div className="ru-shell" data-ftmo-russia="restricted">
-          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">Недоступно для РФ · проверено {formatRuDate(CHECKED)}</span></div>
+          <div className="ru-eyebrow"><ShieldAlert size={14} aria-hidden="true" /> <span className="ru-badge ru-badge--closed">В списке ограничений · проверено {formatRuDate(CHECKED)}</span></div>
           <h1>FTMO для россиян: работает ли FTMO в России и чем его заменить</h1>
           <p className="ru-lead">
             Короткий ответ — нельзя. «Russian Federation» стоит в официальном списке FTMO рядом с Беларусью, Казахстаном
