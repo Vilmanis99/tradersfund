@@ -15,6 +15,7 @@ import { getLanguageAlternates, russianRouteDateModified } from '@/lib/localized
 import RuMobileStickyCTA from '@/components/RuMobileStickyCTA'
 import RuTelegramBlock from '@/components/RuTelegramBlock'
 import fpAccessEvidence from '@/content/data/russian-fundingpips-access-evidence.json'
+import brightOfferObservation from '@/content/data/russian-bright-offer-observation.json'
 import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
@@ -220,8 +221,21 @@ const SHARED_SIZES = [5000, 10000, 25000, 50000, 100000]
 export default function RussianFundingPipsVsBrightFundedPage() {
   const firms = getAllFirms()
   const bfFirm = firms.find(firm => firm.name === 'BrightFunded')
-  // previousDiscountCode (Tracker 601fbae) is history only: shown as the previous offer, never as a working code.
-  const previousBfCode = (bfFirm as { previousDiscountCode?: string } | undefined)?.previousDiscountCode
+  // Universal discountCode (deals-grade) vs regionalDiscountCode (homepage / possibly regional).
+  // previousDiscountCode is history only: shown as the previous offer, never as a working code.
+  const previousBfCode = bfFirm?.previousDiscountCode
+  const bfRegionalCode = bfFirm?.regionalDiscountCode
+  const bfRegionalPct = bfFirm?.regionalDiscountPct
+  const bfCodeCapturedAt = bfFirm?.discountCodeCapturedAt
+  const bfRegionalOffers = (
+    brightOfferObservation.firmSlug === 'bright-funded'
+    && brightOfferObservation.status === 'advertised-unverified'
+    && brightOfferObservation.checkoutVerified === false
+    && brightOfferObservation.sourceCapturedAt === bfCodeCapturedAt
+  ) ? brightOfferObservation.offers : []
+  const bfRegionalOfferText = bfRegionalOffers.length
+    ? bfRegionalOffers.map(offer => `код ${offer.code} (−${offer.advertisedDiscountPct}% на ${offer.productName})`).join(', ')
+    : (bfRegionalCode && bfRegionalPct != null ? `код ${bfRegionalCode} (−${bfRegionalPct}% на 1-Step)` : null)
   const fpFirm = firms.find(firm => firm.name === 'FundingPips')
   const bfProducts = getChallengesByFirm('bright-funded')
   const fpProducts = getChallengesByFirm('fundingpips')
@@ -624,15 +638,21 @@ export default function RussianFundingPipsVsBrightFundedPage() {
         <div className="ru-shell ru-content ru-review-article">
           <h2>Промокоды</h2>
           <p>
-            {/* BrightFunded code from firms.json (discountCode/discountPct/discountCodeCapturedAt/previousDiscountCode; Tracker 68d8507 + 601fbae).
-                DOUBLE25 expiry is unconfirmed: say only that it is not shown on the site, never that it ended. */}
-            {bfFirm?.discountCode && bfFirm.discountPct && bfFirm.discountCodeCapturedAt ? (
+            {/* BrightFunded: prefer universal discountCode; else regionalDiscountCode from firms.json (Tracker 65e5ed1f / 0d70a447).
+                RALLY* may be region-specific, no end date, not checkout-checked — never present as a universal usable code.
+                previousDiscountCode (HW30) is history only. Avoid the banned confirmation-stem wording. */}
+            {bfFirm?.discountCode && bfFirm.discountPct && bfCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
-                {`BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку проверяйте при оплате.`}
-                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} он больше не показан на сайте, а окончание его действия не подтверждено.` : ''}
+                {`BrightFunded: по данным на ${ruDate(bfCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку сверяйте при оплате.`}
+                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: на главной был до 02.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
+              </span>
+            ) : bfRegionalCode && bfRegionalPct != null && bfCodeCapturedAt && bfRegionalOfferText ? (
+              <span data-russian-bright-funded-promo={bfRegionalCode} data-russian-bright-funded-promo-kind="regional">
+                {`BrightFunded: на главной фирмы ${ruDate(bfCodeCapturedAt)} виден Autumn Promo — ${bfRegionalOfferText}; даты окончания нет, код может зависеть от региона, на оплате мы его не проверяли.`}
+                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: на главной был до 02.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
               </span>
             ) : (
-              <span data-russian-bright-funded-promo="none">BrightFunded: действующий публичный код мы сейчас не подтверждаем.</span>
+              <span data-russian-bright-funded-promo="none">BrightFunded: публичного кода с датой проверки на кассе у нас сейчас нет; актуальный статус — на странице промокодов.</span>
             )}{' '}
             FundingPips: код HELLO даёт 20% на первую покупку, кроме счетов $100K (по данным на {formatRuDate(CHECKED)}).
             Статус проверенных предложений — на странице <Link href="/ru/promokody-prop-firm">промокодов проп-фирм</Link>.
