@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-04",
-  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/. | CFT rolling recheck 2026-11-04 12:10-12:25 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from 14/15 Oct still verbatim; Terms state a size-dependent Break daily limit. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cft/.",
+  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/. | CFT rolling recheck 2026-11-04 12:10-12:25 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from 14/15 Oct still verbatim; Terms state a size-dependent Break daily limit. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cft/. | 2026-11-04 payoutFrequency follow-up: firm-wide bi-weekly default after 30-day first wait; weekly via add-on; byProduct filled for all three CFD products; contradiction note replaced.",
   "pagesRead": [
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
     "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
@@ -39,7 +39,13 @@
     "https://cryptofundtrader.com/faq/",
     "https://cryptofundtrader.com/terms-and-conditions/",
     "https://cryptofundtrader.com/",
-    "https://cryptofundtrader.com/break-challenge/"
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+    "https://brightfunded.com/cfds/how-it-works",
+    "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+    "https://brightfunded.com/cfds/1-step",
+    "https://brightfunded.com/cfds/2-step-bright",
+    "https://brightfunded.com/cfds/2-step-classic"
   ],
   "pageDates": {
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
@@ -69,7 +75,8 @@
     "https://cryptofundtrader.com/faq/": "dateModified 2026-03-30",
     "https://cryptofundtrader.com/terms-and-conditions/": "dateModified 2026-03-30",
     "https://cryptofundtrader.com/": "dateModified 2026-10-21",
-    "https://cryptofundtrader.com/break-challenge/": "dateModified 2026-06-09"
+    "https://cryptofundtrader.com/break-challenge/": "dateModified 2026-06-09",
+    "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works": "lastUpdatedDate 2026-05-19"
   },
   "firms": {
     "bright-funded": {
@@ -181,13 +188,13 @@
         ]
       },
       "payoutFrequency": {
-        "value": null,
-        "summary": "First Reward Split 30 days after the first funded trade, then every 14 days; 7-day (weekly) cycle via paid add-on",
-        "note": "The official payout article contradicts itself: it says that after the first Reward Split you can request bi-weekly (14 days) by default, yet also sells a 'Bi-weeky add-on (Payouts every 14 days)' alongside the weekly add-on. It is unclear whether 14-day payouts are standard or require the add-on. The homepage lists 'Weekly Payouts' under 'CHALLENGE ADD-ONS'.",
+        "value": "bi-weekly",
+        "summary": "First Reward Split 30 days after the first funded trade, then every 14 days (bi-weekly); 7-day (weekly) cycle via paid add-on",
+        "note": "Rechecked 4 November 2026. Help Centre article dated 18 March 2026 states the first Reward Split is after 30 days on the Funded Account, then bi-weekly (14 days), and also lists a 'Bi-weeky add-on (Payouts every 14 days)' next to the weekly add-on. Live marketing the same day (homepage, How it Works, CFD 1-Step / 2-Step Bright / 2-Step Classic) lists only Weekly Payouts among challenge add-ons. The BrightFunded blog (18 November 2025) states subsequent payouts every 14 days, with weekly (7 days) via add-ons. Account-merge help (updated 19 May 2026) requires matching payout-cadence add-ons and gives Bi-weekly Payouts versus Weekly Payouts as the example. No CFD product page publishes a different cadence; firm-wide default is bi-weekly after the first 30-day wait, with weekly as the paid add-on. The Bi-weeky add-on line is kept in evidence.",
         "byProduct": {
-          "bright-funded-1-step": null,
-          "bright-funded-2-step-bright": null,
-          "bright-funded-2-step-classic": null
+          "bright-funded-1-step": "bi-weekly",
+          "bright-funded-2-step-bright": "bi-weekly",
+          "bright-funded-2-step-classic": "bi-weekly"
         },
         "evidence": [
           {
@@ -199,8 +206,20 @@
             "quote": "You can select the following add-ons at the checkout for fastest and bigger payouts: ⚡️ Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)"
           },
           {
+            "sourceUrl": "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+            "quote": "Initial Payout: Your first payout is generally available after 30 days of trading on your funded account. Subsequent Payouts: Following the first one, you can request subsequent payouts every 14 days, with options available for even faster weekly payouts (every 7 days) via add-ons."
+          },
+          {
             "sourceUrl": "https://brightfunded.com/",
-            "quote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts"
+            "quote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts 100% Challenge Fee Refund No Minimum Trading Days 90% Payout Ratio"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/cfds/how-it-works",
+            "quote": "Customise Your Challege With Add-Ons 100% Challenge Fee Refund Swap-Free Weekly Payouts No Minimum Trading Days 90% Payout Ratio"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+            "quote": "Same Add-Ons Required: The accounts to be merged must have the same add-ons (Including the same platform and voucher). Example: You cannot merge a Funded Account with a 90% Profit Split with one that has an 80% Profit Split. You cannot merge a Funded Account with Bi-weekly Payouts with one that has Weekly Payouts."
           }
         ]
       },

@@ -124,5 +124,22 @@
         }
       }
     }
+  ],
+  "followUps": [
+    {
+      "field": "rules.payoutFrequency + challenge notes",
+      "checkedAt": "2026-11-04",
+      "result": "Firm-wide bi-weekly after 30-day first wait; weekly add-on; byProduct bi-weekly x3; challenge conflict notes marked resolved.",
+      "sources": [
+        "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+        "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+        "https://brightfunded.com/",
+        "https://brightfunded.com/cfds/how-it-works",
+        "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+        "https://brightfunded.com/cfds/1-step",
+        "https://brightfunded.com/cfds/2-step-bright",
+        "https://brightfunded.com/cfds/2-step-classic"
+      ]
+    }
   ]
 }
