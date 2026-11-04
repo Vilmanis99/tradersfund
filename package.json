@@ -74,6 +74,7 @@
     "test:ru-no-bybit": "node scripts/test-ru-no-bybit.mjs",
     "test:compare-allowlist": "node scripts/test-compare-allowlist.mjs",
     "test:sitemap-lastmod": "node scripts/test-sitemap-lastmod.mjs",
+    "test:ru-access-badge-lastmod-sources": "node scripts/test-ru-access-badge-lastmod-sources.mjs",
     "test:sitemap-lastmod-idempotent": "node scripts/test-sitemap-lastmod-idempotent.mjs",
     "gen:sitemap-lastmod": "node scripts/gen-sitemap-lastmod.mjs"
   },
