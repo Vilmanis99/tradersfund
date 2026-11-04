@@ -571,8 +571,10 @@ try {
     const RussianRanking = require(path.join(root, 'app/ru/luchshie-prop-firmy/page.tsx')).default
     // After the 2026-11-03 market recapture, live KYC/payout dates are current; start from a forced-stale fixture.
     marketEvidence.capturedAt = '2026-08-08'
-    rankingKyc.sourceCapturedAt = '2026-08-08'
-    rankingPayout.sourceCapturedAt = '2026-08-08'
+    for (const slug of rankingFaqPartnerSlugs) {
+      rankingKycBySlug[slug].sourceCapturedAt = '2026-08-08'
+      rankingPayoutBySlug[slug].sourceCapturedAt = '2026-08-08'
+    }
     const rankingReference = renderToStaticMarkup(React.createElement(RussianRanking))
     assert(rankingReference.includes('data-russian-ranking-faq-status="recheck-required"'), 'ranking visibly qualifies old KYC and payout evidence')
     assert(!cryptoSchemas(rankingReference).some(item => item['@type'] === 'FAQPage'), 'stale partner evidence cannot publish current ranking FAQ schema')
