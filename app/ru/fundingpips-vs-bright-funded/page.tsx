@@ -640,7 +640,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
           <p>
             {/* BrightFunded: prefer universal discountCode; else regionalDiscountCode from firms.json (Tracker 65e5ed1f / 0d70a447).
                 RALLY* may be region-specific, no end date, not checkout-checked — never present as a universal usable code.
-                previousDiscountCode (HW30) is history only. Avoid the banned confirmation-stem wording. */}
+                previousDiscountCode is history only (label it as previous; never as a live code). Avoid the banned confirmation-stem wording. */}
             {bfFirm?.discountCode && bfFirm.discountPct && bfCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
                 {`BrightFunded: по данным на ${ruDate(bfCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку сверяйте при оплате.`}
