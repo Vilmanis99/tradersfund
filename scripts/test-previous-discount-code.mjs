@@ -24,7 +24,19 @@ const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.jso
 const HISTORY = /\b(previous(ly)?|former(ly)?|expired|replaced|no longer|old code|was the code|ended|superseded)\b|прежн|предыдущ|ранее|истёк|истек|больше не|заменён|заменен/i
 
 const PENDING = {
-  // EN Writer cleared BrightFunded HW30 + FTMO cross-link on 2026-11-04 (Autumn Promo RALLY*).
+  // Body cleared 2026-11-04 (Autumn Promo RALLY*); title/seoTitle still name HW30 under the ~10 Nov Title/H1 freeze — leave until freeze lifts.
+  'content/posts/brightfunded-discount-code.md': {
+    owner: 'EN Writer',
+    routes: [
+      '/blog/brightfunded-discount-code',
+      '/blog/bright-funded-prop-firm',
+      '/blog',
+      '/category/prop-firms',
+      '/feed.xml',
+      '/llms.txt',
+      '/authors/tara-mohseni',
+    ],
+  },
 }
 
 const withPrevious = firms.filter(firm => firm.previousDiscountCode)
