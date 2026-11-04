@@ -4180,8 +4180,8 @@
     "russiaBasis": "not-on-restricted-list",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
+      "capturedAt": "2026-11-04",
+      "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-11-04.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: static on Evaluation (Standard 2-Phase), Ascend Evaluation; trailing on Accelerated (1-Phase), Break Challenge; not stated on Instant",
@@ -4197,23 +4197,24 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "The Trailing Loss Limit applies during both the Break Evaluation and the Break Final Stage.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
       },
       "dailyLossPct": {
         "value": null,
-        "summary": "Product-specific: 5% on Evaluation (Standard 2-Phase), Ascend Evaluation; 4% on Accelerated (1-Phase), Instant; not stated on Break Challenge",
+        "summary": "Product-specific: 5% on Evaluation (Standard 2-Phase), Ascend Evaluation; 4% on Accelerated (1-Phase), Instant; size-dependent on Break Challenge (4% on $25K/$50K, 3% on $100K)",
+        "note": "Break Challenge stays null in byProduct because the Terms set a size-dependent daily limit measured from the maximum demo balance: 4% on $25,000 and $50,000 accounts, 3% on $100,000 accounts.",
         "byProduct": {
           "evaluation": 5,
           "ascend": 5,
@@ -4224,27 +4225,35 @@
         "evidence": [
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
-            "quote": "5%",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "evaluation"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://cryptofundtrader.com/faq/",
-            "quote": "4%",
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "accelerated"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
-            "quote": "4%",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "instant"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "At no time during the $25,000 and $50,000 ‘Break' Evaluation process or ‘Break' Final Stage may the trader register losses in any open or closed demo trades on the same day which, in total, exceed 4% of the maximum demo account balance. For $100,000 Break accounts, during both the Evaluation process and Final Stage, the limit that must not be exceeded under the same conditions is 3%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -4261,27 +4270,35 @@
         "evidence": [
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
-            "quote": "10%",
+            "quote": "the maximum overall loss is fixed at 10% of the initial account balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "evaluation"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://cryptofundtrader.com/faq/",
-            "quote": "6%",
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "accelerated"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
-            "quote": "6%",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "instant"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -4300,8 +4317,8 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -4319,27 +4336,35 @@
         "evidence": [
           {
             "sourceUrl": "https://cryptofundtrader.com/",
-            "quote": "80%",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 5% Maximum overall loss 10%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "evaluation"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/",
-            "quote": "50%",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "instant"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Profit Split 50% 60% 70% 80% 90%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
-            "quote": "80%",
+            "quote": "Live Stage Profit Split: 80%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/crypto-fund-trader-2026-10-14.json",
-            "productSlug": "break"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -4358,16 +4383,16 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -4387,16 +4412,16 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "Can I trade news? Yes. News trading is allowed.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -4410,8 +4435,8 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -4448,7 +4473,7 @@
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json"
     },
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "countriesRestrictedSourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",

@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-04",
-  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/.",
+  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/. | CFT rolling recheck 2026-11-04 12:10-12:25 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from 14/15 Oct still verbatim; Terms state a size-dependent Break daily limit. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cft/.",
   "pagesRead": [
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
     "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
@@ -35,7 +35,11 @@
     "https://citytradersimperium.com/instant-funding/",
     "https://citytradersimperium.com/direct-funding/",
     "https://citytradersimperium.com/match-trader-platform/",
-    "https://citytradersimperium.com/"
+    "https://citytradersimperium.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/break-challenge/"
   ],
   "pageDates": {
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
@@ -61,7 +65,11 @@
     "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account": "lastUpdatedDate 2026-05-06",
     "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto": "lastUpdatedDate 2026-05-06",
     "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account": "lastUpdatedDate 2026-05-06",
-    "https://citytradersimperium.com/": "dateModified 2026-10-30 (homepage; product pages carry no dateModified)"
+    "https://citytradersimperium.com/": "dateModified 2026-10-30 (homepage; product pages carry no dateModified)",
+    "https://cryptofundtrader.com/faq/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/terms-and-conditions/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/": "dateModified 2026-10-21",
+    "https://cryptofundtrader.com/break-challenge/": "dateModified 2026-06-09"
   },
   "firms": {
     "bright-funded": {
@@ -774,6 +782,187 @@
           {
             "sourceUrl": "https://citytradersimperium.com/instant-funding/",
             "quote": "To scale, you also need a 20% consistency score."
+          }
+        ]
+      }
+    },
+    "crypto-fund-trader": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on Evaluation (Standard 2-Phase), Ascend Evaluation; trailing on Accelerated (1-Phase), Break Challenge; not stated on Instant",
+        "byProduct": {
+          "evaluation": "static",
+          "ascend": "static",
+          "accelerated": "trailing",
+          "instant": null,
+          "break": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Trailing Loss Limit applies during both the Break Evaluation and the Break Final Stage."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on Break Challenge (Final Stage, checked at payout request); none on Evaluation, Ascend, Accelerated, Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": 40
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: after 15 traded days or every 30 calendar days on Evaluation and Accelerated (7 traded days with Weekly add-on); on demand on Break; on reaching the Phase 2 target on Ascend; at 10% profit (Withdrawal & Upgrade) on Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Instant, Break Challenge; restricted on Ascend Evaluation",
+        "byProduct": {
+          "evaluation": true,
+          "ascend": "restricted",
+          "accelerated": true,
+          "instant": true,
+          "break": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Can I trade news? Yes. News trading is allowed."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Evaluation (Standard 2-Phase), Ascend Evaluation; 4% on Accelerated (1-Phase), Instant; size-dependent on Break Challenge (4% on $25K/$50K, 3% on $100K)",
+        "note": "Break Challenge stays null in byProduct because the Terms set a size-dependent daily limit measured from the maximum demo balance: 4% on $25,000 and $50,000 accounts, 3% on $100,000 accounts.",
+        "byProduct": {
+          "evaluation": 5,
+          "ascend": 5,
+          "accelerated": 4,
+          "instant": 4,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "At no time during the $25,000 and $50,000 ‘Break' Evaluation process or ‘Break' Final Stage may the trader register losses in any open or closed demo trades on the same day which, in total, exceed 4% of the maximum demo account balance. For $100,000 Break accounts, during both the Evaluation process and Final Stage, the limit that must not be exceeded under the same conditions is 3%"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 10% on Evaluation (Standard 2-Phase), Ascend Evaluation; 6% on Accelerated (1-Phase), Instant; not stated on Break Challenge",
+        "byProduct": {
+          "evaluation": 10,
+          "ascend": 10,
+          "accelerated": 6,
+          "instant": 6,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "the maximum overall loss is fixed at 10% of the initial account balance"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Break Challenge; not stated on Ascend Evaluation; 50% on Instant",
+        "byProduct": {
+          "evaluation": 80,
+          "ascend": null,
+          "accelerated": 80,
+          "instant": 50,
+          "break": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 5% Maximum overall loss 10%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Profit Split 50% 60% 70% 80% 90%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "Live Stage Profit Split: 80%"
           }
         ]
       }
