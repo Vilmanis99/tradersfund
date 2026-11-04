@@ -1593,8 +1593,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/chto-takoe-prop-firma/page.tsx": {
-      "hash": "e4000f675d9de9e3",
-      "changed": "2026-10-26",
+      "hash": "ce2478e7e35e1d5c",
+      "changed": "2026-11-04",
       "first": "2026-08-28"
     },
     "file:app/ru/crypto-fund-trader-pravila/page.tsx": {
@@ -1603,8 +1603,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/dlya-russkoyazychnykh-treyderov/page.tsx": {
-      "hash": "302dce15c78e4bd4",
-      "changed": "2026-10-28",
+      "hash": "79dc881edb612edd",
+      "changed": "2026-11-04",
       "first": "2026-08-24"
     },
     "file:app/ru/forex-prop-firmy/page.tsx": {
@@ -1613,8 +1613,8 @@
       "first": "2026-08-28"
     },
     "file:app/ru/ftmo-dlya-rossiyan/page.tsx": {
-      "hash": "57bae30bd2acb395",
-      "changed": "2026-10-26",
+      "hash": "cd6c3bb50bd7cb65",
+      "changed": "2026-11-04",
       "first": "2026-10-14"
     },
     "file:app/ru/ftmo-pravila/page.tsx": {
@@ -1628,8 +1628,8 @@
       "first": "2026-10-20"
     },
     "file:app/ru/ftmo-vs-fundednext/page.tsx": {
-      "hash": "9ba8789e0a9a6646",
-      "changed": "2026-10-26",
+      "hash": "f05e35f9a082ff04",
+      "changed": "2026-11-04",
       "first": "2026-10-23"
     },
     "file:app/ru/funded-account/page.tsx": {
@@ -1648,8 +1648,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/fundednext-stellar-instant/page.tsx": {
-      "hash": "3f693523d856535d",
-      "changed": "2026-10-28",
+      "hash": "3c49c41bc488574a",
+      "changed": "2026-11-04",
       "first": "2026-08-31"
     },
     "file:app/ru/fundednext-vs-bright-funded/page.tsx": {
@@ -1687,10 +1687,45 @@
       "changed": "2026-10-28",
       "first": "2026-08-24"
     },
-    "file:app/ru/luchshie-prop-firmy/page.tsx": {
-      "hash": "719b5901b9db6d56",
+    "file:app/ru/luchshie-prop-firmy-bez-limita-vremeni/page.tsx": {
+      "hash": "ca9508729ff31366",
       "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy-dlya-novichkov/page.tsx": {
+      "hash": "f12fe46187e4d12e",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy-dlya-skalpinga/page.tsx": {
+      "hash": "22ff499202a3cb58",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy-dlya-sovetnikov/page.tsx": {
+      "hash": "7b8bbe07bc1c021d",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy-dlya-torgovli-na-novostyakh/page.tsx": {
+      "hash": "6840d841d26cb646",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy-s-ezhenedelnymi-vyplatami/page.tsx": {
+      "hash": "76602dbf87d73d77",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
+    "file:app/ru/luchshie-prop-firmy/page.tsx": {
+      "hash": "eb479402dbea9bfb",
+      "changed": "2026-11-04",
       "first": "2026-08-24"
+    },
+    "file:app/ru/obzor-blue-guardian/page.tsx": {
+      "hash": "523cc39e96f274a2",
+      "changed": "2026-11-03",
+      "first": "2026-11-02"
     },
     "file:app/ru/obzor-bright-funded/page.tsx": {
       "hash": "f18ebf999fc1546c",
@@ -1773,8 +1808,8 @@
       "first": "2026-08-24"
     },
     "file:app/ru/promokody-prop-firm/page.tsx": {
-      "hash": "b6955ba0f503a2e5",
-      "changed": "2026-11-02",
+      "hash": "ec5e4d5e86afbde3",
+      "changed": "2026-11-04",
       "first": "2026-08-24"
     },
     "file:app/ru/prop-firmy-bez-chelendzha/page.tsx": {
@@ -1798,8 +1833,8 @@
       "first": "2026-10-19"
     },
     "file:app/ru/vyplaty-prop-firm/page.tsx": {
-      "hash": "06a49486c8987faa",
-      "changed": "2026-10-26",
+      "hash": "51fabc27cffa4175",
+      "changed": "2026-11-04",
       "first": "2026-08-24"
     },
     "file:app/ru/zakrytye-prop-firmy/page.tsx": {
@@ -1898,8 +1933,8 @@
       "first": "2026-10-19"
     },
     "file:content/data/free-trials.json": {
-      "hash": "0e21cf224ffa226b",
-      "changed": "2026-10-19",
+      "hash": "0ed0275090f595e8",
+      "changed": "2026-11-04",
       "first": "2026-08-14"
     },
     "file:content/data/fundednext-forex-leverage-evidence.json": {
@@ -1963,8 +1998,8 @@
       "first": "2026-06-05"
     },
     "file:content/data/ru-how-we-make-money.json": {
-      "hash": "46818cbd8085ad44",
-      "changed": "2026-10-25",
+      "hash": "c9d401d942df7feb",
+      "changed": "2026-11-04",
       "first": "2026-10-21"
     },
     "file:content/data/ru-promo-recheck.json": {
@@ -2011,6 +2046,11 @@
       "hash": "2ecd68319e72a043",
       "changed": "2026-11-02",
       "first": "2026-10-21"
+    },
+    "file:content/data/ru-verdicts/obzor-blue-guardian.json": {
+      "hash": "90ea35400d8057c3",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
     },
     "file:content/data/ru-verdicts/obzor-bright-funded.json": {
       "hash": "d2cb798eb9f2d92e",
@@ -2123,8 +2163,8 @@
       "first": "2026-10-02"
     },
     "file:content/data/russian-market-evidence.json": {
-      "hash": "01661ab5b7d50618",
-      "changed": "2026-10-21",
+      "hash": "4de5d20098b1a849",
+      "changed": "2026-11-04",
       "first": "2026-08-24"
     },
     "file:content/data/russian-teamtraders-evidence.json": {
@@ -2308,8 +2348,8 @@
       "first": "2026-10-26"
     },
     "file:content/posts/ftmo-free-trial-explained.md": {
-      "hash": "9b199d8db9cb0608",
-      "changed": "2026-10-23",
+      "hash": "013ffdb4473c1f66",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "file:content/posts/ftmo-review.md": {
@@ -2467,6 +2507,11 @@
       "changed": "2026-10-15",
       "first": "2026-06-05"
     },
+    "file:content/verdicts/best-for/README.md": {
+      "hash": "83e3f36a2be2651b",
+      "changed": "2026-11-02",
+      "first": "2026-11-02"
+    },
     "file:content/verdicts/rules/bright-funded.md": {
       "hash": "6fe858bd4a4e2ad2",
       "changed": "2026-10-28",
@@ -2548,8 +2593,8 @@
       "first": "2026-06-05"
     },
     "firm:compare:e8-markets": {
-      "hash": "b51467ea4b6120b3",
-      "changed": "2026-10-19",
+      "hash": "f25eece3bbf91881",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "firm:compare:ftmo": {
@@ -2648,8 +2693,8 @@
       "first": "2026-06-05"
     },
     "firm:en:e8-markets": {
-      "hash": "b51467ea4b6120b3",
-      "changed": "2026-10-19",
+      "hash": "f25eece3bbf91881",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "firm:en:ftmo": {
@@ -2748,8 +2793,8 @@
       "first": "2026-06-05"
     },
     "firm:landing:e8-markets": {
-      "hash": "b51467ea4b6120b3",
-      "changed": "2026-10-19",
+      "hash": "f25eece3bbf91881",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "firm:landing:ftmo": {
@@ -2848,8 +2893,8 @@
       "first": "2026-06-05"
     },
     "firm:listing:e8-markets": {
-      "hash": "093065dec6906a77",
-      "changed": "2026-10-19",
+      "hash": "bcfe3bdbebf86a84",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "firm:listing:ftmo": {
@@ -2948,8 +2993,8 @@
       "first": "2026-06-05"
     },
     "firm:ru:e8-markets": {
-      "hash": "80f0d4d92a4f061b",
-      "changed": "2026-10-19",
+      "hash": "037310212324edf7",
+      "changed": "2026-11-04",
       "first": "2026-06-05"
     },
     "firm:ru:ftmo": {
@@ -3025,8 +3070,8 @@
   },
   "urls": {
     "/": {
-      "hash": "ef9662f0fea8528a",
-      "lastmod": "2026-11-02"
+      "hash": "93633de02c47ef87",
+      "lastmod": "2026-11-04"
     },
     "/about": {
       "hash": "37164e41344606b2",
@@ -3045,8 +3090,8 @@
       "lastmod": "2026-09-14"
     },
     "/best-crypto-prop-firms": {
-      "hash": "4206bdbf37f6d4bc",
-      "lastmod": "2026-10-29"
+      "hash": "4989ec5df9c5400f",
+      "lastmod": "2026-11-04"
     },
     "/best-futures-prop-firms": {
       "hash": "bc338e4dae7f5dc7",
@@ -3057,28 +3102,28 @@
       "lastmod": "2026-11-01"
     },
     "/best-prop-firms-2026": {
-      "hash": "29837c2703dd7837",
-      "lastmod": "2026-11-02"
+      "hash": "a3a73a02bc9ad43f",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-india": {
-      "hash": "c37a2b3311546728",
-      "lastmod": "2026-11-02"
+      "hash": "e186a35fe907def9",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-india/bright-funded-vs-fxify": {
       "hash": "a158fce7449a3ad8",
       "lastmod": "2026-10-30"
     },
     "/best-prop-firms-in-india/challenge-changes": {
-      "hash": "63cd2130c5baf7e3",
-      "lastmod": "2026-11-02"
+      "hash": "b2a33e58077bddea",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-india/challenge-comparison": {
-      "hash": "438782d9bf26735b",
-      "lastmod": "2026-11-02"
+      "hash": "b95f20d0c5d3a4c8",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-india/compare": {
-      "hash": "b264466ab9fce9e7",
-      "lastmod": "2026-11-02"
+      "hash": "ef10bfcc1ef4cce6",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-india/fundingpips-vs-bright-funded": {
       "hash": "d694fa80683ee2a7",
@@ -3093,20 +3138,20 @@
       "lastmod": "2026-10-28"
     },
     "/best-prop-firms-in-uk": {
-      "hash": "d97fbd757e9a8d6e",
-      "lastmod": "2026-11-02"
+      "hash": "81e21b9c27ba5060",
+      "lastmod": "2026-11-04"
     },
     "/best-prop-firms-in-us": {
       "hash": "561505139afe9308",
       "lastmod": "2026-11-02"
     },
     "/best-swing-trading-prop-firms": {
-      "hash": "55b0ac44c854e246",
-      "lastmod": "2026-10-30"
+      "hash": "05ee19ffc2c22a3b",
+      "lastmod": "2026-11-04"
     },
     "/blog": {
-      "hash": "1ee2d48f0c31e98a",
-      "lastmod": "2026-11-02"
+      "hash": "f160d8a3e8050b3a",
+      "lastmod": "2026-11-04"
     },
     "/blog/3commas-review": {
       "hash": "39d1217a236e078b",
@@ -3153,16 +3198,16 @@
       "lastmod": "2026-10-21"
     },
     "/blog/e8-markets-review": {
-      "hash": "38bd850d37f0b199",
-      "lastmod": "2026-10-19"
+      "hash": "27d17d2ad589790c",
+      "lastmod": "2026-11-04"
     },
     "/blog/ftmo-discount-code": {
       "hash": "9bcbeabfb4de7b9c",
       "lastmod": "2026-10-25"
     },
     "/blog/ftmo-free-trial-explained": {
-      "hash": "0fc82431aeba4574",
-      "lastmod": "2026-10-19"
+      "hash": "47facff54b10c1bf",
+      "lastmod": "2026-11-04"
     },
     "/blog/ftmo-review": {
       "hash": "bf81f46a726267ce",
@@ -3309,12 +3354,12 @@
       "lastmod": "2026-08-18"
     },
     "/cheapest-prop-firms": {
-      "hash": "db9195aef59fd13f",
-      "lastmod": "2026-11-02"
+      "hash": "6eacf81d4c3c6800",
+      "lastmod": "2026-11-04"
     },
     "/compare": {
-      "hash": "5583c15b4683f398",
-      "lastmod": "2026-11-02"
+      "hash": "71aaea0e4fcbf37a",
+      "lastmod": "2026-11-04"
     },
     "/compare/alpha-capital-vs-apex-trader-funding": {
       "hash": "863ae6dba29858ad",
@@ -3333,8 +3378,8 @@
       "lastmod": "2026-10-21"
     },
     "/compare/alpha-capital-vs-e8-markets": {
-      "hash": "757c785c7422e0f1",
-      "lastmod": "2026-10-21"
+      "hash": "dfd930404a103009",
+      "lastmod": "2026-11-04"
     },
     "/compare/alpha-capital-vs-ftmo": {
       "hash": "30b9de0209b12704",
@@ -3401,8 +3446,8 @@
       "lastmod": "2026-11-02"
     },
     "/compare/apex-trader-funding-vs-e8-markets": {
-      "hash": "ef247e941a800534",
-      "lastmod": "2026-11-02"
+      "hash": "3b9f22a8838dfacc",
+      "lastmod": "2026-11-04"
     },
     "/compare/apex-trader-funding-vs-ftmo": {
       "hash": "ae899ccf548619d4",
@@ -3465,8 +3510,8 @@
       "lastmod": "2026-10-30"
     },
     "/compare/bright-funded-vs-e8-markets": {
-      "hash": "4d4dfb4f5c495e82",
-      "lastmod": "2026-10-30"
+      "hash": "80cbe3fe83551473",
+      "lastmod": "2026-11-04"
     },
     "/compare/bright-funded-vs-ftmo": {
       "hash": "39da03609a858290",
@@ -3525,8 +3570,8 @@
       "lastmod": "2026-10-21"
     },
     "/compare/city-traders-imperium-vs-e8-markets": {
-      "hash": "c0b42a80d761cba9",
-      "lastmod": "2026-10-21"
+      "hash": "371666e5f6b503e0",
+      "lastmod": "2026-11-04"
     },
     "/compare/city-traders-imperium-vs-ftmo": {
       "hash": "6a54764d144c2217",
@@ -3581,8 +3626,8 @@
       "lastmod": "2026-10-21"
     },
     "/compare/crypto-fund-trader-vs-e8-markets": {
-      "hash": "bd66a791cf14c57b",
-      "lastmod": "2026-10-21"
+      "hash": "fc65ee5acefbb710",
+      "lastmod": "2026-11-04"
     },
     "/compare/crypto-fund-trader-vs-ftmo": {
       "hash": "316c1a00a3526f72",
@@ -3637,56 +3682,56 @@
       "lastmod": "2026-10-21"
     },
     "/compare/e8-markets-vs-ftmo": {
-      "hash": "7afa1892bb037e99",
-      "lastmod": "2026-10-23"
+      "hash": "4f423c49417891b8",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-fundednext": {
-      "hash": "10d9fbb84110fe5a",
-      "lastmod": "2026-10-23"
+      "hash": "e1a7c9a4f922479d",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-fundingpips": {
-      "hash": "de4b64eb53fcdd49",
-      "lastmod": "2026-11-02"
+      "hash": "f2f1f43d35a59e5f",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-fxify": {
-      "hash": "a59e2bc15a2bc493",
-      "lastmod": "2026-10-21"
+      "hash": "9810247f70f2fcdc",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-lucid-trading": {
-      "hash": "72e6832063d9405b",
-      "lastmod": "2026-10-29"
+      "hash": "daf5057fa390084f",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-maven": {
-      "hash": "06f7b29e00fe9422",
-      "lastmod": "2026-10-27"
+      "hash": "41a14ed72c7695ca",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-my-funded-futures": {
-      "hash": "2b1a2cba8a4f7fef",
-      "lastmod": "2026-10-28"
+      "hash": "e378c5d88b267206",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-ofp-funding": {
-      "hash": "2eff3436223af125",
-      "lastmod": "2026-11-01"
+      "hash": "0afa6aad32232543",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-take-profit-trader": {
-      "hash": "eb477c31f2b89b04",
-      "lastmod": "2026-10-29"
+      "hash": "9f56f5c04b5df964",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-the5ers": {
-      "hash": "cdb673dce2b82f4a",
-      "lastmod": "2026-10-30"
+      "hash": "c2e8253d9238afb0",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-topstep": {
-      "hash": "69f8a6901e82c523",
-      "lastmod": "2026-10-29"
+      "hash": "b00c18f4d54598f8",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-tradeday": {
-      "hash": "d3bf997fa97bfbb7",
-      "lastmod": "2026-10-20"
+      "hash": "047bb1c7a9d3e46a",
+      "lastmod": "2026-11-04"
     },
     "/compare/e8-markets-vs-tradeify": {
-      "hash": "cd2f418b68bb75a0",
-      "lastmod": "2026-10-21"
+      "hash": "be17506082b6f721",
+      "lastmod": "2026-11-04"
     },
     "/compare/ftmo-vs-fundednext": {
       "hash": "bb0113adbca9a009",
@@ -4037,48 +4082,48 @@
       "lastmod": "2026-10-28"
     },
     "/prop-firm-challenges": {
-      "hash": "ef9662f0fea8528a",
-      "lastmod": "2026-11-02"
+      "hash": "93633de02c47ef87",
+      "lastmod": "2026-11-04"
     },
     "/prop-firm-discount-codes": {
       "hash": "7a790722bfc9f0e6",
       "lastmod": "2026-10-28"
     },
     "/prop-firms": {
-      "hash": "b95c8d1be84bbfaa",
-      "lastmod": "2026-11-02"
+      "hash": "8dfc8747eef5bce4",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/closed": {
       "hash": "7099aa6621406651",
       "lastmod": "2026-10-21"
     },
     "/prop-firms/copy-trading": {
-      "hash": "76d2dd1d10519070",
-      "lastmod": "2026-11-02"
+      "hash": "07b3a97c7daaddf6",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/crypto-payouts": {
-      "hash": "308e41e8299720eb",
-      "lastmod": "2026-10-29"
+      "hash": "4336049cbb261e39",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/ea-allowed": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/high-profit-split": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/news-trading": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/overnight-holding": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/static-drawdown": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/prop-firms/take-profit-trader/rules": {
       "hash": "9bc29612bfffffc5",
@@ -4093,36 +4138,36 @@
       "lastmod": "2026-10-28"
     },
     "/prop-firms/weekend-holding": {
-      "hash": "b64449ab6a638eba",
-      "lastmod": "2026-11-02"
+      "hash": "b147610f5c678925",
+      "lastmod": "2026-11-04"
     },
     "/ru": {
-      "hash": "d18b44f21f7f7029",
-      "lastmod": "2026-11-02"
+      "hash": "07d169b4c095e61e",
+      "lastmod": "2026-11-04"
     },
     "/ru/chto-takoe-prop-firma": {
-      "hash": "e3d8d0d1a8fd024f",
-      "lastmod": "2026-10-20"
+      "hash": "cf562ec0439d93c7",
+      "lastmod": "2026-11-04"
     },
     "/ru/dlya-russkoyazychnykh-treyderov": {
-      "hash": "3e4be09446db880b",
-      "lastmod": "2026-10-30"
+      "hash": "5ac99fa2494a5771",
+      "lastmod": "2026-11-04"
     },
     "/ru/forex-prop-firmy": {
       "hash": "dc9c7ab9e58b9845",
       "lastmod": "2026-10-20"
     },
     "/ru/ftmo-dlya-rossiyan": {
-      "hash": "40539a49dc4bb477",
-      "lastmod": "2026-10-20"
+      "hash": "aa4c134abe4956a1",
+      "lastmod": "2026-11-04"
     },
     "/ru/ftmo-vs-bright-funded": {
       "hash": "9a71d57f5812e571",
       "lastmod": "2026-10-30"
     },
     "/ru/ftmo-vs-fundednext": {
-      "hash": "c8172431cb48046e",
-      "lastmod": "2026-10-21"
+      "hash": "d054609256b6cebd",
+      "lastmod": "2026-11-04"
     },
     "/ru/funded-account": {
       "hash": "1e5c60b6ddea50af",
@@ -4133,12 +4178,12 @@
       "lastmod": "2026-10-20"
     },
     "/ru/fundednext-stellar-instant": {
-      "hash": "5b7a29faac007ba8",
-      "lastmod": "2026-10-29"
+      "hash": "c03ddde5a22c87ee",
+      "lastmod": "2026-11-04"
     },
     "/ru/fundednext-vs-bright-funded": {
-      "hash": "082bb02da1d50c22",
-      "lastmod": "2026-10-20"
+      "hash": "82aee3cafda69aa0",
+      "lastmod": "2026-11-04"
     },
     "/ru/fundednext-vs-fundingpips": {
       "hash": "6ab16eaa12790ed4",
@@ -4153,20 +4198,24 @@
       "lastmod": "2026-11-02"
     },
     "/ru/kak-my-zarabatyvaem": {
-      "hash": "19f534b59eba4394",
-      "lastmod": "2026-10-20"
+      "hash": "097334105e44e888",
+      "lastmod": "2026-11-04"
     },
     "/ru/kak-rabotayut-chellendzhi-prop-firm": {
       "hash": "29293ace0b133fee",
       "lastmod": "2026-10-28"
     },
     "/ru/luchshie-kripto-prop-firmy": {
-      "hash": "1dbf5a081d6f1538",
-      "lastmod": "2026-10-30"
+      "hash": "99d73f72a0f9ed3c",
+      "lastmod": "2026-11-04"
     },
     "/ru/luchshie-prop-firmy": {
-      "hash": "016f13f0b195725f",
-      "lastmod": "2026-11-02"
+      "hash": "0d55655e292632ab",
+      "lastmod": "2026-11-04"
+    },
+    "/ru/obzor-blue-guardian": {
+      "hash": "44f96e20320fa2d3",
+      "lastmod": "2026-11-03"
     },
     "/ru/obzor-bright-funded": {
       "hash": "4daa267b950ce82b",
@@ -4225,20 +4274,20 @@
       "lastmod": "2026-11-02"
     },
     "/ru/otzyvy-prop-firm": {
-      "hash": "986f54833db938a3",
-      "lastmod": "2026-10-30"
+      "hash": "52977e554fb001a5",
+      "lastmod": "2026-11-04"
     },
     "/ru/promokody-prop-firm": {
-      "hash": "48bb24cedfe48dcf",
-      "lastmod": "2026-11-02"
+      "hash": "b4dbfbd6c81f4d1d",
+      "lastmod": "2026-11-04"
     },
     "/ru/prop-firmy-bez-chelendzha": {
       "hash": "bebc09ab081e870a",
       "lastmod": "2026-10-28"
     },
     "/ru/prop-firmy-bez-kyc": {
-      "hash": "ad8a5d1cedff55f5",
-      "lastmod": "2026-11-02"
+      "hash": "9ae20b28dbf60e34",
+      "lastmod": "2026-11-04"
     },
     "/ru/prop-firmy-s-ctrader": {
       "hash": "bb7ccf363c1e0185",
@@ -4249,8 +4298,8 @@
       "lastmod": "2026-11-02"
     },
     "/ru/vyplaty-prop-firm": {
-      "hash": "c3edf22f38eff0a9",
-      "lastmod": "2026-11-02"
+      "hash": "0791f70f7fee2cdf",
+      "lastmod": "2026-11-04"
     },
     "/ru/zakrytye-prop-firmy": {
       "hash": "ca5414c77f8dd047",
