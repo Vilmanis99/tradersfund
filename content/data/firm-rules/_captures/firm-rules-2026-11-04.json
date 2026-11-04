@@ -1,0 +1,214 @@
+{
+  "capturedAt": "2026-11-04",
+  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/.",
+  "pagesRead": [
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+    "https://brightfunded.com/",
+    "https://brightfunded.com/1-step",
+    "https://brightfunded.com/2-step-bright",
+    "https://brightfunded.com/2-step-classic"
+  ],
+  "pageDates": {
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright": "lastUpdatedDate 2026-03-27",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule": "lastUpdatedDate 2025-10-14 (as shown on the page)",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account": "lastUpdatedDate 2026-03-18",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer": "lastUpdatedDate 2026-10-01",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news": "lastUpdatedDate 2026-07-02",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend": "lastUpdatedDate 2026-03-16"
+  },
+  "firms": {
+    "bright-funded": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on BrightFunded 1-Step; static on BrightFunded 2-Step Bright, BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": "trailing",
+          "bright-funded-2-step-bright": "static",
+          "bright-funded-2-step-classic": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on BrightFunded 1-Step; 4% on BrightFunded 2-Step Bright; 5% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 3,
+          "bright-funded-2-step-bright": 4,
+          "bright-funded-2-step-classic": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Daily Drawdown 3% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Daily Drawdown 4% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Daily Drawdown 5% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Daily Drawdown 2-Step Bright 4% of original challenge balance 2-Step Classic 5% of original challenge balance 1-Step 3% of original challenge balance"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on BrightFunded 1-Step; 8% on BrightFunded 2-Step Bright; 10% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 6,
+          "bright-funded-2-step-bright": 8,
+          "bright-funded-2-step-classic": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Max. Drawdown Type 2-Step Bright 8% Static 2-Step Classic 10% Static 1-Step 6% Trailing"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "none",
+        "byProduct": {
+          "bright-funded-1-step": null,
+          "bright-funded-2-step-bright": null,
+          "bright-funded-2-step-classic": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+            "quote": "At BrightFunded, we do not currently enforce a consistency rule."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "bright-funded-1-step": 80,
+          "bright-funded-2-step-bright": 80,
+          "bright-funded-2-step-classic": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "First Reward Split 30 days after the first funded trade, then every 14 days; 7-day (weekly) cycle via paid add-on",
+        "note": "The official payout article contradicts itself: it says that after the first Reward Split you can request bi-weekly (14 days) by default, yet also sells a 'Bi-weeky add-on (Payouts every 14 days)' alongside the weekly add-on. It is unclear whether 14-day payouts are standard or require the add-on. The homepage lists 'Weekly Payouts' under 'CHALLENGE ADD-ONS'.",
+        "byProduct": {
+          "bright-funded-1-step": null,
+          "bright-funded-2-step-bright": null,
+          "bright-funded-2-step-classic": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days)."
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can select the following add-ons at the checkout for fastest and bigger payouts: ⚡️ Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/",
+            "quote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "bright-funded-1-step": "restricted",
+          "bright-funded-2-step-bright": "restricted",
+          "bright-funded-2-step-classic": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "During Phase 1 and Phase 2, you can trade around news events freely, with no restrictions."
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "Trading within a 10-minute window surrounding significant news releases-defined as 5 minutes before and 5 minutes after the event-is prohibited."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "bright-funded-1-step": true,
+          "bright-funded-2-step-bright": true,
+          "bright-funded-2-step-classic": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+            "quote": "Yes, at BrightFunded, we allow traders to hold positions over the weekend."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "DXTrade",
+          "cTrader"
+        ],
+        "summary": "MT5, DXTrade, cTrader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+            "quote": "At BrightFunded, we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5."
+          }
+        ]
+      }
+    }
+  }
+}

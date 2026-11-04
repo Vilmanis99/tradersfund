@@ -2291,8 +2291,8 @@
     "previousDiscountCode": "DOUBLE25",
     "previousDiscountCodeStatus": "not shown on site since 22.10; expiry unconfirmed",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
+      "capturedAt": "2026-11-04",
+      "captureFile": "content/data/challenges/_captures/bright-funded-2026-11-04.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on BrightFunded 1-Step; static on BrightFunded 2-Step Bright, BrightFunded 2-Step Classic",
@@ -2306,24 +2306,24 @@
             "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
             "quote": "Maximum Drawdown 6% Trailing (dynamic)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
             "quote": "Maximum Drawdown 8% Static",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
             "quote": "Maximum Drawdown 10% Static",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -2338,28 +2338,36 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://brightfunded.com/1-step",
-            "quote": "Current BrightFunded rules list 3% daily drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Daily Drawdown 3% Higher value between Equity and Balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://brightfunded.com/2-step-bright",
-            "quote": "Current BrightFunded rules list 4% daily drawdown for 2-Step Bright.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-bright"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Daily Drawdown 4% Higher value between Equity and Balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://brightfunded.com/2-step-classic",
-            "quote": "Current BrightFunded rules list 5% daily drawdown for 2-Step Classic.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-classic"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Daily Drawdown 5% Higher value between Equity and Balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Daily Drawdown 2-Step Bright 4% of original challenge balance 2-Step Classic 5% of original challenge balance 1-Step 3% of original challenge balance",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -2373,28 +2381,36 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://brightfunded.com/1-step",
-            "quote": "Current BrightFunded rules list 6% trailing maximum drawdown.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://brightfunded.com/2-step-bright",
-            "quote": "Current BrightFunded rules list 8% static maximum drawdown for 2-Step Bright.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-bright"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://brightfunded.com/2-step-classic",
-            "quote": "Current BrightFunded rules list 10% static maximum drawdown for 2-Step Classic.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-classic"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Max. Drawdown Type 2-Step Bright 8% Static 2-Step Classic 10% Static 1-Step 6% Trailing",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -2411,8 +2427,8 @@
             "sourceUrl": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
             "quote": "At BrightFunded, we do not currently enforce a consistency rule.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -2430,16 +2446,16 @@
             "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
             "quote": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
         "value": null,
         "summary": "First Reward Split 30 days after the first funded trade, then every 14 days; 7-day (weekly) cycle via paid add-on",
-        "note": "The official payout article contradicts itself: it says that after the first Reward Split you can request bi-weekly (14 days) by default, yet also sells a 'Bi-weeky add-on (Payouts every 14 days)' alongside the weekly add-on. It is unclear whether 14-day payouts are standard or require the add-on. The homepage advertises 'Weekly Payouts Available' (add-on).",
+        "note": "The official payout article contradicts itself: it says that after the first Reward Split you can request bi-weekly (14 days) by default, yet also sells a 'Bi-weeky add-on (Payouts every 14 days)' alongside the weekly add-on. It is unclear whether 14-day payouts are standard or require the add-on. The homepage lists 'Weekly Payouts' under 'CHALLENGE ADD-ONS'.",
         "byProduct": {
           "bright-funded-1-step": null,
           "bright-funded-2-step-bright": null,
@@ -2450,33 +2466,25 @@
             "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
             "quote": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days).",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-16",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
             "quote": "You can select the following add-ons at the checkout for fastest and bigger payouts: ⚡️ Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-16",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://brightfunded.com/",
-            "quote": "24-Hour, Guaranteed Payouts, Weekly Payouts, Available",
+            "quote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-16",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
-          },
-          {
-            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-            "quote": "After your first Reward Split, you can request a Reward Split bi-weekly (14 days).",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
           }
         ]
       },
@@ -2490,28 +2498,20 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://brightfunded.com/1-step",
-            "quote": "Current 1-Step plan page lists a 5-minute news restriction.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "During Phase 1 and Phase 2, you can trade around news events freely, with no restrictions.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           },
           {
-            "sourceUrl": "https://brightfunded.com/2-step-bright",
-            "quote": "Current 2-Step Bright plan page lists a 5-minute news restriction.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-bright"
-          },
-          {
-            "sourceUrl": "https://brightfunded.com/2-step-classic",
-            "quote": "Current 2-Step Classic plan page lists a 5-minute news restriction.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-classic"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "Trading within a 10-minute window surrounding significant news releases-defined as 5 minutes before and 5 minutes after the event-is prohibited.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -2525,28 +2525,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://brightfunded.com/1-step",
-            "quote": "Current Help Center allows holding positions over weekends.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-1-step"
-          },
-          {
-            "sourceUrl": "https://brightfunded.com/2-step-bright",
-            "quote": "Current Help Center allows holding positions over weekends.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-bright"
-          },
-          {
-            "sourceUrl": "https://brightfunded.com/2-step-classic",
-            "quote": "Current Help Center allows holding positions over weekends.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/bright-funded-2026-10-14.json",
-            "productSlug": "bright-funded-2-step-classic"
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+            "quote": "Yes, at BrightFunded, we allow traders to hold positions over the weekend.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -2575,14 +2559,14 @@
             "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
             "quote": "At BrightFunded, we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-16.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json"
     },
     "assetsEvidence": {
       "sourceUrl": "https://help.brightfunded.com/en/articles/9268229-which-crypto-instruments-can-you-trade-at-brightfunded",
