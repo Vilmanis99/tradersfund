@@ -19,7 +19,7 @@ import { formatRuDate, ruDatesInText } from '@/lib/ruDate'
 
 const PATH = '/ru/fundingpips-vs-bright-funded'
 const TITLE = 'FundingPips или BrightFunded: условия и доступ из РФ 2026'
-const DESCRIPTION = 'FundingPips или BrightFunded: 1-Step, 2-Step и Zero, цены и выплаты. У BrightFunded РФ нет в списке ограничений (на 23.10.2026), у FundingPips статус неясен.'
+const DESCRIPTION = 'FundingPips или BrightFunded: 1-Step, 2-Step и Zero, цены и выплаты. У BrightFunded РФ нет в списке ограничений (на 04.11.2026), у FundingPips статус неясен.'
 
 // Official pages re-read by the RU Writer on this date: FundingPips Get Started (countries, checkout, HELLO, refund),
 // BrightFunded help country list + Terms §2, payout methods, news rule, platforms.

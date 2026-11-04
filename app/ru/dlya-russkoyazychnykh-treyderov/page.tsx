@@ -32,7 +32,7 @@ export const revalidate = 3600
 const TITLE = 'Проп-фирмы для россиян 2026: статус доступа из РФ'
 // Static on purpose: the audit reads DESCRIPTION as a single-quoted literal. The date is
 // ruNotListedDates(['bright-funded', 'crypto-fund-trader']); test:ru-access-basis fails when the data date moves.
-const DESCRIPTION = 'Проп-фирмы для россиян 2026: у каких РФ нет в списке ограничений (на 23.10.2026). Таблица 15 фирм: статус для России, Беларуси и Казахстана, оплата, выплаты.'
+const DESCRIPTION = 'Проп-фирмы для россиян 2026: где РФ нет в списке ограничений (на 04.11.2026 / 23.10.2026). Таблица 15 фирм: Россия, Беларусь, Казахстан, оплата и выплаты.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
