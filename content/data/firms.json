@@ -4779,10 +4779,14 @@
     "trustpilotScore": 4.9,
     "trustpilotCount": 22577,
     "verifiedPayoutBadge": false,
-    "lastUpdated": "2026-10-20",
+    "lastUpdated": "2026-11-04",
     "trustpilotUrl": "https://www.trustpilot.com/review/myfundedfutures.com",
     "trustpilotCapturedAt": "2026-10-26",
     "russiaStatus": "restricted",
+    "russiaSourceUrl": "https://help.myfundedfutures.com/en/articles/8229993-restricted-countries-policy",
+    "russiaSourceQuote": "we are unable to accept traders from the below countries due to regulatory restrictions and compliance requirements. ... Restricted Countries List: ... Belarus ... Kazakhstan ... Russia ... Ukraine",
+    "russiaSourceCapturedAt": "2026-11-04",
+    "russiaSourceNote": "Help-centre article 'Restricted Countries Policy' (page modified 14 October 2026), read 4 November 2026. The list names 90 entries, matching countriesRestricted (90/90), including Russia, Belarus, Ukraine, Kazakhstan and Crimea. The article also says traders travelling in a restricted country 'cannot purchase new accounts or reset current accounts during their stay there.' The KYC/AML Policies article (modified 13 October 2026) repeats the list and says: 'Anyone with citizenship or residency in a country on OFAC's Sanctioned Countries list, or those restricted by our partners, are not eligible to open an account at MyFundedFutures'. Terms section 24 (Geographical Restrictions) does not name countries.",
     "affiliateStatus": "none",
     "rules": {
       "capturedAt": "2026-10-14",
@@ -5152,9 +5156,9 @@
     "corporateCapturedAt": "2026-10-26",
     "regionalDiscountCode": "CLUB",
     "discountCodeRegion": "us-only-unconfirmed",
-    "discountCodeSourceUrl": "https://myfundedfutures.com/",
-    "discountCodeCapturedAt": "2026-10-30",
-    "discountCodeNote": "Seen on https://myfundedfutures.com/ on 30 October 2026: \"Save 40% On Any Plan With Code CLUB.\" May be US-only; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
+    "discountCodeSourceUrl": "https://myfundedfutures.com/coupons",
+    "discountCodeCapturedAt": "2026-11-04",
+    "discountCodeNote": "The official coupons page https://myfundedfutures.com/coupons lists code CLUB on 4 November 2026 as \"Lifetime Promo\" 40% OFF, \"Works on: Rapid Builder Rapid EOD Pro\", \"Number of uses: Unlimited\", with no expiry date in the page data (start 25 August 2026); the site banner still reads \"Save 40% On Any Plan With Code CLUB.\" The same page lists FIFTYOFF (50% off the first evaluation, new customers only, one per user, valid through 2027-01-02T04:59Z, i.e. the end of 1 January 2027 US Eastern time). Not checkout-verified; regional flag unchanged pending checkout verification.",
     "regionalDiscountPct": 40
   },
   {
