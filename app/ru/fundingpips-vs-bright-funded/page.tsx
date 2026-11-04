@@ -644,12 +644,12 @@ export default function RussianFundingPipsVsBrightFundedPage() {
             {bfFirm?.discountCode && bfFirm.discountPct && bfCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
                 {`BrightFunded: по данным на ${ruDate(bfCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку сверяйте при оплате.`}
-                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: на главной был до 02.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
+                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: последний раз видели на главной 03.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
               </span>
             ) : bfRegionalCode && bfRegionalPct != null && bfCodeCapturedAt && bfRegionalOfferText ? (
               <span data-russian-bright-funded-promo={bfRegionalCode} data-russian-bright-funded-promo-kind="regional">
                 {`BrightFunded: на главной фирмы ${ruDate(bfCodeCapturedAt)} виден Autumn Promo — ${bfRegionalOfferText}; даты окончания нет, код может зависеть от региона, на оплате мы его не проверяли.`}
-                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: на главной был до 02.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
+                {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение: последний раз видели на главной 03.11.2026, на ${ruDate(bfCodeCapturedAt)} его там уже нет; дату окончания фирма не публиковала.` : ''}
               </span>
             ) : (
               <span data-russian-bright-funded-promo="none">BrightFunded: публичного кода с датой проверки на кассе у нас сейчас нет; актуальный статус — на странице промокодов.</span>
