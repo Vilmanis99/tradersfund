@@ -603,6 +603,28 @@ for (const id of Object.keys(BEST_FOR_SLUGS)) {
   console.log('  ruBestForCtaRankNote cases: pin / open-no-pin / no-open / mixed / ordered OK')
 }
 
+// EN best-for routes must ship their own English root layout (CSS/header/nav).
+{
+  const enDirs = [
+    'best-prop-firms-for-beginners',
+    'best-prop-firms-for-eas',
+    'best-prop-firms-for-low-drawdown',
+    'best-prop-firms-for-news-trading',
+    'best-prop-firms-for-no-time-limit',
+    'best-prop-firms-for-scalping',
+    'best-prop-firms-for-small-accounts',
+  ]
+  for (const dir of enDirs) {
+    const layout = fs.readFileSync(`app/${dir}/layout.tsx`, 'utf8')
+    assert.match(layout, /EnglishRootLayout/)
+    assert.match(layout, /siteMetadata/)
+  }
+  const pageSource = fs.readFileSync('components/BestForPage.tsx', 'utf8')
+  assert.ok(!/не индексируется|This page is noindex|Страница пока noindex|noindex until gate passes/.test(pageSource))
+  assert.match(pageSource, /data-best-for-gate-reasons/)
+  assert.match(pageSource, /AffiliateDisclosure lang=\{lang\}/)
+}
+
 assertVerdictsUnchanged(verdictsBefore)
 console.log('PASS best-for gate (unit) — content/verdicts unchanged')
 console.log(`  built paths (${allBestForPaths().length}):`)
@@ -627,14 +649,67 @@ const isNoindex = html => /name=["']robots["'][^>]+content=["'][^"']*noindex/i.t
 const sitemap = (await get('/sitemap.xml')).html
 const locs = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(SITE, '') || '/'))
 
+function visibleBestForText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+}
+
+const INTERNAL_GATE_VISIBLE = [
+  { name: 'noindex', re: /\bnoindex\b/i },
+  { name: 'content/verdicts', re: /content\/verdicts/i },
+  { name: 'не индексируется', re: /не индексируется/ },
+  { name: 'gate', re: /\bgate\b/i },
+  { name: 'This page is noindex', re: /This page is noindex/i },
+  { name: 'Страница пока noindex', re: /Страница пока noindex/ },
+  { name: 'missing writer verdict', re: /missing writer verdict/i },
+]
+
+// Mirror lib/ruDisclosure.ruDisclosureHref without importing the TS module (JSON attribute).
+const ruDisclosureCopy = JSON.parse(fs.readFileSync('content/data/ru-how-we-make-money.json', 'utf8'))
+const ruDisclosurePath = ruDisclosureCopy.published === true ? '/ru/kak-my-zarabatyvaem' : '/how-we-make-money'
+assert.match(
+  fs.readFileSync('components/AffiliateDisclosure.tsx', 'utf8'),
+  /ruDisclosureHref\(\)/,
+  'RU disclosure href must come from ruDisclosureHref()',
+)
+
 for (const model of getBestForPageModels()) {
   const { status, html } = await get(model.path)
   assert.equal(status, 200, model.path)
   assert.equal(isNoindex(html), !model.indexable)
   assert.match(html, /data-best-for-sort-rule=/)
-  assert.match(html, /AffiliateDisclosure|affiliate|disclosure/i)
-  if (!model.indexable) assert.ok(!locs.has(model.path), `${model.path} in sitemap while noindex`)
-  if (model.lang === 'ru') assert.ok(!/bybit/i.test(html))
+  assert.match(html, /data-affiliate-disclosure|affiliate|disclosure/i)
+  if (!model.indexable) {
+    assert.ok(!locs.has(model.path), `${model.path} in sitemap while noindex`)
+    assert.match(html, /data-best-for-gate=["']noindex["']/, `${model.path} needs data-best-for-gate`)
+    assert.match(html, /data-best-for-gate-reasons=/, `${model.path} needs data-best-for-gate-reasons`)
+  } else {
+    assert.ok(!/data-best-for-gate=["']noindex["']/.test(html), `${model.path} indexable must not mark noindex gate`)
+  }
+  const visible = visibleBestForText(html)
+  for (const { name, re } of INTERNAL_GATE_VISIBLE) {
+    assert.ok(!re.test(visible), `${model.path} visible text must not contain ${name}`)
+  }
+  if (model.lang === 'ru') {
+    assert.ok(!/bybit/i.test(html))
+    assert.match(html, /Раскрытие информации:/, `${model.path} RU disclosure label`)
+    assert.match(
+      html,
+      new RegExp(`href=["']${ruDisclosurePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`),
+      `${model.path} RU disclosure href ${ruDisclosurePath}`,
+    )
+    assert.match(html, /Как мы зарабатываем/, `${model.path} RU disclosure link text`)
+    assert.ok(!/\bDisclosure:\b/.test(visible), `${model.path} must not show English Disclosure label`)
+    assert.ok(!/How we make money/.test(visible), `${model.path} must not show English disclosure link`)
+    assert.ok(
+      !/We may earn a commission if you sign up via eligible links/.test(visible),
+      `${model.path} must not show English disclosure body`,
+    )
+  }
   if (model.path === '/ru/luchshie-prop-firmy-dlya-novichkov') {
     assert.match(html, /data-best-for-excluded-restricted="true"/)
     assert.ok(!/без ссылки регистрации/i.test(html), 'excluded firms must keep sign-up CTAs')

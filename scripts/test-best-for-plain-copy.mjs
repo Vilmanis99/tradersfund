@@ -125,6 +125,15 @@ assert.equal(
   'FundingPips entry on the page must equal min challenge accountSizes.priceUsd (not a hardcoded fee)',
 )
 
+// Component source: gate internals must not be visitor-facing copy.
+{
+  const pageSource = fs.readFileSync(new URL('../components/BestForPage.tsx', import.meta.url), 'utf8')
+  for (const leak of ['не индексируется', 'This page is noindex', 'Страница пока noindex', 'noindex until gate passes']) {
+    assert.ok(!pageSource.includes(leak), `BestForPage.tsx must not contain visible leak: ${leak}`)
+  }
+  assert.match(pageSource, /data-best-for-gate-reasons/)
+}
+
 console.log('PASS best-for plain copy (unit)')
 console.log('  EN beginners:', BEST_FOR_SORT_RULES.beginners.en)
 console.log('  RU beginners:', BEST_FOR_SORT_RULES.beginners.ru)
@@ -137,10 +146,38 @@ async function get(urlPath) {
   return { status: response.status, html: await response.text() }
 }
 
+const GATE_LEAKS = [
+  { name: 'noindex', re: /\bnoindex\b/i },
+  { name: 'content/verdicts', re: /content\/verdicts/i },
+  { name: 'не индексируется', re: /не индексируется/ },
+  { name: 'gate', re: /\bgate\b/i },
+  { name: 'This page is noindex', re: /This page is noindex/i },
+  { name: 'Страница пока noindex', re: /Страница пока noindex/ },
+  { name: 'missing writer verdict', re: /missing writer verdict/i },
+]
+
+function visibleBody(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+}
+
 for (const model of getBestForPageModels()) {
   const { status, html } = await get(model.path)
   assert.equal(status, 200, model.path)
   assertClean(`${model.path} HTML`, readerFacingFromHtml(html))
+  const visible = visibleBody(html)
+  for (const { name, re } of GATE_LEAKS) {
+    assert.ok(!re.test(visible), `${model.path} visible text must not contain ${name}`)
+  }
+  if (model.lang === 'ru') {
+    assert.match(html, /Раскрытие информации:/)
+    assert.ok(!/\bDisclosure:\b/.test(visible), `${model.path} no English Disclosure`)
+    assert.ok(!/How we make money/.test(visible), `${model.path} no English how-we-make-money link text`)
+  }
 }
 
 console.log(`PASS best-for plain copy (live against ${base})`)

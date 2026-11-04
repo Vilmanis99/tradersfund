@@ -105,42 +105,18 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
             {' · '}
             {differingFieldCount}/{BEST_FOR_MIN_DIFF_FIELDS}+{' '}
             {lang === 'ru' ? 'различающихся полей' : 'differing fields'}
-            {!indexable ? (
-              <>
-                {' · '}
-                <span data-best-for-gate="noindex">
-                  {lang === 'ru' ? 'не индексируется' : 'noindex until gate passes'}
-                </span>
-              </>
-            ) : null}
           </p>
         </header>
 
-        {!indexable && (
-          <div
-            role="note"
-            data-best-for-reasons={reasons.join(' | ')}
-            style={{
-              marginTop: '1.5rem',
-              padding: '1rem 1.25rem',
-              borderRadius: 14,
-              border: '1px solid var(--border)',
-              background: 'var(--bg2)',
-              color: 'var(--muted)',
-              fontSize: '0.95rem',
-            }}
-          >
-            <strong>{lang === 'ru' ? 'Страница пока noindex.' : 'This page is noindex for now.'}</strong>{' '}
-            {lang === 'ru'
-              ? 'Нужны вердикт писателя и ≥5 различающихся полей данных между фирмами в рейтинге.'
-              : 'It needs a writer verdict and ≥5 differing data fields across the ranked firms.'}
-            <ul style={{ margin: '0.5rem 0 0', paddingLeft: '1.25rem' }}>
-              {reasons.map(reason => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {/* Gate reasons stay machine-readable only — never show internals to visitors. */}
+        {!indexable ? (
+          <span
+            hidden
+            aria-hidden="true"
+            data-best-for-gate="noindex"
+            data-best-for-gate-reasons={reasons.join(' | ')}
+          />
+        ) : null}
 
         {lang === 'ru' && (
           <div style={{ marginTop: '1.5rem' }}>
@@ -148,7 +124,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
           </div>
         )}
 
-        <AffiliateDisclosure />
+        <AffiliateDisclosure lang={lang} />
 
         <p
           data-best-for-sort-rule={useCase.id}
