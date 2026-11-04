@@ -628,7 +628,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
                 DOUBLE25 expiry is unconfirmed: say only that it is not shown on the site, never that it ended. */}
             {bfFirm?.discountCode && bfFirm.discountPct && bfFirm.discountCodeCapturedAt ? (
               <span data-russian-bright-funded-promo={bfFirm.discountCode}>
-                {`BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки${bfFirm.discountCode === 'HW30' ? ' (акция Halloween Offer)' : ''}; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку проверяйте при оплате.`}
+                {`BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} на главной странице — код ${bfFirm.discountCode}, ${bfFirm.discountPct}% скидки; дата окончания не опубликована${bfFirm.discountCodeCheckoutVerified ? '' : ', на кассе мы код не проверяли'}, поэтому скидку проверяйте при оплате.`}
                 {previousBfCode ? ` Код ${previousBfCode} — предыдущее предложение BrightFunded: по данным на ${ruDate(bfFirm.discountCodeCapturedAt)} он больше не показан на сайте, а окончание его действия не подтверждено.` : ''}
               </span>
             ) : (
