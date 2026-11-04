@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-04",
-  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/.",
+  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/.",
   "pagesRead": [
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
     "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
@@ -29,7 +29,13 @@
     "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
     "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
     "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
-    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account"
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/match-trader-platform/",
+    "https://citytradersimperium.com/"
   ],
   "pageDates": {
     "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
@@ -54,7 +60,8 @@
     "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account": "lastUpdatedDate 2026-05-06",
     "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account": "lastUpdatedDate 2026-05-06",
     "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto": "lastUpdatedDate 2026-05-06",
-    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account": "lastUpdatedDate 2026-05-06"
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account": "lastUpdatedDate 2026-05-06",
+    "https://citytradersimperium.com/": "dateModified 2026-10-30 (homepage; product pages carry no dateModified)"
   },
   "firms": {
     "bright-funded": {
@@ -558,6 +565,215 @@
           {
             "sourceUrl": "https://fxify.com/",
             "quote": "TradingView, MetaTrader 5 & DXTrade"
+          }
+        ]
+      }
+    },
+    "city-traders-imperium": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on 1-Step Challenge; static on 2-Step Challenge, Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": "trailing",
+          "2-step-challenge": "static",
+          "instant-funding": "static",
+          "direct-funding": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance Drawdown Type Balance Based Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on 1-Step Challenge, Instant Funding, Direct Funding; 5% on 2-Step Challenge",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": 5,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on 1-Step Challenge; 10% on 2-Step Challenge; 6% on Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 5,
+          "2-step-challenge": 10,
+          "instant-funding": 6,
+          "direct-funding": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on 1-Step Challenge, 2-Step Challenge; 50% on Instant Funding; 70% on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 80,
+          "2-step-challenge": 80,
+          "instant-funding": 50,
+          "direct-funding": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Pass the challenge, get funded, and keep 80% of your rewards from your first payout."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "earn a 50% profit share from your very first trade."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "earn a 70% profit share from your first trade, and scale to $4,000,000."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": null,
+          "instant-funding": null,
+          "direct-funding": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Request your 1st payout in as little as 7 days."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ],
+        "summary": "MT5, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "it is one of the two platforms available on a City Traders Imperium account. ... What is the difference between Match Trader and MetaTrader 5?"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "Available everywhere we operate, including the USA, where MT5 accounts are not offered."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "None on payouts for 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages",
+        "note": "Scaling only: the Instant Funding and Direct Funding pages say 'To scale, you also need a 20% consistency score.' This applies to scaling milestones, not to payouts, so byProduct stays null.",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": null,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Direct Funding has no consistency rule on payouts."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "To scale, you also need a 20% consistency score."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "To scale, you also need a 20% consistency score."
           }
         ]
       }

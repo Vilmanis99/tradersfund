@@ -1,0 +1,71 @@
+{
+  "firmSlug": "city-traders-imperium",
+  "officialDomain": "https://citytradersimperium.com",
+  "capturedAt": "2026-11-04",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-04 13:00-13:15 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/match-trader-platform/",
+    "https://citytradersimperium.com/"
+  ],
+  "pageDates": {
+    "https://citytradersimperium.com/": "dateModified 2026-10-30 (homepage; product pages carry no dateModified)"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck: CTI product prices were last captured 2026-10-20 (outside the 14-15 Oct cohort) and were not changed.",
+  "blocks": [],
+  "productsScope": "Products carry rules evidence only (productSlug + fieldEvidence); product prices and values in challenges/<slug>.json were not changed and keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules consistencyPct evidence (byProduct unchanged, summary/note updated)",
+      "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+      "oldQuote": "Direct Funding has no consistency rule.",
+      "newQuote": "Direct Funding has no consistency rule on payouts.",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "field": "rules consistencyPct note (new)",
+      "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+      "quote": "To scale, you also need a 20% consistency score.",
+      "note": "same sentence on the Direct Funding page; scaling requirement, not a payout rule",
+      "checkedAt": "2026-11-04"
+    }
+  ],
+  "unchanged": [
+    "all other 14/15 Oct quotes still read verbatim (22 of 23)",
+    "legalEntity City Traders Imperium Limited (Comoros Union, company number 15969), operating address San José, Costa Rica (homepage footer)"
+  ],
+  "notReread": [
+    "prices (captured 2026-10-20)"
+  ],
+  "products": [
+    {
+      "productName": "Instant Funding",
+      "productSlug": "instant-funding",
+      "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+      "fieldEvidence": {
+        "drawdownType": {
+          "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+          "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains."
+        }
+      }
+    },
+    {
+      "productName": "Direct Funding",
+      "productSlug": "direct-funding",
+      "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+          "quote": "Direct Funding has no consistency rule on payouts."
+        }
+      }
+    }
+  ]
+}

@@ -5399,14 +5399,14 @@
     "country": "Comoros",
     "regulation": "License No. L15969/CTI (Comoros Union company number 15969)",
     "corporateSourceUrl": "https://citytradersimperium.com/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-11-04",
     "russiaSourceUrl": "https://citytradersimperium.com/",
     "russiaSourceQuote": "CTI does not offer services to residents of North Korea, Iran, Syria, Cuba, or Russia, or to anyone under international sanctions.",
     "countriesRestrictedSourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
+      "capturedAt": "2026-11-04",
+      "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-11-04.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on 1-Step Challenge; static on 2-Step Challenge, Instant Funding, Direct Funding",
@@ -5421,24 +5421,24 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Max Trailing Drawdown 5% of the starting balance Drawdown Type Balance Based Max Daily Drawdown None",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/instant-funding/",
             "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5457,24 +5457,24 @@
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Max Daily Drawdown None",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
             "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5493,31 +5493,32 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Max Trailing Drawdown 5% of the starting balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "The 2-Step uses a static drawdown of 10% of your initial balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
             "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": "None on 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages",
+        "summary": "None on payouts for 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages",
+        "note": "Scaling only: the Instant Funding and Direct Funding pages say 'To scale, you also need a 20% consistency score.' This applies to scaling milestones, not to payouts, so byProduct stays null.",
         "byProduct": {
           "1-step-challenge": null,
           "2-step-challenge": null,
@@ -5529,16 +5530,32 @@
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
-            "quote": "Direct Funding has no consistency rule.",
+            "quote": "Direct Funding has no consistency rule on payouts.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "To scale, you also need a 20% consistency score.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "To scale, you also need a 20% consistency score.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5557,24 +5574,24 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Pass the challenge, get funded, and keep 80% of your rewards from your first payout.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/instant-funding/",
             "quote": "earn a 50% profit share from your very first trade.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
             "quote": "earn a 70% profit share from your first trade, and scale to $4,000,000.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5593,25 +5610,25 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Request your 1st payout in as little as 7 days.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/direct-funding/",
             "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-20",
-            "captureFile": "content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
-            "productSlug": "direct-funding"
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
           }
         ]
       },
@@ -5629,16 +5646,16 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5657,16 +5674,16 @@
             "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
             "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
             "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -5695,22 +5712,22 @@
             "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
             "quote": "it is one of the two platforms available on a City Traders Imperium account. ... What is the difference between Match Trader and MetaTrader 5?",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
             "quote": "Available everywhere we operate, including the USA, where MT5 accounts are not offered.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json"
     },
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
     "discountCodeCapturedAt": "2026-11-02",
