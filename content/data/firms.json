@@ -3616,8 +3616,8 @@
     "corporateCapturedAt": null,
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/fxify-2026-10-14.json",
+      "capturedAt": "2026-11-04",
+      "captureFile": "content/data/challenges/_captures/fxify-2026-11-04.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on One Phase, Two Phase Standard, Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; static on Two Phase Classic, Two Phase Pro, Three Phase",
@@ -3638,24 +3638,48 @@
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "1 Phase Account: ... Max total Drawdown – 6% Trailing (Based on High water mark)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance) Max total Drawdown – 10% Trailing",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "Daily drawdown – 5% (Based on previous day balance) Max total Drawdown – 5% Static (Based on initial balance)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "quote": "Max Drawdown 10% (Static)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "quote": "Max Drawdown 8% (Static)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3680,16 +3704,48 @@
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "1 Phase Account: Profit Target – Phase 1 – 10% Daily drawdown – 3% (Based on previous day balance)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "quote": "Daily Drawdown 5% (Based on Previous Day Balance at 5PM EST)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Daily Drawdown 8% (Based on Previous Day Balance at 5PM EST)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Daily Drawdown 3% (Based on Previous Day Balance at 5PM EST)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Daily Drawdown 3% (Based on Previous Day Balance)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3714,16 +3770,48 @@
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "Max total Drawdown – 6% Trailing (Based on High water mark)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
             "quote": "Max total Drawdown – 10% Trailing",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "quote": "Max Drawdown 8% (Static)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "quote": "Max Drawdown 5% (Static)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3748,8 +3836,40 @@
             "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
             "quote": "No Consistency Rule: Your strategy can evolve; we do not enforce rigid lot-size consistency.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "quote": "Consistency Rule 25% (Applicable only on Live accounts)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Consistency Rule 20% (Required for all payouts)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Consistency Rule 30% Both in Challenge and Live Phase",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Consistency Rule 25%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3774,8 +3894,8 @@
             "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
             "quote": "Profit Split 80% default , upgradable to 90% .",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3800,16 +3920,24 @@
             "sourceUrl": "https://fxify.com/programs/one-phase/",
             "quote": "For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/programs/one-phase/",
             "quote": "Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Payout Frequency Every 14 Days (Bi-weekly)",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3834,8 +3962,48 @@
             "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
             "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "News Trading: Prohibited 5 minutes before and after high-impact news releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Placing or closing trades within a 10-minute window (5 minutes before/after) of HIGH-impact news is not allowed.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3860,8 +4028,48 @@
             "sourceUrl": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
             "quote": "No, on the 1,2 and 3 Phase accounts you do not need to close your positions over the weekend.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "No Weekend Holding: All positions must be closed by Friday at 3:45 PM EST.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Weekend Holding: Not allowed. All trades must be closed by Friday at 3:45 PM EST.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Holding: Weekend and Overnight holding are allowed.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+            "quote": "Flexibility: Weekend and Overnight holding are fully permitted.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Holding: Overnight and weekend holding are fully permitted",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
@@ -3886,44 +4094,29 @@
           "TradingView"
         ],
         "summary": "MT4, MT5, DXTrade, TradingView",
+        "note": "The programme pages name the MetaQuotes platforms 'Trading Platform 4' and 'Trading Platform 5'; the homepage names 'TradingView, MetaTrader 5 & DXTrade'. The Crypto programme page lists TradingView as 'Coming soon' and DXTrade.",
         "byProduct": null,
         "evidence": [
           {
-            "sourceUrl": "https://fxify.com/",
-            "quote": "rs Good offers, publicity, and following of the customers. Is easy yo acivte in MT4 & 5. Omer Misgərli, 4 days ago I am very satisfied with fxify support I am very",
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "Select from widely used trading platforms in the market such as Trading Platform 4, Trading Platform 5, DXtrade, and TradingView to conduct your trades.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://fxify.com/",
-            "quote": "out Over 150+ Symbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand Instant Fundin",
+            "quote": "TradingView, MetaTrader 5 & DXTrade",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://fxify.com/",
-            "quote": "ymbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand Instant Funding Unlimite",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://fxify.com/",
-            "quote": "unts at Checkout Over 150+ Symbols To Trade Exclusive Discounts For Our Traders TradingView, MetaTrader 5 & DXTrade Up to $400,000 starting capital First Payout On Demand",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-04",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json"
     },
     "regionalDiscountCode": "ONESTEP35",
     "discountCodeRegion": "us-only-unconfirmed",

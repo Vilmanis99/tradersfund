@@ -1,0 +1,164 @@
+{
+  "firmSlug": "fxify",
+  "officialDomain": "https://fxify.com",
+  "capturedAt": "2026-11-04",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-04 12:35-12:55 Riga (fxify.com FAQ/programme pages and the official FXIFY Help Centre on intercom.help); no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://fxify.com/",
+    "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+    "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+    "https://fxify.com/programs/crypto/",
+    "https://fxify.com/programs/one-phase/",
+    "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+    "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+    "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+    "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+    "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+    "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+    "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+    "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account"
+  ],
+  "pageDates": {
+    "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/": "dateModified 2025-07-21",
+    "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/": "dateModified 2025-06-26",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/": "dateModified 2025-06-26",
+    "https://fxify.com/programs/one-phase/": "dateModified 2025-03-25",
+    "https://fxify.com/": "dateModified 2026-04-18",
+    "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account": "lastUpdatedDate 2026-05-15",
+    "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account": "lastUpdatedDate 2026-05-06"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck: FXIFY product prices were last captured 2026-10-20 (outside the 14-15 Oct cohort) and were not changed.",
+  "blocks": [],
+  "productsScope": "Products carry rules evidence only (productSlug + fieldEvidence); product prices and values in challenges/<slug>.json were not changed and keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules platforms evidence (value unchanged)",
+      "sourceUrl": "https://fxify.com/",
+      "old": "four homepage snippets, one of them a customer-review widget line (third-party text) cited for MT4",
+      "new": "programme-page sentence naming 'Trading Platform 4, Trading Platform 5, DXtrade, and TradingView' + homepage 'TradingView, MetaTrader 5 & DXTrade'",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "field": "rules evidence added (values unchanged)",
+      "new": "per-programme Help Centre articles (Instant Funding Standard/Lite, Lightning, Crypto, 2-Phase Pro/Classic, 3-Phase) now back the product-specific news, weekend, consistency and drawdown values",
+      "checkedAt": "2026-11-04"
+    }
+  ],
+  "unchanged": [
+    "all 17 quotes from 14/15 Oct still read verbatim",
+    "all rules values and byProduct maps unchanged"
+  ],
+  "notReread": [
+    "Trustpilot (third-party, trustpilotCapturedAt stays 2026-10-15)",
+    "prices (captured 2026-10-20)"
+  ],
+  "products": [
+    {
+      "productName": "Two Phase Classic",
+      "productSlug": "two-phase-classic",
+      "sourceUrl": "https://fxify.com/programs/two-phase/",
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+          "quote": "Consistency Rule 25% (Applicable only on Live accounts)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+          "quote": "Max Drawdown 10% (Static)"
+        }
+      }
+    },
+    {
+      "productName": "Two Phase Pro",
+      "productSlug": "two-phase-pro",
+      "sourceUrl": "https://fxify.com/blog/introducing-fxify-2-phase-pro/",
+      "fieldEvidence": {
+        "maxLossPct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+          "quote": "Max Drawdown 8% (Static)"
+        }
+      }
+    },
+    {
+      "productName": "Instant Funding Standard",
+      "productSlug": "instant-funding-standard",
+      "sourceUrl": "https://fxify.com/programs/instant-funding/",
+      "fieldEvidence": {
+        "rules.news": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+          "quote": "News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases."
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+          "quote": "No Weekend Holding: All positions must be closed by Friday at 3:45 PM EST."
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+          "quote": "Daily Drawdown 8% (Based on Previous Day Balance at 5PM EST)"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+          "quote": "Max Drawdown 8% (Trailing High Water Mark)"
+        }
+      }
+    },
+    {
+      "productName": "Instant Funding Lite",
+      "productSlug": "instant-funding-lite",
+      "sourceUrl": "https://fxify.com/programs/instant-funding/",
+      "fieldEvidence": {
+        "rules.news": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+          "quote": "News Trading: Prohibited 5 minutes before and after high-impact news releases."
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+          "quote": "Weekend Holding: Not allowed. All trades must be closed by Friday at 3:45 PM EST."
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+          "quote": "Consistency Rule 20% (Required for all payouts)"
+        }
+      }
+    },
+    {
+      "productName": "Lightning Challenge",
+      "productSlug": "lightning-challenge",
+      "sourceUrl": "https://fxify.com/programs/lightning-challenge/",
+      "fieldEvidence": {
+        "rules.news": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases."
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+          "quote": "Consistency Rule 30% Both in Challenge and Live Phase"
+        }
+      }
+    },
+    {
+      "productName": "Crypto Instant Funding",
+      "productSlug": "crypto-instant-funding",
+      "sourceUrl": "https://fxify.com/programs/crypto/",
+      "fieldEvidence": {
+        "consistencyRulePct": {
+          "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+          "quote": "Consistency Rule 25%"
+        }
+      }
+    }
+  ]
+}
