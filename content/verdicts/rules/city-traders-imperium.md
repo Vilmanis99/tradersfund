@@ -2,7 +2,7 @@
 slug: city-traders-imperium
 lang: en
 firm: City Traders Imperium
-checkedAt: '2026-10-27'
+checkedAt: '2026-11-04'
 dataAsOf: '2026-10-20'
 author: Tara Mohseni
 sources:
@@ -10,9 +10,9 @@ sources:
     url: 'https://citytradersimperium.com/1-step-challenge/'
   - title: CTI 2-Step Challenge (static and daily drawdown, EA and Martingale rules; read 2026-10-27)
     url: 'https://citytradersimperium.com/2-step-challenge/'
-  - title: CTI Instant Funding (50% starting balance, 6% static drawdown; read 2026-10-27)
+  - title: CTI Instant Funding (50% starting balance, 6% static drawdown, 20% consistency score to scale; read 2026-11-04)
     url: 'https://citytradersimperium.com/instant-funding/'
-  - title: CTI Direct Funding (70% split, on-demand payouts from day 5, no consistency rule; read 2026-10-27)
+  - title: CTI Direct Funding (70% split, on-demand payouts from day 5, no consistency rule on payouts, 20% consistency score to scale; read 2026-11-04)
     url: 'https://citytradersimperium.com/direct-funding/'
 fieldsUsed:
   - rules.drawdownType.byProduct
@@ -34,7 +34,7 @@ CTI sets that floor at your highest balance minus a fixed 5% of the starting bal
 
 The 2-Step is the static option: 10% then 5%, a 10% floor fixed at the initial balance and a 5% daily limit. It allows personal EAs only and bans Martingale. The 1-Step is the only CTI plan that allows both, third-party EAs included.
 
-Instant Funding needs the slowest read. You start on half the account size at a 50% split, and the 6% static drawdown sits on that starting balance: CTI's $80,000 plan lists $2,400 of maximum drawdown. Direct Funding gives you the full balance, a 70% split and on-demand payouts from day 5.
+Instant Funding needs the slowest read. You start on half the account size at a 50% split, and the 6% static drawdown sits on that starting balance: CTI's $80,000 plan lists $2,400 of maximum drawdown. Direct Funding gives the full balance, a 70% split and on-demand payouts from day 5, with no consistency rule on payouts; Instant and Direct need a 20% consistency score to scale.
 
 News and weekend holds are allowed on all four. The challenges pay a first payout after 7 days but publish no baseline frequency after that; weekly payouts arrive with the Bronze VIP tier.
 

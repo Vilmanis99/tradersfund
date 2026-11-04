@@ -20,7 +20,7 @@ type: "post"
     <li>A rule is "hidden" when it can breach an account or deny a payout but is missing from, or buried below, the product and pricing page you buy from.</li>
     <li>The 6 usual suspects are consistency, news trading, overnight and weekend holding, lot or position caps, IP and copy-trading rules, and discretionary payout reviews.</li>
     <li>Of the 8 firms below, every one restricts at least one of these in writing; the difference is how specific and how visible the published rule is.</li>
-    <li>"No consistency rule" marketing is not the same as a published 0%: City Traders Imperium says "no hidden consistency requirements" but publishes no percentage either way.</li>
+    <li>"No consistency rule" marketing is not the same as a published 0%: City Traders Imperium's 2-Step says it has "no hidden consistency requirements," while Direct Funding limits its none claim to payouts and Instant/Direct FAQs require a 20% consistency score to scale (checked 4 November 2026).</li>
   </ul>
 </div>
 
@@ -57,7 +57,7 @@ type: "post"
   <tbody>
     <tr><td><a href="/blog/alpha-capital-review">Alpha Capital</a> (2026-10-06)</td><td>40% on on-demand routes; 15% on Alpha Direct; bi-weekly unverified</td><td>Restricted</td><td>Allowed (Direct: not published)</td><td>Allowed on One and Swing; restricted on Pro; not allowed on Direct</td><td>Restricted (Direct: not allowed)</td><td>Restricted</td></tr>
     <tr><td><a href="/blog/bright-funded-prop-firm">Bright Funded</a> (2026-09-29)</td><td>None published</td><td>Restricted</td><td>Allowed</td><td>Allowed</td><td>Restricted</td><td>Restricted</td></tr>
-    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a> (2026-10-14)</td><td>No percentage published; Direct Funding says "No Consistency Rules"</td><td>Allowed</td><td>Allowed</td><td>Allowed</td><td>Allowed on 1-Step; restricted on others</td><td>Not published</td></tr>
+    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a> (2026-11-04)</td><td>Direct Funding: no consistency rule on payouts; Instant/Direct: 20% consistency score to scale; 2-Step: no hidden consistency requirements</td><td>Allowed</td><td>Allowed</td><td>Allowed</td><td>Allowed on 1-Step; restricted on others</td><td>Not published</td></tr>
     <tr><td><a href="/blog/ftmo-review">FTMO</a> (2026-09-29; 1-Step consistency rechecked 2026-10-20)</td><td>50% Consistency rule on 1-Step</td><td>Restricted</td><td>Restricted</td><td>Restricted</td><td>Restricted</td><td>Not published</td></tr>
     <tr><td><a href="/blog/fundednext-review">FundedNext</a> (2026-10-19)</td><td>40% best-day rule on Stellar 2-Step and Lite only with the On-Demand payout option; none on Instant or standard cycles</td><td>Restricted</td><td>Allowed</td><td>Allowed</td><td>Restricted</td><td>Restricted</td></tr>
     <tr><td><a href="/blog/funding-pips-review">FundingPips</a> (2026-10-20; Zero 2026-10-19)</td><td>35% on the On Demand 100% route (2 Step Standard, Pro and Flex; rechecked 2026-10-20); 15% on Zero</td><td>Restricted (Zero: not allowed)</td><td>Allowed</td><td>Restricted (Zero: not allowed)</td><td>Restricted</td><td>Restricted</td></tr>
@@ -66,7 +66,7 @@ type: "post"
   </tbody>
 </table>
 
-<p><strong>How to read it.</strong> No firm here is "no rules". The clearest disclosers are the ones that attach a number and a consequence to each rule on the product's own page: Topstep publishes consistency, holding and payout-cap rules per product, FundingPips publishes consistency, holding and lot caps per product, and Maven publishes its news window, IP, caps and payout-interview triggers in one FAQ. The weakest disclosures are blanks: City Traders Imperium markets "no hidden consistency requirements" but publishes no figure, Alpha Capital's bi-weekly consistency is unverified, and several firms do not state their copy-trading policy on the product source.</p>
+<p><strong>How to read it.</strong> No firm here is "no rules". The clearest disclosers are the ones that attach a number and a consequence to each rule on the product's own page: Topstep publishes consistency, holding and payout-cap rules per product, FundingPips publishes consistency, holding and lot caps per product, and Maven publishes its news window, IP, caps and payout-interview triggers in one FAQ. The weakest disclosures are the ones that split the rule across payouts and scaling without one clear percentage: City Traders Imperium's Direct Funding has no consistency rule on payouts, while Instant and Direct FAQs require a 20% consistency score to scale (checked 4 November 2026); Alpha Capital's bi-weekly consistency is unverified; and several firms do not state their copy-trading policy on the product source.</p>
 
 <h2 class="wp-block-heading"><strong>A 6-point check before you buy</strong></h2>
 
@@ -87,7 +87,7 @@ type: "post"
 <p>There is no prop firm with no rules. A firm has no hidden rules when every rule that can breach an account or deny a payout is published for the exact product before checkout. Among the 8 firms above, Topstep, FundingPips and Maven publish the most specific numbers; check the product page and help centre for whichever firm you choose.</p>
 
 <h3 class="wp-block-heading"><strong>Which prop firms have no consistency rule?</strong></h3>
-<p>Few firms publish an explicit "none". City Traders Imperium's Direct Funding page says "No Consistency Rules", and in our <a href="/blog/e8-markets-review">E8 Markets review</a> E8 Pro is recorded with no consistency rule. A blank field on a product page is not the same as a published zero, so confirm it in writing.</p>
+<p>Few firms publish an explicit "none". City Traders Imperium's Direct Funding page says "Direct Funding has no consistency rule on payouts," and the Instant and Direct Funding FAQs also say "To scale, you also need a 20% consistency score" (citytradersimperium.com, checked 4 November 2026). In our <a href="/blog/e8-markets-review">E8 Markets review</a> E8 Pro is recorded with no consistency rule. A blank field on a product page is not the same as a published zero, so confirm it in writing.</p>
 
 <h3 class="wp-block-heading"><strong>What is the most common hidden prop firm rule?</strong></h3>
 <p>Consistency rules and funded-stage holding restrictions cause the most surprises, because both often differ between the evaluation and the funded account and usually surface at payout time rather than at checkout.</p>
