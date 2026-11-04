@@ -62,7 +62,15 @@ import {
   INDEXNOW_KEY_PATH,
   getRussianIndexNowUrls,
 } from '../lib/indexNow.ts'
+
 import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
+
+/** Same output as lib/ruDate.ts ruMonthYear(): «ноябрь 2026» for the current month in Riga time. */
+function ruMonthYearForCrawl(now = new Date()) {
+  const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+  const parts = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', timeZone: 'Europe/Riga' }).formatToParts(now)
+  return `${months[Number(parts.find(part => part.type === 'month').value) - 1]} ${parts.find(part => part.type === 'year').value}`
+}
 
 const args = process.argv.slice(2)
 // /prop-firms/closed and its RU page share one publish flag; the RU page joins the RU inventory only while it is true.
@@ -1041,6 +1049,8 @@ const russianExpectations = new Map([
     h1: 'Промокоды проп-фирм — октябрь 2026',
     markers: [
       'id="kody"',
+      'data-russian-country-boundary="deals-not-access"',
+      'data-russian-deals-expiry="thirty-day-fail-closed"',
       'data-russian-affiliate-disclosure="promo-hub"',
       'data-russian-risk-disclaimer="promo-hub"',
       'ru-badge ru-badge--neutral',
@@ -1404,6 +1414,41 @@ const russianExpectations = new Map([
       '1 104',
     ],
   }],
+  ['/ru/obzor-goat-funded-trader', {
+    title: 'Goat Funded Trader: обзор 2026 — правила и доступ из России',
+    h1: 'Goat Funded Trader: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="goat-funded-trader"',
+      'data-russian-goat-verdict="summary"',
+      'data-russian-goat-access="restricted"',
+      'data-russia-status="restricted"',
+      'data-russia-firm="goat-funded-trader"',
+      'Недоступно для РФ',
+      'Россия в списке ограничений',
+      'по данным на 27.10.2026',
+      'по данным на 30.10.2026',
+      'по данным на 02.11.2026',
+      '"datePublished":"2026-11-02"',
+      'data-russian-goat-product-count="9"',
+      'data-russian-goat-product="instant-daily"',
+      'data-russian-goat-retired="2026-10-27"',
+      'не продаётся с 13.06.2026',
+      'Скидка зависит от действующего промокода',
+      'Условия расходятся, уточните у поддержки',
+      'на сайте не указано',
+      'data-russian-goat-example="2-step-standard-100k"',
+      'Пример, не прогноз',
+      'data-russian-goat-payout-risks="stage-checks"',
+      'data-russian-goat-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-goat-funded-trader-alternative-bright-funded"',
+      'data-russian-goat-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="goat-funded-trader-review"',
+      'data-russian-risk-disclaimer="goat-funded-trader-review"',
+      'Wishes Tower International Limited',
+      'Проверено 27.10.2026 по официальным страницам',
+    ],
+  }],
   ['/ru/obzor-hash-hedge', {
     title: 'Hash Hedge: отзывы и обзор крипто-проп-компании 2026',
     h1: 'Hash Hedge: обзор и отзывы 2026',
@@ -1430,6 +1475,34 @@ const russianExpectations = new Map([
       'Empower Academy Ltd',
       'FinSmart Solution Ltd',
       'по данным на 19.10.2026',
+    ],
+  }],
+  ['/ru/obzor-spice-prop', {
+    title: 'Spice Prop: отзывы и обзор 2026 — условия и доступ из РФ',
+    h1: 'Spice Prop (Спайс Проп): обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="spice-prop"',
+      'data-russian-spice-verdict="summary"',
+      'data-russian-spice-access="unclear"',
+      'data-russian-spice-product-count="6"',
+      'data-russian-spice-conflicts="2026-10-26"',
+      'data-russian-spice-example="2-step-10k"',
+      'data-russian-spice-nssmc="2026-10-26"',
+      'data-russian-spice-alternatives="bright-funded-first"',
+      'data-russian-spice-cta="summary"',
+      'data-russian-spice-cta="programs"',
+      'data-russian-spice-cta="final"',
+      'data-russian-spice-official="non-affiliate"',
+      'data-russia-firm="spice-prop"',
+      'data-russian-affiliate-disclosure="spice-prop-review"',
+      'data-russian-risk-disclaimer="spice-prop-review"',
+      'по данным на 26.10.2026',
+      '"datePublished":"2026-10-30"',
+      'SPICEPROP SL LTD',
+      'Условия расходятся, уточните у поддержки',
+      'нет в списке ограничений',
+      'НКЦПФР',
     ],
   }],
   ['/ru/obzor-fundingpips', {
@@ -2057,7 +2130,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 

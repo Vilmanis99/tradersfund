@@ -1,0 +1,106 @@
+{
+  "firmSlug": "the5ers",
+  "captureType": "summer-plan-product-add",
+  "capturedAt": "2026-10-30",
+  "capturedAtTimestamp": "2026-10-30T08:07:00+02:00",
+  "timezone": "Europe/Riga",
+  "question": "EN Writer: challenges/the5ers.json on 5bc9be0a has no Summer Plan product — add all sizes from https://the5ers.com/summer-plan and rules/terms.",
+  "method": "curl of https://the5ers.com/summer-plan/ and https://the5ers.com/terms-and-conditions/; parsed elementor tab_title/table_content JSON for every CFD Summer tab. Evidence: tradersfundhub/evidence/en-lucid-the5ers-2026-10-30/.",
+  "sourceUrl": "https://the5ers.com/summer-plan/",
+  "termsUrl": "https://the5ers.com/terms-and-conditions/",
+  "termsLastUpdateQuote": "Last update – Oct. 28th 2026",
+  "latAmRefundQuote": "any eligible refund for transactions processed via local or alternative payment methods in Latin American jurisdictions shall be issued solely as Hub Credits",
+  "russia": {
+    "onSummerPage": false,
+    "termsQuote": "Terms (Last update – Oct. 28th 2026) name Russia and Belarus among forbidden territories (residents or citizens)."
+  },
+  "productsAdded": [
+    {
+      "productSlug": "summer-plan-1-step",
+      "tabs": [
+        {
+          "tab": "$50K",
+          "priceUsd": 179,
+          "payoutCapUsd": 1000,
+          "dailyLossPct": 3,
+          "maxLossPct": 6,
+          "target": "10%",
+          "split": "75%",
+          "consistency": "50% eval+funded"
+        },
+        {
+          "tab": "$100K",
+          "priceUsd": 249,
+          "payoutCapUsd": 2000,
+          "dailyLossPct": 3,
+          "maxLossPct": 6,
+          "target": "10%",
+          "split": "75%",
+          "consistency": "50% eval+funded"
+        }
+      ]
+    },
+    {
+      "productSlug": "summer-plan-2-step-10-5",
+      "tabs": [
+        {
+          "tab": "$50K 10/5",
+          "priceUsd": 99,
+          "payoutCapUsd": 1000,
+          "targets": "10%/5%",
+          "dailyLossPct": 3,
+          "maxLossPct": 10,
+          "split": "80%"
+        },
+        {
+          "tab": "$100k-10/5",
+          "priceUsd": 149,
+          "payoutCapUsd": 2000,
+          "targets": "10%/5%",
+          "dailyLossPct": 3,
+          "maxLossPct": 10,
+          "split": "80%"
+        },
+        {
+          "tab": "$200k- 10/5",
+          "priceUsd": 249,
+          "payoutCapUsd": 3000,
+          "targets": "10%/5%",
+          "dailyLossPct": 3,
+          "maxLossPct": 10,
+          "split": "80%"
+        }
+      ],
+      "consistencyNote": "No consistency during evaluation; 50% funded"
+    },
+    {
+      "productSlug": "summer-plan-2-step-8-5",
+      "tabs": [
+        {
+          "tab": "$50K 8/5",
+          "priceUsd": 119,
+          "payoutCapUsd": 1000,
+          "targets": "8%/5%"
+        },
+        {
+          "tab": "$100k- 8/5",
+          "priceUsd": 179,
+          "payoutCapUsd": 2000,
+          "targets": "8%/5%"
+        },
+        {
+          "tab": "$200k- 8/5",
+          "priceUsd": 279,
+          "payoutCapUsd": 3000,
+          "targets": "8%/5%"
+        }
+      ]
+    }
+  ],
+  "checkoutVerified": false,
+  "quotes": {
+    "buyingPower": "The total aggregate buying power allowed across all Summer Plan accounts is $600,000 per trader.",
+    "fiftyKActive": "2 x 1-Step, 2 x 2-Step 10%/5%, 2 x 2-Step 8%/5%",
+    "oneStepConsistency": "Consistency Requirement: 50% in both evaluation and Pro accounts"
+  }
+}

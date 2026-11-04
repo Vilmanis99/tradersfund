@@ -154,7 +154,8 @@
       "Daily check 2026-10-22: price change 50K $157 -> $225 and 25K null -> $145 from https://myfundedfutures.com/plans/rapid-eod; log: content/data/challenges/_captures/my-funded-futures-2026-10-22.json",
       "Payout gates (help 16158363 / 16727601, read 2026-10-26): first payout needs $2,100 (50K) / $1,100 (25K) in realized profits; later payouts unlock at $500 / $250 net profit since the last payout; $500 minimum; \"There is no cap on how much you can request per payout cycle.\" No daily loss limit in evaluation or Sim Funded; MLL locks once the trailing Max Loss reaches $100. \"Live transition on Rapid EOD 50k follows the same rules as standard Rapid 50k.\" Tier 1 news not allowed in Sim Funded; 7-day inactivity rule. No fixed first-payout day count is published for Rapid EOD, so payoutFirstDays stays null.",
       "Weekend holding (2026-10-26): false. Derived from the firm-wide session rule, not from a page that uses the word \"weekend\": https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade says positions \"can remain open until the New York session closes at 4:10 PM EST\" and \"any open positions will be automatically closed at 4:10 PM EST on regular (non-holiday) trading days.\" No position can therefore stay open over the Friday close.",
-      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
+      "Gap refresh 2026-10-26: official plan pages and help centre re-read from the box (US IP); quotes and conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+      "Low-drawdown gap audit 2 November 2026: Rapid EOD / Flex still publish dollar MLL (and Rapid EOD help still says no daily loss limit), so dailyLossPct stays null. maxLossPct 4 unchanged where already stored. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
     ]
   },
   {
@@ -214,7 +215,8 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/my-funded-futures-2026-10-20.json",
       "Daily check 2026-10-22: official Flex article re-read; still \"a legacy plan no longer on offer\"; prices stay null.",
-      "Legacy recheck 2026-10-26: help 13521620 (updated 2026-06-03) still gives \"You may request 50% of your net profits per payout, up to $5,000\" with 5 qualifying winning days, and the Flex blog still says \"This article is about a legacy plan no longer on offer\". No change; rules.weekend stays null because neither legacy source addresses it. Log: content/data/challenges/_captures/my-funded-futures-2026-10-26.json"
+      "Legacy recheck 2026-10-26: help 13521620 (updated 2026-06-03) still gives \"You may request 50% of your net profits per payout, up to $5,000\" with 5 qualifying winning days, and the Flex blog still says \"This article is about a legacy plan no longer on offer\". No change; rules.weekend stays null because neither legacy source addresses it. Log: content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+      "Low-drawdown gap audit 2 November 2026: Rapid EOD / Flex still publish dollar MLL (and Rapid EOD help still says no daily loss limit), so dailyLossPct stays null. maxLossPct 4 unchanged where already stored. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
     ]
   },
   {

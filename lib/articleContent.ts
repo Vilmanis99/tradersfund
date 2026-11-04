@@ -181,11 +181,11 @@ export function firstVerdictSentence(content: string) {
 
 // ── Phase 3 article diagrams (design/article-format-spec.md §4 C15, §6 P3) ──
 
-export type ArticleDiagramName = 'drawdown-types'
+export type ArticleDiagramName = 'drawdown-types' | 'consistency-calculator'
 export type ArticleSegment = { kind: 'html'; html: string } | { kind: 'diagram'; name: ArticleDiagramName }
 
 const DIAGRAM_SLOT = /<div\b[^>]*\sdata-article-diagram\s*=\s*(?:"([a-z-]+)"|'([a-z-]+)')[^>]*>\s*<\/div>/gi
-const KNOWN_DIAGRAMS: ReadonlySet<string> = new Set<ArticleDiagramName>(['drawdown-types'])
+const KNOWN_DIAGRAMS: ReadonlySet<string> = new Set<ArticleDiagramName>(['drawdown-types', 'consistency-calculator'])
 
 /**
  * Split prepared article HTML at authored `<div data-article-diagram="name"></div>`

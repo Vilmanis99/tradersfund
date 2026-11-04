@@ -19,7 +19,7 @@ type: "post"
 <div class="key-takeaways">
   <div class="title">Fast take</div>
   <ul>
-    <li>The current challenge file (prices rechecked 2026-10-20) contains 5 products and 27 product-size combinations, not a single 2-Step challenge.</li>
+    <li>The current challenge file (prices rechecked 2026-11-02) contains 5 products and 27 product-size combinations, not a single 2-Step challenge.</li>
     <li>FundingPips publishes a USD fee for all 27 combinations in its first-party comparison table. Sizes run from $5K to $200K; we removed the old $2.5K Pro and Standard rows on 2026-10-23 because no FundingPips page lists that size.</li>
     <li>Static maximum-loss limits range from 6% to 12% on the 4 evaluation products; FundingPips Zero instead uses a 5% trailing limit.</li>
     <li>The standard cycles pay 80% bi-weekly on 1 Step Flex, 80% weekly on 2 Step Pro, and 95% bi-weekly on Zero. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard offer 100% only on demand, with added conditions; the old monthly 100% and on-demand 90% routes are gone.</li>
@@ -44,33 +44,33 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Challenges available</strong></h2>
 
-<p>The challenge file verifies a USD fee for all 27 rows (prices rechecked 2026-10-20). Confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
+<p>Twenty-six of the 27 fees below are FundingPips checkout totals in USD from 2 November 2026. The 2 Step Pro $200K <strong>$844</strong> figure comes only from FundingPips' help-centre Compare Account Models table (updated 21 October 2026; re-read 2 November 2026) — we did not open that size at checkout that day. Confirm the live amount on the routed <a href="/go/fundingpips">FundingPips checkout</a>.</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem;">
   <caption class="hidden-caption">FundingPips products and account sizes</caption>
   <thead><tr style="background: var(--bg3);"><th>Product</th><th>Phases</th><th>Account</th><th>Fee</th><th>Targets</th><th>Daily / Max DD</th><th>Reward routes</th></tr></thead>
   <tbody>
-    <tr><td>1 Step Flex</td><td>1</td><td>$5K</td><td>$59</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$10K</td><td>$99</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$25K</td><td>$210</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$50K</td><td>$322</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
-    <tr><td>1 Step Flex</td><td>1</td><td>$100K</td><td>$566</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$5K</td><td>$32</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$10K</td><td>$59</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$25K</td><td>$159</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Flex</td><td>2</td><td>$50K</td><td>$269</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$5K</td><td>$74</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$10K</td><td>$111</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$25K</td><td>$255</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$50K</td><td>$353</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>1 Step Flex</td><td>1</td><td>$100K</td><td>$666</td><td>12%</td><td>3% / 12% static</td><td>80% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$5K</td><td>$35</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$10K</td><td>$64</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$25K</td><td>$175</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Flex</td><td>2</td><td>$50K</td><td>$299</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
     <tr><td>2 Step Flex</td><td>2</td><td>$100K</td><td>$555</td><td>10% / 8%</td><td>4% / 12% static</td><td>80% / 95% bi-weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$5K</td><td>$29</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
     <tr><td>2 Step Pro</td><td>2</td><td>$10K</td><td>$55</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$134</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$224</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$422</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$5K</td><td>$36</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$10K</td><td>$66</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$25K</td><td>$177</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$50K</td><td>$299</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
-    <tr><td>2 Step Standard</td><td>2</td><td>$100K</td><td>$544</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$25K</td><td>$145</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$50K</td><td>$249</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$100K</td><td>$466</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Pro</td><td>2</td><td>$200K</td><td>$844†</td><td>6% / 6%</td><td>3% / 6% static</td><td>80% weekly / 100% on demand</td></tr>
+    <tr><td>2 Step Standard</td><td>2</td><td>$5K</td><td>$39</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
+    <tr><td>2 Step Standard</td><td>2</td><td>$10K</td><td>$72</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
+    <tr><td>2 Step Standard</td><td>2</td><td>$25K</td><td>$195</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
+    <tr><td>2 Step Standard</td><td>2</td><td>$50K</td><td>$349</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
+    <tr><td>2 Step Standard</td><td>2</td><td>$100K</td><td>$652</td><td>8% / 5%</td><td>5% / 10% static</td><td>60%–100%</td></tr>
     <tr><td>FundingPips Zero</td><td>0</td><td>$5K</td><td>$60</td><td>—</td><td>3% / 5% trailing</td><td>95%</td></tr>
     <tr><td>FundingPips Zero</td><td>0</td><td>$10K</td><td>$88</td><td>—</td><td>3% / 5% trailing</td><td>95%</td></tr>
     <tr><td>FundingPips Zero</td><td>0</td><td>$25K</td><td>$188</td><td>—</td><td>3% / 5% trailing</td><td>95%</td></tr>
@@ -80,7 +80,7 @@ type: "post"
   </tbody>
 </table>
 
-<p>Prices were rechecked on 2026-10-20 and come from FundingPips-owned Help Center pages. The 27 listed fees do not reuse temporary coupons or competitor data. We used to carry 2 unpriced $2.5K rows (2 Step Pro and 2 Step Standard). On 2026-10-23 FundingPips’ Get Started article said “Sizes from $5,000 up to $200K”, its Compare Account Models price table started at $5K, and its Free Trial article no longer described a $2,500 size, so those rows were removed.</p>
+<p>Prices were rechecked on 2026-11-02 from FundingPips checkout (USD); the help-centre Compare Account Models table (updated 21 October 2026; re-read 2 November 2026) still lists lower fees for most sizes. †2 Step Pro $200K ($844) was not opened at checkout on 2 November 2026 — that figure is the help-table value only. The other 26 listed fees are checkout totals and do not reuse temporary coupons or competitor data. We used to carry 2 unpriced $2.5K rows (2 Step Pro and 2 Step Standard). On 2026-10-23 FundingPips’ Get Started article said “Sizes from $5,000 up to $200K”, its Compare Account Models price table started at $5K, and its Free Trial article no longer described a $2,500 size, so those rows were removed.</p>
 
 <p><strong>Instant-funding context.</strong> The <a href="/best-instant-funding-prop-firms">phase-0 product comparison</a> places FundingPips Zero’s 6 priced tiers, 95% split, 5% trailing maximum loss, and 14-day first-payout field beside all other current no-evaluation products.</p>
 
@@ -100,18 +100,18 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
-<p>The following 17 rows come directly from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> using the first-party fees rechecked on 2026-10-20 and the shorter 80%, 80%, and 95% stored routes. Break-even profit means gross Master Account profit needed for the trader’s split to recover the fee; the R-multiple compares that amount with the product’s maximum-loss allowance.</p>
+<p>The following 17 rows come directly from <a href="/true-cost-of-prop-firm-challenges"><code>computeTrueCost()</code></a> using the first-party checkout fees rechecked on 2026-11-02 and the shorter 80%, 80%, and 95% stored routes. Break-even profit means gross Master Account profit needed for the trader’s split to recover the fee; the R-multiple compares that amount with the product’s maximum-loss allowance.</p>
 
 <!-- 1 Step Flex — generated by scripts/gen-truecost.mjs -->
 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
   <caption class="hidden-caption">1 Step Flex true-cost projection</caption>
   <thead><tr style="background: var(--bg3);"><th style="padding: 8px 12px; text-align: left;">Tier</th><th style="padding: 8px 12px; text-align: left;">Fee</th><th style="padding: 8px 12px; text-align: left;">Break-even profit (80% split)</th><th style="padding: 8px 12px; text-align: left;">R-multiple vs 12% max DD</th><th style="padding: 8px 12px; text-align: left;">Days @ 1%/day (3% daily cap)</th></tr></thead>
   <tbody>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$59</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$74</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$99</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$124</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$210</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$263</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$322</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$403</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$100K</td><td style="padding: 8px 12px;">$566</td><td style="padding: 8px 12px;">$708</td><td style="padding: 8px 12px;">0.06</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$74</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$93</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.15</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$111</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$139</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$255</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$319</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">2</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$353</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$441</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.07</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$100K</td><td style="padding: 8px 12px;">$666</td><td style="padding: 8px 12px;">$833</td><td style="padding: 8px 12px;">0.07</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 
@@ -122,10 +122,10 @@ type: "post"
   <tbody>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$5K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$29</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$36</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$55</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$69</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$134</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$168</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.11</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$224</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$280</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$422</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$528</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.09</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
-    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$844</td><td style="padding: 8px 12px;">$1,055</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$25K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$145</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$181</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.12</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$50K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$249</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$311</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$100K</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$466</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$583</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">0.10</td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">1</td></tr>
+    <tr><td style="padding: 8px 12px;">$200K</td><td style="padding: 8px 12px;">$844†</td><td style="padding: 8px 12px;">$1,055</td><td style="padding: 8px 12px;">0.09</td><td style="padding: 8px 12px;">1</td></tr>
   </tbody>
 </table>
 
@@ -179,7 +179,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Who should pick FundingPips</strong></h2>
 
-<p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 0 minimum days per phase for new and reset accounts, and an 80% weekly route—against the $32 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
+<p>A rule-first CFD trader should compare the verified $29 fee on a $5K 2 Step Pro—with 6% and 6% targets, 6% static maximum loss, 0 minimum days per phase for new and reset accounts, and an 80% weekly route—against the $35 2 Step Flex fee, wider 12% loss room, and 80%, 95%, or 100% route conditions.</p>
 
 <p>Before paying for 2 Step Standard or 2 Step Pro, either model can be rehearsed on FundingPips’ free MT5 trial, which runs both phases for 14 calendar days each but cannot run alongside any other FundingPips account; our <a href="/blog/prop-firm-free-trial">prop firm free trial comparison</a> lists its limits next to FTMO, FundedNext and Alpha Capital (checked 2026-10-19; FTMO rechecked 2026-10-20).</p>
 
@@ -190,10 +190,10 @@ type: "post"
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>How many FundingPips products are current?</strong></h3>
-<p>The current source file (prices rechecked 2026-10-20) contains 5 products: 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard, and FundingPips Zero. Together they cover 27 account-size rows, all priced, from $5K to $200K.</p>
+<p>The current source file (prices rechecked 2026-11-02) contains 5 products: 1 Step Flex, 2 Step Flex, 2 Step Pro, 2 Step Standard, and FundingPips Zero. Together they cover 27 account-size rows, all priced, from $5K to $200K.</p>
 
 <h3 class="wp-block-heading"><strong>What is the cheapest FundingPips challenge?</strong></h3>
-<p>The cheapest fee is $29 for the $5K 2 Step Pro (rechecked 2026-10-20). FundingPips’ pages list no size below $5K (checked 2026-10-23), so there is no cheaper tier to set against it.</p>
+<p>The cheapest fee is $29 for the $5K 2 Step Pro (rechecked 2026-11-02). FundingPips’ pages list no size below $5K (checked 2026-10-23), so there is no cheaper tier to set against it.</p>
 
 <h3 class="wp-block-heading"><strong>Does FundingPips pay a 100% split?</strong></h3>
 <p>Only on demand, and only with conditions. As of our 2026-10-20 check, 1 Step Flex, 2 Step Flex, 2 Step Pro and 2 Step Standard Master Accounts can choose a 100% on-demand route (the old monthly 100% route is gone). It needs a 35% consistency score and 7 profitable days at 0.5%, and puts the account under a 1% Striking System trigger, so 100% is not a universal starting split.</p>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RuPendingLink from '@/components/RuPendingLink'
 import Link from '@/components/SafeLink'
 import { AlertTriangle, ArrowRight, CheckCircle2, Database, ShieldCheck } from 'lucide-react'
 import RussianFaq, { type RussianFaqItem } from '@/components/RussianFaq'
@@ -49,7 +50,8 @@ const CHEAPEST_BUYABLE = { name: 'Accelerated (1-Phase) $5K', priceUsd: 40 }
 const PRICE_CONFLICT_CHECKED = CHECKED
 const ASCEND_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} все шесть позиций Ascend в магазине CFT помечены как недоступные к покупке, поэтому цены Ascend мы не приводим.`
 const BREAK_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} цена Break $100K расходится: на главной странице — $199, в условиях (разд. 5.6) и в магазине — $200. Позиции главной страницы ($70 / $139 / $199) в магазине недоступны к покупке.`
-const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи.`
+const BREAK_AVAIL_CHECKED = '2026-10-30'
+const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи. По данным на ${BREAK_AVAIL_CHECKED.split('-').reverse().join('.')} позиции Break Evaluation в магазине помечены как недоступные к покупке (is_purchasable=false; сборы за активацию ещё продавались) — наличие к покупке сверьте в магазине.`
 const PRICE_CONFLICT_NOTE = `${ASCEND_CONFLICT_NOTE} ${BREAK_CONFLICT_NOTE} Итоговую цену и доступность проверьте в корзине перед оплатой.`
 
 const SOURCES = {
@@ -512,7 +514,7 @@ export default function RussianCryptoFundTraderReviewPage() {
         <section className="ru-section" id="alternatives">
           <div className="ru-shell ru-content" data-russian-cft-alternatives="bright-funded-first">
             <h2>Альтернативы Crypto Fund Trader</h2>
-            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, начните с BrightFunded. Доступ для РФ показан бейджем рядом с кнопкой — он берётся из нашей последней проверки.</p>
+            <p>Если вам важнее форекс и индексы, чем крипта, или нужна оплата в евро, начните с BrightFunded. Доступ для РФ показан бейджем рядом с кнопкой — он берётся из нашей последней проверки. <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Список проп-компаний для России с датами проверки →</RuPendingLink></p>
             <div className="ru-grid">
               <article className="ru-card" data-russian-cft-alternative="bright-funded">
                 <ShieldCheck size={22} color="var(--accent-light)" aria-hidden="true" />
@@ -531,6 +533,10 @@ export default function RussianCryptoFundTraderReviewPage() {
                 и расхождения официальных источников в способах оплаты разобраны там.
               </p>
             )}
+            <p data-russian-cft-spice="related">
+              Ещё один MT5-вариант с крипто-выплатами — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link>
+              {' '}(статус для РФ неясен; лист-цены и расхождения условий — в обзоре).
+            </p>
             <p>Полное сравнение крипто-направления — в <Link href="/ru/luchshie-kripto-prop-firmy">рейтинге крипто-проп фирм</Link>.</p>
           </div>
         </section>

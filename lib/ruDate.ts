@@ -28,3 +28,13 @@ export function ruDatesInText(text: string | null | undefined): string {
   if (!text) return ''
   return text.replace(ISO_DATE_IN_TEXT, (_, year: string, month: string, day: string) => `${day}.${month}.${year}`)
 }
+
+const RU_MONTHS_NOMINATIVE = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+
+/** «ноябрь 2026»: month and year of `now` in Riga time (lowercase nominative), for monthly RU page labels. */
+export function ruMonthYear(now: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', timeZone: 'Europe/Riga' }).formatToParts(now)
+  const year = parts.find(part => part.type === 'year')?.value ?? String(now.getUTCFullYear())
+  const month = Number(parts.find(part => part.type === 'month')?.value ?? now.getUTCMonth() + 1)
+  return `${RU_MONTHS_NOMINATIVE[month - 1]} ${year}`
+}

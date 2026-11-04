@@ -1,0 +1,491 @@
+{
+  "firmSlug": "fundingpips",
+  "captureType": "checkout-price-recapture",
+  "capturedAt": "2026-11-02",
+  "capturedAtTimestamp": "2026-11-02T07:00:00+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/fundingpips-2026-10-20.json",
+  "decision": "Adopt checkout USD totals as list prices. No first-party evidence of a temporary price uplift was found on 2 November 2026 (no uplift/temporary-price wording on selector or checkout). Help-centre Compare Account Models table still lists the lower 21 October 2026 figures; dated product notes record the conflict.",
+  "upliftFinding": {
+    "temporaryUpliftEvidence": false,
+    "halloweenBanner": {
+      "verbatim": "🎃 HALLOWEEN SALE: 20% OFF New Clients | 15% OFF Existing Clients - Code: HALLOWEEN",
+      "endDatePublished": null,
+      "codeAppliedAtCheckout": false,
+      "dealsJsonAction": "none — note-only, not checkout-verified as a price change"
+    }
+  },
+  "regionAndCurrency": {
+    "regionSelectorFound": false,
+    "checkoutCurrencyDropdown": [
+      "USD",
+      "EUR",
+      "GBP",
+      "CHF",
+      "CAD",
+      "INR"
+    ],
+    "checkoutCurrencyDefault": "USD",
+    "selectorPriceEqualsCheckoutTotal": true,
+    "accountRequiredForCheckout": false,
+    "addOnsAppliedByDefault": false,
+    "addOnNotes": "cTrader +$20; Swing +10% — neither applied by default"
+  },
+  "helpTable": {
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+    "apiUrl": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/48368490585105.json",
+    "title": "Compare Account Models",
+    "articleUpdatedAt": "2026-10-21T09:40:17Z",
+    "checkedAt": "2026-11-02",
+    "htmlFetchHttp": 403,
+    "apiFetchHttp": 200,
+    "stillPresent": true,
+    "verbatimPriceMap": "var prices = { '1step': {5:59,10:99,25:210,50:322,100:566,200:null}, '2std8': {5:36,10:66,25:177,50:299,100:544,200:null}, '2std10':{5:34,10:63,25:168,50:285,100:520,200:null}, '2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}, '2flex': {5:32,10:59,25:159,50:269,100:555,200:null}, 'zero':  {5:60,10:88,25:188,50:244,100:444,200:888} };",
+    "browserHelpSearch": "21 October help price table not found via help-centre UI search on 2 November 2026; Zendesk API still returns the article with the price map unchanged since updated_at 2026-10-21T09:40:17Z"
+  },
+  "checkoutPricesUsd": [
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 5000,
+      "priceUsd": 39,
+      "currency": "USD",
+      "templateId": "716a8544-0560-4955-9951-f047057281ae",
+      "dailyLossPctParam": 5,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=716a8544-0560-4955-9951-f047057281ae&daily_loss=5",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 10000,
+      "priceUsd": 72,
+      "currency": "USD",
+      "templateId": "839ce30b-6879-4299-a16c-4f4654be2ebd",
+      "dailyLossPctParam": 5,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=839ce30b-6879-4299-a16c-4f4654be2ebd&daily_loss=5",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 25000,
+      "priceUsd": 195,
+      "currency": "USD",
+      "templateId": "403722cd-c45d-4bca-842e-90d1c442f585",
+      "dailyLossPctParam": 5,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=403722cd-c45d-4bca-842e-90d1c442f585&daily_loss=5",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 50000,
+      "priceUsd": 349,
+      "currency": "USD",
+      "templateId": "98189319-9ff2-4481-a4e4-a3cc976fbb15",
+      "dailyLossPctParam": 5,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=98189319-9ff2-4481-a4e4-a3cc976fbb15&daily_loss=5",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 100000,
+      "priceUsd": 652,
+      "currency": "USD",
+      "templateId": "4dff98f4-b408-4a7d-a1de-e405f504a701",
+      "dailyLossPctParam": 5,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=4dff98f4-b408-4a7d-a1de-e405f504a701&daily_loss=5",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 5000,
+      "priceUsd": 35,
+      "currency": "USD",
+      "templateId": "668d79a6-c79a-4c0a-912c-88f401a84a18",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=668d79a6-c79a-4c0a-912c-88f401a84a18",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 10000,
+      "priceUsd": 64,
+      "currency": "USD",
+      "templateId": "21fd9339-f2ab-4a5e-8143-8b4f81b78904",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=21fd9339-f2ab-4a5e-8143-8b4f81b78904",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 25000,
+      "priceUsd": 175,
+      "currency": "USD",
+      "templateId": "4d3090d1-9e07-4ce0-b249-2b58c82100eb",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=4d3090d1-9e07-4ce0-b249-2b58c82100eb",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 50000,
+      "priceUsd": 299,
+      "currency": "USD",
+      "templateId": "6c5ed60c-ded3-49fb-b209-8bef8df1bab6",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=6c5ed60c-ded3-49fb-b209-8bef8df1bab6",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 100000,
+      "priceUsd": 555,
+      "currency": "USD",
+      "templateId": "499ef643-832f-4eae-a4c5-8d5103644477",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=499ef643-832f-4eae-a4c5-8d5103644477",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 5000,
+      "priceUsd": 29,
+      "currency": "USD",
+      "templateId": "f4b5b8c4-89c4-4acc-9c96-6bbd4b4ad2b2",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=f4b5b8c4-89c4-4acc-9c96-6bbd4b4ad2b2",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 10000,
+      "priceUsd": 55,
+      "currency": "USD",
+      "templateId": "915f627e-6858-4c3c-b534-fdf5a30df4ee",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=915f627e-6858-4c3c-b534-fdf5a30df4ee",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 25000,
+      "priceUsd": 145,
+      "currency": "USD",
+      "templateId": "e155f88c-dc1c-49cb-85af-86058504ffb2",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=e155f88c-dc1c-49cb-85af-86058504ffb2",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 50000,
+      "priceUsd": 249,
+      "currency": "USD",
+      "templateId": "9d2a7ee9-ebf6-4078-a10f-2ec5fd5274c1",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=9d2a7ee9-ebf6-4078-a10f-2ec5fd5274c1",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 100000,
+      "priceUsd": 466,
+      "currency": "USD",
+      "templateId": "9836436e-3daf-41c1-9d56-5061c84067a8",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=9836436e-3daf-41c1-9d56-5061c84067a8",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 5000,
+      "priceUsd": 74,
+      "currency": "USD",
+      "templateId": "4e693e4d-d374-4770-8c46-954e33975465",
+      "dailyLossPctParam": 3,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=4e693e4d-d374-4770-8c46-954e33975465&daily_loss=3",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 10000,
+      "priceUsd": 111,
+      "currency": "USD",
+      "templateId": "f78fbc45-164d-41a4-8e85-0589b5d150c7",
+      "dailyLossPctParam": 3,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=f78fbc45-164d-41a4-8e85-0589b5d150c7&daily_loss=3",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 25000,
+      "priceUsd": 255,
+      "currency": "USD",
+      "templateId": "1e835abd-d993-4329-b097-53f7dc3faf78",
+      "dailyLossPctParam": 3,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=1e835abd-d993-4329-b097-53f7dc3faf78&daily_loss=3",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 50000,
+      "priceUsd": 353,
+      "currency": "USD",
+      "templateId": "76d73a70-e314-48ca-9a05-ddbbfc30166a",
+      "dailyLossPctParam": 3,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=76d73a70-e314-48ca-9a05-ddbbfc30166a&daily_loss=3",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 100000,
+      "priceUsd": 666,
+      "currency": "USD",
+      "templateId": "997325d4-8d29-436c-a60b-901fab8d08c5",
+      "dailyLossPctParam": 3,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=997325d4-8d29-436c-a60b-901fab8d08c5&daily_loss=3",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 5000,
+      "priceUsd": 60,
+      "currency": "USD",
+      "templateId": "8aea455b-d051-41d8-97a8-bce5eaa9d138",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=8aea455b-d051-41d8-97a8-bce5eaa9d138",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 10000,
+      "priceUsd": 88,
+      "currency": "USD",
+      "templateId": "50ae68e1-ef35-425d-bda2-3e8f4fb8392d",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=50ae68e1-ef35-425d-bda2-3e8f4fb8392d",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 25000,
+      "priceUsd": 188,
+      "currency": "USD",
+      "templateId": "e283df46-d5d1-4568-bd6a-2d9f16664385",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=e283df46-d5d1-4568-bd6a-2d9f16664385",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 50000,
+      "priceUsd": 244,
+      "currency": "USD",
+      "templateId": "1d4ca0ce-f0a2-4ef9-888c-95dafdafb2cc",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=1d4ca0ce-f0a2-4ef9-888c-95dafdafb2cc",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 100000,
+      "priceUsd": 444,
+      "currency": "USD",
+      "templateId": "e3a279aa-a21d-4943-b003-356c1b170f13",
+      "dailyLossPctParam": null,
+      "checkoutUrl": "https://app.fundingpips.com/checkout?template=e3a279aa-a21d-4943-b003-356c1b170f13",
+      "selectorMatchedCheckout": true
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 200000,
+      "priceUsd": 888,
+      "currency": "USD",
+      "templateId": null,
+      "dailyLossPctParam": null,
+      "checkoutUrl": null,
+      "selectorMatchedCheckout": true
+    }
+  ],
+  "priceChangesApplied": [
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 5000,
+      "oldPriceUsd": 59,
+      "newPriceUsd": 74
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 10000,
+      "oldPriceUsd": 99,
+      "newPriceUsd": 111
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 25000,
+      "oldPriceUsd": 210,
+      "newPriceUsd": 255
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 50000,
+      "oldPriceUsd": 322,
+      "newPriceUsd": 353
+    },
+    {
+      "productSlug": "1-step-flex",
+      "sizeUsd": 100000,
+      "oldPriceUsd": 566,
+      "newPriceUsd": 666
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 5000,
+      "oldPriceUsd": 32,
+      "newPriceUsd": 35
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 10000,
+      "oldPriceUsd": 59,
+      "newPriceUsd": 64
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 25000,
+      "oldPriceUsd": 159,
+      "newPriceUsd": 175
+    },
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 50000,
+      "oldPriceUsd": 269,
+      "newPriceUsd": 299
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 25000,
+      "oldPriceUsd": 134,
+      "newPriceUsd": 145
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 50000,
+      "oldPriceUsd": 224,
+      "newPriceUsd": 249
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 100000,
+      "oldPriceUsd": 422,
+      "newPriceUsd": 466
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 5000,
+      "oldPriceUsd": 36,
+      "newPriceUsd": 39
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 10000,
+      "oldPriceUsd": 66,
+      "newPriceUsd": 72
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 25000,
+      "oldPriceUsd": 177,
+      "newPriceUsd": 195
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 50000,
+      "oldPriceUsd": 299,
+      "newPriceUsd": 349
+    },
+    {
+      "productSlug": "2-step-standard",
+      "sizeUsd": 100000,
+      "oldPriceUsd": 544,
+      "newPriceUsd": 652
+    }
+  ],
+  "unchangedAtCheckout": [
+    {
+      "productSlug": "2-step-flex",
+      "sizeUsd": 100000,
+      "priceUsd": 555
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 5000,
+      "priceUsd": 29
+    },
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 10000,
+      "priceUsd": 55
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 5000,
+      "priceUsd": 60
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 10000,
+      "priceUsd": 88
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 25000,
+      "priceUsd": 188
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 50000,
+      "priceUsd": 244
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 100000,
+      "priceUsd": 444
+    },
+    {
+      "productSlug": "zero",
+      "sizeUsd": 200000,
+      "priceUsd": 888
+    }
+  ],
+  "listedButNotCapturedAtCheckout": [
+    {
+      "productSlug": "2-step-pro",
+      "sizeUsd": 200000,
+      "storedPriceUsd": 844,
+      "note": "Not opened at checkout on 2 November 2026; help table still lists 844"
+    },
+    {
+      "productSlug": "1-step-flex",
+      "variant": "daily_loss=2",
+      "note": "2% daily-loss checkout option exists per product notes; not tested on 2 November 2026"
+    }
+  ],
+  "helpTableOnlyNotListedAsProduct": [
+    {
+      "helpKey": "2std10",
+      "prices": {
+        "5": 34,
+        "10": 63,
+        "25": 168,
+        "50": 285,
+        "100": 520
+      },
+      "note": "Compare Account Models embeds a 2 Step Standard 10%-target price map; hub stores the 8%-target / 5% daily Standard product only"
+    }
+  ],
+  "observations": [
+    "Homepage banner on 2 November 2026 read: \"🎃 HALLOWEEN SALE: 20% OFF New Clients | 15% OFF Existing Clients - Code: HALLOWEEN\" with no published end date; the code was not applied at checkout and is not added to deals.",
+    "Zero prices matched help table and prior store on every size including $200K.",
+    "2 Step Pro $5K and $10K matched help table ($29 / $55); larger Pro sizes and all Standard / Flex / 1 Step Flex sizes were above the help table."
+  ],
+  "sourceCapturedAtPolicy": "priceUsd updated from checkout on 2026-11-02; product sourceCapturedAt left at 2026-10-20 (Zero 2026-10-19) so RU ranking page clock and FundedNext KYC/payout 30-day gates are unchanged. Dated checkout note is on each product."
+}

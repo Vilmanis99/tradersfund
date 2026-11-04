@@ -1,0 +1,45 @@
+{
+  "firmSlug": "ofp-funding",
+  "officialDomain": "https://ofpfunding.com",
+  "capturedAt": "2026-11-01",
+  "capturedAtTimestamp": "2026-11-01T09:45:00+02:00",
+  "timezone": "Europe/Riga",
+  "previousCapture": "content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+  "pagesRead": [
+    "https://ofpfunding.com/",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/account-models/",
+    "https://help.ofpfunding.com/which-countries-are-supported-or-restricted/"
+  ],
+  "accessNotes": "Daily check 2026-11-01: pricing widget read per program tab (Instant Lite, Classic, Instant Plus), size and max-daily-drawdown option at 80% split. The size selector now offers $400,000 and $500,000 on all three programs (homepage plan data adds IL_400K/IL_500K and IP_400K/IP_500K plans that were absent on 2026-10-31). Existing 5K-300K prices unchanged vs 2026-10-29. Classic $400K/$500K values were read three times because the widget lags between clicks. Help account-models still says the maximum total allocation per trader is $400,000 across all Instant accounts combined, so this conflicts with a single $500,000 account; firm maxAllocation left at $300,000 for review. Restricted-country help page unchanged vs 2026-10-31.",
+  "newSizes": {
+    "Instant Classic (3% daily / 6% max drawdown)": {
+      "400000": 1335,
+      "500000": 1665
+    },
+    "Instant Classic (5% daily / 10% max drawdown)": {
+      "400000": 1670,
+      "500000": 2080
+    },
+    "Instant Lite (3% daily / 5% max)": {
+      "400000": 790,
+      "500000": 980
+    },
+    "Instant Lite (5% daily / 10% max)": {
+      "400000": 990,
+      "500000": 1230
+    },
+    "Instant Plus (3% daily / 5% max drawdown)": {
+      "400000": 2670,
+      "500000": 3330
+    },
+    "Instant Plus (5% daily / 10% max drawdown)": {
+      "400000": 3340,
+      "500000": 4160
+    }
+  },
+  "quotes": {
+    "pricingWidget": "Select Account Size $5,000 $10,000 $25,000 $50,000 $100,000 $200,000 $300,000 $400,000 $500,000 … Account Price: $1,335 (Classic, $400,000, 3%)",
+    "allocationHelp": "The maximum total allocation per trader is $400,000 across all Instant accounts combined."
+  }
+}

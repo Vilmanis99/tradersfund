@@ -3,7 +3,7 @@ title: "What Is the Prop Firm Consistency Rule? Formulas and Examples (2026)"
 seoTitle: "Consistency Rule Calculator & Examples: Prop Firms (2026)"
 slug: "what-is-prop-firm-consistency-rule"
 date: "2024-11-22 17:13:02"
-modified: "2026-10-27 09:00:00"
+modified: "2026-11-02 09:00:00"
 author: "Edris Derakhshi"
 excerpt: "A prop-firm consistency rule can compare the best day with total profit, positive-day profit, or a target. Learn the formulas, stages, and consequences."
 seoDescription: "Consistency rule calculator: required profit = best day / limit. Lookup table for 15%-50% limits, worked examples, formulas and current prop firm rules."
@@ -24,6 +24,14 @@ type: "post"
     <li><strong>Do not confuse rule families.</strong> Best-day, lot-size, profitable-day, and strategy-consistency conditions are separate tests.</li>
   </ol>
 </div>
+
+<h2 id="consistency-rule-calculator-heading">Consistency rule calculator</h2>
+
+<p>A consistency rule is usually “best day ÷ some profit base ≤ limit %.” The base is the part firms bury: total profit, profit since the last payout, or (on some products) a fixed profit target. This calculator applies the share formula only. Pick a firm preset or enter a custom limit, then plug in your best closed day and the profit figure the firm names. Pass/fail here is an estimate. The firm’s own dashboard, timezone cut-off, and open-position rules decide eligibility.</p>
+
+<div data-article-diagram="consistency-calculator"></div>
+
+<p>Comparing a published no-consistency-rule option? BrightFunded’s help centre says it does not currently enforce a consistency rule. Removing a best-day gate does not remove the 1-Step trailing drawdown, news soft-breach window, or first-reward clock. Read the <a href="/blog/bright-funded-prop-firm">BrightFunded review</a>, then <a href="/go/bright-funded">check BrightFunded’s live terms</a> only if the exact product rules fit the strategy. We may earn a commission; the partnership does not change displayed terms or editorial scoring.</p>
 
 <h2>What is a prop-firm consistency rule?</h2>
 
@@ -85,7 +93,7 @@ type: "post"
 
 <p>The table is a dated product snapshot, not a permanent firm list. Use the <a href="/prop-firm-challenges">product comparison</a> for the current structured fields and the <a href="/prop-firm-challenge-changes">challenge-change ledger</a> for material rule updates. A null percentage means no verified numeric field unless the source explicitly says the rule does not apply.</p>
 
-<h2>Consistency-rule calculator: the best-day share formula</h2>
+<h2>Best-day share formula and lookup tables</h2>
 
 <p>This worked example applies only when the firm's rule explicitly uses <code>best day / applicable profit total</code>. Assume the best day is $1,200, the current applicable profit total is $3,000, and the maximum is 30%.</p>
 
@@ -165,6 +173,19 @@ type: "post"
 
 <p>No. A best-day rule measures profit concentration, while a lot-size rule measures changes in position or contract size. A product may use either test, both tests, or neither.</p>
 
+
+<h3>Is there a free prop firm consistency rule calculator?</h3>
+
+<p>Yes — the calculator on this page runs the best-day share formula in your browser. Choose a preset (BrightFunded, FTMO 1-Step, FundingPips 2-Step Standard, Topstep Combine, Apex Performance Account payouts, LucidFlex/LucidDaily, or Custom), enter best-day profit and the profit figure the firm names, and read pass/fail plus how much more applicable profit you need. It does not replace the firm’s dashboard.</p>
+
+<h3>How do I calculate a 50% consistency rule (FTMO 1-Step)?</h3>
+
+<p>For FTMO 1-Step accounts ordered from 12 Oct 2026, divide best-day profit by <strong>total profit</strong> (sum of closed profits and losses) and multiply by 100. A $2,400 best day on $3,600 total is 66.7%; getting back to 50% with the same best day needs $4,800 total profit ($1,200 more). Older accounts still on Positive Days' Profit must use that denominator instead.</p>
+
+<h3>What if the firm does not say what the percentage is measured against?</h3>
+
+<p>Treat the basis as <strong>not stated</strong>. Topstep’s 55% Trading Combine wording is the live example in our 2026-10-28 check: the help article names both the profit target and total profit, so we leave the basis empty rather than guess. Do not size trades from a calculator preset until the firm’s page is unambiguous or the firm clarifies the basis.</p>
+
 <h3>Which prop-firm products have no consistency rule?</h3>
 
-<p>Current captures explicitly record no consistency objective for FTMO 2-Step (captured 2026-10-20) and no consistency rule for FundedNext Stellar Instant (captured 2026-10-19). FundedNext's Stellar 2-Step and Lite apply a 40% best-day rule only when you choose the On-Demand payout option. Each finding is product-specific; verify the live rules because another product from either firm can differ.</p>
+<p>BrightFunded’s help centre states it does “not currently enforce” a consistency rule (checked 2026-10-20). Current captures also explicitly record no consistency objective for FTMO 2-Step (captured 2026-10-20) and no consistency rule for FundedNext Stellar Instant (captured 2026-10-19). FundedNext's Stellar 2-Step and Lite apply a 40% best-day rule only when you choose the On-Demand payout option. See <a href="/blog/prop-firms-with-no-consistency-rule">prop firms with no consistency rule</a> for the dated shortlist, and confirm the live product page before paying.</p>

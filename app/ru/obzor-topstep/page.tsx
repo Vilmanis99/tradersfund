@@ -144,7 +144,7 @@ export default function RussianTopstepReviewPage() {
   const consistency = reference?.consistencyRulePct ?? null
   const target = reference?.profitTargets?.phase1 ?? null
   const mllTiers = (reference?.accountSizes ?? []).map(tier => ({ size: tier.sizeUsd, mll: tier.maxLossUsd ?? null }))
-  const mllLine = mllTiers.length ? mllTiers.map(tier => usd(tier.mll)).join(' / ') : 'не подтверждён'
+  const mllLine = mllTiers.length ? mllTiers.map(tier => usd(tier.mll)).join(' / ') : 'не указан'
   const sizesLine = mllTiers.length ? mllTiers.map(tier => sizeLabel(tier.size)).join(' / ') : '—'
   const targetDollars = mllTiers.length && target != null ? mllTiers.map(tier => usd(tier.size * target / 100)).join(' / ') : '—'
   const priceLine = (product: Challenge | undefined) => product
@@ -313,9 +313,9 @@ export default function RussianTopstepReviewPage() {
                 ? 'Казахстан в нашем списке ограничений Topstep есть.'
                 : kazakhstanNamed
                   ? 'Казахстан упомянут на странице допуска Topstep — сверьте, в каком списке.'
-                  : 'Казахстан на странице допуска Topstep не назван ни в одном списке — ни среди запрещённых, ни среди стран «только XFA». Это не значит, что Казахстан открыт: допуск оттуда мы не подтверждаем.'}{' '}
+                  : 'Казахстан на странице допуска Topstep не назван ни в одном списке — ни среди запрещённых, ни среди стран «только XFA». Это не значит, что Казахстан открыт: допуск оттуда мы не проверяли.'}{' '}
               Среди запрещённых не названы также: {cisNotListed.filter(([en]) => en !== 'Kazakhstan').map(([, ru]) => ru).join(', ')}.
-              Отсутствие страны в списке — ещё не подтверждение допуска: Topstep предупреждает, что список может меняться в любой момент.
+              Отсутствие страны в списке — ещё не гарантия допуска: Topstep предупреждает, что список может меняться в любой момент.
               {germanyXfaOnly
                 ? ' Отдельно есть страны, где доступен только Express Funded Account без перехода на Live-счёт; среди них Германия.'
                 : ' Отдельно есть страны, где доступен только Express Funded Account без перехода на Live-счёт.'}{' '}
@@ -577,7 +577,7 @@ export default function RussianTopstepReviewPage() {
             <p>
               TopstepX — торговая платформа самой Topstep, через неё подключаются счета Combine и XFA. Quantower подключается через TopstepX и доступен только на Trading Combine
               и XFA, не на Live-счёте. График TopstepX не подключается к внешним платформам вроде TradingView (по данным на{' '}
-              {ruDate(firm.platformEvidence?.sourceCapturedAt ?? GAPS_DATE)}). Совместимость других сторонних платформ в нашей проверке не подтверждена.
+              {ruDate(firm.platformEvidence?.sourceCapturedAt ?? GAPS_DATE)}). Совместимость других сторонних платформ в нашей проверке не проверялась.
               Логин в TopstepX тот же, что и в Topstep Dashboard (справка обновлена {ruDate(TOPSTEPX_CHANGED)}, проверено {ruDate(DELTA_CHECKED)}).
             </p>
             <p>
@@ -768,7 +768,7 @@ export default function RussianTopstepReviewPage() {
         <section className="ru-section">
           <div className="ru-shell ru-content" id="faq">
             <h2>Частые вопросы</h2>
-            {!faqSchemaReady && <p className="ru-notice">Часть источников требует повторной проверки. Ответы сохраняют датированный разбор и не подтверждают действующие условия.</p>}
+            {!faqSchemaReady && <p className="ru-notice">Часть источников требует повторной проверки. Ответы сохраняют датированный разбор и не гарантируют, что условия действуют сейчас.</p>}
             <RussianFaq items={faqs} />
           </div>
         </section>

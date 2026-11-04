@@ -78,6 +78,12 @@ export interface LandingFirm {
     url: string
     capturedAt: string
   }[]
+  /**
+   * Product slugs this card actually names. Sitemap lastmod hashes only these rows
+   * (challenges:product:firm:slug) so sibling products on the same firm — e.g. The5ers
+   * Summer CFD on a futures card — do not redate the page.
+   */
+  lastmodProductSlugs?: string[]
 }
 
 export interface LandingEvidenceGap {
@@ -565,6 +571,7 @@ export const LANDINGS: Landing[] = [
             url: evidence.sourceUrl,
             capturedAt: evidence.sourceCapturedAt,
           },
+          lastmodProductSlugs: products.map(product => product.productSlug),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
@@ -641,6 +648,7 @@ export const LANDINGS: Landing[] = [
               url: evidence.sourceUrl,
               capturedAt: evidence.sourceCapturedAt,
             },
+            lastmodProductSlugs: products.map(product => product.productSlug),
           }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
@@ -715,6 +723,7 @@ export const LANDINGS: Landing[] = [
             metricLabel: 'India evidence',
             metricValue: `${evidenceScore}/12`,
             note: `${evidence.country.summary} ${evidence.payout.summary}`,
+            lastmodProductSlugs: challenges.map(challenge => challenge.productSlug),
           }
         })
         .sort((a, b) => b.sortKey - a.sortKey)
@@ -800,6 +809,7 @@ export const LANDINGS: Landing[] = [
               url: challenge.sourceUrl,
               capturedAt: challenge.sourceCapturedAt,
             },
+            lastmodProductSlugs: [challenge.productSlug],
           })
         }
       }
@@ -887,6 +897,7 @@ export const LANDINGS: Landing[] = [
           trailingMetricValue: products.length.toString(),
           note: `${joinNatural(productNames)}. Captured drawdown: ${joinNatural(drawdowns)}; published ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}; ${joinNatural(payoutGates)}.`,
           evidenceLinks: evidenceLinksForProducts(products),
+          lastmodProductSlugs: products.map(product => product.productSlug),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
@@ -958,6 +969,7 @@ export const LANDINGS: Landing[] = [
           trailingMetricValue: products.length.toString(),
           note: `${joinNatural(productNames)}. Captured drawdown: ${joinNatural(drawdowns)}; published starting ${splits.length === 1 ? 'split' : 'splits'}: ${splits.length ? `${splits.join('–')}%` : 'unverified'}.`,
           evidenceLinks: evidenceLinksForProducts(products),
+          lastmodProductSlugs: products.map(product => product.productSlug),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
@@ -1040,6 +1052,7 @@ export const LANDINGS: Landing[] = [
             url: evidence.sourceUrl,
             capturedAt: evidence.sourceCapturedAt,
           },
+          lastmodProductSlugs: products.map(product => product.productSlug),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),
@@ -1120,6 +1133,7 @@ export const LANDINGS: Landing[] = [
           trailingMetricValue: `${qualifying.length}/${freshProducts.length}`,
           note: `${joinNatural(productNames)} meet both holding rules. Other products from the same firm may differ.`,
           evidenceLinks: evidenceLinksForProducts(qualifying),
+          lastmodProductSlugs: qualifying.map(challenge => challenge.productSlug),
         }]
       })
       .sort((a, b) => b.sortKey - a.sortKey || a.firm.name.localeCompare(b.firm.name)),

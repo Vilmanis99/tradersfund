@@ -40,6 +40,20 @@ const todayUtc = () => new Date().toISOString().slice(0, 10)
 const SEED_PATH = 'scripts/fixtures/lastmod-prod-seed-ii44.json'
 /** Content tree the v2 manifest hashes were computed against (pre-Thu-bundle main). */
 const CONTENT_BASELINE = 'ab52de49'
+/** Chrome-only URLs (CR lastmod-classes-1030 Class B): tip vs main body unchanged aside from sitewide stamp; force provenance on hv5 migration so false 10-30 stamps roll back. */
+const CHROME_ONLY_LASTMOD_ROLLBACK = new Set([
+  '/best-crypto-prop-firms',
+  '/best-futures-prop-firms',
+  '/best-prop-firms-in-india',
+  '/best-prop-firms-in-india/challenge-changes',
+  '/best-prop-firms-in-india/compare',
+  '/best-prop-firms-in-uk',
+  '/cheapest-prop-firms',
+  '/prop-firms/crypto-payouts',
+  '/ru/fundednext-vs-bright-funded',
+  '/ru/prop-firmy-bez-kyc',
+  '/ru/vyplaty-prop-firm',
+])
 
 /**
  * Prod seed is a ONE-TIME hashVersion-migration bootstrap.
@@ -92,14 +106,19 @@ function contentAuthoredDay(path, matchSha, matchAuthorDay, priorDifferingDay) {
   try { blob = git('rev-parse', `${matchSha}:${path}`).trim() } catch { return matchAuthorDay }
   const candidates = authorDaysForBlob(blob).filter(day => {
     if (day > matchAuthorDay) return false
-    if (priorDifferingDay && day <= priorDifferingDay) return false
+    // Allow author-day === priorDifferingDay: squash blobs are often first
+    // authored on the prior tip's day and only land in a later merge commit.
+    // Excluding equality forced obzor-fundingpips 10-28→10-29 blank stamps.
+    if (priorDifferingDay && day < priorDifferingDay) return false
     return true
   })
   if (!candidates.length) return matchAuthorDay
   return candidates.sort()[0]
 }
 
-/** Earliest `changed` ever stored for this exact source hash across manifest history. */
+/** Earliest `changed` ever stored for this exact source hash across manifest history.
+ * Cross-version hits can under-date after a projection bump; dateChangedSource refuses
+ * any historical day on or before priorDifferingDay under the current walk. */
 function earliestStoredChanged(key, tipHash) {
   let earliest = null
   let log
@@ -159,7 +178,17 @@ function dateChangedSource(spec, key, tipHash) {
   }
   const authored = contentAuthoredDay(spec.path, matchSha, matchDay, priorDifferingDay)
   const first = versions.filter(version => version.hashes.has(key)).at(-1).day
-  const changed = [historical, authored].filter(Boolean).sort()[0]
+  // Cross-HV earliestStored can pre-date the current projection's first differing
+  // commit (tradeday full/compare stuck on 10-26 while tip rows only match from
+  // authored 10-27). Refuse historical days on or before priorDifferingDay.
+  // Otherwise keep historical so squash-author days do not blank-stamp URL clusters
+  // (challenge-watch 10-28→10-29 with unchanged URL hash).
+  let changed = authored
+  if (historical) {
+    if (priorDifferingDay && historical <= priorDifferingDay) changed = authored
+    else if (!authored || historical <= authored) changed = historical
+    else changed = authored
+  }
   return { changed, first }
 }
 
@@ -225,12 +254,22 @@ async function generate() {
       if (migrating) {
         const baseNewHash = baselineBySpec.get(spec.path)?.get(key)
         const baseEntry = baselineSources[key] ?? prev
-        // Content unchanged since content baseline under the new projection → keep stored date.
-        if (baseNewHash === tipHash && baseEntry?.changed) {
+        // Content unchanged since content baseline under the new projection.
+        // Prefer the earlier of stored/baseline changed and provenance so a prior
+        // projection's false over-date (e.g. consistencyRuleApplies on landing)
+        // can roll back when the new hash function makes tip match baseline.
+        if (baseNewHash === tipHash) {
+          // Tip matches CONTENT_BASELINE under the new projection: date from the
+          // current walk only. Do NOT min() with a prior-manifest changed day —
+          // that kept cross-HV under-dates (e.g. tradeday full/compare stayed on
+          // 10-26 while tip profitSplitTiers only match from 10-28). Over-dates
+          // from the old projection already fall away because tip≡baseline makes
+          // dateChangedSource see the older real body.
+          const dated = dateChangedSource(spec, key, tipHash)
           next[key] = {
             hash: tipHash,
-            changed: baseEntry.changed,
-            first: baseEntry.first ?? prev?.first ?? baseEntry.changed,
+            changed: dated.changed,
+            first: baseEntry?.first ?? prev?.first ?? dated.first,
           }
           continue
         }
@@ -250,7 +289,20 @@ async function generate() {
 
       // Real content change, new key, or migration off a false-dated hash: date via history.
       const dated = dateChangedSource(spec, key, tipHash)
-      const changed = migrating ? dated.changed : (prev ? today : dated.changed)
+      let changed = migrating ? dated.changed : (prev ? today : dated.changed)
+      // New surface keys (challenges:landing / firm:landing) have no prior manifest
+      // history, so dateChangedSource falls through to the tip blob's git author day.
+      // Squashed daily releases often carry today's author date while the rendered
+      // landing fields last changed with the sibling :full:/:en: tip — inherit that
+      // earlier changed day when the sibling is already dated (full is projected
+      // before landing in sourceSpecs order).
+      if (migrating && !prev) {
+        const sibling = key.includes(':landing:')
+          ? key.replace(':landing:', key.startsWith('firm:') ? ':en:' : ':full:')
+          : null
+        const sibDay = sibling && next[sibling]?.changed
+        if (sibDay && sibDay < changed) changed = sibDay
+      }
       next[key] = {
         hash: tipHash,
         changed,
@@ -313,21 +365,33 @@ async function generate() {
     if (!migrating && prevU?.hash === h) {
       lastmod = prevU.lastmod
       urlKept++
+    } else if (migrating && CHROME_ONLY_LASTMOD_ROLLBACK.has(pathname)) {
+      // Class B (chrome-only): only URLs allowed to move on this projection bump —
+      // and only earlier (roll back false 10-30 tip stamps). Provenance / ii44 seed.
+      const computed = entry.lastModified.slice(0, 10)
+      if (seed[pathname]) {
+        lastmod = [seed[pathname], computed].sort()[0]
+        urlSeeded++
+      } else {
+        lastmod = computed
+        urlKept++
+      }
+    } else if (migrating && prevU?.lastmod) {
+      // Projection-only migration must not false-bump. Visible content vs cac6 is
+      // unchanged for non-B URLs; keep the previous stateful lastmod (cac6/prod).
+      // Real content edits are committed first; a later non-migrating regen stamps today.
+      lastmod = prevU.lastmod
+      urlKept++
     } else if (
       migrating
       && sourceKeys.length > 0
       && urlSourcesUnchanged(sourceKeys, hashByKey, baselineHashByKey)
     ) {
-      // Content unchanged under new projection vs CONTENT_BASELINE.
-      // Prefer prod seed (ii44) when present; else keep previous lastmod; else entry date.
-      // (Empty sourceKeys = editorial-only URL; those fall through so modified dates can move.)
+      // New URL (no prev) matching CONTENT_BASELINE under the new projection.
       if (seed[pathname]) {
         const published = entry.published ?? seed[pathname]
         lastmod = [seed[pathname], published].sort().at(-1)
         urlSeeded++
-      } else if (prevU?.lastmod) {
-        lastmod = prevU.lastmod
-        urlKept++
       } else {
         lastmod = entry.lastModified.slice(0, 10)
         urlKept++
@@ -336,17 +400,15 @@ async function generate() {
       lastmod = today
       urlBumped++
     } else if (migrating) {
-      // Real rendered-content change since baseline (or new URL): use provenance date.
+      // Truly new URL with no prev state.
       lastmod = entry.lastModified.slice(0, 10)
       urlBumped++
     }
 
-    // Never leave an ii44 URL on the false 2026-10-28 squash/hash-redate.
-    // Real content changes on that calendar day move to today instead.
-    if (migrating && seed[pathname] && lastmod === '2026-10-28') {
-      lastmod = today
-      urlBumped++
-    }
+    // ii44 URLs still computing to the false squash day while content matches
+    // CONTENT_BASELINE are corrected above via the seed / min(prev, computed) keep
+    // path. Do NOT rewrite tip≠baseline URLs whose provenance is a real 2026-10-28
+    // authorship (FundingPips etc.) to today — that created false newest-date bumps.
 
     urls[pathname] = { hash: h, lastmod }
   }

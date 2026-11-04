@@ -1,0 +1,50 @@
+{
+  "route": "/ru/obzor-goat-funded-trader",
+  "type": "review",
+  "firm": "Goat Funded Trader",
+  "dataAsOf": "2026-11-02",
+  "sources": [
+    "app/ru/obzor-goat-funded-trader (official help articles, /model and Terms re-read by Prop Firm Tracker 27.10.2026; /workspace/ru-data/2026-10-27-goat-funded-trader-final.md; capture goat-funded-trader-2026-10-27.json; list prices re-checked by Tracker 02.11.2026 (Instant Premium up; Blitz not in selector), evidence goat-2026-11-02/premium-price-diff-2026-11-02.md; restricted-countries list re-checked 30.10.2026, evidence goat-2026-10-30/VERDICT.md)"
+  ],
+  "verdict": "Goat Funded Trader — проп-фирма с гонконгским юрлицом и широкой линейкой: 1-Step, три варианта 2-Step, несколько Instant-моделей, в том числе новая Instant Daily с ежедневными заявками на 1–3% от начального баланса, и сезонная GOAT Blitz; лист-цены — от $30 (Instant Daily $1K) до $2 998 (Instant GOAT $400K) по данным на 02.11.2026. Россия, Беларусь и Украина входят в список из 32 стран, где фирма не разрешает создать аккаунт и пользоваться платформой, а с 06.10.2026 торговля через VPN, VPS или прокси считается нарушением. Для трейдеров из других стран главные риски — потолок первых двух выплат, сбор 3% с каждой выплаты и расхождение условий о возврате взноса.",
+  "best": [
+    "вам нужен выбор платформы: cTrader, MT5, Match-Trader, TradeLocker или Volumetrica (MT5 и cTrader — не для США)",
+    "вам нужны частые небольшие выплаты: Instant Daily даёт заявку раз в день на 1–3% от начального баланса (сплит 60–80%)",
+    "вы торгуете на выходных: перенос позиций разрешён (на funded действует правило про последние 3 часа пятницы и первые 3 часа понедельника)"
+  ],
+  "avoid": [
+    "вам нужны сторонние советники или копирование чужих сделок: разрешены только собственные EA и копировщик GOAT Trade Copier",
+    "вы рассчитываете на крупную первую выплату: первые две выплаты ограничены меньшим из 6% начального баланса и $10 000",
+    "вы торгуете через VPN или VPS: с 06.10.2026 это прямое нарушение, а выплата по такой торговле не положена",
+    "вам важен гарантированный возврат взноса: справка обещает его с 4-й выплатой, а п. 7.4 условий исключает возвраты"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "Goat Funded Trader",
+    "alternatives": [
+      "BrightFunded"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} — «{badge}» (по нашей последней проверке); страну, KYC и способ оплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и вам нужен проверенный доступ: статус {firm} — «{badge}»; запросите у фирмы письменный ответ до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      }
+    }
+  },
+  "firmInFirmsJson": false
+}

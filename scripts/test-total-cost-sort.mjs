@@ -56,12 +56,23 @@ const tradeDayMin = Math.min(...ranked.filter(r => r.row.firm.slug === 'tradeday
 if (tradeDayMin >= 240) {
   // Topstep $149 and OFP Instant Lite $200 lead. TradeDay Intraday $240 is no longer pinned third: the 2026-10-20
   // capture added LucidDaily ($224 at $100K), so TradeDay keeps its $240 total and its place in the data-sorted order.
-  assert.deepEqual(ranked.slice(0, 2).map(r => [r.row.firm.slug, r.totalUsd]), [['topstep', 149], ['ofp-funding', 200]], 'Topstep no-activation $149, OFP Instant Lite $200')
+  // 2026-10-30: The5ers Summer Plan 2-Step 10%/5% $100K advertised $149 (checkout not verified) ties Topstep at $149.
+  // Summer Plan 2-Step 8%/5% $100K is $179; OFP Instant Lite stays at $200.
+  const top2 = ranked.slice(0, 2).map(r => [challengeKey(r.row), r.totalUsd])
+  assert.deepEqual(top2.map(x => x[1]), [149, 149], 'two $149 totals lead ($100K)')
+  assert.deepEqual(new Set(top2.map(x => x[0])), new Set([
+    'topstep:trading-combine-no-activation-fee-path',
+    'the5ers:summer-plan-2-step-10-5',
+  ]), 'Topstep no-activation + The5ers Summer 10/5 lead at $149')
+  const ofp = ranked.find(r => challengeKey(r.row) === 'ofp-funding:instant-lite')
+  assert.ok(ofp, 'OFP Instant Lite present')
+  assert.equal(ofp.totalUsd, 200, 'OFP Instant Lite $200')
+  assert.ok(ranked.indexOf(ofp) >= 2, 'OFP sits after the $149 leaders')
+  const summer85 = ranked.find(r => challengeKey(r.row) === 'the5ers:summer-plan-2-step-8-5')
+  assert.ok(summer85 && summer85.totalUsd === 179, 'The5ers Summer 8/5 $100K is $179')
   const tradeDayIndex = ranked.findIndex(r => r.row.firm.slug === 'tradeday' && r.totalUsd === tradeDayMin)
   assert.equal(tradeDayMin, 240, 'TradeDay Intraday $100K totals $240')
   assert(ranked.slice(0, tradeDayIndex).every(r => r.totalUsd <= 240) && ranked.slice(tradeDayIndex + 1).every(r => r.totalUsd >= 240), 'TradeDay $240 sits in total order')
-  assert.equal(challengeKey(ranked[0].row), 'topstep:trading-combine-no-activation-fee-path')
-  assert.equal(challengeKey(ranked[1].row), 'ofp-funding:instant-lite')
 } else {
   console.log(`note: TradeDay $100K is $${tradeDayMin} in this data (promo pricing), so it leads; expected order computed from data`)
 }

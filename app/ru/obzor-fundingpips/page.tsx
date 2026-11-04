@@ -139,7 +139,7 @@ function FundingPipsDeepDive({ accessCurrent }: { accessCurrent: boolean }) {
       <section className="ru-section" id="dostup-iz-rossii">
         <div className="ru-shell ru-content" data-russian-fundingpips-russia="unclear">
           <h2>Доступна ли FundingPips из России</h2>
-          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {formatRuDate(ACCESS_CHECKED)}</span></p>
+          <p><span className="ru-badge ru-badge--unclear">Доступ для РФ не ясен · проверено {formatRuDate(ACCESS_CHECKED)}</span> <RuPendingLink href="/ru/luchshie-prop-firmy#spisok-dlya-rossii">Рейтинг проп-фирм для России с датой проверки статуса →</RuPendingLink></p>
           <p>
             Россия в списках FundingPips прямо не названа ни в условиях, ни в справке. <a href={TERMS_URL} target="_blank" rel="nofollow noopener noreferrer">Условия</a>{' '}
             (действуют с {TERMS_EFFECTIVE}) исключают резидентов стран из санкционных списков FATF и ЕС/ООН, а также Вьетнама и ОАЭ;{' '}

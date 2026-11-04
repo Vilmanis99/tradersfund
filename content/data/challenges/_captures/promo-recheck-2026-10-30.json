@@ -1,0 +1,93 @@
+{
+  "capturedAt": "2026-10-30",
+  "capturedBy": "prop-firm-tracker",
+  "asOf": "2026-10-30",
+  "windowDays": 25,
+  "freshness": {
+    "datasets": 20,
+    "fresh": 20,
+    "stale": 0,
+    "nextFailure": "2026-11-14",
+    "oldest": "TradeDay 2026-10-14"
+  },
+  "codes": {
+    "alpha-capital": {
+      "code": "HALLOWEEN45",
+      "pct": 45,
+      "status": "live",
+      "ends": "2026-10-31 midnight UK",
+      "url": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+      "quote": "45% off \u2026 26 Oct 2026 \u2013 31 Oct 2026 \u00b7 Does not apply to Alpha Pro 8% and 10% Bi-weekly. Live until midnight UK time on 31 October."
+    },
+    "city-traders-imperium": {
+      "code": "FEARLESS15",
+      "pct": 15,
+      "status": "live",
+      "ends": "2026-10-31 23:59 UK",
+      "url": "https://citytradersimperium.com/",
+      "quote": "Valid until 31 Oct 2026, 23:59 UK time. Terms apply."
+    },
+    "bright-funded": {
+      "code": "HW30",
+      "pct": 30,
+      "status": "live",
+      "ends": "Halloween offer, no published end date",
+      "url": "https://brightfunded.com/",
+      "quote": "Halloween Offer: Code: HW30 30% Off"
+    },
+    "goat-funded-trader": {
+      "code": "HALLOWEEN50",
+      "pct": 50,
+      "status": "live",
+      "ends": "no published end date (Halloween-named; page comment start 2026-10-26; next BOGO40)",
+      "url": "https://www.goatfundedtrader.com/model",
+      "quote": "coupon: 'HALLOWEEN50', // Halloween 2026-10-26, was GFT45; next: BOGO40"
+    },
+    "crypto-fund-trader": {
+      "code": "BOO20",
+      "pct": 20,
+      "status": "live",
+      "ends": "Halloween overlay, no published end date",
+      "url": "https://cryptofundtrader.com/",
+      "quote": "Copy code: BOO20"
+    },
+    "fxify": {
+      "codes": [
+        "ONESTEP35",
+        "FUNDED40",
+        "AGHHH35"
+      ],
+      "status": "regional-live",
+      "url": "https://fxify.com/",
+      "quote": "AGHHH35 Expires: 2 November; FUNDED40 Expires: 3rd November 2026; ONESTEP35 Expires: 31st December 2026"
+    },
+    "fundednext": {
+      "code": "FNTRICK",
+      "pct": 41,
+      "status": "live",
+      "ends": "no end date published",
+      "url": "https://fundednext.com/cfds/stellar-2-step",
+      "quote": "SAVE UP TO 41% WITH CODE FNTRICK"
+    },
+    "maven": {
+      "code": "OMO",
+      "status": "live",
+      "alsoSeen": "DIAMOND 5% A/B control / ROCKET 10% test",
+      "url": "https://maventrading.com/",
+      "quote": "40% OFF with code OMO"
+    },
+    "fundingpips": {
+      "code": "HELLO",
+      "pct": 20,
+      "status": "live",
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "quote": "Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts."
+    },
+    "apex": {
+      "code": null,
+      "status": "none",
+      "url": "https://apextraderfunding.com/",
+      "quote": "Legacy Accounts Are Back"
+    }
+  }
+}

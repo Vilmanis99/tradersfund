@@ -36,6 +36,8 @@ import ReviewVerdictBox from '@/components/ReviewVerdictBox'
 import PriceMatrix from '@/components/PriceMatrix'
 import ChallengePath from '@/components/ChallengePath'
 import DrawdownTypesDiagram from '@/components/DrawdownTypesDiagram'
+import ConsistencyCalculator from '@/components/ConsistencyCalculator'
+import { buildConsistencyCalculatorPresets } from '@/lib/consistencyCalculatorPresets'
 import { comparisonHref } from '@/lib/relatedComparisons'
 import { getReviewCopy } from '@/lib/verdictCopy'
 import { rankFirmAlternatives } from '@/lib/firmAlternatives'
@@ -104,6 +106,13 @@ export default async function BlogPostPage({ params }: Props) {
   )
 
   const articleSegments = splitArticleDiagrams(contentWithIds)
+
+  const needsConsistencyCalculator = articleSegments.some(
+    segment => segment.kind === 'diagram' && segment.name === 'consistency-calculator',
+  )
+  const consistencyTool = needsConsistencyCalculator
+    ? buildConsistencyCalculatorPresets()
+    : null
 
   const allPosts = getAllPostData()
   const toolReviewLinks = getTradingToolReviewLinks(slug, allPosts)
@@ -278,9 +287,25 @@ export default async function BlogPostPage({ params }: Props) {
               // Only articles with an authored diagram slot are segmented; every other
               // article keeps its single unwrapped prose container.
               <div className="prose post-prose">
-                {articleSegments.map((segment, index) => segment.kind === 'diagram'
-                  ? <DrawdownTypesDiagram key={`diagram-${index}`} locale="en" />
-                  : <div key={`html-${index}`} className="post-prose__segment" dangerouslySetInnerHTML={{ __html: segment.html }} />)}
+                {articleSegments.map((segment, index) => {
+                  if (segment.kind !== 'diagram') {
+                    return <div key={`html-${index}`} className="post-prose__segment" dangerouslySetInnerHTML={{ __html: segment.html }} />
+                  }
+                  if (segment.name === 'consistency-calculator' && consistencyTool) {
+                    return (
+                      <ConsistencyCalculator
+                        key={`diagram-${index}`}
+                        presets={consistencyTool.presets}
+                        defaultPreset={consistencyTool.defaultPreset}
+                        hideHeader
+                      />
+                    )
+                  }
+                  if (segment.name === 'drawdown-types') {
+                    return <DrawdownTypesDiagram key={`diagram-${index}`} locale="en" />
+                  }
+                  return null
+                })}
               </div>
             ) : (
               <div className="prose post-prose"

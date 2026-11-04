@@ -39,6 +39,16 @@
         "sizeUsd": 300000,
         "priceUsd": 1000,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 1335,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 1665,
+        "refundable": true
       }
     ],
     "profitTargets": null,
@@ -60,10 +70,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($1,335) and $500,000 ($1,665) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   },
   {
@@ -106,6 +117,16 @@
         "sizeUsd": 300000,
         "priceUsd": 1250,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 1670,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 2080,
+        "refundable": true
       }
     ],
     "profitTargets": null,
@@ -127,10 +148,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($1,670) and $500,000 ($2,080) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   },
   {
@@ -168,6 +190,16 @@
         "sizeUsd": 300000,
         "priceUsd": 590,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 790,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 980,
+        "refundable": true
       }
     ],
     "profitTargets": {
@@ -191,11 +223,12 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
       "Rechecked 29 October 2026: Instant Lite account duration is a dated conflict. The live pricing table on https://ofpfunding.com/ shows Account Duration 28 Days (plan data maxTradingDays 28, payoutDays 28). https://ofpfunding.com/trading-rules Instant Lite payout text still says 'during the active 30-day period' and '30-day validity period has expired'. https://help.ofpfunding.com/account-models/ still lists 'Total Duration: 30 Days'. maxTradingDays is set to 28 to match the live pricing table (same source as priceUsd); flag 28 vs 30 in copy.",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($790) and $500,000 ($980) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   },
   {
@@ -233,6 +266,16 @@
         "sizeUsd": 300000,
         "priceUsd": 740,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 990,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 1230,
+        "refundable": true
       }
     ],
     "profitTargets": {
@@ -256,11 +299,12 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
       "Rechecked 29 October 2026: Instant Lite account duration is a dated conflict. The live pricing table on https://ofpfunding.com/ shows Account Duration 28 Days (plan data maxTradingDays 28, payoutDays 28). https://ofpfunding.com/trading-rules Instant Lite payout text still says 'during the active 30-day period' and '30-day validity period has expired'. https://help.ofpfunding.com/account-models/ still lists 'Total Duration: 30 Days'. maxTradingDays is set to 28 to match the live pricing table (same source as priceUsd); flag 28 vs 30 in copy.",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($990) and $500,000 ($1,230) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   },
   {
@@ -303,6 +347,16 @@
         "sizeUsd": 300000,
         "priceUsd": 2000,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 2670,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 3330,
+        "refundable": true
       }
     ],
     "profitTargets": null,
@@ -324,10 +378,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($2,670) and $500,000 ($3,330) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   },
   {
@@ -370,6 +425,16 @@
         "sizeUsd": 300000,
         "priceUsd": 2500,
         "refundable": true
+      },
+      {
+        "sizeUsd": 400000,
+        "priceUsd": 3340,
+        "refundable": true
+      },
+      {
+        "sizeUsd": 500000,
+        "priceUsd": 4160,
+        "refundable": true
       }
     ],
     "profitTargets": null,
@@ -391,10 +456,11 @@
     },
     "assetClass": "cfd",
     "sourceUrl": "https://ofpfunding.com/#pricing",
-    "sourceCapturedAt": "2026-10-29",
+    "sourceCapturedAt": "2026-11-01",
     "notes": [
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ofp-funding-2026-10-20.json",
-      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json"
+      "Rechecked 29 October 2026 from https://ofpfunding.com/, https://ofpfunding.com/trading-rules, and help.ofpfunding.com (trading rules, drawdown, consistency, payout, countries, news, strategies, account models). 80% list prices unchanged vs 19 October 2026 capture. Consistency Rule pct left null: pricing plan data still carries maxScore 20 on Instant Classic and null on Instant Lite/Plus (Lite renders 'No Consistency'); help account-models says Consistency Rule YES on Classic and NO on Lite/Plus without a percent; the consistency help article (last update 23 September 2026, rechecked 29 October 2026) no longer publishes the prior On-Demand 10% / Bi-Weekly 15% / Monthly 20% thresholds. Weekend and overnight holding still unpublished. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "Rechecked 1 November 2026 on the live pricing widget https://ofpfunding.com/ (80% split): all existing list prices unchanged; new $400,000 ($3,340) and $500,000 ($4,160) sizes added (homepage plan data now includes 400K/500K plans). Conflict: help https://help.ofpfunding.com/account-models/ still says 'The maximum total allocation per trader is $400,000 across all Instant accounts combined' and the firm maxAllocation field stays $300,000 pending review. Capture provenance: content/data/challenges/_captures/ofp-funding-2026-11-01.json"
     ]
   }
 ]

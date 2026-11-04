@@ -242,7 +242,7 @@
     "alpha-capital-vs-fundingpips": {
       "pickA": [
         "you hold over weekends: Alpha Capital allows it on 3 of its 10 products; FundingPips restricts it everywhere",
-        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; FundingPips' lowest is $422",
+        "you want a lower $100K fee: Alpha Pro 6% on-demand lists $397; FundingPips' lowest is $444",
         "you want a lower one-phase target: Alpha One on-demand asks 10%; FundingPips' lowest is 12%"
       ],
       "pickB": [
@@ -583,7 +583,7 @@
       ],
       "pickB": [
         "you want more loss room: FundingPips 1 Step Flex allows a 12% static max loss; City Traders Imperium evaluations cap at 10%",
-        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; City Traders Imperium's lowest is $449",
+        "you want a lower $100K fee: FundingPips Zero lists $444; City Traders Imperium's lowest is $449",
         "you want no minimum trading days: FundingPips 1 Step Flex lists 0 (new and reset accounts); City Traders Imperium evaluations need 3+"
       ]
     },
@@ -730,7 +730,7 @@
         "you trade the news: Crypto Fund Trader allows it on 4 of its 5 products; FundingPips restricts it everywhere"
       ],
       "pickB": [
-        "you want a lower $100K fee: FundingPips 2 Step Pro lists $422; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
+        "you want a lower $100K fee: FundingPips 2 Step Pro lists $466; Crypto Fund Trader's lowest is $528 (Break: $200 plus $328 activation)",
         "you trade on cTrader: FundingPips supports it; Crypto Fund Trader doesn't list it",
         "you plan to scale: FundingPips lists a $2,000,000 maximum allocation; Crypto Fund Trader lists $300,000"
       ]
@@ -865,7 +865,7 @@
       "pickA": [
         "you want an early first payout: E8 One allows on-demand requests from day 3 (FundingPips: day 7)",
         "you hold over weekends: E8 Markets allows it on 4 of its 5 products; FundingPips restricts it everywhere",
-        "you want a lower $100K fee: E8 Signature lists $280; FundingPips' lowest is $422"
+        "you want a lower $100K fee: E8 Signature lists $280; FundingPips' lowest is $444"
       ],
       "pickB": [
         "you want to skip the evaluation: FundingPips sells funded accounts with no evaluation; E8 Markets doesn't",
@@ -1111,7 +1111,7 @@
     "fundednext-vs-fundingpips": {
       "pickA": [
         "you hold over weekends: FundedNext allows it on every product; FundingPips restricts it everywhere",
-        "you want a lower $100K fee: Stellar Lite lists $399.99; FundingPips' lowest is $422",
+        "you want a lower $100K fee: Stellar Lite lists $399.99; FundingPips' lowest is $444",
         "you trade on MT4: FundedNext supports it; FundingPips doesn't list it"
       ],
       "pickB": [
@@ -1223,7 +1223,7 @@
       ],
       "pickB": [
         "you hold over weekends: FXIFY allows it on 8 of its 10 products; FundingPips restricts it everywhere",
-        "you want a lower $100K fee: FXIFY Three Phase lists $399; FundingPips' lowest is $422",
+        "you want a lower $100K fee: FXIFY Three Phase lists $399; FundingPips' lowest is $444",
         "you trade crypto: FXIFY lists 2 crypto products; FundingPips lists none"
       ]
     },
@@ -1236,7 +1236,7 @@
       "pickB": [
         "you want an early first payout: LucidDaily pays on demand from day 1 (FundingPips: day 7)",
         "you trade futures: every Lucid Trading product is a futures evaluation; FundingPips lists none",
-        "you want a lower $100K fee: LucidFlex lists $293; FundingPips' lowest is $422"
+        "you want a lower $100K fee: LucidFlex lists $293; FundingPips' lowest is $444"
       ]
     },
     "fundingpips-vs-maven": {
@@ -1246,7 +1246,7 @@
       ],
       "pickB": [
         "you hold over weekends: Maven allows it on every product; FundingPips restricts it everywhere",
-        "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundingPips' lowest is $422",
+        "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundingPips' lowest is $444",
         "you trade the news: Maven allows it on 4 of its 9 products; FundingPips restricts it everywhere"
       ]
     },
@@ -1317,7 +1317,7 @@
       "pickB": [
         "you want an early first payout: Tradeify Select Daily pays from day 1 (FundingPips: day 7)",
         "you trade futures: every Tradeify product is a futures evaluation; FundingPips lists none",
-        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FundingPips' lowest is $422"
+        "you want a lower $100K fee: Tradeify Growth Evaluation lists $255; FundingPips' lowest is $444"
       ]
     },
     "fxify-vs-lucid-trading": {

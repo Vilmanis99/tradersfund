@@ -636,7 +636,7 @@ export default function RussianCryptoPropFirmsPage() {
               {hashHedgeReviewHref ? (
                 <>
                   {' '}Вне этого списка — Hash Hedge: Россия не названа в списке ограничений условий от {HASH_HEDGE_TERMS_DATE_RU}; способ оплаты официальные страницы описывают по-разному, поэтому подтвердите его у поддержки до покупки —{' '}
-                  <Link href={hashHedgeReviewHref} data-russian-crypto-hash-hedge-link="gated">обзор Hash Hedge</Link>.
+                  <Link href={hashHedgeReviewHref} data-russian-crypto-hash-hedge-link="gated">обзор Hash Hedge</Link>. Рядом по теме — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link> (статус доступа из РФ неясен; лист-цены и конфликты условий — в обзоре).
                 </>
               ) : null}
             </p>

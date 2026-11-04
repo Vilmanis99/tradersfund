@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllPages, getAllCategories, getPostsByCategory } from '@/lib/mdx'
 import { getAllFirms } from '@/lib/firms'
-import { FEATURES } from '@/lib/features'
+import { FEATURES, getFirmsForFeature } from '@/lib/features'
 import { getAllCanonicalPairs, COMPARISON_EDITORIAL_DATE } from '@/lib/comparisons'
 import { LANDINGS, buildLandingPayload } from '@/lib/landings'
 import { buildIndiaMatcherFirms } from '@/lib/indiaMatcher'
@@ -23,7 +23,7 @@ import {
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
 import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
 import { RUSSIAN_ROUTE_EXTRA_EDITORIAL } from '@/lib/russianRouteLastmod'
-import { fileSource, firmSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
+import { fileSource, firmSources, firmListingOnlySources, landingFirmChallengeSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
 
 const BASE_URL = 'https://tradersfundhub.com'
 const HOME_EDITORIAL_DATE = '2026-09-14'
@@ -71,7 +71,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? buildIndiaMatcherFirms(buildLandingPayload(indiaLanding).ranked.map(entry => entry.firm))
     : []
   const indiaEligibleFirmSlugs = new Set(indiaFirms.map(firm => firm.slug))
-  const indiaSources = [data('india-evidence.json'), ...[...indiaEligibleFirmSlugs].flatMap(slug => firmSources(slug, 'en'))]
+  const indiaSources = [data('india-evidence.json'), ...[...indiaEligibleFirmSlugs].flatMap(slug => firmSources(slug, 'landing'))]
+  const indiaCompareSources = [data('india-evidence.json'), ...[...indiaEligibleFirmSlugs].flatMap(slug => firmSources(slug, 'compare'))]
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: lm(BASE_URL, HOME_EDITORIAL_DATE, [...allFirms('en'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'daily', priority: 1 },
@@ -79,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/prop-firm-discount-codes`, lastModified: lm(`${BASE_URL}/prop-firm-discount-codes`, null, [data('deals.json')]), changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/best-prop-firms-in-india/compare`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/compare`, null, indiaSources), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/best-prop-firms-in-india/challenge-changes`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/challenge-changes`, null, [...indiaSources, data('challenge-watch.json')]), changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, null, indiaSources), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/challenge-comparison`, null, indiaCompareSources), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/best-prop-firms-in-india/payout-methods`, lastModified: lm(`${BASE_URL}/best-prop-firms-in-india/payout-methods`, null, [data('india-evidence.json')]), changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE_URL}/prop-firm-challenges`, lastModified: lm(`${BASE_URL}/prop-firm-challenges`, null, [...allFirms('en'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE_URL}/prop-firm-challenge-changes`, lastModified: lm(`${BASE_URL}/prop-firm-challenge-changes`, null, [data('challenge-watch.json')]), changeFrequency: 'weekly', priority: 0.9 },
@@ -95,17 +96,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // Listing surface: rule flags only (no Trustpilot). Split-tier UI dates pages that render tiers.
-  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => ({
-    url: `${BASE_URL}/prop-firms/${f.slug}`,
-    lastModified: lm(
-      `${BASE_URL}/prop-firms/${f.slug}`,
-      null,
-      [...allFirms('listing'), ...SPLIT_TIER_SOURCES],
-      [f.lastReviewed],
-    ),
-    changeFrequency: 'weekly',
-    priority: 0.75,
-  }))
+  const featureRoutes: MetadataRoute.Sitemap = FEATURES.map(f => {
+    const featureSources = f.slug === 'crypto-payouts'
+      ? getFirmsForFeature(f.slug).flatMap(firm => firmListingOnlySources(firm.name))
+      : [...allFirms('listing'), ...SPLIT_TIER_SOURCES]
+    return {
+      url: `${BASE_URL}/prop-firms/${f.slug}`,
+      lastModified: lm(
+        `${BASE_URL}/prop-firms/${f.slug}`,
+        null,
+        featureSources,
+        [f.lastReviewed],
+      ),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    }
+  })
   const indiaMatchupRoutes: MetadataRoute.Sitemap = Object.values(INDIA_MATCHUPS)
     .filter(matchup => matchup.firmSlugs.every(slug => indiaEligibleFirmSlugs.has(slug)))
     .map(matchup => ({
@@ -113,7 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lm(
         `${BASE_URL}${indiaMatchupPath(matchup)}`,
         null,
-        [data('india-evidence.json'), ...matchup.firmSlugs.flatMap(slug => firmSources(slug, 'en'))],
+        [data('india-evidence.json'), ...matchup.firmSlugs.flatMap(slug => firmSources(slug, 'compare'))],
       ),
       changeFrequency: 'weekly' as const,
       priority: 0.88,
@@ -127,17 +133,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'best-prop-firms-in-india': 'india-evidence.json',
   }
   const landingRoutes: MetadataRoute.Sitemap = LANDINGS.map(l => {
-    const ranked = [...new Set(buildLandingPayload(l).ranked.map(entry => entry.firm.name))]
+    const ranked = buildLandingPayload(l).ranked
+    const firmChallengeSources = [
+      ...new Set(
+        ranked.flatMap(entry =>
+          landingFirmChallengeSources(entry.firm.name, entry.lastmodProductSlugs),
+        ),
+      ),
+    ]
     const evidence = LANDING_EVIDENCE[l.slug]
     return {
       url: `${BASE_URL}/${l.slug}`,
       lastModified: lm(
         `${BASE_URL}/${l.slug}`,
         null,
-        [...ranked.flatMap(name => firmSources(name, 'en')), ...(evidence ? [data(evidence)] : [])],
+        [...firmChallengeSources, ...(evidence ? [data(evidence)] : [])],
         [l.lastReviewed],
       ),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     }
   })
@@ -171,17 +184,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     })
 
-  // Category archives: the newest post lastmod in the category.
+  // Category archives: normally the newest post lastmod in the category.
+  // /category/prop-firms is special-cased: BlogCard prints title, excerpt and published
+  // date only, so inheriting each post's sitemap lastmod (firm data / body edits)
+  // over-dated it when OFP's modified bumped while the listing cards stayed identical.
   const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map(cat => {
     const catPosts = getPostsByCategory(cat)
     const catUrl = `${BASE_URL}/category/${cat.toLowerCase().replace(/\s+/g, '-')}`
+    const propFirmsListing = cat.toLowerCase().replace(/\s+/g, '-') === 'prop-firms'
+    const editorial = propFirmsListing
+      ? [newest(catPosts.map(p => p.date).filter(Boolean).map(d => new Date(`${String(d).slice(0, 10)}T00:00:00Z`)))]
+      : [newest(catPosts.flatMap(p => postLastmod.get(p.slug) ?? []))]
     return {
       url: catUrl,
       lastModified: lm(
         catUrl,
         catPosts.map(p => p.date).filter(Boolean).sort()[0],
         [],
-        [newest(catPosts.flatMap(p => postLastmod.get(p.slug) ?? []))],
+        editorial,
       ),
       changeFrequency: 'weekly' as const,
       priority: 0.5,

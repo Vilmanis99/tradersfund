@@ -3,7 +3,7 @@ title: "Prop Firms With No Consistency Rule: What Null vs None Means (2026)"
 seoTitle: "Prop Firms With No Consistency Rule (Verified 2026)"
 slug: "prop-firms-with-no-consistency-rule"
 date: "2026-10-15 12:00:00"
-modified: "2026-10-27 12:00:00"
+modified: "2026-10-30 12:00:00"
 author: "Tara Mohseni"
 excerpt: "A blank consistency field is not a published zero. See which products publish a percentage, which state none, and which payout-stage caveats still apply."
 seoDescription: "Prop firms with no consistency rule, verified: explicit none at CTI Direct Funding, FundedNext Stellar and E8 Pro, null captures, and the 15%–55% caps."
@@ -12,7 +12,7 @@ tags: ["prop firm consistency rule", "no consistency rule prop firm", "prop firm
 type: "post"
 ---
 
-<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when a product capture records null and first-party FAQ or review evidence supports the absence — a blank field alone is not a zero.</strong> This list separates products with a captured consistency percentage (15%–55%) from the strongest none/null candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Captures cited below run from 2026-09-14 to 2026-10-20.</p>
+<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when a product capture records null and first-party FAQ or review evidence supports the absence — a blank field alone is not a zero.</strong> This list separates products with a captured consistency percentage (15%–55%) from the strongest none/null candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Captures cited below run from 2026-09-14 to 2026-10-29.</p>
 
 <div class="key-takeaways">
   <div class="title">Key Takeaways</div>
@@ -43,7 +43,7 @@ type: "post"
     <tr><td><a href="/blog/topstep-review">Topstep</a></td><td>Trading Combine — Standard Path</td><td>55%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/topstep-review">Topstep</a></td><td>Trading Combine — No Activation Fee Path</td><td>55%</td><td>2026-10-20</td></tr>
     <tr><td><a href="/blog/ftmo-review">FTMO</a></td><td>FTMO Challenge: 1-Step</td><td>50%</td><td>2026-10-14</td></tr>
-    <tr><td>Lucid Trading</td><td>LucidDaily (all 4 DLL/EOD variants); LucidFlex</td><td>50%</td><td>2026-10-14</td></tr>
+    <tr><td>Lucid Trading</td><td>LucidDaily (all 4 DLL/EOD variants); LucidFlex</td><td>40% standard (50% paid add-on)</td><td>2026-10-29</td></tr>
     <tr><td><a href="/blog/my-funded-futures">My Funded Futures</a></td><td>Flex; Pro; Rapid</td><td>50%</td><td>2026-10-22</td></tr>
     <tr><td>Take Profit Trader</td><td>The Test (Evaluation) — monthly subscription</td><td>50%</td><td>2026-10-19</td></tr>
     <tr><td><a href="/blog/tradeday-review">TradeDay</a></td><td>Fast Pass — End of Day</td><td>45%</td><td>2026-10-14</td></tr>
@@ -147,7 +147,7 @@ type: "post"
 <p>No. Null means the percentage was not published or not verified in that product capture. Apex evaluations are null but Performance Account payouts use 50%. Alpha bi-weekly routes are null while on-demand routes publish 40%. Treat null as a research queue item unless FAQ or rules text says none.</p>
 
 <h3 class="wp-block-heading"><strong>What is the highest published consistency percentage right now?</strong></h3>
-<p>Topstep's Trading Combine paths record a 55% Consistency Target (captured 2026-10-20). Several futures and forex products sit at 50%, including FTMO 1-Step (2026-10-14), LucidDaily/LucidFlex, My Funded Futures Flex/Pro/Rapid, and Take Profit Trader's Test.</p>
+<p>Topstep's Trading Combine paths record a 55% Consistency Target (captured 2026-10-20). Several futures and forex products sit at 50%, including FTMO 1-Step (2026-10-14), My Funded Futures Flex/Pro/Rapid, and Take Profit Trader's Test. LucidDaily and LucidFlex evaluations default to 40%, with 50% only as a paid checkout add-on (Lucid help articles, read 2026-10-29).</p>
 
 <h3 class="wp-block-heading"><strong>Is FundedNext's news profit retention a consistency rule?</strong></h3>
 <p>No. FundedNext's 40% news-window profit count is a news-trading treatment. Its best-day consistency rule is a different thing: 40% of total profit, applied only to On-Demand reward requests on Stellar 2-Step and Stellar Lite (help article 15586820, checked 2026-10-20). Stellar Instant has no consistency rule.</p>
