@@ -25,6 +25,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
     en: '/how-prop-firm-challenges-work',
     ru: '/ru/kak-rabotayut-chellendzhi-prop-firm',
   },
+  { en: '/reports/prop-firm-changes-october-2026', ru: '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026' },
   // Trust page; RU copy in content/data/ru-how-we-make-money.json.
   { en: '/how-we-make-money', ru: '/ru/kak-my-zarabatyvaem' },
 ] as const
@@ -129,6 +130,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-teamtraders': '2026-10-20',
   '/ru/obzor-the5ers': '2026-10-23',
   '/ru/obzor-topstep': '2026-10-29',
+  '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026': '2026-11-05',
   '/ru/otzyvy-prop-firm': '2026-10-20',
   '/ru/prop-trejding': '2026-10-20',
   '/ru/promokody-prop-firm': '2026-10-28',

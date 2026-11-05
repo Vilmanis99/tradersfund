@@ -89,6 +89,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/compare`, lastModified: lm(`${BASE_URL}/compare`, COMPARISON_EDITORIAL_DATE, [...allFirms('compare'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: lm(`${BASE_URL}/contact`, CONTACT_EDITORIAL_DATE, []), changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE_URL}/how-we-make-money`, lastModified: lm(`${BASE_URL}/how-we-make-money`, HOW_WE_MAKE_MONEY_UPDATED, []), changeFrequency: 'monthly', priority: 0.5 },
+    // D&A Report #1 (EN). Body HTML / CSV are writer-owned; lastmod sources added when stacked.
+    { url: `${BASE_URL}/reports/prop-firm-changes-october-2026`, lastModified: lm(`${BASE_URL}/reports/prop-firm-changes-october-2026`, '2026-11-05', []), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/corrections`, lastModified: lm(`${BASE_URL}/corrections`, HOW_WE_MAKE_MONEY_UPDATED, [data('corrections.json')], [latestCorrectionDate()]), changeFrequency: 'weekly', priority: 0.5 },
     // /prop-firms/closed joins the sitemap only once content/data/closed-firms.json is published.
     ...(CLOSED_FIRMS_PUBLISHED
