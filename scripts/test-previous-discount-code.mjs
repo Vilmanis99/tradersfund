@@ -23,13 +23,22 @@ const deals = JSON.parse(fs.readFileSync(path.join(root, 'content/data/deals.jso
 // A sentence that names the old code must say it is not the current one.
 const HISTORY = /\b(previous(ly)?|former(ly)?|expired|replaced|no longer|old code|was the code|ended|superseded)\b|прежн|предыдущ|ранее|истёк|истек|больше не|заменён|заменен/i
 
+// October prop-firm changes report pages document ended codes on purpose (changelog).
+// Narrow allowlist: only these two report routes; do not broaden to discount-code posts.
+const REPORT_HISTORY_ALLOWLIST = new Set([
+  '/reports/prop-firm-changes-october-2026',
+  '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026',
+])
+
 const PENDING = {
   // Body cleared 2026-11-04 (Autumn Promo RALLY*); title/seoTitle still name HW30 under the ~10 Nov Title/H1 freeze — leave until freeze lifts.
+  // /blog/ftmo-discount-code surfaces that same frozen title as a related-card H4 (not FTMO prose). Pre-existing on tip; not a report-route issue.
   'content/posts/brightfunded-discount-code.md': {
     owner: 'EN Writer',
     routes: [
       '/blog/brightfunded-discount-code',
       '/blog/bright-funded-prop-firm',
+      '/blog/ftmo-discount-code',
       '/blog',
       '/category/prop-firms',
       '/feed.xml',
@@ -102,6 +111,7 @@ if (fs.existsSync(built)) {
     const html = fs.readFileSync(path.join(built, rel), 'utf8')
     if (![...codes.keys()].some(code => html.includes(code))) continue
     const route = routeFor(rel)
+    if (REPORT_HISTORY_ALLOWLIST.has(route)) continue
     check(`built ${route}`, html.replace(/<(script|style)\b[^>]*>(?![\s\S]*?application\/ld\+json)[\s\S]*?<\/\1>/gi, ' '), pendingByRoute.get(route) ?? null)
   }
 } else {

@@ -109,6 +109,7 @@ export default function RuOtchetOktyabr2026Page() {
                 stats={chartStats}
                 labels={RU_REPORT_CHART_LABELS}
                 otherFirmsLabel="Другие"
+                lang="ru"
               />
             </div>
           </section>

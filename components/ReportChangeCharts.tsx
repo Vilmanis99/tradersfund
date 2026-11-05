@@ -5,6 +5,7 @@
  * Charts count LIVE/verified October rows only; PENDING / OBSERVATION / Sep listed below.
  */
 import type { NamedCount, PropFirmChangesReportStats } from '@/lib/propFirmChangesReport'
+import { localeDate } from '@/lib/ruDate'
 
 export type ReportChangeChartsLabels = {
   sectionTitle: string
@@ -33,6 +34,8 @@ type Props = {
   /** Max firms to show on the firm chart (rest folded into “other” if provided). */
   firmLimit?: number
   otherFirmsLabel?: string
+  /** Reader locale for visible date labels. RU → DD.MM.YYYY; EN keeps ISO. */
+  lang?: 'en' | 'ru'
 }
 
 function HorizontalBars({
@@ -102,9 +105,11 @@ function HorizontalBars({
 function TimelineBars({
   items,
   ariaLabel,
+  lang = 'en',
 }: {
   items: NamedCount[]
   ariaLabel: string
+  lang?: 'en' | 'ru'
 }) {
   const max = Math.max(1, ...items.map(i => i.count))
   const barW = 14
@@ -138,7 +143,7 @@ function TimelineBars({
         const day = item.key.slice(8) // DD
         return (
           <g key={item.key}>
-            <title>{`${item.key}: ${item.count}`}</title>
+            <title>{`${localeDate(item.key, lang)}: ${item.count}`}</title>
             <rect
               className="report-charts__bar report-charts__bar--timeline"
               x={x}
@@ -215,10 +220,11 @@ function SummaryTable({
 function formatExcluded(
   rows: PropFirmChangesReportStats['notCountedRows'],
   status: 'pending' | 'observation' | 'september_footnote',
+  lang: 'en' | 'ru' = 'en',
 ): string {
   return rows
     .filter(r => r.status === status)
-    .map(r => `${r.firm} (${r.changeType}, ${r.date})`)
+    .map(r => `${r.firm} (${r.changeType}, ${localeDate(r.date, lang)})`)
     .join('; ')
 }
 
@@ -227,6 +233,7 @@ export default function ReportChangeCharts({
   labels,
   firmLimit = 12,
   otherFirmsLabel = 'Other',
+  lang = 'en',
 }: Props) {
   const categoryItems = stats.byCategory.map(item => ({
     key: labels.categoryLabels[item.key] ?? item.key,
@@ -246,9 +253,13 @@ export default function ReportChangeCharts({
         ]
       : topFirms
 
-  const pendingList = formatExcluded(stats.notCountedRows, 'pending')
-  const observationList = formatExcluded(stats.notCountedRows, 'observation')
-  const septemberList = formatExcluded(stats.notCountedRows, 'september_footnote')
+  const pendingList = formatExcluded(stats.notCountedRows, 'pending', lang)
+  const observationList = formatExcluded(stats.notCountedRows, 'observation', lang)
+  const septemberList = formatExcluded(stats.notCountedRows, 'september_footnote', lang)
+  const timelineItems = stats.byDay.map(item => ({
+    key: localeDate(item.key, lang) ?? item.key,
+    count: item.count,
+  }))
 
   return (
     <section
@@ -292,13 +303,13 @@ export default function ReportChangeCharts({
       <figure className="report-charts__figure report-charts__figure--timeline" data-report-chart="timeline">
         <figcaption className="report-charts__figcaption">{labels.timelineTitle}</figcaption>
         <div className="report-charts__timeline-scroll">
-          <TimelineBars items={stats.byDay} ariaLabel={labels.ariaTimeline} />
+          <TimelineBars items={stats.byDay} ariaLabel={labels.ariaTimeline} lang={lang} />
         </div>
         <SummaryTable
           caption={labels.timelineTitle}
           nameColumn={labels.dateColumn}
           countColumn={labels.countColumn}
-          items={stats.byDay}
+          items={timelineItems}
         />
       </figure>
 

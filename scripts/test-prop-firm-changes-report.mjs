@@ -294,6 +294,7 @@ const html = renderToStaticMarkup(
     stats,
     labels: RU_REPORT_CHART_LABELS,
     otherFirmsLabel: 'Другие',
+    lang: 'ru',
   }),
 )
 assert.match(html, /data-report-live-count="46"/)
@@ -303,6 +304,8 @@ assert.match(html, /data-report-not-counted="10"/)
 assert.match(html, /Не в счёте: pending \/ observation/)
 assert.match(html, /data-report-chart="by-category"/)
 assert.doesNotMatch(html, /\/go\//)
+assert.match(html, /\d{2}\.\d{2}\.\d{4}/, 'RU chart visible dates use DD.MM.YYYY')
+assert.doesNotMatch(html, /(?<!\d)\d{4}-\d{2}-\d{2}(?!\d)/, 'RU chart visible dates must not be ISO')
 assert.ok(EN_REPORT_CHART_LABELS.notCountedTitle.includes('pending'))
 
 assert.match(sitemap, /fileSource\('public\/reports\/prop-firm-changes-october-2026\.csv'\)|reports\/prop-firm-changes-october-2026/)

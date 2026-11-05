@@ -2119,7 +2119,8 @@ try {
     const covered = [...russiaCtaSweep.values()].filter(entry => entry.ctaDates > 0).length
     // Pages without sign-up CTAs by design: the commission-disclosure page, the closed-firms list
     // and the data-driven rules reference pages (RU twins of /prop-firms/<firm>/rules).
-    const NO_CTA_PAGES = new Set(['kak-my-zarabatyvaem', 'zakrytye-prop-firmy', ...pages.filter(slug => fs.readFileSync(path.join(root, 'app/ru', slug, 'page.tsx'), 'utf8').includes("from '@/components/RuRulesRoute'"))])
+    // Historical October changelog report: no /go/ CTAs by design (facts + CSV only).
+    const NO_CTA_PAGES = new Set(['kak-my-zarabatyvaem', 'zakrytye-prop-firmy', 'otchet-izmeneniya-prop-firm-oktyabr-2026', ...pages.filter(slug => fs.readFileSync(path.join(root, 'app/ru', slug, 'page.tsx'), 'utf8').includes("from '@/components/RuRulesRoute'"))])
     for (const slug of NO_CTA_PAGES) assert.equal(russiaCtaSweep.get(`/ru/${slug}`)?.ctaDates, 0, `/ru/${slug} stays free of /go/ sign-up CTAs`)
     assert.equal(covered, pages.filter(slug => !NO_CTA_PAGES.has(slug)).length, 'every other /ru page in the sweep renders firm CTAs on at least one date')
     console.log(`Russia CTA sweep: ${covered} /ru pages with firm CTAs checked; no badge or ranking issues.`)
