@@ -964,7 +964,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     },
     intro: {
       en: 'These firms explicitly allow Expert Advisors on at least one current product. Firms that ban EAs or leave EA permission unconfirmed do not qualify.',
-      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Запрет советников или «не подтверждено» не подходят.',
+      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Фирмы, где советники запрещены или их разрешение на сайте не указано, не подходят.',
     },
     methodology: {
       en: 'A firm qualifies when its profile marks EAs as allowed, or a challenge captured within 30 days explicitly allows EAs.',

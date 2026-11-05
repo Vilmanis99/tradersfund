@@ -139,6 +139,16 @@ console.log('  EN beginners:', BEST_FOR_SORT_RULES.beginners.en)
 console.log('  RU beginners:', BEST_FOR_SORT_RULES.beginners.ru)
 console.log(`  FundingPips EN entry $${fp.fieldValues.entryPriceUsd} (= challenge min)`)
 
+// RU SEO: stem «подтвержд» is banned on RU best-for pages (template + lib copy).
+const BANNED_RU_STEM = /подтвержд/i
+for (const model of getBestForPageModels().filter(m => m.lang === 'ru')) {
+  for (const [k, v] of Object.entries(model.useCase)) {
+    if (v && typeof v === 'object' && typeof v.ru === 'string') assert.ok(!BANNED_RU_STEM.test(v.ru), `${model.path} useCase.${k}.ru has «подтвержд»`)
+  }
+}
+for (const [id, rule] of Object.entries(BEST_FOR_SORT_RULES)) assert.ok(!BANNED_RU_STEM.test(rule.ru), `sort rule ${id}.ru has «подтвержд»`)
+assert.ok(!BANNED_RU_STEM.test(fs.readFileSync(new URL('../components/BestForPage.tsx', import.meta.url), 'utf8')), 'BestForPage.tsx has «подтвержд»')
+
 if (!base) process.exit(0)
 
 async function get(urlPath) {
@@ -165,6 +175,8 @@ function visibleBody(html) {
     .replace(/<[^>]+>/g, ' ')
 }
 
+const ruModels = getBestForPageModels().filter(m => m.lang === 'ru')
+assert.equal(ruModels.length, 6, 'expected 6 RU best-for pages')
 for (const model of getBestForPageModels()) {
   const { status, html } = await get(model.path)
   assert.equal(status, 200, model.path)
@@ -175,6 +187,7 @@ for (const model of getBestForPageModels()) {
   }
   if (model.lang === 'ru') {
     assert.match(html, /Раскрытие информации:/)
+    assert.ok(!BANNED_RU_STEM.test(visible), `${model.path} visible text must not contain «подтвержд»`)
     assert.ok(!/\bDisclosure:\b/.test(visible), `${model.path} no English Disclosure`)
     assert.ok(!/How we make money/.test(visible), `${model.path} no English how-we-make-money link text`)
   }

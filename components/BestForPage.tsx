@@ -31,7 +31,7 @@ function humanizeFieldToken(token: string, lang: 'en' | 'ru'): string {
 }
 
 export function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
-  if (value == null || value === '') return lang === 'ru' ? 'Не подтверждено' : 'Unverified'
+  if (value == null || value === '') return lang === 'ru' ? 'На сайте не указано' : 'Unverified'
   if (key === 'platforms' && lang === 'ru') return ruPlatformList(value.split('|'))
   if (key === 'profitSplitPct' || key === 'maxLossPct' || key === 'dailyLossPct') return `${value}%`
   if (key === 'entryPriceUsd' || key === 'smallestAccountUsd' || key === 'maxLossUsd' || key === 'dailyLossUsd') {
@@ -158,7 +158,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
           {!ranked.length ? (
             <p style={{ color: 'var(--muted)' }}>
               {lang === 'ru'
-                ? 'Пока нет фирм с подтверждёнными данными под этот критерий.'
+                ? 'Пока нет фирм, у которых на сайте указаны данные под этот критерий.'
                 : 'No firms currently match this criterion with verified data.'}
             </p>
           ) : (
