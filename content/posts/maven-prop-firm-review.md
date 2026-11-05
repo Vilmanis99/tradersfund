@@ -3,13 +3,16 @@ title: "Maven Prop Firm Review 2026: Nine Products, 80% Split, EAs Banned"
 seoTitle: "Maven Prop Firm Review 2026: Fees, Rules & EA Ban"
 slug: "maven-prop-firm-review"
 date: "2025-06-15 09:00:00"
-modified: "2026-10-27 08:30:00"
+modified: "2026-11-05 12:00:00"
 author: "Tara Mohseni"
 excerpt: "Maven sells nine challenge products from $5 to $999 and pays 80% on the standard lineup — but bans EAs outright. Here is which product actually prices well."
 seoDescription: "Maven prop firm review: 9 products from $5 to $999, 80% standard split (70% on Mini), 10-day payouts on standard plans, $10,000 withdrawal cap and an EA ban."
 categories: ["Prop Firms"]
 tags: ["Maven", "Prop Firm"]
 type: "post"
+sources:
+  - "https://maventrading.com/terms-and-conditions"
+  - "https://maventrading.com/faqs"
 ---
 
 <h2 class="wp-block-heading"><strong>Verdict</strong></h2>
@@ -22,7 +25,7 @@ type: "post"
     <li>Nine products appeared in live pricing markup — 1-Step, 2-Step, 3-Step, Instant, Mini, Buy Now Pay Later, OMO 2-Step, and two Prediction Markets tiers — with checkout still subject to region.</li>
     <li>80% profit split on 1-Step, 2-Step, 3-Step, Instant, BNPL and OMO; 70% on Mini and both Prediction Markets tiers.</li>
     <li>Drawdown type is per-product: 8% static on the 2-Step, 3% static on the 3-Step, 5% trailing on the 1-Step, 3% trailing on Instant and Mini. On Buy Now Pay Later the funded 8% drawdown is trailing until the first withdrawal, then fixed at the starting balance (FAQ, checked 2026-10-23).</li>
-    <li>Withdrawals are every 10 business days on the Standard, OMO and Prediction products; BNPL can request on day 0 after its gates, while Maven's own pages conflict on Instant cadence.</li>
+    <li>Withdrawals are every 10 business days on the Standard, OMO and Prediction products; Instant and BNPL are on demand once their gates are met; Mini pays out once.</li>
     <li>EAs are not permitted under any circumstances on any platform, and copy trading from another person breaches both accounts.</li>
     <li>Funded capital caps at $200,000 of starting balance, scaling to $1,000,000 at 25% per step; withdrawals are capped at $10,000 per rolling 30 days.</li>
     <li>Platforms are MetaTrader 5, cTrader and Match-Trade. Funded accounts are simulated, in the firm's own words.</li>
@@ -40,7 +43,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Max funded capital</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$200,000 starting balance, scaling to $1,000,000</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Profit split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% standard; 70% on Mini and Prediction Markets</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Drawdown type</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">Per-product — static on 2-Step / 3-Step / OMO, trailing on 1-Step / Instant / Mini</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10 business days on Standard, OMO and Prediction products; day 0 on BNPL after its gates; Instant cadence unresolved; 1 payout on Mini</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Payouts</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">10 business days on Standard, OMO and Prediction products; on demand on Instant and BNPL once their gates are met; 1 payout on Mini</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Withdrawal cap</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$10,000 per rolling 30 days per trader</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Leverage</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">75:1 forex; 20:1 indices, commodities and precious metals</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Costs</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$4 round-turn forex commission, $6 on precious metals and energy, $0 on indices and commodities, zero swap</td></tr>
@@ -89,7 +92,7 @@ type: "post"
 
 <p><strong>EAs are banned outright</strong> — "not permitted under any circumstances across all our platforms," in Maven's phrasing. This is the single most consequential rule on the page and it reverses what this review previously stated. Copy trading from another individual breaches both accounts. Mini adds a one-position-at-a-time limit, a 150-second minimum hold time, and a 1% cap on the gap between equity and balance.</p>
 
-<p><strong>News trading depends on the product, and Maven's pages disagree on five of them.</strong> On the Standard 1-, 2- and 3-Step you cannot open or close within 2 minutes either side of a red-folder release. For Mini, Instant, Buy Now, Pay Later and both Prediction products, the FAQ allows news trading; on Mini it says “News trading is fully permitted with no restrictions.” The Terms (last amended 22/10/2025) say: “For all accounts, you may not place new trades or close existing trades within 2 minutes before or after "Red Folder" news events listed on Forex Factory.” Both were checked 2026-10-27. Until Maven reconciles them, plan around the 2-minute window on those five as well. OMO's FAQ entry allows news trading in evaluation and caps it once funded: profit from any 1 news event cannot exceed 0.50% of account balance. Weekend holding is permitted on all 9 account types. Overnight holding is not stated as an explicit permission anywhere in Maven's published pages, so we do not claim it.</p>
+<p><strong>News trading depends on the product.</strong> On the Standard 1-, 2- and 3-Step you cannot open or close within 2 minutes either side of a Red Folder release, including pending orders, stop-losses and take-profits. Instant, Mini and Buy Now, Pay Later have no separate news restriction: Maven's Terms (v2026.2, last amended 23 Oct 2026, checked 5 Nov 2026; maventrading.com/terms-and-conditions) Schedule 2 state "News trading permitted without a separate news restriction, subject to all other rules." Prediction Markets have none either: Schedule 3 says "There is no Prediction Markets news-trading restriction." That is 5 of the 9 products. OMO allows news trading in evaluation and caps funded profit from any 1 news event at 0.50% of account balance. Weekend holding is permitted on all 9 account types. Terms 5.6 also state "Weekend and overnight holding are permitted, subject to market availability and the applicable loss and news rules."</p>
 
 <p><strong>Scaling runs on performance plus payout activity.</strong> Profit 10% over four months — 2.5% a month — while processing at least one payout per month, and the account is increased 25%, repeatable to $1,000,000. Starting funded capital is capped at $200,000. Accounts must not go 30 calendar days without an executed trade. After you pass, account review takes 1–3 days. And Maven describes the funded stage in its own FAQ as a simulated demo environment.</p>
 
@@ -183,7 +186,7 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Payout speed in practice</strong></h2>
 
-<p>On the 1-Step, 2-Step, 3-Step, OMO and both Prediction products, you can request a withdrawal <strong>every 10 business days</strong>, and the challenge fee is refunded after your third payout (FAQ, pricing cards and Terms, checked 2026-10-27). Passing an evaluation adds a 1–3 day account review before the funded stage opens. BNPL publishes day-0 access once its funded gates are met. Instant is unresolved: its pricing card says “When Requirements are met,” Maven's FAQ says “Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below,” and the Terms (last amended 22/10/2025) say “payouts available every 10 business days” (all checked 2026-10-27). We do not publish a cadence until the firm reconciles those pages. Mini processes its single payout the day after the 24-hour trading window closes, then closes the account.</p>
+<p>On the 1-Step, 2-Step, 3-Step, OMO and both Prediction products, you can request a withdrawal <strong>every 10 business days</strong>, and the challenge fee is refunded after your third payout (FAQ, pricing cards and Terms, checked 2026-10-27). Passing an evaluation adds a 1–3 day account review before the funded stage opens. Instant and BNPL are on demand once their gates are met. Terms 10.3 (v2026.2, last amended 23 Oct 2026, checked 5 Nov 2026; maventrading.com/terms-and-conditions) say "BNPL and Instant are on demand subject to their conditions," and Schedule 1 lists Instant Funding as "on demand." Instant still needs the 3% profit threshold and a consistency score of 20% or lower before you can request. Mini processes its single payout the day after the 24-hour trading window closes, then closes the account.</p>
 
 <p>Two ceilings bind harder than the cadence. Withdrawals are capped at <strong>$10,000 per rolling 30 days per trader</strong>, which caps a $100K funded account's realistic monthly draw regardless of performance, and OMO caps the first payout at 6% of balance and the second at 8%. Payout methods depend on country: Maven's FAQ, checked 2026-10-27, offers direct bank transfer only in Nigeria, Kenya and Ghana; everyone else is paid in USDT-BSC, USDC-ERC20 or through Rise Pay. The FAQ no longer states a Rise withdrawal fee. Maven charges no swap on any account and $4 round-turn commission on forex, $6 on precious metals and energy, $0 on indices and commodities.</p>
 
@@ -235,7 +238,7 @@ type: "post"
 <p>Both, depending on the product. The 2-Step, 3-Step and OMO use static caps of 8%, 3% and 8% from starting balance; the 1-Step, Instant and Mini use trailing caps of 5%, 3% and 3% from your highest equity. Buy Now, Pay Later is the odd one: its funded account trails by 8% until your first withdrawal, then the limit is fixed at the starting balance (Maven FAQ, checked 2026-10-23). Do not assume the mechanic carries across the lineup.</p>
 
 <h3 class="wp-block-heading"><strong>How often can I withdraw from a funded Maven account?</strong></h3>
-<p>Every 10 business days after your first trade on the 1-Step, 2-Step, 3-Step and OMO, with the challenge fee refunded after your third payout (checked 2026-10-27; Mini gets no refund). Total withdrawals are capped at $10,000 per rolling 30-day cycle per trader. Instant's cadence is unresolved because Maven's FAQ, pricing card and Terms disagree (checked 2026-10-27). Outside Nigeria, Kenya and Ghana there is no bank transfer: payouts go by USDT-BSC, USDC-ERC20 or Rise Pay.</p>
+<p>Every 10 business days after your first trade on the 1-Step, 2-Step, 3-Step and OMO, with the challenge fee refunded after your third payout (checked 2026-10-27; Mini gets no refund). Instant and BNPL are on demand once their gates are met (Terms v2026.2, last amended 23 Oct 2026, checked 5 Nov 2026; maventrading.com/terms-and-conditions). Total withdrawals are capped at $10,000 per rolling 30-day cycle per trader. Outside Nigeria, Kenya and Ghana there is no bank transfer: payouts go by USDT-BSC, USDC-ERC20 or Rise Pay.</p>
 
 <h3 class="wp-block-heading"><strong>How high does Maven scale?</strong></h3>
 <p>Funded starting capital caps at $200,000. From there, profiting 10% over four months (2.5% a month) while processing at least one payout a month earns a 25% account increase, repeatable up to $1,000,000.</p>
