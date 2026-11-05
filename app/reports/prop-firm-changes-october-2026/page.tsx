@@ -19,7 +19,7 @@ const PATH = '/reports/prop-firm-changes-october-2026'
 const TITLE = 'Prop Firm Rules & Payout Changes — October 2026'
 const H1 = 'Prop Firm Rules & Payout Changes — October 2026'
 const DESCRIPTION =
-  'October 2026 report: verified prop-firm rule, payout, price and promo changes. Every row has a first-party source and a check date. CSV available when published.'
+  'October 2026 report: 56 verified prop-firm rule, payout, price and promo changes, each with a first-party source and a check date through 31 Oct, plus a CSV.'
 const DATE_PUBLISHED = '2026-11-05'
 const DATE_MODIFIED = '2026-11-05'
 const CHECKED = '2026-11-01'
@@ -143,6 +143,15 @@ export default function EnPropFirmChangesOctober2026Page() {
             </li>
             <li>
               <Link href="/prop-firm-discount-codes">Prop firm discount codes</Link>
+            </li>
+            <li>
+              <Link href="/blog/lucid-trading-review">Lucid Trading review</Link>
+            </li>
+            <li>
+              <Link href="/blog/funding-pips-review">FundingPips review</Link>
+            </li>
+            <li>
+              <Link href="/blog/hash-hedge-review">Hash Hedge review</Link>
             </li>
             <li>
               <Link href="/corrections">Corrections</Link>
