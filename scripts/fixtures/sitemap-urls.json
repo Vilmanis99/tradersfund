@@ -163,7 +163,11 @@
   },
   {
    "url": "https://tradersfundhub.com/blog/e8-markets-review",
-   "languages": null
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/e8-markets-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-e8-markets",
+    "x-default": "https://tradersfundhub.com/blog/e8-markets-review"
+   }
   },
   {
    "url": "https://tradersfundhub.com/blog/ftmo-discount-code",
@@ -1323,6 +1327,14 @@
     "en": "https://tradersfundhub.com/blog/crypto-fund-trader-review",
     "ru": "https://tradersfundhub.com/ru/obzor-crypto-fund-trader",
     "x-default": "https://tradersfundhub.com/blog/crypto-fund-trader-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-e8-markets",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/e8-markets-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-e8-markets",
+    "x-default": "https://tradersfundhub.com/blog/e8-markets-review"
    }
   },
   {

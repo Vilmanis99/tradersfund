@@ -23,6 +23,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/obzor-blue-guardian': '2026-11-05',
   '/ru/obzor-bright-funded': '2026-11-05',
   '/ru/obzor-crypto-fund-trader': '2026-11-05',
+  '/ru/obzor-e8-markets': '2026-11-09',
   '/ru/obzor-eratrade': '2026-11-05',
   '/ru/obzor-ftmo': '2026-11-05',
   '/ru/obzor-fundednext': '2026-11-05',
