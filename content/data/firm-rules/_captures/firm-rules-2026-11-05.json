@@ -1,0 +1,314 @@
+{
+  "capturedAt": "2026-11-05",
+  "accessNotes": "Alpha Capital rolling recheck 2026-11-05 12:25-12:45 Riga: standard HTTP GET of public English Help Centre articles and the /product page, no account/checkout, no VPN or proxy; all rules quotes from 14/15/23 Oct still present; bare '4%'/'static'/'high-water mark' snippets replaced with full plan-spec lines. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/alpha/.",
+  "pagesRead": [
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+    "https://alphacapitalgroup.uk/product",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use"
+  ],
+  "pageDates": {
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing": "July 24, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct": "updated 2026-11-04T16:17:59Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee": "updated 2026-10-28T14:27:16Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee": "July 7, 2026",
+    "https://alphacapitalgroup.uk/product": "no page date",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news": "August 25, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use": "July 6, 2026"
+  },
+  "firms": {
+    "alpha-capital": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Alpha One (10%, on-demand), Alpha Direct; static on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "trailing",
+          "alpha-pro-6": "static",
+          "alpha-pro-6-on-demand": "static",
+          "alpha-pro-8-bi-weekly": "static",
+          "alpha-pro-8-on-demand": "static",
+          "alpha-pro-10-bi-weekly": "static",
+          "alpha-pro-10-on-demand": "static",
+          "alpha-swing": "static",
+          "alpha-three": "static",
+          "alpha-direct": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 4% on Alpha One (10%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Three (availability unverified); 3% on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Direct; 5% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand)",
+        "byProduct": {
+          "alpha-one": 4,
+          "alpha-pro-6": 3,
+          "alpha-pro-6-on-demand": 3,
+          "alpha-pro-8-bi-weekly": 4,
+          "alpha-pro-8-on-demand": 4,
+          "alpha-pro-10-bi-weekly": 5,
+          "alpha-pro-10-on-demand": 5,
+          "alpha-swing": 5,
+          "alpha-three": 4,
+          "alpha-direct": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Three (availability unverified); 8% on Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand); 10% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); 5% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 6,
+          "alpha-pro-6": 6,
+          "alpha-pro-6-on-demand": 6,
+          "alpha-pro-8-bi-weekly": 8,
+          "alpha-pro-8-on-demand": 8,
+          "alpha-pro-10-bi-weekly": 10,
+          "alpha-pro-10-on-demand": 10,
+          "alpha-swing": 10,
+          "alpha-three": 6,
+          "alpha-direct": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); not stated on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified); 15% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 40,
+          "alpha-pro-6": null,
+          "alpha-pro-6-on-demand": 40,
+          "alpha-pro-8-bi-weekly": null,
+          "alpha-pro-8-on-demand": 40,
+          "alpha-pro-10-bi-weekly": null,
+          "alpha-pro-10-on-demand": 40,
+          "alpha-swing": 40,
+          "alpha-three": null,
+          "alpha-direct": 15
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "Best Day Rule This rule states that no single trading day should contribute more than a set percentage of the total generated profits. This percentage depends on your plan: Alpha Pro, Swing, One, and Three: 40% Alpha Direct: 15%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "The 15% Best Day Rule also applies: no single trading day should contribute more than 15% of the total generated profits."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); 90% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 80,
+          "alpha-pro-6": 80,
+          "alpha-pro-6-on-demand": 80,
+          "alpha-pro-8-bi-weekly": 80,
+          "alpha-pro-8-on-demand": 80,
+          "alpha-pro-10-bi-weekly": 80,
+          "alpha-pro-10-on-demand": 80,
+          "alpha-swing": 80,
+          "alpha-three": 80,
+          "alpha-direct": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "2. Performance fee split (add-on) Separate from payout schedule. Keep 80% standard, or add 90% PFS (+10% on the On-Demand price)."
+          },
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "Qualified Analysts earn an 80% performance split as standard on eligible simulated profits, rising to 90% on Alpha Direct or with the optional 90% split add-on on eligible plans."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Performance fee 90% profit split"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Direct; bi-weekly on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "on-demand",
+          "alpha-pro-6": "bi-weekly",
+          "alpha-pro-6-on-demand": "on-demand",
+          "alpha-pro-8-bi-weekly": "bi-weekly",
+          "alpha-pro-8-on-demand": "on-demand",
+          "alpha-pro-10-bi-weekly": "bi-weekly",
+          "alpha-pro-10-on-demand": "on-demand",
+          "alpha-swing": "on-demand",
+          "alpha-three": "bi-weekly",
+          "alpha-direct": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "The option of a performance fee on-demand, on Alpha Pro / Swing / One / Three / Direct accounts, means that traders can request a payout whenever they wish, provided they fulfil the following requirements:"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+            "quote": "The performance fee bi-weekly option, available on Alpha Pro/Three accounts, means that requests are made every 14 days, starting 14 days after your initial trade on your Qualified Analyst account."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Swing accounts are only available with the On-Demand payout type."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "alpha-one": "restricted",
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": "restricted",
+          "alpha-three": "restricted",
+          "alpha-direct": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "During the evaluation phases, you can trade freely during all news releases."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release of the news announcements below."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "Alpha Swing Plan: Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on Alpha One (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); restricted on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand); not allowed on Alpha Direct",
+        "byProduct": {
+          "alpha-one": true,
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": true,
+          "alpha-three": true,
+          "alpha-direct": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan Holding trades over the weekend is not allowed."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "cTrader",
+          "DXTrade",
+          "TradeLocker"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+            "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker."
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "firmSlug": "alpha-capital",
+  "officialDomain": "https://alphacapitalgroup.uk",
+  "capturedAt": "2026-11-05",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-05 12:25-12:45 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+    "https://alphacapitalgroup.uk/product",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use"
+  ],
+  "pageDates": {
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing": "July 24, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct": "updated 2026-11-04T16:17:59Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee": "updated 2026-10-28T14:27:16Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee": "July 7, 2026",
+    "https://alphacapitalgroup.uk/product": "no page date",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news": "August 25, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use": "July 6, 2026"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck: Alpha prices and promo codes were rechecked on 3 Nov and 5 Nov (daily check) and were not changed.",
+  "blocks": [],
+  "productsScope": "Evidence-only capture: no products array. Product prices and values in challenges/<slug>.json keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules drawdownType/dailyLossPct/maxLossPct/consistencyPct/profitSplitPct/payoutFrequency/weekendHolding evidence",
+      "note": "bare snippets ('4%', 'static', 'high-water mark', 'on-demand') replaced with full plan-spec lines; Alpha Direct daily/max loss now has its own evidence line; weekend quote re-quoted (page now reads 'Alpha Direct Plan' without a colon)",
+      "checkedAt": "2026-11-05"
+    }
+  ],
+  "unchanged": [
+    "all values and byProduct maps unchanged",
+    "Alpha Direct article was edited 2026-11-04 (16:17 UTC); its 5% trailing / 3% daily / 15% Best Day / 90% split / no weekend holding still match",
+    "On-demand article edited 2026-10-28; 40% (Pro/Swing/One/Three) and 15% (Direct) Best Day thresholds unchanged"
+  ],
+  "notReread": [
+    "corporate fields (corporateCapturedAt 2026-10-23)",
+    "Trustpilot (third-party)",
+    "prices/promo codes (handled 3 Nov + daily check)"
+  ]
+}

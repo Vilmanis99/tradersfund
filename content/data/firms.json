@@ -1653,7 +1653,7 @@
     ],
     "platformEvidence": {
       "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
-      "sourceCapturedAt": "2026-10-23",
+      "sourceCapturedAt": "2026-11-05",
       "sourceQuote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
       "notes": "Help article dated July 6, 2026. Homepage platform cards (rendered 2026-10-20) also list MetaTrader 5, cTrader, TradeLocker and DX Trade, with Alpha Trader 'Coming Soon'. US residents: no MT5; cTrader closed to new US customers."
     },
@@ -1733,8 +1733,8 @@
     "corporateNote": "ALPHA CAPITAL GROUP LIMITED, company number 13719951, registered office 1 Allied Business Centre, Coldharbour Lane, Harpenden, England, AL5 4UT (site footer, re-read 2026-10-23).",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+      "capturedAt": "2026-11-05",
+      "captureFile": "content/data/challenges/_captures/alpha-capital-2026-11-05.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on Alpha One (10%, on-demand), Alpha Direct; static on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified)",
@@ -1753,50 +1753,50 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
-            "quote": "high-water mark",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-            "quote": "static",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-6"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-            "quote": "static",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-8-bi-weekly"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-            "quote": "static",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-swing"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-            "quote": "static",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-three"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
-            "quote": "high-water mark",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-direct"
           }
         ]
@@ -1819,51 +1819,51 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
-            "quote": "4%",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-            "quote": "3%",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-6"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-            "quote": "4%",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-8-bi-weekly"
           },
           {
-            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-            "quote": "5%",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
-            "productSlug": "alpha-pro-10-bi-weekly"
-          },
-          {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-            "quote": "5%",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-swing"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-            "quote": "4%",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-three"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": "alpha-direct"
           }
         ]
       },
@@ -1885,51 +1885,51 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
-            "quote": "6%",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
-            "quote": "6%",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-6"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-            "quote": "8%",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-8-bi-weekly"
           },
           {
-            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
-            "quote": "10%",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
-            "productSlug": "alpha-pro-10-bi-weekly"
-          },
-          {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
-            "quote": "10%",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-swing"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
-            "quote": "6%",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-three"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": "alpha-direct"
           }
         ]
       },
@@ -1951,18 +1951,18 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
-            "quote": "40%",
+            "quote": "Best Day Rule This rule states that no single trading day should contribute more than a set percentage of the total generated profits. This percentage depends on your plan: Alpha Pro, Swing, One, and Three: 40% Alpha Direct: 15%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
-            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
-            "quote": "15%",
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "The 15% Best Day Rule also applies: no single trading day should contribute more than 15% of the total generated profits.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-direct"
           }
         ]
@@ -1985,18 +1985,26 @@
         "evidence": [
           {
             "sourceUrl": "https://alphacapitalgroup.uk/product",
-            "quote": "80% standard",
+            "quote": "2. Performance fee split (add-on) Separate from payout schedule. Keep 80% standard, or add 90% PFS (+10% on the On-Demand price).",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
-            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
-            "quote": "90% profit split",
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "Qualified Analysts earn an 80% performance split as standard on eligible simulated profits, rising to 90% on Alpha Direct or with the optional 90% split add-on on eligible plans.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Performance fee 90% profit split",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-direct"
           }
         ]
@@ -2019,19 +2027,27 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
-            "quote": "on-demand",
+            "quote": "The option of a performance fee on-demand, on Alpha Pro / Swing / One / Three / Direct accounts, means that traders can request a payout whenever they wish, provided they fulfil the following requirements:",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-one"
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
-            "quote": "every 14 days",
+            "quote": "The performance fee bi-weekly option, available on Alpha Pro/Three accounts, means that requests are made every 14 days, starting 14 days after your initial trade on your Qualified Analyst account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-14.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "alpha-pro-6"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Swing accounts are only available with the On-Demand payout type.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": "alpha-swing"
           }
         ]
       },
@@ -2053,18 +2069,26 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
-            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release",
+            "quote": "During the evaluation phases, you can trade freely during all news releases.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": null
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release of the news announcements below.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
             "quote": "Alpha Swing Plan: Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -2087,10 +2111,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
-            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan: Holding trades over the weekend is not allowed.",
+            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan Holding trades over the weekend is not allowed.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -2121,14 +2145,14 @@
             "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
             "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-23",
-            "captureFile": "content/data/challenges/_captures/alpha-capital-2026-10-23.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json"
     },
     "trustpilotRatingSuppressed": true,
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines. Banner: \"We've removed a number of fake reviews for this company.\"",
