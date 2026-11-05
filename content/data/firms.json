@@ -499,8 +499,8 @@
     "corporateNote": "FundedNext Terms of Service, section 2.1: \"The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext – F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party\". The same section names FundedNext Ltd (reg. HY01023052, Comoros) for operational aspects of the simulated trading environment and FundedNext Limited (Wan Chai, Hong Kong), which processes payments. Until 2 November 2026 this field named FundedNext Ltd (Comoros) as the contracting entity and Hong Kong as the office.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "discountCodeCapturedAt": "2026-11-01",
-    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, read 1 November 2026: no promo code shown; the $6K card lists \"1st account $59.99 / 2nd account 10% OFF $53.99 / 3rd account 15% OFF $50.99\" (multi-account discount, not a code). FNTRICK is no longer on the Stellar pages (see previousDiscountCode). Nothing is added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-04",
+    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, re-read 4 November 2026: FNTRICK absent from page HTML (still previousDiscountCode only; was \"SAVE UP TO 41% WITH CODE FNTRICK\" on 2026-10-30/31). No promo code shown on this re-read. Nothing added to deals.json.",
     "previousDiscountCode": "FNTRICK",
     "previousDiscountCodeStatus": "no longer shown: the Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step said \"SAVE UP TO 41% WITH CODE FNTRICK\" on 2026-10-30/31 (no end date published); on 2026-11-01 the code is gone from the Stellar 1-Step, 2-Step, Lite and Instant pages and the $6K 2-Step card is back to $59.99; never checkout-verified. Earlier code STRTN ended 25 October 2026",
     "rules": {
@@ -5777,8 +5777,8 @@
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-04.json"
     },
     "discountCodeSourceUrl": "https://citytradersimperium.com/",
-    "discountCodeCapturedAt": "2026-11-02",
-    "discountCodeNote": "Homepage https://citytradersimperium.com/, read 2 November 2026: no live discount code. FEARLESS15 (valid until 31 Oct 2026, 23:59 UK time) remains previous only. The Halloween Special game copy (\"Fri 23 Oct → Sun 1 Nov\") is past its window and still shows no replacement code string. Nothing is added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-04",
+    "discountCodeNote": "Homepage https://citytradersimperium.com/, re-read 4 November 2026: FEARLESS15 absent from page HTML (still previousDiscountCode only; ended \"Valid until 31 Oct 2026, 23:59 UK time\" per prior capture). No replacement discount code string found as a live banner/pop-up code. Nothing added to deals.json.",
     "previousDiscountCode": "FEARLESS15",
     "previousDiscountCodeStatus": "ended: the official homepage pop-up said \"15% off 1-Step, 2-Step and Instant Funding with code FEARLESS15\" … \"Valid until 31 Oct 2026, 23:59 UK time. Terms apply.\"; on 2026-11-01 the pop-up is no longer in the https://citytradersimperium.com/ page (only a script comment still names it); never checkout-verified. Earlier code BREAK15 expired 25 October 2026"
   },
