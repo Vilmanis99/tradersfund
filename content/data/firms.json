@@ -5035,8 +5035,8 @@
     "russiaSourceNote": "Help-centre article 'Restricted Countries Policy' (page modified 14 October 2026), read 4 November 2026. The list names 90 entries, matching countriesRestricted (90/90), including Russia, Belarus, Ukraine, Kazakhstan and Crimea. The article also says traders travelling in a restricted country 'cannot purchase new accounts or reset current accounts during their stay there.' The KYC/AML Policies article (modified 13 October 2026) repeats the list and says: 'Anyone with citizenship or residency in a country on OFAC's Sanctioned Countries list, or those restricted by our partners, are not eligible to open an account at MyFundedFutures'. Terms section 24 (Geographical Restrictions) does not name countries.",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-14.json",
+      "capturedAt": "2026-11-05",
+      "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-11-05.json",
       "drawdownType": {
         "value": "eod-trailing",
         "summary": "eod-trailing",
@@ -5050,26 +5050,26 @@
         "evidence": [
           {
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 | ... | Drawdown Type | EOD | EOD | EOD | EOD |",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
             "quote": "Pro uses end-of-day trailing drawdown in both eval and sim funded.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
-            "quote": "| Drawdown Model | EOD Trailing | EOD Trailing | EOD Trailing | EOD Trailing |",
+            "quote": "Drawdown Model EOD Trailing EOD Trailing EOD Trailing EOD Trailing",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5099,26 +5099,26 @@
         "evidence": [
           {
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-            "quote": "| Consistency | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) | 50% (Eval Only) |",
+            "quote": "Consistency 50% (Eval Only) 50% (Eval Only) 50% (Eval Only) 50% (Eval Only)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
             "quote": "There's a 50% consistency rule in evaluation only",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
             "quote": "Each payout is between $500 and $2,000, with a 50% consistency rule applied at the payout stage.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5138,24 +5138,24 @@
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
             "quote": "You keep 90% of every payout. MFFU keeps 10%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
-            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 |",
+            "quote": "Profit Split 80/20 80/20 80/20 Min Payout $1,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
-            "quote": "| Profit Split | 80/20 | 80/20 | 80/20 | 80/20 |",
+            "quote": "News Trading Allowed Allowed Allowed Allowed Profit Split 80/20 80/20 80/20 80/20",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5173,26 +5173,26 @@
         "evidence": [
           {
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-            "quote": "Payout cadence Daily",
+            "quote": "Trade with no daily loss limit, no consistency rule, and a daily payout cadence. Stay above the buffer and you're eligible to request a payout every 24 hours.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
             "quote": "Pro starts at $50K, goes up to $150K, pays on a 14-day cycle with a $100,000 cap",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
-            "quote": "Payout cadence Every 48 hours",
+            "quote": "Once you're funded, Builder pays every 48 hours — as soon as you've hit 2 qualifying days and cleared the buffer.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5210,11 +5210,19 @@
         "evidence": [
           {
             "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
-            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded, Pro Sim Funded. Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations, Builder Plans",
+            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded Pro Sim Funded Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations Builder Plans",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "News Trading Allowed Allowed Allowed Allowed",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "productSlug": "builder"
           }
         ]
       },
@@ -5233,24 +5241,24 @@
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
             "quote": "Can I hold positions overnight on Rapid? No. Rapid is intended for intraday futures trading. All positions must be closed before the daily session close. Holding overnight will breach the account.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
             "quote": "Trades may be placed beginning at 6:00 PM EST when the Globex session opens and can remain open until the New York session closes at 4:10 PM EST.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
             "quote": "Can I hold positions overnight? No. All positions must be closed before the end of the trading session. Any open positions at session close will be automatically closed by the platform.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5273,42 +5281,34 @@
         "evidence": [
           {
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-            "quote": "| Daily Loss Limit | None | None | None | None |",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
-            "quote": "| Daily Loss Limit | None | None | None |",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://myfundedfutures.com/plans/builder",
-            "quote": "| Daily Loss Limit | $600 - soft pause | $1,000 - soft pause | $1,750 - soft pause | $2,500 - soft pause |",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
             "quote": "Daily Loss Limit $600 - soft pause $1,000 - soft pause $1,750 - soft pause $2,500 - soft pause",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
             "quote": "there is no daily loss limit in the evaluation or sim funded stages",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/challenges/_captures/my-funded-futures-2026-10-26.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5344,26 +5344,26 @@
         "evidence": [
           {
             "sourceUrl": "https://myfundedfutures.com/plans/rapid",
-            "quote": "| Max Loss (EOD) | $1,000 | $2,000 | $3,000 | $4,500 |",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/pro",
-            "quote": "| Max Loss (EOD) | $2,000 | $3,000 | $4,500 |",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://myfundedfutures.com/plans/builder",
-            "quote": "| Max Loss (EOD Trailing) | $1,000 | $2,000 ($1,500 with add-on) | $3,000 | $4,500 |",
+            "quote": "Max Loss (EOD Trailing) $1,000 $2,000 ($1,500 with add-on) $3,000 $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
@@ -5384,16 +5384,16 @@
         "evidence": [
           {
             "sourceUrl": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
-            "quote": "Platform Choices - NinjaTrader ... - Hyperprop ... - Tradovate ... - TradingView ... - Quantower ... - Volumetrica ... - DeepChart/DeepDom ... - ATAS",
+            "quote": "Platform Choices NinjaTrader: Renowned for its flexibility ... Hyperprop: Built to be clean by default ... Tradovate: With an intuitive interface ... TradingView: For those who are already accustomed to TradingView ... Quantower: A rising star ... Volumetrica: Valued for its unique volume analysis capabilities ... DeepChart/DeepDom: Recognized for its real-time volume data ... ATAS: Known for its advanced analytics",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-05",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "usd",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json"
     },
     "legalEntity": "MyFunded Futures, LLC",
     "headquarters": null,

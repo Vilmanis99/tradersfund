@@ -1,0 +1,54 @@
+{
+  "firmSlug": "my-funded-futures",
+  "officialDomain": "https://myfundedfutures.com",
+  "capturedAt": "2026-11-05",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-05 13:05-13:20 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://myfundedfutures.com/plans/rapid",
+    "https://myfundedfutures.com/plans/pro",
+    "https://myfundedfutures.com/plans/builder",
+    "https://myfundedfutures.com/plans",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look"
+  ],
+  "pageDates": {
+    "https://myfundedfutures.com/plans/rapid": "no page date",
+    "https://myfundedfutures.com/plans/pro": "no page date",
+    "https://myfundedfutures.com/plans/builder": "no page date",
+    "https://myfundedfutures.com/plans": "no page date",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy": "updated 2026-08-31T12:47:27Z",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu": "updated 2026-10-08T20:21:37Z",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade": "updated 2026-08-24T20:35:05Z",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide": "updated 2026-10-21T08:34:41Z",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look": "updated 2026-08-24T20:34:33Z"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck (rules only; Russia and discount fields were rechecked 2026-11-04).",
+  "blocks": [],
+  "productsScope": "Evidence-only capture: no products array. Product prices and values in challenges/<slug>.json keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules evidence (drawdownType, consistencyPct, profitSplitPct, payoutFrequency, newsTrading, dailyLossUsd, maxLossUsd, platforms)",
+      "note": "markdown-table quotes re-quoted as plain page text; Builder payout cadence and profit split now quoted from the Builder plan page body/table; values unchanged",
+      "checkedAt": "2026-11-05"
+    }
+  ],
+  "unchanged": [
+    "all values and byProduct maps unchanged",
+    "Rapid page still states intraday trailing drawdown on Sim Funded ('Yes, Rapid uses intraday trailing drawdown.'); already recorded in challenges/my-funded-futures.json notes, drawdownType summary unchanged",
+    "news policy: T1 news prohibited on Rapid Sim Funded and Pro Sim Funded, permitted on all evaluations and Builder",
+    "8 platforms unchanged"
+  ],
+  "notReread": [
+    "/plans/flex (near-empty response, not a block)",
+    "russia/discount fields (rechecked 2026-11-04)",
+    "Trustpilot (third-party)",
+    "prices"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-05",
-  "accessNotes": "Alpha Capital rolling recheck 2026-11-05 12:25-12:45 Riga: standard HTTP GET of public English Help Centre articles and the /product page, no account/checkout, no VPN or proxy; all rules quotes from 14/15/23 Oct still present; bare '4%'/'static'/'high-water mark' snippets replaced with full plan-spec lines. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/alpha/. | Maven rolling recheck 2026-11-05 12:45-13:05 Riga: standard HTTP GET of public /faqs, /pricing, /terms-and-conditions and homepage, no account/checkout, no VPN or proxy. Terms now read 'Version 2026.2 | Effective date and Last Amended 23 October 2026' with product Schedules 1-3; the 2026-10-27 FAQ-vs-Terms conflicts on news trading (Instant, Mini, Buy Now Pay Later, Prediction Markets) and Instant payout cadence are resolved in the FAQ's favour. /pricing quotes still present (prices not re-read for this recheck). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/maven/.",
+  "accessNotes": "Alpha Capital rolling recheck 2026-11-05 12:25-12:45 Riga: standard HTTP GET of public English Help Centre articles and the /product page, no account/checkout, no VPN or proxy; all rules quotes from 14/15/23 Oct still present; bare '4%'/'static'/'high-water mark' snippets replaced with full plan-spec lines. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/alpha/. | Maven rolling recheck 2026-11-05 12:45-13:05 Riga: standard HTTP GET of public /faqs, /pricing, /terms-and-conditions and homepage, no account/checkout, no VPN or proxy. Terms now read 'Version 2026.2 | Effective date and Last Amended 23 October 2026' with product Schedules 1-3; the 2026-10-27 FAQ-vs-Terms conflicts on news trading (Instant, Mini, Buy Now Pay Later, Prediction Markets) and Instant payout cadence are resolved in the FAQ's favour. /pricing quotes still present (prices not re-read for this recheck). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/maven/. | My Funded Futures rolling recheck 2026-11-05 13:05-13:20 Riga: standard HTTP GET of public /plans/rapid, /plans/pro, /plans/builder and Help Centre articles, no account/checkout, no VPN or proxy; all values unchanged; table quotes (stored with markdown pipes) re-quoted as plain page text. /plans/flex returned a near-empty response and was not used. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/mff/.",
   "pagesRead": [
     "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
     "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
@@ -17,7 +17,16 @@
     "https://maventrading.com/faqs",
     "https://maventrading.com/terms-and-conditions",
     "https://maventrading.com/pricing",
-    "https://maventrading.com/"
+    "https://maventrading.com/",
+    "https://myfundedfutures.com/plans/rapid",
+    "https://myfundedfutures.com/plans/pro",
+    "https://myfundedfutures.com/plans/builder",
+    "https://myfundedfutures.com/plans",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look"
   ],
   "pageDates": {
     "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12": "July 22, 2026",
@@ -35,7 +44,16 @@
     "https://maventrading.com/faqs": "no page date",
     "https://maventrading.com/terms-and-conditions": "Version 2026.2 | Effective date and Last Amended 23 October 2026",
     "https://maventrading.com/pricing": "no page date",
-    "https://maventrading.com/": "no page date"
+    "https://maventrading.com/": "no page date",
+    "https://myfundedfutures.com/plans/rapid": "no page date",
+    "https://myfundedfutures.com/plans/pro": "no page date",
+    "https://myfundedfutures.com/plans/builder": "no page date",
+    "https://myfundedfutures.com/plans": "no page date",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy": "updated 2026-08-31T12:47:27Z",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu": "updated 2026-10-08T20:21:37Z",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade": "updated 2026-08-24T20:35:05Z",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide": "updated 2026-10-21T08:34:41Z",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look": "updated 2026-08-24T20:34:33Z"
   },
   "firms": {
     "alpha-capital": {
@@ -632,6 +650,249 @@
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "Maven Trading offers MT5 and Match Trader"
+          }
+        ]
+      }
+    },
+    "my-funded-futures": {
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "rapid": "eod-trailing",
+          "rapid-eod": "eod-trailing",
+          "flex": "eod-trailing",
+          "pro": "eod-trailing",
+          "builder": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro uses end-of-day trailing drawdown in both eval and sim funded."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Drawdown Model EOD Trailing EOD Trailing EOD Trailing EOD Trailing"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 50% on Rapid, Flex, Pro; 30% on Rapid EOD; not stated on Builder",
+        "byProduct": {
+          "rapid": 50,
+          "rapid-eod": 30,
+          "flex": 50,
+          "pro": 50,
+          "builder": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Consistency 50% (Eval Only) 50% (Eval Only) 50% (Eval Only) 50% (Eval Only)"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "There's a 50% consistency rule in evaluation only"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Each payout is between $500 and $2,000, with a 50% consistency rule applied at the payout stage."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 90% on Rapid, Rapid EOD; 80% on Flex, Pro, Builder",
+        "byProduct": {
+          "rapid": 90,
+          "rapid-eod": 90,
+          "flex": 80,
+          "pro": 80,
+          "builder": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "You keep 90% of every payout. MFFU keeps 10%."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Profit Split 80/20 80/20 80/20 Min Payout $1,000"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "News Trading Allowed Allowed Allowed Allowed Profit Split 80/20 80/20 80/20 80/20"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Rapid, Rapid EOD, Flex, Builder; bi-weekly on Pro",
+        "byProduct": {
+          "rapid": "on-demand",
+          "rapid-eod": "on-demand",
+          "flex": "on-demand",
+          "pro": "bi-weekly",
+          "builder": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Trade with no daily loss limit, no consistency rule, and a daily payout cadence. Stay above the buffer and you're eligible to request a payout every 24 hours."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro starts at $50K, goes up to $150K, pays on a 14-day cycle with a $100,000 cap"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Once you're funded, Builder pays every 48 hours — as soon as you've hit 2 qualifying days and cleared the buffer."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on Rapid, Rapid EOD, Flex, Pro; allowed on Builder",
+        "byProduct": {
+          "rapid": "restricted",
+          "rapid-eod": "restricted",
+          "flex": "restricted",
+          "pro": "restricted",
+          "builder": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded Pro Sim Funded Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations Builder Plans"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "News Trading Allowed Allowed Allowed Allowed"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed: positions auto-close at the 4:10 PM EST daily session close on every current plan (Permitted Times article); stated as overnight-not-allowed on the Rapid and Builder pages; \"weekend\" itself is not named",
+        "byProduct": {
+          "rapid": false,
+          "rapid-eod": false,
+          "flex": false,
+          "pro": false,
+          "builder": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Can I hold positions overnight on Rapid? No. Rapid is intended for intraday futures trading. All positions must be closed before the daily session close. Holding overnight will breach the account."
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+            "quote": "Trades may be placed beginning at 6:00 PM EST when the Globex session opens and can remain open until the New York session closes at 4:10 PM EST."
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+            "quote": "Can I hold positions overnight? No. All positions must be closed before the end of the trading session. Any open positions at session close will be automatically closed by the platform."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; none on Rapid EOD (help, 2026-10-26); Flex (legacy) not re-confirmed",
+        "byProduct": {
+          "rapid": null,
+          "rapid-eod": null,
+          "flex": null,
+          "pro": null,
+          "builder": {
+            "25000": 600,
+            "50000": 1000,
+            "100000": 1750,
+            "150000": 2500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Daily Loss Limit $600 - soft pause $1,000 - soft pause $1,750 - soft pause $2,500 - soft pause"
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+            "quote": "there is no daily loss limit in the evaluation or sim funded stages"
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Rapid; $1,000 (25K) / $2,000 (50K) on Rapid EOD, Flex, Builder; $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Pro",
+        "byProduct": {
+          "rapid": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "rapid-eod": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "flex": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "pro": {
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "builder": {
+            "25000": 1000,
+            "50000": 2000
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Max Loss (EOD Trailing) $1,000 $2,000 ($1,500 with add-on) $3,000 $4,500"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "NinjaTrader",
+          "Hyperprop",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Volumetrica",
+          "DeepChart/DeepDom",
+          "ATAS"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+            "quote": "Platform Choices NinjaTrader: Renowned for its flexibility ... Hyperprop: Built to be clean by default ... Tradovate: With an intuitive interface ... TradingView: For those who are already accustomed to TradingView ... Quantower: A rising star ... Volumetrica: Valued for its unique volume analysis capabilities ... DeepChart/DeepDom: Recognized for its real-time volume data ... ATAS: Known for its advanced analytics"
           }
         ]
       }
