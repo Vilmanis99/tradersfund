@@ -6032,8 +6032,10 @@ function checkConsistencyGuide() {
   }
 
   const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
-  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
-    rows.push('consistency guide must preserve 6 factual FAQs')
+  // Calculator mount (data-article-diagram=consistency-calculator, hideHeader) added 3 FAQs
+  // about the on-page tool / FTMO 50% / unstated basis; keep pin at 9 (fold-to-6 was reverted).
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 9) {
+    rows.push('consistency guide must preserve 9 factual FAQs')
   }
   if (/href="https?:\/\//i.test(content)) {
     rows.push('consistency guide contains a bare external link')
