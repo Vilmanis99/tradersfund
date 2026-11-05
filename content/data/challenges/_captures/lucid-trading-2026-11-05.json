@@ -1,0 +1,56 @@
+{
+  "firmSlug": "lucid-trading",
+  "officialDomain": "https://lucidtrading.com",
+  "capturedAt": "2026-11-05",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English Help Centre articles on 2026-11-05 13:20-13:30 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+    "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms"
+  ],
+  "pageDates": {
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown": "updated 2026-08-26T21:11:29Z",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown": "updated 2026-08-26T21:15:27Z",
+    "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization": "updated 2026-10-20T16:28:29Z",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts": "updated 2026-10-21T17:09:29Z",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts": "updated 2026-07-28T17:09:58Z",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts": "updated 2026-07-27T02:38:25Z",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities": "updated 2026-08-26T21:05:24Z",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times": "updated 2026-08-26T21:05:50Z",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit": "updated 2026-10-19T00:23:30Z",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit": "updated 2026-08-19T19:35:15Z",
+    "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms": "updated 2026-10-12T16:37:27Z"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck (rules only).",
+  "blocks": [],
+  "productsScope": "Evidence-only capture: no products array. Product prices and values in challenges/<slug>.json keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules.newsTrading evidence",
+      "note": "re-quoted verbatim from the other-activities article (updated 2026-08-26); stored quote used ' - ' list separators not on the page; value unchanged",
+      "checkedAt": "2026-11-05"
+    }
+  ],
+  "unchanged": [
+    "all values and byProduct maps unchanged",
+    "LucidPro payouts article edited 2026-10-21, LucidDirect DLL 2026-10-19 and LucidDaily customization 2026-10-20: stored quotes (40% consistency, 90% split, no fixed payout window, DLL tables) still verbatim",
+    "12 platforms unchanged"
+  ],
+  "notReread": [
+    "LucidDirect payouts/consistency page (no stored rules evidence)",
+    "prices/promo",
+    "Trustpilot (third-party)"
+  ]
+}
