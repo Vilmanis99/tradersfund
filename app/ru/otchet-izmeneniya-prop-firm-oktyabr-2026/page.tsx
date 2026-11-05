@@ -22,7 +22,7 @@ const PATH = '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026' as const satisfies R
 const TITLE = 'Изменения правил и выплат проп-компаний — октябрь 2026'
 const H1 = 'Изменения правил и выплат проп-компаний — октябрь 2026'
 const DESCRIPTION =
-  'Отчёт за октябрь 2026: изменения правил, выплат, цен и промо у проп-компаний. У каждой строки — источник и дата сверки. CSV публикуется вместе с отчётом.'
+  'Отчёт за октябрь 2026: 56 изменений правил, выплат, цен и промо у проп-компаний. У каждой строки — источник и дата сверки по 31.10. CSV — 56 строк.'
 const DATE_PUBLISHED = '2026-11-05'
 const CHECKED = '2026-11-01'
 const CSV_HREF = '/reports/prop-firm-changes-october-2026.csv'
@@ -147,6 +147,9 @@ export default function RuOtchetOktyabr2026Page() {
               </li>
               <li>
                 <Link href="/ru/luchshie-prop-firmy">Рейтинг проп-компаний</Link>
+              </li>
+              <li>
+                <Link href="/ru/fundingpips-pravila">Правила FundingPips подробно</Link>
               </li>
             </ul>
           </div>
