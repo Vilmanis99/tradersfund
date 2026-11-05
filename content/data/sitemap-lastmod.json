@@ -863,8 +863,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:alpha-capital-vs-maven": {
-      "hash": "c60464192508138f",
-      "changed": "2026-10-20",
+      "hash": "44a85719b9f9f9fd",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:alpha-capital-vs-my-funded-futures": {
@@ -938,8 +938,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:bright-funded-vs-maven": {
-      "hash": "36980292de9cc282",
-      "changed": "2026-10-20",
+      "hash": "bc42d48b02c41a65",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:bright-funded-vs-my-funded-futures": {
@@ -1188,8 +1188,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:ftmo-vs-maven": {
-      "hash": "b4daf9d5f91dfb73",
-      "changed": "2026-10-20",
+      "hash": "51af3411165568b4",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:ftmo-vs-my-funded-futures": {
@@ -1238,8 +1238,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:fundednext-vs-maven": {
-      "hash": "7aeca6741bb8699f",
-      "changed": "2026-10-20",
+      "hash": "b73528db26e1e918",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:fundednext-vs-my-funded-futures": {
@@ -1283,8 +1283,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:fundingpips-vs-maven": {
-      "hash": "f76bddb28f504291",
-      "changed": "2026-11-02",
+      "hash": "378c0a2d00a36e79",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:fundingpips-vs-my-funded-futures": {
@@ -1398,8 +1398,8 @@
       "first": "2026-10-21"
     },
     "copy:compares:maven-vs-ofp-funding": {
-      "hash": "449458b3e5e99a1a",
-      "changed": "2026-10-20",
+      "hash": "8d80c2de96307c75",
+      "changed": "2026-11-05",
       "first": "2026-10-21"
     },
     "copy:compares:maven-vs-take-profit-trader": {
@@ -2413,8 +2413,8 @@
       "first": "2026-07-29"
     },
     "file:content/posts/maven-prop-firm-review.md": {
-      "hash": "c8d3c7e54763f920",
-      "changed": "2026-10-27",
+      "hash": "1affc37d3414af13",
+      "changed": "2026-11-05",
       "first": "2026-06-05"
     },
     "file:content/posts/my-funded-futures.md": {
@@ -2423,7 +2423,7 @@
       "first": "2026-06-05"
     },
     "file:content/posts/no-hidden-rules-prop-firms.md": {
-      "hash": "f9a29a516c375ec7",
+      "hash": "c8db2e4e72341902",
       "changed": "2026-11-05",
       "first": "2026-10-15"
     },
@@ -3266,7 +3266,7 @@
       "lastmod": "2026-11-02"
     },
     "/blog/maven-prop-firm-review": {
-      "hash": "afe210a2d0a8ff44",
+      "hash": "ae6cab5e3b9aa68f",
       "lastmod": "2026-11-05"
     },
     "/blog/my-funded-futures": {
@@ -3274,8 +3274,8 @@
       "lastmod": "2026-10-28"
     },
     "/blog/no-hidden-rules-prop-firms": {
-      "hash": "bd9af75100c06248",
-      "lastmod": "2026-10-22"
+      "hash": "7e11c9af52896bd4",
+      "lastmod": "2026-11-05"
     },
     "/blog/ofp-funding-review": {
       "hash": "b17a1c5c4357013c",
@@ -3422,7 +3422,7 @@
       "lastmod": "2026-10-29"
     },
     "/compare/alpha-capital-vs-maven": {
-      "hash": "ee1fe67107314b60",
+      "hash": "d828262a8b9b7bda",
       "lastmod": "2026-11-05"
     },
     "/compare/alpha-capital-vs-my-funded-futures": {
@@ -3554,7 +3554,7 @@
       "lastmod": "2026-10-30"
     },
     "/compare/bright-funded-vs-maven": {
-      "hash": "8512b1478f35e1fc",
+      "hash": "557e4edd619872d9",
       "lastmod": "2026-11-05"
     },
     "/compare/bright-funded-vs-my-funded-futures": {
@@ -3770,7 +3770,7 @@
       "lastmod": "2026-10-29"
     },
     "/compare/ftmo-vs-maven": {
-      "hash": "5d5fda7318361e1f",
+      "hash": "0bfac5d374457d2e",
       "lastmod": "2026-11-05"
     },
     "/compare/ftmo-vs-my-funded-futures": {
@@ -3814,7 +3814,7 @@
       "lastmod": "2026-10-29"
     },
     "/compare/fundednext-vs-maven": {
-      "hash": "70656706b6b6df05",
+      "hash": "9343bba00da43d05",
       "lastmod": "2026-11-05"
     },
     "/compare/fundednext-vs-my-funded-futures": {
@@ -3854,7 +3854,7 @@
       "lastmod": "2026-11-02"
     },
     "/compare/fundingpips-vs-maven": {
-      "hash": "df6d0e57cdb15a4f",
+      "hash": "4dd07b603ea3daf2",
       "lastmod": "2026-11-05"
     },
     "/compare/fundingpips-vs-my-funded-futures": {
@@ -3958,7 +3958,7 @@
       "lastmod": "2026-11-05"
     },
     "/compare/maven-vs-ofp-funding": {
-      "hash": "4d7563764392762b",
+      "hash": "990d7e52cb80da88",
       "lastmod": "2026-11-05"
     },
     "/compare/maven-vs-take-profit-trader": {
