@@ -536,30 +536,16 @@
       "instant"
     ],
     "kind": "source-conflict",
-    "status": "watch",
+    "status": "verified",
     "observedAt": "2026-08-11",
-    "lastCheckedAt": "2026-10-20",
-    "title": "Maven publishes conflicting Instant payout timing",
-    "summary": "Maven's Instant page and, since October, its FAQ say Instant payouts are available on demand once the 3% profit threshold and 20% consistency score are met, while the Terms still specify payouts every 10 business days.",
-    "traderImpact": "The comparison leaves Instant payout timing unknown. Confirm the first eligible request date and later cadence in the selected account terms before purchase.",
+    "lastCheckedAt": "2026-11-05",
+    "title": "Maven Instant payout timing now agrees: on demand",
+    "summary": "Resolved 2026-11-05: Terms v2026.2 (Last Amended 23 October 2026) clause 10.3 (\"BNPL and Instant are on demand subject to their conditions\") and Schedule 1 (\"Instant Funding … on demand\") match the Instant FAQ (\"available on demand\" once the 3% profit threshold and 20% Consistency Score are met). The earlier Terms wording that put Instant on the 10-business-day cadence is gone. Instant payoutFrequency in firms.json / challenges/maven.json is already on-demand from the same recheck.",
+    "traderImpact": "Treat Instant Funding as on-demand once the 3% profit threshold and 20% consistency score are met; KYC still applies before payment. On-demand eligibility is not instant receipt. Confirm the selected account terms before purchase.",
     "sourceUrls": [
-      "https://maventrading.com/challenges/instant",
+      "https://maventrading.com/terms-and-conditions",
       "https://maventrading.com/faqs",
-      "https://maventrading.com/terms-and-conditions"
-    ],
-    "sourceConflictEvidenceRefs": [
-      {
-        "file": "maven-watch-recheck-2026-10-20.json",
-        "section": "instantPage"
-      },
-      {
-        "file": "maven-watch-recheck-2026-10-20.json",
-        "section": "instantFaq"
-      },
-      {
-        "file": "maven-watch-recheck-2026-10-20.json",
-        "section": "instantTerms"
-      }
+      "https://maventrading.com/challenges/instant"
     ]
   },
   {
