@@ -1110,6 +1110,10 @@
    "languages": null
   },
   {
+   "url": "https://tradersfundhub.com/prop-firms/bright-funded/rules",
+   "languages": null
+  },
+  {
    "url": "https://tradersfundhub.com/prop-firms/closed",
    "languages": {
     "en": "https://tradersfundhub.com/prop-firms/closed",
@@ -1160,6 +1164,14 @@
   {
    "url": "https://tradersfundhub.com/prop-firms/weekend-holding",
    "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+   "languages": {
+    "en": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+    "ru": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+    "x-default": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026"
+   }
   },
   {
    "url": "https://tradersfundhub.com/ru",
@@ -1367,6 +1379,14 @@
     "en": "https://tradersfundhub.com/blog/topstep-review",
     "ru": "https://tradersfundhub.com/ru/obzor-topstep",
     "x-default": "https://tradersfundhub.com/blog/topstep-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+   "languages": {
+    "en": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+    "ru": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+    "x-default": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026"
    }
   },
   {
