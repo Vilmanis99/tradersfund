@@ -2136,8 +2136,8 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "regionalDiscountPct": 20,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
-    "discountCodeCapturedAt": "2026-11-03",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 3 November 2026 (Last updated 2 November 2026; Active codes 3). Live codes: FUNDED40 — \"40% Off Direct Accounts 1 Nov 2026 – 30 Nov 2026 · Alpha Direct only — not valid on evaluation plans\"; ALPHA20 — \"20% Off All Accounts 1 Nov 2026 – 30 Nov 2026 · Applies to all accounts. Use code at checkout\"; 10KFOR40 — \"10K Account Deal 1 Nov 2026 – 30 Nov 2026 · Qualifying $10K evaluation plans. Use code at checkout or via the campaign page.\" Primary regionalDiscountCode is ALPHA20 (broadest: all accounts, 20%). FUNDED40 and 10KFOR40 stay in this note only. Seen from a US network view; not checkout-verified; discountCodeRegion us-only-unconfirmed; nothing added to deals.json. HALLOWEEN45 (26–31 Oct) remains ended under previousDiscountCode.",
+    "discountCodeCapturedAt": "2026-11-05",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 5 November 2026 (Last updated 2 November 2026; Active codes 3). Live codes: FUNDED40 — \"40% Off Direct Accounts 1 Nov 2026 – 30 Nov 2026 · Alpha Direct only — not valid on evaluation plans\"; ALPHA20 — \"20% Off All Accounts 1 Nov 2026 – 30 Nov 2026 · Applies to all accounts. Use code at checkout\"; 10KFOR40 — \"10K Account Deal 1 Nov 2026 – 30 Nov 2026 · Qualifying $10K evaluation plans. Use code at checkout or via the campaign page.\" ALPHA20 is the code we list because it is the broadest (20% off all accounts); FUNDED40 and 10KFOR40 are mentioned here only. The page was viewed from the United States and the codes have not been tested at checkout, so they may not apply in every country. HALLOWEEN45 (26–31 October) has ended.",
     "previousDiscountCode": "HALLOWEEN45",
     "previousDiscountCodeStatus": "ended: published on the official codes page as \"45% off … 26 Oct 2026 – 31 Oct 2026 … Live until midnight UK time on 31 October.\"; removed when that window passed; never checkout-verified. Earlier code MYALPHA ended 26 October 2026."
   },
@@ -4143,8 +4143,8 @@
     "regionalDiscountCode": "ONESTEP35",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
-    "discountCodeCapturedAt": "2026-11-03",
-    "discountCodeNote": "Seen on https://fxify.com/ on 3 November 2026 (Chrome UA; default curl was Cloudflare-blocked); not checkout-verified and may be region-specific, so not shown as a universal code. Homepage still shows \"FLASH SALE: 40% OFF INSTANT FUNDING (excl. Instant Lite) … FUNDED40\" with \"Expires: 3rd November 2026\" and \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35\" with \"Expires: 31st December 2026\". AGHHH35 / \"HALLOWEEN SALE -35% OFF\" is gone from the homepage (0 matches; was listed with Expires: 2 November on the 30 October capture). Primary regionalDiscountCode remains ONESTEP35; FUNDED40 stays in the note only (kickoff: do not treat Instant FUNDED40 as a site deal before 4 Nov). Not in deals.json.",
+    "discountCodeCapturedAt": "2026-11-05",
+    "discountCodeNote": "Seen on https://fxify.com/ on 5 November 2026: \"NOVEMBER SALE: 25% OFF + 2 FREE ADDONS … FUNDED25 … Expires: 24th November 2026\" and \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35 … Expires: 31st December 2026\". ONESTEP35 is the code we list; FUNDED25 is mentioned here only. The FUNDED40 flash sale (Expires: 3rd November 2026) is no longer on the homepage, and AGHHH35 ended earlier. The page was viewed from the United States and the codes have not been tested at checkout, so they may not apply in every country.",
     "regionalDiscountPct": 35
   },
   {
