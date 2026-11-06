@@ -499,8 +499,8 @@
     "corporateNote": "FundedNext Terms of Service, section 2.1: \"The Services made available under the FundedNext brand are offered and contracted by the User with GrowthNext – F.Z.E., a company duly registered under No. 28831, with its registered address at Office No. 7, AI Robotics HUB, C1 Building, Ajman Free Zone (AFZ), Ajman, United Arab Emirates (\"Provider\"). The Provider is the sole contracting party\". The same section names FundedNext Ltd (reg. HY01023052, Comoros) for operational aspects of the simulated trading environment and FundedNext Limited (Wan Chai, Hong Kong), which processes payments. Until 2 November 2026 this field named FundedNext Ltd (Comoros) as the contracting entity and Hong Kong as the office.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://fundednext.com/cfds/stellar-2-step",
-    "discountCodeCapturedAt": "2026-11-04",
-    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, re-read 4 November 2026: FNTRICK absent from page HTML (still previousDiscountCode only; was \"SAVE UP TO 41% WITH CODE FNTRICK\" on 2026-10-30/31). No promo code shown on this re-read. Nothing added to deals.json.",
+    "discountCodeCapturedAt": "2026-11-06",
+    "discountCodeNote": "Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step, read 6 November 2026: new banner \"SAVE UP TO 41% WITH CODE NOVSTR\" (the $6K Stellar 2-Step card shows $34.99 against $59.99). No end date or terms are shown next to the code, and the discount is stated only as \"up to\", so no percentage is stored. FNTRICK is still absent and stays the previous code. The code may be region-specific and has not been tested at checkout, so it may not apply in every country; nothing added to deals.json.",
     "previousDiscountCode": "FNTRICK",
     "previousDiscountCodeStatus": "no longer shown: the Stellar 2-Step page https://fundednext.com/cfds/stellar-2-step said \"SAVE UP TO 41% WITH CODE FNTRICK\" on 2026-10-30/31 (no end date published); on 2026-11-01 the code is gone from the Stellar 1-Step, 2-Step, Lite and Instant pages and the $6K 2-Step card is back to $59.99; never checkout-verified. Earlier code STRTN ended 25 October 2026",
     "rules": {
@@ -790,7 +790,9 @@
       },
       "lossLimitUnit": "pct",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-02.json"
-    }
+    },
+    "regionalDiscountCode": "NOVSTR",
+    "discountCodeRegion": "us-only-unconfirmed"
   },
   {
     "name": "FundingPips",
@@ -1631,9 +1633,9 @@
     "regionalDiscountCode": "E8",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
-    "discountCodeCapturedAt": "2026-11-02",
-    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts and the E8 One page still show \"Save $146 with code E8 on first order\" and 30% OFF pricing on 2 November 2026; the site's product data lists code E8 at 30% for E8 One/E8 Pro Classic and 50% for the Perpetuals versions, first order only, no expiry shown. The official discount-codes page https://e8markets.com/e8-markets-discount-code lists E8 only as 25% for E8 Signature (Futures) and lists E8ARC (Winter ARC) for E8 One/E8 Pro; the Winter ARC page says the Forex discount is reduced to 15% on 3 November 2026. Not checkout-verified; regional status not re-established, so kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
-    "regionalDiscountPct": 30
+    "discountCodeCapturedAt": "2026-11-06",
+    "discountCodeNote": "Compare page https://e8markets.com/compare-simfi-funded-accounts and the E8 One page https://e8markets.com/e8-one, read 6 November 2026, now show \"15% OFF\" and \"Save $73 with code E8 on first order\" ($100K E8 One $488 → $415); on 2 November 2026 the same cards showed 30% OFF and \"Save $146\". The Winter ARC page https://e8markets.com/winter-arc now reads \"15% off Forex\" (it had said \"This discount for Forex is going to be reduced to 15% on the 3rd of November\"). The official discount-codes page https://e8markets.com/e8-markets-discount-code lists E8ARC \"15% off\" for E8 One and E8 Pro (Classic Markets), REB8 \"35% off\" for E8 Zero MAX and E8 Zero Starter (Futures), E8ARC \"50% off\" for the Perpetual versions and E8 \"25% off\" for E8 Signature (Futures), with no expiry dates. The codes may be region-specific and have not been tested at checkout, so they may not apply in every country.",
+    "regionalDiscountPct": 15
   },
   {
     "name": "Alpha Capital",
@@ -2161,7 +2163,7 @@
     "regionalDiscountPct": 20,
     "discountCodeSourceUrl": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
     "discountCodeCapturedAt": "2026-11-05",
-    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 5 November 2026 (Last updated 2 November 2026; Active codes 3). Live codes: FUNDED40 — \"40% Off Direct Accounts 1 Nov 2026 – 30 Nov 2026 · Alpha Direct only — not valid on evaluation plans\"; ALPHA20 — \"20% Off All Accounts 1 Nov 2026 – 30 Nov 2026 · Applies to all accounts. Use code at checkout\"; 10KFOR40 — \"10K Account Deal 1 Nov 2026 – 30 Nov 2026 · Qualifying $10K evaluation plans. Use code at checkout or via the campaign page.\" ALPHA20 is the code we list because it is the broadest (20% off all accounts); FUNDED40 and 10KFOR40 are mentioned here only. The page was viewed from the United States and the codes have not been tested at checkout, so they may not apply in every country. HALLOWEEN45 (26–31 October) has ended.",
+    "discountCodeNote": "Official codes page https://alphacapitalgroup.uk/alpha-capital-discount-codes, read 5 November 2026 (Last updated 2 November 2026; Active codes 3). Live codes: FUNDED40 — \"40% Off Direct Accounts 1 Nov 2026 – 30 Nov 2026 · Alpha Direct only — not valid on evaluation plans\"; ALPHA20 — \"20% Off All Accounts 1 Nov 2026 – 30 Nov 2026 · Applies to all accounts. Use code at checkout\"; 10KFOR40 — \"10K Account Deal 1 Nov 2026 – 30 Nov 2026 · Qualifying $10K evaluation plans. Use code at checkout or via the campaign page.\" ALPHA20 is the code we list because it is the broadest (20% off all accounts); FUNDED40 and 10KFOR40 are mentioned here only. The codes may be region-specific and have not been tested at checkout, so they may not apply in every country. HALLOWEEN45 (26–31 October) has ended.",
     "previousDiscountCode": "HALLOWEEN45",
     "previousDiscountCodeStatus": "ended: published on the official codes page as \"45% off … 26 Oct 2026 – 31 Oct 2026 … Live until midnight UK time on 31 October.\"; removed when that window passed; never checkout-verified. Earlier code MYALPHA ended 26 October 2026."
   },
@@ -4166,7 +4168,7 @@
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://fxify.com/",
     "discountCodeCapturedAt": "2026-11-05",
-    "discountCodeNote": "Seen on https://fxify.com/ on 5 November 2026: \"NOVEMBER SALE: 25% OFF + 2 FREE ADDONS … FUNDED25 … Expires: 24th November 2026\" and \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35 … Expires: 31st December 2026\". ONESTEP35 is the code we list; FUNDED25 is mentioned here only. The FUNDED40 flash sale (Expires: 3rd November 2026) is no longer on the homepage, and AGHHH35 ended earlier. The page was viewed from the United States and the codes have not been tested at checkout, so they may not apply in every country.",
+    "discountCodeNote": "Seen on https://fxify.com/ on 5 November 2026: \"NOVEMBER SALE: 25% OFF + 2 FREE ADDONS … FUNDED25 … Expires: 24th November 2026\" and \"NEW TRADERS: 35% OFF 1-PHASE … ONESTEP35 … Expires: 31st December 2026\". ONESTEP35 is the code we list; FUNDED25 is mentioned here only. The FUNDED40 flash sale (Expires: 3rd November 2026) is no longer on the homepage, and AGHHH35 ended earlier. The codes may be region-specific and have not been tested at checkout, so they may not apply in every country.",
     "regionalDiscountPct": 35
   },
   {
@@ -4532,13 +4534,11 @@
     "corporateNote": "SWISS RLCRATES AG (CHE-162.567.204) states it is a payment/marketing agent for RLCRATES, S.L., which provides the MT5 service; the footer says it is not authorized or licensed in Switzerland. Offices listed: Zug, Pamplona, Dubai.",
     "corporateSourceUrl": "https://cryptofundtrader.com/",
     "corporateCapturedAt": "2026-10-20",
-    "discountCode": "BOO20",
-    "discountPct": 20,
-    "discountCodeCheckoutVerified": false,
     "discountCodeSourceUrl": "https://cryptofundtrader.com/",
-    "discountCodeCapturedAt": "2026-11-02",
-    "discountCodeNote": "Homepage Halloween game overlay on https://cryptofundtrader.com/, read 2 November 2026: \"Find the exit to reveal your discount code!\" with \"Copy code: BOO20\" still in the page. Checkout NOT verified, so it is not promoted and is kept out of deals.json. No published end date on the overlay; Halloween-named, so it is rechecked daily and moves to previous codes once the overlay is gone.",
-    "discountCodeValidity": "Halloween overlay, no published end date (still present 2 November 2026); recheck daily"
+    "discountCodeCapturedAt": "2026-11-06",
+    "discountCodeNote": "Homepage https://cryptofundtrader.com/, re-read 6 November 2026: BOO20 and the Halloween overlay are no longer in the page, and no other discount code is shown. BOO20 moved to previousDiscountCode. Nothing in deals.json.",
+    "previousDiscountCode": "BOO20",
+    "previousDiscountCodeStatus": "no longer shown: the Halloween game overlay on https://cryptofundtrader.com/ (\"Find the exit to reveal your discount code!\" / \"Copy code: BOO20\") was still on the homepage on 2 November 2026 and is gone on 6 November 2026; no end date was ever published; never checkout-verified."
   },
   {
     "name": "Topstep",
@@ -6260,12 +6260,12 @@
       "lossLimitUnit": "usd",
       "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json"
     },
-    "regionalDiscountCode": "NOFEE40",
+    "regionalDiscountCode": "NOFEE50",
     "discountCodeRegion": "us-only-unconfirmed",
     "discountCodeSourceUrl": "https://www.takeprofittrader.com/",
-    "discountCodeCapturedAt": "2026-10-30",
-    "discountCodeNote": "Seen on https://www.takeprofittrader.com/ on 30 October 2026: \"Get 40% Off For Life + Never Pay An Activation Fee! … Use Code: NOFEE40\". May be US-only; not checkout-verified; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
-    "regionalDiscountPct": 40
+    "discountCodeCapturedAt": "2026-11-06",
+    "discountCodeNote": "Seen on https://www.takeprofittrader.com/ on 6 November 2026: \"Early Black Friday Sale: Get 50% Off For Life + Never Pay An Activation Fee! … Use Code: NOFEE50\". It replaces the NOFEE40 banner (\"Get 40% Off For Life + Never Pay An Activation Fee!\") seen on 30 October 2026; no end date is shown. The code may be region-specific and has not been tested at checkout, so it may not apply in every country; kept as regionalDiscountCode with discountCodeRegion us-only-unconfirmed.",
+    "regionalDiscountPct": 50
   },
   {
     "name": "TradeDay",
