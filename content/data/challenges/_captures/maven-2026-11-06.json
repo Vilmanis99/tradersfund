@@ -1,0 +1,63 @@
+{
+  "firmSlug": "maven",
+  "officialDomain": "https://maventrading.com",
+  "capturedAt": "2026-11-06",
+  "captureType": "daily-check-drift",
+  "timezone": "Europe/Riga",
+  "trigger": "Daily check 2026-11-06 found Terms Version 2026.3 (Last Amended 5 November 2026) and matching FAQ / pricing changes",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-06 08:10 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation. Full Terms text diff vs 2026-11-05: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/terms-diff-v2026.2-to-v2026.3.txt",
+  "pagesRead": [
+    "https://maventrading.com/",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/terms-and-conditions"
+  ],
+  "pageDates": {
+    "https://maventrading.com/terms-and-conditions": "Version 2026.3 | Effective date and Last Amended 5 November 2026"
+  },
+  "productsScope": "Evidence-only capture: no products array. Prices and product sourceCapturedAt in challenges/maven.json not changed.",
+  "changes": [
+    {
+      "field": "payoutFrequency / payoutFirstDays (predictions-1-step, predictions-elite-1-step)",
+      "from": "bi-weekly / 10",
+      "to": "on-demand / 0",
+      "quotes": [
+        "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period.",
+        "You can request a payout as soon as you have enough profit to withdraw; there is no waiting period.",
+        "Payout frequency Funded On demand"
+      ]
+    },
+    {
+      "field": "consistencyBasisQuote (instant, buy-now-pay-later)",
+      "note": "basis stays payout-cycle-profit; losing days now reduce the total",
+      "quotes": [
+        "Your largest winning day must not exceed 20% of your total profit in the current payout cycle. Total profit counts all trading days, including losing days, so a losing day lowers the total and raises your score. The calculation resets after each payout.",
+        "For BNPL and Instant, consistency equals the largest profitable day divided by the total profit of all trading days in the payout cycle, including losing days, multiplied by 100."
+      ]
+    },
+    {
+      "field": "profitSplitPct summary",
+      "note": "BNPL has no add-ons",
+      "quotes": [
+        "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand",
+        "Buy Now Pay Later has no add-ons."
+      ]
+    }
+  ],
+  "recordedNotValueChanges": [
+    "Standard 1/2/3 Step news window: Simulated Funded Account consequence changed from termination to 'profit made in that window is removed and the account is not terminated'; Challenge still a terminating rule violation (rules.news stays restricted).",
+    "M2 Account Saver: first trigger in an evaluation phase now also cuts the funded split to 50%; trigger counter now carries over between phases (5.4, 5.5).",
+    "Inactivity: 'Exceeding 30 days without trading activity, or the OMO 180-day limit, terminates the account.' (5.6)",
+    "Add-ons (6.3): 90% split add-on on Standard 1/2/3, OMO, Instant, Mini; 10% Max Drawdown add-on (8% -> 10%) on Standard 2 Step and OMO; Consistency Score +10% add-on (Instant 20% -> 30%, Mini 15% -> 25%); BNPL no add-ons.",
+    "Payout cap (10.7): $10,000 'may be withdrawn across two payouts or within any rolling 30-calendar-day period'; OMO over-cap profit voided and account reset to initial balance (10.8).",
+    "Drawdown after payout (10.9): 'When the payout is approved, the drawdown limits and the highest equity used for maximum drawdown are reset'; BNPL does not reset.",
+    "Prediction Markets: 60-second holding rule does not apply; inactivity rule does (S3.6).",
+    "/pricing still shows 'Sorry, this product is not available in your region.' on cards; list prices rendered."
+  ],
+  "unchanged": [
+    "Standard/OMO payout cadence 10 business days (Terms 10.3, FAQ)",
+    "Instant and BNPL on demand",
+    "OMO code banner and DIAMOND/ROCKET A/B banner",
+    "all other firms.json rules quotes still verbatim (40 of 43; the 3 misses were the Prediction Markets payout quotes replaced here)"
+  ]
+}
