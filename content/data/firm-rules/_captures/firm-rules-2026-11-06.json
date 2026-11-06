@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles.",
+  "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -13,6 +13,15 @@
     "https://maventrading.com/faqs",
     "https://maventrading.com/pricing",
     "https://maventrading.com/terms-and-conditions",
+    "https://takeprofittrader.com/",
+    "https://takeprofittrader.com/accounts/api/subscriptions",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+    "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
     "https://tradeday.com/how-it-works",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
@@ -516,6 +525,165 @@
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
             "quote": "At checkout, you select one of three brokers: Tradovate, Rithmic, or WealthCharts. ... Tradovate gives access to NinjaTrader and TradingView. Rithmic gives access to Tradesea, Quantower, Sierra Chart, and R|Trader. WealthCharts is its own broker and platform"
+          }
+        ]
+      }
+    },
+    "take-profit-trader": {
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "the-test": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
+            "quote": "The drawdown is called “trailing” because the minimum account balance follows your highest end-of-day balance upward."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": 50,
+        "summary": "50%",
+        "byProduct": {
+          "the-test": 50
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
+            "quote": "Profit Consistency (Percentage of Profits Rule) To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits ."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "the-test": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "Profit split Profit split None 80/20 90/10"
+          },
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "You keep 80%."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "the-test": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/",
+            "quote": "From there you move to a PRO account and become eligible for day-one and daily payouts."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "the-test": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
+            "quote": "All PRO Accounts must be out of all open positions and have no open orders one minute before, during and one minute after any prohibited news event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": {
+          "the-test": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "The Universal Trading Policies (UTP) establish the core standards that apply to all TakeProfitTrader accounts, including Test, PRO, and PRO+."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
+            "quote": "#6: Trade Approved Products, During Approved Times. Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
+            "quote": "Positions cannot be carried from one trading day into the next. All positions must be opened and closed within the approved daily window: ... TPT will automatically close any open position at 4:55 PM Eastern."
+          },
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
+            "quote": "You may only trade approved instruments during the permitted trading hours."
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": {
+          "25000": 1500,
+          "50000": 2000,
+          "75000": 2500,
+          "100000": 3000,
+          "150000": 4500
+        },
+        "summary": "$1,500 (25K) / $2,000 (50K) / $2,500 (75K) / $3,000 (100K) / $4,500 (150K)",
+        "byProduct": {
+          "the-test": {
+            "25000": 1500,
+            "50000": 2000,
+            "75000": 2500,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+            "quote": "{\"name\":\"$ 25k\",...,\"eodTrailingDrawdown\":1500},{\"name\":\"$ 50k\",...,\"eodTrailingDrawdown\":2000},{\"name\":\"$ 75k\",...,\"eodTrailingDrawdown\":2500},{\"name\":\"$ 100k\",...,\"eodTrailingDrawdown\":3000},{\"name\":\"$ 150k\",...,\"eodTrailingDrawdown\":4500}"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TradingView",
+          "NinjaTrader",
+          "Tradovate",
+          "Bookmap",
+          "MultiCharts",
+          "MotiveWave",
+          "Trade Navigator",
+          "R|Trader",
+          "VolFix",
+          "ATAS",
+          "Investor R/T",
+          "Quantower",
+          "Finamark",
+          "Jigsaw Trader"
+        ],
+        "summary": "TradingView, NinjaTrader, Tradovate, Bookmap, MultiCharts, MotiveWave, Trade Navigator, R|Trader, VolFix, ATAS, Investor R/T, Quantower, Finamark, Jigsaw Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
+            "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader"
           }
         ]
       }

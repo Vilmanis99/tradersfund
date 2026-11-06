@@ -5999,8 +5999,8 @@
     "russiaSourceNote": "\"Russia\" is listed in the Q - T: column of the restricted-countries table in the same article (read 2026-10-26, Zendesk updated_at 2026-08-25T18:46:53Z). The article also prohibits access through \"VPNs, remote connections, or shared networks that may route activity through a restricted country.\" Previous value was unverified.",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-10-14.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/take-profit-trader-2026-11-06.json",
       "drawdownType": {
         "value": "eod-trailing",
         "summary": "eod-trailing",
@@ -6012,8 +6012,8 @@
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
             "quote": "The drawdown is called “trailing” because the minimum account balance follows your highest end-of-day balance upward.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6041,8 +6041,8 @@
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170316538013-Rule-5-Be-Consistent",
             "quote": "Profit Consistency (Percentage of Profits Rule) To prevent the evaluation from being treated like a lottery ticket, your best trading day must be below 50% of your total net profits .",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6058,16 +6058,16 @@
             "sourceUrl": "https://takeprofittrader.com/",
             "quote": "Profit split Profit split None 80/20 90/10",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://takeprofittrader.com/",
             "quote": "You keep 80%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6083,8 +6083,8 @@
             "sourceUrl": "https://takeprofittrader.com/",
             "quote": "From there you move to a PRO account and become eligible for day-one and daily payouts.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6100,8 +6100,8 @@
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15171769361053-PRO-Account-Rules",
             "quote": "All PRO Accounts must be out of all open positions and have no open orders one minute before, during and one minute after any prohibited news event.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6118,32 +6118,32 @@
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
             "quote": "The Universal Trading Policies (UTP) establish the core standards that apply to all TakeProfitTrader accounts, including Test, PRO, and PRO+.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-28",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/34431153546397-TakeProfitTrader-Universal-Trading-Policies-UTP",
             "quote": "#6: Trade Approved Products, During Approved Times. Most products traded on CME Group exchanges (CME, NYMEX, COMEX, CBOT) are permitted, but positions may not be held from one session to the next.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-28",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170347090461-Rule-4-Trade-Approved-Products-During-Approved-Hours",
             "quote": "Positions cannot be carried from one trading day into the next. All positions must be opened and closed within the approved daily window: ... TPT will automatically close any open position at 4:55 PM Eastern.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-28",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15172006753821-PRO-Account-Rules",
             "quote": "You may only trade approved instruments during the permitted trading hours.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-28",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-28.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6229,8 +6229,8 @@
             "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
             "quote": "{\"name\":\"$ 25k\",...,\"eodTrailingDrawdown\":1500},{\"name\":\"$ 50k\",...,\"eodTrailingDrawdown\":2000},{\"name\":\"$ 75k\",...,\"eodTrailingDrawdown\":2500},{\"name\":\"$ 100k\",...,\"eodTrailingDrawdown\":3000},{\"name\":\"$ 150k\",...,\"eodTrailingDrawdown\":4500}",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6259,8 +6259,8 @@
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
             "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
