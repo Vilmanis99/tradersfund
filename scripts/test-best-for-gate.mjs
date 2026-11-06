@@ -546,43 +546,49 @@ ${body}
 }
 
 // Track A: low-drawdown USD footnote drops soldToNewBuyers===false; numbered ranking untouched.
+// Negative control must strip sale-status fields — live data may already carry Tracker flags.
 {
   const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'low-drawdown')
-  const live = rankBestFor(useCase, 'en')
   const cftPath = path.join(process.cwd(), 'content/data/challenges/crypto-fund-trader.json')
   const original = fs.readFileSync(cftPath, 'utf8')
+  const rankedIdentity = row => ({
+    slug: row.slug,
+    productSlugs: row.products.map(p => p.productSlug),
+    fieldValues: row.fieldValues,
+    sortKeys: row.sortKeys,
+  })
   try {
     const products = JSON.parse(original)
     const breakProduct = products.find(p => p.productSlug === 'break')
     assert.ok(breakProduct, 'Break Challenge present')
+
+    // Negative control: absent soldToNewBuyers → Break still eligible for unrankedUsd.
+    // rankBestFor reads disk, so write a stripped copy then restore in finally.
+    for (const product of products) {
+      delete product.soldToNewBuyers
+      delete product.soldToNewBuyersCheckedAt
+    }
+    fs.writeFileSync(cftPath, `${JSON.stringify(products, null, 2)}\n`)
+    const withoutField = rankBestFor(useCase, 'en')
+    assert.ok(
+      withoutField.unrankedUsd.some(r => r.slug === 'crypto-fund-trader' && r.products.some(p => p.productSlug === 'break')),
+      'without soldToNewBuyers, Break still appears in unrankedUsd',
+    )
+
+    // Positive control: explicit false removes the CFT USD footnote card only.
     breakProduct.soldToNewBuyers = false
     breakProduct.soldToNewBuyersCheckedAt = '2026-11-06'
     fs.writeFileSync(cftPath, `${JSON.stringify(products, null, 2)}\n`)
     const overlaid = rankBestFor(useCase, 'en')
     assert.deepEqual(
-      overlaid.ranked.map(r => ({
-        slug: r.slug,
-        productSlugs: r.products.map(p => p.productSlug),
-        fieldValues: r.fieldValues,
-        sortKeys: r.sortKeys,
-      })),
-      live.ranked.map(r => ({
-        slug: r.slug,
-        productSlugs: r.products.map(p => p.productSlug),
-        fieldValues: r.fieldValues,
-        sortKeys: r.sortKeys,
-      })),
+      overlaid.ranked.map(rankedIdentity),
+      withoutField.ranked.map(rankedIdentity),
       'Track A must not change numbered low-drawdown ranking',
     )
     assert.ok(!overlaid.unrankedUsd.some(r => r.slug === 'crypto-fund-trader'), 'CFT Break USD card gone')
     assert.ok(
       overlaid.unrankedUsd.every(row => row.products.every(p => p.soldToNewBuyers !== false)),
       'unrankedUsd must not include soldToNewBuyers===false products',
-    )
-    // Absent field still qualifies on live tree
-    assert.ok(
-      live.unrankedUsd.some(r => r.slug === 'crypto-fund-trader' && r.products.some(p => p.productSlug === 'break')),
-      'without the field, Break still appears in unrankedUsd',
     )
     console.log('  Track A unsold USD footnote filter', {
       ranked: overlaid.ranked.length,
