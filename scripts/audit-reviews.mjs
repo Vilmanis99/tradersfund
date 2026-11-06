@@ -11563,8 +11563,19 @@ function checkRussianAcquisitionPilot() {
           && date >= evidence.capturedAt
           && parsed.getTime() <= Date.now()
       }
-      const isCurrentScopedCapture = date => validScopedCapture(date)
-        && (Date.now() - new Date(`${date}T23:59:59Z`).getTime()) / 86_400_000 <= 30
+      // Operator-level local-firm and affiliate rows keep their own recapture clock:
+      // they are first-party checks of one operator's site, independent of the
+      // broad-market bundle stamp (evidence.capturedAt moves when search-demand,
+      // access, KYC or payout observations are recaptured). So they need a real,
+      // non-future YYYY-MM-DD within 30 days of today, NOT date >= evidence.capturedAt.
+      const isCurrentOperatorCapture = date => {
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false
+        const parsed = new Date(`${date}T00:00:00Z`)
+        return Number.isFinite(parsed.getTime())
+          && parsed.toISOString().slice(0, 10) === date
+          && parsed.getTime() <= Date.now()
+          && (Date.now() - new Date(`${date}T23:59:59Z`).getTime()) / 86_400_000 <= 30
+      }
       const hasScopedObservations = item => {
         if (!item?.sourceObservations) return true
         const observations = item.sourceObservations
@@ -11863,7 +11874,7 @@ function checkRussianAcquisitionPilot() {
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
       for (const item of localSignals.values()) {
-        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+        if (!isCurrentOperatorCapture(item.sourceCapturedAt)) {
           rows.push(`${item.operator}: local-firm claims need a first-party check within 30 days`)
         }
       }
@@ -11918,7 +11929,7 @@ function checkRussianAcquisitionPilot() {
       const affiliatePrograms = new Map((evidence.affiliatePrograms ?? [])
         .map(item => [item.operator, item]))
       for (const item of affiliatePrograms.values()) {
-        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+        if (!isCurrentOperatorCapture(item.sourceCapturedAt)) {
           rows.push(`${item.operator}: local affiliate status needs a public-page check within 30 days`)
         }
       }
