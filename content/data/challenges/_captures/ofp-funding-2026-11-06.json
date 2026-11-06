@@ -1,0 +1,45 @@
+{
+  "firmSlug": "ofp-funding",
+  "officialDomain": "https://ofpfunding.com",
+  "capturedAt": "2026-11-06",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of 14-15 Oct 2026 rules evidence (Fri 6 Nov 2026 batch)",
+  "method": "Standard HTTP GET (curl) of ofpfunding.com trading-rules + homepage (__NUXT_DATA__) and help.ofpfunding.com articles on 2026-11-06; no account/checkout. Raw: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/ofp/",
+  "pagesRead": [
+    "https://ofpfunding.com/#pricing",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/account-models/",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+    "https://ofpfunding.com/"
+  ],
+  "pageDates": {
+    "https://ofpfunding.com/#pricing": "2026-11-06",
+    "https://ofpfunding.com/trading-rules": "2026-11-06",
+    "https://help.ofpfunding.com/account-models/": "2026-11-06",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/": "2026-11-06",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/": "2026-11-06",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/": "2026-11-06",
+    "https://ofpfunding.com/": "2026-11-06"
+  },
+  "pricesScope": "not-reread (pricing widget/API still match stored 80%-tier from 2026-11-01 capture; morning parse ofp/ofpfunding.com-plans-parsed.json)",
+  "rulesRefreshed": [
+    "drawdownType",
+    "dailyLossPct",
+    "maxLossPct",
+    "consistencyPct",
+    "profitSplitPct",
+    "payoutFrequency",
+    "newsTrading",
+    "platforms"
+  ],
+  "valueChanges": [],
+  "quoteChanges": [
+    "drawdownType/dailyLossPct/maxLossPct: replaced capture-note product JSON appendages with verbatim trading-rules formulas",
+    "profitSplitPct: replaced capture-note with homepage selector \"Select Profit Split 80% 100%\""
+  ],
+  "unchangedValues": true,
+  "blocks": []
+}

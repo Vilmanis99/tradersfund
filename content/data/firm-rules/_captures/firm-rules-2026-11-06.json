@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+.",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -24,9 +24,24 @@
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
-    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "https://ofpfunding.com/#pricing",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/account-models/",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+    "https://ofpfunding.com/"
   ],
-  "pageDates": {},
+  "pageDates": {
+    "https://ofpfunding.com/#pricing": "2026-11-06",
+    "https://ofpfunding.com/trading-rules": "2026-11-06",
+    "https://help.ofpfunding.com/account-models/": "2026-11-06",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/": "2026-11-06",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/": "2026-11-06",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/": "2026-11-06",
+    "https://ofpfunding.com/": "2026-11-06"
+  },
   "firms": {
     "tradeday": {
       "drawdownType": {
@@ -624,6 +639,186 @@
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
             "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader"
+          }
+        ]
+      }
+    },
+    "ofp-funding": {
+      "drawdownType": {
+        "value": "static",
+        "summary": "static",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "static",
+          "instant-classic-5-daily-10-max-drawdown": "static",
+          "instant-lite": "static",
+          "instant-lite-5-daily-10-max-drawdown": "static",
+          "instant-plus-3-daily-5-max-drawdown": "static",
+          "instant-plus-5-daily-10-max-drawdown": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "summary": "Product-specific: 3% on Instant Classic (3% daily / 6% max drawdown), Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown); 5% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 3,
+          "instant-classic-5-daily-10-max-drawdown": 5,
+          "instant-lite": 3,
+          "instant-lite-5-daily-10-max-drawdown": 5,
+          "instant-plus-3-daily-5-max-drawdown": 3,
+          "instant-plus-5-daily-10-max-drawdown": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "summary": "Product-specific: 6% on Instant Classic (3% daily / 6% max drawdown); 10% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown); 5% on Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 6,
+          "instant-classic-5-daily-10-max-drawdown": 10,
+          "instant-lite": 5,
+          "instant-lite-5-daily-10-max-drawdown": 10,
+          "instant-plus-3-daily-5-max-drawdown": 5,
+          "instant-plus-5-daily-10-max-drawdown": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "summary": "Product-specific: Inconsistency Score (best day ÷ total profit; no published % threshold) on Instant Classic; none on Instant Lite and Instant Plus",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": null,
+          "instant-classic-5-daily-10-max-drawdown": null,
+          "instant-lite": null,
+          "instant-lite-5-daily-10-max-drawdown": null,
+          "instant-plus-3-daily-5-max-drawdown": null,
+          "instant-plus-5-daily-10-max-drawdown": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/account-models/",
+            "quote": "INSTANT LITE ... Consistency Rule: NO ... INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT PLUS ... Consistency Rule: No"
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+            "quote": "Calculation Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 80,
+          "instant-classic-5-daily-10-max-drawdown": 80,
+          "instant-lite": 80,
+          "instant-lite-5-daily-10-max-drawdown": 80,
+          "instant-plus-3-daily-5-max-drawdown": 80,
+          "instant-plus-5-daily-10-max-drawdown": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Select Profit Split 80% 100%"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "summary": "Product-specific: bi-weekly on Instant Classic (3% daily / 6% max drawdown), Instant Classic (5% daily / 10% max drawdown), Instant Plus (3% daily / 5% max drawdown), Instant Plus (5% daily / 10% max drawdown); monthly on Instant Lite (3% daily / 5% max), Instant Lite (5% daily / 10% max)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "bi-weekly",
+          "instant-classic-5-daily-10-max-drawdown": "bi-weekly",
+          "instant-lite": "monthly",
+          "instant-lite-5-daily-10-max-drawdown": "monthly",
+          "instant-plus-3-daily-5-max-drawdown": "bi-weekly",
+          "instant-plus-5-daily-10-max-drawdown": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "restricted",
+          "instant-classic-5-daily-10-max-drawdown": "restricted",
+          "instant-lite": "restricted",
+          "instant-lite-5-daily-10-max-drawdown": "restricted",
+          "instant-plus-3-daily-5-max-drawdown": "restricted",
+          "instant-plus-5-daily-10-max-drawdown": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+            "quote": "You must avoid trading from 2 minutes before until 2 minutes after the release of any high-risk volatility news."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "OFP Platform (Sirix)"
+        ],
+        "summary": "OFP Platform (Sirix)",
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features."
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "Web Platform (Mobile & PC) Access directly from your browser: https://my.ofpfunding.net/"
           }
         ]
       }
