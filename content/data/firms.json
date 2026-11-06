@@ -1341,11 +1341,11 @@
     "country": "United States",
     "regulation": null,
     "corporateSourceUrl": "https://e8markets.com/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-11-06",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/e8-markets-2026-11-06.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on E8 One (Forex), E8 One (Perpetuals); static on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); eod-trailing on E8 Signature Forex",
@@ -1358,19 +1358,19 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "An 8% static drawdown that never trails, an 8% profit target, and payouts you can request every single day.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Static drawdown that never trails, and payouts you can request every single day. No consistency rules in Performance stage, no trailing drawdown, unrestricted news trading",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1390,16 +1390,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Daily drawdown $4,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
-            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your initial balance in a single day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1419,23 +1419,23 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
             "quote": "8% Static drawdown – A fixed loss limit based on your initial balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); not stated on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
+        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); none on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
         "byProduct": {
           "e8-one": 40,
           "e8-one-perpetuals": 40,
@@ -1448,16 +1448,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Consistency rule 40%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "Consistency ruleThere is none — trade freely.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "There is no consistency rule. Enjoy the freedom.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1477,16 +1477,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Payout 80%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "PayoutChoose 80% or 100% at purchase — permanent.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Choose 80% or 100% at purchase — permanent.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1506,8 +1506,8 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
             "quote": "Payout frequency: You can request every day!",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1527,16 +1527,16 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
             "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
             "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1556,16 +1556,16 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
             "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
             "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1594,40 +1594,24 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/",
-            "quote": "rmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in",
+            "quote": "Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://e8markets.com/",
-            "quote": "rgest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds Classic Mark",
+            "quote": "E8 Funding solely operates the following trading platforms: Tradelocker, cTrader, and Match Trade.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://e8markets.com/",
-            "quote": ",000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://e8markets.com/",
-            "quote": "f 5 on PropFirmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json"
     },
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "regionalDiscountCode": "E8",

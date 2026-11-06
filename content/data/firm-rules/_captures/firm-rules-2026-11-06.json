@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06.",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL).",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -31,7 +31,14 @@
     "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
     "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
     "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
-    "https://ofpfunding.com/"
+    "https://ofpfunding.com/",
+    "https://e8markets.com/",
+    "https://e8markets.com/e8-pro",
+    "https://e8markets.com/compare-simfi-funded-accounts",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+    "https://e8markets.com/e8-markets-terms-and-conditions"
   ],
   "pageDates": {
     "https://ofpfunding.com/#pricing": "2026-11-06",
@@ -40,7 +47,14 @@
     "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/": "2026-11-06",
     "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/": "2026-11-06",
     "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/": "2026-11-06",
-    "https://ofpfunding.com/": "2026-11-06"
+    "https://ofpfunding.com/": "2026-11-06",
+    "https://e8markets.com/": "2026-11-06",
+    "https://e8markets.com/e8-pro": "2026-11-06",
+    "https://e8markets.com/compare-simfi-funded-accounts": "2026-11-06",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro": "2026-11-06",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news": "2026-11-06",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend": "2026-11-06",
+    "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06"
   },
   "firms": {
     "tradeday": {
@@ -819,6 +833,185 @@
           {
             "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
             "quote": "Web Platform (Mobile & PC) Access directly from your browser: https://my.ofpfunding.net/"
+          }
+        ]
+      }
+    },
+    "e8-markets": {
+      "drawdownType": {
+        "summary": "Product-specific: trailing on E8 One (Forex), E8 One (Perpetuals); static on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); eod-trailing on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "trailing",
+          "e8-one-perpetuals": "trailing",
+          "e8-pro": "static",
+          "e8-pro-perpetuals": "static",
+          "e8-signature": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Static drawdown that never trails, and payouts you can request every single day. No consistency rules in Performance stage, no trailing drawdown, unrestricted news trading"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "summary": "Product-specific: 4% on E8 One (Forex), E8 One (Perpetuals); 2.5% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 4,
+          "e8-one-perpetuals": 4,
+          "e8-pro": 2.5,
+          "e8-pro-perpetuals": 2.5,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Daily drawdown $4,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your initial balance in a single day."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "summary": "Product-specific: 6% on E8 One (Forex), E8 One (Perpetuals); 8% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 6,
+          "e8-one-perpetuals": 6,
+          "e8-pro": 8,
+          "e8-pro-perpetuals": 8,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "8% Static drawdown – A fixed loss limit based on your initial balance"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); none on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 40,
+          "e8-one-perpetuals": 40,
+          "e8-pro": null,
+          "e8-pro-perpetuals": null,
+          "e8-signature": 35
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Consistency rule 40%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "There is no consistency rule. Enjoy the freedom."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "e8-one": 80,
+          "e8-one-perpetuals": 80,
+          "e8-pro": 80,
+          "e8-pro-perpetuals": 80,
+          "e8-signature": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Payout 80%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Choose 80% or 100% at purchase — permanent."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "e8-one": "on-demand",
+          "e8-one-perpetuals": "on-demand",
+          "e8-pro": "on-demand",
+          "e8-pro-perpetuals": "on-demand",
+          "e8-signature": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "Payout frequency: You can request every day!"
+          }
+        ]
+      },
+      "newsTrading": {
+        "summary": "Product-specific: restricted on E8 One (Forex); not stated on E8 One (Perpetuals), E8 Pro (Perpetuals); allowed on E8 Pro (E8PRO v2, Forex), E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "restricted",
+          "e8-one-perpetuals": null,
+          "e8-pro": true,
+          "e8-pro-perpetuals": null,
+          "e8-signature": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "summary": "Product-specific: allowed on E8 One (Forex), E8 One (Perpetuals), E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not allowed on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": true,
+          "e8-one-perpetuals": true,
+          "e8-pro": true,
+          "e8-pro-perpetuals": true,
+          "e8-signature": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages."
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TradeLocker",
+          "Match-Trader",
+          "cTrader",
+          "MT5"
+        ],
+        "summary": "TradeLocker, Match-Trader, cTrader, MT5",
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "E8 Funding solely operates the following trading platforms: Tradelocker, cTrader, and Match Trade."
           }
         ]
       }

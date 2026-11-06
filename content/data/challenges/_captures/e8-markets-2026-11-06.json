@@ -1,0 +1,55 @@
+{
+  "firmSlug": "e8-markets",
+  "officialDomain": "https://e8markets.com",
+  "capturedAt": "2026-11-06",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of 14-15 Oct 2026 rules + corporate (Fri 6 Nov 2026 batch)",
+  "method": "Standard HTTP GET (curl) of e8markets.com (homepage, /e8-pro, compare, terms) and help.e8markets.com articles on 2026-11-06; no account/checkout. Old /best-simfi-funded-program-e8pro returns 404 -> /e8-pro. Raw: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/e8/",
+  "pagesRead": [
+    "https://e8markets.com/",
+    "https://e8markets.com/e8-pro",
+    "https://e8markets.com/compare-simfi-funded-accounts",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+    "https://e8markets.com/e8-markets-terms-and-conditions"
+  ],
+  "pageDates": {
+    "https://e8markets.com/": "2026-11-06",
+    "https://e8markets.com/e8-pro": "2026-11-06",
+    "https://e8markets.com/compare-simfi-funded-accounts": "2026-11-06",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro": "2026-11-06",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news": "2026-11-06",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend": "2026-11-06",
+    "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06"
+  },
+  "corporate": {
+    "legalEntity": "E8 Funding LLC",
+    "headquarters": "Dallas, Texas, United States",
+    "sourceUrl": "https://e8markets.com/",
+    "quote": "E8 Funding LLC is a technology and education company incorporated under the laws of the United States, located at 4101 McEwen Rd #205, Dallas, TX 75244.",
+    "corporateCapturedAt": "2026-11-06"
+  },
+  "rulesRefreshed": [
+    "drawdownType",
+    "dailyLossPct",
+    "maxLossPct",
+    "consistencyPct",
+    "profitSplitPct",
+    "payoutFrequency",
+    "newsTrading",
+    "weekendHolding",
+    "platforms"
+  ],
+  "valueChanges": [
+    "consistencyPct.summary: \"not stated on E8 Pro...\" -> \"none on E8 Pro...\" (page states no consistency rule)"
+  ],
+  "quoteChanges": [
+    "e8-pro URL: /best-simfi-funded-program-e8pro (404) -> /e8-pro; drawdown/consistency/profit-split quotes re-quoted",
+    "platforms: replaced garbled homepage scrapes with clean \"Best platforms...\" + footer platforms sentence"
+  ],
+  "blocks": [
+    "https://e8markets.com/best-simfi-funded-program-e8pro -> 404 (replaced with /e8-pro)"
+  ]
+}
