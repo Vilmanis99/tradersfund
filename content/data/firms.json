@@ -780,10 +780,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
-            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader , and also supports TradingView for analysis purposes.",
+            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader, and also supports TradingView for analysis purposes.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
