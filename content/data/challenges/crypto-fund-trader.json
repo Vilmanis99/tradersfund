@@ -135,6 +135,8 @@
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
     "sourceCapturedAt": "2026-10-19",
+    "soldToNewBuyers": false,
+    "soldToNewBuyersCheckedAt": "2026-10-20",
     "notes": [
       "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
       "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",

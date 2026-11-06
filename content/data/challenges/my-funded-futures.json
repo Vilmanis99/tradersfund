@@ -206,6 +206,8 @@
     "assetClass": "futures",
     "sourceUrl": "https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy",
     "sourceCapturedAt": "2026-10-26",
+    "soldToNewBuyers": false,
+    "soldToNewBuyersCheckedAt": "2026-10-26",
     "notes": [
       "Flex is a legacy product. MFFU’s own Flex article says it is no longer offered to new buyers; these values describe legacy subscriptions and should not be presented as a current purchase option.",
       "Legacy Flex subscriptions retain recurring 30-day billing under the terms that applied before the one-time-payment migration. The current terms distinguish legacy subscriptions from new one-time plans.",
