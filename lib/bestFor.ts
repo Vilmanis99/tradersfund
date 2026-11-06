@@ -330,8 +330,15 @@ function russiaStatusOf(firm: Firm): BestForRussiaStatus {
 
 const FRESH = (product: Challenge, now = new Date()) => isChallengeFresh(product, now)
 
+/** Absent/undefined soldToNewBuyers stays eligible; only explicit false is dropped. */
+export function isBestForSaleEligible(product: Pick<Challenge, 'soldToNewBuyers'>): boolean {
+  return product.soldToNewBuyers !== false
+}
+
 function primaryProducts(firm: Firm, now = new Date()): Challenge[] {
-  return getChallengesByFirm(firmSlug(firm.name)).filter(product => FRESH(product, now))
+  return getChallengesByFirm(firmSlug(firm.name)).filter(
+    product => FRESH(product, now) && isBestForSaleEligible(product),
+  )
 }
 
 /* ── Tracker helpers: evaluationTimeLimit + minHoldSeconds ─────────── */
