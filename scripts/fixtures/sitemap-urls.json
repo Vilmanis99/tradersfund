@@ -239,7 +239,11 @@
   },
   {
    "url": "https://tradersfundhub.com/blog/my-funded-futures",
-   "languages": null
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/my-funded-futures",
+    "ru": "https://tradersfundhub.com/ru/obzor-my-funded-futures",
+    "x-default": "https://tradersfundhub.com/blog/my-funded-futures"
+   }
   },
   {
    "url": "https://tradersfundhub.com/blog/no-hidden-rules-prop-firms",
@@ -1384,6 +1388,14 @@
   {
    "url": "https://tradersfundhub.com/ru/obzor-kascapital",
    "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-my-funded-futures",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/my-funded-futures",
+    "ru": "https://tradersfundhub.com/ru/obzor-my-funded-futures",
+    "x-default": "https://tradersfundhub.com/blog/my-funded-futures"
+   }
   },
   {
    "url": "https://tradersfundhub.com/ru/obzor-proplive",

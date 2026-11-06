@@ -109,6 +109,7 @@ const RUSSIAN_REVIEW_PATHS = new Set([
   '/ru/obzor-spice-prop',
   '/ru/obzor-goat-funded-trader',
   '/ru/obzor-e8-markets',
+  '/ru/obzor-my-funded-futures',
   '/ru/otzyvy-prop-firm',
 ])
 

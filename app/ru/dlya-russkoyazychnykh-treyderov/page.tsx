@@ -347,7 +347,7 @@ export default function RussiaAvailabilityPage() {
             </article>
           </div>
           <p className="ru-source-line">
-            Topstep прямо исключает резидентов России. Чем заменить фьючерсный проп — в материале <RuPendingLink href="/ru/obzor-topstep">Topstep: обзор и альтернативы для РФ</RuPendingLink>.
+            Topstep прямо исключает резидентов России. Чем заменить фьючерсный проп — в материале <RuPendingLink href="/ru/obzor-topstep">Topstep: обзор и альтернативы для РФ</RuPendingLink>. Рядом по теме фьючерсного пропа — <Link href="/ru/obzor-my-funded-futures">My Funded Futures: обзор</Link> (тоже в списке ограничений для РФ).
           </p>
           {hashHedgeReviewHref ? (
             <p className="ru-source-line" data-russian-hh-mention="2026-10-19">

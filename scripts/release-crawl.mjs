@@ -1449,6 +1449,40 @@ const russianExpectations = new Map([
       'Проверено 29.10.2026 по официальным страницам',
     ],
   }],
+  ['/ru/obzor-my-funded-futures', {
+    title: 'My Funded Futures: обзор 2026 — цены, правила и доступ из РФ',
+    h1: 'My Funded Futures: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="my-funded-futures"',
+      'data-russian-mff-verdict-box="info-only"',
+      'data-russian-mff-verdict="summary"',
+      'data-russian-mff-access="restricted"',
+      'data-russia-status="restricted"',
+      'data-russia-firm="my-funded-futures"',
+      'В списке ограничений',
+      'по данным на 04.11.2026',
+      'по данным на 05.11.2026',
+      '"datePublished":"2026-11-10"',
+      'data-russian-mff-product-count="4"',
+      'data-russian-mff-legacy="flex"',
+      'data-russian-mff-conflicts="2026-11-04"',
+      'На странице только лист-цены',
+      'условия расходятся, уточните у поддержки',
+      'Условия расходятся, уточните у поддержки',
+      'в продаже не отображается',
+      'на сайте не указано',
+      'data-russian-mff-example="rapid-50k"',
+      'Пример, не прогноз',
+      'data-russian-mff-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-mff-alternative-bright-funded"',
+      'data-russian-mff-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="my-funded-futures-review"',
+      'data-russian-risk-disclaimer="my-funded-futures-review"',
+      'MyFunded Futures, LLC',
+      'Проверено 04.11.2026 по официальным страницам',
+    ],
+  }],
   ['/ru/obzor-goat-funded-trader', {
     title: 'Goat Funded Trader: обзор 2026 — правила и доступ из России',
     h1: 'Goat Funded Trader: обзор и отзывы 2026',
@@ -2230,7 +2264,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital', 'obzor-e8-markets']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital', 'obzor-e8-markets', 'obzor-my-funded-futures']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 

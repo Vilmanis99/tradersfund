@@ -31,6 +31,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/obzor-goat-funded-trader': '2026-11-05',
   '/ru/obzor-hash-hedge': '2026-11-05',
   '/ru/obzor-kascapital': '2026-11-05',
+  '/ru/obzor-my-funded-futures': '2026-11-10',
   '/ru/obzor-proplive': '2026-11-05',
   '/ru/obzor-spice-prop': '2026-11-05',
   '/ru/obzor-teamtraders': '2026-11-05',
