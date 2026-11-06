@@ -4489,15 +4489,15 @@
           "MT5",
           "Bybit"
         ],
-        "summary": "Match-Trader, MT5, Bybit",
+        "summary": "Match-Trader, MT5",
         "byProduct": null,
         "evidence": [
           {
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]

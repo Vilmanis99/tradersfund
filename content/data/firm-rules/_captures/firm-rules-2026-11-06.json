@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL).",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL). CFT rules.platforms leftover refresh 2026-11-06.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -38,7 +38,8 @@
     "https://help.e8markets.com/en/articles/15274219-e8-pro",
     "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
     "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
-    "https://e8markets.com/e8-markets-terms-and-conditions"
+    "https://e8markets.com/e8-markets-terms-and-conditions",
+    "https://cryptofundtrader.com/faq/"
   ],
   "pageDates": {
     "https://ofpfunding.com/#pricing": "2026-11-06",
@@ -54,7 +55,8 @@
     "https://help.e8markets.com/en/articles/15274219-e8-pro": "2026-11-06",
     "https://help.e8markets.com/en/articles/9185497-can-i-trade-news": "2026-11-06",
     "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend": "2026-11-06",
-    "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06"
+    "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06",
+    "https://cryptofundtrader.com/faq/": "2026-11-06"
   },
   "firms": {
     "tradeday": {
@@ -1012,6 +1014,22 @@
           {
             "sourceUrl": "https://e8markets.com/",
             "quote": "E8 Funding solely operates the following trading platforms: Tradelocker, cTrader, and Match Trade."
+          }
+        ]
+      }
+    },
+    "crypto-fund-trader": {
+      "platforms": {
+        "value": [
+          "Match-Trader",
+          "MT5",
+          "Bybit"
+        ],
+        "summary": "Match-Trader, MT5",
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit."
           }
         ]
       }
