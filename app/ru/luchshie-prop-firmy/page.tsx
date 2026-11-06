@@ -219,6 +219,7 @@ const russianReviewRoutes: Record<string, string> = {
     'crypto-fund-trader': '/ru/obzor-crypto-fund-trader',
     the5ers: '/ru/obzor-the5ers',
     topstep: '/ru/obzor-topstep',
+    'alpha-capital': '/ru/obzor-alpha-capital',
   }),
   // Hash Hedge (ships with EN Writer's HH review, Tue 27.10.2026): shared RU gate — firms.json entry + registered route.
   ...(ruHashHedgeReviewHref('/ru/obzor-hash-hedge') ? { 'hash-hedge': '/ru/obzor-hash-hedge' } : {}),

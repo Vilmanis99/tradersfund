@@ -65,6 +65,7 @@ export const RU_REVIEW_FIRMS: ReadonlyArray<{ path: string; firm: string; name: 
   { path: '/ru/obzor-blue-guardian', firm: 'blue-guardian', name: 'Blue Guardian' },
   { path: '/ru/obzor-spice-prop', firm: 'spice-prop', name: 'Spice Prop' },
   { path: '/ru/obzor-goat-funded-trader', firm: 'goat-funded-trader', name: 'Goat Funded Trader' },
+  { path: '/ru/obzor-alpha-capital', firm: 'alpha-capital', name: 'Alpha Capital' },
   { path: '/ru/obzor-fundingpips', firm: 'fundingpips', name: 'FundingPips' },
   { path: '/ru/obzor-ftmo', firm: 'ftmo', name: 'FTMO' },
   { path: '/ru/obzor-fundednext', firm: 'fundednext', name: 'FundedNext' },
@@ -264,6 +265,14 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     rel('/ru/otzyvy-prop-firm', 'проп компании отзывы'),
     rel('/ru/vyplaty-prop-firm', 'выплаты проп-фирм'),
     rel('/ru/dlya-russkoyazychnykh-treyderov', 'гид для русскоязычных трейдеров'),
+    rel('/ru/obzor-alpha-capital', 'Alpha Capital: обзор и правила'),
+  ],
+  '/ru/obzor-alpha-capital': [
+    alt('/ru/obzor-bright-funded', 'BrightFunded отзывы'),
+    alt('/ru/obzor-crypto-fund-trader', 'Crypto Fund Trader как альтернатива'),
+    rel('/ru/luchshie-prop-firmy', 'проп компании'),
+    rel('/ru/ftmo-dlya-rossiyan', 'FTMO в России: что изменилось'),
+    rel('/ru/otzyvy-prop-firm', 'отзывы о проп-компаниях'),
   ],
   '/ru/obzor-topstep': [
     ...RUSSIA_ALTERNATIVES,
