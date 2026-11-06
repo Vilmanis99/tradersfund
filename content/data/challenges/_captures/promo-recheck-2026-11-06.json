@@ -1,0 +1,105 @@
+{
+  "capturedAt": "2026-11-06",
+  "capturedBy": "prop-firm-tracker",
+  "asOf": "2026-11-06",
+  "windowDays": 25,
+  "method": "Standard HTTP GET of public homepages / pricing / code pages on 2026-11-06 08:09-08:15 Riga; no account, checkout or payment. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/.",
+  "freshness": {
+    "datasets": 20,
+    "fresh": 20,
+    "dueSoon": 20,
+    "stale": 0,
+    "nextFailure": "2026-11-14",
+    "oldest": "TradeDay 2026-10-14 (before the rolling recheck of 2026-11-06)"
+  },
+  "codes": {
+    "fundednext": {
+      "code": "NOVSTR",
+      "status": "new, regional/unconfirmed",
+      "url": "https://fundednext.com/cfds/stellar-2-step",
+      "quote": "SAVE UP TO 41% WITH CODE NOVSTR",
+      "previous": "FNTRICK (still absent)"
+    },
+    "crypto-fund-trader": {
+      "code": "BOO20",
+      "status": "ended (overlay gone)",
+      "url": "https://cryptofundtrader.com/",
+      "quote": "0 occurrences of BOO20 / \"Copy code\" in page HTML on 2026-11-06"
+    },
+    "e8-markets": {
+      "code": "E8",
+      "pct": 15,
+      "status": "live, regional/unconfirmed, cut from 30% to 15%",
+      "url": "https://e8markets.com/compare-simfi-funded-accounts",
+      "quote": "$488 $415 Save $73 with code E8 on first order",
+      "codesPage": "https://e8markets.com/e8-markets-discount-code: E8ARC 15% off (E8 One, E8 Pro Classic); REB8 35% off (E8 Zero MAX, E8 Zero Starter Futures); E8ARC 50% off (Perpetual); E8 25% off (E8 Signature Futures)"
+    },
+    "take-profit-trader": {
+      "code": "NOFEE50",
+      "pct": 50,
+      "status": "live, regional/unconfirmed, replaces NOFEE40",
+      "url": "https://www.takeprofittrader.com/",
+      "quote": "Early Black Friday Sale: Get 50% Off For Life + Never Pay An Activation Fee! CLICK THIS LINK FOR DETAILS . Use Code: NOFEE50"
+    },
+    "alpha-capital": {
+      "codes": [
+        "FUNDED40",
+        "ALPHA20",
+        "10KFOR40"
+      ],
+      "status": "unchanged",
+      "url": "https://alphacapitalgroup.uk/alpha-capital-discount-codes",
+      "quote": "Last updated 2 November 2026 ... Active codes 3"
+    },
+    "fxify": {
+      "codes": [
+        "FUNDED25",
+        "ONESTEP35"
+      ],
+      "status": "unchanged",
+      "url": "https://fxify.com/"
+    },
+    "bright-funded": {
+      "codes": [
+        "RALLY30",
+        "RALLY25",
+        "RALLY15"
+      ],
+      "status": "unchanged; HW30 still absent",
+      "url": "https://brightfunded.com/",
+      "quote": "Autumn Promo: RALLY30 1-Step - 30% OFF RALLY25 2-Step Bright - 25% OFF RALLY15 2-Step Classic - 15% OFF"
+    },
+    "maven": {
+      "code": "OMO",
+      "status": "unchanged (DIAMOND 5% / ROCKET 10% banner A/B still present)",
+      "url": "https://maventrading.com/"
+    },
+    "my-funded-futures": {
+      "codes": [
+        "CLUB",
+        "FIFTYOFF"
+      ],
+      "status": "unchanged",
+      "url": "https://myfundedfutures.com/coupons"
+    },
+    "city-traders-imperium": {
+      "code": null,
+      "status": "unchanged, no live code; FEARLESS15 still absent",
+      "url": "https://citytradersimperium.com/"
+    },
+    "tradeday": {
+      "code": "TDNEW",
+      "status": "unchanged",
+      "url": "https://www.tradeday.com/",
+      "quote": "USE CODE \"TDNEW\" ... Now up to 55% OFF! Accounts from just $45!"
+    },
+    "fundingpips": {
+      "status": "not re-read: help.fundingpips.com returned HTTP 403",
+      "url": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started"
+    },
+    "apex-trader-funding": {
+      "status": "not re-read: HTTP 403",
+      "url": "https://apextraderfunding.com/"
+    }
+  }
+}

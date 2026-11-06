@@ -22,6 +22,7 @@ import {
 } from '@/lib/localizedRoutes'
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
 import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
+import { getBestForPageModels, bestForRoutePair } from '@/lib/bestFor'
 import { RUSSIAN_ROUTE_EXTRA_EDITORIAL } from '@/lib/russianRouteLastmod'
 import { fileSource, firmSources, firmListingOnlySources, landingFirmChallengeSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
 
@@ -88,6 +89,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/compare`, lastModified: lm(`${BASE_URL}/compare`, COMPARISON_EDITORIAL_DATE, [...allFirms('compare'), ...SPLIT_TIER_SOURCES]), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: lm(`${BASE_URL}/contact`, CONTACT_EDITORIAL_DATE, []), changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE_URL}/how-we-make-money`, lastModified: lm(`${BASE_URL}/how-we-make-money`, HOW_WE_MAKE_MONEY_UPDATED, []), changeFrequency: 'monthly', priority: 0.5 },
+    // D&A Report #1 (EN). Body HTML / CSV are writer-owned; lastmod sources added when stacked.
+    { url: `${BASE_URL}/reports/prop-firm-changes-october-2026`, lastModified: lm(`${BASE_URL}/reports/prop-firm-changes-october-2026`, '2026-11-05', []), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/corrections`, lastModified: lm(`${BASE_URL}/corrections`, HOW_WE_MAKE_MONEY_UPDATED, [data('corrections.json')], [latestCorrectionDate()]), changeFrequency: 'weekly', priority: 0.5 },
     // /prop-firms/closed joins the sitemap only once content/data/closed-firms.json is published.
     ...(CLOSED_FIRMS_PUBLISHED
@@ -263,9 +266,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(model.ru && !model.ru.indexable ? [model.ru.path] : []),
   ]))
 
+  // Best-for-X pages: only indexable when writer verdict + ≥5 differing fields (lib/bestFor.ts).
+  const bestForModels = getBestForPageModels()
+  const bestForRoutes: MetadataRoute.Sitemap = bestForModels
+    .filter(model => model.indexable)
+    .map(model => ({
+      url: `${BASE_URL}${model.path}`,
+      lastModified: lm(
+        `${BASE_URL}${model.path}`,
+        model.lastReviewed,
+        [
+          data('firms.json'),
+          fileSource(`content/verdicts/best-for/${model.useCase.id}${model.lang === 'ru' ? '.ru' : ''}.md`),
+        ],
+      ),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    }))
+  const nonIndexableBestForPaths = new Set(
+    bestForModels.filter(model => !model.indexable).map(model => model.path),
+  )
+
   const baseRoutes: MetadataRoute.Sitemap = [
     ...staticRoutes,
     ...rulesRoutes,
+    ...bestForRoutes,
     ...featureRoutes,
     ...indiaMatchupRoutes,
     ...landingRoutes,
@@ -323,6 +348,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const route of [...baseRoutes, ...russianRoutes, ...russianOnlyRoutes, ...russianPlannedRoutes, ...russianClosedFirmsRoutes]) {
     // A noindex rules page never enters the sitemap, even if its RU path gets registered early.
     if (nonIndexableRulesPaths.has(new URL(route.url).pathname)) continue
+    if (nonIndexableBestForPaths.has(new URL(route.url).pathname)) continue
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)
@@ -341,7 +367,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...uniqueRoutes.values()].map(route => {
     const pathname = new URL(route.url).pathname
-    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname)
+    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname) ?? bestForRoutePair(pathname)
     if (!routePair) return route
     // The home page canonical renders without a trailing slash, so its alternates must too.
     const pair = { en: routePair.en === '/' ? '' : routePair.en, ru: routePair.ru }

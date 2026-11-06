@@ -179,8 +179,11 @@ for (const path of ruPaths) {
   }
   // (d) dated prose (RU Writer 2026-10-26): «… нет в (её/их) списке/списках ограничений (на DD.MM.YYYY)» in body text or the
   // meta description, in a sentence naming a basis firm, must carry that firm's data date (SEO literals cannot read data).
+  // Badge labels are checked in (a) via data-russia-firm; strip them here so a BrightFunded badge date
+  // immediately before a Crypto Fund Trader card title is not attributed to CFT when the two basis dates diverge.
   const description = (html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
-  for (const sentence of `${description} ${text}`.split(/(?<=[.!?])\s+/)) {
+  const proseWithoutBadges = visible(html.replace(/<span\b[^>]*class="[^"]*ru-badge[^"]*"[^>]*>[\s\S]*?<\/span>/gi, ' '))
+  for (const sentence of `${description} ${proseWithoutBadges}`.split(/(?<=[.!?])\s+/)) {
     const named = [...basis.values()].filter(b => sentence.includes(b.name))
     if (!named.length) continue
     for (const m of sentence.matchAll(/нет в (?:её |их )?списк(?:е|ах) ограничений \(?на (\d{2}\.\d{2}\.\d{4})/g)) {

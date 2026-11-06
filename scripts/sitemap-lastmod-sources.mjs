@@ -100,6 +100,17 @@ export const SPLIT_TIER_UI_FILES = Object.freeze([
   'components/SplitTiersDisclosure.tsx',
 ])
 
+/**
+ * RU access badge UI: label copy in lib/ruAccessLabel.ts; view + RuGoLink wrapper that
+ * always renders the badge next to firm CTAs. Tracked so a badge-wording change redates
+ * every /ru URL that imports these (see russianRouteSources import-graph attach).
+ */
+export const RU_ACCESS_BADGE_UI_FILES = Object.freeze([
+  'lib/ruAccessLabel.ts',
+  'components/RuAccessBadgeView.tsx',
+  'components/RuGoLink.tsx',
+])
+
 export const LASTMOD_IGNORED_DATA_FILES = Object.freeze([
   'content/data/firms-pending.json',
   'content/data/challenge-watch-provenance.json',
@@ -374,6 +385,7 @@ export function sourceSpecs() {
     ...listFiles('app/ru', f => f.endsWith('/page.tsx')),
     ...listFiles('content/data/ru-verdicts', f => f.endsWith('.json')),
     ...SPLIT_TIER_UI_FILES.filter(f => fs.existsSync(f)),
+    ...RU_ACCESS_BADGE_UI_FILES.filter(f => fs.existsSync(f)),
     ...fs.readdirSync('content/data')
       .filter(f => f.endsWith('.json') && !['firms.json', 'verdict-copy.json', 'sitemap-lastmod.json'].includes(f))
       .map(f => `content/data/${f}`)

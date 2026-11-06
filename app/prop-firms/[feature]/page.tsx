@@ -13,6 +13,7 @@ import FeatureEvidence from '@/components/FeatureEvidence'
 import FeatureFirmList from '@/components/FeatureFirmList'
 import FeatureFaq from '@/components/FeatureFaq'
 import AffiliateDisclosure from '@/components/AffiliateDisclosure'
+import { bestForIndexableFeatureLink } from '@/lib/bestFor'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 interface Props { params: Promise<{ feature: string }> }
@@ -104,6 +105,17 @@ export default async function FeaturePage({ params }: Props) {
           New to account mirroring? Read <Link href="/blog/what-is-copy-trading" style={{ color: 'var(--accent-light)', fontWeight: 700 }}>how copy trading works</Link> before comparing product permissions.
         </p>
       )}
+
+      {(slug === 'ea-allowed' || slug === 'news-trading') && (() => {
+        const href = bestForIndexableFeatureLink(slug)
+        if (!href) return null
+        return (
+          <p style={{ color: 'var(--muted)', maxWidth: 700, margin: '-0.5rem 0 1.5rem', fontSize: '0.92rem', lineHeight: 1.65 }} data-best-for-crosslink={slug}>
+            Prefer a data-gated ranking with a writer verdict? See{' '}
+            <Link href={href} style={{ color: 'var(--accent-light)', fontWeight: 700 }}>{href}</Link>.
+          </p>
+        )
+      })()}
 
       <AffiliateDisclosure />
 

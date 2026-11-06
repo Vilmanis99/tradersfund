@@ -73,7 +73,7 @@ type: "post"
 
 <p><strong>Trading permissions are product-specific.</strong> All 4 records allow news, overnight, and weekend trading and therefore appear in the <a href="/best-swing-trading-prop-firms">product-level swing-trading comparison</a>. Third-party EAs are allowed on 1-Step, while 2-Step, Instant, and Direct restrict EA use to the trader’s personal system; copy-trading fields remain unverified.</p>
 
-<p><strong>No captured consistency percentage means no percentage claim.</strong> Direct Funding’s page says “No Consistency Rules,” but the structured field stays null because no numeric formula is published. The same null treatment applies to the other 3 products rather than silently converting missing evidence to 0%.</p>
+<p><strong>Consistency depends on the product, and payouts are not the same gate as scaling.</strong> Direct Funding’s page states “Direct Funding has no consistency rule on payouts” (citytradersimperium.com/direct-funding/, checked 4 November 2026). The same Direct Funding FAQ, and Instant Funding’s FAQ, also say “To scale, you also need a 20% consistency score,” so Instant and Direct accounts still face a consistency score at a scaling milestone. The 2-Step Challenge page says “The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives” (citytradersimperium.com/2-step-challenge/, checked 4 November 2026). The 1-Step Challenge page publishes no consistency sentence. No CTI product page publishes a numeric payout-consistency formula, so this review does not invent a percentage for passing or withdrawing.</p>
 
 <h2 class="wp-block-heading"><strong>True cost to break even</strong></h2>
 
@@ -170,6 +170,7 @@ type: "post"
   <li><strong>Direct Funding reaches a 1.19 R-multiple</strong> on its $20K, $40K, and $80K tiers under the generated True-Cost method.</li>
   <li><strong>All 23 refundable fields remain unverified</strong>, so no fee-return promise is included in the cost model.</li>
   <li><strong>No baseline payout cycle is published for 1-Step, 2-Step or Instant Funding</strong>; weekly and anytime payouts are VIP Bronze and Silver unlocks, not the starting schedule.</li>
+  <li><strong>Instant and Direct Funding need a 20% consistency score to scale</strong>, even though Direct Funding has no consistency rule on payouts (citytradersimperium.com Instant and Direct Funding pages, checked 4 November 2026).</li>
   <li><strong>Copy-trading permission is unverified</strong> on all 4 current products.</li>
   <li><strong>No MT4 or DXtrade appears</strong> in the 2-platform aggregate record.</li>
 </ul>
@@ -195,6 +196,9 @@ type: "post"
 
 <h3 class="wp-block-heading"><strong>When is the first CTI payout?</strong></h3>
 <p>The structured records show 7 days for 1-Step and 2-Step and 5 days for Instant and Direct. After the first payout, CTI publishes no standard cycle for 1-Step, 2-Step or Instant: weekly payouts unlock at VIP Bronze and anytime payouts at Silver. Direct Funding pays on demand from day 5.</p>
+
+<h3 class="wp-block-heading"><strong>Does CTI have a consistency rule?</strong></h3>
+<p>It depends on the product and the gate. Direct Funding has no consistency rule on payouts, but scaling Instant or Direct Funding accounts requires a 20% consistency score. The 2-Step Challenge states it has no hidden consistency requirements. The 1-Step Challenge page does not publish a consistency sentence. Sources: citytradersimperium.com/direct-funding/, citytradersimperium.com/instant-funding/, and citytradersimperium.com/2-step-challenge/, all re-read 4 November 2026.</p>
 
 <h3 class="wp-block-heading"><strong>Does CTI refund the purchase fee?</strong></h3>
 <p>No product-specific refund conclusion is verified. All 23 captured account-size records set refundable to null, so this review excludes a fee return from every True-Cost table and tells the buyer to confirm the selected product before paying.</p>

@@ -1,0 +1,57 @@
+date,firm,change_type,old,new,source_url,checked_date,status
+2026-10-15,FundedNext,min_trading_days,5,2 per phase (standard plans),https://fundednext.com/cfds/stellar-lite,2026-10-15,LIVE
+2026-10-12,FundedNext,reward_timing,"21 days, then every 14","10 business days, then every 10 business days (accounts bought or reset on/after 12.10.2026; older keep 21/14)",https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward,2026-10-20,LIVE
+2026-10-19,FundingPips,min_trading_days,2,0,https://help.fundingpips.com/hc/en-us/articles/34502027344017-2-Step-Pro-Model,2026-10-19,LIVE
+2026-10-20,FundingPips,reward_cycles,Monthly 100% / On Demand 90%,Weekly 60% / Bi-Weekly 80% / On Demand 100%,https://help.fundingpips.com/hc/en-us/articles/34501809112081-2-Step-Standard,2026-10-20,LIVE
+2026-10-20,FundingPips,split_cycle,85%,80% Bi-Weekly; alternative On Demand 100% (replaces Monthly 100%),https://help.fundingpips.com/hc/en-us/articles/34501697434385-1-Step-Flex,2026-10-20,LIVE
+2026-10-20,FundingPips,reward_cycles,,"Bi-Weekly 80% or 95% (at purchase), or On Demand 100%; no Monthly",https://help.fundingpips.com/hc/en-us/articles/47835196271249-2-Step-Flex,2026-10-20,LIVE
+2026-10-20,FundingPips,fee_refund,1-Step Flex refundable: yes,"no (also excluded: 2-Step Pro, 2-Step Flex, Zero)",https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started,2026-10-20,LIVE
+2026-10-20,Lucid Trading,consistency_lucidflex,50%,LucidFlex evaluation: 40% standard (50% as checkout add-on),https://support.lucidtrading.com/en/articles/12945790-lucidflex-evaluation-account,2026-10-20,LIVE
+2026-10-20,City Traders Imperium,payouts,monthly,on demand from day 5,https://citytradersimperium.com/direct-funding/,2026-10-20,LIVE
+2026-10-19,Crypto Fund Trader,max_allocation,"$200,000","$300,000",https://cryptofundtrader.com/faq/,2026-10-19,LIVE
+2026-10-19,FTMO,payout_methods,,"added Visa Direct / Mastercard Send (up to $20,000)",https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/,2026-10-20,LIVE
+2026-10-20,FundedNext,payout_methods,,"added Card, Confirmo, FNmarkets",https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits,2026-10-20,LIVE
+2026-10-23,Maven,funded_drawdown_after_withdrawal,8% trailing kept,locked at initial balance,https://maventrading.com/faqs,2026-10-27,LIVE
+2026-10-26,My Funded Futures,weekend_overnight_holding,not stated,not allowed (positions auto-closed 4:10 PM EST on regular days),https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade,2026-10-26,LIVE
+2026-10-14,E8 Markets,price_list,e.g. 5K $38; 100K $568,e.g. 5K $32; 100K $488,https://e8markets.com/e8-pro,2026-10-14,LIVE
+2026-10-06,Alpha Capital,price_plan_update,Alpha One 5K $50; Alpha Pro 6% 5K $40; Alpha Direct 2.5K $20,Alpha One 5K $47; Alpha Pro 6% 5K $30; Alpha Direct 2.5K $30; new Pro 8%/10% and payout variants,https://alphacapitalgroup.uk/resources/alpha-capital-2026-plan-pricing-update,2026-10-14,LIVE
+2026-10-14,FXIFY,price,$85,$89,https://fxify.com/programs/instant-funding/,2026-10-14,LIVE
+2026-10-14,OFP Funding,price_lineup,"e.g. Instant Plus 100K $1,200",e.g. Instant Plus 100K $670; Instant Lite added; old one-/two-phase and Instant Prime/Pro removed from sale,https://ofpfunding.com/,2026-10-14,LIVE
+2026-10-14,TradeDay,promo_price,55% OFF; 50K promo $85,50% OFF; 50K promo $95 (list $189),https://www.tradeday.com/,2026-10-14,LIVE
+2026-10-22,My Funded Futures,price,Rapid EOD 50K $157,Rapid EOD 50K $225; 25K added at $145,https://myfundedfutures.com/plans/rapid-eod,2026-10-22,LIVE
+2026-10-26,My Funded Futures,price,,Builder 100K $282 / 150K $398,https://myfundedfutures.com/plans/builder,2026-10-26,LIVE
+2026-10-27,The5ers,homepage_banner,$100K For $149,$200K Only For $249,https://the5ers.com/,2026-10-27,OBSERVATION
+2026-10-19,Alpha Capital,promo_code,,MYALPHA 30% ran 19–26 Oct; ended,https://alphacapitalgroup.uk/alpha-capital-discount-codes,2026-10-27,LIVE
+2026-10-26,Alpha Capital,promo_code,,HALLOWEEN45 45% ran 26–31 Oct (midnight UK 31 Oct); ended — past code,https://alphacapitalgroup.uk/alpha-capital-discount-codes,2026-10-27,LIVE
+2026-10-25,City Traders Imperium,promo_code,,BREAK15 15% ended (valid until 25 Oct),https://citytradersimperium.com/,2026-10-26,LIVE
+2026-10-26,City Traders Imperium,promo_code,,FEARLESS15 15% ran until 31 Oct 23:59 UK; ended — past code,https://citytradersimperium.com/,2026-10-27,LIVE
+2026-10-22,BrightFunded,promo_code,DOUBLE25 25%,HW30 30% Halloween (no end date published); DOUBLE25 not shown since 22.10,https://brightfunded.com/,2026-10-22,LIVE
+2026-10-19,Apex Trader Funding,promo_code,,SAVENOW 90% started then ended (~19–20 Oct → ended ~07:00 Riga 23.10),https://apextraderfunding.com/,2026-10-23,LIVE
+2026-10-12,FundedNext,promo_code,,STRTN started then ended (from 12 Oct; gone by 25 Oct),https://help.fundednext.com/en/articles/17560173-what-is-the-fundednext-stellar-october-returns-offer (removed; 404 as of 2026-10-25),2026-10-25,LIVE
+2026-10-20,FXIFY,promo_code,,ONESTEP35 35% on 1-Phase; expires 31.12.2026,https://fxify.com/,2026-10-20,LIVE
+2026-10-20,FXIFY,promo_code,,FUNDED40 40% Instant Funding (excl. Lite); expires 3 Nov,https://fxify.com/,2026-10-23,OBSERVATION
+2026-10-20,FXIFY,promo_code,REWARD25,AGHHH35 35% (excl. Lite); expires 2 Nov,https://fxify.com/,2026-10-23,LIVE
+2026-10-25,E8 Markets,promo_code,,E8ARC Winter ARC up to 50% ended (until 25 Oct),https://e8markets.com/,2026-10-25,OBSERVATION
+2026-10-20,E8 Markets,promo_code,,E8 30% first order recorded,https://e8markets.com/compare-simfi-funded-accounts,2026-10-20,LIVE
+2026-10-28,Goat Funded Trader,promo_code,GFT45,HALLOWEEN50 (no end date published),https://www.goatfundedtrader.com/,2026-10-28,OBSERVATION
+2026-10-28,Blue Guardian,promo_code,,site-wide HALLOWEEN 35% (BNPL/Fast-Track show BG25),https://blueguardian.com/forex,2026-10-28,OBSERVATION
+2026-10-14,The Funded Trader,status,listed,offline / delisted (no official statement); HTTP 402 DEPLOYMENT_DISABLED,https://www.thefundedtraderprogram.com/,2026-10-20,LIVE
+2026-10-15,City Traders Imperium,russia_access,unverified,restricted,https://citytradersimperium.com/,2026-10-15,LIVE
+2026-10-16,OFP Funding,russia_access,unverified,restricted,https://help.ofpfunding.com/country-restrictions/,2026-10-16,LIVE
+2026-10-20,FundedNext,russia_access,available,restricted,https://fundednext.com/,2026-10-20,LIVE
+2026-10-19,The5ers,russia_access,,restricted,https://the5ers.com/terms-and-conditions/,2026-10-22,LIVE
+2026-10-23,Hash Hedge,russia_access,available,unclear,https://www.hashhedge.com/terms-and-conditions,2026-10-23,LIVE
+2026-10-26,Take Profit Trader,russia_access,unverified,restricted,https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/22447557656477-Restricted-Countries,2026-10-26,LIVE
+2026-10-26,Upscale,russia_access,available,unclear,https://app.upscale.trade/terms-of-use-upscale.pdf,2026-10-26,LIVE
+2026-10-23,BrightFunded,russia_access,,available (basis: not on the restricted list),https://help.brightfunded.com/en/articles/12000749-the-most-frequently-asked-general-questions,2026-10-23,LIVE
+2026-10-23,Crypto Fund Trader,russia_access,,available (basis: not on the restricted list; Match-Trader no country restrictions),https://cryptofundtrader.com/faq/,2026-10-23,LIVE
+2026-10-16,OFP Funding,restricted_country_list,,"list published (incl. Russia, Iran, Iraq, North Korea, Syria, Afghanistan, Yemen, Somalia)",https://help.ofpfunding.com/which-countries-are-supported-or-restricted/,2026-10-16,LIVE
+2026-10-16,FXIFY,restricted_country_list,,Haiti added (first recorded 16.10; firm-side date unknown),https://fxify.com/faqs/all-faqs/what-countries-are-accepted/,2026-10-20,LIVE
+2026-10-20,Apex Trader Funding,restricted_country_list,,"87-country list (incl. Russia, Belarus, Ukraine, Kazakhstan, Latvia, Cyprus)",https://apextraderfunding.com/help-center/getting-started/restricted-countries/,2026-10-20,LIVE
+2026-10-29,Lucid Trading,consistency_luciddaily,50%,LucidDaily evaluation: 40% standard (50% as paid checkout add-on),https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization,2026-10-30,LIVE
+2026-10-30,The5ers,new_program_summer_plan,not listed,"Summer Plan 1-Step ($50K $179 / $100K $249); 2-Step 10%/5% ($50K $99 / $100K $149) and 8%/5%; payout cap $1,000/$2,000; consistency 50%",https://the5ers.com/summer-plan/,2026-10-30,PENDING
+2026-10-28,The5ers,terms_update,prior version,Last update Oct. 28th 2026; LatAm local-payment refunds as Hub Credits only (Russia/Belarus still forbidden),https://the5ers.com/terms-and-conditions/,2026-10-30,PENDING
+2026-10-27,Hash Hedge,stage1_performance_bonus,none,2% of Stage 1 profit target paid after passing Stage 1 (Terms 7.5A / Commercial Terms 1.3),https://www.hashhedge.com/terms-and-conditions,2026-10-31,PENDING
+2026-10-30,Hash Hedge,stage1_bonus_once_per_challenge,27 Oct wording (no once-per-Challenge limit stated in prior row),"bonus payable only once per Challenge; 2% amount unchanged (Commercial Terms 1.3 Last Updated Oct 30, 2026)",https://www.hashhedge.com/terms-and-conditions,2026-10-31,PENDING
+2026-10-29,FundedNext,promo_code,none (after STRTN ended 25.10),FNTRICK up to 41% ($6K Stellar 2-Step $34.99 from $59.99); last seen 31.10; gone 1.11,https://fundednext.com/cfds/stellar-2-step,2026-10-31,LIVE
+2026-10-31,Apex Trader Funding,promo_code,no public code,SAVENOW 90% banner one day (countdown to 31 Oct 23:59 ET); gone 1 Nov — OBSERVATION only,https://apextraderfunding.com/,2026-11-01,OBSERVATION

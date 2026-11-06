@@ -64,7 +64,7 @@ const RU_ACCESS_EXTRA: RuAccessRow[] = [
   { name: 'The5ers', status: 'restricted', note: 'Россия и Беларусь в списке «Forbidden Territories»' },
   { name: 'Funded Trading Plus', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026' },
   { name: 'Goat Funded Trader', status: 'restricted', note: 'Prop Firm Tracker, проверено 14.10.2026', review: russianPublishedHref('/ru/obzor-goat-funded-trader') ?? undefined },
-  { name: 'Blue Guardian', status: 'unclear', note: 'Prop Firm Tracker, проверено 14.10.2026: доступ для РФ не ясен' },
+  { name: 'Blue Guardian', status: 'unclear', note: 'Prop Firm Tracker, проверено 14.10.2026: доступ для РФ не ясен', review: russianPublishedHref('/ru/obzor-blue-guardian') ?? undefined },
 ]
 const RU_ACCESS_STATUS_ORDER: RuAccessRow['status'][] = ['available', 'unclear', 'unverified', 'restricted']
 /**
@@ -106,7 +106,7 @@ const RU_ACCESS_NOTES: Record<string, string> = {
   // Sources: Terms 4.3 ('Last Updated: October 8, 2026'); date = the latest Prop Firm Tracker capture that re-read the Terms for Russia
   // (hash-hedge-2026-10-26.json 'russia': Terms text identical, 4.3 still does not name Russia). No payment claim: Terms 10.2 and the guide/FAQ disagree.
   'hash-hedge': `Россия в условиях от 08.10.2026 не названа ни среди исключённых, ни среди принятых; регистрацию и KYC не проверяли (Prop Firm Tracker, ${ruAccessDate(hhLatestCapture.russia ? hhLatestCapture.capturedAt : '2026-10-23')})`,
-  topstep: 'Недоступно для РФ по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
+  topstep: 'В списке ограничений по Prop Firm Tracker, проверено 14.10.2026 (условия Topstep исключают страны под санкциями OFAC)',
 }
 
 /**
@@ -219,6 +219,7 @@ const russianReviewRoutes: Record<string, string> = {
     'crypto-fund-trader': '/ru/obzor-crypto-fund-trader',
     the5ers: '/ru/obzor-the5ers',
     topstep: '/ru/obzor-topstep',
+    'alpha-capital': '/ru/obzor-alpha-capital',
   }),
   // Hash Hedge (ships with EN Writer's HH review, Tue 27.10.2026): shared RU gate — firms.json entry + registered route.
   ...(ruHashHedgeReviewHref('/ru/obzor-hash-hedge') ? { 'hash-hedge': '/ru/obzor-hash-hedge' } : {}),
@@ -516,7 +517,7 @@ export default function RussianBestPropFirmsPage() {
           <p>
             Статус «Доступ из РФ» взят из официальных списков ограничений и условий фирм. «Нет в списке ограничений (на дату)» значит,
             что на дату проверки Россия не названа в ограничениях фирмы или фирма заявляет об отсутствии географических ограничений, —
-            это не письменное подтверждение для вашего профиля. «Открыта для РФ» ставим только при прямом подтверждении доступа из России. Кнопка есть у каждой фирмы, рядом — бейдж доступа из РФ: страница рассчитана на русскоязычных трейдеров в любой стране. Полная таблица с Беларусью и Казахстаном — на странице{' '}
+            это не письменное подтверждение для вашего профиля. Кнопка есть у каждой фирмы, рядом — бейдж доступа из РФ: страница рассчитана на русскоязычных трейдеров в любой стране. Полная таблица с Беларусью и Казахстаном — на странице{' '}
             <Link href="/ru/dlya-russkoyazychnykh-treyderov">«Проп-фирмы для россиян»</Link>.
           </p>
           <div className="ru-table-wrap">

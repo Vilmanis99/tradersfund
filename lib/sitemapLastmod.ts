@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import manifest from '@/content/data/sitemap-lastmod.json'
 import { firmSlug } from '@/lib/firmSlug'
 
@@ -75,6 +77,30 @@ export const SPLIT_TIER_SOURCES = [
   fileSource('lib/profitSplitDisplay.ts'),
   fileSource('components/SplitTiersDisclosure.tsx'),
 ] as const
+
+/** RU access badge UI — attach to /ru pages whose page.tsx imports the badge (import-graph). */
+export const RU_ACCESS_BADGE_SOURCES = [
+  fileSource('lib/ruAccessLabel.ts'),
+  fileSource('components/RuAccessBadgeView.tsx'),
+  fileSource('components/RuGoLink.tsx'),
+] as const
+
+/**
+ * True when app/ru/.../page.tsx imports a module that renders RuAccessBadge /
+ * RuAccessBadgeView (directly or via RuGoLink / RuVerdict / RuAllReviews).
+ * Date-only imports of ruAccessLabel (ruAccessDate) do not qualify.
+ */
+const RU_ACCESS_BADGE_IMPORT_RE =
+  /RuAccessBadge(?:View)?|from ['"]@\/components\/RuGoLink['"]|from ['"]@\/components\/RuVerdict['"]|from ['"]@\/components\/RuAllReviews['"]/
+
+export function ruPageRendersAccessBadge(routePath: string): boolean {
+  const segment = routePath.replace(/^\/ru\/?/, '')
+  const pageFile = segment
+    ? path.join(process.cwd(), 'app/ru', segment, 'page.tsx')
+    : path.join(process.cwd(), 'app/ru/page.tsx')
+  if (!fs.existsSync(pageFile)) return false
+  return RU_ACCESS_BADGE_IMPORT_RE.test(fs.readFileSync(pageFile, 'utf8'))
+}
 
 export type LastmodProvenance = {
   published: string
@@ -180,8 +206,12 @@ export function russianRouteSources(path: string): string[] {
     ...(spec.files ?? []).map(name => `content/data/${name}`),
   ]
   const challengeSurface = spec.challengeSurface ?? 'full'
+  const badgeSources = ruPageRendersAccessBadge(path)
+    ? RU_ACCESS_BADGE_SOURCES.filter(key => key in SOURCES)
+    : []
   return [
     ...files.map(fileSource).filter(key => key in SOURCES),
+    ...badgeSources,
     ...[...new Set(shownFirms)].filter(slug => RU_FIRM_SLUGS.has(slug)).flatMap(slug => {
       if (challengeSurface === 'landing') {
         return [`firm:ru:${slug}`, `challenges:landing:${slug}`]

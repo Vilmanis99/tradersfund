@@ -1,0 +1,49 @@
+{
+  "route": "/ru/obzor-blue-guardian",
+  "type": "review",
+  "firm": "Blue Guardian",
+  "dataAsOf": "2026-10-28",
+  "sources": [
+    "app/ru/obzor-blue-guardian (official help articles, pricing widget, Terms and Refund Policy read by Prop Firm Tracker 28.10.2026; /workspace/ru-data/2026-10-28-blue-guardian-final.md; capture blue-guardian-2026-10-28.json; CFD restricted list, KYC and refund text re-read 01.11.2026, evidence daily-check-2026-11-01/r-bg.txt)"
+  ],
+  "verdict": "Blue Guardian — проп-фирма из Дубая с CFD-моделями 1 Step, 2 Step, Nano и Instant; лист-цены — от $27 (Instant Starter $5K) до $2 200 (Instant $400K) по данным на 28.10.2026. Для CFD доступ из России неясен: страны нет среди 13 названных в справке, но какие документы для KYC принимает фирма, на сайте не указано. Фьючерсный продукт Blue Guardian Futures Россию, Беларусь и Украину прямо ограничивает.",
+  "best": [
+    "вам нужен статический лимит: у 2 Step Standard это 8%, правила консистентности нет",
+    "вы держите позиции на ночь и выходные: ограничений нет на всех типах счетов",
+    "вы торгуете своими советниками на MT5, Match-Trader или TradeLocker"
+  ],
+  "avoid": [
+    "вы торгуете новости на funded: за 5 минут до и после важных новостей сделки открывать и закрывать нельзя",
+    "вы держите большой плавающий минус: Guardian Shield закрывает сделки при убытке 2% и после первого раза навсегда снижает сплит до 50%",
+    "вам важна каждая сумма: со всех выплат удерживают 3%"
+  ],
+  "russiaAccess": {
+    "statusFrom": "russiaStatus",
+    "firm": "Blue Guardian",
+    "alternatives": [
+      "BrightFunded"
+    ],
+    "byStatus": {
+      "available": {
+        "list": "best",
+        "text": "вы резидент РФ: статус доступа {firm} к CFD — «{badge}» (по нашей последней проверке); страну, KYC и способ оплаты всё равно сверьте на официальном сайте до покупки"
+      },
+      "restricted": {
+        "list": "avoid",
+        "text": "вы резидент РФ: статус {firm} — «{badge}», регистрация и выплата под риском отказа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unclear": {
+        "list": "avoid",
+        "text": "вы резидент РФ и не готовы рисковать взносом: статус CFD-программ {firm} — «{badge}», официальные источники не дают однозначного ответа.",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      },
+      "unverified": {
+        "list": "avoid",
+        "text": "вы резидент РФ и вам нужен проверенный доступ: статус {firm} — «{badge}»; запросите у фирмы письменный ответ до оплаты",
+        "altText": "Альтернатива со статусом «{altBadge}» — {openAlternative}."
+      }
+    }
+  },
+  "firmInFirmsJson": false
+}

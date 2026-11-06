@@ -1,0 +1,1176 @@
+{
+  "capturedAt": "2026-11-05",
+  "accessNotes": "Alpha Capital rolling recheck 2026-11-05 12:25-12:45 Riga: standard HTTP GET of public English Help Centre articles and the /product page, no account/checkout, no VPN or proxy; all rules quotes from 14/15/23 Oct still present; bare '4%'/'static'/'high-water mark' snippets replaced with full plan-spec lines. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/alpha/. | Maven rolling recheck 2026-11-05 12:45-13:05 Riga: standard HTTP GET of public /faqs, /pricing, /terms-and-conditions and homepage, no account/checkout, no VPN or proxy. Terms now read 'Version 2026.2 | Effective date and Last Amended 23 October 2026' with product Schedules 1-3; the 2026-10-27 FAQ-vs-Terms conflicts on news trading (Instant, Mini, Buy Now Pay Later, Prediction Markets) and Instant payout cadence are resolved in the FAQ's favour. /pricing quotes still present (prices not re-read for this recheck). Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/maven/. | My Funded Futures rolling recheck 2026-11-05 13:05-13:20 Riga: standard HTTP GET of public /plans/rapid, /plans/pro, /plans/builder and Help Centre articles, no account/checkout, no VPN or proxy; all values unchanged; table quotes (stored with markdown pipes) re-quoted as plain page text. /plans/flex returned a near-empty response and was not used. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/mff/. | Lucid Trading rolling recheck 2026-11-05 13:20-13:30 Riga: standard HTTP GET of 11 public Help Centre articles on support.lucidtrading.com, no account/checkout, no VPN or proxy; all stored quotes verbatim except the news quote (list separators), which was re-quoted; values unchanged. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-05/lucid/.",
+  "pagesRead": [
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+    "https://alphacapitalgroup.uk/product",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/terms-and-conditions",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/",
+    "https://myfundedfutures.com/plans/rapid",
+    "https://myfundedfutures.com/plans/pro",
+    "https://myfundedfutures.com/plans/builder",
+    "https://myfundedfutures.com/plans",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+    "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+    "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms"
+  ],
+  "pageDates": {
+    "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing": "July 24, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct": "updated 2026-11-04T16:17:59Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee": "updated 2026-10-28T14:27:16Z",
+    "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee": "July 7, 2026",
+    "https://alphacapitalgroup.uk/product": "no page date",
+    "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news": "August 25, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend": "July 22, 2026",
+    "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use": "July 6, 2026",
+    "https://maventrading.com/faqs": "no page date",
+    "https://maventrading.com/terms-and-conditions": "Version 2026.2 | Effective date and Last Amended 23 October 2026",
+    "https://maventrading.com/pricing": "no page date",
+    "https://maventrading.com/": "no page date",
+    "https://myfundedfutures.com/plans/rapid": "no page date",
+    "https://myfundedfutures.com/plans/pro": "no page date",
+    "https://myfundedfutures.com/plans/builder": "no page date",
+    "https://myfundedfutures.com/plans": "no page date",
+    "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy": "updated 2026-08-31T12:47:27Z",
+    "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu": "updated 2026-10-08T20:21:37Z",
+    "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade": "updated 2026-08-24T20:35:05Z",
+    "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide": "updated 2026-10-21T08:34:41Z",
+    "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look": "updated 2026-08-24T20:34:33Z",
+    "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown": "updated 2026-08-26T21:11:29Z",
+    "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown": "updated 2026-08-26T21:15:27Z",
+    "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization": "updated 2026-10-20T16:28:29Z",
+    "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts": "updated 2026-10-21T17:09:29Z",
+    "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts": "updated 2026-07-28T17:09:58Z",
+    "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts": "updated 2026-07-27T02:38:25Z",
+    "https://support.lucidtrading.com/en/articles/11404728-other-activities": "updated 2026-08-26T21:05:24Z",
+    "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times": "updated 2026-08-26T21:05:50Z",
+    "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit": "updated 2026-10-19T00:23:30Z",
+    "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit": "updated 2026-08-19T19:35:15Z",
+    "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms": "updated 2026-10-12T16:37:27Z"
+  },
+  "firms": {
+    "alpha-capital": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Alpha One (10%, on-demand), Alpha Direct; static on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "trailing",
+          "alpha-pro-6": "static",
+          "alpha-pro-6-on-demand": "static",
+          "alpha-pro-8-bi-weekly": "static",
+          "alpha-pro-8-on-demand": "static",
+          "alpha-pro-10-bi-weekly": "static",
+          "alpha-pro-10-on-demand": "static",
+          "alpha-swing": "static",
+          "alpha-three": "static",
+          "alpha-direct": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 4% on Alpha One (10%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Three (availability unverified); 3% on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Direct; 5% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand)",
+        "byProduct": {
+          "alpha-one": 4,
+          "alpha-pro-6": 3,
+          "alpha-pro-6-on-demand": 3,
+          "alpha-pro-8-bi-weekly": 4,
+          "alpha-pro-8-on-demand": 4,
+          "alpha-pro-10-bi-weekly": 5,
+          "alpha-pro-10-on-demand": 5,
+          "alpha-swing": 5,
+          "alpha-three": 4,
+          "alpha-direct": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Three (availability unverified); 8% on Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand); 10% on Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); 5% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 6,
+          "alpha-pro-6": 6,
+          "alpha-pro-6-on-demand": 6,
+          "alpha-pro-8-bi-weekly": 8,
+          "alpha-pro-8-on-demand": 8,
+          "alpha-pro-10-bi-weekly": 10,
+          "alpha-pro-10-on-demand": 10,
+          "alpha-swing": 10,
+          "alpha-three": 6,
+          "alpha-direct": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10097421-alpha-one-6-10-12",
+            "quote": "One 10% plan: Phase 1 profit target: 10% Max Drawdown (trailing per high water-mark*): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/11378706-alpha-pro-6",
+            "quote": "Pro6% plan: Phase 1 profit target: 6% Phase 2 profit target: 6% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420429-alpha-pro-8-10",
+            "quote": "Pro8% plan: Phase 1 profit target: 8% Phase 2 profit target: 5% Max Drawdown (static): 8% Max Daily Drawdown (balance-based): 4% ... Pro10% plan: Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Phase 1 profit target: 10% Phase 2 profit target: 5% Max Drawdown (static): 10% Max Daily Drawdown (balance-based): 5%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10192958-alpha-three",
+            "quote": "Phase 1 profit target: 8% Phase 2 profit target: 4% Phase 3 profit target: 4% Max Drawdown (static): 6% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 4%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Max Drawdown (trailing per high-water mark*): 5% Max Daily Drawdown (calculated over the highest end-of-day balance or equity, whichever is greater): 3%"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand); not stated on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified); 15% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 40,
+          "alpha-pro-6": null,
+          "alpha-pro-6-on-demand": 40,
+          "alpha-pro-8-bi-weekly": null,
+          "alpha-pro-8-on-demand": 40,
+          "alpha-pro-10-bi-weekly": null,
+          "alpha-pro-10-on-demand": 40,
+          "alpha-swing": 40,
+          "alpha-three": null,
+          "alpha-direct": 15
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "Best Day Rule This rule states that no single trading day should contribute more than a set percentage of the total generated profits. This percentage depends on your plan: Alpha Pro, Swing, One, and Three: 40% Alpha Direct: 15%"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "The 15% Best Day Rule also applies: no single trading day should contribute more than 15% of the total generated profits."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Alpha One (10%, on-demand), Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); 90% on Alpha Direct",
+        "byProduct": {
+          "alpha-one": 80,
+          "alpha-pro-6": 80,
+          "alpha-pro-6-on-demand": 80,
+          "alpha-pro-8-bi-weekly": 80,
+          "alpha-pro-8-on-demand": 80,
+          "alpha-pro-10-bi-weekly": 80,
+          "alpha-pro-10-on-demand": 80,
+          "alpha-swing": 80,
+          "alpha-three": 80,
+          "alpha-direct": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "2. Performance fee split (add-on) Separate from payout schedule. Keep 80% standard, or add 90% PFS (+10% on the On-Demand price)."
+          },
+          {
+            "sourceUrl": "https://alphacapitalgroup.uk/product",
+            "quote": "Qualified Analysts earn an 80% performance split as standard on eligible simulated profits, rising to 90% on Alpha Direct or with the optional 90% split add-on on eligible plans."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/16003693-alpha-direct",
+            "quote": "Performance fee 90% profit split"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Alpha One (10%, on-demand), Alpha Pro (6%, on-demand), Alpha Pro (8%, on-demand), Alpha Pro (10%, on-demand), Alpha Swing (on-demand), Alpha Direct; bi-weekly on Alpha Pro (6%, bi-weekly), Alpha Pro (8%, bi-weekly), Alpha Pro (10%, bi-weekly), Alpha Three (availability unverified)",
+        "byProduct": {
+          "alpha-one": "on-demand",
+          "alpha-pro-6": "bi-weekly",
+          "alpha-pro-6-on-demand": "on-demand",
+          "alpha-pro-8-bi-weekly": "bi-weekly",
+          "alpha-pro-8-on-demand": "on-demand",
+          "alpha-pro-10-bi-weekly": "bi-weekly",
+          "alpha-pro-10-on-demand": "on-demand",
+          "alpha-swing": "on-demand",
+          "alpha-three": "bi-weekly",
+          "alpha-direct": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10102634-on-demand-performance-fee",
+            "quote": "The option of a performance fee on-demand, on Alpha Pro / Swing / One / Three / Direct accounts, means that traders can request a payout whenever they wish, provided they fulfil the following requirements:"
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/10570531-bi-weekly-performance-fee",
+            "quote": "The performance fee bi-weekly option, available on Alpha Pro/Three accounts, means that requests are made every 14 days, starting 14 days after your initial trade on your Qualified Analyst account."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9789907-alpha-swing",
+            "quote": "Swing accounts are only available with the On-Demand payout type."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "alpha-one": "restricted",
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": "restricted",
+          "alpha-three": "restricted",
+          "alpha-direct": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "During the evaluation phases, you can trade freely during all news releases."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "On our Qualified Analyst Pro / One / Three / Direct accounts, you are NOT permitted to execute any new trades or close existing trades on the targeted instruments (as listed in the table) within the window of 5 minutes before and 5 minutes after the release of the news announcements below."
+          },
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/9293522-can-i-trade-news",
+            "quote": "Alpha Swing Plan: Trading during major news events is allowed. However, if a trade is initiated within 2 minutes before or up to 2 minutes after a news release (a 4-minute window), its duration must exceed 2 minutes for the trade to be valid."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on Alpha One (10%, on-demand), Alpha Swing (on-demand), Alpha Three (availability unverified); restricted on Alpha Pro (6%, bi-weekly), Alpha Pro (6%, on-demand), Alpha Pro (8%, bi-weekly), Alpha Pro (8%, on-demand), Alpha Pro (10%, bi-weekly), Alpha Pro (10%, on-demand); not allowed on Alpha Direct",
+        "byProduct": {
+          "alpha-one": true,
+          "alpha-pro-6": "restricted",
+          "alpha-pro-6-on-demand": "restricted",
+          "alpha-pro-8-bi-weekly": "restricted",
+          "alpha-pro-8-on-demand": "restricted",
+          "alpha-pro-10-bi-weekly": "restricted",
+          "alpha-pro-10-on-demand": "restricted",
+          "alpha-swing": true,
+          "alpha-three": true,
+          "alpha-direct": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6934247-can-i-hold-trades-over-the-weekend",
+            "quote": "Alpha Pro Plan: Phase 1 & 2: Holding trades over the weekend is allowed. Qualified Analyst Account: Holding trades over the weekend is not allowed. ... Alpha Swing / One / Three plans: Holding trades over the weekend is allowed at all stages. Alpha Direct Plan Holding trades over the weekend is not allowed."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "cTrader",
+          "DXTrade",
+          "TradeLocker"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/6933883-what-trading-platforms-are-available-for-use",
+            "quote": "Our platform currently offers exclusive access to MetaTrader 5, cTrader, DX Trade, and TradeLocker. Please note that for U.S. residents, the available platforms are cTrader*, DX Trade, and TradeLocker."
+          }
+        ]
+      }
+    },
+    "maven": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Elite; Buy Now, Pay Later static in evaluation, trailing when funded (fixed at the initial balance after the first withdrawal)",
+        "byProduct": {
+          "standard-1-step": "trailing",
+          "standard-2-step": "static",
+          "standard-3-step": "static",
+          "instant": "trailing",
+          "mini": "trailing",
+          "buy-now-pay-later": "static",
+          "omo-2-step": "static",
+          "predictions-1-step": "trailing",
+          "predictions-elite-1-step": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Before your first withdrawal, the Simulated Funded Account uses 8% trailing maximum drawdown. The limit follows your highest running equity, including unrealized profits. After the first withdrawal the drawdown limit is set to the initial balance."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on Standard 1-Step; 4% on Standard 2-Step, OMO 2-Step; 2% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later none in evaluation, 4% when funded; no daily limit on Prediction Markets One-Step Essential and Elite",
+        "byProduct": {
+          "standard-1-step": 3,
+          "standard-2-step": 4,
+          "standard-3-step": 2,
+          "instant": 2,
+          "mini": 2,
+          "buy-now-pay-later": null,
+          "omo-2-step": 4,
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Instant Funding has two loss limits: Daily Loss Limit: 2% (Equity-Based) ... Maximum Drawdown: 3% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "There are: No daily drawdown limits No minimum trading days"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later 10% in evaluation, 8% when funded; Prediction Markets One-Step Essential and Elite 5% in Phase 1, 8% when funded",
+        "byProduct": {
+          "standard-1-step": 5,
+          "standard-2-step": 8,
+          "standard-3-step": 3,
+          "instant": 3,
+          "mini": 3,
+          "buy-now-pay-later": 10,
+          "omo-2-step": 8,
+          "predictions-1-step": 5,
+          "predictions-elite-1-step": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 20% on Instant, Buy Now, Pay Later (funded); 15% on Mini; none on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets",
+        "byProduct": {
+          "standard-1-step": null,
+          "standard-2-step": null,
+          "standard-3-step": null,
+          "instant": 20,
+          "mini": 15,
+          "buy-now-pay-later": 20,
+          "omo-2-step": null,
+          "predictions-1-step": null,
+          "predictions-elite-1-step": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In Instant Funding Account, a 20% Consistency Score is required."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In Instant Funding Account, a 20% Consistency Score is required."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "In the Instant Mini Funding Account, a 15% Consistency Score is required."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on the forex products)",
+        "byProduct": {
+          "standard-1-step": 80,
+          "standard-2-step": 80,
+          "standard-3-step": 80,
+          "instant": 80,
+          "mini": 70,
+          "buy-now-pay-later": 80,
+          "omo-2-step": 80,
+          "predictions-1-step": 70,
+          "predictions-elite-1-step": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 80%. With the applicable add-on, the reward split increases to 90%."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 70%. With the applicable add-on, the reward split increases to 90%."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 80%. With the applicable add-on, the reward split increases to 90%."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The standard reward split is 70%. With the applicable add-on, the reward split increases to 90%."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets; on demand on Instant and Buy Now, Pay Later once their gates are met; Mini one single payout within its 24-hour window",
+        "byProduct": {
+          "standard-1-step": "bi-weekly",
+          "standard-2-step": "bi-weekly",
+          "standard-3-step": "bi-weekly",
+          "instant": "on-demand",
+          "mini": null,
+          "buy-now-pay-later": "on-demand",
+          "omo-2-step": "bi-weekly",
+          "predictions-1-step": "bi-weekly",
+          "predictions-elite-1-step": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "10.3 For Standard plans and OMO, the first request becomes eligible 10 business days after the first trade on the Simulated Funded Account. A later cycle begins with the first trade after the previous payout. A business day means Monday through Friday; Saturdays and Sundays do not count. BNPL and Instant are on demand subject to their conditions. Mini permits one timely request only, as specified in Schedule 1."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Instant Funding 80%, or 90% add-on; 3% of initial balance gross profit minimum; on demand"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Instant Mini 70%, or 90% add-on; 3% gross profit minimum; one request within 24 hours"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Payouts for Instant Funding Accounts are available on demand. You may request a withdrawal once you meet the required 3% profit threshold and 20% Consistency Score or below."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later Simulated Funded Accounts have no fixed payout waiting period. You may request a withdrawal once you meet the 20% Consistency Score and other payout requirements."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "S3.4 The Simulated Funded Account reward split is 70%, with payouts every 10 business days."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted (2-minute Red Folder window) on Standard 1/2/3-Step; OMO 2-Step allowed in evaluation, funded news profit capped at 0.50%; allowed without a separate news restriction on Instant, Mini, Buy Now, Pay Later and Prediction Markets",
+        "byProduct": {
+          "standard-1-step": "restricted",
+          "standard-2-step": "restricted",
+          "standard-3-step": "restricted",
+          "instant": true,
+          "mini": true,
+          "buy-now-pay-later": true,
+          "omo-2-step": "restricted",
+          "predictions-1-step": true,
+          "predictions-elite-1-step": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "BNPL, Instant Funding and Mini News trading permitted without a separate news restriction, subject to all other rules."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Standard 1 Step, 2 Step and 3 Step Any trade execution on affected instruments from two minutes before through two minutes after the applicable Red Folder release is prohibited, including pending orders, stop-losses, take-profits and automatic target closures."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "2 Step OMO Evaluation news trading permitted. On the Simulated Funded Account, profit from one news event is capped at 0.50% of account balance; excess profit is removed."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "S3.7 There is no Prediction Markets news-trading restriction. The Standard news window and OMO event cap in Schedule 2 do not apply to this product."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "2 Step OMO Yes, but profit from any single news event is capped at 0.50% of your account balance. Any profit above the cap will not count toward your balance. (Applicable in Funded Stage only) Buy Now Pay Later Yes, without restriction Instant Funding Yes, without restriction Instant Mini Yes, without restriction"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "However, there is no news trading restriction specific to the Prediction Markets challenge."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "standard-1-step": true,
+          "standard-2-step": true,
+          "standard-3-step": true,
+          "instant": true,
+          "mini": true,
+          "buy-now-pay-later": true,
+          "omo-2-step": true,
+          "predictions-1-step": true,
+          "predictions-elite-1-step": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Yes. You may trade and hold positions overnight or over the weekend. Maven also offers 24/7 gold trading."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "Weekend and overnight holding are permitted, subject to market availability and the applicable loss and news rules."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Maven Trading offers MT5 and Match Trader"
+          }
+        ]
+      }
+    },
+    "my-funded-futures": {
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "rapid": "eod-trailing",
+          "rapid-eod": "eod-trailing",
+          "flex": "eod-trailing",
+          "pro": "eod-trailing",
+          "builder": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro uses end-of-day trailing drawdown in both eval and sim funded."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Drawdown Model EOD Trailing EOD Trailing EOD Trailing EOD Trailing"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 50% on Rapid, Flex, Pro; 30% on Rapid EOD; not stated on Builder",
+        "byProduct": {
+          "rapid": 50,
+          "rapid-eod": 30,
+          "flex": 50,
+          "pro": 50,
+          "builder": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Consistency 50% (Eval Only) 50% (Eval Only) 50% (Eval Only) 50% (Eval Only)"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "There's a 50% consistency rule in evaluation only"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Each payout is between $500 and $2,000, with a 50% consistency rule applied at the payout stage."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 90% on Rapid, Rapid EOD; 80% on Flex, Pro, Builder",
+        "byProduct": {
+          "rapid": 90,
+          "rapid-eod": 90,
+          "flex": 80,
+          "pro": 80,
+          "builder": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "You keep 90% of every payout. MFFU keeps 10%."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Profit Split 80/20 80/20 80/20 Min Payout $1,000"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "News Trading Allowed Allowed Allowed Allowed Profit Split 80/20 80/20 80/20 80/20"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on-demand on Rapid, Rapid EOD, Flex, Builder; bi-weekly on Pro",
+        "byProduct": {
+          "rapid": "on-demand",
+          "rapid-eod": "on-demand",
+          "flex": "on-demand",
+          "pro": "bi-weekly",
+          "builder": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Trade with no daily loss limit, no consistency rule, and a daily payout cadence. Stay above the buffer and you're eligible to request a payout every 24 hours."
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Pro starts at $50K, goes up to $150K, pays on a 14-day cycle with a $100,000 cap"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Once you're funded, Builder pays every 48 hours — as soon as you've hit 2 qualifying days and cleared the buffer."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: restricted on Rapid, Rapid EOD, Flex, Pro; allowed on Builder",
+        "byProduct": {
+          "rapid": "restricted",
+          "rapid-eod": "restricted",
+          "flex": "restricted",
+          "pro": "restricted",
+          "builder": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8230009-news-trading-policy",
+            "quote": "Restricted Accounts: Trading on T1 News events is prohibited for the following: Rapid Sim Funded Pro Sim Funded Unrestricted Accounts: Trading on T1 News events is permitted for the following: All evaluations Builder Plans"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "News Trading Allowed Allowed Allowed Allowed"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed: positions auto-close at the 4:10 PM EST daily session close on every current plan (Permitted Times article); stated as overnight-not-allowed on the Rapid and Builder pages; \"weekend\" itself is not named",
+        "byProduct": {
+          "rapid": false,
+          "rapid-eod": false,
+          "flex": false,
+          "pro": false,
+          "builder": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Can I hold positions overnight on Rapid? No. Rapid is intended for intraday futures trading. All positions must be closed before the daily session close. Holding overnight will breach the account."
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/9558251-permitted-times-to-trade",
+            "quote": "Trades may be placed beginning at 6:00 PM EST when the Globex session opens and can remain open until the New York session closes at 4:10 PM EST."
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/14290805-builder-plan-50k-a-comprehensive-guide",
+            "quote": "Can I hold positions overnight? No. All positions must be closed before the end of the trading session. Any open positions at session close will be automatically closed by the platform."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: none on Rapid and Pro; soft-pause $600 (25K) / $1,000 (50K) / $1,750 (100K) / $2,500 (150K) on Builder; none on Rapid EOD (help, 2026-10-26); Flex (legacy) not re-confirmed",
+        "byProduct": {
+          "rapid": null,
+          "rapid-eod": null,
+          "flex": null,
+          "pro": null,
+          "builder": {
+            "25000": 600,
+            "50000": 1000,
+            "100000": 1750,
+            "150000": 2500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500 Daily Loss Limit None None None None Drawdown Type EOD EOD EOD EOD"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Daily Loss Limit $600 - soft pause $1,000 - soft pause $1,750 - soft pause $2,500 - soft pause"
+          },
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/16158363-rapid-eod-50k-a-comprehensive-look",
+            "quote": "there is no daily loss limit in the evaluation or sim funded stages"
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Rapid; $1,000 (25K) / $2,000 (50K) on Rapid EOD, Flex, Builder; $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Pro",
+        "byProduct": {
+          "rapid": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "rapid-eod": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "flex": {
+            "25000": 1000,
+            "50000": 2000
+          },
+          "pro": {
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "builder": {
+            "25000": 1000,
+            "50000": 2000
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/rapid",
+            "quote": "Max Loss (EOD) $1,000 $2,000 $3,000 $4,500"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/pro",
+            "quote": "Max Loss (EOD) $2,000 $3,000 $4,500 Daily Loss Limit None None None"
+          },
+          {
+            "sourceUrl": "https://myfundedfutures.com/plans/builder",
+            "quote": "Max Loss (EOD Trailing) $1,000 $2,000 ($1,500 with add-on) $3,000 $4,500"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "NinjaTrader",
+          "Hyperprop",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Volumetrica",
+          "DeepChart/DeepDom",
+          "ATAS"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://help.myfundedfutures.com/en/articles/8528335-overview-of-supported-platforms-at-mffu",
+            "quote": "Platform Choices NinjaTrader: Renowned for its flexibility ... Hyperprop: Built to be clean by default ... Tradovate: With an intuitive interface ... TradingView: For those who are already accustomed to TradingView ... Quantower: A rising star ... Volumetrica: Valued for its unique volume analysis capabilities ... DeepChart/DeepDom: Recognized for its real-time volume data ... ATAS: Known for its advanced analytics"
+          }
+        ]
+      }
+    },
+    "lucid-trading": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: eod-trailing on LucidPro, LucidFlex, LucidDirect, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / EOD; trailing on LucidDaily - DLL On / Intraday, LucidDaily - DLL Off / Intraday",
+        "byProduct": {
+          "lucidpro": "eod-trailing",
+          "lucidflex": "eod-trailing",
+          "luciddirect": "eod-trailing",
+          "luciddaily-dll-on-intraday": "trailing",
+          "luciddaily-dll-on-eod": "eod-trailing",
+          "luciddaily-dll-off-intraday": "trailing",
+          "luciddaily-dll-off-eod": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "LucidPro evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL)."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "LucidFlex evaluation and funded accounts use an End-of-Day Drawdown (EOD Drawdown) system to calculate the Max Loss Limit (MLL)."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on LucidPro; 40% standard (50% add-on) on LucidFlex and LucidDaily (DLL On/Off × Intraday/EOD); 20% on LucidDirect",
+        "byProduct": {
+          "lucidpro": 40,
+          "lucidflex": 40,
+          "luciddirect": 20,
+          "luciddaily-dll-on-intraday": 40,
+          "luciddaily-dll-on-eod": 40,
+          "luciddaily-dll-off-intraday": 40,
+          "luciddaily-dll-off-eod": 40
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/16033858-luciddaily-customization",
+            "quote": "40% (standard): your largest day must be 40% or less of your evaluation profit. Lowest price. 50% (add-on): your largest day can be up to 50%, so you can pass in as few as 2 days. Added at checkout for a small fee."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Consistency Percentage Your largest single-day profit must be no more than 40% of your total profit during the payout cycle."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 90,
+        "summary": "90%",
+        "byProduct": {
+          "lucidpro": 90,
+          "lucidflex": 90,
+          "luciddirect": 90,
+          "luciddaily-dll-on-intraday": 90,
+          "luciddaily-dll-on-eod": 90,
+          "luciddaily-dll-off-intraday": 90,
+          "luciddaily-dll-off-eod": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "Profit Split Structure All funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Profit Split Structure All LucidFlex funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "Profit Split Structure All LucidDaily funded account payouts are split 90% to the trader and 10% to Lucid Trading."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "lucidpro": "on-demand",
+          "lucidflex": "on-demand",
+          "luciddirect": "on-demand",
+          "luciddaily-dll-on-intraday": "on-demand",
+          "luciddaily-dll-on-eod": "on-demand",
+          "luciddaily-dll-off-intraday": "on-demand",
+          "luciddaily-dll-off-eod": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890092-lucidpro-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts",
+            "quote": "Traders must earn at least the minimum required profit on 5 separate days during the payout cycle."
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/15997266-luciddaily-payouts",
+            "quote": "There is no fixed payout window, you may request a payout any day after meeting all eligibility criteria."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed (all positions closed by 4:45 PM EST each weekday)",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404729-allowed-trading-times",
+            "quote": "All positions must be closed by 4:45 PM EST, Monday through Friday"
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,200 (50K) / $1,800 (100K) / $2,700 (150K) on LucidPro; not stated on LucidFlex, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; $1,200 (50K) / $2,100 (100K) / $3,000 (150K) on LucidDirect; $600 (25K) / $1,200 (50K) / $1,800 (100K) / $2,700 (150K) on LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD",
+        "byProduct": {
+          "lucidpro": {
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "lucidflex": null,
+          "luciddirect": {
+            "50000": 1200,
+            "100000": 2100,
+            "150000": 3000
+          },
+          "luciddaily-dll-on-intraday": {
+            "25000": 600,
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "luciddaily-dll-on-eod": {
+            "25000": 600,
+            "50000": 1200,
+            "100000": 1800,
+            "150000": 2700
+          },
+          "luciddaily-dll-off-intraday": null,
+          "luciddaily-dll-off-eod": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890185-luciddirect-daily-loss-limit",
+            "quote": "Account Size Fixed DLL Initial Trail Balance $25,000 None None $50,000 $1,200 $52,100 $100,000 $2,100 $103,600 $150,000 $3,000 $155,100"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/16085900-luciddaily-daily-loss-limit",
+            "quote": "If you chose DLL ON then you will have a fixed DLL on both your LucidDaily evaluation and funded accounts ... $25,000 $600 $50,000 $1,200 $100,000 $1,800 $150,000 $2,700"
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on LucidPro, LucidFlex, LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD; $1,000 (25K) / $2,000 (50K) / $3,500 (100K) / $5,000 (150K) on LucidDirect",
+        "byProduct": {
+          "lucidpro": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "lucidflex": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddirect": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3500,
+            "150000": 5000
+          },
+          "luciddaily-dll-on-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-on-eod": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-off-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "luciddaily-dll-off-eod": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12890136-lucidpro-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500"
+          },
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown",
+            "quote": "Account Size MLL Amount ... $25,000 $1,000 ... $50,000 $2,000 ... $100,000 $3,000 ... $150,000 $4,500"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "NinjaTrader",
+          "Tradovate",
+          "TradingView",
+          "Quantower",
+          "Tradesea",
+          "MotiveWave",
+          "Sierra Chart",
+          "Jigsaw",
+          "Bookmap",
+          "ATAS",
+          "R|Trader Pro",
+          "MultiCharts"
+        ],
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404614-lucid-trading-supported-platforms",
+            "quote": "CQG supported platforms: NinjaTrader Tradovate TradingView Rithmic supported platforms: Quantower (Lucid Partner) Tradesea MotiveWave Sierra Chart Jigsaw Bookmap ATAS R|Trader Pro (official Rithmic platform) MultiCharts"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on LucidPro, LucidFlex, LucidDirect; restricted on LucidDaily - DLL On / Intraday, LucidDaily - DLL On / EOD, LucidDaily - DLL Off / Intraday, LucidDaily - DLL Off / EOD",
+        "byProduct": {
+          "lucidpro": true,
+          "lucidflex": true,
+          "luciddirect": true,
+          "luciddaily-dll-on-intraday": "restricted",
+          "luciddaily-dll-on-eod": "restricted",
+          "luciddaily-dll-off-intraday": "restricted",
+          "luciddaily-dll-off-eod": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://support.lucidtrading.com/en/articles/11404728-other-activities",
+            "quote": "News Trading Not allowed on Daily Trading red folder news on the LucidDaily is a hard breach Allowed on Flex, Pro and Direct Traders may enter or exit positions around scheduled or unscheduled news events on these plans without it being a breach"
+          }
+        ]
+      }
+    }
+  }
+}

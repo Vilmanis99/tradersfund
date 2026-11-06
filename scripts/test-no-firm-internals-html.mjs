@@ -75,10 +75,10 @@ const isInternalValueKey = key => INTERNAL_VALUE_KEY.test(key) && !CLIENT_PAYLOA
 /*
  * Field names that are also ordinary React/CSS/HTML prop names or generic view-model
  * labels ("flex" style, <th scope>, counter `value`, offer `note`, signal `summary`,
- * price `currency`) cannot be told apart by name alone; their internal VALUES are still
+ * price `currency`, directory `phase` / schema phase index) cannot be told apart by name alone; their internal VALUES are still
  * checked below.
  */
-const AMBIGUOUS_NAMES = new Set(['flex', 'scope', 'value', 'note', 'summary', 'currency'])
+const AMBIGUOUS_NAMES = new Set(['flex', 'scope', 'value', 'note', 'summary', 'currency', 'phase'])
 /** Watch-entry evidence references (internal evidence file names); the change feed gets booleans instead. */
 const WATCH_INTERNAL_KEYS = ['ruleEvidenceRefs', 'sourceConflictEvidenceRefs']
 const forbiddenKeys = [...new Set([...typeKeys, ...dataKeys, ...WATCH_INTERNAL_KEYS])].filter(key => !CLIENT_PAYLOAD_FIRM_KEYS.has(key) && !AMBIGUOUS_NAMES.has(key)).sort()

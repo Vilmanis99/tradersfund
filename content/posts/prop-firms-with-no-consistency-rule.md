@@ -5,23 +5,23 @@ slug: "prop-firms-with-no-consistency-rule"
 date: "2026-10-15 12:00:00"
 modified: "2026-10-30 12:00:00"
 author: "Tara Mohseni"
-excerpt: "A blank consistency field is not a published zero. See which products publish a percentage, which state none, and which payout-stage caveats still apply."
+excerpt: "A blank consistency percentage is not a published zero. See which products publish a percentage, which state none, and which payout-stage caveats still apply."
 seoDescription: "Prop firms with no consistency rule, verified: explicit none at CTI Direct Funding, FundedNext Stellar and E8 Pro, null captures, and the 15%–55% caps."
 categories: ["Prop Firms"]
 tags: ["prop firm consistency rule", "no consistency rule prop firm", "prop firm rules", "prop firms with no consistency rule"]
 type: "post"
 ---
 
-<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when a product capture records null and first-party FAQ or review evidence supports the absence — a blank field alone is not a zero.</strong> This list separates products with a captured consistency percentage (15%–55%) from the strongest none/null candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Captures cited below run from 2026-09-14 to 2026-10-29.</p>
+<p><strong>"No consistency rule" only counts when a firm publishes an explicit none, or when first-party FAQ or review evidence supports the absence — a blank percentage alone is not a zero.</strong> This list separates products with a published consistency percentage (15%–55%) from the strongest none / not-published candidates, then flags payout-stage traps such as Apex Performance Account 50% and Tradeify Growth's 35% funded gate. Firm pages cited below were checked between 14 September 2026 and 29 October 2026.</p>
 
 <div class="key-takeaways">
   <div class="title">Key Takeaways</div>
   <ul>
     <li>A consistency rule caps how much of profit can come from the best day; it often blocks a payout rather than failing the evaluation immediately.</li>
-    <li>Across our challenge captures, published percentages currently range from 15% (Alpha Direct; FundingPips Zero; Maven Mini) to 55% (Topstep Trading Combine paths).</li>
-    <li>Explicit "none" language appears on City Traders Imperium Direct Funding ("No Consistency Rules"), FundedNext Stellar Instant FAQ (no consistency rule), and E8 Pro live rules ("Consistency rule There is none").</li>
-    <li>BrightFunded 1-Step / 2-Step Bright / Classic and FTMO 2-Step record <code>null</code> in the 2026-10-14 capture; FTMO 1-Step still records 50% on the same date.</li>
-    <li>Null ≠ none for Apex evaluations (Performance Account payouts still use 50%) and for Alpha bi-weekly routes (consistency unverified). Tradeify Growth stores 35% as the funded payout gate, not an evaluation rule.</li>
+    <li>Across the products we checked, published percentages currently range from 15% (Alpha Direct; FundingPips Zero; Maven Mini) to 55% (Topstep Trading Combine paths).</li>
+    <li>Explicit "none" language for payouts appears on City Traders Imperium Direct Funding ("Direct Funding has no consistency rule on payouts"; Instant and Direct Funding FAQs also require a 20% consistency score to scale, checked 4 November 2026), FundedNext Stellar Instant FAQ (no consistency rule), and E8 Pro live rules ("Consistency rule There is none").</li>
+    <li>BrightFunded 1-Step / 2-Step Bright / Classic and FTMO 2-Step publish no consistency percentage on pages checked 14 October 2026; FTMO 1-Step still publishes 50% on the same date.</li>
+    <li>A missing percentage is not the same as an explicit none: Apex evaluations publish no evaluation percentage, but Performance Account payouts still use 50%, and Alpha bi-weekly routes leave consistency unverified. Tradeify Growth's 35% is the funded payout gate, not an evaluation rule.</li>
   </ul>
 </div>
 
@@ -33,11 +33,11 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Table A — Products with a published consistency percentage</strong></h2>
 
-<p>These captures store a numeric percentage. Use them as the baseline of what you are avoiding when you filter for "no consistency." Percentages are product- and stage-specific; the same brand can publish different figures on different products.</p>
+<p>These products publish a numeric percentage. Use them as the baseline of what you are avoiding when you filter for "no consistency." Percentages are product- and stage-specific; the same brand can publish different figures on different products.</p>
 
 <table>
   <thead>
-    <tr><th>Firm</th><th>Product</th><th>Consistency %</th><th>Capture date</th></tr>
+    <tr><th>Firm</th><th>Product</th><th>Published consistency %</th><th>Checked</th></tr>
   </thead>
   <tbody>
     <tr><td><a href="/blog/topstep-review">Topstep</a></td><td>Trading Combine — Standard Path</td><td>55%</td><td>2026-10-20</td></tr>
@@ -69,50 +69,50 @@ type: "post"
   </tbody>
 </table>
 
-<p><em>Source:</em> the consistency percentage in our product records, with each product's capture date as listed. FundingPips captures are dated 2026-09-29; Topstep 2026-10-20; most peers 2026-10-14.</p>
+<p><em>Source:</em> each product's published consistency percentage, with the check date as listed. FundingPips pages were checked 29 September 2026; Topstep 20 October 2026; most peers 14 October 2026.</p>
 
 <h2 class="wp-block-heading"><strong>Table B — Strongest "no / none published" candidates</strong></h2>
 
-<p>Labels below separate marketing language, FAQ evidence, and raw null captures. Prefer the rows with explicit first-party "none" wording when the strategy depends on skipping a best-day cap.</p>
+<p>Labels below separate marketing language, FAQ evidence, and pages that simply do not mention a percentage. Prefer the rows with explicit first-party "none" wording when the strategy depends on skipping a best-day cap. <strong>None stated</strong> means the firm explicitly says there is no consistency rule (for the gate named in the note). <strong>Not published</strong> means the product page does not give a percentage and does not clearly say "none."</p>
 
 <table>
   <thead>
-    <tr><th>Firm</th><th>Product</th><th>Capture says</th><th>Supporting note</th><th>Capture date</th><th>Caveat</th></tr>
+    <tr><th>Firm</th><th>Product</th><th>Published consistency %</th><th>Supporting note</th><th>Checked</th><th>Caveat</th></tr>
   </thead>
   <tbody>
-    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a></td><td>Direct Funding</td><td>null</td><td>Product page states "No Consistency Rules" — "Your best day counts, not just your average"</td><td>2026-10-14</td><td>Still no published percentage figure; null is kept because absence of a number ≠ stated 0%</td></tr>
-    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a></td><td>2-Step Challenge</td><td>null</td><td>Page markets "no hidden consistency requirements" but publishes no percentage</td><td>2026-10-14</td><td>Weaker than Direct Funding's explicit "No Consistency Rules" line</td></tr>
-    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar Instant</td><td>null</td><td>Official FAQ capture: no consistency rule; our firm record: "none on Stellar Instant"</td><td>2026-10-19</td><td>Still has 6% trailing maximum loss and a 5% growth gate for on-demand rewards; FundedNext's 40% news-window profit count is a separate news rule, not a best-day consistency formula</td></tr>
-    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar 2-Step; Lite</td><td>null (40% only with the On-Demand payout option)</td><td>Help article 15586820: on-demand requests need 2% growth and a best day no larger than 40% of total profit, checked only when you request; standard reward cycles carry no best-day percentage</td><td>2026-10-19; help article checked 2026-10-20</td><td>The On-Demand option is chosen at checkout; news treatment remains restricted</td></tr>
-    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar 1-Step</td><td>null</td><td>No consistency percentage published in the challenge capture</td><td>2026-10-19</td><td>Confirm the current FAQ before purchase; news treatment remains restricted</td></tr>
-    <tr><td><a href="/blog/e8-markets-review">E8 Markets</a></td><td>E8 Pro (E8PRO v2, Forex)</td><td>null</td><td>Live e8-pro rules: "Consistency rule There is none"; review records no consistency on E8 Pro</td><td>2026-10-14</td><td>E8 One still records 40%; E8 Signature Forex records 35% payout best-day — product choice matters</td></tr>
-    <tr><td><a href="/blog/e8-markets-review">E8 Markets</a></td><td>E8 Pro (Perpetuals)</td><td>null</td><td>Same Pro family; perpetual configurator capture 2026-10-14</td><td>2026-10-14</td><td>News/EA/copy fields left null for Perpetuals — verify those rules separately</td></tr>
-    <tr><td><a href="/blog/bright-funded-prop-firm">BrightFunded</a></td><td>1-Step; 2-Step Bright; 2-Step Classic</td><td>null</td><td>All three products null in 2026-10-14 capture; our firm record lists the consistency rule as None; no-hidden-rules table: "None published"</td><td>2026-10-14</td><td>Null without an on-page "none" sentence — treat as strongest among blanks only when paired with current help-centre confirmation</td></tr>
-    <tr><td><a href="/blog/ftmo-review">FTMO</a></td><td>FTMO Challenge: 2-Step</td><td>null</td><td>Consistency guide: no consistency objective on FTMO 2-Step in current capture</td><td>2026-10-14</td><td>Contrast FTMO 1-Step at 50% on the same capture date — do not assume firm-wide none</td></tr>
+    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a></td><td>Direct Funding</td><td>None stated</td><td>Page states "Direct Funding has no consistency rule on payouts"; FAQ also says "To scale, you also need a 20% consistency score" (citytradersimperium.com/direct-funding/)</td><td>2026-11-04</td><td>None applies to payouts only; scaling Instant/Direct still needs the 20% score. No numeric payout formula is published</td></tr>
+    <tr><td><a href="/blog/city-traders-imperium-review">City Traders Imperium</a></td><td>2-Step Challenge</td><td>None stated</td><td>Page says "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives"</td><td>2026-11-04</td><td>Evaluation "none" claim; weaker than Direct Funding's explicit payouts line, and unrelated to the Instant/Direct scaling score</td></tr>
+    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar Instant</td><td>None stated</td><td>Official FAQ: no consistency rule</td><td>2026-10-19</td><td>Still has 6% trailing maximum loss and a 5% growth gate for on-demand rewards; FundedNext's 40% news-window profit count is a separate news rule, not a best-day consistency formula</td></tr>
+    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar 2-Step; Lite</td><td>Not published (40% only with the On-Demand payout option)</td><td>Help article 15586820: on-demand requests need 2% growth and a best day no larger than 40% of total profit, checked only when you request; standard reward cycles carry no best-day percentage</td><td>2026-10-19; help article checked 2026-10-20</td><td>The On-Demand option is chosen at checkout; news treatment remains restricted</td></tr>
+    <tr><td><a href="/blog/fundednext-review">FundedNext</a></td><td>Stellar 1-Step</td><td>Not published</td><td>No consistency percentage published on the product pages we checked</td><td>2026-10-19</td><td>Confirm the current FAQ before purchase; news treatment remains restricted</td></tr>
+    <tr><td><a href="/blog/e8-markets-review">E8 Markets</a></td><td>E8 Pro (E8PRO v2, Forex)</td><td>None stated</td><td>Live e8-pro rules: "Consistency rule There is none"</td><td>2026-10-14</td><td>E8 One still publishes 40%; E8 Signature Forex publishes 35% payout best-day — product choice matters</td></tr>
+    <tr><td><a href="/blog/e8-markets-review">E8 Markets</a></td><td>E8 Pro (Perpetuals)</td><td>None stated</td><td>Same Pro family; perpetual configurator checked 2026-10-14</td><td>2026-10-14</td><td>News, EA and copy-trading rules for Perpetuals were not confirmed on that check — verify those rules separately</td></tr>
+    <tr><td><a href="/blog/bright-funded-prop-firm">BrightFunded</a></td><td>1-Step; 2-Step Bright; 2-Step Classic</td><td>Not published</td><td>All three products omit a consistency percentage on pages checked 14 October 2026; our BrightFunded review lists the rule as none published</td><td>2026-10-14</td><td>Not published without an on-page "none" sentence — treat as strongest among blanks only when paired with current help-centre confirmation</td></tr>
+    <tr><td><a href="/blog/ftmo-review">FTMO</a></td><td>FTMO Challenge: 2-Step</td><td>Not published</td><td>Consistency guide: no consistency objective on FTMO 2-Step on the pages checked</td><td>2026-10-14</td><td>Contrast FTMO 1-Step at 50% on the same check date — do not assume firm-wide none</td></tr>
   </tbody>
 </table>
 
-<p><em>Source:</em> the consistency field and product notes in our product records; cross-checked against <a href="/blog/no-hidden-rules-prop-firms">no hidden rules</a> and <a href="/blog/what-is-prop-firm-consistency-rule">consistency rule</a> articles. FundedNext product captures are dated 2026-10-19; the On-Demand 40% scope comes from our firm record and FundedNext help article 15586820, checked 2026-10-20.</p>
+<p><em>Source:</em> firm product pages and FAQ wording, cross-checked against <a href="/blog/no-hidden-rules-prop-firms">no hidden rules</a> and <a href="/blog/what-is-prop-firm-consistency-rule">consistency rule</a> articles. FundedNext product pages were checked 19 October 2026; the On-Demand 40% scope comes from FundedNext help article 15586820, checked 20 October 2026.</p>
 
 <h2 class="wp-block-heading"><strong>Caveats: blanks ≠ zero, and payout-stage rules still bite</strong></h2>
 
-<h3 class="wp-block-heading"><strong>1. Null means "not published in that product capture"</strong></h3>
-<p>Our product records store the consistency percentage as null when no verified figure was found. That is an evidence gap unless the first-party page or FAQ explicitly says the rule does not apply. City Traders Imperium's own capture notes state that marketing "no hidden consistency requirements" without a figure is recorded as null rather than 0%. Do not reverse-engineer a zero from a blank badge.</p>
+<h3 class="wp-block-heading"><strong>1. "Not published" means no verified percentage on that product page</strong></h3>
+<p>When a product page gives no verified consistency percentage, that is an evidence gap unless the first-party page or FAQ explicitly says the rule does not apply. City Traders Imperium's own product notes treat marketing "no hidden consistency requirements" without a figure as not published rather than 0%. Do not reverse-engineer a zero from a blank badge.</p>
 
 <h3 class="wp-block-heading"><strong>2. Apex: no evaluation consistency, 50% on Performance Account payouts</strong></h3>
-<p><a href="/blog/apex-trader-funding-review">Apex Trader Funding</a> evaluation products (Intraday Trail and EOD Trail, Standard and No Activation Fee) all store null, and the capture notes say no evaluation consistency rule applies. Our firm record is explicit: "No evaluation consistency rule; 50% consistency applies when requesting Performance Account payouts." The largest profitable day must stay below 50% of total profit since inception or the last approved payout. Capture date for these Apex products is 2026-09-14 — the oldest among the firms listed here — so re-check before buying.</p>
+<p><a href="/blog/apex-trader-funding-review">Apex Trader Funding</a> evaluation products (Intraday Trail and EOD Trail, Standard and No Activation Fee) publish no evaluation consistency percentage, and Apex's pages say no evaluation consistency rule applies. The firm is explicit elsewhere: no evaluation consistency rule; 50% consistency applies when requesting Performance Account payouts. The largest profitable day must stay below 50% of total profit since inception or the last approved payout. These Apex products were last checked 14 September 2026 — the oldest among the firms listed here — so re-check before buying.</p>
 
 <h3 class="wp-block-heading"><strong>3. Tradeify Growth: 35% is the funded payout gate</strong></h3>
-<p>Tradeify Growth Evaluation stores 35% in the challenge file, but product notes clarify there is no evaluation consistency rule and a one-day pass is possible. The 35% figure is the simulated-funded payout consistency gate. Select Evaluation uses 40% in evaluation only, with no funded consistency percentage on Flex or Daily. Lightning Funded starts at 20% for payout 1 and progresses to 25% then 30%. Reading the evaluation column alone will mis-rank Growth as "has consistency" when the practical hit is at withdrawal time.</p>
+<p>Tradeify Growth Evaluation shows 35% in Table A, but product notes clarify there is no evaluation consistency rule and a one-day pass is possible. The 35% figure is the simulated-funded payout consistency gate. Select Evaluation uses 40% in evaluation only, with no funded consistency percentage on Flex or Daily. Lightning Funded starts at 20% for payout 1 and progresses to 25% then 30%. Reading the evaluation column alone will mis-rank Growth as "has consistency" when the practical hit is at withdrawal time.</p>
 
 <h3 class="wp-block-heading"><strong>4. Alpha bi-weekly consistency is unverified</strong></h3>
-<p>Alpha Pro bi-weekly variants store null. Capture notes say the 40% best-day rule is documented for on-demand routes, while bi-weekly consistency remains unverified — not an absence claim. On-demand Alpha One / Pro / Swing still record 40%; Alpha Direct records 15%. Do not treat a bi-weekly null as "no consistency rule."</p>
+<p>Alpha Pro bi-weekly variants publish no consistency percentage. Firm notes say the 40% best-day rule is documented for on-demand routes, while bi-weekly consistency remains unverified — not an absence claim. On-demand Alpha One / Pro / Swing still publish 40%; Alpha Direct publishes 15%. Do not treat a bi-weekly blank as "no consistency rule."</p>
 
 <h3 class="wp-block-heading"><strong>5. FundedNext's 40% best-day rule applies only to On-Demand rewards</strong></h3>
-<p>Our firm record now lists FundedNext's consistency rule as product-specific: a 40% best-day rule (your best day's profit may not exceed 40% of total profit) on Stellar 2-Step and Stellar Lite, but only when you choose the On-Demand payout option, and none on Stellar Instant. FundedNext's help article 15586820, checked 2026-10-20, confirms it: the rule "is not a daily profit cap; it is only evaluated when you submit an on-demand request," and that request also needs 2% growth. On a $100K Stellar 2-Step with $5,000 of profit, an on-demand request fails if any single day made more than $2,000. The standard reward cycles carry no best-day percentage. FundedNext's separate 40% news-window profit count is a news-trading rule, not this formula, so filter on the payout option you plan to buy.</p>
+<p>FundedNext's consistency rule is product-specific: a 40% best-day rule (your best day's profit may not exceed 40% of total profit) on Stellar 2-Step and Stellar Lite, but only when you choose the On-Demand payout option, and none on Stellar Instant. FundedNext's help article 15586820, checked 20 October 2026, confirms it: the rule "is not a daily profit cap; it is only evaluated when you submit an on-demand request," and that request also needs 2% growth. On a $100K Stellar 2-Step with $5,000 of profit, an on-demand request fails if any single day made more than $2,000. The standard reward cycles carry no best-day percentage. FundedNext's separate 40% news-window profit count is a news-trading rule, not this formula, so filter on the payout option you plan to buy.</p>
 
 <h3 class="wp-block-heading"><strong>6. Same firm, different products</strong></h3>
-<p>FTMO 1-Step = 50%; FTMO 2-Step = null with no consistency objective. E8 One = 40%; E8 Pro = none; E8 Signature = 35%. FXIFY Two Phase Classic = 25% funded-stage; several other FXIFY products store null. Always select the exact product slug, not the brand name.</p>
+<p>FTMO 1-Step = 50%; FTMO 2-Step = not published, with no consistency objective on the pages checked. E8 One = 40%; E8 Pro = none; E8 Signature = 35%. FXIFY Two Phase Classic = 25% funded-stage; several other FXIFY products publish no percentage. Always select the exact product, not the brand name.</p>
 
 <h2 class="wp-block-heading"><strong>Who should want no-consistency products — and who still needs other rules</strong></h2>
 
@@ -120,8 +120,8 @@ type: "post"
 
 <p><strong>Still check even if consistency is none:</strong></p>
 <ul>
-  <li><strong>News windows</strong> — FundedNext Stellar products restrict news; BrightFunded restricts news; CTI Direct Funding allows news on the captured products, but confirm the current page.</li>
-  <li><strong>Overnight / weekend holding</strong> — FTMO restricts both on 2-Step; BrightFunded and FundedNext Stellar allow both in the captures used here; futures day-trading firms (Apex, Tradeify) flatten before the US cash close.</li>
+  <li><strong>News windows</strong> — FundedNext Stellar products restrict news; BrightFunded restricts news; CTI Direct Funding allows news on the products we checked, but confirm the current page.</li>
+  <li><strong>Overnight / weekend holding</strong> — FTMO restricts both on 2-Step; BrightFunded and FundedNext Stellar allow both on the pages checked here; futures day-trading firms (Apex, Tradeify) flatten before the US cash close.</li>
   <li><strong>Drawdown type</strong> — BrightFunded 1-Step uses a 6% trailing maximum that locks after 6% growth; E8 Pro uses 8% static with a 2.5% daily drawdown and a 2% daily profit cap that is separate from consistency.</li>
   <li><strong>Payout gates</strong> — qualifying days, buffers, minimum request sizes, and discretionary reviews can delay cash even when best-day share is unlimited.</li>
 </ul>
@@ -130,33 +130,33 @@ type: "post"
 
 <h2 class="wp-block-heading"><strong>Where to start among the strongest candidates</strong></h2>
 
-<p>If you need an explicit first-party "none" sentence, start with <a href="/blog/city-traders-imperium-review">City Traders Imperium Direct Funding</a>, <a href="/blog/e8-markets-review">E8 Pro</a>, or <a href="/blog/fundednext-review">FundedNext Stellar Instant</a> (FAQ: no consistency rule). If you want a multi-step forex evaluation with null consistency on the 2026-10-14 capture and a Russia-access-friendly universal offer on this site, <a href="/blog/bright-funded-prop-firm">BrightFunded</a> 1-Step, 2-Step Bright, and 2-Step Classic all store null. For a classic two-phase challenge without the 1-Step consistency objective, use <a href="/blog/ftmo-review">FTMO 2-Step</a> and keep FTMO 1-Step's 50% rule out of the comparison.</p>
+<p>If you need an explicit first-party "none" sentence for payouts, start with <a href="/blog/city-traders-imperium-review">City Traders Imperium Direct Funding</a> ("no consistency rule on payouts"; still needs a 20% consistency score to scale), <a href="/blog/e8-markets-review">E8 Pro</a>, or <a href="/blog/fundednext-review">FundedNext Stellar Instant</a> (FAQ: no consistency rule). If you want a multi-step forex evaluation that publishes no consistency percentage on pages checked 14 October 2026, compare <a href="/blog/bright-funded-prop-firm">BrightFunded</a> 1-Step, 2-Step Bright, and 2-Step Classic on their live terms. For a classic two-phase challenge without the 1-Step consistency objective, use <a href="/blog/ftmo-review">FTMO 2-Step</a> and keep FTMO 1-Step's 50% rule out of the comparison.</p>
 
 <div style="background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.5rem 0;">
-  <strong style="color: #fff;">Comparing BrightFunded's null-consistency captures?</strong> BrightFunded 1-Step, 2-Step Bright, and 2-Step Classic all record a null consistency percentage as of the 2026-10-14 challenge capture, with overnight and weekend holding allowed on those products. Removing a best-day gate does not remove the trailing or static drawdown, news restrictions, or payout timing conflicts noted in the capture. Read the <a href="/blog/bright-funded-prop-firm">BrightFunded review</a>, then <a href="https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ" rel="nofollow sponsored">check BrightFunded's live terms</a> only if the exact product rules fit the strategy. We may earn a commission; the partnership does not change displayed terms or editorial scoring.
+  <strong style="color: #fff;">Comparing BrightFunded products with no published consistency percentage?</strong> BrightFunded 1-Step, 2-Step Bright, and 2-Step Classic publish no consistency percentage on pages checked 14 October 2026, with overnight and weekend holding allowed on those products. Removing a best-day gate does not remove the trailing or static drawdown, news restrictions, or payout timing conflicts noted on those pages. Read the <a href="/blog/bright-funded-prop-firm">BrightFunded review</a>, then <a href="https://brightfunded.com/a/nIfOFrQBTUK-00O1dIjiSQ" rel="nofollow sponsored">check BrightFunded's live terms</a> only if the exact product rules fit the strategy. We may earn a commission; the partnership does not change displayed terms or editorial scoring.
 </div>
 
-<p>Also useful next reads: <a href="/blog/fundednext-review">FundedNext review</a>, <a href="/blog/city-traders-imperium-review">City Traders Imperium review</a>, <a href="/blog/ftmo-review">FTMO review</a>, and the structured <a href="/prop-firm-challenges">product comparison</a> for live challenge fields.</p>
+<p>Also useful next reads: <a href="/blog/fundednext-review">FundedNext review</a>, <a href="/blog/city-traders-imperium-review">City Traders Imperium review</a>, <a href="/blog/ftmo-review">FTMO review</a>, and the structured <a href="/prop-firm-challenges">product comparison</a> for live challenge rules.</p>
 
 <h2 class="wp-block-heading"><strong>FAQ</strong></h2>
 
 <h3 class="wp-block-heading"><strong>Which prop firms have no consistency rule?</strong></h3>
-<p>Products with the strongest published "none" evidence in our data are City Traders Imperium Direct Funding ("No Consistency Rules"), E8 Pro ("Consistency rule There is none"), and FundedNext Stellar Instant (official FAQ: no consistency rule). BrightFunded's three captured challenge products and FTMO 2-Step store null without a 1-Step-style consistency percentage. Always confirm the exact product page on the purchase date.</p>
+<p>Products with the strongest published "none" evidence are City Traders Imperium Direct Funding ("Direct Funding has no consistency rule on payouts"; Instant and Direct still need a 20% consistency score to scale, checked 4 November 2026), E8 Pro ("Consistency rule There is none"), and FundedNext Stellar Instant (official FAQ: no consistency rule). BrightFunded's three challenge products and FTMO 2-Step publish no consistency percentage on the pages we checked, without a 1-Step-style consistency percentage. Always confirm the exact product page on the purchase date.</p>
 
-<h3 class="wp-block-heading"><strong>Does a null consistency percentage mean the firm has no rule?</strong></h3>
-<p>No. Null means the percentage was not published or not verified in that product capture. Apex evaluations are null but Performance Account payouts use 50%. Alpha bi-weekly routes are null while on-demand routes publish 40%. Treat null as a research queue item unless FAQ or rules text says none.</p>
+<h3 class="wp-block-heading"><strong>Does a missing consistency percentage mean the firm has no rule?</strong></h3>
+<p>No. A missing percentage means the figure was not published or not verified on that product page. Apex evaluations publish no evaluation percentage, but Performance Account payouts use 50%. Alpha bi-weekly routes publish none while on-demand routes publish 40%. Treat a blank as a research queue item unless FAQ or rules text says none.</p>
 
 <h3 class="wp-block-heading"><strong>What is the highest published consistency percentage right now?</strong></h3>
-<p>Topstep's Trading Combine paths record a 55% Consistency Target (captured 2026-10-20). Several futures and forex products sit at 50%, including FTMO 1-Step (2026-10-14), My Funded Futures Flex/Pro/Rapid, and Take Profit Trader's Test. LucidDaily and LucidFlex evaluations default to 40%, with 50% only as a paid checkout add-on (Lucid help articles, read 2026-10-29).</p>
+<p>Topstep's Trading Combine paths publish a 55% Consistency Target (checked 20 October 2026). Several futures and forex products sit at 50%, including FTMO 1-Step (14 October 2026), My Funded Futures Flex/Pro/Rapid, and Take Profit Trader's Test. LucidDaily and LucidFlex evaluations default to 40%, with 50% only as a paid checkout add-on (Lucid help articles, read 29 October 2026).</p>
 
 <h3 class="wp-block-heading"><strong>Is FundedNext's news profit retention a consistency rule?</strong></h3>
-<p>No. FundedNext's 40% news-window profit count is a news-trading treatment. Its best-day consistency rule is a different thing: 40% of total profit, applied only to On-Demand reward requests on Stellar 2-Step and Stellar Lite (help article 15586820, checked 2026-10-20). Stellar Instant has no consistency rule.</p>
+<p>No. FundedNext's 40% news-window profit count is a news-trading treatment. Its best-day consistency rule is a different thing: 40% of total profit, applied only to On-Demand reward requests on Stellar 2-Step and Stellar Lite (help article 15586820, checked 20 October 2026). Stellar Instant has no consistency rule.</p>
 
 <h3 class="wp-block-heading"><strong>Does Apex have a consistency rule?</strong></h3>
-<p>Not during the current Intraday/EOD evaluations (null; notes say no evaluation consistency). Yes at Performance Account payout time: 50% consistency per our firm record and the 2026-09-14 challenge notes. Do not buy Apex expecting a payout with no best-day check.</p>
+<p>Not during the current Intraday/EOD evaluations (no published evaluation percentage; Apex's notes say no evaluation consistency). Yes at Performance Account payout time: 50% consistency per Apex's payout rule and pages checked 14 September 2026. Do not buy Apex expecting a payout with no best-day check.</p>
 
 <h3 class="wp-block-heading"><strong>Can I pass Tradeify Growth without a consistency rule?</strong></h3>
-<p>Yes on the evaluation: notes say Growth has no evaluation consistency and can pass in one trading day. The stored 35% applies to simulated-funded payout requests. Select uses 40% in evaluation; Lightning uses progressive payout consistency starting at 20%.</p>
+<p>Yes on the evaluation: notes say Growth has no evaluation consistency and can pass in one trading day. The 35% applies to simulated-funded payout requests. Select uses 40% in evaluation; Lightning uses progressive payout consistency starting at 20%.</p>
 
 <h3 class="wp-block-heading"><strong>How do I verify a "no consistency rule prop firm" claim before paying?</strong></h3>
-<p>Open the exact product rules or help article, search for "consistency" and "best day", save the page date, and ask support in writing if the field is blank. Cross-check our challenge capture date against the live page. Pair that check with news, holding, and payout-gate reading from the <a href="/blog/no-hidden-rules-prop-firms">no hidden rules</a> checklist.</p>
+<p>Open the exact product rules or help article, search for "consistency" and "best day", save the page date, and ask support in writing if no percentage appears. Cross-check the date we last checked the firm against the live page. Pair that check with news, holding, and payout-gate reading from the <a href="/blog/no-hidden-rules-prop-firms">no hidden rules</a> checklist.</p>

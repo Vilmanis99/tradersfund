@@ -54,6 +54,10 @@
    }
   },
   {
+   "url": "https://tradersfundhub.com/best-prop-firms-for-low-drawdown",
+   "languages": null
+  },
+  {
    "url": "https://tradersfundhub.com/best-prop-firms-in-india",
    "languages": null
   },
@@ -107,7 +111,11 @@
   },
   {
    "url": "https://tradersfundhub.com/blog/alpha-capital-review",
-   "languages": null
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/alpha-capital-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+    "x-default": "https://tradersfundhub.com/blog/alpha-capital-review"
+   }
   },
   {
    "url": "https://tradersfundhub.com/blog/apex-trader-funding-review",
@@ -1110,6 +1118,10 @@
    "languages": null
   },
   {
+   "url": "https://tradersfundhub.com/prop-firms/bright-funded/rules",
+   "languages": null
+  },
+  {
    "url": "https://tradersfundhub.com/prop-firms/closed",
    "languages": {
     "en": "https://tradersfundhub.com/prop-firms/closed",
@@ -1160,6 +1172,14 @@
   {
    "url": "https://tradersfundhub.com/prop-firms/weekend-holding",
    "languages": null
+  },
+  {
+   "url": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+   "languages": {
+    "en": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+    "ru": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+    "x-default": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026"
+   }
   },
   {
    "url": "https://tradersfundhub.com/ru",
@@ -1278,6 +1298,18 @@
    }
   },
   {
+   "url": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/alpha-capital-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+    "x-default": "https://tradersfundhub.com/blog/alpha-capital-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-blue-guardian",
+   "languages": null
+  },
+  {
    "url": "https://tradersfundhub.com/ru/obzor-bright-funded",
    "languages": {
     "en": "https://tradersfundhub.com/blog/bright-funded-prop-firm",
@@ -1363,6 +1395,14 @@
     "en": "https://tradersfundhub.com/blog/topstep-review",
     "ru": "https://tradersfundhub.com/ru/obzor-topstep",
     "x-default": "https://tradersfundhub.com/blog/topstep-review"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+   "languages": {
+    "en": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026",
+    "ru": "https://tradersfundhub.com/ru/otchet-izmeneniya-prop-firm-oktyabr-2026",
+    "x-default": "https://tradersfundhub.com/reports/prop-firm-changes-october-2026"
    }
   },
   {

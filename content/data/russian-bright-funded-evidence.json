@@ -37,16 +37,16 @@
     "countries": {
       "labelRu": "Ограничения регистрации по стране",
       "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
-      "sourceCapturedAt": "2026-10-20",
-      "sourceQuote": "Traders from Pakistan who already have an active account may continue trading.",
-      "notesRu": "Статья справки обновлена 15.09.2026. Список называет Кубу, Иран, Северную Корею, Сирию, Вьетнам и Пакистан; запрет новой покупки/регистрации относится к гражданству или проживанию. Исключение для уже активного пакистанского счёта не разрешает новую регистрацию. Отсутствие страны не является индивидуальным одобрением."
+      "sourceCapturedAt": "2026-11-04",
+      "sourceQuote": "Individuals residing in or holding nationality from the following countries are currently not permitted to purchase Challenges or register with BrightFunded. Restricted Country List — Cuba; Iran; North Korea; Syria; Vietnam; Pakistan. Important: Traders from Pakistan who already have an active account may continue trading.",
+      "notesRu": "Статья справки 9286630 (lastUpdatedDate 15.09.2026), перечитана 04.11.2026. Список: Куба, Иран, Северная Корея, Сирия, Вьетнам, Пакистан; Россия не названа. Запрет новой покупки/регистрации относится к гражданству или проживанию. Исключение для уже активного пакистанского счёта не разрешает новую регистрацию. Отсутствие страны не является индивидуальным одобрением."
     },
     "countryTerms": {
       "labelRu": "Условия BrightFunded: географические ограничения",
       "sourceUrl": "https://brightfunded.com/terms-and-conditions",
-      "sourceCapturedAt": "2026-10-20",
-      "sourceQuote": "Cuba, Iran, North Korea, Syria, and Vietnam.",
-      "notesRu": "Пункт 2 условий называет пять стран и не называет Пакистан, хотя справка включает его. Ограничение в условиях также относится к фактическому местонахождению; фирма сохраняет право вводить дополнительные ограничения. Ни один список не подтверждает индивидуальный доступ."
+      "sourceCapturedAt": "2026-11-04",
+      "sourceQuote": "The Services are not available to residents, citizens, or persons located in the following jurisdictions: Cuba, Iran, North Korea, Syria, and Vietnam.",
+      "notesRu": "Пункт 2 условий (04.11.2026) называет пять стран и не называет Пакистан, хотя справка и FAQ включают его. Ограничение в условиях также относится к фактическому местонахождению; фирма сохраняет право вводить дополнительные ограничения. Ни один список не подтверждает индивидуальный доступ. Россия не названа."
     }
   }
 }

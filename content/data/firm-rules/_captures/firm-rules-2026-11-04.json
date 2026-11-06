@@ -1,0 +1,990 @@
+{
+  "capturedAt": "2026-11-04",
+  "accessNotes": "BrightFunded rolling recheck 2026-11-04 12:05-12:30 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; capture-note paraphrases replaced with verbatim Help Centre quotes. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/bf/. | FXIFY rolling recheck 2026-11-04 12:35-12:55 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from firm-rules-2026-10-15.json still read verbatim; review-widget snippet dropped from platforms evidence. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/fxify/. | CTI rolling recheck 2026-11-04 13:00-13:15 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; 22 of 23 quotes from 14/15 Oct still verbatim, Direct Funding consistency sentence reworded. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cti/. | CFT rolling recheck 2026-11-04 12:10-12:25 Riga: standard HTTP GET of public English pages, no account/checkout, no VPN or proxy; all 17 quotes from 14/15 Oct still verbatim; Terms state a size-dependent Break daily limit. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-04/cft/. | 2026-11-04 payoutFrequency follow-up: firm-wide bi-weekly default after 30-day first wait; weekly via add-on; byProduct filled for all three CFD products; contradiction note replaced.",
+  "pagesRead": [
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+    "https://brightfunded.com/",
+    "https://brightfunded.com/1-step",
+    "https://brightfunded.com/2-step-bright",
+    "https://brightfunded.com/2-step-classic",
+    "https://fxify.com/",
+    "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+    "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+    "https://fxify.com/programs/crypto/",
+    "https://fxify.com/programs/one-phase/",
+    "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+    "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+    "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+    "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+    "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+    "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+    "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+    "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+    "https://citytradersimperium.com/1-step-challenge/",
+    "https://citytradersimperium.com/2-step-challenge/",
+    "https://citytradersimperium.com/instant-funding/",
+    "https://citytradersimperium.com/direct-funding/",
+    "https://citytradersimperium.com/match-trader-platform/",
+    "https://citytradersimperium.com/",
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/break-challenge/",
+    "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+    "https://brightfunded.com/cfds/how-it-works",
+    "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+    "https://brightfunded.com/cfds/1-step",
+    "https://brightfunded.com/cfds/2-step-bright",
+    "https://brightfunded.com/cfds/2-step-classic"
+  ],
+  "pageDates": {
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright": "lastUpdatedDate 2026-03-27",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule": "lastUpdatedDate 2025-10-14 (as shown on the page)",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account": "lastUpdatedDate 2026-03-18",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer": "lastUpdatedDate 2026-10-01",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news": "lastUpdatedDate 2026-07-02",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend": "lastUpdatedDate 2026-03-16",
+    "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/": "dateModified 2025-07-21",
+    "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/": "dateModified 2025-06-26",
+    "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/": "dateModified 2025-06-26",
+    "https://fxify.com/programs/one-phase/": "dateModified 2025-03-25",
+    "https://fxify.com/": "dateModified 2026-04-18",
+    "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account": "lastUpdatedDate 2026-05-15",
+    "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto": "lastUpdatedDate 2026-05-06",
+    "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account": "lastUpdatedDate 2026-05-06",
+    "https://citytradersimperium.com/": "dateModified 2026-10-30 (homepage; product pages carry no dateModified)",
+    "https://cryptofundtrader.com/faq/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/terms-and-conditions/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/": "dateModified 2026-10-21",
+    "https://cryptofundtrader.com/break-challenge/": "dateModified 2026-06-09",
+    "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works": "lastUpdatedDate 2026-05-19"
+  },
+  "firms": {
+    "bright-funded": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on BrightFunded 1-Step; static on BrightFunded 2-Step Bright, BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": "trailing",
+          "bright-funded-2-step-bright": "static",
+          "bright-funded-2-step-classic": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on BrightFunded 1-Step; 4% on BrightFunded 2-Step Bright; 5% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 3,
+          "bright-funded-2-step-bright": 4,
+          "bright-funded-2-step-classic": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Daily Drawdown 3% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Daily Drawdown 4% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Daily Drawdown 5% Higher value between Equity and Balance"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Daily Drawdown 2-Step Bright 4% of original challenge balance 2-Step Classic 5% of original challenge balance 1-Step 3% of original challenge balance"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on BrightFunded 1-Step; 8% on BrightFunded 2-Step Bright; 10% on BrightFunded 2-Step Classic",
+        "byProduct": {
+          "bright-funded-1-step": 6,
+          "bright-funded-2-step-bright": 8,
+          "bright-funded-2-step-classic": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+            "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+            "quote": "Maximum Drawdown 8% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+            "quote": "Maximum Drawdown 10% Static"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+            "quote": "Plan Max. Drawdown Type 2-Step Bright 8% Static 2-Step Classic 10% Static 1-Step 6% Trailing"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "none",
+        "byProduct": {
+          "bright-funded-1-step": null,
+          "bright-funded-2-step-bright": null,
+          "bright-funded-2-step-classic": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+            "quote": "At BrightFunded, we do not currently enforce a consistency rule."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "bright-funded-1-step": 80,
+          "bright-funded-2-step-bright": 80,
+          "bright-funded-2-step-classic": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "bi-weekly",
+        "summary": "First Reward Split 30 days after the first funded trade, then every 14 days (bi-weekly); 7-day (weekly) cycle via paid add-on",
+        "note": "Rechecked 4 November 2026. Help Centre article dated 18 March 2026 states the first Reward Split is after 30 days on the Funded Account, then bi-weekly (14 days), and also lists a 'Bi-weeky add-on (Payouts every 14 days)' next to the weekly add-on. Live marketing the same day (homepage, How it Works, CFD 1-Step / 2-Step Bright / 2-Step Classic) lists only Weekly Payouts among challenge add-ons. The BrightFunded blog (18 November 2025) states subsequent payouts every 14 days, with weekly (7 days) via add-ons. Account-merge help (updated 19 May 2026) requires matching payout-cadence add-ons and gives Bi-weekly Payouts versus Weekly Payouts as the example. No CFD product page publishes a different cadence; firm-wide default is bi-weekly after the first 30-day wait, with weekly as the paid add-on. The Bi-weeky add-on line is kept in evidence.",
+        "byProduct": {
+          "bright-funded-1-step": "bi-weekly",
+          "bright-funded-2-step-bright": "bi-weekly",
+          "bright-funded-2-step-classic": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days)."
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+            "quote": "You can select the following add-ons at the checkout for fastest and bigger payouts: ⚡️ Bi-weeky add-on (Payouts every 14 days) ⚡️ Weekly add-on (Payouts every 7 days)"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+            "quote": "Initial Payout: Your first payout is generally available after 30 days of trading on your funded account. Subsequent Payouts: Following the first one, you can request subsequent payouts every 14 days, with options available for even faster weekly payouts (every 7 days) via add-ons."
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/",
+            "quote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts 100% Challenge Fee Refund No Minimum Trading Days 90% Payout Ratio"
+          },
+          {
+            "sourceUrl": "https://brightfunded.com/cfds/how-it-works",
+            "quote": "Customise Your Challege With Add-Ons 100% Challenge Fee Refund Swap-Free Weekly Payouts No Minimum Trading Days 90% Payout Ratio"
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+            "quote": "Same Add-Ons Required: The accounts to be merged must have the same add-ons (Including the same platform and voucher). Example: You cannot merge a Funded Account with a 90% Profit Split with one that has an 80% Profit Split. You cannot merge a Funded Account with Bi-weekly Payouts with one that has Weekly Payouts."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "bright-funded-1-step": "restricted",
+          "bright-funded-2-step-bright": "restricted",
+          "bright-funded-2-step-classic": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "During Phase 1 and Phase 2, you can trade around news events freely, with no restrictions."
+          },
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+            "quote": "Trading within a 10-minute window surrounding significant news releases-defined as 5 minutes before and 5 minutes after the event-is prohibited."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "bright-funded-1-step": true,
+          "bright-funded-2-step-bright": true,
+          "bright-funded-2-step-classic": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+            "quote": "Yes, at BrightFunded, we allow traders to hold positions over the weekend."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "DXTrade",
+          "cTrader"
+        ],
+        "summary": "MT5, DXTrade, cTrader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+            "quote": "At BrightFunded, we have three platforms designed to provide the best experience for our users: DXTrade, cTrader and MT5."
+          }
+        ]
+      }
+    },
+    "fxify": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on One Phase, Two Phase Standard, Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; static on Two Phase Classic, Two Phase Pro, Three Phase",
+        "byProduct": {
+          "one-phase": "trailing",
+          "two-phase-classic": "static",
+          "two-phase-standard": "trailing",
+          "two-phase-pro": "static",
+          "three-phase": "static",
+          "instant-funding-standard": "trailing",
+          "instant-funding-lite": "trailing",
+          "lightning-challenge": "trailing",
+          "crypto-standard-1-step": "trailing",
+          "crypto-instant-funding": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: ... Max total Drawdown – 6% Trailing (Based on High water mark)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance) Max total Drawdown – 10% Trailing"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Daily drawdown – 5% (Based on previous day balance) Max total Drawdown – 5% Static (Based on initial balance)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "quote": "Max Drawdown 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "quote": "Max Drawdown 8% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 3% on One Phase, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; 4% on Two Phase Classic, Two Phase Standard, Two Phase Pro; 5% on Three Phase; 8% on Instant Funding Standard",
+        "byProduct": {
+          "one-phase": 3,
+          "two-phase-classic": 4,
+          "two-phase-standard": 4,
+          "two-phase-pro": 4,
+          "three-phase": 5,
+          "instant-funding-standard": 8,
+          "instant-funding-lite": 3,
+          "lightning-challenge": 3,
+          "crypto-standard-1-step": 3,
+          "crypto-instant-funding": 3
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "1 Phase Account: Profit Target – Phase 1 – 10% Daily drawdown – 3% (Based on previous day balance)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Phase 2 – 5% Daily drawdown – 4% (Based on previous day balance)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "quote": "Daily Drawdown 5% (Based on Previous Day Balance at 5PM EST)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Daily Drawdown 8% (Based on Previous Day Balance at 5PM EST)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Daily Drawdown 3% (Based on Previous Day Balance at 5PM EST)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Daily Drawdown 3% (Based on Previous Day Balance)"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 6% on One Phase, Crypto Standard (1 Step), Crypto Instant Funding; 10% on Two Phase Classic, Two Phase Standard; 8% on Two Phase Pro, Instant Funding Standard; 5% on Three Phase; 4% on Instant Funding Lite, Lightning Challenge",
+        "byProduct": {
+          "one-phase": 6,
+          "two-phase-classic": 10,
+          "two-phase-standard": 10,
+          "two-phase-pro": 8,
+          "three-phase": 5,
+          "instant-funding-standard": 8,
+          "instant-funding-lite": 4,
+          "lightning-challenge": 4,
+          "crypto-standard-1-step": 6,
+          "crypto-instant-funding": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 6% Trailing (Based on High water mark)"
+          },
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/what-are-the-rules-for-the-assessment-account/",
+            "quote": "Max total Drawdown – 10% Trailing"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834005-the-2-phase-pro-account",
+            "quote": "Max Drawdown 8% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14835023-the-3-phase-account",
+            "quote": "Max Drawdown 5% (Static)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Max Drawdown 4% (Trailing to Initial Balance)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Max Drawdown 8% (Trailing High Water Mark)"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on One Phase, Two Phase Standard, Two Phase Pro, Three Phase, Instant Funding Standard, Crypto Standard (1 Step); 25% on Two Phase Classic, Crypto Instant Funding; 20% on Instant Funding Lite; 30% on Lightning Challenge",
+        "byProduct": {
+          "one-phase": null,
+          "two-phase-classic": 25,
+          "two-phase-standard": null,
+          "two-phase-pro": null,
+          "three-phase": null,
+          "instant-funding-standard": null,
+          "instant-funding-lite": 20,
+          "lightning-challenge": 30,
+          "crypto-standard-1-step": null,
+          "crypto-instant-funding": 25
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "No Consistency Rule: Your strategy can evolve; we do not enforce rigid lot-size consistency."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834680-the-2-phase-classic-account",
+            "quote": "Consistency Rule 25% (Applicable only on Live accounts)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Consistency Rule 20% (Required for all payouts)"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Consistency Rule 30% Both in Challenge and Live Phase"
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Consistency Rule 25%"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase, Crypto Standard (1 Step), Crypto Instant Funding; not stated on Instant Funding Standard, Instant Funding Lite, Lightning Challenge",
+        "byProduct": {
+          "one-phase": 80,
+          "two-phase-classic": 80,
+          "two-phase-standard": 80,
+          "two-phase-pro": 80,
+          "three-phase": 80,
+          "instant-funding-standard": null,
+          "instant-funding-lite": null,
+          "lightning-challenge": null,
+          "crypto-standard-1-step": 80,
+          "crypto-instant-funding": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14834059-the-1-phase-account",
+            "quote": "Profit Split 80% default , upgradable to 90% ."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: monthly on One Phase, Two Phase Classic, Two Phase Standard, Three Phase; not stated on Two Phase Pro, Instant Funding Lite; bi-weekly on Instant Funding Standard, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding",
+        "byProduct": {
+          "one-phase": "monthly",
+          "two-phase-classic": "monthly",
+          "two-phase-standard": "monthly",
+          "two-phase-pro": null,
+          "three-phase": "monthly",
+          "instant-funding-standard": "bi-weekly",
+          "instant-funding-lite": null,
+          "lightning-challenge": "bi-weekly",
+          "crypto-standard-1-step": "bi-weekly",
+          "crypto-instant-funding": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "For the first payout, traders can request a withdrawal on-demand, as soon as the first trade on the live account is closed."
+          },
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "Thereafter, withdrawals are once per month or can be as frequent as every two weeks if the add-on “Bi-weekly payouts” was purchased."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "Payout Frequency Every 14 Days (Bi-weekly)"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase; restricted on Instant Funding Standard, Instant Funding Lite, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding",
+        "byProduct": {
+          "one-phase": true,
+          "two-phase-classic": true,
+          "two-phase-standard": true,
+          "two-phase-pro": true,
+          "three-phase": true,
+          "instant-funding-standard": "restricted",
+          "instant-funding-lite": "restricted",
+          "lightning-challenge": "restricted",
+          "crypto-standard-1-step": "restricted",
+          "crypto-instant-funding": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/can-i-trade-the-news/",
+            "quote": "Yes, you are able to trade new events on 1,2 and 3-Phase accounts."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "News Trading Restricted: Trading is prohibited 5 minutes before and 5 minutes after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "News Trading: Prohibited 5 minutes before and after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+            "quote": "News Trading: Restricted 5 minutes before and after high-impact news releases."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Placing or closing trades within a 10-minute window (5 minutes before/after) of HIGH-impact news is not allowed."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": null,
+        "summary": "Product-specific: allowed on One Phase, Two Phase Classic, Two Phase Standard, Two Phase Pro, Three Phase, Lightning Challenge, Crypto Standard (1 Step), Crypto Instant Funding; not allowed on Instant Funding Standard, Instant Funding Lite",
+        "byProduct": {
+          "one-phase": true,
+          "two-phase-classic": true,
+          "two-phase-standard": true,
+          "two-phase-pro": true,
+          "three-phase": true,
+          "instant-funding-standard": false,
+          "instant-funding-lite": false,
+          "lightning-challenge": true,
+          "crypto-standard-1-step": true,
+          "crypto-instant-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/faqs/all-faqs/do-i-need-to-close-positions-over-the-weekend/",
+            "quote": "No, on the 1,2 and 3 Phase accounts you do not need to close your positions over the weekend."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14938608-the-instant-funding-standard-account",
+            "quote": "No Weekend Holding: All positions must be closed by Friday at 3:45 PM EST."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14939653-the-instant-funding-lite-account",
+            "quote": "Weekend Holding: Not allowed. All trades must be closed by Friday at 3:45 PM EST."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14941614-the-lightning-assessment-account",
+            "quote": "Holding: Weekend and Overnight holding are allowed."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14943468-the-1-phase-account-crypto",
+            "quote": "Flexibility: Weekend and Overnight holding are fully permitted."
+          },
+          {
+            "sourceUrl": "https://intercom.help/fxify/en/articles/14945352-the-crypto-instant-funding-account",
+            "quote": "Holding: Overnight and weekend holding are fully permitted"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT4",
+          "MT5",
+          "DXTrade",
+          "TradingView"
+        ],
+        "summary": "MT4, MT5, DXTrade, TradingView",
+        "note": "The programme pages name the MetaQuotes platforms 'Trading Platform 4' and 'Trading Platform 5'; the homepage names 'TradingView, MetaTrader 5 & DXTrade'. The Crypto programme page lists TradingView as 'Coming soon' and DXTrade.",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://fxify.com/programs/one-phase/",
+            "quote": "Select from widely used trading platforms in the market such as Trading Platform 4, Trading Platform 5, DXtrade, and TradingView to conduct your trades."
+          },
+          {
+            "sourceUrl": "https://fxify.com/",
+            "quote": "TradingView, MetaTrader 5 & DXTrade"
+          }
+        ]
+      }
+    },
+    "city-traders-imperium": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on 1-Step Challenge; static on 2-Step Challenge, Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": "trailing",
+          "2-step-challenge": "static",
+          "instant-funding": "static",
+          "direct-funding": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance Drawdown Type Balance Based Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "Your 6% drawdown is static, with no daily limit and no trailing floor chasing your gains."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: not stated on 1-Step Challenge, Instant Funding, Direct Funding; 5% on 2-Step Challenge",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": 5,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance, plus a daily drawdown of 5% of your initial balance, deducted from each day’s starting balance."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Daily Drawdown None"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on 1-Step Challenge; 10% on 2-Step Challenge; 6% on Instant Funding, Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 5,
+          "2-step-challenge": 10,
+          "instant-funding": 6,
+          "direct-funding": 6
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Max Trailing Drawdown 5% of the starting balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step uses a static drawdown of 10% of your initial balance"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Both programs share the same 6% static drawdown with no daily drawdown limit"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on 1-Step Challenge, 2-Step Challenge; 50% on Instant Funding; 70% on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": 80,
+          "2-step-challenge": 80,
+          "instant-funding": 50,
+          "direct-funding": 70
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Pass the challenge, get funded, and keep 80% of your rewards from your first payout."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "earn a 50% profit share from your very first trade."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "earn a 70% profit share from your first trade, and scale to $4,000,000."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: not stated after the 7-day first payout on 1-Step Challenge and 2-Step Challenge (weekly is a VIP Bronze unlock); not stated on Instant Funding; on-demand on Direct Funding",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": null,
+          "instant-funding": null,
+          "direct-funding": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Request your 1st payout in as little as 7 days."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "1-step-challenge": true,
+          "2-step-challenge": true,
+          "instant-funding": true,
+          "direct-funding": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/1-step-challenge/",
+            "quote": "No restrictions on news, Expert Advisors, Martingale, overnight holds, or weekend holds."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "News trading, weekend holding, and overnight holding are all allowed on the 2-Step Challenge"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "MT5",
+          "Match-Trader"
+        ],
+        "summary": "MT5, Match-Trader",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "it is one of the two platforms available on a City Traders Imperium account. ... What is the difference between Match Trader and MetaTrader 5?"
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/match-trader-platform/",
+            "quote": "Available everywhere we operate, including the USA, where MT5 accounts are not offered."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "None on payouts for 2-Step Challenge and Direct Funding; not stated on 1-Step Challenge or Instant Funding product pages",
+        "note": "Scaling only: the Instant Funding and Direct Funding pages say 'To scale, you also need a 20% consistency score.' This applies to scaling milestones, not to payouts, so byProduct stays null.",
+        "byProduct": {
+          "1-step-challenge": null,
+          "2-step-challenge": null,
+          "instant-funding": null,
+          "direct-funding": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://citytradersimperium.com/2-step-challenge/",
+            "quote": "The 2-Step Challenge has no hidden consistency requirements, with clear target and drawdown objectives."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "Direct Funding has no consistency rule on payouts."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/direct-funding/",
+            "quote": "To scale, you also need a 20% consistency score."
+          },
+          {
+            "sourceUrl": "https://citytradersimperium.com/instant-funding/",
+            "quote": "To scale, you also need a 20% consistency score."
+          }
+        ]
+      }
+    },
+    "crypto-fund-trader": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: static on Evaluation (Standard 2-Phase), Ascend Evaluation; trailing on Accelerated (1-Phase), Break Challenge; not stated on Instant",
+        "byProduct": {
+          "evaluation": "static",
+          "ascend": "static",
+          "accelerated": "trailing",
+          "instant": null,
+          "break": "trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Trailing Loss Limit applies during both the Break Evaluation and the Break Final Stage."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 40% on Break Challenge (Final Stage, checked at payout request); none on Evaluation, Ascend, Accelerated, Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": 40
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "The Consistency Rule applies only to Break Final Stage accounts. No single trading day may account for more than 40% of the total profits generated on the account."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: after 15 traded days or every 30 calendar days on Evaluation and Accelerated (7 traded days with Weekly add-on); on demand on Break; on reaching the Phase 2 target on Ascend; at 10% profit (Withdrawal & Upgrade) on Instant",
+        "byProduct": {
+          "evaluation": null,
+          "ascend": null,
+          "accelerated": null,
+          "instant": null,
+          "break": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "You can request a scholarship reward after trading for at least 15 days, or alternatively, every 30 calendar days ... If you have the Weekly Payouts add-on, you can request a scholarship reward every 7 traded days"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Break accounts offer payouts on demand once the trader has successfully passed the Evaluation phase, paid the applicable Activation Fee, and moved to the Final Stage"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": null,
+        "summary": "Product-specific: allowed on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Instant, Break Challenge; restricted on Ascend Evaluation",
+        "byProduct": {
+          "evaluation": true,
+          "ascend": "restricted",
+          "accelerated": true,
+          "instant": true,
+          "break": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Can I trade news? Yes. News trading is allowed."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Yes. Traders are allowed to keep positions open overnight and over the weekend, regardless of the account type or instrument."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Evaluation (Standard 2-Phase), Ascend Evaluation; 4% on Accelerated (1-Phase), Instant; size-dependent on Break Challenge (4% on $25K/$50K, 3% on $100K)",
+        "note": "Break Challenge stays null in byProduct because the Terms set a size-dependent daily limit measured from the maximum demo balance: 4% on $25,000 and $50,000 accounts, 3% on $100,000 accounts.",
+        "byProduct": {
+          "evaluation": 5,
+          "ascend": 5,
+          "accelerated": 4,
+          "instant": 4,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "At no time during the $25,000 and $50,000 ‘Break' Evaluation process or ‘Break' Final Stage may the trader register losses in any open or closed demo trades on the same day which, in total, exceed 4% of the maximum demo account balance. For $100,000 Break accounts, during both the Evaluation process and Final Stage, the limit that must not be exceeded under the same conditions is 3%"
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 10% on Evaluation (Standard 2-Phase), Ascend Evaluation; 6% on Accelerated (1-Phase), Instant; not stated on Break Challenge",
+        "byProduct": {
+          "evaluation": 10,
+          "ascend": 10,
+          "accelerated": 6,
+          "instant": 6,
+          "break": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "the maximum overall loss is fixed at 10% of the initial account balance"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "10% Target for double ups Maximum daily loss 4% Maximum overall loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+            "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: 80% on Evaluation (Standard 2-Phase), Accelerated (1-Phase), Break Challenge; not stated on Ascend Evaluation; 50% on Instant",
+        "byProduct": {
+          "evaluation": 80,
+          "ascend": null,
+          "accelerated": 80,
+          "instant": 50,
+          "break": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 5% Maximum overall loss 10%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/",
+            "quote": "Profit Split 50% 60% 70% 80% 90%"
+          },
+          {
+            "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+            "quote": "Live Stage Profit Split: 80%"
+          }
+        ]
+      }
+    }
+  }
+}

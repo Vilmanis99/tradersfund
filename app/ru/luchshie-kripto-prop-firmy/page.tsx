@@ -67,7 +67,7 @@ const OPEN_NAMES = namesWithStatus(ACCESS_LIST_SLUGS, ACCESS_LIST_NAMES, true)
 const OPEN_BASIS_DATE = ruNotListedDates(ACCESS_LIST_SLUGS.filter(slug => russiaStatusFor(slug) === 'available'))
 const CLOSED_NAMES = namesWithStatus([...ACCESS_LIST_SLUGS, 'fundednext'], { ...ACCESS_LIST_NAMES, fundednext: 'FundedNext' }, false)
 // Literal for the SEO audit; release-crawl checks the built length (140–160) and that these statuses still match firms.json.
-const DESCRIPTION = 'Крипто проп-компании 2026: у BrightFunded и Crypto Fund Trader РФ нет в списке ограничений (на 23.10.2026), а FTMO, CTI, OFP и FundedNext ограничивают. Цены.'
+const DESCRIPTION = 'Крипто проп-фирмы 2026: BrightFunded и Crypto Fund Trader — РФ нет в списке ограничений (на 04.11.2026 / 23.10.2026); FTMO, CTI, OFP, FundedNext ограничивают.'
 // RU SEO Lead approved 22.10, numberless by design
 const SOCIAL_TITLE = 'Лучшие крипто-проп-фирмы 2026: сравнение и доступ из РФ'
 const SOCIAL_DESCRIPTION = 'Сравнение крипто-проп-фирм 2026: правила, цены, выплаты, торговые инструменты и статус доступа из России по официальным источникам, с датой проверки.'

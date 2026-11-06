@@ -51,6 +51,7 @@ const PRICE_CONFLICT_CHECKED = CHECKED
 const ASCEND_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} все шесть позиций Ascend в магазине CFT помечены как недоступные к покупке, поэтому цены Ascend мы не приводим.`
 const BREAK_CONFLICT_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} цена Break $100K расходится: на главной странице — $199, в условиях (разд. 5.6) и в магазине — $200. Позиции главной страницы ($70 / $139 / $199) в магазине недоступны к покупке.`
 const BREAK_AVAIL_CHECKED = '2026-10-30'
+const BREAK_DAILY_CHECKED = '2026-11-04'
 const BREAK_OFFER_NOTE = `По данным на ${CHECKED.split('-').reverse().join('.')} CFT продвигает Break как ограниченное по времени предложение («Limited time only» на странице Break, вкладка «Break LAST DAY» на главной), поэтому программу могут снять с продажи. По данным на ${BREAK_AVAIL_CHECKED.split('-').reverse().join('.')} позиции Break Evaluation в магазине помечены как недоступные к покупке (is_purchasable=false; сборы за активацию ещё продавались) — наличие к покупке сверьте в магазине.`
 const PRICE_CONFLICT_NOTE = `${ASCEND_CONFLICT_NOTE} ${BREAK_CONFLICT_NOTE} Итоговую цену и доступность проверьте в корзине перед оплатой.`
 
@@ -100,7 +101,7 @@ const faqs: RussianFaqItem[] = [
 
 function drawdownText(product: Challenge | undefined) {
   if (!product) return 'требует повторной проверки'
-  if (product.productSlug === 'break') return 'подвижная граница в долларах; дневного лимита нет'
+  if (product.productSlug === 'break') return 'условия расходятся, уточните у поддержки: по T&C дневной 4% ($25K/$50K) и 3% ($100K) от макс. демо-баланса; подвижная граница в долларах'
   const type = ({ static: 'статическая', trailing: 'подвижная' } as Record<string, string>)[product.drawdownType ?? ''] ?? 'тип не установлен'
   return `${percent(product.dailyLossPct)} в день / ${percent(product.maxLossPct)} общий, ${type}`
 }
@@ -382,7 +383,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               Самая обманчивая цена в линейке. Взнос {priceRange(breakChallenge)} за $25K–$100K, но после прохождения и проверки
               нужно заплатить сбор за активацию: $138, $198 и $328 соответственно, срок оплаты в кабинете — 30 дней. Итого на
               $100K — {usd(break100?.priceUsd)} + {usd(break100?.activationFeeUsd)} = {usd(break100Total)}, а не {usd(break100?.priceUsd)}. Цель первой фазы на $100K — $6,000
-              (на $25K и $50K — $1,250 и $3,000). Дневного лимита нет, подвижная граница на $100K — $3,000. Правило лучшего дня
+              (на $25K и $50K — $1,250 и $3,000). Условия расходятся, уточните у поддержки: на странице Break указано «No Daily Loss Limit», а в условиях (п. 8.iii, по данным на 04.11.2026) дневной лимит — 4% от максимального демо-баланса на $25K/$50K и 3% на $100K (открытые и закрытые сделки за день). Подвижная граница на $100K — $3,000. Правило лучшего дня
               {' '}{percent(breakChallenge?.consistencyRulePct)} действует только на финансируемой (финальной) стадии и проверяется при запросе
               выплаты; выплаты — по запросу.
             </p>
@@ -392,7 +393,7 @@ export default function RussianCryptoFundTraderReviewPage() {
               <span data-russian-cft-break-min-days="conflict">Минимум торговых дней тоже расходится: на странице Break — 0, на главной для первой фазы — 1 день.</span>{' '}
               Итоговую цену проверьте в корзине.
             </p>
-            <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6, п. 8), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
+            <p className="ru-source-line">Источники: <a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a> (п. 5.6, п. 8; дневной лимит Break — {asOf(BREAK_DAILY_CHECKED)}), <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>, <a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">главная страница</a> — {asOf(earliestCapture)}. Как устроены этапы оценки в целом — в <Link href="/ru/kak-rabotayut-chellendzhi-prop-firm">гиде по челленджам</Link>.</p>
           </div>
         </section>
 
@@ -549,11 +550,11 @@ export default function RussianCryptoFundTraderReviewPage() {
                 <li key={product.productSlug}><a href={product.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{product.productName}</a> — {isChallengeFresh(product) ? asOf(shownDate(product)) : `проверка ${formatRuDate(product.sourceCapturedAt)} устарела`}.</li>
               ))}
               <li><a href={SOURCES.faq} target="_blank" rel="nofollow noopener noreferrer">FAQ</a> и <a href={SOURCES.getStarted} target="_blank" rel="nofollow noopener noreferrer">Get Started</a>: платформы, оплата, правила и выплаты — {asOf(ACCESS_CHECKED)}.</li>
-              <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены (разд. 5.6), сбор за активацию Break, оплата — {asOf(ACCESS_CHECKED)}; ограничения по странам (п. 7.3) — {asOf(RUSSIA_CHECKED)}.</li>
+              <li><a href={SOURCES.terms} target="_blank" rel="nofollow noopener noreferrer">Terms and Conditions</a>: цены (разд. 5.6), сбор за активацию Break, оплата — {asOf(ACCESS_CHECKED)}; дневной лимит Break (п. 8.iii) — {asOf(BREAK_DAILY_CHECKED)}; ограничения по странам (п. 7.3) — {asOf(RUSSIA_CHECKED)}.</li>
               <li><a href={SOURCES.home} target="_blank" rel="nofollow noopener noreferrer">Главная страница</a>: оператор SWISS RLCRATES AG (Цуг), цена Break на главной, минимум дней Break — {asOf(CHECKED)}.</li>
               <li><a href={SOURCES.refund} target="_blank" rel="nofollow noopener noreferrer">Refund Policy</a> — {asOf(CHECKED)}.</li>
               <li><a href={SOURCES.trustpilot} target="_blank" rel="nofollow noopener noreferrer">Trustpilot</a> — {asOf(TRUSTPILOT_CHECKED)}.</li>
-              <li><a href={SOURCES.shop} target="_blank" rel="nofollow noopener noreferrer">Магазин CFT</a> и <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>: доступность Ascend и Break к покупке, ограниченное предложение Break — {asOf(TRACKER_CHECKED)}.</li>
+              <li><a href={SOURCES.shop} target="_blank" rel="nofollow noopener noreferrer">Магазин CFT</a> и <a href={SOURCES.breakChallenge} target="_blank" rel="nofollow noopener noreferrer">Break Challenge</a>: доступность Ascend и Break к покупке, ограниченное предложение Break — {asOf(TRACKER_CHECKED)}; маркетинговая строка «No Daily Loss Limit» на странице Break — {asOf(BREAK_DAILY_CHECKED)}.</li>
             </ul>
             <p>Мы не открывали кассу, не регистрировали аккаунт и не получали выплату от CFT. Полный обзор на английском: <Link href="/blog/crypto-fund-trader-review" hrefLang="en">Crypto Fund Trader review</Link>.</p>
             <div className="ru-notice" data-russian-risk-disclaimer="crypto-fund-trader-review">

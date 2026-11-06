@@ -282,7 +282,7 @@
       "pickB": [
         "you want the fee back: 8 of 9 Maven products are refundable; no Alpha Capital fee is",
         "you want a lower $100K fee: Maven Standard 3-Step lists $299; Alpha Capital's lowest is $397",
-        "you trade the news: Maven allows it on 4 of its 9 products; Alpha Capital restricts it everywhere"
+        "you trade the news: Maven allows it on 5 of its 9 products; Alpha Capital restricts it everywhere"
       ]
     },
     "alpha-capital-vs-my-funded-futures": {
@@ -452,7 +452,7 @@
       ],
       "pickB": [
         "you want an early first payout: Maven's Standard plans pay from day 10 (BrightFunded: day 30)",
-        "you trade the news: Maven allows it on 4 of its 9 products; BrightFunded restricts it everywhere",
+        "you trade the news: Maven allows it on 5 of its 9 products; BrightFunded restricts it everywhere",
         "you want to skip the evaluation: Maven sells funded accounts with no evaluation; BrightFunded doesn't"
       ]
     },
@@ -1033,7 +1033,7 @@
       ],
       "pickB": [
         "you hold over weekends: Maven allows it on every product; FTMO restricts it everywhere",
-        "you trade the news: Maven allows it on 4 of its 9 products; FTMO restricts it everywhere",
+        "you trade the news: Maven allows it on 5 of its 9 products; FTMO restricts it everywhere",
         "you want to skip the evaluation: Maven sells funded accounts with no evaluation; FTMO doesn't"
       ]
     },
@@ -1147,7 +1147,7 @@
       ],
       "pickB": [
         "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundedNext's lowest is $399.99",
-        "you trade the news: Maven allows it on 4 of its 9 products; FundedNext restricts it everywhere",
+        "you trade the news: Maven allows it on 5 of its 9 products; FundedNext restricts it everywhere",
         "you want a lower one-phase target: Maven Buy Now, Pay Later asks 4%; FundedNext's lowest is 10%"
       ]
     },
@@ -1247,7 +1247,7 @@
       "pickB": [
         "you hold over weekends: Maven allows it on every product; FundingPips restricts it everywhere",
         "you want a lower $100K fee: Maven Standard 3-Step lists $299; FundingPips' lowest is $444",
-        "you trade the news: Maven allows it on 4 of its 9 products; FundingPips restricts it everywhere"
+        "you trade the news: Maven allows it on 5 of its 9 products; FundingPips restricts it everywhere"
       ]
     },
     "fundingpips-vs-my-funded-futures": {
@@ -1496,7 +1496,7 @@
     },
     "maven-vs-ofp-funding": {
       "pickA": [
-        "you trade the news: Maven allows it on 4 of its 9 products; OFP Funding restricts it everywhere",
+        "you trade the news: Maven allows it on 5 of its 9 products; OFP Funding restricts it everywhere",
         "you trade on MT5: Maven supports it; OFP Funding doesn't list it",
         "you plan to scale: Maven lists a $1,000,000 maximum allocation; OFP Funding lists $300,000"
       ],

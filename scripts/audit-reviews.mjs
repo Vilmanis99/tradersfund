@@ -2831,6 +2831,8 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-the5ers', 'russian_review'],
     ['/ru/obzor-crypto-fund-trader', 'russian_review'],
     ['/ru/obzor-hash-hedge', 'russian_review'],
+    ['/ru/obzor-alpha-capital', 'russian_review'],
+    ['/ru/obzor-blue-guardian', 'russian_review'],
     ['/ru/obzor-spice-prop', 'russian_review'],
     ['/ru/obzor-goat-funded-trader', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
@@ -6031,8 +6033,10 @@ function checkConsistencyGuide() {
   }
 
   const faqSection = content.split('<h2>Frequently asked questions</h2>')[1] ?? ''
-  if ((faqSection.match(/<h3>/gi) ?? []).length !== 6) {
-    rows.push('consistency guide must preserve 6 factual FAQs')
+  // Calculator mount (data-article-diagram=consistency-calculator, hideHeader) added 3 FAQs
+  // about the on-page tool / FTMO 50% / unstated basis; keep pin at 9 (fold-to-6 was reverted).
+  if ((faqSection.match(/<h3>/gi) ?? []).length !== 9) {
+    rows.push('consistency guide must preserve 9 factual FAQs')
   }
   if (/href="https?:\/\//i.test(content)) {
     rows.push('consistency guide contains a bare external link')
@@ -11288,6 +11292,8 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-the5ers', path.join(ROOT, 'app/ru/obzor-the5ers/page.tsx')],
     ['/ru/obzor-crypto-fund-trader', path.join(ROOT, 'app/ru/obzor-crypto-fund-trader/page.tsx')],
     ['/ru/obzor-hash-hedge', path.join(ROOT, 'app/ru/obzor-hash-hedge/page.tsx')],
+    ['/ru/obzor-alpha-capital', path.join(ROOT, 'app/ru/obzor-alpha-capital/page.tsx')],
+    ['/ru/obzor-blue-guardian', path.join(ROOT, 'app/ru/obzor-blue-guardian/page.tsx')],
     ['/ru/obzor-spice-prop', path.join(ROOT, 'app/ru/obzor-spice-prop/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
@@ -11557,8 +11563,19 @@ function checkRussianAcquisitionPilot() {
           && date >= evidence.capturedAt
           && parsed.getTime() <= Date.now()
       }
-      const isCurrentScopedCapture = date => validScopedCapture(date)
-        && (Date.now() - new Date(`${date}T23:59:59Z`).getTime()) / 86_400_000 <= 30
+      // Operator-level local-firm and affiliate rows keep their own recapture clock:
+      // they are first-party checks of one operator's site, independent of the
+      // broad-market bundle stamp (evidence.capturedAt moves when search-demand,
+      // access, KYC or payout observations are recaptured). So they need a real,
+      // non-future YYYY-MM-DD within 30 days of today, NOT date >= evidence.capturedAt.
+      const isCurrentOperatorCapture = date => {
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false
+        const parsed = new Date(`${date}T00:00:00Z`)
+        return Number.isFinite(parsed.getTime())
+          && parsed.toISOString().slice(0, 10) === date
+          && parsed.getTime() <= Date.now()
+          && (Date.now() - new Date(`${date}T23:59:59Z`).getTime()) / 86_400_000 <= 30
+      }
       const hasScopedObservations = item => {
         if (!item?.sourceObservations) return true
         const observations = item.sourceObservations
@@ -11857,7 +11874,7 @@ function checkRussianAcquisitionPilot() {
       const localSignals = new Map((evidence.localFirmSignals ?? [])
         .map(item => [item.operator, item]))
       for (const item of localSignals.values()) {
-        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+        if (!isCurrentOperatorCapture(item.sourceCapturedAt)) {
           rows.push(`${item.operator}: local-firm claims need a first-party check within 30 days`)
         }
       }
@@ -11912,7 +11929,7 @@ function checkRussianAcquisitionPilot() {
       const affiliatePrograms = new Map((evidence.affiliatePrograms ?? [])
         .map(item => [item.operator, item]))
       for (const item of affiliatePrograms.values()) {
-        if (!isCurrentScopedCapture(item.sourceCapturedAt)) {
+        if (!isCurrentOperatorCapture(item.sourceCapturedAt)) {
           rows.push(`${item.operator}: local affiliate status needs a public-page check within 30 days`)
         }
       }

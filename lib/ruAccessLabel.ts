@@ -22,7 +22,7 @@ export const RU_BASIS_LABEL: Record<RuAccessBasis, string> = {
  */
 export const RU_ACCESS_BADGE: Record<RussiaStatus, RuAccessBadgeInfo> = {
   available: { modifier: 'open', label: 'Открыта для РФ' },
-  restricted: { modifier: 'closed', label: 'Недоступно для РФ' },
+  restricted: { modifier: 'closed', label: 'В списке ограничений' },
   unclear: { modifier: 'unclear', label: 'РФ: неясно' },
   unverified: { modifier: 'unclear', label: 'РФ: не проверено' },
 }

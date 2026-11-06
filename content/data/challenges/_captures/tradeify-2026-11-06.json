@@ -1,0 +1,55 @@
+{
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-06",
+  "timezone": "Europe/Riga",
+  "firmSlug": "tradeify",
+  "method": "help.tradeify.co articles read with a page-fetch tool on 2026-11-06 (plain HTTP GET returns 403); tradeify.co homepage via HTTP GET (200). No account or checkout. Evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/",
+  "products": [
+    {
+      "productSlug": "growth-evaluation",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+    },
+    {
+      "productSlug": "select-flex",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+    },
+    {
+      "productSlug": "select-daily",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+    },
+    {
+      "productSlug": "lightning-funded",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference"
+    }
+  ],
+  "sources": [
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "quote": "Growth 25K costs $99, and a reset costs $60. Growth 50K costs $145, and a reset costs $95. Growth 100K costs $255, and a reset costs $169. Growth 150K costs $369, and a reset costs $229."
+    },
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "quote": "With the standard 40% consistency rule, Select 25K costs $109, and a reset costs $75. Select 50K costs $165, and a reset costs $109. Select 100K costs $265, and a reset costs $169. Select 150K costs $369, and a reset costs $239. Select 300K costs $570, and resets are not available."
+    },
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "quote": "Lightning 25K costs $345. Lightning 50K costs $492. Lightning 100K costs $660. Lightning 150K costs $796."
+    },
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+      "quote": "No consistency rule during the evaluation (35% on funded payouts)."
+    },
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+      "quote": "We do not have any rules against or guidelines around trading news events."
+    },
+    {
+      "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+      "quote": "Payout Frequency: Every 5 winning days ... Payout Frequency: Daily eligibility"
+    }
+  ]
+}

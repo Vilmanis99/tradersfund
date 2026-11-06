@@ -7,25 +7,34 @@
       "productName": "1-Step",
       "code": "RALLY30",
       "advertisedDiscountPct": 30,
-      "sourceQuotes": ["RALLY30", "1-Step - 30% OFF"]
+      "sourceQuotes": [
+        "RALLY30",
+        "1-Step - 30% OFF"
+      ]
     },
     {
       "productSlug": "bright-funded-2-step-bright",
       "productName": "2-Step Bright",
       "code": "RALLY25",
       "advertisedDiscountPct": 25,
-      "sourceQuotes": ["RALLY25", "2-Step Bright - 25% OFF"]
+      "sourceQuotes": [
+        "RALLY25",
+        "2-Step Bright - 25% OFF"
+      ]
     },
     {
       "productSlug": "bright-funded-2-step-classic",
       "productName": "2-Step Classic",
       "code": "RALLY15",
       "advertisedDiscountPct": 15,
-      "sourceQuotes": ["RALLY15", "2-Step Classic - 15% OFF"]
+      "sourceQuotes": [
+        "RALLY15",
+        "2-Step Classic - 15% OFF"
+      ]
     }
   ],
   "sourceUrl": "https://brightfunded.com/",
-  "sourceCapturedAt": "2026-10-02",
+  "sourceCapturedAt": "2026-11-04",
   "checkoutVerified": false,
-  "notesRu": "Три кода и процента видны на главной странице фирмы как Autumn Promo для разных программ. Ранее рекламировавшийся 3YEARS больше не виден на этой странице. Применение к конкретному заказу и дополнениям не проверено после шага ввода email; не включать в таблицу подтверждённых скидок и не рассчитывать цену после кода."
+  "notesRu": "Три кода Autumn Promo снова на главной 04.11.2026: RALLY30 (1-Step 30%), RALLY25 (2-Step Bright 25%), RALLY15 (2-Step Classic 15%). Дата окончания не опубликована. Код HW30 (Halloween) больше не виден. Коды могут действовать не во всех странах; на оплате не проверялись. Прежний код HW30 последний раз видели 03.11.2026."
 }

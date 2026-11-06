@@ -344,7 +344,45 @@ export interface ChallengeRules {
   ea: RuleAvailability
   /** Mirror/copy-trade other traders' positions allowed? */
   copyTrading: RuleAvailability
+  /**
+   * Minimum hold time in seconds (Tracker schema, W45).
+   * 0 = firm explicitly says no minimum (scalping-friendly).
+   * null = not published / unclear — NEVER treat as 0.
+   * Absent key = not yet researched (callers may use a labelled proxy).
+   */
+  minHoldSeconds?: number | null
+  /** Public-safe note accompanying minHoldSeconds. */
+  scalpingNote?: string | null
+  /** First-party URL for the scalping / min-hold rule. */
+  scalpingSourceUrl?: string
+  /** ISO date scalpingSourceUrl was checked. */
+  scalpingCheckedAt?: string
 }
+
+/**
+ * Evaluation time-limit object (Tracker schema, W45).
+ * Valid states: {days:N, unlimited:false}, {days:null, unlimited:true},
+ * {days:null, unlimited:false} = unknown. Missing object = unknown.
+ */
+export interface EvaluationTimeLimit {
+  days: number | null
+  unlimited: boolean
+  sourceUrl?: string
+  checkedAt?: string
+}
+
+/** Per-phase evaluation limits when phases differ on the same product (legacy shape). */
+export interface ChallengePhaseEvaluation {
+  /** 1-based phase index when known. */
+  phase?: number
+  evaluationTimeLimit?: EvaluationTimeLimit | null
+}
+
+/**
+ * Tracker/schema per-phase time limit (`feat/hold-time-limit-schema-2026-11-02`).
+ * `phases` on Challenge is a count — use this array, not phases[].
+ */
+export type PhaseEvaluationTimeLimit = EvaluationTimeLimit & { phase: 1 | 2 | 3 }
 
 export interface Challenge {
   /** Foreign key to Firm — same slug as elsewhere on the site. */
@@ -399,6 +437,19 @@ export interface Challenge {
   maxTradingDays: number | null
   /** Explicit source confirmation of no time limit; absent/null = unverified. */
   maxTradingDaysUnlimited?: boolean | null
+  /**
+   * Product-level evaluation time limit (Tracker W45). Prefer over legacy
+   * maxTradingDays / maxTradingDaysUnlimited when present. When phases differ,
+   * use phaseEvaluationTimeLimits — unlimited only if every phase entry is.
+   */
+  evaluationTimeLimit?: EvaluationTimeLimit | null
+  /**
+   * Per-phase time limits (schema + Tracker). `phases` remains the phase count.
+   * Prefer this over phasesDetail when present.
+   */
+  phaseEvaluationTimeLimits?: PhaseEvaluationTimeLimit[]
+  /** Legacy per-phase shape; read only when phaseEvaluationTimeLimits is absent. */
+  phasesDetail?: ChallengePhaseEvaluation[]
   /** Consistency rule as a % cap on a single day's contribution to total profit. */
   consistencyRulePct: number | null
   /** false explicitly confirms no rule; null/absent does not. See notes for stage scope. */
@@ -458,6 +509,14 @@ export interface Challenge {
   refundAfterPayouts?: number
   /** Free-form notes — gotchas, fine print, scaling specifics, promo codes. */
   notes?: string[]
+  /**
+   * Whether checkout still sells this product to new buyers.
+   * Absent or true = current purchase option (eligible). `false` = not offered
+   * to new buyers. Track A only filters this out of the low-drawdown USD footnote.
+   */
+  soldToNewBuyers?: boolean
+  /** ISO date Tracker set `soldToNewBuyers` (e.g. "2026-11-06"). Ranker ignores it. */
+  soldToNewBuyersCheckedAt?: string
 }
 
 /** Denominator a consistency % is measured against, per the firm's own wording. */

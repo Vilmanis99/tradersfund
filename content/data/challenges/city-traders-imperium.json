@@ -66,7 +66,8 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
       "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/1-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged.",
-      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
+      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json",
+      "6 November 2026 news check: Product page (https://citytradersimperium.com/1-step-challenge/) still lists \"News Trading Allowed\", \"1st Payout 7 days\" and \"Profit Share 80% to 100%\" (citytradersimperium.com/faq/ returned 404). rules.news, profitSplitPct and payoutFirstDays unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -136,7 +137,8 @@
       "Max funding for this program is published as $400K.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
-      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/2-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged."
+      "payoutFrequency weekly -> null (2026-10-20): https://citytradersimperium.com/2-step-challenge/ (checked 2026-10-20) says \"Request your 1st payout in as little as 7 days.\" and \"Keep performing to unlock 90%, then 100% profit share, plus weekly and anytime payouts and even more perks as you climb the CTI VIP ladder.\"; the VIP ladder lists \"Bronze Trader ... Weekly payouts unlocked.\" and \"Silver Trader ... Anytime payouts unlocked.\" Weekly is a VIP Bronze unlock, and no baseline cycle after the first payout is published, so the field is null (same treatment as Instant Funding). payoutFirstDays 7 is unchanged.",
+      "6 November 2026 news check: Product page (https://citytradersimperium.com/2-step-challenge/) still lists \"News Trading Allowed\", \"1st Payout 7 days\" and \"Profit Share 80% to 100%\" (citytradersimperium.com/faq/ returned 404). rules.news, profitSplitPct and payoutFirstDays unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -204,7 +206,8 @@
       "minTradingDays left null - the table prints a dash, which is not an explicit published number.",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
-      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
+      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json",
+      "6 November 2026 news check: Product page (https://citytradersimperium.com/instant-funding/) still lists \"News Trading Allowed\" and \"1st Payout 5 days (Fully Funded)\" (citytradersimperium.com/faq/ returned 404). rules.news and payoutFirstDays unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -267,7 +270,8 @@
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/city-traders-imperium-2026-10-14.json",
       "Daily recheck 2026-10-20: prices and source pages re-read; recheck log: content/data/challenges/_captures/city-traders-imperium-2026-10-20.json",
       "payoutFrequency monthly -> on-demand (2026-10-20): https://citytradersimperium.com/direct-funding/ (checked 2026-10-20): \"Payouts On Demand\" / \"Your first payout unlocks on demand from day 5, with no fixed schedule and no minimum profitable trading days.\" and FAQ: \"Direct Funding payouts are on demand from day 5.\" The 2026-10-14 capture quote (\"Starts monthly, advances to weekly (Bronze), then on demand (Silver+)\") is no longer on the page.",
-      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
+      "Low-drawdown gap audit 2 November 2026: first-party programme page still prints \"Max Daily Drawdown None\" / \"No daily drawdown\", so dailyLossPct stays null (schema has no 'none' value). maxLossPct and drawdownType unchanged. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json",
+      "6 November 2026 news check: Product page (https://citytradersimperium.com/direct-funding/) still lists \"News Trading Allowed\" and \"1st Payout On demand, from day 5\" (citytradersimperium.com/faq/ returned 404). rules.news and payoutFirstDays unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   }
 ]

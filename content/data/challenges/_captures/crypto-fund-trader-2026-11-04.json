@@ -1,0 +1,113 @@
+{
+  "firmSlug": "crypto-fund-trader",
+  "officialDomain": "https://cryptofundtrader.com",
+  "capturedAt": "2026-11-04",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-04 12:10-12:25 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://cryptofundtrader.com/faq/",
+    "https://cryptofundtrader.com/terms-and-conditions/",
+    "https://cryptofundtrader.com/",
+    "https://cryptofundtrader.com/break-challenge/"
+  ],
+  "pageDates": {
+    "https://cryptofundtrader.com/faq/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/terms-and-conditions/": "dateModified 2026-03-30",
+    "https://cryptofundtrader.com/": "dateModified 2026-10-21",
+    "https://cryptofundtrader.com/break-challenge/": "dateModified 2026-06-09"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck: CFT product prices were last captured after the 14-15 Oct cohort and were not changed.",
+  "blocks": [],
+  "productsScope": "Products carry rules evidence only (productSlug + fieldEvidence); product prices and values in challenges/<slug>.json were not changed and keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules dailyLossPct summary/note (byProduct unchanged)",
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "quote": "At no time during the $25,000 and $50,000 ‘Break' Evaluation process or ‘Break' Final Stage may the trader register losses in any open or closed demo trades on the same day which, in total, exceed 4% of the maximum demo account balance. For $100,000 Break accounts, during both the Evaluation process and Final Stage, the limit that must not be exceeded under the same conditions is 3%",
+      "note": "Break Challenge was \"not stated\"; the Terms state 4% ($25K/$50K) and 3% ($100K)",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "field": "rules dailyLossPct/maxLossPct/profitSplitPct evidence",
+      "note": "bare percentage snippets (e.g. \"5%\") replaced with full verbatim sentences / spec-card lines",
+      "checkedAt": "2026-11-04"
+    }
+  ],
+  "unchanged": [
+    "all 17 quotes from 14/15 Oct still read verbatim",
+    "values unchanged"
+  ],
+  "notReread": [
+    "rules.platforms (left at its 2026-10-15 capture; refresh deferred to a later run)",
+    "prices"
+  ],
+  "products": [
+    {
+      "productName": "Evaluation (Standard 2-Phase)",
+      "productSlug": "evaluation",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/faq/",
+          "quote": "For the 2-Phase Evaluation, the daily maximum loss is 5%, and the maximum overall loss is fixed at 10% of the initial account balance. For the 1-Phase Evaluation, the daily maximum loss is 4%, and the trailing drawdown rule applies instead of a fixed overall loss limit."
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Live Stage 80% Profit Split Maximum daily loss 5% Maximum overall loss 10%"
+        }
+      }
+    },
+    {
+      "productName": "Accelerated (1-Phase)",
+      "productSlug": "accelerated",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/",
+          "quote": "Live Stage 80% Profit Split Maximum daily loss 4% Maximum trailing loss 6%"
+        }
+      }
+    },
+    {
+      "productName": "Instant",
+      "productSlug": "instant",
+      "sourceUrl": "https://cryptofundtrader.com/",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+          "quote": "In the evaluation of 0 phases the particular conditions are the following: the total demo loss limit is limited to 6% of the account; in the same way, only a demo loss of 4% of the account is allowed on a daily basis."
+        }
+      }
+    },
+    {
+      "productName": "Break Challenge",
+      "productSlug": "break",
+      "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+      "fieldEvidence": {
+        "profitSplitPct": {
+          "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
+          "quote": "Live Stage Profit Split: 80%"
+        }
+      }
+    }
+  ]
+}

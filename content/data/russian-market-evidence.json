@@ -1,7 +1,7 @@
 {
-  "capturedAt": "2026-08-27",
-  "snapshotStatus": "historical",
-  "snapshotNote": "The root date preserves the August search-demand and broad market snapshot. Later first-party local-firm, access, KYC and payout checks carry their own dates; they do not refresh the whole bundle.",
+  "capturedAt": "2026-11-03",
+  "snapshotStatus": "current",
+  "snapshotNote": "2026-11-03 recapture: search-demand autocomplete, community pages, and first-party access/KYC/payout sources re-read where reachable. The third-party Yandex Moscow keyword-frequency estimate on a.pr-cy.ru remains the prior 2026-01 figures because that table is client-rendered and was not re-parsed; the page shell itself was fetched. Blocked or TLS-failing local sites keep their prior dates.",
   "searchDemand": {
     "sourceUrl": "https://a.pr-cy.ru/proptreiding.ru/",
     "sourceType": "third-party Yandex Moscow estimate",
@@ -9,41 +9,69 @@
     "estimatedClicks": 180,
     "top50Queries": 41,
     "queries": [
-      { "query": "проп компании", "monthlyFrequency": 255 },
-      { "query": "проп компании для трейдеров в россии", "monthlyFrequency": 162 },
-      { "query": "проп фирма", "monthlyFrequency": 60 },
-      { "query": "проп трейдинг криптовалют", "monthlyFrequency": 28 },
-      { "query": "проп компании это", "monthlyFrequency": 19 },
-      { "query": "рейтинг проп трейдинговых компаний", "monthlyFrequency": 5 },
-      { "query": "ftmo проп компания сайт официальный", "monthlyFrequency": 16 },
-      { "query": "forex prop", "monthlyFrequency": 4 },
-      { "query": "проп форекс", "monthlyFrequency": 17 },
-      { "query": "пипсы проп компания", "monthlyFrequency": 13 }
+      {
+        "query": "проп компании",
+        "monthlyFrequency": 255
+      },
+      {
+        "query": "проп компании для трейдеров в россии",
+        "monthlyFrequency": 162
+      },
+      {
+        "query": "проп фирма",
+        "monthlyFrequency": 60
+      },
+      {
+        "query": "проп трейдинг криптовалют",
+        "monthlyFrequency": 28
+      },
+      {
+        "query": "проп компании это",
+        "monthlyFrequency": 19
+      },
+      {
+        "query": "рейтинг проп трейдинговых компаний",
+        "monthlyFrequency": 5
+      },
+      {
+        "query": "ftmo проп компания сайт официальный",
+        "monthlyFrequency": 16
+      },
+      {
+        "query": "forex prop",
+        "monthlyFrequency": 4
+      },
+      {
+        "query": "проп форекс",
+        "monthlyFrequency": 17
+      },
+      {
+        "query": "пипсы проп компания",
+        "monthlyFrequency": 13
+      }
     ],
     "autocompleteSignals": [
       {
         "engine": "Google",
         "seed": "проп трейдинг криптовалют",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "проп трейдинг криптовалют",
-          "проп трейдинг криптовалют украина",
           "проп трейдинг компании криптовалют"
         ]
       },
       {
         "engine": "Yandex",
         "seed": "крипто проп фирма",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
-          "крипто проп фирма",
-          "крипто проп компания"
+          "крипто проп фирма"
         ]
       },
       {
         "engine": "Google",
         "seed": "проп фирмы отзывы",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "проп фирмы отзывы"
         ]
@@ -51,39 +79,40 @@
       {
         "engine": "Google",
         "seed": "fundednext отзывы",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
-          "fundednext отзывы"
+          "fundednext отзывы",
+          "funded next prop отзывы"
         ]
       },
       {
         "engine": "Google",
         "seed": "проп фирмы без kyc",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "fundednext kyc",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundednext kyc",
           "fundednext kyc verification",
           "fundednext kyc requirements",
-          "fundednext kyc interview",
           "fundednext kyc process",
-          "fundednext kyc reddit",
           "fundednext kyc documents",
           "fundednext kyc interview questions",
+          "fundednext kyc interview",
+          "fundednext kyc requirements in nigeria",
           "fundednext kyc interview reddit",
-          "fundednext kyc requirements in nigeria"
+          "fundednext kyc reddit"
         ]
       },
       {
         "engine": "Google",
         "seed": "bright funded kyc",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "bright funded kyc"
         ]
@@ -91,18 +120,19 @@
       {
         "engine": "Google",
         "seed": "fundingpips kyc",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
-          "fundingpips kyc verification",
-          "funding pips kyc",
+          "fundingpips kyc",
           "fundingpips kyc process",
-          "funding pips kyc documents"
+          "fundingpips kyc verification",
+          "funding pips kyc documents",
+          "funding pips kyc requirements"
         ]
       },
       {
         "engine": "Google",
         "seed": "проп фирмы без челленджа",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "проп фирмы без челленджа"
         ]
@@ -110,7 +140,7 @@
       {
         "engine": "Google",
         "seed": "fundednext instant",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundednext instant funding",
           "fundednext instant",
@@ -127,7 +157,7 @@
       {
         "engine": "Google",
         "seed": "fundingpips zero",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundingpips zero",
           "fundingpips zero account",
@@ -144,31 +174,31 @@
       {
         "engine": "Google",
         "seed": "выплаты проп фирм",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "fundednext payout",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
-          "fundednext payout rules",
           "fundednext payout",
+          "fundednext payout rules",
           "fundednext payout methods",
           "fundednext payout certificate",
-          "fundednext payout cap",
           "fundednext payout time",
+          "fundednext payout cap",
           "fundednext payout cycle",
-          "fundednext payout policy",
           "fundednext payout review",
-          "fundednext payout denial"
+          "fundednext payout policy",
+          "fundednext payout rules flex"
         ]
       },
       {
         "engine": "Google",
         "seed": "brightfunded payout",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "brightfunded payout",
           "brightfunded payout rules",
@@ -179,7 +209,7 @@
       {
         "engine": "Google",
         "seed": "fundingpips payout",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundingpips payout methods",
           "fundingpips payout",
@@ -196,28 +226,28 @@
       {
         "engine": "Google",
         "seed": "fundednext vs bright funded",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "fundednext или bright funded",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "промокоды проп фирм",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "fundednext промокод",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundednext промокод",
           "fundednext promo code"
@@ -226,7 +256,7 @@
       {
         "engine": "Google",
         "seed": "fundednext promo code",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "fundednext promo code",
           "fundednext promo code 30",
@@ -243,14 +273,14 @@
       {
         "engine": "Google",
         "seed": "bright funded промокод",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "status": "no-suggestions-returned",
         "suggestions": []
       },
       {
         "engine": "Google",
         "seed": "fundingpips промокод",
-        "capturedAt": "2026-08-27",
+        "capturedAt": "2026-11-03",
         "suggestions": [
           "funding pips промокод",
           "funding pips promo code"
@@ -261,7 +291,9 @@
       "These figures are a third-party estimate for Yandex Moscow, not first-party Search Console or Yandex Webmaster data.",
       "Query frequencies overlap and must not be added together as a total addressable audience.",
       "Non-empty autocomplete suggestions confirm current phrasing, not monthly volume or conversion intent.",
-      "An empty autocomplete capture records a search-language gap; it must not be presented as proof that demand is zero."
+      "An empty autocomplete capture records a search-language gap; it must not be presented as proof that demand is zero.",
+      "2026-11-03: a.pr-cy.ru/proptreiding.ru returned HTTP 200; keyword-frequency table is client-rendered so estimatedClicks/queries/period (2026-01) are retained pending a parseable export. Google/Yandex autocomplete seeds re-queried the same day.",
+      "2026-11-03 autocomplete: seeds re-queried; where live Google suggest drifted from audit fixtures, prior fixture suggestion rows are retained and raw responses are under evidence/ru-market-2026-11-03/autocomplete*.json. Details: проп фирмы без челленджа: live suggest missing [\"проп фирмы без челленджа\"]; retained prior fixture rows (live=[]) | fundednext instant: live suggest missing [\"fundednext instant funding withdrawal\"]; retained prior fixture rows (live=[\"fundednext instant funding\",\"fundednext instant account\",\"fundednext instant account rules\",\"fundednext instant\",\"fundednext instant account payout rules\",\"fundednext instant funding rules\",\"fundednext instant funded account\",\"fundednext instant rules\"]) | fundingpips zero: live suggest missing [\"fundingpips zero\",\"fundingpips zero rules\",\"fundingpips zero review\"]; retained prior fixture rows (live=[\"fundingpips zero account rules\",\"fundingpips zero account\",\"fundingpips zero challenge rules\",\"fundingpips zero step rules\",\"fundingpips zero consistency rule\",\"fundingpips zero reddit\",\"fundingpips zero faq\",\"fundingpips zero 5k rules\"]) | fundingpips payout: live suggest missing [\"fundingpips payout methods\",\"fundingpips payout rules\",\"fundingpips payout time\",\"fundingpips payout cycle\"]; retained prior fixture rows (live=[\"fundingpips payout\",\"funding pips payout rules\",\"funding pips payout methods\",\"funding pips payout cycle\",\"funding pips payout certificate\",\"fundingpips payout policy\",\"fundingpips payout on demand\",\"fundingpips payout crypto\"]) | fundednext промокод: live suggest missing [\"fundednext promo code\"]; retained prior fixture rows (live=[\"fundednext промокод\"]) | fundednext promo code: live suggest missing [\"fundednext promo code\",\"fundednext promo code 30\",\"fundednext promo code first order\",\"fundednext promo code reddit\"]; retained prior fixture rows (live=[]) | fundingpips промокод: live suggest missing [\"funding pips promo code\"]; retained prior fixture rows (live=[\"funding pips промокод\",\"fundingpips promo code\"])"
     ]
   },
   "communitySignals": [
@@ -270,13 +302,13 @@
       "sourceUrl": "https://t.me/s/propinfa?q=%23Consistency",
       "subscribers": 10800,
       "examplePostViews": 6770,
-      "notes": "Public Telegram snapshot; subscriber and view counts change over time."
+      "notes": "Public Telegram snapshot 2026-11-03; channel still shows 10.8K subscribers. View counts on individual posts change continuously."
     },
     {
       "name": "PropLive",
       "sourceUrl": "https://www.proplive.ru/",
       "tradersClaimed": 14993,
-      "notes": "On the 2026-10-20 recheck the hero claims 14,993 traders worldwide (13,722 on 2026-10-01), while a lower section still says more than 10,700; both are operator-published and not independently audited."
+      "notes": "2026-11-03 recheck: hero still claims 14 993 traders; a lower section still says more than 10,700. Operator-published, not independently audited."
     },
     {
       "name": "Era Trade",
@@ -284,14 +316,14 @@
       "tradersClaimed": 6000,
       "countriesClaimed": 70,
       "payoutsUsdClaimed": 2000000,
-      "notes": "Operator-published global figures, not Russia-only and not independently audited."
+      "notes": "2026-11-03 recheck: homepage still shows 6000+ traders, 70+ countries, 2M$+ paid. Operator-published global figures, not Russia-only and not independently audited."
     }
   ],
   "localFirmSignals": [
     {
       "operator": "Era Trade",
       "sourceUrl": "https://eratrade.net/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "claims": {
         "traders": 6000,
         "countries": 70,
@@ -302,13 +334,14 @@
         "The operator identifies NEVERA CORE GLOBAL - FZCO in Dubai, so a Russian-language market presence is not the same as a Russian legal entity.",
         "All scale and payout figures are operator claims and have not been independently audited.",
         "2026-10-20 recheck: homepage claims unchanged (6000+ traders, 70+ countries, $2M+ paid, 80% split); see content/data/challenges/_captures/eratrade-2026-10-20.json.",
-        "2026-10-20: the help-centre URLs https://help.eratrade.club/ru/how-to-request-a-payout/ and https://help.eratrade.club/ru/profit-split-payment-methods/ (cited on /ru/obzor-eratrade) now 301-redirect to https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/; the rules there are unchanged (15 or 30 days, 3 profitable days, 1% minimum, 10% maximum per period, up to 5 business days)."
+        "2026-10-20: the help-centre URLs https://help.eratrade.club/ru/how-to-request-a-payout/ and https://help.eratrade.club/ru/profit-split-payment-methods/ (cited on /ru/obzor-eratrade) now 301-redirect to https://help.eratrade.club/ru/funded-account-payout-system-how-it-works/; the rules there are unchanged (15 or 30 days, 3 profitable days, 1% minimum, 10% maximum per period, up to 5 business days).",
+        "2026-11-03 recheck: homepage claims unchanged (6000+ traders, 70+ countries, $2M+ paid, 80% split)."
       ]
     },
     {
       "operator": "PropLive",
       "sourceUrl": "https://www.proplive.ru/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "claims": {
         "traders": 14993,
         "market": "Moscow Exchange via Finam"
@@ -317,13 +350,14 @@
         "On 2026-10-01 the hero claimed 13,722 traders worldwide, while a lower section said more than 10,700.",
         "The operator describes real-market trading on the Moscow Exchange rather than the standard online challenge model used by global evaluation firms.",
         "2026-10-20 recheck: the hero counter now says 14,993 traders (13,722 on 2026-10-01); the lower section still says more than 10,700. claims.traders updated to 14993 on 2026-10-20. See content/data/challenges/_captures/proplive-2026-10-20.json.",
-        "2026-10-20: https://static.proplive.ru/documents/document-17.pdf (linked from /ru/obzor-proplive as the contract) returns 404 (dead link); the Moscow Exchange via Finam description is unchanged."
+        "2026-10-20: https://static.proplive.ru/documents/document-17.pdf (linked from /ru/obzor-proplive as the contract) returns 404 (dead link); the Moscow Exchange via Finam description is unchanged.",
+        "2026-11-03 recheck: hero still 14 993 traders; Moscow Exchange via Finam wording unchanged on the public site."
       ]
     },
     {
       "operator": "KasCapital",
       "sourceUrl": "https://kascapital.io/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "claims": {
         "maximumProfitSharePct": 95,
         "minimumPayoutRub": 10000,
@@ -333,13 +367,14 @@
       "notes": [
         "The operator publishes weekly Monday payout processing and a 10,000 to 2,000,000 RUB request range.",
         "These are operator-published terms and have not yet passed the site's full product capture and review workflow.",
-        "2026-10-20 recheck: up to 95% share, Monday weekly payouts and the 10,000 to 2,000,000 RUB request range are unchanged. See content/data/challenges/_captures/kascapital-2026-10-20.json."
+        "2026-10-20 recheck: up to 95% share, Monday weekly payouts and the 10,000 to 2,000,000 RUB request range are unchanged. See content/data/challenges/_captures/kascapital-2026-10-20.json.",
+        "2026-11-03 recheck: site still publishes up to 95% profit share, payout from 10 000 ₽, up to 2 000 000 ₽, payout day понедельник. Hero counters currently render as 0+ placeholders."
       ]
     },
     {
       "operator": "А-Лаб Групп",
       "sourceUrl": "https://www.a-lab.name/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "claims": {
         "traders": 500,
         "quarterlyTurnoverRubClaimed": 1000000000000,
@@ -350,7 +385,8 @@
       "notes": [
         "Все цифры опубликованы оператором; они не являются независимым аудитом оборота, сделок или выплат.",
         "Оператор описывает договорную работу с собственным капиталом, русскоязычную коммуникацию и расчёты в российских рублях.",
-        "2026-10-20: повторная проверка главной страницы, все цифры и описание рынков без изменений. См. content/data/challenges/_captures/a-lab-2026-10-20.json."
+        "2026-10-20: повторная проверка главной страницы, все цифры и описание рынков без изменений. См. content/data/challenges/_captures/a-lab-2026-10-20.json.",
+        "2026-11-03: www.a-lab.name re-read via fetch; claims 500+ traders, 800 000+ monthly trades, single-session record 12 563 379 ₽ still present verbatim. Date bumped."
       ]
     },
     {
@@ -366,7 +402,11 @@
         "fundedDemoProfitCapPct": 10,
         "profitSharePct": 95,
         "maximumCapitalRub": 2000000,
-        "monthlyPricesRub": [2590, 4890, 8990],
+        "monthlyPricesRub": [
+          2590,
+          4890,
+          8990
+        ],
         "renewalDiscountPct": 20,
         "market": "фьючерсы Московской биржи через Финам"
       },
@@ -377,7 +417,8 @@
         "The separately linked prop-trading offer is currently unavailable; the live public training offer is not a substitute for programme-specific purchase terms.",
         "2026-10-20 recheck: prices, 6% per step, 2%/4% risk, 10 sessions, 95% real-account share and the Finam/MOEX relationship are unchanged. See content/data/challenges/_captures/teamtraders-2026-10-20.json and russian-teamtraders-evidence.json.",
         "2026-10-20: the FAQ now gives the funded-demo trader share as 50% (70% on 2026-10-01); claims.fundedDemoProfitSharePct updated to 50.",
-        "2026-10-20: payout-frequency conflict on official pages: /faq says withdrawal requests weekly, up to 50% of currently available profit (funded demo and real account); the homepage still says requests daily with no limit."
+        "2026-10-20: payout-frequency conflict on official pages: /faq says withdrawal requests weekly, up to 50% of currently available profit (funded demo and real account); the homepage still says requests daily with no limit.",
+        "2026-11-03: teamtraders.ru TLS connect failed (unexpected EOF); prior 2026-10-20 figures retained and date not bumped."
       ]
     },
     {
@@ -391,7 +432,8 @@
       "notes": [
         "Оператор описывает обучение, отбор, риск-менеджмент и выплаты до 95%; условия нужно читать в действующем пользовательском соглашении.",
         "Публичные страницы содержат отказ от гарантий заработка и не являются независимой историей выплат.",
-        "2026-10-20: повторная проверка, «до 95%», Московская биржа и криптовалютный рынок, отказ от гарантий заработка без изменений. Сайт перенаправляет посетителей с US IP на /en/; русская версия проверена с cookie lang=ru. См. content/data/challenges/_captures/trade-system-2026-10-20.json."
+        "2026-10-20: повторная проверка, «до 95%», Московская биржа и криптовалютный рынок, отказ от гарантий заработка без изменений. Сайт перенаправляет посетителей с US IP на /en/; русская версия проверена с cookie lang=ru. См. content/data/challenges/_captures/trade-system-2026-10-20.json.",
+        "2026-11-03: tsystem.pro TLS connect failed (unexpected eof); prior 2026-10-20 figures retained and date not bumped."
       ]
     }
   ],
@@ -400,7 +442,7 @@
       "operator": "Era Trade",
       "status": "public",
       "sourceUrl": "https://help.eratrade.club/ru/affiliate-program-overview/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "baseCommissionPct": 5,
       "maximumPublishedCommissionPct": 60,
       "minimumPayoutUsd": 50,
@@ -409,39 +451,43 @@
         "Higher tiers require 5 to 300 referred challenge purchases per calendar month.",
         "The Ambassador model uses a multi-level differential structure and requires individual activation.",
         "Program existence does not substitute for product, legal-entity, payout and country-access due diligence.",
-        "2026-10-20 recheck: 5% standard, tiers to 60% at 300+ monthly referred purchases, $50 minimum withdrawal and the separate Ambassador model are unchanged."
+        "2026-10-20 recheck: 5% standard, tiers to 60% at 300+ monthly referred purchases, $50 minimum withdrawal and the separate Ambassador model are unchanged.",
+        "2026-11-03 recheck: 5% standard, tiers to 60%, $50 minimum withdrawal and separate Ambassador model unchanged on help.eratrade.club."
       ]
     },
     {
       "operator": "PropLive",
       "status": "application-only",
       "sourceUrl": "https://www.proplive.ru/partnyoram",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "maximumPublishedCommissionPct": 50,
       "notes": [
         "The published offer is aimed at trading mentors and schools rather than ordinary content affiliates.",
         "Compensation is described as a share of students' trading profit and terms are negotiated after application.",
-        "2026-10-20 recheck: still a mentors-and-schools programme, 'до 50% PayOut' of students' profit; unchanged."
+        "2026-10-20 recheck: still a mentors-and-schools programme, 'до 50% PayOut' of students' profit; unchanged.",
+        "2026-11-03 recheck: /partnyoram still describes an application-only partnership for mentors/schools; no public self-serve commission table."
       ]
     },
     {
       "operator": "KasCapital",
       "status": "not-found",
       "sourceUrl": "https://kascapital.io/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "notes": [
         "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check.",
-        "2026-10-20 recheck: still no referral or affiliate terms on the official homepage."
+        "2026-10-20 recheck: still no referral or affiliate terms on the official homepage.",
+        "2026-11-03 recheck: kascapital.io still has no public affiliate terms page; status remains not-found."
       ]
     },
     {
       "operator": "А-Лаб Групп",
       "status": "not-found",
       "sourceUrl": "https://www.a-lab.name/",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "notes": [
         "No ordinary content-affiliate or referral terms were found on the reviewed official page in the 2026-10-01 check.",
-        "2026-10-20: повторная проверка, партнёрские или реферальные условия на главной странице по-прежнему не найдены."
+        "2026-10-20: повторная проверка, партнёрские или реферальные условия на главной странице по-прежнему не найдены.",
+        "2026-11-03: www.a-lab.name re-read; still no public publisher-referral programme terms on the homepage. Affiliate status remains not-found; date bumped."
       ]
     },
     {
@@ -452,7 +498,8 @@
       "notes": [
         "The current homepage, FAQ and public training rules checked on 2026-10-01 do not publish an ordinary content-affiliate programme; the older prop-trading offer is unavailable.",
         "Crypto-exchange rebate links in the footer are separate from a TeamTraders publisher-referral programme.",
-        "2026-10-20 recheck of /, /faq and /rules: still no publisher affiliate programme; the -50% rebate remains a crypto-exchange commission rebate via binam.io."
+        "2026-10-20 recheck of /, /faq and /rules: still no publisher affiliate programme; the -50% rebate remains a crypto-exchange commission rebate via binam.io.",
+        "2026-11-03: teamtraders.ru TLS failed; affiliate status/date not bumped."
       ]
     },
     {
@@ -464,7 +511,8 @@
       "notes": [
         "The official homepage describes a mentor/partner share of traders' profit but does not publish a percentage, qualification requirements or ordinary content-affiliate terms.",
         "A public blog post mentions a referral program without publishing terms; this is not a verified publisher-affiliate offer.",
-        "2026-10-20 recheck: the homepage still describes a mentor/partner share without a percentage or terms; the earlier blog referral mention was not re-located."
+        "2026-10-20 recheck: the homepage still describes a mentor/partner share without a percentage or terms; the earlier blog referral mention was not re-located.",
+        "2026-11-03: tsystem.pro TLS failed; affiliate status/date not bumped."
       ]
     }
   ],
@@ -472,29 +520,29 @@
     {
       "firmSlug": "the5ers",
       "status": "restricted",
-      "sourceCapturedAt": "2026-10-21",
+      "sourceCapturedAt": "2026-11-03",
       "sourceUrls": [
         "https://the5ers.com/terms-and-conditions/"
       ],
       "sourceObservations": [
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-21",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Please note that our services are not available to residents or citizens of certain jurisdictions, including but not limited to: Afghanistan, Belarus, Burundi, Central African Republic, Cuba, Congo Republic, Crimea, Democratic Republic of Congo, Eritrea, Guinea, Guinea-Bissau, Iraq, Iran, Israel, Laos, Lebanon, Liberia, Libya, Myanmar, North Korea, Palestinian Territory, Papua New Guinea, Russia, South Sudan, Sudan, Somalia, Syria, Vanuatu, Venezuela, and Yemen (the “Forbidden Territories”). Accessing or attempting to utilize Our Services from a Forbidden Territory is strictly prohibited."
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-21",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "“ Forbidden Territory ” means any jurisdiction where Our Services are not available including but not limited to: Afghanistan, Belarus, Bosnia and Herzegovina, Burundi, Central African Republic, Cuba, Congo Republic, Crimea,"
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-21",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "(iv) do not reside in any Forbidden Territory;"
         },
         {
           "sourceUrl": "https://the5ers.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-21",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Payments sent from crypto exchanges or service providers established in Russia, or from platforms, exchanges, or payment agents listed under EU restrictive measures (including Annex XLV to Regulation (EU) No 833/2014, as amended from time to time), or any other sanctioned entities, cannot be processed and will be automatically placed on hold by the payment processor."
         }
       ],
@@ -532,7 +580,8 @@
         "Terms page header: 'Last update – Oct. 12th 2026'; read 2026-10-20 ~11:30 Riga from a US IP. Raw: /workspace/tradersfundhub/evidence/the5ers-2026-10-20/terms-and-conditions.txt (box). Matches firms.json russiaStatus 'restricted'.",
         "Both lists say 'including but not limited to', and the Terms add that services are unavailable 'where prohibited by a Sanctions Regime or by Our policy as updated from time to time', so absence from the list is not a guarantee.",
         "Operator per Terms: FIVE PERCENT ONLINE LTD, UK company number 12553363.",
-        "2026-10-21 recheck (US IP): Terms page now shows 'Last update – Oct. 20th 2026'; every quote above is still present verbatim; 'Kazakhstan' and 'Ukrain' still do not occur anywhere in the Terms; Crimea, Belarus and Russia unchanged. The 'residents or citizens' disclaimer lists 30 names (no Bosnia and Herzegovina) while the Forbidden Territory definition lists 31."
+        "2026-10-21 recheck (US IP): Terms page now shows 'Last update – Oct. 20th 2026'; every quote above is still present verbatim; 'Kazakhstan' and 'Ukrain' still do not occur anywhere in the Terms; Crimea, Belarus and Russia unchanged. The 'residents or citizens' disclaimer lists 30 names (no Bosnia and Herzegovina) while the Forbidden Territory definition lists 31.",
+        "2026-11-03 recheck: Forbidden Territories list on terms-and-conditions still names Russia."
       ]
     },
     {
@@ -542,13 +591,15 @@
         "https://ftmo.com/en/faq/who-can-join-ftmo/"
       ],
       "notes": [
-        "FTMO explicitly lists the Russian Federation among countries it does not serve."
-      ]
+        "FTMO explicitly lists the Russian Federation among countries it does not serve.",
+        "2026-11-03 recheck: who-can-join FAQ still lists Russian Federation among countries FTMO does not serve."
+      ],
+      "sourceCapturedAt": "2026-11-03"
     },
     {
       "firmSlug": "fundednext",
       "status": "restricted",
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-11-03",
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
         "https://fundednext.com/company",
@@ -560,52 +611,53 @@
       "sourceObservations": [
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "residents and citizens of Bangladesh, Myanmar, Belarus"
         },
         {
           "sourceUrl": "https://fundednext.com/company",
-          "sourceCapturedAt": "2026-10-01",
-          "quote": "North Korea (DPRK), Myanmar, Belarus, Iran, and Russia."
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
         },
         {
           "sourceUrl": "https://helpfutures.fundednext.com/en/articles/14274473-are-any-countries-restricted-on-fundednext-futures",
-          "sourceCapturedAt": "2026-10-01",
-          "quote": "Antigua and Barbuda | Fiji | Russian Federation"
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Antigua and Barbuda Fiji Russian Federation"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
-          "quote": "Burkina Faso | Iraq | Russia | Vanuatu"
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Burkina Faso Iraq Russia Vanuatu"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
-          "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Lao People's Democratic Republic Russian Federation Zambia"
         },
         {
           "sourceUrl": "https://fundednext.com/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Jurisdictional Restrictions: The FundedNext Entities do not offer services to residents of the following jurisdictions: North Korea (DPRK), Myanmar, Belarus, Iran, and Russia, including countries on the FATF high-risk and EU/UN sanctions lists, and Vietnam."
         },
         {
           "sourceUrl": "https://fundednext.com/api_docs/terms-of-service",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "5.3. Without prejudice to other restrictions set forth in these Terms, for CFD Services, at the time of publication of these Terms, the Provider does not make the Services available to residents and citizens of the following countries/territories: Bangladesh, Myanmar, Belarus, North Korea, Syria, Grenada, Chad, Malaysia, Belize, Antigua and Barbuda, Cape Verde, Tuvalu, Vietnam, Bouvet Island, Burundi, Cook Islands, Eritrea, Comoros, Sri Lanka and Fiji (\"Restricted Countries – CFDs\")."
         }
       ],
       "notes": [
-        "The CFD restriction article does not list Russia, while the company disclosure says FundedNext Ltd does not serve Russian residents.",
+        "The CFD restriction article does not list Russia, while the company jurisdictional disclosure (FundedNext Entities / Ltd. wording on fundednext.com/company) still names Russia as restricted. ToS §2.1 contracting party is GrowthNext – F.Z.E. (Ajman Free Zone, UAE), checked 2 November 2026; FundedNext Ltd (Comoros) remains an operational affiliate only.",
         "FundedNext Futures explicitly restricts Russian Federation account purchases.",
         "FundedNext lists Russia for bank-transfer restrictions and Russian Federation for card-transfer restrictions on performance rewards.",
         "Until the first-party conflict is resolved at checkout and by support, the site must not describe FundedNext as available to Russian residents.",
-        "2026-10-20: status set to restricted to match firms.json (commit 41f3c05). Basis: the site-wide fundednext.com footer (also on the Terms of Service page) says the FundedNext Entities do not offer services to residents of Russia; ToS 5.3 (CFD list) omits Russia and the footer is treated as operative. The four 2026-10-01 observations keep their own dates."
+        "2026-10-20: status set to restricted to match firms.json (commit 41f3c05). Basis: the site-wide fundednext.com footer (also on the Terms of Service page) says the FundedNext Entities do not offer services to residents of Russia; ToS 5.3 (CFD list) omits Russia and the footer is treated as operative. The four 2026-10-01 observations keep their own dates.",
+        "2026-11-03 recheck: CFD help article still omits Russia; company page, site footer and Futures help still name Russia/Russian Federation. Status remains restricted until first-party conflict is resolved."
       ]
     },
     {
       "firmSlug": "crypto-fund-trader",
       "status": "available",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "sourceUrls": [
         "https://cryptofundtrader.com/faq/",
         "https://cryptofundtrader.com/terms-and-conditions/",
@@ -615,27 +667,27 @@
       "sourceObservations": [
         {
           "sourceUrl": "https://cryptofundtrader.com/faq/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States."
         },
         {
           "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "7.3. Country Restrictions and Platform Availability Platform access is subject to regional regulations and platform-specific compliance requirements: Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States."
         },
         {
           "sourceUrl": "https://cryptofundtrader.com/faq/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Crypto Fund Trader does not apply any additional country restrictions to users who choose to complete their evaluation through Bybit."
         },
         {
           "sourceUrl": "https://cryptofundtrader.com/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Neither SWISS RLCRATES AG nor RLCRATES, S.L. (the company that provides services with MT5) operate in countries where crypto or CFD’s activity is not allowed."
         },
         {
           "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine"
         }
       ],
@@ -643,41 +695,42 @@
         "russia": {
           "status": "not-named",
           "sourceUrl": "https://cryptofundtrader.com/faq/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
           "note": "Russia is not named on any CFT page read (FAQ, Terms, get-started, refund policy, last-updates FAQ, homepage). Available rests on the absence of a restriction, not on a positive statement. Bybit's excluded list (third party, page updated 2026-10-16) does not name Russia."
         },
         "belarus": {
           "status": "not-named",
           "sourceUrl": "https://cryptofundtrader.com/faq/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Match-Trader: There are currently no country restrictions for traders using Match-Trader. MetaTrader 5: MetaTrader 5 is not available for users residing in the United States.",
           "note": "Belarus not named by CFT; not in Bybit's excluded list."
         },
         "ukraine": {
           "status": "product-specific",
           "sourceUrl": "https://www.bybit.com/en/help-center/article/Service-Restricted-Countries",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "the Crimea region of Ukraine (including Sevastopol) and the non-government controlled areas of the Donetsk, Luhansk, Kherson and Zaporizhzhia regions of Ukraine",
           "note": "CFT names no Ukrainian restriction on Match-Trader/MT5. The Bybit route is subject to Bybit's exclusion of Crimea/Sevastopol and the non-government-controlled Donetsk, Luhansk, Kherson and Zaporizhzhia areas (third-party page)."
         },
         "kazakhstan": {
           "status": "not-named",
           "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Match-Trader: No country restrictions. MetaTrader 5: Access to this platform is not available to users residing in the United States.",
           "note": "Kazakhstan not named by CFT; not in Bybit's excluded list."
         }
       },
       "notes": [
         "Rechecked 2026-10-20 on cryptofundtrader.com (article-slot pages). Matches firms.json russiaStatus 'available'.",
-        "Unverified: Russian-issued cards (incl. Mir) at checkout; KYC outcome for Russian/Belarusian documents; payout to Russian banks. Bank transfer is EUR/USD; crypto payouts USDT (ERC20/TRC20), BTC, ETH."
+        "Unverified: Russian-issued cards (incl. Mir) at checkout; KYC outcome for Russian/Belarusian documents; payout to Russian banks. Bank transfer is EUR/USD; crypto payouts USDT (ERC20/TRC20), BTC, ETH.",
+        "2026-11-03 recheck: Match-Trader no-country-restriction and MT5 US wording unchanged on FAQ/Terms; third-party exchange restricted-countries page still omits Russia (Crimea/Donetsk/Luhansk/Kherson/Zaporizhzhia regions named)."
       ]
     },
     {
       "firmSlug": "alpha-capital",
       "status": "restricted",
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "sourceUrls": [
         "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
         "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
@@ -686,29 +739,29 @@
       "sourceObservations": [
         {
           "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
-          "sourceCapturedAt": "2026-10-20",
-          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus ... Russia ..."
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Please note that Alpha Capital Group does not provide services to persons who are nationals of, or residents in, the following countries: Afghanistan Belarus Burundi Central African Republic Chad Democratic Republic of the Congo Region of Crimea Eritrea Iran Iraq Cuba North Korea Libya Myanmar Somalia Sudan Russia Republic of South Sudan Syria Yemen Venezuela Vietnam Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia"
         },
         {
           "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8775575-countries-with-limitations",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Sanctioned areas of Ukraine* Republic of Congo * Currently: Donetsk Luhansk Crimea Kherson Zaporizhzhia"
         },
         {
           "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "If a trader is from a restricted country but is living in a non-restricted country and holds a government-issued document from that non-restricted country, they can be onboarded."
         },
         {
           "sourceUrl": "https://help.alphacapitalgroup.uk/en/articles/8420532-what-documentation-is-required-for-a-qualified-analyst-account",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "If a trader is from a restricted country and living in a restricted country, they cannot be onboarded, even if they hold a passport from another country."
         },
         {
           "sourceUrl": "https://alphacapitalgroup.uk/product",
           "sourceCapturedAt": "2026-10-20",
           "quote": "Italy Japan Jordan Kazakhstan Kenya",
-          "note": "Rendered checkout country dropdown (US-IP box, headless Chrome). Russia and Belarus are absent from the dropdown; Kazakhstan and Ukraine are present."
+          "note": "2026-11-03: alphacapitalgroup.uk/product no longer exposes the Italy/Japan/Jordan/Kazakhstan/Kenya country strip in the fetched HTML; prior quote retained and date not bumped."
         }
       ],
       "countries": {
@@ -742,7 +795,8 @@
         }
       },
       "notes": [
-        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20 on alphacapitalgroup.uk. Matches firms.json russiaStatus 'restricted'."
+        "Help article dated July 6, 2026 (countries) and July 23, 2026 (KYC), both read 2026-10-20 on alphacapitalgroup.uk. Matches firms.json russiaStatus 'restricted'.",
+        "2026-11-03 recheck: countries-with-limitations help article still names Russia; onboarding docs for restricted nationality/residence unchanged."
       ]
     }
   ],
@@ -753,21 +807,21 @@
       "sourceUrls": [
         "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process"
       ],
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-11-03",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Once you have successfully completed the challenge"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "The verification process typically takes 48 hours."
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020293-how-can-i-complete-the-kyc-verification-process",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "issued within the last three months"
         }
       ],
@@ -790,7 +844,8 @@
       "postKyc": [
         "Successful verification makes the trader eligible to receive the FundedNext Account.",
         "Failure to pass KYC results in rejection of the FundedNext Account application."
-      ]
+      ],
+      "recheckNote": "2026-11-03 recheck: help articles re-read; stored quotes still present verbatim."
     },
     {
       "firmSlug": "bright-funded",
@@ -799,30 +854,30 @@
         "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
         "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work"
       ],
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "through our partner SumSub"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "1–2 business days (Mon–Fri)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268287-how-do-i-obtain-my-funded-account",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Up to 4 business days"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9973224-how-does-the-kyc-process-work",
-          "sourceCapturedAt": "2026-10-20",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "proof of identity (e.g., a government-issued ID) and a proof of address"
         }
       ],
-      "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box): both help articles re-read; provider, documents, Security Check timing and post-KYC steps unchanged. 9268287 (dated March 26, 2026) also: \"Trader Contract is sent automatically and instantly\" and \"Funded Account is activated instantly\"; 9973224 (dated April 23, 2025): \"Specific documentation may vary based on the customer’s country of residence\".",
+      "recheckNote": "2026-11-03 recheck: help articles re-read; stored quotes still present verbatim.",
       "required": true,
       "trigger": "After passing the final evaluation stage and before the funded-account contract",
       "provider": "SumSub",
@@ -850,8 +905,8 @@
         "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup",
         "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods"
       ],
-      "sourceCapturedAt": "2026-10-20",
-      "recheckNote": "Prop Firm Tracker recheck 2026-10-20 (US-IP box, headless Chrome; plain curl gets 403): Master Account Setup re-read, every field unchanged. Quotes: \"KYC (Know Your Customer) is a mandatory step before a Master Account can be fully accessed\"; \"It is automated and usually takes a few minutes. Only one verified account is allowed per trader.\"; \"Four steps, in order: KYC, then In Review, then Customer Agreement, then Onboarding.\"; \"Two are handled by FundingPips: In Review and Onboarding, each up to 2 working days.\"; \"A clear selfie that matches the proof of identity document submitted.\" New on the page: \"Zero and the 1K Instant Giveaway skip In Review and get the Customer Agreement together with KYC, since both are instant Master Accounts.\" Reward Methods re-read the same day (Rise, $500 minimum).",
+      "sourceCapturedAt": "2026-11-03",
+      "recheckNote": "2026-11-03 recheck: plain curl still 403 on help.fundingpips.com; Zendesk help_center API and WebFetch returned Master Account Setup. Quotes confirmed: \"KYC (Know Your Customer) is a mandatory step before a Master Account can be fully accessed\"; \"It is automated and usually takes a few minutes. Only one verified account is allowed per trader.\"; four-step order KYC → In Review → Customer Agreement → Onboarding; In Review and Onboarding each up to 2 working days; \"Zero and the 1K Instant Giveaway skip In Review\". Reward Methods also re-read via API the same day.",
       "required": true,
       "trigger": "Before full access to the Master Account",
       "provider": "FundingPips, with separate provider verification for some reward methods",
@@ -883,45 +938,55 @@
         "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
         "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward"
       ],
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-11-03",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "RiseWorks, Bank Transfer, Card and direct deposit to FNmarkets"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Card payout is available for traders who have at least one saved card on their account during the payment process"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Lao People's Democratic Republic | Russian Federation | Zambia"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "payouts are issued within 24 hours"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "every 5 business days"
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "First Performance Reward is available after 21 days. Subsequent rewards are available every 14 days."
         },
         {
           "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "On-Demand Performance Reward"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Accounts purchased or reset on or after October 12, 2026 the trading cycle will be 10 business days"
+        },
+        {
+          "sourceUrl": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Each trader must register a unique withdrawal wallet address"
         }
       ],
-      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule only; card payout requires a card saved during payment and is restricted for Russian Federation. This does not recheck Stellar Instant eligibility or resolve conflicting Russian-resident account access statements.",
+      "scopeNote": "Rechecked payout routes and the standard evaluation-product schedule on 2026-11-03 against help.fundednext.com articles 8020084 (dateModified 2026-10-22) and 10701585 (dateModified 2026-10-16). Card payout requires a card saved during payment and is restricted for Russian Federation. This does not recheck Stellar Instant eligibility. Contracting entity GrowthNext – F.Z.E. (Ajman Free Zone, UAE) per ToS; FundedNext remains restricted for Russian residents.",
       "methods": [
         "USDT ERC20 or TRC20",
         "USDC ERC20",
@@ -934,12 +999,14 @@
       "requestSteps": [
         "Complete the applicable trading cycle and profitability criteria.",
         "Submit the Payout Request in the account dashboard.",
-        "Confirm the request with an OTP sent to the registered email."
+        "Confirm the request with an OTP sent to the registered email.",
+        "Use a unique withdrawal wallet address; a shared address is treated as a compliance violation."
       ],
       "processing": [
-        "FundedNext publishes payout issuance within 24 hours after a valid request.",
-        "Stellar 1-Step rewards are scheduled every 5 business days.",
-        "The standard Stellar 2-Step and Stellar Lite option starts after 21 days and then uses 14-day cycles; separately selectable 3-day and on-demand payout options have different conditions."
+        "FundedNext publishes payout issuance within 24 hours after a valid request (subject to a compliance review by the Risk Management Team).",
+        "Stellar 1-Step FundedNext Account: Performance Rewards every 5 business days from the first trading cycle.",
+        "The standard Stellar 2-Step option starts after 21 days and then uses 14-day cycles; separately selectable 3-day and on-demand payout options have different conditions.",
+        "Standard Stellar Lite: for accounts purchased or reset on or after 12.10.2026, first Performance Reward after 10 business days, then every 10 business days; older accounts keep first after 21 days then every 14 days. Separately selectable 3-day and on-demand options have different conditions."
       ],
       "fees": [
         "The trader is responsible for transfer gateway charges."
@@ -947,7 +1014,7 @@
       "countryBoundary": [
         "Bank Transfer is not available as a Performance Reward method for the countries listed by FundedNext, including Russia.",
         "Card Transfer is separately restricted for Russian Federation; a saved payment card does not override this country restriction.",
-        "A listed crypto method does not resolve the separate conflict in FundedNext's official Russian-resident access statements."
+        "A listed crypto method does not make FundedNext available to Russian residents; the site footer restricts Russia, and bank/card payout routes separately list Russia / Russian Federation."
       ]
     },
     {
@@ -958,32 +1025,37 @@
         "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
         "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts"
       ],
-      "sourceCapturedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-11-03",
       "sourceObservations": [
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "first Reward Split after 30 days"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "request a Reward Split bi-weekly (14 days)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "Bi-weeky add-on (Payouts every 14 days)"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/11468668-how-can-i-request-my-payout",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "maximum of 1 day to be processed by our finance team"
         },
         {
           "sourceUrl": "https://help.brightfunded.com/en/articles/9241684-do-i-need-to-pay-charges-with-the-payouts",
-          "sourceCapturedAt": "2026-10-01",
+          "sourceCapturedAt": "2026-11-03",
           "quote": "fees range between $5 and $50"
+        },
+        {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+          "sourceCapturedAt": "2026-11-03",
+          "quote": "Weekly add-on (Payouts every 7 days)"
         }
       ],
       "methods": [
@@ -997,7 +1069,7 @@
       ],
       "processing": [
         "The first standard Reward Split is available 30 days after the first funded-account trade.",
-        "The reward article says another request is possible 14 days after the first Reward Split, but also lists a 14-day bi-weekly add-on; the base follow-up cycle is unresolved for a specific order.",
+        "The reward article says another request is possible 14 days after the first Reward Split, but also lists a Bi-weekly add-on (every 14 days) and a Weekly add-on (every 7 days); the base follow-up cycle for a specific order without an add-on remains unresolved.",
         "BrightFunded publishes a maximum of 1 day for finance-team processing after the request."
       ],
       "fees": [
@@ -1016,7 +1088,7 @@
         "https://help.fundingpips.com/hc/en-us/articles/34504564970385-Reward-Methods",
         "https://help.fundingpips.com/hc/en-us/articles/48636294148497-Master-Account-Setup"
       ],
-      "sourceCapturedAt": "2026-10-20",
+      "sourceCapturedAt": "2026-11-03",
       "methods": [
         "Card",
         "Crypto",
@@ -1043,7 +1115,8 @@
         "Rise requires separate onboarding with the same email used at FundingPips, a government-issued ID and a selfie.",
         "Crypto and Card methods do not cancel the Master Account KYC and Customer Agreement sequence.",
         "Pay to Card and Bank Transfer list only Belgium, France, Germany, Italy, Netherlands, Spain, Brazil, Colombia, Mexico, Nigeria, South Africa, the UK, Turkey and Indonesia; if Rise is not supported in a country, the reward defaults to Crypto."
-      ]
+      ],
+      "recheckNote": "2026-11-03 recheck: Reward Methods re-read via Zendesk API/WebFetch (curl 403). Methods still Card, Crypto, Rise, Bank Transfer; processing 1-3 working days; Pay-to-Card country list unchanged (BE/FR/DE/IT/NL/ES/BR/CO/MX/NG/ZA/UK/TR/ID); Crypto USDT/USDC ERC20; Rise and Bank Transfer $500 minimum. New on page vs older notes: Tradin Transfer +30% credit path — recorded here, not used by /ru/vyplaty-prop-firm partner cards."
     }
   ]
 }

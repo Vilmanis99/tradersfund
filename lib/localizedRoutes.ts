@@ -20,11 +20,13 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/topstep-review', ru: '/ru/obzor-topstep' },
   { en: '/blog/crypto-fund-trader-review', ru: '/ru/obzor-crypto-fund-trader' },
   { en: '/blog/hash-hedge-review', ru: '/ru/obzor-hash-hedge' },
+  { en: '/blog/alpha-capital-review', ru: '/ru/obzor-alpha-capital' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
     ru: '/ru/kak-rabotayut-chellendzhi-prop-firm',
   },
+  { en: '/reports/prop-firm-changes-october-2026', ru: '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026' },
   // Trust page; RU copy in content/data/ru-how-we-make-money.json.
   { en: '/how-we-make-money', ru: '/ru/kak-my-zarabatyvaem' },
 ] as const
@@ -43,6 +45,7 @@ export const RUSSIAN_ONLY_ROUTES = [
   '/ru/obzor-eratrade',
   '/ru/obzor-kascapital',
   '/ru/obzor-teamtraders',
+  '/ru/obzor-blue-guardian',
   '/ru/obzor-spice-prop',
   '/ru/obzor-goat-funded-trader',
   '/ru/otzyvy-prop-firm',
@@ -113,6 +116,8 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-10-14',
   '/ru/luchshie-kripto-prop-firmy': '2026-10-21',
   '/ru/luchshie-prop-firmy': '2026-10-20',
+  '/ru/obzor-alpha-capital': '2026-11-06',
+  '/ru/obzor-blue-guardian': '2026-11-03',
   '/ru/obzor-bright-funded': '2026-10-19',
   '/ru/obzor-crypto-fund-trader': '2026-10-26',
   '/ru/obzor-eratrade': '2026-10-20',
@@ -127,6 +132,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-teamtraders': '2026-10-20',
   '/ru/obzor-the5ers': '2026-10-23',
   '/ru/obzor-topstep': '2026-10-29',
+  '/ru/otchet-izmeneniya-prop-firm-oktyabr-2026': '2026-11-05',
   '/ru/otzyvy-prop-firm': '2026-10-20',
   '/ru/prop-trejding': '2026-10-20',
   '/ru/promokody-prop-firm': '2026-10-28',

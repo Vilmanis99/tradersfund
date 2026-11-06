@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-10-20",
-  "recheckNote": "Prop Firm Tracker full rules recheck 2026-10-20 (US-IP box, curl of 16 live help.fundednext.com articles); all stored values unchanged. Quotes: 11641161 \"$2,000 Account $59.99 10% higher\" and \"No recurring or monthly fees are applied.\"; 11641163 \"There are no Daily Loss Limits in Stellar Instant Accounts. However, there is a Maximum Loss Limit of 6%, which follows the trailing loss limit method.\"; 11641410 \"Only 40% of the profit from trades placed during this window will be counted\" and \"This 1% buffer, the trader will get a maximum of 3 times in one single account.\"; 11641400 \"You can hold up to $20,000 in total allocation at any time in Stellar Instant.\"; 11641516 \"Tier 1–2: 70% Tier 3 and onward: 80% (capped)\"; 11641693 \"If your growth is less than 5% but at least 1% , you can withdraw Rewards 14 days after your cycle’s start date.\"; 11641226 table still shows \"$2000 $59.99 $56.99\"; 11641369 now also lists \"Stock CFDs : 1:2\". The withdrawal block keeps its own 2026-10-01 date (quote re-read unchanged on 2026-10-20; the article also names TC Pay for traders from Iran only). Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only).",
+  "recheckNote": "Prop Firm Tracker full rules recheck 2026-10-20 (US-IP box, curl of 16 live help.fundednext.com articles); all stored values unchanged. Quotes: 11641161 \"$2,000 Account $59.99 10% higher\" and \"No recurring or monthly fees are applied.\"; 11641163 \"There are no Daily Loss Limits in Stellar Instant Accounts. However, there is a Maximum Loss Limit of 6%, which follows the trailing loss limit method.\"; 11641410 \"Only 40% of the profit from trades placed during this window will be counted\" and \"This 1% buffer, the trader will get a maximum of 3 times in one single account.\"; 11641400 \"You can hold up to $20,000 in total allocation at any time in Stellar Instant.\"; 11641516 \"Tier 1–2: 70% Tier 3 and onward: 80% (capped)\"; 11641693 \"If your growth is less than 5% but at least 1% , you can withdraw Rewards 14 days after your cycle’s start date.\"; 11641226 table still shows \"$2000 $59.99 $56.99\"; 11641369 now also lists \"Stock CFDs : 1:2\". The withdrawal block keeps its own 2026-10-01 date (quote re-read unchanged on 2026-10-20; the article also names TC Pay for traders from Iran only). Raw copies: /workspace/tradersfundhub/evidence/expiring-recheck-2026-10-20/raw/ (box only). 2026-11-03: withdrawal block re-read on help article 11641804; sourceCapturedAt moved to 2026-11-03. Other Instant rule blocks remain on their prior capture dates.",
   "firmSlug": "fundednext",
   "productSlug": "stellar-instant",
   "pricing": {
@@ -19,11 +19,31 @@
     "method": "trailing",
     "floorCap": "initial balance",
     "workedExample": [
-      { "balanceUsd": 10000, "event": "start", "maximumLossFloorUsd": 9400 },
-      { "balanceUsd": 10200, "event": "profit 200", "maximumLossFloorUsd": 9600 },
-      { "balanceUsd": 10100, "event": "loss 100", "maximumLossFloorUsd": 9600 },
-      { "balanceUsd": 10500, "event": "new profit high", "maximumLossFloorUsd": 9900 },
-      { "balanceUsd": 11100, "event": "floor reaches cap", "maximumLossFloorUsd": 10000 }
+      {
+        "balanceUsd": 10000,
+        "event": "start",
+        "maximumLossFloorUsd": 9400
+      },
+      {
+        "balanceUsd": 10200,
+        "event": "profit 200",
+        "maximumLossFloorUsd": 9600
+      },
+      {
+        "balanceUsd": 10100,
+        "event": "loss 100",
+        "maximumLossFloorUsd": 9600
+      },
+      {
+        "balanceUsd": 10500,
+        "event": "new profit high",
+        "maximumLossFloorUsd": 9900
+      },
+      {
+        "balanceUsd": 11100,
+        "event": "floor reaches cap",
+        "maximumLossFloorUsd": 10000
+      }
     ],
     "notes": [
       "There is no daily loss limit.",
@@ -39,8 +59,13 @@
   },
   "platforms": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641140-which-trading-platforms-are-available-for-the-stellar-instant-account",
-    "general": ["MT4", "MT5"],
-    "unitedStates": ["Match-Trader"],
+    "general": [
+      "MT4",
+      "MT5"
+    ],
+    "unitedStates": [
+      "Match-Trader"
+    ],
     "notes": [
       "The platform article applies to CFD Stellar Instant accounts, not FundedNext Futures.",
       "U.S.-based traders are limited to Match-Trader and do not receive MT4 or MT5."
@@ -75,7 +100,11 @@
     "newsMllEquityBufferPct": 1,
     "newsMllEquityBufferMaximumUses": 3,
     "maximumUsesEvidenceQuote": "This 1% buffer, the trader will get a maximum of 3 times in one single account.",
-    "appliesTo": ["market executions", "pending orders", "partial closures"],
+    "appliesTo": [
+      "market executions",
+      "pending orders",
+      "partial closures"
+    ],
     "notes": [
       "News trading is allowed, but only 40% of profit from trades executed inside the named 10-minute window counts.",
       "Losses remain the trader's responsibility, and the adjustment is calculated after the cycle ends."
@@ -135,9 +164,17 @@
   },
   "withdrawal": {
     "sourceUrl": "https://help.fundednext.com/en/articles/11641804-how-can-i-withdraw-my-performance-reward",
-    "sourceCapturedAt": "2026-10-01",
+    "sourceCapturedAt": "2026-11-03",
     "sourceQuote": "Card payout is available for traders who have at least one saved card on their account.",
-    "methods": ["USDT ERC20", "USDT TRC20", "USDC ERC20", "RiseWorks", "Bank Transfer", "Card", "FNmarkets deposit"],
+    "methods": [
+      "USDT ERC20",
+      "USDT TRC20",
+      "USDC ERC20",
+      "RiseWorks",
+      "Bank Transfer",
+      "Card",
+      "FNmarkets deposit"
+    ],
     "processingHours": 24,
     "otpRequired": true,
     "kycRequired": true,
@@ -146,7 +183,9 @@
       "The reward share moves to the FundedNext Wallet before the payout request.",
       "A submitted withdrawal request cannot be cancelled.",
       "Card payout requires a card already saved on the trader account; the country and provider route must still be checked in the dashboard.",
-      "This payout-only recheck does not refresh the other Stellar Instant rules, programme prices, or individual account eligibility."
+      "Payout-only recheck on 3 November 2026 against the Help Center article; card quote and method list unchanged. Does not refresh other Stellar Instant rules or prices.",
+      "This payout-only recheck does not refresh the other Stellar Instant rules, programme prices, or individual account eligibility.",
+      "2026-11-03 recheck: help article 11641804 still contains the Card payout saved-card sentence verbatim; methods list and 24h processing unchanged. TC Pay remains Iran-only."
     ]
   },
   "postWithdrawalLossFloor": {
@@ -162,10 +201,26 @@
     "publishedDiscountPct": 10,
     "refundable": false,
     "publishedTable": [
-      { "sizeUsd": 2000, "listPriceUsd": 59.99, "resetPriceUsd": 56.99 },
-      { "sizeUsd": 5000, "listPriceUsd": 149.99, "resetPriceUsd": 134.99 },
-      { "sizeUsd": 10000, "listPriceUsd": 299.99, "resetPriceUsd": 269.99 },
-      { "sizeUsd": 20000, "listPriceUsd": 599.99, "resetPriceUsd": 539.99 }
+      {
+        "sizeUsd": 2000,
+        "listPriceUsd": 59.99,
+        "resetPriceUsd": 56.99
+      },
+      {
+        "sizeUsd": 5000,
+        "listPriceUsd": 149.99,
+        "resetPriceUsd": 134.99
+      },
+      {
+        "sizeUsd": 10000,
+        "listPriceUsd": 299.99,
+        "resetPriceUsd": 269.99
+      },
+      {
+        "sizeUsd": 20000,
+        "listPriceUsd": 599.99,
+        "resetPriceUsd": 539.99
+      }
     ],
     "conflict": "The article says every reset is 10% below list price, but its published $2,000 row shows $56.99 against a $59.99 list price. That row is not a 10% reduction, so the reset amount must be confirmed in checkout."
   },

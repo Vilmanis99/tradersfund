@@ -1,0 +1,64 @@
+{
+  "firmSlug": "maven",
+  "officialDomain": "https://maventrading.com",
+  "capturedAt": "2026-11-05",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-05 12:45-13:05 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/terms-and-conditions",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/"
+  ],
+  "pageDates": {
+    "https://maventrading.com/faqs": "no page date",
+    "https://maventrading.com/terms-and-conditions": "Version 2026.2 | Effective date and Last Amended 23 October 2026",
+    "https://maventrading.com/pricing": "no page date",
+    "https://maventrading.com/": "no page date"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Prices not re-read as a price check (Maven list prices were last captured 2026-10-27; product sourceCapturedAt unchanged). The /pricing 1 Step card quote used as rules evidence is still verbatim.",
+  "blocks": [],
+  "productsScope": "Evidence-only capture: no products array. Product prices and values in challenges/<slug>.json keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules.newsTrading byProduct instant, mini, buy-now-pay-later, predictions-1-step, predictions-elite-1-step",
+      "from": null,
+      "to": true,
+      "source": "https://maventrading.com/terms-and-conditions",
+      "quote": "BNPL, Instant Funding and Mini News trading permitted without a separate news restriction, subject to all other rules. ... S3.7 There is no Prediction Markets news-trading restriction.",
+      "pageDate": "Last Amended 23 October 2026",
+      "checkedAt": "2026-11-05",
+      "note": "FAQ vs Terms conflict recorded 2026-10-27 resolved; the old Terms sentence 'For all accounts, you may not place new trades or close existing trades within 2 minutes before or after \"Red Folder\" news events' is no longer on the page"
+    },
+    {
+      "field": "rules.payoutFrequency byProduct instant",
+      "from": null,
+      "to": "on-demand",
+      "source": "https://maventrading.com/terms-and-conditions",
+      "quote": "BNPL and Instant are on demand subject to their conditions. Mini permits one timely request only, as specified in Schedule 1.",
+      "pageDate": "Last Amended 23 October 2026",
+      "checkedAt": "2026-11-05",
+      "note": "old Terms 'Maven Instant: ... payouts available every 10 business days' is no longer on the page; FAQ 'available on demand' unchanged"
+    },
+    {
+      "field": "challenges/maven.json products instant, mini, buy-now-pay-later, predictions-1-step, predictions-elite-1-step",
+      "note": "rules.news null -> true; instant payoutFrequency null -> on-demand; the 2026-10-27 conflict notes replaced with resolution notes (product prices and sourceCapturedAt untouched)",
+      "checkedAt": "2026-11-05"
+    }
+  ],
+  "unchanged": [
+    "drawdownType, dailyLossPct, maxLossPct, consistencyPct, profitSplitPct: all FAQ and /pricing quotes still verbatim; Terms Schedule 1 / S3.2 / S3.4 parameters agree with the stored values",
+    "weekendHolding true (FAQ + Terms 5.6)",
+    "platforms MT5, Match-Trader",
+    "mini payoutFrequency stays null (one request within 24 hours, not a recurring cadence)",
+    "standard 1/2/3-step and omo-2-step newsTrading stay restricted"
+  ],
+  "notReread": [
+    "prices/promo codes",
+    "Trustpilot (third-party)",
+    "corporate fields"
+  ]
+}

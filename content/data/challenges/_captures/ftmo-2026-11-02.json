@@ -1,0 +1,327 @@
+{
+  "firmSlug": "ftmo",
+  "officialDomain": "https://ftmo.com",
+  "capturedAt": "2026-11-02",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET of public English pages on 2026-11-02 12:05-12:20 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML.",
+  "pagesRead": [
+    "https://ftmo.com/en/2-step-challenge/",
+    "https://ftmo.com/en/1-step-challenge/",
+    "https://ftmo.com/en/instant-account/",
+    "https://ftmo.com/en/trading-objectives/",
+    "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+    "https://ftmo.com/en/trading-platforms/",
+    "https://ftmo.com/en/imprint/",
+    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b"
+  ],
+  "pageDates": {
+    "https://ftmo.com/en/2-step-challenge/": "dateModified 2026-10-22T16:45:44+00:00",
+    "https://ftmo.com/en/trading-objectives/": "dateModified 2026-11-02T08:13:35+00:00",
+    "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/": "dateModified 2026-10-13T09:35:48+00:00",
+    "https://ftmo.com/en/imprint/": "dateModified 2026-11-02T08:26:08+00:00",
+    "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b": "FTMO Challenge Terms and Conditions, LAST UPDATED ON 1 NOVEMBER 2026"
+  },
+  "pricesMatchStored": true,
+  "priceCheck": "Embedded \"prices\" data on the 2-Step, 1-Step and Instant pages (global EUR table): step_2 1080/540/345/250/89, step_1 999/499/319/199/79, instant 2999/1499/749/339/169 for the stored sizes; identical to challenges/ftmo.json. The 100K conditional deals (2-Step 439, 1-Step 399) are still present and still not stored as base prices.",
+  "changes": [
+    {
+      "field": "legalEntity",
+      "old": "FTMO Evaluation Global s.r.o.",
+      "new": "FTMO s.r.o.",
+      "sourceUrl": "https://cdn.ftmo.com/docs%2Fterms-and-conditions%2F118cdaed571a48529431ffa6ff28a91b",
+      "quote": "We are FTMO s.r.o., a company established and existing under the laws of the Czech Republic, with its registered office at Purkyňova 2121/3, Nové Město, 110 00 Prague 1, Czech Republic, Identification No.: 092 13 651",
+      "pageDate": "LAST UPDATED ON 1 NOVEMBER 2026",
+      "secondSourceUrl": "https://ftmo.com/en/imprint/",
+      "secondQuote": "Imprint FTMO s.r.o. Business ID: 092 13 651 Purkyňova 2121/3, 110 00, Prague, Czech Republic",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "unchanged": [
+    "All 16 firm-rules quotes from firm-rules-2026-10-15.json for FTMO (drawdownType, dailyLossPct, maxLossPct, consistencyPct, profitSplitPct, payoutFrequency, newsTrading, weekendHolding, platforms) still read verbatim on the same pages",
+    "Prices for all three products",
+    "Headquarters Prague, Czech Republic"
+  ],
+  "notReread": [
+    "trustpilotScore/trustpilotCount (third-party site, not re-read in this first-party pass)"
+  ],
+  "products": [
+    {
+      "firmSlug": "ftmo",
+      "productName": "FTMO Challenge: 2-Step",
+      "productSlug": "ftmo-challenge-2-step",
+      "phases": 2,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "priceEur": 1080,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "priceEur": 540,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "priceEur": 345,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "priceEur": 250,
+          "refundable": true
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "priceEur": 89,
+          "refundable": true
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10,
+        "phase2": 5
+      },
+      "dailyLossPct": 5,
+      "maxLossPct": 10,
+      "drawdownType": "static",
+      "minTradingDays": 4,
+      "maxTradingDays": null,
+      "consistencyRulePct": null,
+      "profitSplitPct": 80,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": "restricted",
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+      "fieldEvidence": {
+        "maxLossPct": {
+          "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+          "quote": "Max Loss 10%"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+          "quote": "Max Daily Loss 5% Min Trading Days 4 Days Trading Period Unlimited"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+          "quote": "The Maximum Loss rule establishes a static limit (the Maximum Loss Limit) below which your account equity"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+          "quote": "FTMO Account initiated from the 2-Step FTMO Challenge: By default, you receive a Reward according to 80% of the simulated profit."
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+          "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+        },
+        "rules.news": {
+          "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+          "quote": "Restrictions for trading during selected news releases apply only to the Standard account type."
+        },
+        "rules.weekend": {
+          "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
+          "quote": "Overnight and weekend position restrictions apply only to the Standard account type."
+        }
+      }
+    },
+    {
+      "firmSlug": "ftmo",
+      "productName": "FTMO Challenge: 1-Step",
+      "productSlug": "ftmo-challenge-1-step",
+      "phases": 1,
+      "accountSizes": [
+        {
+          "sizeUsd": 200000,
+          "priceUsd": null,
+          "priceEur": 999,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "priceEur": 499,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "priceEur": 319,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "priceEur": 199,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "priceEur": 79,
+          "refundable": false
+        }
+      ],
+      "profitTargets": {
+        "phase1": 10
+      },
+      "dailyLossPct": 3,
+      "maxLossPct": 10,
+      "drawdownType": "eod-trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 50,
+      "consistencyScope": "both",
+      "consistencyRules": [
+        {
+          "percent": 50,
+          "scope": "both",
+          "appliesTo": "1-Step Challenge pass and FTMO Account rewards (orders from 12 Oct 2026)",
+          "sourceUrl": "https://ftmo.com/en/trading-objectives/"
+        }
+      ],
+      "consistencyBasis": "total-profit",
+      "consistencyBasisQuote": "the Consistency rule requires that your Best Day does not represent more than 50% of your total profit. The total profit is the cumulative sum of closed profits and losses across all trading days",
+      "consistencyBasisSourceUrl": "https://ftmo.com/en/trading-objectives/",
+      "consistencyBasisCheckedAt": "2026-10-28",
+      "profitSplitPct": 90,
+      "payoutFirstDays": 14,
+      "payoutFrequency": "on-demand",
+      "rules": {
+        "news": "restricted",
+        "weekend": "restricted",
+        "overnight": "restricted",
+        "ea": "restricted",
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+      "fieldEvidence": {
+        "maxLossPct": {
+          "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
+          "quote": "10% Max Loss to manage risk"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+          "quote": "the Maximum Daily Loss Amount, which is 3% of the Initial Simulated Capital."
+        },
+        "drawdownType": {
+          "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+          "quote": "The Maximum Loss rule establishes an end-of-day trailing limit (the Maximum Loss Limit) below which your account equity"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://ftmo.com/en/trading-objectives/",
+          "quote": "To pass the FTMO Challenge: 1-Step or to be eligible for a Reward on an FTMO Account, the Consistency rule requires that your Best Day does not represent more than 50% of your total profit."
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+          "quote": "FTMO Account initiated from the 1-Step FTMO Challenge and FTMO Instant Account: You receive a Reward according to 90% of the simulated profit."
+        },
+        "payoutFrequency": {
+          "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+          "quote": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account."
+        }
+      }
+    },
+    {
+      "firmSlug": "ftmo",
+      "productName": "FTMO Instant Account",
+      "productSlug": "ftmo-instant-account",
+      "phases": 0,
+      "accountSizes": [
+        {
+          "sizeUsd": 100000,
+          "priceUsd": null,
+          "priceEur": 2999,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 50000,
+          "priceUsd": null,
+          "priceEur": 1499,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 25000,
+          "priceUsd": null,
+          "priceEur": 749,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 10000,
+          "priceUsd": null,
+          "priceEur": 339,
+          "refundable": false
+        },
+        {
+          "sizeUsd": 5000,
+          "priceUsd": null,
+          "priceEur": 169,
+          "refundable": false
+        }
+      ],
+      "profitTargets": null,
+      "dailyLossPct": 3,
+      "maxLossPct": 10,
+      "drawdownType": "trailing",
+      "minTradingDays": null,
+      "maxTradingDays": null,
+      "consistencyRulePct": 30,
+      "consistencyScope": "funded",
+      "consistencyRules": [
+        {
+          "percent": 30,
+          "scope": "funded",
+          "appliesTo": "FTMO Instant Account: best day capped at 30% of total profit",
+          "sourceUrl": "https://ftmo.com/en/instant-account/"
+        }
+      ],
+      "consistencyBasis": "payout-cycle-profit",
+      "consistencyBasisQuote": "When you withdraw a Reward and continue on an FTMO Account, your total profit starts again from zero, so Consistency is measured only after the Reward withdrawal.",
+      "consistencyBasisSourceUrl": "https://ftmo.com/en/trading-objectives/",
+      "consistencyBasisCheckedAt": "2026-10-28",
+      "profitSplitPct": 90,
+      "payoutFirstDays": null,
+      "payoutFrequency": null,
+      "rules": {
+        "news": null,
+        "weekend": "restricted",
+        "overnight": "restricted",
+        "ea": null,
+        "copyTrading": null
+      },
+      "assetClass": "cfd",
+      "sourceUrl": "https://ftmo.com/en/instant-account/",
+      "fieldEvidence": {
+        "maxLossPct": {
+          "sourceUrl": "https://ftmo.com/en/instant-account/",
+          "quote": "Max Loss 10% 10% Max Daily Loss 3% Consistency 30%"
+        },
+        "dailyLossPct": {
+          "sourceUrl": "https://ftmo.com/en/instant-account/",
+          "quote": "Max Loss 10% 10% Max Daily Loss 3% Consistency 30%"
+        },
+        "consistencyRulePct": {
+          "sourceUrl": "https://ftmo.com/en/instant-account/",
+          "quote": "Max Loss 10% 10% Max Daily Loss 3% Consistency 30%"
+        },
+        "profitSplitPct": {
+          "sourceUrl": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/",
+          "quote": "FTMO Account initiated from the 1-Step FTMO Challenge and FTMO Instant Account: You receive a Reward according to 90% of the simulated profit."
+        }
+      }
+    }
+  ]
+}

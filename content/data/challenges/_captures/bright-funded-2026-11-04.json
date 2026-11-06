@@ -1,0 +1,145 @@
+{
+  "firmSlug": "bright-funded",
+  "officialDomain": "https://brightfunded.com",
+  "capturedAt": "2026-11-04",
+  "captureType": "rolling-recheck",
+  "timezone": "Europe/Riga",
+  "trigger": "Rolling recheck of fields captured 14-15 Oct 2026 (week of 2 Nov 2026)",
+  "method": "Standard HTTP GET (curl) of public English pages on 2026-11-04 12:05-12:30 Riga; no account, checkout or payment; no VPN or proxy. Quotes are verbatim after whitespace normalisation of the page HTML. Help Centre page dates from the article's lastUpdatedDate.",
+  "pagesRead": [
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+    "https://brightfunded.com/",
+    "https://brightfunded.com/1-step",
+    "https://brightfunded.com/2-step-bright",
+    "https://brightfunded.com/2-step-classic"
+  ],
+  "pageDates": {
+    "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step": "lastUpdatedDate 2026-10-29",
+    "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright": "lastUpdatedDate 2026-03-27",
+    "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process": "lastUpdatedDate 2026-05-20",
+    "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule": "lastUpdatedDate 2025-10-14 (as shown on the page)",
+    "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account": "lastUpdatedDate 2026-03-18",
+    "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer": "lastUpdatedDate 2026-10-01",
+    "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news": "lastUpdatedDate 2026-07-02",
+    "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend": "lastUpdatedDate 2026-03-16"
+  },
+  "pricesMatchStored": null,
+  "priceCheck": "Not part of this recheck: BrightFunded product prices were last captured 2026-10-20 (outside the 14-15 Oct cohort) and were not changed.",
+  "blocks": [],
+  "productsScope": "Products carry rules evidence only (productSlug + fieldEvidence); product prices and values in challenges/<slug>.json were not changed and keep their own sourceCapturedAt.",
+  "changes": [
+    {
+      "field": "rules dailyLossPct / maxLossPct / newsTrading / weekendHolding evidence (values unchanged)",
+      "old": "capture-note paraphrases citing the plan pages (e.g. 'Current BrightFunded rules list 3% daily drawdown.')",
+      "new": "verbatim quotes from the Help Centre plan articles, the evaluation-rules article, the news article and the weekend article",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "field": "rules payoutFrequency evidence (value unchanged)",
+      "sourceUrl": "https://brightfunded.com/",
+      "oldQuote": "24-Hour, Guaranteed Payouts, Weekly Payouts, Available",
+      "newQuote": "CHALLENGE ADD-ONS Swap-Free Weekly Payouts",
+      "checkedAt": "2026-11-04"
+    }
+  ],
+  "unchanged": [
+    "drawdownType trailing/static/static",
+    "dailyLossPct 3/4/5",
+    "maxLossPct 6/8/10",
+    "consistencyPct none",
+    "profitSplitPct 80 (up to 100 via Scaling Plan, 90 via add-on)",
+    "payoutFrequency first after 30 days then bi-weekly, weekly add-on",
+    "newsTrading restricted (funded only, 5 min before/after)",
+    "weekendHolding allowed",
+    "platforms MT5, DXTrade, cTrader"
+  ],
+  "notReread": [
+    "Trustpilot (third-party)",
+    "prices (captured 2026-10-20)"
+  ],
+  "products": [
+    {
+      "productName": "BrightFunded 1-Step",
+      "productSlug": "bright-funded-1-step",
+      "sourceUrl": "https://brightfunded.com/1-step",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://brightfunded.com/1-step",
+          "quote": "Max. Daily Loss 3% Max. Total Loss 6%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+          "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+          "quote": "Maximum Drawdown 6% Trailing (dynamic)"
+        }
+      }
+    },
+    {
+      "productName": "BrightFunded 2-Step Bright",
+      "productSlug": "bright-funded-2-step-bright",
+      "sourceUrl": "https://brightfunded.com/2-step-bright",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://brightfunded.com/2-step-bright",
+          "quote": "Max. Daily Loss 4% Max. Total Loss 8%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+          "quote": "Maximum Drawdown 8% Static"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+          "quote": "Maximum Drawdown 8% Static"
+        }
+      }
+    },
+    {
+      "productName": "BrightFunded 2-Step Classic",
+      "productSlug": "bright-funded-2-step-classic",
+      "sourceUrl": "https://brightfunded.com/2-step-classic",
+      "fieldEvidence": {
+        "dailyLossPct": {
+          "sourceUrl": "https://brightfunded.com/2-step-classic",
+          "quote": "Max. Daily Loss 5% Max. Total Loss 10%"
+        },
+        "maxLossPct": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+          "quote": "Maximum Drawdown 10% Static"
+        },
+        "drawdownType": {
+          "sourceUrl": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+          "quote": "Maximum Drawdown 10% Static"
+        }
+      }
+    }
+  ],
+  "followUps": [
+    {
+      "field": "rules.payoutFrequency + challenge notes",
+      "checkedAt": "2026-11-04",
+      "result": "Firm-wide bi-weekly after 30-day first wait; weekly add-on; byProduct bi-weekly x3; challenge conflict notes marked resolved.",
+      "sources": [
+        "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+        "https://brightfunded.com/blog/how-brightfunded-structures-payouts",
+        "https://brightfunded.com/",
+        "https://brightfunded.com/cfds/how-it-works",
+        "https://help.brightfunded.com/en/articles/9436456-how-the-account-merge-works",
+        "https://brightfunded.com/cfds/1-step",
+        "https://brightfunded.com/cfds/2-step-bright",
+        "https://brightfunded.com/cfds/2-step-classic"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-06",
+  "timezone": "Europe/Riga",
+  "firmSlug": "take-profit-trader",
+  "method": "Plain HTTP GET of https://takeprofittrader.com/ (server HTML + Angular i18n strings), https://takeprofittrader.com/accounts/api/subscriptions (JSON) and the public Zendesk Help Center API on 2026-11-06; no account or checkout. Evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tpt/",
+  "products": [
+    {
+      "productSlug": "the-test",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions"
+    }
+  ],
+  "sources": [
+    {
+      "sourceUrl": "https://takeprofittrader.com/accounts/api/subscriptions",
+      "quote": "{\"id\":2,\"name\":\"$ 25k\",\"price\":150,\"discountPrice\":null,\"balance\":25000,\"profitTarget\":1500,\"maxPositionSize\":3,\"dailyLossLimit\":500,\"weeklyMaxLoss\":600,\"eodTrailingDrawdown\":1500"
+    },
+    {
+      "sourceUrl": "https://takeprofittrader.com/",
+      "quote": "Early Black Friday Sale: Get 50% Off For Life + Never Pay An Activation Fee!"
+    }
+  ],
+  "notReRead": [
+    "dailyLossUsd homepage card quotes (JavaScript-rendered)"
+  ]
+}

@@ -70,7 +70,8 @@
       "2026-10-19: the FAQ lists paid add-ons for 2-Phase and 1-Phase: Weekly Scholarship Request (+20%, request after 7 traded days) and 90% Bonus Performance (+20%); 2-Phase only: Daily Drawdown 6% (+15%) and Max Drawdown 12% (+25%). The store also sells a 'Bi Weekly Payouts (15%)' add-on not described in the FAQ.",
       "Reward processing: FAQ states an average of about 8 hours and up to 48 business hours for review and payment.",
       "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
-      "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product."
+      "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product.",
+      "6 November 2026 news check: FAQ (https://cryptofundtrader.com/faq/) still says \"Can I trade news? Yes. News trading is allowed.\" and restricts news only \"In the Ascend Evaluation\". rules.news unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -134,6 +135,8 @@
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
     "sourceCapturedAt": "2026-10-19",
+    "soldToNewBuyers": false,
+    "soldToNewBuyersCheckedAt": "2026-10-20",
     "notes": [
       "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
       "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
@@ -142,7 +145,8 @@
       "The current FAQ confirms Ascend availability, its Phase 2 scholarship ticket, no minimum evaluation days, and product-specific copy/news restrictions. No independent payout verification.",
       "2026-10-19: Terms 5.6.5 still lists $39 / $78 / $195 / $390 / $780 / $1,560. The homepage also embeds six Ascend store items at $45 / $90 / $225 / $450 / $899 / $1,798, but the public Store API reports every one of them as is_purchasable=false. Current purchasability of Ascend is unconfirmed; do not present $39 as the cheapest buyable entry.",
       "Capture provenance and unresolved conflicts are held in the internal 2026-10-19 CFT capture (not published).",
-      "NOT PURCHASABLE (2026-10-20): prices set to null the way discontinued products are handled (cf. My Funded Futures Flex). CFT public Store API, checked 2026-10-20 (https://cryptofundtrader.com/wp-json/wc/store/v1/products/<id>): all six Ascend items 162495/162500/162504/162450/162484/162490 (\"$5.000 Ascend Evaluation\" ... \"$200.000 Ascend Evaluation\") return \"is_purchasable\": false (store prices 45/90/225/450/899/1798 USD). Terms 5.6.5 still publish the fee ladder $5K $39, $10K $78, $25K $195, $50K $390, $100K $780, $200K $1560 (https://cryptofundtrader.com/terms-and-conditions/); restore those prices only if checkout offers Ascend again. Re-verified 2026-10-20 12:49 Riga: all six items still \"is_purchasable\": false, and Terms 5.6.5 re-read with the same ladder; sourceCapturedAt deliberately stays 2026-10-19 while the cft-ascend-break-price-disagreement-2026-10-06 source-conflict watch is open (conflict observations do not renew product verification). Evidence held in the internal 2026-10-20 Ascend store recheck (not published)."
+      "NOT PURCHASABLE (2026-10-20): prices set to null the way discontinued products are handled (cf. My Funded Futures Flex). CFT public Store API, checked 2026-10-20 (https://cryptofundtrader.com/wp-json/wc/store/v1/products/<id>): all six Ascend items 162495/162500/162504/162450/162484/162490 (\"$5.000 Ascend Evaluation\" ... \"$200.000 Ascend Evaluation\") return \"is_purchasable\": false (store prices 45/90/225/450/899/1798 USD). Terms 5.6.5 still publish the fee ladder $5K $39, $10K $78, $25K $195, $50K $390, $100K $780, $200K $1560 (https://cryptofundtrader.com/terms-and-conditions/); restore those prices only if checkout offers Ascend again. Re-verified 2026-10-20 12:49 Riga: all six items still \"is_purchasable\": false, and Terms 5.6.5 re-read with the same ladder; sourceCapturedAt deliberately stays 2026-10-19 while the cft-ascend-break-price-disagreement-2026-10-06 source-conflict watch is open (conflict observations do not renew product verification). Evidence held in the internal 2026-10-20 Ascend store recheck (not published).",
+      "6 November 2026 news check: FAQ (https://cryptofundtrader.com/faq/) still says \"Can I trade news? Yes. News trading is allowed.\" generally, and still restricts Ascend: \"In the Ascend Evaluation, you cannot open new trades or increase your risk during high-impact news events or market openings. This restriction applies from 2 minutes before until 2 minutes after the event.\" rules.news remains restricted; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -215,7 +219,8 @@
       "2026-10-19: the FAQ lists paid add-ons for 2-Phase and 1-Phase: Weekly Scholarship Request (+20%, request after 7 traded days) and 90% Bonus Performance (+20%); 2-Phase only: Daily Drawdown 6% (+15%) and Max Drawdown 12% (+25%). The store also sells a 'Bi Weekly Payouts (15%)' add-on not described in the FAQ.",
       "Reward processing: FAQ states an average of about 8 hours and up to 48 business hours for review and payment.",
       "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
-      "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product."
+      "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product.",
+      "6 November 2026 news check: FAQ (https://cryptofundtrader.com/faq/) still says \"Can I trade news? Yes. News trading is allowed.\" and restricts news only \"In the Ascend Evaluation\". rules.news unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -272,7 +277,8 @@
       "Only the 4% daily and 6% overall percentages are confirmed; drawdownType remains null because its exact basis was not established. Numeric first-payout days/frequency are null to avoid ranking a conditional 10%-profit request as immediate unconditional payment.",
       "Rechecked 2026-10-20 on cryptofundtrader.com (homepage, FAQ, Terms, Break page, get-started, refund policy and last-updates FAQ): every 2026-10-19 rule, payout and country quote found again, and all 18 purchasable tier prices unchanged.",
       "2026-10-20: FAQ (https://cryptofundtrader.com/faq/): \"The Consistency Rule applies only to Break Final Stage accounts.\" So consistencyRuleApplies=false on this product.",
-      "Low-drawdown gap audit 2 November 2026: homepage Instant tab still prints \"Maximum daily loss 4% Maximum overall loss 6%\"; FAQ still says trailing applies only to 1-Phase and Break. drawdownType stays null per Instant floor-basis rule (do not invent static vs trailing from \"overall\" alone). Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
+      "Low-drawdown gap audit 2 November 2026: homepage Instant tab still prints \"Maximum daily loss 4% Maximum overall loss 6%\"; FAQ still says trailing applies only to 1-Phase and Break. drawdownType stays null per Instant floor-basis rule (do not invent static vs trailing from \"overall\" alone). Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json",
+      "6 November 2026 news check: FAQ (https://cryptofundtrader.com/faq/) still says \"Can I trade news? Yes. News trading is allowed.\" and restricts news only \"In the Ascend Evaluation\". rules.news unchanged; sourceCapturedAt not renewed (news/payout re-read only)."
     ]
   },
   {
@@ -337,6 +343,8 @@
     "assetClass": "crypto",
     "sourceUrl": "https://cryptofundtrader.com/break-challenge/",
     "sourceCapturedAt": "2026-10-19",
+    "soldToNewBuyers": false,
+    "soldToNewBuyersCheckedAt": "2026-11-06",
     "notes": [
       "All trading is described as simulated. Product prices do not establish country eligibility, platform compatibility, or actual reward receipt.",
       "No fee-on-pass refund was verified. The refund policy concerns withdrawal within 14 days before trading, not a pass refund.",
@@ -350,7 +358,9 @@
       "2026-10-20 availability: Store API items 357765/357770/357774 ($25K/$50K/$100K Break Evaluation, $70/$140/$200) and activation items 370819/370826/370828 ($138/$198/$328) are is_purchasable=true and in stock; the homepage items 373833/373838/373842 ($70/$139/$199) are is_purchasable=false. The Break page shows 'LIMITED TIME ONLY' and its first product block reads 'EVALUATION - SOLD OUT - $ 58.00' (a 2-Phase $5K block); the homepage tab label reads 'Break LAST DAY'. Break may be withdrawn soon; recheck before publishing.",
       "Break sourceCapturedAt deliberately stays 2026-10-19: the cft-ascend-break-price-disagreement-2026-10-06 source-conflict watch is still unresolved (homepage $199 vs Terms/store $200), and conflict observations must not renew product verification (scripts/test-watch-evidence.mjs). The 2026-10-20 reads above are recorded in the capture file only.",
       "2026-10-30 availability (UNVERIFIED): Store API items 357765/357770/357774 ($25K/$50K/$100K Break Evaluation, $70/$140/$200) are now is_purchasable=false (in stock, prices unchanged), and the homepage items 373833/373838/373842 stay is_purchasable=false; the activation items 370819/370826/370828 remain purchasable. The Break page still reads 'LIMITED TIME ONLY' and 'Pay only when you pass $328' but shows no entry-fee buy block. Break may have been withdrawn from sale; recheck before publishing. Prices and sourceCapturedAt are not changed.",
-      "Low-drawdown gap audit 2 November 2026: Break page still lists Trailing drawdown in dollars ($1,000 / $2,000 / $3,000) and \"No Daily Loss Limit\", so maxLossPct and dailyLossPct stay null with maxLossUsd on the tiers. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json"
+      "Low-drawdown gap audit 2 November 2026: Break page still lists Trailing drawdown in dollars ($1,000 / $2,000 / $3,000) and \"No Daily Loss Limit\", so maxLossPct and dailyLossPct stay null with maxLossUsd on the tiers. Capture: content/data/challenges/_captures/low-drawdown-gap-2026-11-02.json",
+      "NOT SOLD TO NEW BUYERS (6 November 2026). The CFT public Store API (https://cryptofundtrader.com/wp-json/wc/store/v1/products/<id>) returns \"is_purchasable\": false for all Break evaluation items: 357765/357770/357774 (\"$25.000 Break Evaluation\" ... \"$100.000 Break Evaluation\", $70/$140/$200) and 373833/373838/373842 ($70/$139/$199). Every variation embedded in https://cryptofundtrader.com/break-challenge/ carries \"is_purchasable\":false, and no Break evaluation appears in the public product listing. Only the Break Activation Fee items 370819/370826/370828 ($138/$198/$328), which apply after passing, remain purchasable. The Break page still reads \"LIMITED TIME ONLY\" and the homepage tab still reads \"Break LAST DAY\". Rules, 80% split and on-demand payouts below describe existing Break accounts; the 70/140/200 USD fees are kept only because Terms 5.6.6 still list them; do not present Break as a current purchase option unless checkout offers it again.",
+      "6 November 2026 news check: FAQ (https://cryptofundtrader.com/faq/) still says \"Can I trade news? Yes. News trading is allowed.\" and restricts news only \"In the Ascend Evaluation\"; the Break page still lists \"Live Stage Profit Split: 80%\" and \"Payouts on-demand Yes\". rules.news, profitSplitPct and payoutFirstDays are unchanged for existing accounts."
     ]
   }
 ]

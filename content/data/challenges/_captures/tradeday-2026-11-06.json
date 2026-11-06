@@ -1,0 +1,68 @@
+{
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-06",
+  "timezone": "Europe/Riga",
+  "firmSlug": "tradeday",
+  "method": "Standard HTTP GET (curl) of https://www.tradeday.com/ server-rendered HTML and public Freshdesk help articles on 2026-11-06; no account or checkout. Raw evidence: /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeday/",
+  "products": [
+    {
+      "productSlug": "quick-pay-intraday",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://www.tradeday.com/",
+      "listPricesUsdBySizeK": {
+        "25": 100,
+        "50": 131,
+        "100": 240,
+        "150": 360
+      }
+    },
+    {
+      "productSlug": "quick-pay-end-of-day",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://www.tradeday.com/",
+      "listPricesUsdBySizeK": {
+        "25": 120,
+        "50": 175,
+        "100": 285,
+        "150": 400
+      }
+    },
+    {
+      "productSlug": "fast-pass-end-of-day",
+      "sourceCapturedAt": "2026-11-06",
+      "sourceUrl": "https://www.tradeday.com/",
+      "listPricesUsdBySizeK": {
+        "25": 130,
+        "50": 189,
+        "100": 350,
+        "150": 530
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceUrl": "https://www.tradeday.com/",
+      "quote": "Now up to 55% OFF! Accounts from just $45!"
+    },
+    {
+      "sourceUrl": "https://www.tradeday.com/",
+      "quote": "USE CODE \"TDNEW\""
+    },
+    {
+      "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+      "quote": "Trailing max drawdown $1,000 $2,000 $3,000 $4,500"
+    },
+    {
+      "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+      "quote": "Fast Pass Evaluations ... Maximum Drawdown $1,000 $2,000 $3,000 $4,500"
+    }
+  ],
+  "conflictsUnchanged": "Help article 103000304248 ('Modified on Tue, 1 Sep') still lists older prices (Quick Pay Intraday $100/$125/$230/$350, EOD $120/$175/$285/$395, Fast Pass $130/$180/$320/$480); live homepage list prices kept, as on 2026-10-20.",
+  "pageDates": {
+    "103000008813 platforms": "Modified on Wed, 4 Nov (platform list unchanged)",
+    "103000405228": "Modified on Wed, 9 Sep",
+    "103000404096": "Modified on Tue, 8 Sep",
+    "103000081072": "Modified on Sat, 22 Feb, 2025",
+    "103000018874": "Modified on Mon, 27 Apr"
+  }
+}
