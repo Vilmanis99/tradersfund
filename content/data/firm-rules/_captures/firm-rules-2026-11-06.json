@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+.",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -9,10 +9,6 @@
     "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
     "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
     "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-    "https://maventrading.com/",
-    "https://maventrading.com/faqs",
-    "https://maventrading.com/pricing",
-    "https://maventrading.com/terms-and-conditions",
     "https://takeprofittrader.com/",
     "https://takeprofittrader.com/accounts/api/subscriptions",
     "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15170265979165-Rule-3-Do-Not-Hit-End-Of-Day-EOD-Maximum-Trailing-Drawdown",
@@ -30,64 +26,8 @@
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
   ],
-  "pageDates": {
-    "https://maventrading.com/terms-and-conditions": "Version 2026.3 | Effective date and Last Amended 5 November 2026",
-    "https://maventrading.com/faqs": "no page date",
-    "https://maventrading.com/pricing": "no page date",
-    "https://maventrading.com/": "no page date"
-  },
+  "pageDates": {},
   "firms": {
-    "maven": {
-      "payoutFrequency": {
-        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step and OMO 2-Step; on demand on Instant, Buy Now, Pay Later and Prediction Markets once their gates are met; Mini one single payout within its 24-hour window",
-        "byProduct": {
-          "standard-1-step": "bi-weekly",
-          "standard-2-step": "bi-weekly",
-          "standard-3-step": "bi-weekly",
-          "instant": "on-demand",
-          "mini": null,
-          "buy-now-pay-later": "on-demand",
-          "omo-2-step": "bi-weekly",
-          "predictions-1-step": "on-demand",
-          "predictions-elite-1-step": "on-demand"
-        },
-        "evidence": [
-          {
-            "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period."
-          },
-          {
-            "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "You can request a payout as soon as you have enough profit to withdraw; there is no waiting period."
-          },
-          {
-            "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "BNPL and Instant are on demand subject to their conditions."
-          },
-          {
-            "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "10.3 For Standard plans and OMO, the first request becomes eligible 10 business days after the first trade on the Simulated Funded Account."
-          }
-        ]
-      },
-      "profitSplitPct": {
-        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on Standard 1/2/3-Step, OMO 2-Step, Instant and Mini; Buy Now, Pay Later has no add-ons)",
-        "evidence": [
-          {
-            "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand"
-          },
-          {
-            "sourceUrl": "https://maventrading.com/faqs",
-            "quote": "Buy Now Pay Later has no add-ons."
-          }
-        ]
-      }
-    },
     "tradeday": {
       "drawdownType": {
         "value": null,
