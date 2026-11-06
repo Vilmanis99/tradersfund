@@ -658,6 +658,39 @@ ${body}
   }
 }
 
+// B2: news-trading product filter — rules.news === true only (restricted must not leak via firm flag).
+{
+  const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'news-trading')
+  const { ranked } = rankBestFor(useCase, 'en')
+  for (const row of ranked) {
+    for (const product of row.products) {
+      assert.equal(
+        product.rules?.news,
+        true,
+        `news-trading products must have rules.news===true (got ${product.rules?.news} on ${row.slug}/${product.productSlug})`,
+      )
+    }
+  }
+  const fxify = ranked.find(r => r.slug === 'fxify')
+  assert.ok(fxify, 'FXIFY in news-trading')
+  assert.ok(!fxify.products.some(p => p.productSlug === 'lightning-challenge'), 'Lightning restricted must not qualify')
+  assert.ok(fxify.products.some(p => p.productSlug === 'two-phase-pro'), 'Two Phase Pro remains')
+  assert.equal(fxify.fieldValues.payoutFirstDays, '10', 'FXIFY first payout from Two Phase Pro, not Lightning 7d')
+  const cti = ranked.find(r => r.slug === 'city-traders-imperium')
+  assert.ok(cti)
+  assert.equal(cti.fieldValues.profitSplitPct, '80')
+  assert.equal(cti.fieldValues.payoutFirstDays, '5')
+  const e8 = ranked.find(r => r.slug === 'e8-markets')
+  assert.ok(e8)
+  assert.ok(e8.products.some(p => p.productSlug === 'e8-signature'))
+  assert.equal(e8.fieldValues.payoutFirstDays, '3')
+  console.log('  B2 news-trading product news===true filter', {
+    fxifyDays: fxify.fieldValues.payoutFirstDays,
+    ctiDays: cti.fieldValues.payoutFirstDays,
+    e8Days: e8.fieldValues.payoutFirstDays,
+  })
+}
+
 // Sort rules present for every id (base RU copy has no CTA overlay — that is data-driven)
 for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(BEST_FOR_SORT_RULES[id]?.en)
