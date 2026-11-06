@@ -172,6 +172,46 @@ description: 'RU meta from frontmatter for news trading page.'
   }
 }
 
+// low-drawdown (EN-only): verdict + ≥5 ranked %-fields → indexable + in sitemap paths; no RU twin (fixture root only)
+{
+  const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'low-drawdown')
+  const { ranked } = rankBestFor(useCase, 'en')
+  const rankedFields = useCase.fields.filter(key => key !== 'maxLossUsd' && key !== 'dailyLossUsd')
+  const { count } = countDifferingFields(ranked, rankedFields)
+  const dataOk = ranked.length >= BEST_FOR_MIN_FIRMS && count >= BEST_FOR_MIN_DIFF_FIELDS
+  const noVerdict = buildBestForPageModel('low-drawdown', 'en', new Date(), emptyVerdictRoot)
+  assert.equal(noVerdict.indexable, false)
+  assert.equal(noVerdict.differingFieldCount, count, 'USD cap columns must not count toward the low-drawdown gate')
+  assert.ok(!noVerdict.differingFields.includes('maxLossUsd') && !noVerdict.differingFields.includes('dailyLossUsd'))
+  const body = Array.from({ length: 130 }, (_, i) => `word${i}`).join(' ')
+  const fixtureRoot = makeVerdictFixtureRoot({
+    'low-drawdown.md': `---
+slug: low-drawdown
+lang: en
+checkedAt: '2026-11-02'
+author: Test Writer
+sources:
+  - title: Example
+    url: https://example.com/rules
+---
+
+${body}
+`,
+  })
+  try {
+    const en = buildBestForPageModel('low-drawdown', 'en', new Date(), fixtureRoot)
+    assert.equal(en.hasVerdict, true)
+    assert.equal(en.indexable, dataOk, `low-drawdown indexable must equal data gate (firms=${ranked.length} diffs=${count}): ${en.reasons}`)
+    assert.equal(indexableBestForPaths(new Date(), fixtureRoot).includes('/best-prop-firms-for-low-drawdown'), dataOk)
+    assert.equal(en.twinPath, null, 'low-drawdown has no RU slug')
+    assert.equal(buildBestForPageModel('low-drawdown', 'ru', new Date(), fixtureRoot), null)
+    assert.equal(bestForRoutePair('/best-prop-firms-for-low-drawdown', new Date(), fixtureRoot), undefined, 'EN-only: no RU alternate')
+    console.log('  low-drawdown EN gate', { firms: ranked.length, diffs: count, indexable: en.indexable })
+  } finally {
+    fs.rmSync(fixtureRoot, { recursive: true, force: true })
+  }
+}
+
 // Frontmatter title on beginners RU path shape (fixture root only)
 {
   const body = Array.from({ length: 130 }, (_, i) => `word${i}`).join(' ')
