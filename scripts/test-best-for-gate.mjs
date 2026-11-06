@@ -545,6 +545,55 @@ ${body}
   }
 }
 
+// Track A: low-drawdown USD footnote drops soldToNewBuyers===false; numbered ranking untouched.
+{
+  const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'low-drawdown')
+  const live = rankBestFor(useCase, 'en')
+  const cftPath = path.join(process.cwd(), 'content/data/challenges/crypto-fund-trader.json')
+  const original = fs.readFileSync(cftPath, 'utf8')
+  try {
+    const products = JSON.parse(original)
+    const breakProduct = products.find(p => p.productSlug === 'break')
+    assert.ok(breakProduct, 'Break Challenge present')
+    breakProduct.soldToNewBuyers = false
+    breakProduct.soldToNewBuyersCheckedAt = '2026-11-06'
+    fs.writeFileSync(cftPath, `${JSON.stringify(products, null, 2)}\n`)
+    const overlaid = rankBestFor(useCase, 'en')
+    assert.deepEqual(
+      overlaid.ranked.map(r => ({
+        slug: r.slug,
+        productSlugs: r.products.map(p => p.productSlug),
+        fieldValues: r.fieldValues,
+        sortKeys: r.sortKeys,
+      })),
+      live.ranked.map(r => ({
+        slug: r.slug,
+        productSlugs: r.products.map(p => p.productSlug),
+        fieldValues: r.fieldValues,
+        sortKeys: r.sortKeys,
+      })),
+      'Track A must not change numbered low-drawdown ranking',
+    )
+    assert.ok(!overlaid.unrankedUsd.some(r => r.slug === 'crypto-fund-trader'), 'CFT Break USD card gone')
+    assert.ok(
+      overlaid.unrankedUsd.every(row => row.products.every(p => p.soldToNewBuyers !== false)),
+      'unrankedUsd must not include soldToNewBuyers===false products',
+    )
+    // Absent field still qualifies on live tree
+    assert.ok(
+      live.unrankedUsd.some(r => r.slug === 'crypto-fund-trader' && r.products.some(p => p.productSlug === 'break')),
+      'without the field, Break still appears in unrankedUsd',
+    )
+    console.log('  Track A unsold USD footnote filter', {
+      ranked: overlaid.ranked.length,
+      unrankedUsd: overlaid.unrankedUsd.length,
+      cftRank: overlaid.ranked.findIndex(r => r.slug === 'crypto-fund-trader') + 1,
+    })
+  } finally {
+    fs.writeFileSync(cftPath, original)
+  }
+}
+
 // Sort rules present for every id (base RU copy has no CTA overlay — that is data-driven)
 for (const id of Object.keys(BEST_FOR_SLUGS)) {
   assert.ok(BEST_FOR_SORT_RULES[id]?.en)

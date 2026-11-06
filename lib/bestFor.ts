@@ -1411,7 +1411,11 @@ export function rankBestFor(
 
     if (useCase.id === 'low-drawdown') {
       const pctProducts = qualified.filter(product => productDrawdownBasis(product) === 'pct')
-      const usdProducts = qualified.filter(product => productDrawdownBasis(product) === 'usd')
+      // USD footnote only: omit products Tracker marks soldToNewBuyers===false.
+      // Leave pctProducts / primaryProducts / other use cases untouched.
+      const usdProducts = qualified.filter(
+        product => productDrawdownBasis(product) === 'usd' && product.soldToNewBuyers !== false,
+      )
       const pushRow = (source: Challenge[], basis: 'pct' | 'usd', bucket: BestForRankedFirm[]) => {
         if (!source.length) return
         const fieldValues: Partial<Record<BestForFieldKey, string | null>> = {}

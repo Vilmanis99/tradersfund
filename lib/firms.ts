@@ -509,6 +509,14 @@ export interface Challenge {
   refundAfterPayouts?: number
   /** Free-form notes — gotchas, fine print, scaling specifics, promo codes. */
   notes?: string[]
+  /**
+   * Whether checkout still sells this product to new buyers.
+   * Absent or true = current purchase option (eligible). `false` = not offered
+   * to new buyers. Track A only filters this out of the low-drawdown USD footnote.
+   */
+  soldToNewBuyers?: boolean
+  /** ISO date Tracker set `soldToNewBuyers` (e.g. "2026-11-06"). Ranker ignores it. */
+  soldToNewBuyersCheckedAt?: string
 }
 
 /** Denominator a consistency % is measured against, per the firm's own wording. */
