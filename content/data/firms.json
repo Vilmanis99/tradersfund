@@ -7450,8 +7450,8 @@
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/tradeify-2026-11-06.json",
       "drawdownType": {
         "value": "eod-trailing",
         "summary": "eod-trailing",
@@ -7466,24 +7466,24 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
             "quote": "The GROWTH™ evaluation uses an End of Day Trailing Max Drawdown, which is based on the account balance at the end of the trading day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
             "quote": "End of Day Drawdown: Your drawdown is calculated at session close, so intraday swings do not move the limit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
             "quote": "Lightning Funded Accounts use an End of Day Trailing Max Drawdown, which is calculated and based on the account balance at the end of the trading day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7503,7 +7503,7 @@
       "consistencyPct": {
         "value": null,
         "summary": "Product-specific: 35% on Growth Evaluation; 40% on Select Evaluation → Flex, Select Evaluation → Daily; 20% on Lightning Funded",
-        "note": "Official help articles contradict each other for Growth: the Growth article says there is no consistency rule, the pricing reference says 35%. The conservative 35% is kept. Sources: https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts and https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+        "note": "Growth: both official help articles now agree there is no consistency rule during the evaluation; the pricing reference adds \"35% on funded payouts\", so the stored 35% is the Sim Funded payout gate. Sources: https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts and https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference (checked 6 November 2026)",
         "byProduct": {
           "growth-evaluation": 35,
           "select-flex": 40,
@@ -7513,18 +7513,18 @@
         "evidence": [
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
-            "quote": "Growth Evaluation — ... 35% consistency rule. Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%).",
+            "quote": "Growth Evaluation — ... No consistency rule during the evaluation (35% on funded payouts). Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%).",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
             "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7543,8 +7543,8 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
             "quote": "Sim Funded accounts (Growth, Select, Lightning): 90% to trader / 10% to Tradeify",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7563,16 +7563,16 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
             "quote": "Payout Frequency: Every 5 winning days ... Payout Frequency: Daily eligibility",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
             "quote": "Lightning Funded traders can now instantly request payouts directly from the dashboard once the consistency rule and profit objective are met.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7591,16 +7591,16 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
             "quote": "We do not have any rules against or guidelines around trading news events.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
             "quote": "We do not have any rules against or guidelines around trading news events.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/tradeify-2026-10-14.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "growth-evaluation"
           }
         ]
@@ -7614,8 +7614,8 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
             "quote": "Q: Can I hold positions over the weekend? A: No. All positions must be closed before Friday's market close (4:45 PM ET).",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7643,32 +7643,32 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
             "quote": "GROWTH™ evaluation DOES have a Daily Loss Limit (soft breach): $600 (25K), $1,250 (50K), $2,500 (100K), $3,750 (150K).",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
             "quote": "SELECT Evaluation does NOT have a daily loss limit during the evaluation phase.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
             "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
             "quote": "Daily Loss Limit: Yes ($500 / $1,000 / $1,250 / $1,750)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7707,24 +7707,24 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
             "quote": "Account Size Profit Target Daily Loss Limit (Soft Breach) Trailing Max Drawdown ... $25k $1,500 $600 $1,000 ... $50k $3,000 $1,250 $2,000 ... $100k $6,000 $2,500 $3,500 ... $150k $9,000 $3,750 $5,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
             "quote": "25K ... Maximum Drawdown: $1,000 (End of Day) ... 50K ... $2,000 ... 100K ... $3,000 ... 150K ... $4,500 (End of Day)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
             "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -7747,8 +7747,8 @@
             "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
             "quote": "At checkout, you select one of three brokers: Tradovate, Rithmic, or WealthCharts. ... Tradovate gives access to NinjaTrader and TradingView. Rithmic gives access to Tradesea, Quantower, Sierra Chart, and R|Trader. WealthCharts is its own broker and platform",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]

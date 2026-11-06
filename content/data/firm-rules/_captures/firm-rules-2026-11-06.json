@@ -1,7 +1,14 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/.",
+  "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles.",
   "pagesRead": [
+    "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+    "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+    "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+    "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+    "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+    "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
     "https://maventrading.com/",
     "https://maventrading.com/faqs",
     "https://maventrading.com/pricing",
@@ -282,6 +289,233 @@
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
             "quote": "CQG Platforms Tradovate (free license available) NinjaTrader (free license available) TradingView & Jigsaw (You will need your own license for each) Rithmic Platforms ... R|Trader Pro (free license available) ATAS (free license available) Quantower - Rithmic Motivewave BookMap Jigsaw - Rithmic Sierra Chart EdgeProX Finamark Volfix WealthCharts Multicharts Overcharts"
+          }
+        ]
+      }
+    },
+    "tradeify": {
+      "drawdownType": {
+        "value": "eod-trailing",
+        "summary": "eod-trailing",
+        "byProduct": {
+          "growth-evaluation": "eod-trailing",
+          "select-flex": "eod-trailing",
+          "select-daily": "eod-trailing",
+          "lightning-funded": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "The GROWTH™ evaluation uses an End of Day Trailing Max Drawdown, which is based on the account balance at the end of the trading day."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "End of Day Drawdown: Your drawdown is calculated at session close, so intraday swings do not move the limit."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded Accounts use an End of Day Trailing Max Drawdown, which is calculated and based on the account balance at the end of the trading day."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 35% on Growth Evaluation; 40% on Select Evaluation → Flex, Select Evaluation → Daily; 20% on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": 35,
+          "select-flex": 40,
+          "select-daily": 40,
+          "lightning-funded": 20
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Growth Evaluation — ... No consistency rule during the evaluation (35% on funded payouts). Select Evaluation — ... 40% consistency rule during evaluation only ... Lightning Funded — ... Progressive consistency rule (20% → 25% → 30%)."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "A: No. GROWTH™ evaluation does NOT have a consistency requirement."
+          }
+        ],
+        "note": "Growth: both official help articles now agree there is no consistency rule during the evaluation; the pricing reference adds \"35% on funded payouts\", so the stored 35% is the Sim Funded payout gate. Sources: https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts and https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference (checked 6 November 2026)"
+      },
+      "profitSplitPct": {
+        "value": 90,
+        "summary": "90%",
+        "byProduct": {
+          "growth-evaluation": 90,
+          "select-flex": 90,
+          "select-daily": 90,
+          "lightning-funded": 90
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "Sim Funded accounts (Growth, Select, Lightning): 90% to trader / 10% to Tradeify"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "Product-specific: every 5 winning days on Select Flex; daily eligibility on Select Daily; on request once consistency and profit objective are met on Lightning Funded; Growth not re-confirmed",
+        "byProduct": {
+          "growth-evaluation": "on-demand",
+          "select-flex": "on-demand",
+          "select-daily": "on-demand",
+          "lightning-funded": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Payout Frequency: Every 5 winning days ... Payout Frequency: Daily eligibility"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "Lightning Funded traders can now instantly request payouts directly from the dashboard once the consistency rule and profit objective are met."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": true,
+        "summary": "allowed",
+        "byProduct": {
+          "growth-evaluation": true,
+          "select-flex": true,
+          "select-daily": true,
+          "lightning-funded": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+            "quote": "We do not have any rules against or guidelines around trading news events."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
+            "quote": "We do not have any rules against or guidelines around trading news events."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
+            "quote": "Q: Can I hold positions over the weekend? A: No. All positions must be closed before Friday's market close (4:45 PM ET)."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "Product-specific: soft-breach $600 (25K) / $1,250 (50K) / $2,500 (100K) / $3,750 (150K) on Growth Evaluation; none during Select evaluation (Select Daily funded: $500 / $1,000 / $1,250 / $1,750); none (25K) / $1,250 (50K) / $2,500 (100K) / $3,000 (150K) on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": {
+            "25000": 600,
+            "50000": 1250,
+            "100000": 2500,
+            "150000": 3750
+          },
+          "select-flex": null,
+          "select-daily": null,
+          "lightning-funded": {
+            "50000": 1250,
+            "100000": 2500,
+            "150000": 3000
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "GROWTH™ evaluation DOES have a Daily Loss Limit (soft breach): $600 (25K), $1,250 (50K), $2,500 (100K), $3,750 (150K)."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "SELECT Evaluation does NOT have a daily loss limit during the evaluation phase."
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies",
+            "quote": "Daily Loss Limit: Yes ($500 / $1,000 / $1,250 / $1,750)"
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": null,
+        "summary": "Product-specific: $1,000 (25K) / $2,000 (50K) / $3,500 (100K) / $5,000 (150K) on Growth Evaluation; $1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K) on Select Evaluation → Flex, Select Evaluation → Daily; $1,000 (25K) / $2,000 (50K) / $4,000 (100K) / $5,250 (150K) on Lightning Funded",
+        "byProduct": {
+          "growth-evaluation": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3500,
+            "150000": 5000
+          },
+          "select-flex": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "select-daily": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "lightning-funded": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 4000,
+            "150000": 5250
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495915-growth-evaluation-accounts",
+            "quote": "Account Size Profit Target Daily Loss Limit (Soft Breach) Trailing Max Drawdown ... $25k $1,500 $600 $1,000 ... $50k $3,000 $1,250 $2,000 ... $100k $6,000 $2,500 $3,500 ... $150k $9,000 $3,750 $5,000"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/12853921-select-evaluation-accounts",
+            "quote": "25K ... Maximum Drawdown: $1,000 (End of Day) ... 50K ... $2,000 ... 100K ... $3,000 ... 150K ... $4,500 (End of Day)"
+          },
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/10495938-lightning-funded-accounts",
+            "quote": "$25k None None $1,000 ... $50k None $1,250 $2,000 ... $100k $2,500 $4,000 ... $150k $3,000 $5,250"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "TradingView",
+          "Tradesea",
+          "Quantower",
+          "Sierra Chart",
+          "R|Trader",
+          "WealthCharts"
+        ],
+        "summary": "Tradovate, NinjaTrader, TradingView, Tradesea, Quantower, Sierra Chart, R|Trader, WealthCharts",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
+            "quote": "At checkout, you select one of three brokers: Tradovate, Rithmic, or WealthCharts. ... Tradovate gives access to NinjaTrader and TradingView. Rithmic gives access to Tradesea, Quantower, Sierra Chart, and R|Trader. WealthCharts is its own broker and platform"
           }
         ]
       }

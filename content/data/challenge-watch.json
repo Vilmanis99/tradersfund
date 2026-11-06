@@ -273,9 +273,9 @@
     "kind": "price-watch",
     "status": "watch",
     "observedAt": "2026-07-28",
-    "lastCheckedAt": "2026-10-20",
+    "lastCheckedAt": "2026-11-06",
     "title": "Tradeify list prices and homepage promotions can diverge",
-    "summary": "The 14 September first-party refresh still maps 16 base purchases across Growth, Select and Lightning. Temporary homepage promotions and placeholder card values remain separate from the Pricing Reference; the current Select payout policy also splits Flex and Daily caps by whether the account was purchased before or after 1 September 2026.",
+    "summary": "The 6 November first-party refresh still maps 16 base purchases across Growth, Select and Lightning (plus a Select 300K at $570 that the comparison does not store). Temporary homepage promotions and placeholder card values remain separate from the Pricing Reference; the current Select payout policy also splits Flex and Daily caps by whether the account was purchased before or after 1 September 2026.",
     "traderImpact": "The comparison stores stable base purchase prices, not a temporary coupon, reset fee or purchase-date payout cap. Confirm the final discount, reset cost, account purchase date and applicable payout table in checkout and the account agreement.",
     "sourceUrls": [
       "https://help.tradeify.co/en/articles/14369021-tradeify-pricing-reference",
