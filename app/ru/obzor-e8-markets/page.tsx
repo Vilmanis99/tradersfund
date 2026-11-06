@@ -44,6 +44,7 @@ const CHECKED = '2026-11-02'
 const DATE_PUBLISHED = '2026-11-09'
 const ACCESS_CHECKED = '2026-11-02'
 const PRICES_CHECKED = '2026-11-02'
+const DISCOUNT_REREAD = '2026-11-06'
 const COUNTRIES_PAGE = '2026-10-01'
 const ONE_HELP = '2026-10-26'
 const PRO_HELP = '2026-09-23'
@@ -114,7 +115,7 @@ const faqs: RussianFaqItem[] = [
   },
   {
     q: 'Сколько стоит челлендж E8 Markets?',
-    a: `Лист-цены ${asOf(PRICES_CHECKED)}: E8 One — от ${usd(48)} ($5K) до ${usd(1_998)} ($500K); E8 Pro — от ${usd(32)} до ${usd(2_598)}. На $100K у One и Pro лист-цена ${usd(488)}. Цены одноразовые, без activation fee. Промокоды для читателей из РФ не печатаем: фирма в списке ограничений. E8 Signature Forex: на сайте не указано / продукт не отображается на ${ruDate(PRICES_CHECKED)}.`,
+    a: `Лист-цены ${asOf(PRICES_CHECKED)}: E8 One — от ${usd(48)} ($5K) до ${usd(1_998)} ($500K); E8 Pro — от ${usd(32)} до ${usd(2_598)}. На $100K у One и Pro лист-цена ${usd(488)}. Цены одноразовые, без activation fee. Для читателей из РФ промокод не предлагаем как призыв к регистрации: фирма в списке ограничений. Скидка перечитана ${ruDate(DISCOUNT_REREAD)}: на compare и странице E8 One видна 15% с кодом E8 на первый заказ (пример $100K E8 One: ${usd(488)} → ${usd(415)}); код может зависеть от региона, на кассе мы его не проверяли. E8 Signature Forex: на сайте не указано / продукт не отображается на ${ruDate(PRICES_CHECKED)}.`,
   },
   {
     q: 'Какие правила consistency у E8 One и Signature?',
@@ -359,11 +360,14 @@ export default function RussianE8MarketsReviewPage() {
         <section className="ru-section" id="programs">
           <div className="ru-shell">
             <h2>Программы и цены</h2>
-            <p className="ru-muted" data-russian-e8-prices={PRICES_CHECKED}>
+            <p className="ru-muted" data-russian-e8-prices={PRICES_CHECKED} data-russian-e8-discount-reread={DISCOUNT_REREAD}>
               Лист-цены в долларах США {asOf(PRICES_CHECKED)} — со страниц E8 One / E8 Pro, compare и справки «What is
               the custom account». Цены одноразовые, activation fee нет. Classic и Perpetuals у One и Pro в таблице
-              совпадают. Промокоды и sale-цены не печатаем: для читателей из РФ фирма в списке ограничений, а источники по
-              коду E8 расходятся — условия расходятся, уточните у поддержки.
+              совпадают. Sale-цены в таблицу не ставим: для читателей из РФ фирма в списке ограничений. Скидка
+              перечитана {ruDate(DISCOUNT_REREAD)}: на compare и странице E8 One видна 15% с кодом E8 на первый заказ
+              (пример $100K E8 One: {usd(488)} → {usd(415)}, экономия {usd(73)}); код может зависеть от региона, на кассе
+              мы его не проверяли. Страница discount-codes и Winter ARC показывают другие проценты и коды — условия
+              расходятся, уточните у поддержки.
             </p>
             <div className="ru-table-wrap" tabIndex={0} role="region" aria-label="Лист-цены E8 Markets">
               <table className="ru-table" data-russian-e8-price-table={PRICES_CHECKED}>
@@ -630,9 +634,11 @@ export default function RussianE8MarketsReviewPage() {
             </ul>
             <p data-russian-e8-gaps={CHECKED}>
               На сайте не указано ({asOf(CHECKED)}): цены и статус продажи E8 Signature Forex; план масштабирования;
-              доступ для Казахстана; checkout-цены нестандартных конфигураций. Условия расходятся: код E8 (%),
-              crypto-выплаты (help vs T&C), refunds (help vs T&C), сплит-опции Pro (страница vs custom-account). Мы не
-              регистрировались, не оплачивали челлендж и не получали выплату от E8 Markets.
+              доступ для Казахстана; checkout-цены нестандартных конфигураций. Условия расходятся: код E8 (на compare и
+              E8 One на {ruDate(DISCOUNT_REREAD)} — 15% на первый заказ; на других страницах фирмы — другие проценты и
+              коды; регион и касса не проверены), crypto-выплаты (help vs T&C), refunds (help vs T&C), сплит-опции Pro
+              (страница vs custom-account). Мы не регистрировались, не оплачивали челлендж и не получали выплату от
+              E8 Markets.
             </p>
             <div className="ru-notice" data-russian-risk-disclaimer="e8-markets-review">
               <strong>Риск.</strong> Торговля с плечом связана с высоким риском. Большинство участников не проходит оценку,
