@@ -6419,8 +6419,8 @@
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/tradeday-2026-10-14.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/tradeday-2026-11-06.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on Quick Pay - Intraday; eod-trailing on Quick Pay - End of Day, Fast Pass - End of Day",
@@ -6434,16 +6434,16 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "The Evaluation Quick Pay comes in four account sizes, and each is available with either an Intraday or End of Day trailing drawdown",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "The Trailing Maximum Drawdown (TMD) for all Funded Sim Quick Pay accounts are calculated intraday.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6473,16 +6473,16 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "Third, stay consistent: no single day can account for more than 30% of your total profits.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6500,24 +6500,24 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "There will be an 80/20 profit split.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6535,32 +6535,32 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
             "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "traders must meet the following conditions before requesting a payout and for subsequent payout requests.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
             "quote": "$25K Account: 5 days with at least $100 profit per day $50K Account: 5 days with at least $150 profit per day $100K Account: 5 days with at least $200 profit per day $150K Account: 5 days with at least $250 profit per day",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-26",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-26.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6578,8 +6578,8 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
             "quote": "TradeDay will auto-liquidate all open positions 2 minutes before TradeDay's tier 1 economic data releases, and open markets back up to trade 2 minutes after these releases.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6597,8 +6597,8 @@
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
             "quote": "Exit all positions 10 minutes before the close. No holding positions when the market closes.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6616,8 +6616,8 @@
             "sourceUrl": "https://tradeday.com/how-it-works",
             "quote": "ONE RULE.ONE WAY TO FAIL Maximum Drawdown Don’t exceed the maximum drawdown.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6653,18 +6653,18 @@
         "evidence": [
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
-            "quote": "| Trailing max drawdown | $1,000 | $2,000 | $3,000 | $4,500 |",
+            "quote": "Trailing max drawdown $1,000 $2,000 $3,000 $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
-            "quote": "Fast Pass Evaluations ... Maximum Drawdown | $1,000 | $2,000 | $3,000 | $4,500",
+            "quote": "Fast Pass Evaluations ... Maximum Drawdown $1,000 $2,000 $3,000 $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -6693,10 +6693,10 @@
         "evidence": [
           {
             "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
-            "quote": "CQG Platforms - Tradovate - NinjaTrader - TradingView & Jigsaw ... Rithmic Platforms ... R|Trader Pro - Quantower - Rithmic - ATAS - Motivewave - BookMap - Jigsaw - Rithmic - Sierra Chart - EdgeProX - Finamark - Volfix - WealthCharts - Multicharts - Overcharts",
+            "quote": "CQG Platforms Tradovate (free license available) NinjaTrader (free license available) TradingView & Jigsaw (You will need your own license for each) Rithmic Platforms ... R|Trader Pro (free license available) ATAS (free license available) Quantower - Rithmic Motivewave BookMap Jigsaw - Rithmic Sierra Chart EdgeProX Finamark Volfix WealthCharts Multicharts Overcharts",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]

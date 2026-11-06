@@ -3,9 +3,16 @@
   "accessNotes": "Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/.",
   "pagesRead": [
     "https://maventrading.com/",
-    "https://maventrading.com/pricing",
     "https://maventrading.com/faqs",
-    "https://maventrading.com/terms-and-conditions"
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/terms-and-conditions",
+    "https://tradeday.com/how-it-works",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
   ],
   "pageDates": {
     "https://maventrading.com/terms-and-conditions": "Version 2026.3 | Effective date and Last Amended 5 November 2026",
@@ -61,6 +68,220 @@
           {
             "sourceUrl": "https://maventrading.com/faqs",
             "quote": "Buy Now Pay Later has no add-ons."
+          }
+        ]
+      }
+    },
+    "tradeday": {
+      "drawdownType": {
+        "value": null,
+        "summary": "Product-specific: trailing on Quick Pay - Intraday; eod-trailing on Quick Pay - End of Day, Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": "trailing",
+          "quick-pay-end-of-day": "eod-trailing",
+          "fast-pass-end-of-day": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Evaluation Quick Pay comes in four account sizes, and each is available with either an Intraday or End of Day trailing drawdown"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "The Trailing Maximum Drawdown (TMD) for all Funded Sim Quick Pay accounts are calculated intraday."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": null,
+        "byProduct": null,
+        "evidence": []
+      },
+      "consistencyPct": {
+        "value": null,
+        "summary": "Product-specific: 30% on Quick Pay - Intraday, Quick Pay - End of Day; 45% on Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": 30,
+          "quick-pay-end-of-day": 30,
+          "fast-pass-end-of-day": 45
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Third, stay consistent: no single day can account for more than 30% of your total profits."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "For accounts opened on and after July 26 2026, accounts must satisfy the consistency objective: no single day can make up more than 45% of your total gross profits"
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": null,
+        "summary": "Product-specific: Quick Pay 50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live; Fast Pass 80/20",
+        "byProduct": {
+          "quick-pay-intraday": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
+          "quick-pay-end-of-day": "50/50 below $4,000 current profit, 80/20 above $4,000 (Funded Sim); 90/10 in Funded Live",
+          "fast-pass-end-of-day": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Profit splits on Funded Sim accounts are tiered based on current profit in the account. Below the $4,000 current profit level, payouts are split 50/50. Above $4,000, the split improves to 80/20 in your favour, but only if the payout still leaves more than $4,000 in current profit in the account after the withdrawal."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Withdrawals from Funded Live accounts are subject to a 90/10 profit split, with you keeping 90%."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "There will be an 80/20 profit split."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": null,
+        "summary": "Product-specific: on demand on Quick Pay - Intraday, Quick Pay - End of Day; after 5 profitable trading days per payout ($100-$250 minimum per day by account size) on Fast Pass - End of Day",
+        "byProduct": {
+          "quick-pay-intraday": "on-demand",
+          "quick-pay-end-of-day": "on-demand",
+          "fast-pass-end-of-day": "After 5 profitable trading days per payout ($100-$250 minimum per day by account size)"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "You can request your first payout after just one day of trading, and you can withdraw at any time as long as your account balance is positive."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "traders must meet the following conditions before requesting a payout and for subsequent payout requests."
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "The trader must complete a minimum of 5 individual profitable trading days (days do not need to be consecutive)"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
+            "quote": "$25K Account: 5 days with at least $100 profit per day $50K Account: 5 days with at least $150 profit per day $100K Account: 5 days with at least $200 profit per day $150K Account: 5 days with at least $250 profit per day"
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "quick-pay-intraday": "restricted",
+          "quick-pay-end-of-day": "restricted",
+          "fast-pass-end-of-day": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
+            "quote": "TradeDay will auto-liquidate all open positions 2 minutes before TradeDay's tier 1 economic data releases, and open markets back up to trade 2 minutes after these releases."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "value": false,
+        "summary": "not allowed",
+        "byProduct": {
+          "quick-pay-intraday": false,
+          "quick-pay-end-of-day": false,
+          "fast-pass-end-of-day": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000018874-what-is-the-permitted-trading-times-guideline-",
+            "quote": "Exit all positions 10 minutes before the close. No holding positions when the market closes."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "value": null,
+        "summary": "None (single rule: trailing maximum drawdown)",
+        "byProduct": {
+          "quick-pay-intraday": null,
+          "quick-pay-end-of-day": null,
+          "fast-pass-end-of-day": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.com/how-it-works",
+            "quote": "ONE RULE.ONE WAY TO FAIL Maximum Drawdown Don’t exceed the maximum drawdown."
+          }
+        ]
+      },
+      "maxLossUsd": {
+        "value": {
+          "25000": 1000,
+          "50000": 2000,
+          "100000": 3000,
+          "150000": 4500
+        },
+        "summary": "$1,000 (25K) / $2,000 (50K) / $3,000 (100K) / $4,500 (150K)",
+        "byProduct": {
+          "quick-pay-intraday": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "quick-pay-end-of-day": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          },
+          "fast-pass-end-of-day": {
+            "25000": 1000,
+            "50000": 2000,
+            "100000": 3000,
+            "150000": 4500
+          }
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+            "quote": "Trailing max drawdown $1,000 $2,000 $3,000 $4,500"
+          },
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
+            "quote": "Fast Pass Evaluations ... Maximum Drawdown $1,000 $2,000 $3,000 $4,500"
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "Tradovate",
+          "NinjaTrader",
+          "TradingView",
+          "Jigsaw",
+          "R|Trader Pro",
+          "Quantower",
+          "ATAS",
+          "MotiveWave",
+          "Bookmap",
+          "Sierra Chart",
+          "EdgeProX",
+          "Finamark",
+          "VolFix",
+          "WealthCharts",
+          "MultiCharts",
+          "Overcharts"
+        ],
+        "summary": "Tradovate, NinjaTrader, TradingView, Jigsaw, R|Trader Pro, Quantower, ATAS, MotiveWave, Bookmap, Sierra Chart, EdgeProX, Finamark, VolFix, WealthCharts, MultiCharts, Overcharts",
+        "byProduct": null,
+        "evidence": [
+          {
+            "sourceUrl": "https://tradeday.freshdesk.com/en/support/solutions/articles/103000008813-which-trading-platforms-does-tradeday-use-",
+            "quote": "CQG Platforms Tradovate (free license available) NinjaTrader (free license available) TradingView & Jigsaw (You will need your own license for each) Rithmic Platforms ... R|Trader Pro (free license available) ATAS (free license available) Quantower - Rithmic Motivewave BookMap Jigsaw - Rithmic Sierra Chart EdgeProX Finamark Volfix WealthCharts Multicharts Overcharts"
           }
         ]
       }
