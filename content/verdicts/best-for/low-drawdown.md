@@ -22,6 +22,10 @@ sources:
     url: 'https://myfundedfutures.com/plans/rapid-eod'
   - title: My Funded Futures Flex (legacy help; read 26 Oct 2026)
     url: 'https://help.myfundedfutures.com/en/articles/13521620-flex-plan-the-path-forward-legacy'
+  - title: E8 One (read 19 Oct 2026)
+    url: 'https://e8markets.com/e8-one'
+  - title: E8 Pro (read 19 Oct 2026)
+    url: 'https://e8markets.com/e8-pro'
   - title: BrightFunded 1-Step (read 20 Oct 2026)
     url: 'https://brightfunded.com/1-step'
   - title: Alpha Direct help article (read 23 Oct 2026)
@@ -39,4 +43,4 @@ A low published drawdown ceiling is not a comfort rule. It is less room to be wr
 
 Maven leads. Its Instant, Mini and Standard 3-Step cards publish a 3% maximum loss and a 2% daily loss (pricing page, read 27 October 2026). FXIFY Instant Funding Lite and Lightning follow at 4% / 3%. The5ers also ranks on a 4% maximum: Futures Day and Swing have no daily percentage on those pages, while its CFD cards such as Pro Growth publish a 3% daily. My Funded Futures Rapid EOD and Flex post 4% maximums with no daily percentage.
 
-BrightFunded's 1-Step lands tenth at 6% trailing and 3% daily (read 20 October 2026), not first. Trailing and static floors behave differently once equity moves — read the [balance-based vs equity-based drawdown](/blog/balance-based-drawdown-vs-equity-based-drawdown) guide and the [static drawdown](/prop-firms/static-drawdown) list before you pay. Pick these products only if you already size small risk units; a tighter ceiling cuts you first.
+E8 Markets ranks ninth on two different products: the 6% maximum comes from E8 One (4% daily on that product), and the 2.5% daily comes from E8 Pro (8% maximum on that product). No single E8 product has both numbers. BrightFunded's 1-Step lands tenth at 6% trailing and 3% daily (read 20 October 2026), not first. Trailing and static floors behave differently once equity moves — read the [balance-based vs equity-based drawdown](/blog/balance-based-drawdown-vs-equity-based-drawdown) guide and the [static drawdown](/prop-firms/static-drawdown) list before you pay. Pick these products only if you already size small risk units; a tighter ceiling cuts you first.
