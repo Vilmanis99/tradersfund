@@ -107,7 +107,11 @@
   },
   {
    "url": "https://tradersfundhub.com/blog/alpha-capital-review",
-   "languages": null
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/alpha-capital-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+    "x-default": "https://tradersfundhub.com/blog/alpha-capital-review"
+   }
   },
   {
    "url": "https://tradersfundhub.com/blog/apex-trader-funding-review",
@@ -1287,6 +1291,14 @@
     "en": "https://tradersfundhub.com/best-prop-firms-2026",
     "ru": "https://tradersfundhub.com/ru/luchshie-prop-firmy",
     "x-default": "https://tradersfundhub.com/best-prop-firms-2026"
+   }
+  },
+  {
+   "url": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+   "languages": {
+    "en": "https://tradersfundhub.com/blog/alpha-capital-review",
+    "ru": "https://tradersfundhub.com/ru/obzor-alpha-capital",
+    "x-default": "https://tradersfundhub.com/blog/alpha-capital-review"
    }
   },
   {
