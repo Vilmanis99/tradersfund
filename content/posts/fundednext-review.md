@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-10-20"
+modified: "2026-11-07"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -96,7 +96,7 @@ type: "post"
 
 <p><strong>Stellar 1-Step.</strong> The shortcut requires a 10% target over at least 2 trading days. Its 3% daily loss and 6% static maximum loss are substantially tighter: a $100K account breaches at $94,000 overall or after $3,000 of daily loss, even though the fee is $569.99 versus $549.99 for the 2-Step.</p>
 
-<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on standard plans (5 on the 90% on-demand option), a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
+<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on every payout option, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
 <p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> compares that captured absence with 15%–50% product rules.</p>
 
