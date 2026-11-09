@@ -14,7 +14,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/fundednext-vs-bright-funded': '2026-11-05',
   '/ru/fundednext-vs-fundingpips': '2026-11-05',
   '/ru/fundingpips-pravila': '2026-11-05',
-  '/ru/fundingpips-vs-bright-funded': '2026-11-05',
+  '/ru/fundingpips-vs-bright-funded': '2026-11-09',
   '/ru/kak-my-zarabatyvaem': '2026-11-04',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-11-05',
   '/ru/luchshie-kripto-prop-firmy': '2026-11-09',
