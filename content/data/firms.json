@@ -4751,8 +4751,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
             "quote": "Trading Maximum Position Size into Major News Events. Purposefully trading your full Maximum Position Size directly into a scheduled major news event.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4769,8 +4769,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
             "quote": "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4787,8 +4787,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
             "quote": "It's a simulated account with one rule and two objectives.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4817,16 +4817,16 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
             "quote": "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
             "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           },
           {
@@ -4851,8 +4851,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
             "quote": "Connect using the Topstep Dashboard by selecting TopstepX as your platform. ... Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
