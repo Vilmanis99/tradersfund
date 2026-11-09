@@ -31,9 +31,9 @@ sources:
     url: 'https://citytradersimperium.com/instant-funding/'
   - title: City Traders Imperium Direct Funding (read 6 Nov 2026)
     url: 'https://citytradersimperium.com/direct-funding/'
-  - title: E8 Signature Forex (read 2 Nov 2026)
+  - title: E8 Signature Forex (read 2 Nov 2026; title re-checked 9 Nov 2026)
     url: 'https://e8markets.com/e8-signature'
-  - title: E8 Signature Forex help (read 2 Nov 2026)
+  - title: E8 Signature Forex help (updated 8 Nov 2026; read 9 Nov 2026)
     url: 'https://help.e8markets.com/en/articles/11755943-e8-signature-forex'
   - title: E8 Pro — can I trade news (read 6 Nov 2026)
     url: 'https://help.e8markets.com/en/articles/9185497-can-i-trade-news'
@@ -50,4 +50,4 @@ Ranked by highest profit split, then fewest days to first payout, then A–Z —
 
 Tradeify and Lucid Trading lead at 90%. Tradeify's Lightning Funded publishes 0 days to first payout; LucidFlex publishes 5 days. Maven is third at 80% / on-demand (0 days) via Buy Now, Pay Later. Instant, Mini, BNPL and Prediction Markets allow news; Standard 1/2/3 keep a 2-minute Red Folder window — funded Standard profit in that window is removed without ending the account (challenge phase still ends it). OMO funded news profit is capped at 0.50% of balance (Maven Terms Version 2026.3, effective / last amended 5 November 2026). Prediction Markets no longer wait 10 business days.
 
-My Funded Futures Builder is next at 80% / 2 days. E8's 80% / 3 days is Signature Forex itself (news allowed); as of 2 November 2026 its live page still showed placeholder values and Classic Signature sale status was unclear. City Traders Imperium's 80% + 5 days is cross-product: 1-Step and 2-Step are 80% / 7 days; Instant Funding is 50% / 5 days and Direct Funding is 70% / 5 days — no single CTI product has both. FXIFY ranks on Two Phase Pro at 80% / 10 days. Crypto Fund Trader ranks tenth at 80% on Evaluation and Accelerated; Instant is 50%. None of those three publish a first-payout day. Break is not sold to new buyers as of 6 November 2026. BrightFunded and FTMO do not qualify.
+My Funded Futures Builder is next at 80% / 2 days. E8's 80% / 3 days is Signature Forex itself (news allowed); as of 2 November 2026 its live page still showed placeholder values and Classic Signature sale status was unclear. On 9 November 2026 that product page was still titled E8 Signature Forex; the help article, updated 8 November 2026, now files Signature under Legacy products with Available Markets: Futures only. City Traders Imperium's 80% + 5 days is cross-product: 1-Step and 2-Step are 80% / 7 days; Instant Funding is 50% / 5 days and Direct Funding is 70% / 5 days — no single CTI product has both. FXIFY ranks on Two Phase Pro at 80% / 10 days. Crypto Fund Trader ranks tenth at 80% on Evaluation and Accelerated; Instant is 50%. None of those three publish a first-payout day. Break is not sold to new buyers as of 6 November 2026. BrightFunded and FTMO do not qualify.
