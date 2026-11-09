@@ -3034,8 +3034,8 @@
     "discountCodeCapturedAt": "2026-10-30",
     "discountCodeNote": "Omo 2-Step challenges only: homepage 30 October 2026 still shows \"40% OFF with code OMO\" on Omo cards. Same page also shows a sitewide A/B banner arm \"Trade like a Diamond. 5% off with code\" DIAMOND (control) / ROCKET 10% (test) — not checkout-verified and not stored as the primary code. Primary public code remains OMO for Omo challenges.",
     "rules": {
-      "capturedAt": "2026-11-05",
-      "captureFile": "content/data/challenges/_captures/maven-2026-11-05.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/maven-2026-11-06.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Elite; Buy Now, Pay Later static in evaluation, trailing when funded (fixed at the initial balance after the first withdrawal)",
@@ -3215,10 +3215,10 @@
           },
           {
             "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
@@ -3290,7 +3290,7 @@
       },
       "profitSplitPct": {
         "value": null,
-        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on the forex products)",
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on Standard 1/2/3-Step, OMO 2-Step, Instant and Mini; Buy Now, Pay Later has no add-ons)",
         "byProduct": {
           "standard-1-step": 80,
           "standard-2-step": 80,
@@ -3321,10 +3321,10 @@
           },
           {
             "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
@@ -3342,12 +3342,20 @@
             "capturedAt": "2026-11-05",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets; on demand on Instant and Buy Now, Pay Later once their gates are met; Mini one single payout within its 24-hour window",
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step and OMO 2-Step; on demand on Instant, Buy Now, Pay Later and Prediction Markets once their gates are met; Mini one single payout within its 24-hour window",
         "byProduct": {
           "standard-1-step": "bi-weekly",
           "standard-2-step": "bi-weekly",
@@ -3356,8 +3364,8 @@
           "mini": null,
           "buy-now-pay-later": "on-demand",
           "omo-2-step": "bi-weekly",
-          "predictions-1-step": "bi-weekly",
-          "predictions-elite-1-step": "bi-weekly"
+          "predictions-1-step": "on-demand",
+          "predictions-elite-1-step": "on-demand"
         },
         "evidence": [
           {
@@ -3402,11 +3410,11 @@
           },
           {
             "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "S3.4 The Simulated Funded Account reward split is 70%, with payouts every 10 business days.",
+            "quote": "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
-            "productSlug": "predictions-1-step"
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },

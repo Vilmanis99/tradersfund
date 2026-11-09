@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL). CFT rules.platforms leftover refresh 2026-11-06. FundedNext rules.platforms leftover refresh 2026-11-06.",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL). CFT rules.platforms leftover refresh 2026-11-06. FundedNext rules.platforms leftover refresh 2026-11-06. Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. maxLossPct for Maven re-recorded from the 2026-11-05 read with the Prediction Markets /pricing card quote updated to 'Payout frequency Funded On demand'; the other maxLossPct quotes re-checked verbatim on 2026-11-06.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -40,7 +40,11 @@
     "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
     "https://e8markets.com/e8-markets-terms-and-conditions",
     "https://cryptofundtrader.com/faq/",
-    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext"
+    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+    "https://maventrading.com/",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/terms-and-conditions"
   ],
   "pageDates": {
     "https://ofpfunding.com/#pricing": "2026-11-06",
@@ -58,7 +62,11 @@
     "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend": "2026-11-06",
     "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06",
     "https://cryptofundtrader.com/faq/": "2026-11-06",
-    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext": "2026-11-06"
+    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext": "2026-11-06",
+    "https://maventrading.com/terms-and-conditions": "Version 2026.3 | Effective date and Last Amended 5 November 2026",
+    "https://maventrading.com/faqs": "no page date",
+    "https://maventrading.com/pricing": "no page date",
+    "https://maventrading.com/": "no page date"
   },
   "firms": {
     "tradeday": {
@@ -1049,6 +1057,98 @@
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
             "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader, and also supports TradingView for analysis purposes."
+          }
+        ]
+      }
+    },
+    "maven": {
+      "payoutFrequency": {
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step and OMO 2-Step; on demand on Instant, Buy Now, Pay Later and Prediction Markets once their gates are met; Mini one single payout within its 24-hour window",
+        "byProduct": {
+          "standard-1-step": "bi-weekly",
+          "standard-2-step": "bi-weekly",
+          "standard-3-step": "bi-weekly",
+          "instant": "on-demand",
+          "mini": null,
+          "buy-now-pay-later": "on-demand",
+          "omo-2-step": "bi-weekly",
+          "predictions-1-step": "on-demand",
+          "predictions-elite-1-step": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "You can request a payout as soon as you have enough profit to withdraw; there is no waiting period."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "BNPL and Instant are on demand subject to their conditions."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "10.3 For Standard plans and OMO, the first request becomes eligible 10 business days after the first trade on the Simulated Funded Account."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on Standard 1/2/3-Step, OMO 2-Step, Instant and Mini; Buy Now, Pay Later has no add-ons)",
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later has no add-ons."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later 10% in evaluation, 8% when funded; Prediction Markets One-Step Essential and Elite 5% in Phase 1, 8% when funded",
+        "byProduct": {
+          "standard-1-step": 5,
+          "standard-2-step": 8,
+          "standard-3-step": 3,
+          "instant": 3,
+          "mini": 3,
+          "buy-now-pay-later": 10,
+          "omo-2-step": 8,
+          "predictions-1-step": 5,
+          "predictions-elite-1-step": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
           }
         ]
       }
