@@ -48,7 +48,7 @@ const DISCOUNT_REREAD = '2026-11-06'
 const COUNTRIES_PAGE = '2026-10-01'
 const ONE_HELP = '2026-10-26'
 const PRO_HELP = '2026-09-23'
-const SIG_HELP = '2026-11-08'
+const SIG_HELP = '2026-10-15'
 const PAYOUTS_HELP = '2026-09-23'
 const PLATFORMS_HELP = '2026-10-28'
 const TRUSTPILOT_CHECKED = '2026-10-15'
@@ -105,7 +105,7 @@ type ProgramRow = { key: string; name: string; href: string; steps: string; targ
 const PROGRAMS: ProgramRow[] = [
   { key: 'e8-one', name: 'E8 One (Classic / Perps)', href: SOURCES.oneHelp, steps: '1 этап', targets: 'пресет 9% (при DD 6%; диапазон 6–21%)', limits: 'дневной 4% пресет, общий 6% dynamic', consistency: 'челлендж нет; Performance 40%', payout: 'по запросу; 80/90/100%' },
   { key: 'e8-pro', name: 'E8 Pro (Classic / Perps)', href: SOURCES.proHelp, steps: '1 этап', targets: '8%', limits: 'дневной 2,5% static, общий 8% static', consistency: 'нет (есть дневной profit cap 2%)', payout: 'ежедневно; 80/100%' },
-  { key: 'e8-signature', name: 'E8 Signature Forex', href: SOURCES.sigHelp, steps: '1 этап', targets: '6%', limits: 'daily pause 2% (soft); EOD max loss для Forex в справке с 08.11.2026 не описан', consistency: 'Performance 35%', payout: 'по запросу; 80%' },
+  { key: 'e8-signature', name: 'E8 Signature Forex', href: SOURCES.sigHelp, steps: '1 этап', targets: '6%', limits: 'EOD dynamic 3–4%; daily pause 2%', consistency: 'Performance 35%', payout: 'по запросу; 80%' },
 ]
 
 const faqs: RussianFaqItem[] = [
@@ -422,12 +422,7 @@ export default function RussianE8MarketsReviewPage() {
             <p data-russian-e8-signature-gap={PRICES_CHECKED}>
               <strong>E8 Signature Forex.</strong> На {ruDate(PRICES_CHECKED)} страница продукта рендерит пустые значения,
               а Classic Signature в данных сайта не найден. На сайте не указано / продукт не отображается на{' '}
-              {ruDate(PRICES_CHECKED)}. Цены из старой help-таблицы мы не печатаем. Справка
-              E8 Signature (обновлена {ruDate(SIG_HELP)}) теперь находится в разделе «Legacy products», а в Available
-              Markets указан только рынок Futures — Classic (Forex) Signature в справке больше не описан. При этом
-              страница продукта по-прежнему называется «E8 Signature Forex», а FAQ акции Winter ARC упоминает «E8
-              Signature Forex Challenge». Страницы фирмы расходятся: мы не пишем, что продукт снят, и не приводим цифры,
-              которые справка больше не даёт для Classic. Условия расходятся, уточните у поддержки.
+              {ruDate(PRICES_CHECKED)}. Цены из старой help-таблицы мы не печатаем.
             </p>
             <p>
               У E8 One конфигурator даёт dynamic DD 4/6/8/10/14% → цели 6/9/12/15/21% и дневные 3/4/5,3/6,6/9,2%; сплит
@@ -471,7 +466,7 @@ export default function RussianE8MarketsReviewPage() {
             <ul className="wp-block-list">
               <li><strong>E8 One:</strong> цель пресет 9% (6% DD); дневной 4%; общий 6% dynamic; consistency только на Performance (40%); новостная торговля на челлендже разрешена, на Performance — запрет ±5 мин вокруг high-impact; overnight/weekend разрешены; EA разрешены, если нет одинаковых сделок у разных пользователей; копирование — только свои счета.</li>
               <li><strong>E8 Pro:</strong> цель 8%; дневной 2,5% от initial; общий 8% static; consistency нет (есть 2% daily profit cap); новости разрешены; overnight/weekend разрешены; EA и копирование — как у One.</li>
-              <li><strong>E8 Signature Forex:</strong> цель 6%; daily pause 2% (soft); Performance consistency 35%; overnight/weekend нельзя (позиции закрывают в 23:00 server time); 5 прибыльных дней (≥0,3%) между выплатами после первой. С {ruDate(SIG_HELP)} справка относит Signature к Legacy products и описывает только рынок Futures, поэтому значения EOD max loss для Forex (Classic) мы не приводим; страница продукта при этом по-прежнему называется «E8 Signature Forex».</li>
+              <li><strong>E8 Signature Forex:</strong> цель 6%; EOD dynamic max loss; daily pause 2% (soft); Performance consistency 35%; overnight/weekend нельзя (позиции закрывают в 23:00 server time); 5 прибыльных дней (≥0,3%) между выплатами после первой.</li>
               <li><strong>Плечо Classic:</strong> FX 1:30, индексы/металлы/энергия 1:15, crypto 1:1. <strong>Perps:</strong> BTC/ETH 1:15, другой crypto 1:2, stocks 1:5, FX 1:25.</li>
               <li><strong>Прочее:</strong> HFT — нельзя держать больше 50% сделок меньше минуты; cross-account hedging запрещён; неактивность 60 дней закрывает счёт (Classic/Perps).</li>
             </ul>
@@ -617,7 +612,7 @@ export default function RussianE8MarketsReviewPage() {
                 <h3>Минусы</h3>
                 <ul>
                   <li><strong>Россия в списке ограничений</strong> — Classic, Perps и Futures.</li>
-                  <li><strong>Signature Forex</strong> на 02.11.2026 не отображается на сайте; с 08.11.2026 справка относит Signature к Legacy products и описывает только Futures.</li>
+                  <li><strong>Signature Forex</strong> на 02.11.2026 не отображается на сайте.</li>
                   <li><strong>План масштабирования</strong> — на сайте не указано.</li>
                   <li><strong>Crypto-выплаты и refunds</strong> — условия расходятся между help и T&C.</li>
                 </ul>
