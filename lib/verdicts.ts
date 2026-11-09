@@ -11,6 +11,8 @@ import matter from 'gray-matter'
  *   content/verdicts/vs/<pair-slug>.md         EN verdict on /compare/<pair-slug>
  *   content/verdicts/best-for/<use-case>.md    EN verdict on /best-prop-firms-for-<use-case>
  *   content/verdicts/best-for/<use-case>.ru.md RU verdict on flat /ru/luchshie-prop-firmy-… routes
+ *   content/verdicts/country/<country-slug>.md    EN verdict on /best-prop-firms-in-<country-slug> (lib/countryPages.ts)
+ *   content/verdicts/country/<country-slug>.ru.md RU verdict on /ru/luchshie-prop-firmy-v-<ruSlug>
  *
  * <pair-slug> is the canonical alphabetical matchup from lib/comparisons.ts
  * (canonicalMatchupSlug), e.g. bright-funded-vs-ftmo.
@@ -30,7 +32,7 @@ import matter from 'gray-matter'
  * stays noindex (RULES_REQUIRE_VERDICT in lib/rulesPages.ts). A present but
  * invalid file fails the build loudly instead of silently disappearing.
  */
-export type VerdictKind = 'rules' | 'vs' | 'best-for'
+export type VerdictKind = 'rules' | 'vs' | 'best-for' | 'country'
 export type VerdictLang = 'en' | 'ru'
 
 export interface VerdictSource { title: string; url: string }
@@ -158,7 +160,7 @@ export function loadVerdict(kind: VerdictKind, slug: string, lang: VerdictLang =
 /** Every verdict file on disk, for validation tests. */
 export function listVerdictFiles(root = process.cwd()): Array<{ kind: VerdictKind; slug: string; lang: VerdictLang; file: string }> {
   const out: Array<{ kind: VerdictKind; slug: string; lang: VerdictLang; file: string }> = []
-  for (const kind of ['rules', 'vs', 'best-for'] as const) {
+  for (const kind of ['rules', 'vs', 'best-for', 'country'] as const) {
     const dir = verdictDir(kind, root)
     if (!fs.existsSync(dir)) continue
     for (const name of fs.readdirSync(dir).sort()) {

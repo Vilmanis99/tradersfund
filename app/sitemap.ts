@@ -23,6 +23,7 @@ import {
 import { publishedRussianPlannedRoutes } from '@/lib/russianPlannedRoutes'
 import { getRulesPageModels, rulesRoutePair } from '@/lib/rulesPages'
 import { getBestForPageModels, bestForRoutePair } from '@/lib/bestFor'
+import { getCountryPageModels, countryRoutePair } from '@/lib/countryPages'
 import { RUSSIAN_ROUTE_EXTRA_EDITORIAL } from '@/lib/russianRouteLastmod'
 import { fileSource, firmSources, firmListingOnlySources, landingFirmChallengeSources, russianRouteSources as russianSources, sitemapLastmod, SPLIT_TIER_SOURCES } from '@/lib/sitemapLastmod'
 
@@ -287,10 +288,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     bestForModels.filter(model => !model.indexable).map(model => model.path),
   )
 
+  // Evidence-only country pages (lib/countryPages.ts): out of the sitemap unless the country has
+  // first-party evidence ≤30 days old, a writer verdict and ≥5 differing fields (per language).
+  const countryModels = getCountryPageModels()
+  const countryRoutes: MetadataRoute.Sitemap = countryModels
+    .filter(model => model.indexable)
+    .map(model => ({
+      url: `${BASE_URL}${model.path}`,
+      lastModified: lm(
+        `${BASE_URL}${model.path}`,
+        null,
+        [
+          fileSource(model.country.file),
+          ...(model.verdict ? [fileSource(model.verdict.file)] : []),
+          ...model.ranked.flatMap(row => landingFirmChallengeSources(row.firm.name, row.products.map(product => product.productSlug))),
+        ],
+        [model.verdict?.checkedAt],
+      ),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    }))
+  const nonIndexableCountryPaths = new Set(
+    countryModels.filter(model => !model.indexable).map(model => model.path),
+  )
+
   const baseRoutes: MetadataRoute.Sitemap = [
     ...staticRoutes,
     ...rulesRoutes,
     ...bestForRoutes,
+    ...countryRoutes,
     ...featureRoutes,
     ...indiaMatchupRoutes,
     ...landingRoutes,
@@ -349,6 +375,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // A noindex rules page never enters the sitemap, even if its RU path gets registered early.
     if (nonIndexableRulesPaths.has(new URL(route.url).pathname)) continue
     if (nonIndexableBestForPaths.has(new URL(route.url).pathname)) continue
+    if (nonIndexableCountryPaths.has(new URL(route.url).pathname)) continue
     const current = uniqueRoutes.get(route.url)
     if (!current) {
       uniqueRoutes.set(route.url, route)
@@ -367,7 +394,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...uniqueRoutes.values()].map(route => {
     const pathname = new URL(route.url).pathname
-    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname) ?? bestForRoutePair(pathname)
+    const routePair = getLocalizedRoutePair(pathname) ?? closedFirmsRoutePair(pathname) ?? rulesRoutePair(pathname) ?? bestForRoutePair(pathname) ?? countryRoutePair(pathname)
     if (!routePair) return route
     // The home page canonical renders without a trailing slash, so its alternates must too.
     const pair = { en: routePair.en === '/' ? '' : routePair.en, ru: routePair.ru }

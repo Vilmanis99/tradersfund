@@ -30,7 +30,7 @@ function humanizeFieldToken(token: string, lang: 'en' | 'ru'): string {
   return token.replace(/-/g, ' ')
 }
 
-function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
+export function displayField(key: BestForFieldKey, value: string | null | undefined, lang: 'en' | 'ru'): string {
   if (value == null || value === '') return lang === 'ru' ? 'Не подтверждено' : 'Unverified'
   if (key === 'platforms' && lang === 'ru') return ruPlatformList(value.split('|'))
   if (key === 'profitSplitPct' || key === 'maxLossPct' || key === 'dailyLossPct') return `${value}%`

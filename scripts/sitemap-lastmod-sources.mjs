@@ -384,6 +384,8 @@ export function sourceSpecs() {
     ...listFiles('content/verdicts', f => f.endsWith('.md')),
     ...listFiles('app/ru', f => f.endsWith('/page.tsx')),
     ...listFiles('content/data/ru-verdicts', f => f.endsWith('.json')),
+    // Evidence-only country pages (lib/countryPages.ts): extra path; <slug>-access-evidence.json is covered by content/data above.
+    ...listFiles('content/data/country-access', f => f.endsWith('.json')),
     ...SPLIT_TIER_UI_FILES.filter(f => fs.existsSync(f)),
     ...RU_ACCESS_BADGE_UI_FILES.filter(f => fs.existsSync(f)),
     ...fs.readdirSync('content/data')
