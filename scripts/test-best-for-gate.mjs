@@ -915,10 +915,16 @@ for (const nested of BEST_FOR_RETIRED_NESTED_PATHS) {
   assert.equal(status, 404, `${nested} must 404, got ${status}`)
 }
 
-// Feature pages: no crosslink while gate closed (byte-stable intent)
+// Feature pages: crosslink only when the paired best-for page is indexable (no link to noindex best-for)
 for (const slug of ['ea-allowed', 'news-trading']) {
   const { html } = await get(`/prop-firms/${slug}`)
-  assert.ok(!html.includes('data-best-for-crosslink'), `${slug} must not link to noindex best-for`)
+  const href = bestForIndexableFeatureLink(slug)
+  if (!href) {
+    assert.ok(!html.includes('data-best-for-crosslink'), `${slug} must not link to noindex best-for`)
+  } else {
+    assert.ok(indexableBestForPaths().includes(href), `${slug} crosslink ${href} must be an indexable best-for path`)
+    assert.ok(html.includes(`data-best-for-crosslink="${slug}"`) && html.includes(`href="${href}"`), `${slug} must crosslink to indexable ${href}`)
+  }
 }
 
 console.log(`PASS best-for gate (live against ${base})`)
