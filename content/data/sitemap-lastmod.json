@@ -1583,8 +1583,8 @@
       "first": "2026-10-21"
     },
     "file:app/ru/(fallback)/[...missing]/page.tsx": {
-      "hash": "84bdc21e47684997",
-      "changed": "2026-10-19",
+      "hash": "16294763dc83fc43",
+      "changed": "2026-11-09",
       "first": "2026-10-19"
     },
     "file:app/ru/bright-funded-pravila/page.tsx": {
@@ -1997,6 +1997,11 @@
       "changed": "2026-10-14",
       "first": "2026-07-29"
     },
+    "file:content/data/kazakhstan-access-evidence.json": {
+      "hash": "00f8553d4d9be053",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
+    },
     "file:content/data/maven-watch-recheck-2026-10-20.json": {
       "hash": "88a33adaff9fb3a3",
       "changed": "2026-10-20",
@@ -2007,6 +2012,11 @@
       "changed": "2026-10-20",
       "first": "2026-10-21"
     },
+    "file:content/data/nigeria-access-evidence.json": {
+      "hash": "e46e3d12d9c3b002",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
+    },
     "file:content/data/ofp-funding-plan-conflict-evidence-2026-10-20.json": {
       "hash": "ad95c8074adedb31",
       "changed": "2026-10-20",
@@ -2016,6 +2026,16 @@
       "hash": "9e290f5266638581",
       "changed": "2026-09-16",
       "first": "2026-09-16"
+    },
+    "file:content/data/pakistan-access-evidence.json": {
+      "hash": "2a4b658cbf5fb83d",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
+    },
+    "file:content/data/philippines-access-evidence.json": {
+      "hash": "3cc6ce832ea42a2f",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
     },
     "file:content/data/posts-meta.json": {
       "hash": "af97fb85aea6b059",
@@ -2207,6 +2227,11 @@
       "changed": "2026-10-20",
       "first": "2026-10-21"
     },
+    "file:content/data/uae-access-evidence.json": {
+      "hash": "aab11996b3bbd28b",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
+    },
     "file:content/data/uk-access-evidence.json": {
       "hash": "de9b8ff30ebf66e2",
       "changed": "2026-11-02",
@@ -2216,6 +2241,11 @@
       "hash": "0cf10f7db9562cea",
       "changed": "2026-10-22",
       "first": "2026-08-17"
+    },
+    "file:content/data/uzbekistan-access-evidence.json": {
+      "hash": "28cdb74544364714",
+      "changed": "2026-11-09",
+      "first": "2026-11-09"
     },
     "file:content/pages/about.md": {
       "hash": "161e3514ec68ad16",
@@ -2423,8 +2453,8 @@
       "first": "2026-07-29"
     },
     "file:content/posts/maven-prop-firm-review.md": {
-      "hash": "219b307fb0423116",
-      "changed": "2026-11-09",
+      "hash": "33e2c59a4fa87596",
+      "changed": "2026-11-06",
       "first": "2026-06-05"
     },
     "file:content/posts/my-funded-futures.md": {
@@ -3294,7 +3324,7 @@
       "lastmod": "2026-11-02"
     },
     "/blog/maven-prop-firm-review": {
-      "hash": "4d10a2286601ba3a",
+      "hash": "6a50b857324995ba",
       "lastmod": "2026-11-09"
     },
     "/blog/my-funded-futures": {
