@@ -111,15 +111,20 @@ try {
   const meta = { countryCode: 'NG', name: { en: 'Nigeria', ru: 'Нигерия' }, ruSlug: 'nigerii' }
 
   // ── 1. No evidence file → no page, no route, no sitemap entry ─────────────
-  check('live repo: discovery skips uk/us (own hubs), india (other schema) and firm-level *-access-evidence files', () => {
+  check('live repo: discovery skips uk/us (own hubs), india (other schema) and firm-level *-access-evidence files; Tracker evidence without verdicts stays noindex and out of the sitemap', () => {
     delete process.env.TFH_COUNTRY_CONTENT_ROOT
-    assert.deepEqual(cp.listCountryDefinitions().map(country => country.slug), [], 'no production country evidence is committed')
-    assert.deepEqual(cp.allCountryPaths(), [])
-    assert.deepEqual(cp.countryEnSegments(), [])
-    assert.deepEqual(cp.countryRuSegments(), [])
-    assert.ok(!fs.existsSync(path.join(root, 'content/verdicts/country')), 'no committed country verdicts')
-    for (const code of ['nigeria', 'pakistan', 'philippines', 'uae', 'kazakhstan', 'uzbekistan']) {
-      assert.ok(!fs.existsSync(path.join(root, `content/data/${code}-access-evidence.json`)), `${code} evidence must come from Tracker, not this commit`)
+    const slugs = cp.listCountryDefinitions().map(country => country.slug)
+    for (const own of ['uk', 'us', 'india']) assert.ok(!slugs.includes(own), `${own} must not be emitted by the template`)
+    for (const slug of slugs) {
+      assert.ok(fs.existsSync(path.join(root, `content/data/${slug}-access-evidence.json`)), `${slug} is discovered only from content/data/${slug}-access-evidence.json`)
+    }
+    assert.equal(cp.allCountryPaths().length, slugs.length * 2, 'one EN + one RU path per discovered country')
+    assert.equal(cp.countryEnSegments().length, slugs.length)
+    assert.equal(cp.countryRuSegments().length, slugs.length)
+    if (!fs.existsSync(path.join(root, 'content/verdicts/country'))) {
+      // No writer verdicts committed: every live country model must be noindex and absent from the sitemap.
+      assert.deepEqual(cp.indexableCountryPaths(now), [], 'no country path is indexable without a writer verdict')
+      for (const model of cp.getCountryPageModels(now)) assert.equal(model.indexable, false, `${model.path} must be noindex without a verdict`)
     }
   })
   check('empty fixture root: no definitions, no models, metadata noindex', () => {
