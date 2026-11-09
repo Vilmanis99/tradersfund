@@ -19,7 +19,7 @@
 .th-btn--block { width: 100%; }
 .th-link { color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none; }
 .th-link:hover { text-decoration: underline; }
-.th-link:focus-visible, .th-guide:focus-visible, .th-guide-links a:focus-visible, .th-trust__list a:focus-visible, .th-table-scroll:focus-visible, .th-faq summary:focus-visible, .th-disclosure summary:focus-visible, .th-code button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.th-link:focus-visible, .th-guide:focus-visible, .th-trust__list a:focus-visible, .th-table-scroll:focus-visible, .th-faq summary:focus-visible, .th-disclosure summary:focus-visible, .th-code button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 .th-btn--ghost:focus-visible { outline-color: var(--accent); }
 /* ru.css styles the legacy partner link; the shared amber button must win (AA contrast). */
 .th-offer .th-btn--amber.ru-home-partner-hero-review { color: var(--amber-ink); font-size: 0.95rem; }
@@ -110,17 +110,10 @@
 .th-code__failed { width: 100%; font-size: var(--fs-small); color: var(--danger); }
 
 /* Guides */
-.th-guides { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
 .th-guide { display: flex; flex-direction: column; gap: var(--space-3); min-height: 12rem; padding: var(--space-6); background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: border-color 150ms, transform 150ms, box-shadow 150ms; }
 .th-guide:hover { border-color: var(--accent); box-shadow: var(--shadow-card); transform: translateY(-2px); }
 .th-guide__label { font-size: var(--fs-small); font-weight: 700; color: var(--accent); }
 .th-guide p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-.th-guide__arrow { margin-top: auto; color: var(--accent); }
-.th-guide-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin-top: var(--space-6); }
-.th-guide-links a { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-4) 0; border-top: 1px solid var(--border); text-decoration: none; color: inherit; }
-.th-guide-links a > span { display: flex; flex-direction: column; }
-.th-guide-links strong { color: var(--ink); }
-.th-guide-links a > span > span { color: var(--muted); font-size: 0.875rem; }
 
 /* FAQ */
 .th-faq { max-width: 52rem; }
@@ -145,12 +138,10 @@
   .th-cards { display: flex; list-style: none; gap: var(--space-3); overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -1.25rem; padding: var(--space-2) 1.25rem var(--space-4); -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
   .th-card { flex: 0 0 80%; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: var(--space-4); box-shadow: var(--shadow-card); }
   .th-card .th-facts dd { font-size: 0.95rem; }
-  .th-guides, .th-guide-links { grid-template-columns: 1fr; gap: var(--space-4); }
   .th-guide { min-height: 0; }
   .th-offer { padding: var(--space-4); }
 }
 @media (prefers-reduced-motion: reduce) { .th-btn, .th-guide { transition: none; } .th-btn--amber:hover, .th-guide:hover { transform: none; } }
-.th-row-badge { margin-top: var(--space-2); text-align: right; }
 /* RU: the Russia-access badge follows the CTA in the DOM (read right after it) but still shows on its own line below the actions. */
 .th-row-actions[data-row-badge="after-cta"] { flex-wrap: wrap; row-gap: var(--space-2); }
 .th-row-actions[data-row-badge="after-cta"] > .ru-access { order: 3; flex-basis: 100%; text-align: right; }
@@ -166,7 +157,6 @@
 .th-cards, .th-table-scroll, .th-card { position: relative; }
 @media (max-width: 380px) { .th-section__head > div { flex-basis: 100%; } .th-offer__actions .th-btn { white-space: normal; text-align: center; } }
 .th-link { display: inline-flex; align-items: center; gap: 0.25rem; }
-.th-row-badge .ru-badge { white-space: nowrap; }
 @media (max-width: 900px) {
   /* centred overflow would make the first trust items unreachable */
   .th-trust__list { justify-content: flex-start; }
