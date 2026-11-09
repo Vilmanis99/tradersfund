@@ -42,9 +42,12 @@ UAE), `name: { en, ru }`, `ruSlug`, `ruInfix` (`v` by default; `na` for
 ## Listing rule
 
 A row qualifies when `accessStatus` is `policy-supported` or `explicit`,
-`sourceCapturedAt` is 0–30 days old at render time, and every `productSlugs`
+`sourceCapturedAt` is 0–30 days old at render time, and ≥1 `productSlugs`
 entry is a current challenge record still sold to new buyers (a firm is listed
-when ≥1 of its rows qualifies). Any other status
+when ≥1 of its rows qualifies). Products are filtered one by one: a product with
+`soldToNewBuyers: false`, stale data or an unknown slug is dropped from that row
+only, and the row is dropped only when none of its mapped products remain
+(ranker B1: filter the SKU, keep the firm). Any other status
 never qualifies; nothing is inferred from notes or blank lists.
 EN order: editorial score. RU order: Russia-available firms first (active pins
 from `content/data/ru-ranking.json`), then the rest by score with FundedNext last;

@@ -189,18 +189,55 @@ try {
     const fn = rest.findIndex(row => row.slug === 'fundednext')
     if (fn >= 0) assert.equal(fn, rest.length - 1, 'FundedNext last among non-available')
   })
-  check('explicit accessStatus qualifies; restricted / unknown statuses never do; partial product mapping excludes the firm', () => {
-    const [a, b, c] = rows(FRESH)
+  check('explicit accessStatus qualifies; restricted / unknown statuses never do; an unknown product is filtered, not the firm', () => {
+    const [a, b, c, d] = rows(FRESH)
     const dir = makeRoot({
       'content/data/nigeria-access-evidence.json': evidence([
         { ...a, accessStatus: 'explicit' },
         { ...b, accessStatus: 'restricted' },
         { ...c, productSlugs: [...c.productSlugs, 'no-such-product'] },
+        ...(d ? [{ ...d, productSlugs: ['no-such-product', 'also-missing'] }] : []),
       ], meta),
     })
     const model = cp.buildCountryPageModel('nigeria', 'en', now, dir)
-    assert.deepEqual(model.ranked.map(row => row.slug), [a.firmSlug])
-    assert.equal(model.excludedCount, 2)
+    assert.deepEqual(model.ranked.map(row => row.slug).sort(), [a.firmSlug, c.firmSlug].sort())
+    const cCard = model.ranked.find(row => row.slug === c.firmSlug)
+    assert.deepEqual(cCard.products.map(product => product.productSlug), c.productSlugs, 'only the valid products are shown')
+    assert.equal(model.excludedCount, d ? 2 : 1, 'restricted row and fully-unmapped row are excluded')
+  })
+
+  // ── Per-product filter (ranker B1): unsold SKU dropped from the row, firm kept ─
+  check('row with one soldToNewBuyers===false product + valid products → firm listed with valid products only; fully-unsold row dropped', () => {
+    // Find a real firm with ≥1 unsold product and ≥1 current sold product (e.g. alpha-capital / alpha-three).
+    let mixed
+    for (const firm of getAllFirms()) {
+      const slug = firmSlug(firm.name)
+      const products = getChallengesByFirm(slug)
+      const unsold = products.filter(product => product.soldToNewBuyers === false)
+      const valid = products.filter(product => product.soldToNewBuyers !== false && isChallengeFresh(product, now))
+      if (unsold.length && valid.length) { mixed = { slug, unsold, valid }; break }
+    }
+    assert.ok(mixed, 'need a real firm with both an unsold and a current product')
+    const others = rows(FRESH).filter(row => row.firmSlug !== mixed.slug)
+    const base = { ...others[0], firmSlug: mixed.slug, evidenceSummary: `Fixture summary for ${mixed.slug}.` }
+    const validSlugs = mixed.valid.map(product => product.productSlug)
+    const unsoldSlugs = mixed.unsold.map(product => product.productSlug)
+    const mixedRow = { ...base, productSlugs: [unsoldSlugs[0], ...validSlugs] }
+    const keepDir = makeRoot({ 'content/data/nigeria-access-evidence.json': evidence([mixedRow, ...others], meta) })
+    for (const lang of ['en', 'ru']) {
+      const model = cp.buildCountryPageModel('nigeria', lang, now, keepDir)
+      const card = model.ranked.find(row => row.slug === mixed.slug)
+      assert.ok(card, `${lang}: ${mixed.slug} still listed despite unsold ${unsoldSlugs[0]}`)
+      assert.deepEqual(card.products.map(product => product.productSlug), validSlugs, 'only valid products shown')
+      assert.ok(!card.groups[0].products.some(product => product.productSlug === unsoldSlugs[0]), 'unsold product not in the row')
+      assert.equal(model.excludedCount, 0)
+      assert.equal(model.firmCount, others.length + 1)
+    }
+    const dropRow = { ...base, productSlugs: [...unsoldSlugs, 'no-such-product'] }
+    const dropDir = makeRoot({ 'content/data/nigeria-access-evidence.json': evidence([dropRow, ...others], meta) })
+    const dropped = cp.buildCountryPageModel('nigeria', 'en', now, dropDir)
+    assert.ok(!dropped.ranked.some(row => row.slug === mixed.slug), 'row with only unsold/unmapped products is dropped')
+    assert.equal(dropped.excludedCount, 1)
   })
 
   // ── Product-line rows: several rows per firmSlug → one card, row-scoped products ─

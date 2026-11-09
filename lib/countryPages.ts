@@ -51,9 +51,11 @@ import { loadVerdict, type Verdict } from './verdicts.ts'
  * first-party policy exists and the country is not among its named exclusions;
  * same meaning as the UK hub) or 'explicit' (the page names the country as
  * eligible; US file), its sourceCapturedAt is 0–30 days old at render time (UTC
- * day, same rule as lib/landings.ts), and EVERY mapped product is current
+ * day, same rule as lib/landings.ts), and ≥1 mapped product is current
  * (isChallengeFresh) and still sold to new buyers (soldToNewBuyers !== false).
- * A partial mapping excludes the firm. Files are allow-lists: any other status
+ * Filtering is per product: an unsold, stale or unknown productSlug is dropped
+ * from that row only; the row is dropped only when no mapped product remains
+ * (ranker B1: filter the SKU, never the firm). Files are allow-lists: any other status
  * (or a missing/blank restriction list) never qualifies, and nothing is
  * inferred from notes.
  *
@@ -359,14 +361,18 @@ export function countrySlugFromEnSegment(segment: string, root = countryContentR
   return getCountryBySlug(slug, root)?.slug
 }
 
-/** Mapped products, all-or-nothing (same rule as freshMappedProducts in lib/landings.ts) plus soldToNewBuyers. */
+/**
+ * Mapped products that are current (isChallengeFresh) and still sold to new buyers.
+ * Per-product filter: unsold / stale / unknown slugs are dropped from this row only;
+ * an empty result means the row does not qualify.
+ */
 function currentMappedProducts(evidence: CountryFirmEvidence, now: Date): Challenge[] {
   const bySlug = new Map(getChallengesByFirm(evidence.firmSlug).map(product => [product.productSlug, product]))
   const products = evidence.productSlugs.flatMap(productSlug => {
     const product = bySlug.get(productSlug)
     return product && isChallengeFresh(product, now) && product.soldToNewBuyers !== false ? [product] : []
   })
-  return products.length === evidence.productSlugs.length ? products : []
+  return [...new Map(products.map(product => [product.productSlug, product])).values()]
 }
 
 function russiaStatusOf(firm: Firm): RankingRussiaStatus {
