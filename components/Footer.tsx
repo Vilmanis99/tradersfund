@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
@@ -9,6 +6,7 @@ import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
 import RuTelegramBlock from './RuTelegramBlock'
 
 type FooterProps = {
+  lang: 'en' | 'ru'
   firmCount: number
   pricedChallengeCount: number
   articleCount: number
@@ -16,7 +14,7 @@ type FooterProps = {
   newsletterEnabled: boolean
   /**
    * Resolved on the server in components/SiteDocument.tsx (lib/ruDisclosure and the
-   * closed-firms publish flag in lib/closedFirms), so this client component never
+   * closed-firms publish flag in lib/closedFirms), so this server component never
    * pulls ru-how-we-make-money.json or closed-firms.json into a client chunk.
    * ruClosedFirmsLink is null while the closed-firms list is unpublished.
    */
@@ -28,6 +26,7 @@ type FooterLinkItem = { label: string; href: string }
 type FooterColumn = { title: string; links: FooterLinkItem[] }
 
 export default function Footer({
+  lang,
   firmCount,
   pricedChallengeCount,
   latestCapture,
@@ -35,8 +34,7 @@ export default function Footer({
   ruDisclosureLink,
   ruClosedFirmsLink,
 }: FooterProps) {
-  const pathname = usePathname()
-  const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
+  const isRussian = lang === 'ru'
   const captureDateLabel = latestCapture
     ? new Date(`${latestCapture}T00:00:00Z`).toLocaleDateString(isRussian ? 'ru-RU' : 'en-US', {
         day: 'numeric',

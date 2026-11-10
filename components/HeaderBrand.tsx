@@ -1,12 +1,8 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { TrendingUp } from 'lucide-react'
 
-export default function HeaderBrand() {
-  const pathname = usePathname()
-  const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
+export default function HeaderBrand({ lang }: { lang: 'en' | 'ru' }) {
+  const isRussian = lang === 'ru'
 
   return (
     <Link
