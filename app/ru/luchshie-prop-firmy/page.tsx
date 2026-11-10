@@ -755,7 +755,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="po-zadache">
         <div className="ru-shell" data-russian-ranking-intent-paths="payout-drawdown-budget">
           <h2>Какую проп-фирму выбрать по задаче</h2>
-          <p className="ru-muted">Цена, отсутствие челленджа или выплата в криптовалюте описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение.</p>
+          <p className="ru-muted">Цена, отсутствие челленджа или выплата в криптовалюте описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение. Если выбираете первую программу, откройте <Link href="/ru/luchshie-prop-firmy-dlya-novichkov">подборку проп-фирм для новичков</Link>.</p>
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Минимальный бюджет в USD</h3>
