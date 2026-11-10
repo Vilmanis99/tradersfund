@@ -163,10 +163,10 @@ try {
   assert.equal(brightOfferObservation.checkoutVerified, false, 'homepage advertising alone is not checkout verification')
   assert.equal(new URL(brightOfferObservation.sourceUrl).hostname, 'brightfunded.com')
   assert.deepEqual(brightOfferObservation.offers.map(offer => [offer.productSlug, offer.code, offer.advertisedDiscountPct]), [
-    ['bright-funded-1-step', 'RALLY30', 30],
-    ['bright-funded-2-step-bright', 'RALLY25', 25],
-    ['bright-funded-2-step-classic', 'RALLY15', 15],
-  ], 'current homepage codes are specific to their advertised products')
+    ['bright-funded-1-step', 'UNLUCKY', 30],
+    ['bright-funded-2-step-bright', 'UNLUCKY', 30],
+    ['bright-funded-2-step-classic', 'UNLUCKY', 30],
+  ], 'current homepage code UNLUCKY is advertised at 30% off on all three CFD products')
   for (const offer of brightOfferObservation.offers) {
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.code)))
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))
