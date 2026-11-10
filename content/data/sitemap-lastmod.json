@@ -1783,8 +1783,8 @@
       "first": "2026-08-24"
     },
     "file:app/ru/obzor-my-funded-futures/page.tsx": {
-      "hash": "58bde432f03c6591",
-      "changed": "2026-11-06",
+      "hash": "2d65fbaddfeb85d2",
+      "changed": "2026-11-10",
       "first": "2026-11-06"
     },
     "file:app/ru/obzor-proplive/page.tsx": {
@@ -2003,8 +2003,8 @@
       "first": "2026-07-29"
     },
     "file:content/data/kazakhstan-access-evidence.json": {
-      "hash": "33a17a0b37052f62",
-      "changed": "2026-11-09",
+      "hash": "de8be4bf3b5c6524",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/data/maven-watch-recheck-2026-10-20.json": {
@@ -2018,8 +2018,8 @@
       "first": "2026-10-21"
     },
     "file:content/data/nigeria-access-evidence.json": {
-      "hash": "dd9a5ebecf63f945",
-      "changed": "2026-11-09",
+      "hash": "d4c92ad88e4bb07b",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/data/ofp-funding-plan-conflict-evidence-2026-10-20.json": {
@@ -2033,13 +2033,13 @@
       "first": "2026-09-16"
     },
     "file:content/data/pakistan-access-evidence.json": {
-      "hash": "0105b1aaf314b197",
-      "changed": "2026-11-09",
+      "hash": "e2f0c42376007d26",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/data/philippines-access-evidence.json": {
-      "hash": "b9a81534a52ccbd0",
-      "changed": "2026-11-09",
+      "hash": "c0ec20cf968d03cb",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/data/posts-meta.json": {
@@ -2233,8 +2233,8 @@
       "first": "2026-10-21"
     },
     "file:content/data/uae-access-evidence.json": {
-      "hash": "cfb63b577215e6f9",
-      "changed": "2026-11-09",
+      "hash": "5d403bc2258bf06b",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/data/uk-access-evidence.json": {
@@ -2248,8 +2248,8 @@
       "first": "2026-08-17"
     },
     "file:content/data/uzbekistan-access-evidence.json": {
-      "hash": "07b9bbeb10f82bbb",
-      "changed": "2026-11-09",
+      "hash": "4ef886f4548468b1",
+      "changed": "2026-11-10",
       "first": "2026-11-09"
     },
     "file:content/pages/about.md": {
@@ -4353,7 +4353,7 @@
       "lastmod": "2026-11-05"
     },
     "/ru/obzor-my-funded-futures": {
-      "hash": "b02187e1e46f490c",
+      "hash": "7aea2a286a57dd7d",
       "lastmod": "2026-11-10"
     },
     "/ru/obzor-proplive": {
