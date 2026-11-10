@@ -269,7 +269,6 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     rel('/ru/dlya-russkoyazychnykh-treyderov', 'гид для русскоязычных трейдеров'),
     rel('/ru/obzor-alpha-capital', 'Alpha Capital: обзор и правила'),
     rel('/ru/obzor-e8-markets', 'E8 Markets: обзор и правила'),
-    rel('/ru/obzor-my-funded-futures', 'My Funded Futures отзывы'),
   ],
   '/ru/obzor-alpha-capital': [
     alt('/ru/obzor-bright-funded', 'BrightFunded отзывы'),
