@@ -651,7 +651,10 @@ try {
     })
     clock = rankingClock
   }
-  clock = `${Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt).sort().at(-1)}T12:00:00Z`
+  clock = `${[
+    ...getAllChallenges().filter(product => product.firmSlug === 'bright-funded').map(product => product.sourceCapturedAt),
+    ...Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt),
+  ].sort().at(-1)}T12:00:00Z`
   const BrightModule = require(path.join(root, 'app/ru/obzor-bright-funded/page.tsx'))
   const renderBright = () => renderToStaticMarkup(React.createElement(BrightModule.default))
   const brightReference = renderBright()
@@ -1027,7 +1030,7 @@ try {
   {
     // Reward Methods were recaptured 2026-10-20 (Tracker); the page keeps the date in REWARD_METHODS_CAPTURED_AT.
     const rewardMethodsDate = fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1]
-    assert(rewardMethodsDate && fundingPipsReviewReference.includes(rewardMethodsDate) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+    assert(rewardMethodsDate && fundingPipsReviewReference.includes(ruDay(rewardMethodsDate)) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
   }
   assert(!fundingPipsReviewReference.includes('85%') && !fundingPipsReviewReference.includes('10% и 6%'), 'Russian FundingPips review does not retain retired Flex terms')
   const originalFundedEvidence = JSON.stringify(fundedReviewEvidence)
@@ -1825,7 +1828,7 @@ try {
             && faqKyc.some(item => item.firmSlug === firmSlug)
             && faqPayout.some(item => item.firmSlug === firmSlug))
             && faqProducts.every(product => isChallengeFresh(product))
-            && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt, brightEvidence.sources.countryTerms.sourceCapturedAt,
+            && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt, brightEvidence.sources.countryTerms.sourceCapturedAt, fundingPipsAccessEvidence.sourceCapturedAt,
               ...faqKyc.map(item => item.sourceCapturedAt), ...faqPayout.map(item => item.sourceCapturedAt)]
               .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), faqCurrent, 'ranking FAQ schema follows product, access, KYC and payout source age')
