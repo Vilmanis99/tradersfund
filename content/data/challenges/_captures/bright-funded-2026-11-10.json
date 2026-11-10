@@ -1,0 +1,129 @@
+{
+  "firmSlug": "bright-funded",
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-10",
+  "timezone": "Europe/Riga",
+  "officialDomain": "https://brightfunded.com",
+  "method": "Public English product pages and Help Centre articles re-read on 10 November 2026. No account or checkout. Stored values are list prices, not promotional checkout prices.",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "bright-funded-1-step",
+      "pricesEur": {
+        "5000": 49,
+        "10000": 97,
+        "25000": 197,
+        "50000": 297,
+        "100000": 497,
+        "200000": 997
+      }
+    },
+    {
+      "productSlug": "bright-funded-2-step-bright",
+      "pricesEur": {
+        "5000": 47,
+        "10000": 87,
+        "25000": 187,
+        "50000": 277,
+        "100000": 477,
+        "200000": 947
+      }
+    },
+    {
+      "productSlug": "bright-funded-2-step-classic",
+      "pricesEur": {
+        "5000": 49,
+        "10000": 97,
+        "25000": 197,
+        "50000": 297,
+        "100000": 497,
+        "200000": 997
+      }
+    }
+  ],
+  "priceQuotes": [
+    "1-Step $5K–$200K list: €49 / €97 / €197 / €297 / €497 / €997 (sale prices under a 30% banner excluded)",
+    "2-Step Bright $5K–$200K list: €47 / €87 / €187 / €277 / €477 / €947",
+    "2-Step Classic $5K–$200K list: €49 / €97 / €197 / €297 / €497 / €997"
+  ],
+  "rulesRecheck": {
+    "valuesUnchanged": true,
+    "quotes": {
+      "minTradingDays": "You must trade for at least 5 days per stage. These do not need to be consecutive. (Help article 9241611; product cards also read Min. Trading Days 5 Days.)",
+      "dailyAndMaxLoss": "2-Step Bright 4% daily / 8% static max; 2-Step Classic 5% daily / 10% static max; 1-Step 3% daily / 6% trailing max. (Help article 9241611.)",
+      "targets": "2-Step Bright 8% then 5%; 2-Step Classic 10% then 5%; 1-Step 10%. (Help articles 14284817, 14284844, 14284743 and 9241611.)",
+      "consistency": "At BrightFunded, we do not currently enforce a consistency rule. (Help article 12577176.)",
+      "payout": "You can request your first Reward Split after 30 days after you place your first trade on your Funded Account. After your first Reward Split, you can request a Reward Split bi-weekly (14 days). The Profit Split is 80/20 by default and can be scaled up to 100/0 with our Scaling Plan or to 90% instantly with our add-on. (Help article 9268736.)"
+    }
+  },
+  "urlChange": {
+    "detail": "The previous product paths redirected to the /cfds/ equivalents, which were used as sourceUrl on this recapture.",
+    "canonical": [
+      "https://brightfunded.com/cfds/1-step",
+      "https://brightfunded.com/cfds/2-step-bright",
+      "https://brightfunded.com/cfds/2-step-classic"
+    ]
+  },
+  "loggedOnly": "Product and homepage banners advertised a Friday the 13th promotion: 30% Off + 85% Payout Ratio, Code: UNLUCKY. This was not checkout-verified and is not stored as a list-price or default-split change. Corporate legal entity and Russia-access dates were not changed.",
+  "pagesRead": [
+    {
+      "url": "https://brightfunded.com/1-step",
+      "resolved": "https://brightfunded.com/cfds/1-step"
+    },
+    {
+      "url": "https://brightfunded.com/2-step-bright",
+      "resolved": "https://brightfunded.com/cfds/2-step-bright"
+    },
+    {
+      "url": "https://brightfunded.com/2-step-classic",
+      "resolved": "https://brightfunded.com/cfds/2-step-classic"
+    },
+    {
+      "url": "https://brightfunded.com/"
+    },
+    {
+      "url": "https://brightfunded.com/cfds/how-it-works"
+    },
+    {
+      "url": "https://brightfunded.com/blog/how-brightfunded-structures-payouts"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284743-brightfunded-1-step",
+      "lastUpdatedDate": "2026-10-29T11:56:09Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284817-brightfunded-2-step-bright",
+      "lastUpdatedDate": "2026-03-27T09:41:29Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/14284844-brightfunded-2-step-classic",
+      "lastUpdatedDate": "2026-05-20T18:52:54Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9241611-what-are-the-current-rules-for-the-evaluation-process",
+      "lastUpdatedDate": "2026-05-20T16:48:11Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/12577176-does-brightfunded-have-a-consistency-rule",
+      "lastUpdatedDate": "2025-10-14T08:30:39Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9268736-how-does-my-reward-split-work-on-my-funded-account",
+      "lastUpdatedDate": "2026-03-18T09:48:25Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/10855521-what-trading-platform-does-brightfunded-offer",
+      "lastUpdatedDate": "2026-10-01T17:39:16Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9241694-can-i-trade-news",
+      "lastUpdatedDate": "2026-07-02T11:18:36Z"
+    },
+    {
+      "url": "https://help.brightfunded.com/en/articles/9268323-is-it-allowed-to-hold-positions-over-the-weekend",
+      "lastUpdatedDate": "2026-03-16T09:25:09Z"
+    }
+  ],
+  "changes": [],
+  "sourceCapturedAtPolicy": "All stored prices and evaluation fields were re-read unchanged on 10 November 2026. sourceCapturedAt left at 2026-10-20 so the Russian-surface page clock is unchanged."
+}

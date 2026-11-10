@@ -60,6 +60,7 @@
     "sourceUrl": "https://ftmo.com/en/2-step-challenge/",
     "sourceCapturedAt": "2026-10-20",
     "notes": [
+      "Rolling recheck 10 November 2026: EUR list prices and the published evaluation, consistency and reward fields on the 2-Step, 1-Step and Instant pages, plus Trading Objectives and the withdrawal FAQ, were re-read; values unchanged. Promotional discounted prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-20 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/ftmo-2026-11-10.json",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck.",
@@ -139,6 +140,7 @@
     "sourceUrl": "https://ftmo.com/en/1-step-challenge/",
     "sourceCapturedAt": "2026-10-20",
     "notes": [
+      "Rolling recheck 10 November 2026: EUR list prices and the published evaluation, consistency and reward fields on the 2-Step, 1-Step and Instant pages, plus Trading Objectives and the withdrawal FAQ, were re-read; values unchanged. Promotional discounted prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-20 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/ftmo-2026-11-10.json",
       "Capture provenance, per-field evidence quotes, and unresolved conflicts: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Daily recheck 2026-10-20: prices and source pages re-read, no change, so the capture date stays 2026-10-19; recheck log: content/data/challenges/_captures/ftmo-2026-10-20.json",
       "Payout frequency (2026-10-20): 'on-demand' with payoutFirstDays 14. promo.ftmo.com/m26b-practice-trading-without-risk/: \"Rewards can be requested on demand after a minimum of 14 days from your first demo trade\"; ftmo.com FAQ: \"You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account.\" firms.json uses the same label; see _captures/ftmo-2026-10-20.json ruWriterCheck.",
@@ -216,6 +218,7 @@
     "sourceUrl": "https://ftmo.com/en/instant-account/",
     "sourceCapturedAt": "2026-10-21",
     "notes": [
+      "Rolling recheck 10 November 2026: EUR list prices and the published evaluation, consistency and reward fields on the 2-Step, 1-Step and Instant pages, plus Trading Objectives and the withdrawal FAQ, were re-read; values unchanged. Promotional discounted prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-21 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/ftmo-2026-11-10.json",
       "Captured 2026-10-21 from https://ftmo.com/en/instant-account/ (WordPress modified 2026-10-12), English site, US-IP box, no VPN. The rendered price table is the global EUR table (the same page source carries 2-Step €1080 and 1-Step €999 for $200K, matching the stored global prices); US clients are redirected to ftmo.oanda.com, so no US price table was read. Quote: 'Account $100,000 Start now One-time fee (non-refundable) €2,999 Max Loss 10% Max Daily Loss 3% Trading Period Unlimited Consistency 30% Leverage Up to 1:100 Rewards 90%'. Other tiers: $50,000 €1,499; $25,000 €749; $10,000 €339; $5,000 €169. Price is a non-refundable one-time fee.",
       "Max loss: 'The Maximum Loss on the FTMO Instant Account is a balance-based, intraday trailing limit. It stays a fixed 10% of your Initial Simulated Capital below your highest balance.' The page does not say whether it stops trailing at the initial balance. Daily: 'Maximum Daily Loss is set as 3% from the initial balance (initial simulated capital).'",
       "Consistency: 'Consistency on the FTMO Instant Account caps your most profitable day (\"Best Day\") at 30% of your total profit.' Rewards: 'The rewards on the FTMO Instant Account are set at 90% of the simulated profits you generate.' Leverage: 'The maximum leverage on the FTMO Instant Account is set at 1:100.' Trading period unlimited.",
