@@ -1668,8 +1668,8 @@
       "first": "2026-10-28"
     },
     "file:app/ru/fundingpips-vs-bright-funded/page.tsx": {
-      "hash": "465262f59bfddc1c",
-      "changed": "2026-11-09",
+      "hash": "328049cad0d8737d",
+      "changed": "2026-11-10",
       "first": "2026-10-21"
     },
     "file:app/ru/kak-my-zarabatyvaem/page.tsx": {
@@ -2173,8 +2173,8 @@
       "first": "2026-09-16"
     },
     "file:content/data/russian-bright-offer-observation.json": {
-      "hash": "b984508489a17611",
-      "changed": "2026-11-05",
+      "hash": "e09ddf0ca2939487",
+      "changed": "2026-11-10",
       "first": "2026-10-01"
     },
     "file:content/data/russian-ctrader-evidence.json": {
@@ -2373,8 +2373,8 @@
       "first": "2026-06-05"
     },
     "file:content/posts/brightfunded-discount-code.md": {
-      "hash": "ca62360ef03d70e9",
-      "changed": "2026-11-05",
+      "hash": "234ae610bd45b79e",
+      "changed": "2026-11-10",
       "first": "2026-10-19"
     },
     "file:content/posts/city-traders-imperium-review.md": {
@@ -3242,8 +3242,8 @@
       "lastmod": "2026-11-06"
     },
     "/blog": {
-      "hash": "b8c50d592033c663",
-      "lastmod": "2026-11-09"
+      "hash": "0d6b37e135dd9675",
+      "lastmod": "2026-11-10"
     },
     "/blog/3commas-review": {
       "hash": "39d1217a236e078b",
@@ -3274,8 +3274,8 @@
       "lastmod": "2026-11-02"
     },
     "/blog/brightfunded-discount-code": {
-      "hash": "f160d8a3e8050b3a",
-      "lastmod": "2026-11-05"
+      "hash": "0d6b37e135dd9675",
+      "lastmod": "2026-11-10"
     },
     "/blog/city-traders-imperium-review": {
       "hash": "dc776a0afce362e0",
@@ -4294,8 +4294,8 @@
       "lastmod": "2026-11-05"
     },
     "/ru/fundingpips-vs-bright-funded": {
-      "hash": "634aee0c3ff51a1e",
-      "lastmod": "2026-11-09"
+      "hash": "fde5cf4bdcdf4231",
+      "lastmod": "2026-11-10"
     },
     "/ru/kak-my-zarabatyvaem": {
       "hash": "097334105e44e888",
@@ -4322,8 +4322,8 @@
       "lastmod": "2026-11-05"
     },
     "/ru/obzor-bright-funded": {
-      "hash": "718a204a3b8f3535",
-      "lastmod": "2026-11-05"
+      "hash": "9070923141fcf20f",
+      "lastmod": "2026-11-10"
     },
     "/ru/obzor-crypto-fund-trader": {
       "hash": "375112cf5b2914b2",
