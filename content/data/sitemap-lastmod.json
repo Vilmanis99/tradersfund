@@ -1603,8 +1603,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/dlya-russkoyazychnykh-treyderov/page.tsx": {
-      "hash": "e65e49e2775540b2",
-      "changed": "2026-11-09",
+      "hash": "fb6b6b081d85e9c4",
+      "changed": "2026-11-10",
       "first": "2026-08-24"
     },
     "file:app/ru/forex-prop-firmy/page.tsx": {
@@ -1718,8 +1718,8 @@
       "first": "2026-11-02"
     },
     "file:app/ru/luchshie-prop-firmy/page.tsx": {
-      "hash": "8b62ace321d7cac0",
-      "changed": "2026-11-09",
+      "hash": "5583a5f6474d3e11",
+      "changed": "2026-11-10",
       "first": "2026-08-24"
     },
     "file:app/ru/obzor-alpha-capital/page.tsx": {
@@ -1782,6 +1782,11 @@
       "changed": "2026-10-26",
       "first": "2026-08-24"
     },
+    "file:app/ru/obzor-my-funded-futures/page.tsx": {
+      "hash": "58bde432f03c6591",
+      "changed": "2026-11-06",
+      "first": "2026-11-06"
+    },
     "file:app/ru/obzor-proplive/page.tsx": {
       "hash": "a51d01c943a7b8bc",
       "changed": "2026-10-26",
@@ -1803,8 +1808,8 @@
       "first": "2026-10-26"
     },
     "file:app/ru/obzor-topstep/page.tsx": {
-      "hash": "4babae97b5626590",
-      "changed": "2026-11-02",
+      "hash": "804c6a773bbeb373",
+      "changed": "2026-11-10",
       "first": "2026-10-29"
     },
     "file:app/ru/otchet-izmeneniya-prop-firm-oktyabr-2026/page.tsx": {
@@ -4236,8 +4241,8 @@
       "lastmod": "2026-11-05"
     },
     "/ru/dlya-russkoyazychnykh-treyderov": {
-      "hash": "0dde8a80365b9c7f",
-      "lastmod": "2026-11-09"
+      "hash": "ca4f88a26b13ccd4",
+      "lastmod": "2026-11-10"
     },
     "/ru/forex-prop-firmy": {
       "hash": "c7e9cd74ebf60315",
@@ -4296,8 +4301,8 @@
       "lastmod": "2026-11-09"
     },
     "/ru/luchshie-prop-firmy": {
-      "hash": "0d315bf94b39ff8c",
-      "lastmod": "2026-11-09"
+      "hash": "f4cc23bea6467b67",
+      "lastmod": "2026-11-10"
     },
     "/ru/obzor-alpha-capital": {
       "hash": "a951248f54612214",
@@ -4347,6 +4352,10 @@
       "hash": "75bf86bb3a8fa315",
       "lastmod": "2026-11-05"
     },
+    "/ru/obzor-my-funded-futures": {
+      "hash": "b02187e1e46f490c",
+      "lastmod": "2026-11-10"
+    },
     "/ru/obzor-proplive": {
       "hash": "e00cc33d04e27fa4",
       "lastmod": "2026-11-05"
@@ -4364,8 +4373,8 @@
       "lastmod": "2026-11-05"
     },
     "/ru/obzor-topstep": {
-      "hash": "d7898a82b8a35dc7",
-      "lastmod": "2026-11-05"
+      "hash": "d1b862b3a034596c",
+      "lastmod": "2026-11-10"
     },
     "/ru/otchet-izmeneniya-prop-firm-oktyabr-2026": {
       "hash": "8b686d6dd4fc38d7",
