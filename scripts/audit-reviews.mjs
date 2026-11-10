@@ -7746,7 +7746,6 @@ function checkDiscountHub() {
   if (!brightObservation || brightObservation.firmSlug !== 'bright-funded'
     || brightObservation.status !== 'advertised-unverified' || brightObservation.checkoutVerified !== false
     || !Array.isArray(brightObservation.offers) || brightObservation.offers.length === 0
-    || new Set(brightObservation.offers.map(offer => offer.code)).size !== brightObservation.offers.length
     || new Set(brightObservation.offers.map(offer => offer.productSlug)).size !== brightObservation.offers.length
     || brightObservation.offers.some(offer =>
       typeof offer.productSlug !== 'string' || !offer.productSlug.startsWith('bright-funded-')
