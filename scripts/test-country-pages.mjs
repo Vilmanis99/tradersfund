@@ -190,6 +190,40 @@ try {
     }
     assert.deepEqual(cp.indexableCountryPaths(now).sort(), expectedIndexable.sort())
   })
+  check('live footer inlinks follow the country index gate per language; noindex countries are omitted', () => {
+    delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    const { indexableCountryNavLinks, indexableBestForNavLinks } = require(path.join(root, 'lib/gateInlinks.ts'))
+    const expectedEn = cp.getCountryPageModels(now).filter(m => m.lang === 'en' && m.indexable).map(m => m.path).sort()
+    const expectedRu = cp.getCountryPageModels(now).filter(m => m.lang === 'ru' && m.indexable).map(m => m.path).sort()
+    assert.deepEqual(indexableCountryNavLinks('en', now).map(link => link.href).sort(), expectedEn)
+    assert.deepEqual(indexableCountryNavLinks('ru', now).map(link => link.href).sort(), expectedRu)
+    for (const href of expectedEn) assert.ok(href.startsWith('/best-prop-firms-in-') && !href.startsWith('/ru/'))
+    for (const href of expectedRu) assert.ok(href.startsWith('/ru/'))
+    assert.ok(!indexableCountryNavLinks('en', now).some(link => link.href === '/best-prop-firms-in-uk'), 'UK hub is not a template country inlink')
+    const Footer = require(path.join(root, 'components/Footer.tsx')).default
+    const footerProps = {
+      firmCount: 1, pricedChallengeCount: 1, newsletterEnabled: false,
+      ruDisclosureLink: '/kak-my-zarabatyvaem', ruClosedFirmsLink: null,
+    }
+    const enHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'en' }))
+    const ruHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'ru' }))
+    for (const href of expectedEn) assert.ok(enHtml.includes(`href="${href}"`), `EN footer links indexable ${href}`)
+    for (const href of expectedRu) assert.ok(ruHtml.includes(`href="${href}"`), `RU footer links indexable ${href}`)
+    // Noindex template countries must not appear in either footer.
+    for (const model of cp.getCountryPageModels(now).filter(m => !m.indexable)) {
+      const html = model.lang === 'ru' ? ruHtml : enHtml
+      assert.ok(!html.includes(`href="${model.path}"`), `noindex ${model.path} is not in the ${model.lang} footer`)
+    }
+    for (const href of indexableBestForNavLinks('en').map(link => link.href)) {
+      assert.ok(enHtml.includes(`href="${href}"`), `EN footer links indexable best-for ${href}`)
+    }
+    for (const href of indexableBestForNavLinks('ru').map(link => link.href)) {
+      assert.ok(ruHtml.includes(`href="${href}"`), `RU footer links indexable best-for ${href}`)
+    }
+    if (indexableBestForNavLinks('ru').length === 0 && expectedRu.length === 0) {
+      assert.ok(!/luchshie-prop-firmy-dlya-|luchshie-prop-firmy-v-|luchshie-prop-firmy-na-/.test(ruHtml), 'RU footer gains no gated country/best-for hrefs when none pass')
+    }
+  })
   check('empty fixture root: no definitions, no models, metadata noindex', () => {
     const empty = makeRoot({ 'content/data/.keep': '' })
     assert.deepEqual(cp.listCountryDefinitions(empty), [])
@@ -238,6 +272,22 @@ try {
     assert.deepEqual(cp.indexableCountryPaths(now, goodRoot).sort(), [en.path, ru.path].sort())
     assert.deepEqual(cp.countryRoutePair(en.path, now, goodRoot), { en: en.path, ru: ru.path })
     assert.deepEqual(cp.countryRoutePair(ru.path, now, goodRoot), { en: en.path, ru: ru.path })
+    const { indexableCountryNavLinks } = require(path.join(root, 'lib/gateInlinks.ts'))
+    assert.deepEqual(indexableCountryNavLinks('en', now, goodRoot), [{ label: 'Nigeria', href: en.path }])
+    assert.deepEqual(indexableCountryNavLinks('ru', now, goodRoot), [{ label: 'Нигерия', href: ru.path }])
+    const Footer = require(path.join(root, 'components/Footer.tsx')).default
+    const footerProps = {
+      firmCount: 1, pricedChallengeCount: 1, newsletterEnabled: false,
+      ruDisclosureLink: '/kak-my-zarabatyvaem', ruClosedFirmsLink: null,
+    }
+    process.env.TFH_COUNTRY_CONTENT_ROOT = goodRoot
+    const enHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'en' }))
+    const ruHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'ru' }))
+    delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    assert.ok(enHtml.includes('href="/best-prop-firms-in-nigeria"') && enHtml.includes('Nigeria'))
+    assert.ok(!enHtml.includes('href="/ru/luchshie-prop-firmy-v-nigerii"'), 'EN footer does not link the RU country path')
+    assert.ok(ruHtml.includes('href="/ru/luchshie-prop-firmy-v-nigerii"') && ruHtml.includes('Нигерия'))
+    assert.ok(!ruHtml.includes('href="/best-prop-firms-in-nigeria"'), 'RU footer does not link the EN country path')
     // EN order = editorial score desc (UK pattern)
     const scores = en.ranked.map(row => row.firm.score)
     assert.deepEqual(scores, [...scores].sort((a, b) => b - a))

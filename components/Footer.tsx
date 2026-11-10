@@ -3,6 +3,7 @@ import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
+import { indexableBestForNavLinks, indexableCountryNavLinks } from '@/lib/gateInlinks'
 import RuTelegramBlock from './RuTelegramBlock'
 
 type FooterProps = {
@@ -44,6 +45,10 @@ export default function Footer({
       })
     : isRussian ? 'нет данных' : 'Not available'
 
+  // Same sitemap index gates: noindex country / best-for pages are never linked.
+  const countryLinks = indexableCountryNavLinks(lang)
+  const bestForLinks = indexableBestForNavLinks(lang)
+
   const columns: FooterColumn[] = isRussian ? [
     { title: 'Сравнение', links: [
       { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
@@ -52,6 +57,8 @@ export default function Footer({
       { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
       { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
       { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
+      ...countryLinks,
+      ...bestForLinks,
     ] },
     { title: 'Для трейдеров', links: [
       { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
@@ -90,12 +97,14 @@ export default function Footer({
       { label: 'UK', href: '/best-prop-firms-in-uk' },
       { label: 'US', href: '/best-prop-firms-in-us' },
       { label: 'India', href: '/best-prop-firms-in-india' },
+      ...countryLinks,
       { label: 'India: challenge comparison', href: '/best-prop-firms-in-india/challenge-comparison' },
       { label: 'India: firm matchups', href: '/best-prop-firms-in-india/compare' },
       { label: 'India: rule changes', href: '/best-prop-firms-in-india/challenge-changes' },
       { label: 'Futures', href: '/best-futures-prop-firms' },
       { label: 'Crypto', href: '/best-crypto-prop-firms' },
       { label: 'Swing trading', href: '/best-swing-trading-prop-firms' },
+      ...bestForLinks,
     ] },
     { title: 'Reviews', links: [
       { label: 'FTMO', href: '/blog/ftmo-review' },
