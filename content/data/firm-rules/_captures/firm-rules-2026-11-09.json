@@ -1,0 +1,71 @@
+{
+  "capturedAt": "2026-11-09",
+  "accessNotes": "Rolling recheck 2026-11-09 (Europe/Riga, 12:25). Topstep: plain HTTP GET of the first-party help.topstep.com articles returned 200 from the capture machine (US IP, no VPN/proxy). All six leftover quotes re-read on the live pages; values unchanged. The news quote joins the page heading 'Trading Maximum Position Size into Major News Events' with the body sentence (period added at the join).",
+  "pagesRead": [
+    "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+    "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+    "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+    "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+    "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade"
+  ],
+  "pageDates": {
+    "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep": "2026-06-10",
+    "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade": "2026-10-28",
+    "https://help.topstep.com/en/articles/8284197-trading-combine-parameters": "2026-09-24",
+    "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit": "2026-09-18",
+    "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions": "2026-06-18"
+  },
+  "firms": {
+    "topstep": {
+      "maxLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500"
+          },
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
+            "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down."
+          }
+        ]
+      },
+      "dailyLossUsd": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
+            "quote": "It's a simulated account with one rule and two objectives."
+          }
+        ],
+        "summary": "None in the Trading Combine (single rule: Maximum Loss Limit)"
+      },
+      "newsTrading": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
+            "quote": "Trading Maximum Position Size into Major News Events. Purposefully trading your full Maximum Position Size directly into a scheduled major news event."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
+            "quote": "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading."
+          }
+        ]
+      },
+      "platforms": {
+        "evidence": [
+          {
+            "sourceUrl": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
+            "quote": "Connect using the Topstep Dashboard by selecting TopstepX as your platform. ... Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only."
+          }
+        ],
+        "value": [
+          "TopstepX",
+          "Quantower"
+        ]
+      }
+    }
+  }
+}

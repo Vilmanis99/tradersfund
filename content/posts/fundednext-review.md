@@ -3,7 +3,7 @@ title: "FundedNext Review 2026: 22 Prices, 4 Rule Sets, and the India Checkout T
 seoTitle: "FundedNext Review 2026: Fees, Rules & Payouts"
 slug: "fundednext-review"
 date: "2024-09-02 15:16:05"
-modified: "2026-10-20"
+modified: "2026-11-07"
 author: "Edris Derakhshi"
 excerpt: "FundedNext starts new accounts at an 80% split, not 95%. Compare all 22 global prices, payout cycles, news rules, and India payment checks."
 seoDescription: "FundedNext review with 22 current prices, an 80% base split, and Stellar Lite, 1-Step, 2-Step and Instant rules, payouts, platforms and India access."
@@ -42,7 +42,7 @@ type: "post"
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>CFD products captured</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">4 products and 22 priced tiers</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Global list-price range</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$32.99–$1,099.99 before add-ons</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Starting funded split</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">80% on challenges; 70% on Stellar Instant</td></tr>
-    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Funded allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 aggregate; Stellar Lite capped at $200,000</td></tr>
+    <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Funded allocation</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">$300,000 aggregate</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>Platforms</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">MT4, MT5, cTrader, Match-Trader; platform restrictions vary</td></tr>
     <tr><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);"><strong>India availability signal</strong></td><td style="padding: 8px 12px; border-bottom: 1px solid var(--border);">India was not among 20 restricted CFD countries on 2026-07-27</td></tr>
     <tr><td style="padding: 8px 12px;"><strong>Captured</strong></td><td style="padding: 8px 12px;">2026-07-27 from FundedNext plan and Help Center pages</td></tr>
@@ -96,7 +96,7 @@ type: "post"
 
 <p><strong>Stellar 1-Step.</strong> The shortcut requires a 10% target over at least 2 trading days. Its 3% daily loss and 6% static maximum loss are substantially tighter: a $100K account breaches at $94,000 overall or after $3,000 of daily loss, even though the fee is $569.99 versus $549.99 for the 2-Step.</p>
 
-<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on standard plans (5 on the 90% on-demand option), a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
+<p><strong>Stellar Lite.</strong> Lite uses 8% and 4% targets, 2 minimum trading days per phase on every payout option, a 4% daily limit, and an 8% static maximum-loss floor. On $100K, that means $4,000 daily room and an absolute $92,000 floor; the $399.99 fee is $150 below the equivalent 2-Step fee.</p>
 
 <p><strong>Stellar Instant.</strong> There is no evaluation target, daily-loss cap, minimum-day rule, or consistency percentage. The trade-off is a 6% real-time trailing maximum loss: a $10K account starts with a $9,400 floor, a $200 profit lifts it to $9,600, and a $600 peak locks it at $10,000. The floor never moves down and does not reset after a payout; the <a href="/blog/what-is-prop-firm-consistency-rule">consistency-rule guide</a> compares that captured absence with 15%–50% product rules.</p>
 

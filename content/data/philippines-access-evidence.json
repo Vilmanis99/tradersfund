@@ -1,0 +1,277 @@
+{
+  "countryCode": "PH",
+  "name": {
+    "en": "Philippines",
+    "ru": "Филиппины"
+  },
+  "ruSlug": "filippinakh",
+  "ruInfix": "na",
+  "capturedAt": "2026-11-09",
+  "methodology": "A listed firm needs either a current first-party page that names the Philippines as available (explicit) or a current first-party policy that describes global or country-based service availability and does not restrict residents or nationals of the Philippines (policy-supported), plus fresh structured records for every mapped product. This is explicit or policy-supported listing access, not a completed checkout from the Philippines, KYC approval, payout test, or legal opinion.",
+  "firms": [
+    {
+      "firmSlug": "alpha-capital",
+      "firmName": "Alpha Capital",
+      "accessStatus": "explicit",
+      "productSlugs": [
+        "alpha-one",
+        "alpha-pro-6",
+        "alpha-pro-6-on-demand",
+        "alpha-pro-8-bi-weekly",
+        "alpha-pro-8-on-demand",
+        "alpha-pro-10-bi-weekly",
+        "alpha-pro-10-on-demand",
+        "alpha-swing",
+        "alpha-direct"
+      ],
+      "sourceUrl": "https://alphacapitalgroup.uk/resources/alpha-capital-country-availability-2026",
+      "sourcePublishedAt": "2026-06-30",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "The lists below are the 203 countries and territories currently selectable in the checkout country dropdown on alphacapitalgroup.uk (source: live checkout configuration). Availability is always confirmed for your specific country at signup",
+      "evidenceLabel": "Checkout-country list",
+      "evidenceSummary": "Alpha Capital's country-availability guide lists the 203 countries and territories selectable in its checkout country dropdown; Philippines is named in the Asia (42) list.",
+      "decisionNote": "All 10 captured configurations are mapped, the same set as the UK file. The guide says its country names match the live signup dropdown (synced 23 July 2026) and that availability is confirmed for each country at signup, so recheck at checkout. Exact purchase availability remains unsettled for One variants, Swing and Three. Guide page dated 30 June 2026."
+    },
+    {
+      "firmSlug": "apex-trader-funding",
+      "firmName": "Apex Trader Funding",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "intraday-trail-standard",
+        "eod-trail-standard",
+        "intraday-trail-no-activation-fee",
+        "eod-trail-no-activation-fee"
+      ],
+      "assetClass": "futures",
+      "sourceUrl": "https://apextraderfunding.com/help-center/getting-started/restricted-countries/",
+      "sourcePublishedAt": "2026-09-10",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "LIST OF COUNTRIES WE ARE NOT ABLE TO SERVICE AT THIS TIME WITH New or Additional ACCOUNTS:",
+      "evidenceLabel": "Restricted-countries policy",
+      "evidenceSummary": "Apex publishes the countries it is not able to service with new or additional accounts (87 names); the Philippines is not named.",
+      "decisionNote": "All 4 current products are mapped. Recheck residency, KYC, and the payout route at signup. Page dated 10 September 2026."
+    },
+    {
+      "firmSlug": "bright-funded",
+      "firmName": "BrightFunded",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "bright-funded-1-step",
+        "bright-funded-2-step-bright",
+        "bright-funded-2-step-classic"
+      ],
+      "sourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
+      "sourcePublishedAt": "2026-09-15",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "Challenge-purchase policy",
+      "evidenceSummary": "BrightFunded's policy names Cuba, Iran, North Korea, Syria, Vietnam and Pakistan for residence or nationality restrictions on challenge purchases and registration; it does not name the Philippines. This is not a completed checkout or individual eligibility approval.",
+      "decisionNote": "All 3 current CFD products are mapped. Recheck platform availability, KYC, and the final checkout before paying. Help article dated 15 September 2026."
+    },
+    {
+      "firmSlug": "city-traders-imperium",
+      "firmName": "City Traders Imperium",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "1-step-challenge",
+        "2-step-challenge",
+        "instant-funding",
+        "direct-funding"
+      ],
+      "sourceUrl": "https://citytradersimperium.com/wp-content/uploads/2026/08/City-Traders-Imperium-Terms-Conditions.pdf",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "Current service terms",
+      "evidenceSummary": "CTI's current terms (6.5.1) name Syria, North Korea, Cuba, and Iran as restricted jurisdictions for nationals or residents, and the site footer adds Russia and individuals under international sanctions; the Philippines is not listed.",
+      "decisionNote": "All 4 current product records are mapped. Recheck sanctions screening, KYC, and the payout route at signup."
+    },
+    {
+      "firmSlug": "crypto-fund-trader",
+      "firmName": "Crypto Fund Trader",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "evaluation",
+        "accelerated",
+        "instant"
+      ],
+      "sourceUrl": "https://cryptofundtrader.com/terms-and-conditions/",
+      "sourcePublishedAt": "2026-03-30",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "Match-Trader: No country restrictions.",
+      "platformConstraint": "Match-Trader",
+      "evidenceLabel": "Platform country policy (Match-Trader)",
+      "evidenceSummary": "Crypto Fund Trader's Terms (7.3, Country Restrictions and Platform Availability) say Match-Trader has no country restrictions, and its FAQ says the same; no country list names the Philippines.",
+      "decisionNote": "The 3 current products sold to new buyers (Evaluation, Accelerated and Instant) are mapped on Match-Trader only; the Match-Trader statement is not applied to any other platform. Ascend and Break are not mapped because they are not sold to new buyers. Recheck KYC and the payout route at signup. Terms dated 30 March 2026."
+    },
+    {
+      "firmSlug": "e8-markets",
+      "firmName": "E8 Markets",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "e8-one",
+        "e8-one-perpetuals",
+        "e8-pro",
+        "e8-pro-perpetuals",
+        "e8-signature"
+      ],
+      "sourceUrl": "https://help.e8markets.com/en/articles/5514278-accepted-countries",
+      "sourcePublishedAt": "2026-10-01",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "Accepted-countries policy (Classic markets + Perpetuals)",
+      "evidenceSummary": "E8 publishes a restricted-country list for Classic markets + Perpetuals (35 names); the Philippines is not on that list.",
+      "decisionNote": "The 5 current structured products (E8 One, E8 Pro and E8 Signature, plus the E8 One and E8 Pro Perpetuals variants) are mapped to the Classic markets + Perpetuals list. KYC, platform-provider eligibility, payout-processor coverage, and any product-specific limitation still apply. Help article dated 1 October 2026."
+    },
+    {
+      "firmSlug": "ftmo",
+      "firmName": "FTMO",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "ftmo-challenge-2-step",
+        "ftmo-challenge-1-step",
+        "ftmo-instant-account"
+      ],
+      "sourceUrl": "https://ftmo.com/en/faq/who-can-join-ftmo/",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "Due to business decisions based on risk management considerations, FTMO does not provide FTMO CFDs to clients in the countries and regions listed in the following table.",
+      "evidenceLabel": "Global eligibility policy",
+      "evidenceSummary": "FTMO says FTMO CFDs is available to clients globally apart from named country, sanctions, conduct, age, and entity exceptions; the Philippines is not among the named exclusions or in the residency-based restriction table.",
+      "decisionNote": "All 3 current FTMO products (2-Step, 1-Step and Instant Account) are mapped; the eligibility policy is firm-wide, not product-specific. Recheck residency, nationality, sanctions screening, identity documents, and platform availability before paying. Page dateModified 2026-09-30 (schema)."
+    },
+    {
+      "firmSlug": "fundednext",
+      "firmName": "FundedNext",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "stellar-2-step",
+        "stellar-1-step",
+        "stellar-lite",
+        "stellar-instant"
+      ],
+      "sourceUrl": "https://help.fundednext.com/en/articles/8020080-are-any-countries-restricted-on-fundednext-cfds",
+      "sourcePublishedAt": "2026-08-27",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "CFD country policy",
+      "evidenceSummary": "FundedNext publishes a resident-and-citizen restriction list for its CFD service (20 names); the Philippines is not on that list.",
+      "decisionNote": "All 4 current Stellar CFD products are mapped. Recheck the selected platform, add-ons, KYC identity, and payout route at signup. Help article dated 27 August 2026."
+    },
+    {
+      "firmSlug": "fundingpips",
+      "firmName": "FundingPips",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "1-step-flex",
+        "2-step-flex",
+        "2-step-pro",
+        "2-step-standard",
+        "zero"
+      ],
+      "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/44390730743825-Get-Started",
+      "sourcePublishedAt": "2026-09-24",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "FundingPips does not accept traders resident in Iran, Vietnam, or the United Arab Emirates (UAE).",
+      "evidenceLabel": "Onboarding eligibility policy",
+      "evidenceSummary": "FundingPips says it serves \"195+ Countries\" and names Iran, Vietnam, and the United Arab Emirates as restricted resident countries; the Philippines is not named.",
+      "decisionNote": "All 5 current models are mapped. The page footer also excludes residents of \"countries on the FATF and EU/UN sanctions lists\", so the three named countries are not the whole restriction set; recheck eligibility at signup. Payment methods vary by region, and MT5 or cTrader availability must be checked for the chosen account. Article updated 24 September 2026."
+    },
+    {
+      "firmSlug": "fxify",
+      "firmName": "FXIFY",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "one-phase",
+        "two-phase-classic",
+        "two-phase-standard",
+        "two-phase-pro",
+        "three-phase",
+        "instant-funding-standard",
+        "instant-funding-lite",
+        "lightning-challenge",
+        "crypto-standard-1-step",
+        "crypto-instant-funding"
+      ],
+      "sourceUrl": "https://fxify.com/faqs/all-faqs/what-countries-are-accepted/",
+      "sourcePublishedAt": "2026-02-12",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "The following countries are prohibited from trading with FXIFY™:",
+      "evidenceLabel": "Restricted-jurisdiction policy",
+      "evidenceSummary": "FXIFY publishes the jurisdictions it does not accept (35 names, plus the United States and Belarus in the site-footer list); the Philippines is not among them.",
+      "decisionNote": "All 10 current structured product rows (8 FOREX-labelled plus 2 crypto) are mapped. Recheck KYC, platform, and payout route at signup. FAQ page dated 12 February 2026."
+    },
+    {
+      "firmSlug": "maven",
+      "firmName": "Maven",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "standard-1-step",
+        "standard-2-step",
+        "standard-3-step",
+        "instant",
+        "mini",
+        "buy-now-pay-later",
+        "omo-2-step",
+        "predictions-1-step",
+        "predictions-elite-1-step"
+      ],
+      "sourceUrl": "https://maventrading.com/terms-and-conditions",
+      "sourcePublishedAt": "2026-11-05",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "Restricted-countries list (Terms page footer)",
+      "evidenceSummary": "Maven's Terms page lists 25 restricted countries; the Philippines is not named.",
+      "decisionNote": "All 9 current products are mapped. The restricted list sits in the Terms page footer (Terms v2026.3, effective 5 November 2026), not in the Terms body. Recheck the reward method, KYC, and platform at signup."
+    },
+    {
+      "firmSlug": "ofp-funding",
+      "firmName": "OFP Funding",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "instant-classic-3-daily-6-max-drawdown",
+        "instant-classic-5-daily-10-max-drawdown",
+        "instant-lite",
+        "instant-lite-5-daily-10-max-drawdown",
+        "instant-plus-3-daily-5-max-drawdown",
+        "instant-plus-5-daily-10-max-drawdown"
+      ],
+      "sourceUrl": "https://help.ofpfunding.com/country-restrictions/",
+      "sourcePublishedAt": "2026-05-08",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "We cannot provide services to, or accept registrations from, individuals who are nationals of, currently residing in, or legal entities established in the following countries:",
+      "evidenceLabel": "Country-restrictions policy",
+      "evidenceSummary": "OFP Funding names Afghanistan, Iran, Iraq, North Korea, Russia, Somalia, Syria, and Yemen as countries it cannot serve; the Philippines is not named.",
+      "decisionNote": "All 6 current Instant products are mapped. OFP says the list may be updated from time to time, so recheck at signup. Page last updated 8 May 2026."
+    },
+    {
+      "firmSlug": "topstep",
+      "firmName": "Topstep",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "trading-combine-standard-path",
+        "trading-combine-no-activation-fee-path"
+      ],
+      "assetClass": "futures",
+      "sourceUrl": "https://help.topstep.com/en/articles/8284116-am-i-eligible-to-trade-with-topstep",
+      "sourcePublishedAt": "2026-09-04",
+      "sourceCapturedAt": "2026-11-09",
+      "evidenceLabel": "Eligibility policy",
+      "evidenceSummary": "Topstep's eligibility article lists countries whose citizens or residents can't trade or receive payouts, and a separate XFA-only (not LFA) list; the Philippines is on neither.",
+      "decisionNote": "Both current Trading Combine paths are mapped. Eligibility depends on citizenship, residency, and KYC; recheck at signup. Help article dated 4 September 2026."
+    },
+    {
+      "firmSlug": "tradeify",
+      "firmName": "Tradeify",
+      "accessStatus": "policy-supported",
+      "productSlugs": [
+        "growth-evaluation",
+        "select-flex",
+        "select-daily",
+        "lightning-funded"
+      ],
+      "assetClass": "futures",
+      "sourceUrl": "https://help.tradeify.co/en/articles/10495888-rules-restricted-countries",
+      "sourcePublishedAt": "2026-10-17",
+      "sourceCapturedAt": "2026-11-09",
+      "sourceQuote": "Individuals or entities residing in the following restricted countries are prohibited from accessing Tradeify's services:",
+      "evidenceLabel": "Restricted-countries policy",
+      "evidenceSummary": "Tradeify publishes a 65-name restricted-country list; the Philippines is not named.",
+      "decisionNote": "All 4 current products are mapped. Live-account approval and KYC remain separate checks. Article dated 17 October 2026."
+    }
+  ]
+}

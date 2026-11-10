@@ -288,7 +288,7 @@ export default function RussianFundingPipsVsBrightFundedPage() {
       bf: `справка: ${bfFirm?.countriesRestricted?.join(', ') ?? '—'}; условия (п. 2): те же без Пакистана`,
       fp: `справка: ${fpFirm?.countriesRestricted?.join(', ') ?? '—'}; условия: страны из санкционных списков FATF и ЕС/ООН, Вьетнам и ОАЭ`,
     },
-    { field: 'Основана / юрлицо', bf: corporate(bfFirm, 'Сент-Люсия'), fp: corporate(fpFirm, 'Коморы; адрес в Дубае') },
+    { field: 'Основана / юрлицо', bf: corporate(bfFirm, 'ОАЭ, Дубай'), fp: corporate(fpFirm, 'Коморы; адрес в Дубае') },
     { field: 'Платформы', bf: bfFirm?.platforms.join(', ') ?? '—', fp: fpFirm?.platforms.join(', ') ?? '—' },
     {
       field: 'Рынки для торговли',

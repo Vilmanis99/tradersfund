@@ -473,7 +473,8 @@ export default function RussianCTraderPropFirmsPage() {
           <p>
             Если хотя бы 1 из 10 полей неизвестно, не заменяйте его рекламным максимумом. Для правил отдельных программ откройте
             <Link href="/ru/obzor-fundednext"> обзор FundedNext</Link>,
-            <Link href="/ru/obzor-bright-funded"> обзор BrightFunded</Link> и
+            <Link href="/ru/obzor-bright-funded"> обзор BrightFunded</Link>,
+            <Link href="/ru/obzor-e8-markets"> обзор E8 Markets</Link> (cTrader есть, но Россия в списке ограничений) и
             <Link href="/ru/fundednext-vs-bright-funded"> прямое сравнение программ</Link>. Если стратегия требует автоматизации,
             <Link href="/ru/fundednext-mt5"> сравните MT5 и 7 правил EA</Link>, а не переносите cBot на другой терминал.
           </p>

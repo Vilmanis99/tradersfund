@@ -12,6 +12,8 @@ import TableOfContents from '@/components/TableOfContents'
 import { getAuthorByName } from '@/lib/authors'
 import AboutFacts from '@/components/AboutFacts'
 import NamedExpertBlock from '@/components/NamedExpertBlock'
+import { CountryRoutePage, countryMetadata } from '@/lib/countryRoute'
+import { countryEnSegments, countrySlugFromEnSegment } from '@/lib/countryPages'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -46,6 +48,10 @@ export async function generateStaticParams() {
       !RESERVED.includes(p.slug) &&
       !LEGACY_OVERVIEW_SLUGS.has(p.slug))
     .map(p => ({ slug: p.slug }))
+    // Evidence-only country pages (lib/countryPages.ts): /best-prop-firms-in-<slug> per
+    // country evidence file (docs/country-pages.md). Slugs with a static folder (uk/us/india)
+    // or an MDX page are skipped at discovery, so those routes keep winning.
+    .concat(countryEnSegments().filter(slug => !pages.some(p => p.slug === slug)).map(slug => ({ slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -58,6 +64,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: { title: 'Contact Us', url: '/contact', type: 'website' },
     }
   }
+  const countrySlug = countrySlugFromEnSegment(slug)
+  if (countrySlug) return countryMetadata(countrySlug, 'en')
   const page = getPageBySlug(slug)
   if (!page) return {}
   const title = page.seoTitle || page.title
@@ -174,6 +182,9 @@ export default async function DynamicPage({ params }: Props) {
       </div>
     )
   }
+
+  const countrySlug = countrySlugFromEnSegment(slug)
+  if (countrySlug) return CountryRoutePage(countrySlug, 'en')
 
   const page = getPageBySlug(slug)
   if (!page) notFound()

@@ -1512,6 +1512,37 @@ const russianExpectations = new Map([
       'по данным на 19.10.2026',
     ],
   }],
+  ['/ru/obzor-e8-markets', {
+    title: 'E8 Markets: обзор 2026 — программы, цены и доступ из РФ',
+    h1: 'E8 Markets: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="e8-markets"',
+      'data-russian-e8-verdict-box="info-only"',
+      'data-russian-e8-verdict="summary"',
+      'data-russian-e8-access="restricted"',
+      'data-russia-status="restricted"',
+      'data-russia-firm="e8-markets"',
+      'В списке ограничений',
+      'по данным на 02.11.2026',
+      '"datePublished":"2026-11-09"',
+      'data-russian-e8-product-count="3"',
+      'data-russian-e8-signature-gap="2026-11-02"',
+      'на сайте не указано / продукт не отображается',
+      'Условия расходятся, уточните у поддержки',
+      'на сайте не указано',
+      'data-russian-e8-example="one-100k-6dd"',
+      'Пример, не прогноз',
+      'data-russian-e8-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-e8-markets-alternative-bright-funded"',
+      'data-russian-e8-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="e8-markets-review"',
+      'data-russian-risk-disclaimer="e8-markets-review"',
+      'E8 Funding LLC',
+      'Проверено 02.11.2026 по официальным страницам',
+      'рейтинг не опубликован / не перепроверен',
+    ],
+  }],
   ['/ru/obzor-blue-guardian', {
     title: 'Blue Guardian: обзор 2026 — правила, цены и доступ из РФ',
     h1: 'Blue Guardian: обзор и отзывы 2026',
@@ -2199,7 +2230,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital', 'obzor-e8-markets']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 

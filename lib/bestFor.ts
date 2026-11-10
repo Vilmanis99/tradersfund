@@ -330,8 +330,15 @@ function russiaStatusOf(firm: Firm): BestForRussiaStatus {
 
 const FRESH = (product: Challenge, now = new Date()) => isChallengeFresh(product, now)
 
+/** Absent/undefined soldToNewBuyers stays eligible; only explicit false is dropped. */
+export function isBestForSaleEligible(product: Pick<Challenge, 'soldToNewBuyers'>): boolean {
+  return product.soldToNewBuyers !== false
+}
+
 function primaryProducts(firm: Firm, now = new Date()): Challenge[] {
-  return getChallengesByFirm(firmSlug(firm.name)).filter(product => FRESH(product, now))
+  return getChallengesByFirm(firmSlug(firm.name)).filter(
+    product => FRESH(product, now) && isBestForSaleEligible(product),
+  )
 }
 
 /* ── Tracker helpers: evaluationTimeLimit + minHoldSeconds ─────────── */
@@ -1375,7 +1382,10 @@ function qualifyingProductsFor(useCase: BestForUseCase, firm: Firm, products: Ch
     return products.filter(product => product.rules?.ea === true || firm.eaAllowed === true)
   }
   if (useCase.id === 'news-trading') {
-    return products.filter(product => product.rules?.news === true || firm.newsTradingAllowed === true)
+    // Firm-level newsTradingAllowed still gates qualification via allowsNews.
+    // Product rows / split / first-payout days use only explicit rules.news === true
+    // so restricted products (e.g. FXIFY Lightning) cannot leak a lower day count.
+    return products.filter(product => product.rules?.news === true)
   }
   return products
 }

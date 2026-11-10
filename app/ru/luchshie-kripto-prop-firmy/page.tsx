@@ -636,7 +636,7 @@ export default function RussianCryptoPropFirmsPage() {
               {hashHedgeReviewHref ? (
                 <>
                   {' '}Вне этого списка — Hash Hedge: Россия не названа в списке ограничений условий от {HASH_HEDGE_TERMS_DATE_RU}; способ оплаты официальные страницы описывают по-разному, поэтому подтвердите его у поддержки до покупки —{' '}
-                  <Link href={hashHedgeReviewHref} data-russian-crypto-hash-hedge-link="gated">обзор Hash Hedge</Link>. Рядом по теме — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link> (статус доступа из РФ неясен; лист-цены и конфликты условий — в обзоре).
+                  <Link href={hashHedgeReviewHref} data-russian-crypto-hash-hedge-link="gated">обзор Hash Hedge</Link>. Рядом по теме — <Link href="/ru/obzor-spice-prop">обзор Spice Prop</Link> (статус доступа из РФ неясен; лист-цены и конфликты условий — в обзоре). Отдельно по Perpetuals у E8 — <Link href="/ru/obzor-e8-markets">обзор E8 Markets</Link>: Россия в списке ограничений (на 02.11.2026).
                 </>
               ) : null}
             </p>

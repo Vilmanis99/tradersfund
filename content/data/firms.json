@@ -780,10 +780,10 @@
         "evidence": [
           {
             "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
-            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader , and also supports TradingView for analysis purposes.",
+            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader, and also supports TradingView for analysis purposes.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1341,11 +1341,11 @@
     "country": "United States",
     "regulation": null,
     "corporateSourceUrl": "https://e8markets.com/",
-    "corporateCapturedAt": "2026-10-14",
+    "corporateCapturedAt": "2026-11-06",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-14",
-      "captureFile": "content/data/challenges/_captures/e8-markets-2026-10-14.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/e8-markets-2026-11-06.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on E8 One (Forex), E8 One (Perpetuals); static on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); eod-trailing on E8 Signature Forex",
@@ -1358,19 +1358,19 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "An 8% static drawdown that never trails, an 8% profit target, and payouts you can request every single day.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Static drawdown that never trails, and payouts you can request every single day. No consistency rules in Performance stage, no trailing drawdown, unrestricted news trading",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1390,16 +1390,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Daily drawdown $4,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
-            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your initial balance in a single day.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1419,23 +1419,23 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
             "quote": "8% Static drawdown – A fixed loss limit based on your initial balance",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
       },
       "consistencyPct": {
         "value": null,
-        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); not stated on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
+        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); none on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
         "byProduct": {
           "e8-one": 40,
           "e8-one-perpetuals": 40,
@@ -1448,16 +1448,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Consistency rule 40%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "Consistency ruleThere is none — trade freely.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "There is no consistency rule. Enjoy the freedom.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1477,16 +1477,16 @@
             "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
             "quote": "E8 One · Account · $100K ... Payout 80%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
-            "sourceUrl": "https://e8markets.com/best-simfi-funded-program-e8pro",
-            "quote": "PayoutChoose 80% or 100% at purchase — permanent.",
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Choose 80% or 100% at purchase — permanent.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1506,8 +1506,8 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
             "quote": "Payout frequency: You can request every day!",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1527,16 +1527,16 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
             "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
             "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1556,16 +1556,16 @@
             "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
             "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
             "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -1594,40 +1594,24 @@
         "evidence": [
           {
             "sourceUrl": "https://e8markets.com/",
-            "quote": "rmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in",
+            "quote": "Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://e8markets.com/",
-            "quote": "rgest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds Classic Mark",
+            "quote": "E8 Funding solely operates the following trading platforms: Tradelocker, cTrader, and Match Trade.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://e8markets.com/",
-            "quote": ",000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your Account in Seconds",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
-            "productSlug": null
-          },
-          {
-            "sourceUrl": "https://e8markets.com/",
-            "quote": "f 5 on PropFirmMatch $216,000+ Largest payout reward Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal Account configurator Configure Your",
-            "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": null,
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json"
     },
     "trustpilotSuppressedReason": "This company's rating is unavailable due to a breach of our guidelines.",
     "regionalDiscountCode": "E8",
@@ -2298,13 +2282,13 @@
     "futuresCountriesRestrictedQuote": "The restriction covers residents and citizens of the listed countries, and also people located in them.",
     "futuresCountriesRestrictedPageDate": "2026-10-26",
     "futuresCountriesRestrictedCapturedAt": "2026-10-28",
-    "legalEntity": "BrightFunded Ltd",
-    "headquarters": "Suite 5, Place Creole Building, Rodney Bay, Gros-Islet, Saint Lucia",
-    "country": "Saint Lucia",
+    "legalEntity": "Bright Global Computer Systems Software Design FZCO (trading as BrightFunded)",
+    "headquarters": "Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, United Arab Emirates",
+    "country": "United Arab Emirates",
     "regulation": null,
     "corporateSourceUrl": "https://brightfunded.com/",
-    "corporateCapturedAt": "2026-10-16",
-    "corporateNote": "Physical address of BrightFunded Ltd (Saint Lucia, reg. 2025-00358), which offers the CFD services. Bright Global FZCO (Building A1, Dubai Digital Park, Dubai Silicon Oasis, UAE) is a separate affiliate that the homepage labels 'Dubai HQ' / 'Dubai Headquarter' and lists in the footer address; futures services are offered by affiliate BrightFunded LLC (Wyoming; Austin, TX business address).",
+    "corporateCapturedAt": "2026-11-09",
+    "corporateNote": "Homepage and Terms disclosure read 9 November 2026: \"Bright Global Computer Systems Software Design FZCO (“Bright Global FZCO”), trading as BrightFunded, and its affiliated entities listed below … have one sole business activity: providing simulated trading and evaluation services\"; \"The futures simulated trading and evaluation services on www.brightfunded.com are offered solely by BrightFunded LLC, which is the contracting party for those services. All other simulated trading and evaluation services are offered by Bright Global FZCO, which is the contracting party for those services.\" Bright Global FZCO is incorporated and based at Building A1, Dubai Digital Park, Dubai Silicon Oasis, Dubai, UAE. Affiliates listed: BrightFunded Ltd (Saint Lucia, reg. 2025-00358), BrightFunded LLC (Wyoming; Austin, TX business address) and Bright Transact Ltd (Cyprus, HE 478945). Until 8 November 2026 the same disclosure said the CFD services were offered solely by BrightFunded Ltd.",
     "affiliateStatus": "active",
     "discountCodeSourceUrl": "https://brightfunded.com/",
     "discountCodeCapturedAt": "2026-11-04",
@@ -2683,8 +2667,8 @@
     "russiaStatus": "restricted",
     "affiliateStatus": "none",
     "rules": {
-      "capturedAt": "2026-10-29",
-      "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-29.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/ofp-funding-2026-11-06.json",
       "drawdownType": {
         "value": "static",
         "summary": "static",
@@ -2698,12 +2682,12 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "\"This is a 'hard' limit based on your initial balance\" / \"This limit never changes during the challenge\" (https://ofpfunding.com/trading-rules). Help centre adds: \"The rule is calculated against your highest balance at the start of the period or after your last Reward\" (https://help.ofpfunding.com/what-is-the-maximum-drawdown-and-how-can-i-avoid-hitting-it/) - i.e. static within a payout cycle, rebased after each approved reward.",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
@@ -2720,43 +2704,43 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-classic-3-daily-6-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-classic-5-daily-10-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-lite"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 3% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-plus-3-daily-5-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) x Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST). [value 5% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST).",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-plus-5-daily-10-max-drawdown"
           }
         ]
@@ -2774,43 +2758,43 @@
         },
         "evidence": [
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 6% from record: {\"price\":35,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":6,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-classic-3-daily-6-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":45,\"accountType\":\"Classic\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":5000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":0,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-classic-5-daily-10-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":150,\"accountType\":\"Instant Lite\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":50000,\"currency\":\"USD\",\"profitTarget\":5,\"minTradingDays\":5,\"maxTradingDays\":30,\"payoutDays\":30}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-lite"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 5% from record: {\"price\":125,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":3,\"maxDrawdown\":5,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-plus-3-daily-5-max-drawdown"
           },
           {
-            "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Maximum Overall Loss = Initial Balance x Max Overall Loss Percentage (Max Drawdown) ... This is a 'hard' limit based on your initial balance ... This limit never changes during the challenge [value 10% from record: {\"price\":155,\"accountType\":\"Instant Plus\",\"type\":\"instant\",\"profitSplit\":80,\"dailyDrawdown\":5,\"maxDrawdown\":10,\"accountSize\":10000,\"currency\":\"USD\",\"profitTarget\":null,\"minTradingDays\":5,\"maxTradingDays\":null,\"payoutDays\":14}] (https://ofpfunding.com/trading-rules)",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge.",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": "instant-plus-5-daily-10-max-drawdown"
           }
         ]
@@ -2831,16 +2815,16 @@
             "sourceUrl": "https://help.ofpfunding.com/account-models/",
             "quote": "INSTANT LITE ... Consistency Rule: NO ... INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT PLUS ... Consistency Rule: No",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
             "quote": "Calculation Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -2859,11 +2843,11 @@
         "evidence": [
           {
             "sourceUrl": "https://ofpfunding.com/#pricing",
-            "quote": "Pricing widget selector: \"Select Profit Split  80%  100%\". 80% is the base price tier recorded in priceUsd; the 100% tier costs ~20% more (per-size 100% prices are given in each accountSizes evidence string). Homepage: \"Up to 100% profit split\".",
-            "quoteKind": "capture-note",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+            "quote": "Select Profit Split 80% 100%",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
@@ -2883,17 +2867,17 @@
             "sourceUrl": "https://ofpfunding.com/trading-rules",
             "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-            "productSlug": "instant-classic-3-daily-6-max-drawdown"
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           },
           {
             "sourceUrl": "https://ofpfunding.com/trading-rules",
             "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-14",
-            "captureFile": "content/data/challenges/_captures/ofp-funding-2026-10-14.json",
-            "productSlug": "instant-lite"
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
@@ -2913,8 +2897,8 @@
             "sourceUrl": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
             "quote": "You must avoid trading from 2 minutes before until 2 minutes after the release of any high-risk volatility news.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -2948,22 +2932,22 @@
             "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
             "quote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
             "quote": "Web Platform (Mobile & PC) Access directly from your browser: https://my.ofpfunding.net/",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
       },
       "lossLimitUnit": "pct",
-      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json"
+      "freshReadFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json"
     },
     "countriesRestrictedSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
     "russiaSourceUrl": "https://help.ofpfunding.com/country-restrictions/",
@@ -3050,8 +3034,8 @@
     "discountCodeCapturedAt": "2026-10-30",
     "discountCodeNote": "Omo 2-Step challenges only: homepage 30 October 2026 still shows \"40% OFF with code OMO\" on Omo cards. Same page also shows a sitewide A/B banner arm \"Trade like a Diamond. 5% off with code\" DIAMOND (control) / ROCKET 10% (test) — not checkout-verified and not stored as the primary code. Primary public code remains OMO for Omo challenges.",
     "rules": {
-      "capturedAt": "2026-11-05",
-      "captureFile": "content/data/challenges/_captures/maven-2026-11-05.json",
+      "capturedAt": "2026-11-06",
+      "captureFile": "content/data/challenges/_captures/maven-2026-11-06.json",
       "drawdownType": {
         "value": null,
         "summary": "Product-specific: trailing on Standard 1-Step, Instant, Mini, Prediction Markets One-Step Essential; static on Standard 2-Step, Standard 3-Step, OMO 2-Step, Prediction Markets One-Step Elite; Buy Now, Pay Later static in evaluation, trailing when funded (fixed at the initial balance after the first withdrawal)",
@@ -3231,10 +3215,10 @@
           },
           {
             "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
@@ -3306,7 +3290,7 @@
       },
       "profitSplitPct": {
         "value": null,
-        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on the forex products)",
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on Standard 1/2/3-Step, OMO 2-Step, Instant and Mini; Buy Now, Pay Later has no add-ons)",
         "byProduct": {
           "standard-1-step": 80,
           "standard-2-step": 80,
@@ -3337,10 +3321,10 @@
           },
           {
             "sourceUrl": "https://maventrading.com/pricing",
-            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded 10 business days Max loss Phase 1 5% Funded 8%",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           },
           {
@@ -3358,12 +3342,20 @@
             "capturedAt": "2026-11-05",
             "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
             "productSlug": "mini"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand",
+            "quoteKind": "verbatim",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
       "payoutFrequency": {
         "value": null,
-        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step, OMO 2-Step and Prediction Markets; on demand on Instant and Buy Now, Pay Later once their gates are met; Mini one single payout within its 24-hour window",
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step and OMO 2-Step; on demand on Instant, Buy Now, Pay Later and Prediction Markets once their gates are met; Mini one single payout within its 24-hour window",
         "byProduct": {
           "standard-1-step": "bi-weekly",
           "standard-2-step": "bi-weekly",
@@ -3372,8 +3364,8 @@
           "mini": null,
           "buy-now-pay-later": "on-demand",
           "omo-2-step": "bi-weekly",
-          "predictions-1-step": "bi-weekly",
-          "predictions-elite-1-step": "bi-weekly"
+          "predictions-1-step": "on-demand",
+          "predictions-elite-1-step": "on-demand"
         },
         "evidence": [
           {
@@ -3418,11 +3410,11 @@
           },
           {
             "sourceUrl": "https://maventrading.com/terms-and-conditions",
-            "quote": "S3.4 The Simulated Funded Account reward split is 70%, with payouts every 10 business days.",
+            "quote": "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-11-05",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-05.json",
-            "productSlug": "predictions-1-step"
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
+            "productSlug": null
           }
         ]
       },
@@ -4512,8 +4504,8 @@
             "sourceUrl": "https://cryptofundtrader.com/faq/",
             "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-06",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-06.json",
             "productSlug": null
           }
         ]
@@ -4759,8 +4751,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/10305426-prohibited-trading-strategies-at-topstep",
             "quote": "Trading Maximum Position Size into Major News Events. Purposefully trading your full Maximum Position Size directly into a scheduled major news event.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4777,8 +4769,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284206-when-and-what-products-can-i-trade",
             "quote": "All positions must be closed by 3:10 PM CT every weekday. You can resume trading at 5:00 PM CT. No swing trading.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4795,8 +4787,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284197-trading-combine-parameters",
             "quote": "It's a simulated account with one rule and two objectives.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]
@@ -4825,16 +4817,16 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
             "quote": "Account Size Maximum Loss Limit $50K $2,000 $100K $3,000 $150K $4,500",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           },
           {
             "sourceUrl": "https://help.topstep.com/en/articles/8284204-what-is-the-maximum-loss-limit",
             "quote": "The MLL is a trailing limit. It rises as your end-of-day balance grows, but never moves down.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           },
           {
@@ -4859,8 +4851,8 @@
             "sourceUrl": "https://help.topstep.com/en/articles/8284179-quantower-connection-instructions",
             "quote": "Connect using the Topstep Dashboard by selecting TopstepX as your platform. ... Quantower via TopstepX is available for the Trading Combine® and Express Funded Account® (XFA) only.",
             "quoteKind": "verbatim",
-            "capturedAt": "2026-10-15",
-            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-10-15.json",
+            "capturedAt": "2026-11-09",
+            "captureFile": "content/data/firm-rules/_captures/firm-rules-2026-11-09.json",
             "productSlug": null
           }
         ]

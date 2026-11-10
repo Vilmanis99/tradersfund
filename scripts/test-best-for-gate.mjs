@@ -40,6 +40,7 @@ import {
   listBeginnersExcludedRestricted,
   productHasNoTimeLimit,
   rankBestFor,
+  isBestForSaleEligible,
 } from '../lib/bestFor.ts'
 import { getAllFirms, getChallengesByFirm } from '../lib/firms.ts'
 import { firmSlug } from '../lib/firmSlug.ts'
@@ -545,6 +546,14 @@ ${body}
   }
 }
 
+// B1: soldToNewBuyers===false excluded from primaryProducts (every best-for use case).
+{
+  assert.equal(isBestForSaleEligible({}), true)
+  assert.equal(isBestForSaleEligible({ soldToNewBuyers: undefined }), true)
+  assert.equal(isBestForSaleEligible({ soldToNewBuyers: true }), true)
+  assert.equal(isBestForSaleEligible({ soldToNewBuyers: false }), false)
+}
+
 // Track A: low-drawdown USD footnote drops soldToNewBuyers===false; numbered ranking untouched.
 // Negative control must strip sale-status fields — live data may already carry Tracker flags.
 {
@@ -598,6 +607,88 @@ ${body}
   } finally {
     fs.writeFileSync(cftPath, original)
   }
+}
+
+// B1 overlay: Break+Ascend+Flex+Alpha Three soldToNewBuyers=false — products leave every best-for list.
+{
+  const files = {
+    'crypto-fund-trader': [
+      ['break', '2026-11-06'],
+      ['ascend', '2026-10-20'],
+    ],
+    'my-funded-futures': [['flex', '2026-10-26']],
+    'alpha-capital': [['alpha-three', '2026-10-20']],
+  }
+  const backups = {}
+  try {
+    for (const [firm, marks] of Object.entries(files)) {
+      const p = path.join(process.cwd(), 'content/data/challenges', `${firm}.json`)
+      backups[p] = fs.readFileSync(p, 'utf8')
+      const products = JSON.parse(backups[p])
+      for (const [slug, checked] of marks) {
+        const hit = products.find(x => x.productSlug === slug)
+        assert.ok(hit, `${firm}/${slug}`)
+        hit.soldToNewBuyers = false
+        hit.soldToNewBuyersCheckedAt = checked
+      }
+      fs.writeFileSync(p, `${JSON.stringify(products, null, 2)}\n`)
+    }
+    const low = BEST_FOR_USE_CASES.find(u => u.id === 'low-drawdown')
+    const { ranked, unrankedUsd } = rankBestFor(low, 'en')
+    const cft = ranked.find(r => r.slug === 'crypto-fund-trader')
+    assert.ok(cft)
+    assert.equal(ranked.indexOf(cft) + 1, 13)
+    assert.deepEqual(cft.sortKeys, [6, 4])
+    assert.ok(!cft.products.some(p => p.productSlug === 'break' || p.productSlug === 'ascend'))
+    assert.ok(cft.products.map(p => p.productSlug).includes('accelerated'))
+    assert.ok(cft.products.map(p => p.productSlug).includes('instant'))
+    assert.ok(!unrankedUsd.some(r => r.slug === 'crypto-fund-trader'))
+    const mff = ranked.find(r => r.slug === 'my-funded-futures')
+    assert.ok(mff && !mff.products.some(p => p.productSlug === 'flex'))
+    const alpha = ranked.find(r => r.slug === 'alpha-capital')
+    assert.ok(alpha && !alpha.products.some(p => p.productSlug === 'alpha-three'))
+    console.log('  B1 primaryProducts overlay', {
+      cftRank: ranked.indexOf(cft) + 1,
+      cftProducts: cft.products.map(p => p.productSlug),
+      mffProducts: mff.products.map(p => p.productSlug),
+      alphaProducts: alpha.products.map(p => p.productSlug),
+    })
+  } finally {
+    for (const [p, body] of Object.entries(backups)) fs.writeFileSync(p, body)
+  }
+}
+
+// B2: news-trading product filter — rules.news === true only (restricted must not leak via firm flag).
+{
+  const useCase = BEST_FOR_USE_CASES.find(u => u.id === 'news-trading')
+  const { ranked } = rankBestFor(useCase, 'en')
+  for (const row of ranked) {
+    for (const product of row.products) {
+      assert.equal(
+        product.rules?.news,
+        true,
+        `news-trading products must have rules.news===true (got ${product.rules?.news} on ${row.slug}/${product.productSlug})`,
+      )
+    }
+  }
+  const fxify = ranked.find(r => r.slug === 'fxify')
+  assert.ok(fxify, 'FXIFY in news-trading')
+  assert.ok(!fxify.products.some(p => p.productSlug === 'lightning-challenge'), 'Lightning restricted must not qualify')
+  assert.ok(fxify.products.some(p => p.productSlug === 'two-phase-pro'), 'Two Phase Pro remains')
+  assert.equal(fxify.fieldValues.payoutFirstDays, '10', 'FXIFY first payout from Two Phase Pro, not Lightning 7d')
+  const cti = ranked.find(r => r.slug === 'city-traders-imperium')
+  assert.ok(cti)
+  assert.equal(cti.fieldValues.profitSplitPct, '80')
+  assert.equal(cti.fieldValues.payoutFirstDays, '5')
+  const e8 = ranked.find(r => r.slug === 'e8-markets')
+  assert.ok(e8)
+  assert.ok(e8.products.some(p => p.productSlug === 'e8-signature'))
+  assert.equal(e8.fieldValues.payoutFirstDays, '3')
+  console.log('  B2 news-trading product news===true filter', {
+    fxifyDays: fxify.fieldValues.payoutFirstDays,
+    ctiDays: cti.fieldValues.payoutFirstDays,
+    e8Days: e8.fieldValues.payoutFirstDays,
+  })
 }
 
 // Sort rules present for every id (base RU copy has no CTA overlay — that is data-driven)
@@ -824,10 +915,16 @@ for (const nested of BEST_FOR_RETIRED_NESTED_PATHS) {
   assert.equal(status, 404, `${nested} must 404, got ${status}`)
 }
 
-// Feature pages: no crosslink while gate closed (byte-stable intent)
+// Feature pages: crosslink only when the paired best-for page is indexable (no link to noindex best-for)
 for (const slug of ['ea-allowed', 'news-trading']) {
   const { html } = await get(`/prop-firms/${slug}`)
-  assert.ok(!html.includes('data-best-for-crosslink'), `${slug} must not link to noindex best-for`)
+  const href = bestForIndexableFeatureLink(slug)
+  if (!href) {
+    assert.ok(!html.includes('data-best-for-crosslink'), `${slug} must not link to noindex best-for`)
+  } else {
+    assert.ok(indexableBestForPaths().includes(href), `${slug} crosslink ${href} must be an indexable best-for path`)
+    assert.ok(html.includes(`data-best-for-crosslink="${slug}"`) && html.includes(`href="${href}"`), `${slug} must crosslink to indexable ${href}`)
+  }
 }
 
 console.log(`PASS best-for gate (live against ${base})`)

@@ -1,6 +1,6 @@
 {
   "capturedAt": "2026-11-06",
-  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+.",
+  "accessNotes": "Rolling recheck 2026-11-06 (Europe/Riga). Tradeify (rolling 2026-11-06): help.tradeify.co answers 403 to plain HTTP from the capture machine, so the articles were read with a page-fetch tool, as on 2026-10-15; excerpts in /workspace/tradersfundhub/evidence/rolling-recheck-2026-11-06/tradeify/WEBFETCH-EXCERPTS.md. TradeDay (rolling 2026-11-06): plain HTTP GET of tradeday.com and Freshdesk articles. Take Profit Trader (rolling 2026-11-06): Zendesk article HTML answers 403, so articles were read from the public Help Center API (https://takeprofittraderhelp.zendesk.com/api/v2/help_center/en-us/articles/<id>.json); prices from https://takeprofittrader.com/accounts/api/subscriptions. dailyLossUsd card quotes are rendered by JavaScript and were not re-read (dates kept); the static i18n strings still read table-name-7 \"Daily loss rule\" with \"None\" for Test, PRO and PRO+. OFP Funding rules evidence refresh 2026-11-06. E8 Markets rules + corporate refresh 2026-11-06 (/e8-pro replaces 404 e8pro URL). CFT rules.platforms leftover refresh 2026-11-06. FundedNext rules.platforms leftover refresh 2026-11-06. Maven daily-check re-read 2026-11-06 08:10 Riga: standard HTTP GET of public /, /pricing, /faqs, /terms-and-conditions; no account/checkout, no VPN or proxy. Terms now read 'Version 2026.3 | Effective date and Last Amended 5 November 2026' (was 2026.2, 23 October 2026). Prediction Markets payouts changed from every 10 business days to on demand (Terms S3.4, FAQ 'How do I withdraw?', /pricing cards 'Payout frequency Funded On demand'). Instant/BNPL consistency now counts losing days (Terms 10.5, FAQ). Other v2026.3 wording changes recorded in challenges/_captures/maven-2026-11-06.json. Raw evidence: /workspace/tradersfundhub/evidence/daily-check-2026-11-06/pages/maven/. maxLossPct for Maven re-recorded from the 2026-11-05 read with the Prediction Markets /pricing card quote updated to 'Payout frequency Funded On demand'; the other maxLossPct quotes re-checked verbatim on 2026-11-06.",
   "pagesRead": [
     "https://help.tradeify.co/en/articles/10495874-rules-news-trading",
     "https://help.tradeify.co/en/articles/10495876-rules-permitted-times-to-trade",
@@ -24,9 +24,50 @@
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000081072-can-i-trade-news-or-data-releases-",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000304248-what-are-the-differences-between-each-account-size-",
     "https://tradeday.freshdesk.com/en/support/solutions/articles/103000404096-fast-pass-funded-sim-payout-policy",
-    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-"
+    "https://tradeday.freshdesk.com/en/support/solutions/articles/103000405228-what-is-quick-pay-",
+    "https://ofpfunding.com/#pricing",
+    "https://ofpfunding.com/trading-rules",
+    "https://help.ofpfunding.com/account-models/",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+    "https://ofpfunding.com/",
+    "https://e8markets.com/",
+    "https://e8markets.com/e8-pro",
+    "https://e8markets.com/compare-simfi-funded-accounts",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+    "https://e8markets.com/e8-markets-terms-and-conditions",
+    "https://cryptofundtrader.com/faq/",
+    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+    "https://maventrading.com/",
+    "https://maventrading.com/pricing",
+    "https://maventrading.com/faqs",
+    "https://maventrading.com/terms-and-conditions"
   ],
-  "pageDates": {},
+  "pageDates": {
+    "https://ofpfunding.com/#pricing": "2026-11-06",
+    "https://ofpfunding.com/trading-rules": "2026-11-06",
+    "https://help.ofpfunding.com/account-models/": "2026-11-06",
+    "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/": "2026-11-06",
+    "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/": "2026-11-06",
+    "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/": "2026-11-06",
+    "https://ofpfunding.com/": "2026-11-06",
+    "https://e8markets.com/": "2026-11-06",
+    "https://e8markets.com/e8-pro": "2026-11-06",
+    "https://e8markets.com/compare-simfi-funded-accounts": "2026-11-06",
+    "https://help.e8markets.com/en/articles/15274219-e8-pro": "2026-11-06",
+    "https://help.e8markets.com/en/articles/9185497-can-i-trade-news": "2026-11-06",
+    "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend": "2026-11-06",
+    "https://e8markets.com/e8-markets-terms-and-conditions": "2026-11-06",
+    "https://cryptofundtrader.com/faq/": "2026-11-06",
+    "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext": "2026-11-06",
+    "https://maventrading.com/terms-and-conditions": "Version 2026.3 | Effective date and Last Amended 5 November 2026",
+    "https://maventrading.com/faqs": "no page date",
+    "https://maventrading.com/pricing": "no page date",
+    "https://maventrading.com/": "no page date"
+  },
   "firms": {
     "tradeday": {
       "drawdownType": {
@@ -624,6 +665,490 @@
           {
             "sourceUrl": "https://takeprofittraderhelp.zendesk.com/hc/en-us/articles/15173017163549-Choosing-Your-Platform",
             "quote": "TradingView ... NinjaTrader ... Tradovate ... Bookmap ... MultiCharts ... MotiveWave ... Trade Navigator ... R|Trader ... VolFix ... ATAS ... Investor R/T ... Quantower ... Finamark ... Jigsaw Trader"
+          }
+        ]
+      }
+    },
+    "ofp-funding": {
+      "drawdownType": {
+        "value": "static",
+        "summary": "static",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "static",
+          "instant-classic-5-daily-10-max-drawdown": "static",
+          "instant-lite": "static",
+          "instant-lite-5-daily-10-max-drawdown": "static",
+          "instant-plus-3-daily-5-max-drawdown": "static",
+          "instant-plus-5-daily-10-max-drawdown": "static"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "summary": "Product-specific: 3% on Instant Classic (3% daily / 6% max drawdown), Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown); 5% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 3,
+          "instant-classic-5-daily-10-max-drawdown": 5,
+          "instant-lite": 3,
+          "instant-lite-5-daily-10-max-drawdown": 5,
+          "instant-plus-3-daily-5-max-drawdown": 3,
+          "instant-plus-5-daily-10-max-drawdown": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Daily Loss = Equity (recorded at end of previous day) × Max Daily Loss Percentage. Equity is recorded at the end of each trading day (midnight GMT+2 with DST)."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "summary": "Product-specific: 6% on Instant Classic (3% daily / 6% max drawdown); 10% on Instant Classic (5% daily / 10% max drawdown), Instant Lite (5% daily / 10% max), Instant Plus (5% daily / 10% max drawdown); 5% on Instant Lite (3% daily / 5% max), Instant Plus (3% daily / 5% max drawdown)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 6,
+          "instant-classic-5-daily-10-max-drawdown": 10,
+          "instant-lite": 5,
+          "instant-lite-5-daily-10-max-drawdown": 10,
+          "instant-plus-3-daily-5-max-drawdown": 5,
+          "instant-plus-5-daily-10-max-drawdown": 10
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Maximum Overall Loss = Initial Balance × Max Overall Loss Percentage (Max Drawdown). This is a 'hard' limit based on your initial balance. This limit never changes during the challenge."
+          }
+        ]
+      },
+      "consistencyPct": {
+        "summary": "Product-specific: Inconsistency Score (best day ÷ total profit; no published % threshold) on Instant Classic; none on Instant Lite and Instant Plus",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": null,
+          "instant-classic-5-daily-10-max-drawdown": null,
+          "instant-lite": null,
+          "instant-lite-5-daily-10-max-drawdown": null,
+          "instant-plus-3-daily-5-max-drawdown": null,
+          "instant-plus-5-daily-10-max-drawdown": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/account-models/",
+            "quote": "INSTANT LITE ... Consistency Rule: NO ... INSTANT CLASSIC ... Consistency Rule: YES ... INSTANT PLUS ... Consistency Rule: No"
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/what-is-the-consistency-score-consistency-rule-and-how-does-it-affect-my-account/",
+            "quote": "Calculation Consistency Score = (Best Trading Day Profit ÷ Total Profit) × 100 ... If too much of your profit comes from a single day or trade, your account may be flagged as inconsistent."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": 80,
+          "instant-classic-5-daily-10-max-drawdown": 80,
+          "instant-lite": 80,
+          "instant-lite-5-daily-10-max-drawdown": 80,
+          "instant-plus-3-daily-5-max-drawdown": 80,
+          "instant-plus-5-daily-10-max-drawdown": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/#pricing",
+            "quote": "Select Profit Split 80% 100%"
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "summary": "Product-specific: bi-weekly on Instant Classic (3% daily / 6% max drawdown), Instant Classic (5% daily / 10% max drawdown), Instant Plus (3% daily / 5% max drawdown), Instant Plus (5% daily / 10% max drawdown); monthly on Instant Lite (3% daily / 5% max), Instant Lite (5% daily / 10% max)",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "bi-weekly",
+          "instant-classic-5-daily-10-max-drawdown": "bi-weekly",
+          "instant-lite": "monthly",
+          "instant-lite-5-daily-10-max-drawdown": "monthly",
+          "instant-plus-3-daily-5-max-drawdown": "bi-weekly",
+          "instant-plus-5-daily-10-max-drawdown": "bi-weekly"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Following the initial reward, subsequent reward requests may be submitted after each additional 14-day period, with the calculation period resetting after every approved reward, as long as the trading criteria continue to be met."
+          },
+          {
+            "sourceUrl": "https://ofpfunding.com/trading-rules",
+            "quote": "Once the reward has been approved or the 30-day validity period has expired (whichever occurs first), the Instant Lite account will be considered concluded, and no further reward requests shall be permitted."
+          }
+        ]
+      },
+      "newsTrading": {
+        "value": "restricted",
+        "summary": "restricted",
+        "byProduct": {
+          "instant-classic-3-daily-6-max-drawdown": "restricted",
+          "instant-classic-5-daily-10-max-drawdown": "restricted",
+          "instant-lite": "restricted",
+          "instant-lite-5-daily-10-max-drawdown": "restricted",
+          "instant-plus-3-daily-5-max-drawdown": "restricted",
+          "instant-plus-5-daily-10-max-drawdown": "restricted"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/can-i-trade-during-news-events-explaining-straddling-restrictions/",
+            "quote": "You must avoid trading from 2 minutes before until 2 minutes after the release of any high-risk volatility news."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "OFP Platform (Sirix)"
+        ],
+        "summary": "OFP Platform (Sirix)",
+        "evidence": [
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "All our accounts use OFP platform (Sirix) which is integrated with TradingView features."
+          },
+          {
+            "sourceUrl": "https://help.ofpfunding.com/how-do-i-access-and-trade-on-my-account/",
+            "quote": "Web Platform (Mobile & PC) Access directly from your browser: https://my.ofpfunding.net/"
+          }
+        ]
+      }
+    },
+    "e8-markets": {
+      "drawdownType": {
+        "summary": "Product-specific: trailing on E8 One (Forex), E8 One (Perpetuals); static on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); eod-trailing on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "trailing",
+          "e8-one-perpetuals": "trailing",
+          "e8-pro": "static",
+          "e8-pro-perpetuals": "static",
+          "e8-signature": "eod-trailing"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Static drawdown that never trails, and payouts you can request every single day. No consistency rules in Performance stage, no trailing drawdown, unrestricted news trading"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          }
+        ]
+      },
+      "dailyLossPct": {
+        "summary": "Product-specific: 4% on E8 One (Forex), E8 One (Perpetuals); 2.5% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 4,
+          "e8-one-perpetuals": 4,
+          "e8-pro": 2.5,
+          "e8-pro-perpetuals": 2.5,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Daily drawdown $4,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "2.5% Daily Drawdown – Your account must not lose more than 2.5% of your initial balance in a single day."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "summary": "Product-specific: 6% on E8 One (Forex), E8 One (Perpetuals); 8% on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not stated on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 6,
+          "e8-one-perpetuals": 6,
+          "e8-pro": 8,
+          "e8-pro-perpetuals": 8,
+          "e8-signature": null
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Dynamic Drawdown $6,000"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "8% Static drawdown – A fixed loss limit based on your initial balance"
+          }
+        ]
+      },
+      "consistencyPct": {
+        "summary": "Product-specific: 40% on E8 One (Forex), E8 One (Perpetuals); none on E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); 35% on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": 40,
+          "e8-one-perpetuals": 40,
+          "e8-pro": null,
+          "e8-pro-perpetuals": null,
+          "e8-signature": 35
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Consistency rule 40%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "There is no consistency rule. Enjoy the freedom."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "value": 80,
+        "summary": "80%",
+        "byProduct": {
+          "e8-one": 80,
+          "e8-one-perpetuals": 80,
+          "e8-pro": 80,
+          "e8-pro-perpetuals": 80,
+          "e8-signature": 80
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/compare-simfi-funded-accounts",
+            "quote": "E8 One · Account · $100K ... Payout 80%"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/e8-pro",
+            "quote": "Choose 80% or 100% at purchase — permanent."
+          }
+        ]
+      },
+      "payoutFrequency": {
+        "value": "on-demand",
+        "summary": "on-demand",
+        "byProduct": {
+          "e8-one": "on-demand",
+          "e8-one-perpetuals": "on-demand",
+          "e8-pro": "on-demand",
+          "e8-pro-perpetuals": "on-demand",
+          "e8-signature": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/15274219-e8-pro",
+            "quote": "Payout frequency: You can request every day!"
+          }
+        ]
+      },
+      "newsTrading": {
+        "summary": "Product-specific: restricted on E8 One (Forex); not stated on E8 One (Perpetuals), E8 Pro (Perpetuals); allowed on E8 Pro (E8PRO v2, Forex), E8 Signature Forex",
+        "byProduct": {
+          "e8-one": "restricted",
+          "e8-one-perpetuals": null,
+          "e8-pro": true,
+          "e8-pro-perpetuals": null,
+          "e8-signature": true
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "You can trade news on E8 Signature and E8 Pro without any restrictions (This includes SimFi™ challenge account (phase-1) and SimFi™ performance Account)"
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/9185497-can-i-trade-news",
+            "quote": "In the SimFI™ Performance account, trading is strictly prohibited during high-impact news events."
+          }
+        ]
+      },
+      "weekendHolding": {
+        "summary": "Product-specific: allowed on E8 One (Forex), E8 One (Perpetuals), E8 Pro (E8PRO v2, Forex), E8 Pro (Perpetuals); not allowed on E8 Signature Forex",
+        "byProduct": {
+          "e8-one": true,
+          "e8-one-perpetuals": true,
+          "e8-pro": true,
+          "e8-pro-perpetuals": true,
+          "e8-signature": false
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "E8 One, E8 Pro: Weekend Holding and Crypto trading are allowed on all stages."
+          },
+          {
+            "sourceUrl": "https://help.e8markets.com/en/articles/5514966-can-i-hold-positions-overnight-and-trade-over-the-weekend",
+            "quote": "On E8 Signature, all positions are automatically closed at 23:00 server time, and trading resumes at 00:15 server time."
+          }
+        ]
+      },
+      "platforms": {
+        "value": [
+          "TradeLocker",
+          "Match-Trader",
+          "cTrader",
+          "MT5"
+        ],
+        "summary": "TradeLocker, Match-Trader, cTrader, MT5",
+        "evidence": [
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "Best platforms in the Game MetaTrader 5 TradeLocker cTrader MatchTrader E8 Terminal"
+          },
+          {
+            "sourceUrl": "https://e8markets.com/",
+            "quote": "E8 Funding solely operates the following trading platforms: Tradelocker, cTrader, and Match Trade."
+          }
+        ]
+      }
+    },
+    "crypto-fund-trader": {
+      "platforms": {
+        "value": [
+          "Match-Trader",
+          "MT5",
+          "Bybit"
+        ],
+        "summary": "Match-Trader, MT5",
+        "evidence": [
+          {
+            "sourceUrl": "https://cryptofundtrader.com/faq/",
+            "quote": "Crypto Fund Trader currently offers access to Match-Trader, MetaTrader 5, and Bybit."
+          }
+        ]
+      }
+    },
+    "fundednext": {
+      "platforms": {
+        "value": [
+          "MT4",
+          "MT5",
+          "cTrader",
+          "Match-Trader"
+        ],
+        "summary": "MT4, MT5, cTrader, Match-Trader",
+        "evidence": [
+          {
+            "sourceUrl": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+            "quote": "FundedNext offers access to the industry's most common trading platforms — MetaTrader 4 (MT4), MetaTrader 5 (MT5), Match-Trader, cTrader, and also supports TradingView for analysis purposes."
+          }
+        ]
+      }
+    },
+    "maven": {
+      "payoutFrequency": {
+        "summary": "Product-specific: every 10 business days on Standard 1/2/3-Step and OMO 2-Step; on demand on Instant, Buy Now, Pay Later and Prediction Markets once their gates are met; Mini one single payout within its 24-hour window",
+        "byProduct": {
+          "standard-1-step": "bi-weekly",
+          "standard-2-step": "bi-weekly",
+          "standard-3-step": "bi-weekly",
+          "instant": "on-demand",
+          "mini": null,
+          "buy-now-pay-later": "on-demand",
+          "omo-2-step": "bi-weekly",
+          "predictions-1-step": "on-demand",
+          "predictions-elite-1-step": "on-demand"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "S3.4 The Simulated Funded Account reward split is 70%. A payout can be requested as soon as the account has enough profit to withdraw; there is no waiting period."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "You can request a payout as soon as you have enough profit to withdraw; there is no waiting period."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "BNPL and Instant are on demand subject to their conditions."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "10.3 For Standard plans and OMO, the first request becomes eligible 10 business days after the first trade on the Simulated Funded Account."
+          }
+        ]
+      },
+      "profitSplitPct": {
+        "summary": "Product-specific: 80% on Standard 1/2/3-Step, Instant, Buy Now, Pay Later, OMO 2-Step; 70% on Mini and Prediction Markets (90% with a paid add-on on Standard 1/2/3-Step, OMO 2-Step, Instant and Mini; Buy Now, Pay Later has no add-ons)",
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/terms-and-conditions",
+            "quote": "80%, no add-ons; 50% after first M2 trigger; $20 gross minimum; on demand"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "Buy Now Pay Later has no add-ons."
+          }
+        ]
+      },
+      "maxLossPct": {
+        "value": null,
+        "summary": "Product-specific: 5% on Standard 1-Step; 8% on Standard 2-Step, OMO 2-Step; 3% on Standard 3-Step, Instant, Mini; Buy Now, Pay Later 10% in evaluation, 8% when funded; Prediction Markets One-Step Essential and Elite 5% in Phase 1, 8% when funded",
+        "byProduct": {
+          "standard-1-step": 5,
+          "standard-2-step": 8,
+          "standard-3-step": 3,
+          "instant": 3,
+          "mini": 3,
+          "buy-now-pay-later": 10,
+          "omo-2-step": 8,
+          "predictions-1-step": 5,
+          "predictions-elite-1-step": 5
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 2 Step Challenge and Simulated Funded Account use the same loss limits: 4% daily loss and 8% static maximum drawdown."
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Challenge has only one limit during the Evaluation Phase: Maximum Drawdown: 10% (Static)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Buy Now Pay Later Simulated Funded Account has two loss limits: Daily Loss Limit: 4% (Equity-Based) ... Maximum Drawdown: 8% (Trailing)"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "One-Step Essential uses Trailing Drawdown with a 5% max loss in Phase 1 and 8% when funded One-Step Elite uses Static Drawdown with a 5% max loss in Phase 1 and 8% when funded"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/pricing",
+            "quote": "1 Step $5k account $42 * $44 ... Profit target Phase 1 9% ... Profit split Phase 1 N/A Funded 70% Payout frequency Funded On demand Max loss Phase 1 5% Funded 8%"
+          },
+          {
+            "sourceUrl": "https://maventrading.com/faqs",
+            "quote": "The Standard 1 Step Challenge and Simulated Funded Account use the same loss limits: 3% daily loss and 5% trailing maximum drawdown."
           }
         ]
       }
