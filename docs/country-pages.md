@@ -58,4 +58,7 @@ RU sign-up CTA only where `firms.json` `russiaStatus` is `available`.
 noindex + out of the sitemap until: ≥1 listed firm, a writer verdict
 (`content/verdicts/country/<slug>.md` / `<slug>.ru.md`, format in
 `lib/verdicts.ts`), `name.en` (and `name.ru` for RU) and ≥5 fields that differ between ≥2 listed firms. Hreflang
-EN↔RU only when both pass. Test: `npm run test:country-pages`.
+EN↔RU only when both pass. The live-repo checks in `scripts/test-country-pages.mjs`
+compute sitemap, robots and hreflang expectations from that gate for every
+discovered slug, so a country can become indexable when its verdict lands
+without rewriting the test. Test: `npm run test:country-pages`.
