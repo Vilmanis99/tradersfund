@@ -45,7 +45,8 @@ export const metadata: Metadata = {
  * officialUrl (official_site_click). CR rule: reviewed firm keeps CTA + Russia badge → RuGoLink with
  * btn-outline (info-only). Badge from RuAccessBadgeView ← firms.json → «В списке ограничений» (Dev 03.11;
  * brief still says older «Недоступно для РФ» — do not hardcode). BrightFunded CTA above firm official link.
- * List prices only «по данным на 04.11.2026»; codes CLUB/FIFTYOFF named only as coupon-page listings.
+ * List prices only «по данным на 04.11.2026»; codes CLUB/FIFTYOFF named only as coupon-page listings
+ * (worded «указаны на официальной странице купонов на 10.11.2026»; not checkout-verified, not in CTAs).
  */
 const CHECKED = '2026-11-04'
 const DATE_PUBLISHED = '2026-11-10'
@@ -54,6 +55,8 @@ const ACCESS_CHECKED = '2026-11-04'
 /** Help article dateModified (Restricted Countries Policy). */
 const COUNTRIES_PAGE_MODIFIED = '2026-10-14'
 const PRICES_CHECKED = '2026-11-04'
+/** Ship-day coupon-page listing date (10.11 re-read; not a price/ACCESS capture bump). */
+const COUPONS_LISTED = '2026-11-10'
 /** Rolling recheck of plan pages + Help Centre; values unchanged vs 04.11. */
 const RULES_RECHECKED = '2026-11-05'
 const TRUSTPILOT_CHECKED = '2026-10-26'
@@ -534,11 +537,11 @@ export default function RussianMyFundedFuturesReviewPage() {
               Path Forward (Legacy)». В продаже не отображается ({asOf(CHECKED)}) — цены Flex как текущего предложения мы
               не приводим.
             </p>
-            <p data-russian-mff-codes={PRICES_CHECKED}>
-              На официальной странице купонов {asOf(PRICES_CHECKED)} указаны коды CLUB (40%, без даты окончания в данных
-              страницы) и FIFTYOFF (50% для новых клиентов, до начала 02.01.2027 по данным страницы). Мы не проверяли их
-              в корзине и не считаем скидочные цены; в CTA их нет. Для резидента РФ это всё равно не путь к покупке —
-              фирма в списке ограничений.
+            <p data-russian-mff-codes={COUPONS_LISTED}>
+              Коды CLUB (40%, без даты окончания в данных страницы) и FIFTYOFF (50% для новых клиентов, до начала
+              02.01.2027 по данным страницы) указаны на официальной странице купонов на {ruDate(COUPONS_LISTED)}. Мы не
+              проверяли их в корзине и не считаем скидочные цены; в CTA их нет. Для резидента РФ это всё равно не путь к
+              покупке — фирма в списке ограничений.
             </p>
             <p data-russian-mff-conflicts={CHECKED}>
               <strong>Где страницы фирмы расходятся.</strong> База consistency описана и как доля от прибыли оценки, и как
@@ -555,7 +558,7 @@ export default function RussianMyFundedFuturesReviewPage() {
             <p className="ru-source-line">
               Источники: {src(SOURCES.rapid, 'Rapid')}, {src(SOURCES.rapidEod, 'Rapid EOD')}, {src(SOURCES.pro, 'Pro')},{' '}
               {src(SOURCES.builder, 'Builder')}, {src(SOURCES.oneTime, 'one-time payment')}, {src(SOURCES.activation, 'activation fee')},{' '}
-              {src(SOURCES.coupons, 'coupons')} — {asOf(PRICES_CHECKED)}; правила перечитаны {asOf(RULES_RECHECKED)} без
+              {src(SOURCES.coupons, 'coupons')} — {asOf(COUPONS_LISTED)}; лист-цены — {asOf(PRICES_CHECKED)}; правила перечитаны {asOf(RULES_RECHECKED)} без
               изменений цифр.
             </p>
           </div>
@@ -864,7 +867,7 @@ export default function RussianMyFundedFuturesReviewPage() {
               </li>
               <li>
                 {src(SOURCES.rapid, 'Rapid')}, {src(SOURCES.rapidEod, 'Rapid EOD')}, {src(SOURCES.pro, 'Pro')},{' '}
-                {src(SOURCES.builder, 'Builder')}, {src(SOURCES.coupons, 'Coupons')} — лист-цены {asOf(PRICES_CHECKED)}.
+                {src(SOURCES.builder, 'Builder')}, {src(SOURCES.coupons, 'Coupons')} — {asOf(COUPONS_LISTED)}; лист-цены {asOf(PRICES_CHECKED)}.
               </li>
               <li>
                 {src(SOURCES.consistency, 'Consistency rule')} (от {ruDate(CONSISTENCY_HELP_UPDATED)}),{' '}
