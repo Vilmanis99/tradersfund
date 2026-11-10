@@ -64,6 +64,7 @@ import {
 } from '../lib/indexNow.ts'
 
 import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
+import { indexableBestForPaths } from '../lib/bestFor.ts'
 
 /** Same output as lib/ruDate.ts ruMonthYear(): «ноябрь 2026» for the current month in Riga time. */
 function ruMonthYearForCrawl(now = new Date()) {
@@ -753,9 +754,13 @@ if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
 // pages until the gate opens: checked below as 200 + noindex + no hreflang + out of the sitemap.
 const gatedRuRulesPaths = new Set(gatedRuRulesHandwrittenPaths())
 const russianOnlyPaths = RUSSIAN_ONLY_ROUTES.filter(path => !gatedRuRulesPaths.has(path))
+// Same gate as the sitemap and IndexNow: indexable RU best-for pages join the
+// acquisition inventory automatically. Do not add them to LOCALIZED_ROUTE_PAIRS.
+const indexableRuBestForPaths = indexableBestForPaths().filter(path => path.startsWith('/ru/'))
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
   ...russianOnlyPaths,
+  ...indexableRuBestForPaths,
 ]
 const russianIndexNowPaths = getRussianIndexNowUrls(PRODUCTION_ORIGIN)
   .map(url => new URL(url).pathname)
