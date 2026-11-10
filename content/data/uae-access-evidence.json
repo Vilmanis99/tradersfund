@@ -62,7 +62,7 @@
       "sourceUrl": "https://brightfunded.com/terms-and-conditions",
       "sourceCapturedAt": "2026-11-09",
       "sourceQuote": "services related to MetaTrader 5 (MT5) and the associated information provided on this website are not intended for residents or citizens of the United States, United Arab Emirates, and other restricted countries",
-      "platformConstraint": "MetaTrader 5 is not available to UAE residents or citizens",
+      "platformConstraint": "MetaTrader 5 is not intended for UAE residents or citizens",
       "secondarySourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
       "secondarySourcePublishedAt": "2026-09-15",
       "evidenceLabel": "Non-MT5 platforms only",
