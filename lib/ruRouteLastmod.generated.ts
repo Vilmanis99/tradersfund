@@ -2,7 +2,7 @@
 // Per Russian route: editorial date or newest change of its page, evidence and firm data (YYYY-MM-DD).
 export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru': '2026-11-09',
-  '/ru/chto-takoe-prop-firma': '2026-11-05',
+  '/ru/chto-takoe-prop-firma': '2026-11-11',
   '/ru/dlya-russkoyazychnykh-treyderov': '2026-11-10',
   '/ru/forex-prop-firmy': '2026-11-05',
   '/ru/ftmo-dlya-rossiyan': '2026-11-05',
@@ -16,7 +16,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/fundingpips-pravila': '2026-11-05',
   '/ru/fundingpips-vs-bright-funded': '2026-11-10',
   '/ru/kak-my-zarabatyvaem': '2026-11-04',
-  '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-11-05',
+  '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-11-11',
   '/ru/luchshie-kripto-prop-firmy': '2026-11-09',
   '/ru/luchshie-prop-firmy': '2026-11-11',
   '/ru/obzor-alpha-capital': '2026-11-06',

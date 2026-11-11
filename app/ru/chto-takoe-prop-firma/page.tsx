@@ -462,6 +462,7 @@ export default function RussianWhatIsPropFirmPage() {
             <Link href="/ru/forex-prop-firmy"> forex-сравнение</Link> для валютных пар и плеча,
             <Link href="/ru/vyplaty-prop-firm"> сравнение выплат</Link> для платёжного канала и
             <Link href="/ru/otzyvy-prop-firm"> методику отзывов</Link> для проверки повторяющихся жалоб.
+            Если это ваша первая покупка, подсказка <Link href="/ru/luchshie-prop-firmy-dlya-novichkov">с какой проп-фирмы начать новичку</Link> сузит выбор до недорогих стартовых программ.
             Финальный источник — страница оплаты и договор в день покупки.
           </p>
           <div className="ru-actions">
