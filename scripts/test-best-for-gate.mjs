@@ -42,6 +42,7 @@ import {
   rankBestFor,
   isBestForSaleEligible,
 } from '../lib/bestFor.ts'
+import { indexableBestForNavLinks } from '../lib/gateInlinks.ts'
 import { getAllFirms, getChallengesByFirm } from '../lib/firms.ts'
 import { firmSlug } from '../lib/firmSlug.ts'
 
@@ -127,9 +128,25 @@ for (const model of getBestForPageModels(new Date(), emptyVerdictRoot)) {
   assert.ok(model.reasons.some(r => /missing writer verdict/.test(r)))
 }
 assert.deepEqual(indexableBestForPaths(new Date(), emptyVerdictRoot), [])
+assert.deepEqual(indexableBestForNavLinks('en', new Date(), emptyVerdictRoot), [])
+assert.deepEqual(indexableBestForNavLinks('ru', new Date(), emptyVerdictRoot), [])
 assert.equal(bestForRoutePair('/best-prop-firms-for-eas', new Date(), emptyVerdictRoot), undefined)
 assert.equal(bestForIndexableFeatureLink('ea-allowed', emptyVerdictRoot), null)
 assert.equal(bestForIndexableFeatureLink('news-trading', emptyVerdictRoot), null)
+
+// Footer inlinks = indexable paths for that language only (same gate as the sitemap).
+{
+  const enLinks = indexableBestForNavLinks('en')
+  const ruLinks = indexableBestForNavLinks('ru')
+  const enPaths = indexableBestForPaths().filter(path => !path.startsWith('/ru/')).sort()
+  const ruPaths = indexableBestForPaths().filter(path => path.startsWith('/ru/')).sort()
+  assert.deepEqual(enLinks.map(link => link.href).sort(), enPaths)
+  assert.deepEqual(ruLinks.map(link => link.href).sort(), ruPaths)
+  for (const model of getBestForPageModels().filter(item => !item.indexable)) {
+    const hrefs = (model.lang === 'ru' ? ruLinks : enLinks).map(link => link.href)
+    assert.ok(!hrefs.includes(model.path), `noindex ${model.path} must not be a footer inlink`)
+  }
+}
 
 // Per-language gate: RU verdict alone can unlock RU when data passes (fixture root only)
 {

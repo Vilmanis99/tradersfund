@@ -2,6 +2,8 @@
  * Evidence-only country pages (lib/countryPages.ts): discovery, 30-day gate,
  * verdict + ≥5 differing-field gate, robots/sitemap/hreflang, RU path/order/CTA,
  * and proof that UK / US / India are never emitted by the template.
+ * Live-repo sitemap, robots and hreflang are computed from the index gate for
+ * every discovered slug (not from a hard-coded “nothing is indexable” list).
  *
  * Every country fixture is written to a temp dir at test time and deleted;
  * TFH_COUNTRY_CONTENT_ROOT points the module (and app/sitemap.ts) at it.
@@ -108,11 +110,25 @@ try {
     decisionNote: 'Fixture decision note.',
   }))
   const evidence = (firms, extra = {}) => ({ methodology: 'Fixture methodology.', firms, ...extra })
+
   const meta = { countryCode: 'NG', name: { en: 'Nigeria', ru: 'Нигерия' }, ruSlug: 'nigerii' }
 
+  /** Live-repo index expectation for one language of a discovered country. */
+  function liveCountryGatePasses(model, slug, lang) {
+    if (!model) return false
+    const verdictFile = path.join(root, 'content/verdicts/country', `${slug}${lang === 'ru' ? '.ru' : ''}.md`)
+    const hasName = lang === 'ru' ? Boolean(model.country.names.ru) : Boolean(model.country.names.en)
+    return hasName
+      && model.firmCount >= 1
+      && model.firmCount >= cp.COUNTRY_MIN_FIRMS
+      && model.differingFieldCount >= cp.COUNTRY_MIN_DIFF_FIELDS
+      && fs.existsSync(verdictFile)
+  }
+
   // ── 1. No evidence file → no page, no route, no sitemap entry ─────────────
-  check('live repo: discovery skips uk/us (own hubs), india (other schema) and firm-level *-access-evidence files; Tracker evidence without verdicts stays noindex and out of the sitemap', () => {
+  check('live repo: discovery skips uk/us/india and firm-level evidence files; each template country is indexable iff its language gate passes', () => {
     delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    const { countryMetadata } = require(path.join(root, 'lib/countryRoute.tsx'))
     const slugs = cp.listCountryDefinitions().map(country => country.slug)
     for (const own of ['uk', 'us', 'india']) assert.ok(!slugs.includes(own), `${own} must not be emitted by the template`)
     for (const slug of slugs) {
@@ -121,10 +137,91 @@ try {
     assert.equal(cp.allCountryPaths().length, slugs.length * 2, 'one EN + one RU path per discovered country')
     assert.equal(cp.countryEnSegments().length, slugs.length)
     assert.equal(cp.countryRuSegments().length, slugs.length)
-    if (!fs.existsSync(path.join(root, 'content/verdicts/country'))) {
-      // No writer verdicts committed: every live country model must be noindex and absent from the sitemap.
-      assert.deepEqual(cp.indexableCountryPaths(now), [], 'no country path is indexable without a writer verdict')
-      for (const model of cp.getCountryPageModels(now)) assert.equal(model.indexable, false, `${model.path} must be noindex without a verdict`)
+
+    const expectedIndexable = []
+    for (const country of cp.listCountryDefinitions()) {
+      const en = cp.buildCountryPageModel(country.slug, 'en', now)
+      const ru = country.ruPath ? cp.buildCountryPageModel(country.slug, 'ru', now) : null
+      assert.ok(en, `${country.slug} EN model exists while the evidence file exists`)
+      const enPass = liveCountryGatePasses(en, country.slug, 'en')
+      const ruPass = liveCountryGatePasses(ru, country.slug, 'ru')
+      assert.equal(en.hasVerdict, fs.existsSync(path.join(root, 'content/verdicts/country', `${country.slug}.md`)), `${country.slug} EN verdict flag matches the file`)
+      if (ru) {
+        assert.equal(ru.hasVerdict, fs.existsSync(path.join(root, 'content/verdicts/country', `${country.slug}.ru.md`)), `${country.slug} RU verdict flag matches the file`)
+      }
+      assert.equal(en.indexable, enPass, `${en.path} indexable=${en.indexable} reasons=${en.reasons.join('; ')}`)
+      if (ru) assert.equal(ru.indexable, ruPass, `${ru.path} indexable=${ru.indexable} reasons=${ru.reasons.join('; ')}`)
+      if (enPass) expectedIndexable.push(en.path)
+      if (ruPass) expectedIndexable.push(ru.path)
+
+      const pair = cp.countryRoutePair(en.path, now)
+      if (enPass && ruPass) {
+        assert.deepEqual(pair, { en: en.path, ru: ru.path }, `${country.slug} hreflang pair only when both gates pass`)
+        assert.deepEqual(cp.countryRoutePair(ru.path, now), pair)
+      } else {
+        assert.equal(pair, undefined, `${country.slug} has no hreflang pair unless both languages pass`)
+        if (ru) assert.equal(cp.countryRoutePair(ru.path, now), undefined)
+      }
+
+      const enMeta = countryMetadata(country.slug, 'en')
+      if (enPass) {
+        assert.equal(enMeta.robots, undefined, `${en.path} has no robots noindex when the gate passes`)
+      } else {
+        assert.deepEqual(enMeta.robots, { index: false, follow: true }, `${en.path} is noindex,follow when the gate fails`)
+      }
+      if (enPass && ruPass) {
+        assert.deepEqual(enMeta.alternates.languages, { en: en.path, ru: ru.path, 'x-default': en.path })
+      } else {
+        assert.equal(enMeta.alternates.languages, undefined, `${en.path} emits no hreflang unless both languages pass`)
+      }
+      if (ru) {
+        const ruMeta = countryMetadata(country.slug, 'ru')
+        if (ruPass) {
+          assert.equal(ruMeta.robots, undefined, `${ru.path} has no robots noindex when the gate passes`)
+        } else {
+          assert.deepEqual(ruMeta.robots, { index: false, follow: true }, `${ru.path} is noindex,follow when the gate fails`)
+        }
+        if (enPass && ruPass) {
+          assert.deepEqual(ruMeta.alternates.languages, { en: en.path, ru: ru.path, 'x-default': en.path })
+        } else {
+          assert.equal(ruMeta.alternates.languages, undefined, `${ru.path} emits no hreflang unless both languages pass`)
+        }
+      }
+    }
+    assert.deepEqual(cp.indexableCountryPaths(now).sort(), expectedIndexable.sort())
+  })
+  check('live footer inlinks follow the country index gate per language; noindex countries are omitted', () => {
+    delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    const { indexableCountryNavLinks, indexableBestForNavLinks } = require(path.join(root, 'lib/gateInlinks.ts'))
+    const expectedEn = cp.getCountryPageModels(now).filter(m => m.lang === 'en' && m.indexable).map(m => m.path).sort()
+    const expectedRu = cp.getCountryPageModels(now).filter(m => m.lang === 'ru' && m.indexable).map(m => m.path).sort()
+    assert.deepEqual(indexableCountryNavLinks('en', now).map(link => link.href).sort(), expectedEn)
+    assert.deepEqual(indexableCountryNavLinks('ru', now).map(link => link.href).sort(), expectedRu)
+    for (const href of expectedEn) assert.ok(href.startsWith('/best-prop-firms-in-') && !href.startsWith('/ru/'))
+    for (const href of expectedRu) assert.ok(href.startsWith('/ru/'))
+    assert.ok(!indexableCountryNavLinks('en', now).some(link => link.href === '/best-prop-firms-in-uk'), 'UK hub is not a template country inlink')
+    const Footer = require(path.join(root, 'components/Footer.tsx')).default
+    const footerProps = {
+      firmCount: 1, pricedChallengeCount: 1, newsletterEnabled: false,
+      ruDisclosureLink: '/kak-my-zarabatyvaem', ruClosedFirmsLink: null,
+    }
+    const enHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'en' }))
+    const ruHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'ru' }))
+    for (const href of expectedEn) assert.ok(enHtml.includes(`href="${href}"`), `EN footer links indexable ${href}`)
+    for (const href of expectedRu) assert.ok(ruHtml.includes(`href="${href}"`), `RU footer links indexable ${href}`)
+    // Noindex template countries must not appear in either footer.
+    for (const model of cp.getCountryPageModels(now).filter(m => !m.indexable)) {
+      const html = model.lang === 'ru' ? ruHtml : enHtml
+      assert.ok(!html.includes(`href="${model.path}"`), `noindex ${model.path} is not in the ${model.lang} footer`)
+    }
+    for (const href of indexableBestForNavLinks('en').map(link => link.href)) {
+      assert.ok(enHtml.includes(`href="${href}"`), `EN footer links indexable best-for ${href}`)
+    }
+    for (const href of indexableBestForNavLinks('ru').map(link => link.href)) {
+      assert.ok(ruHtml.includes(`href="${href}"`), `RU footer links indexable best-for ${href}`)
+    }
+    if (indexableBestForNavLinks('ru').length === 0 && expectedRu.length === 0) {
+      assert.ok(!/luchshie-prop-firmy-dlya-|luchshie-prop-firmy-v-|luchshie-prop-firmy-na-/.test(ruHtml), 'RU footer gains no gated country/best-for hrefs when none pass')
     }
   })
   check('empty fixture root: no definitions, no models, metadata noindex', () => {
@@ -175,6 +272,22 @@ try {
     assert.deepEqual(cp.indexableCountryPaths(now, goodRoot).sort(), [en.path, ru.path].sort())
     assert.deepEqual(cp.countryRoutePair(en.path, now, goodRoot), { en: en.path, ru: ru.path })
     assert.deepEqual(cp.countryRoutePair(ru.path, now, goodRoot), { en: en.path, ru: ru.path })
+    const { indexableCountryNavLinks } = require(path.join(root, 'lib/gateInlinks.ts'))
+    assert.deepEqual(indexableCountryNavLinks('en', now, goodRoot), [{ label: 'Nigeria', href: en.path }])
+    assert.deepEqual(indexableCountryNavLinks('ru', now, goodRoot), [{ label: 'Нигерия', href: ru.path }])
+    const Footer = require(path.join(root, 'components/Footer.tsx')).default
+    const footerProps = {
+      firmCount: 1, pricedChallengeCount: 1, newsletterEnabled: false,
+      ruDisclosureLink: '/kak-my-zarabatyvaem', ruClosedFirmsLink: null,
+    }
+    process.env.TFH_COUNTRY_CONTENT_ROOT = goodRoot
+    const enHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'en' }))
+    const ruHtml = renderToStaticMarkup(createElement(Footer, { ...footerProps, lang: 'ru' }))
+    delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    assert.ok(enHtml.includes('href="/best-prop-firms-in-nigeria"') && enHtml.includes('Nigeria'))
+    assert.ok(!enHtml.includes('href="/ru/luchshie-prop-firmy-v-nigerii"'), 'EN footer does not link the RU country path')
+    assert.ok(ruHtml.includes('href="/ru/luchshie-prop-firmy-v-nigerii"') && ruHtml.includes('Нигерия'))
+    assert.ok(!ruHtml.includes('href="/best-prop-firms-in-nigeria"'), 'RU footer does not link the EN country path')
     // EN order = editorial score desc (UK pattern)
     const scores = en.ranked.map(row => row.firm.score)
     assert.deepEqual(scores, [...scores].sort((a, b) => b - a))
@@ -373,14 +486,63 @@ try {
   const sitemap = require(path.join(root, 'app/sitemap.ts')).default
   const entries = list => new Map(list.map(entry => [new URL(entry.url).pathname, entry]))
   const baseline = entries(sitemap())
-  check('live sitemap: no template country URL; UK/US/India hubs present', () => {
-    for (const p of baseline.keys()) {
-      assert.ok(!p.startsWith('/ru/luchshie-prop-firmy-v-') && !p.startsWith('/ru/luchshie-prop-firmy-na-'), p)
-      if (p.startsWith('/best-prop-firms-in-')) assert.match(p, /^\/best-prop-firms-in-(uk|us|india)(\/|$)/)
+  check('live sitemap: a template country URL is present with hreflang iff that language gate passes; UK/US/India hubs present', () => {
+    delete process.env.TFH_COUNTRY_CONTENT_ROOT
+    const expected = new Set(cp.indexableCountryPaths(now))
+    for (const country of cp.listCountryDefinitions()) {
+      const en = cp.buildCountryPageModel(country.slug, 'en', now)
+      const ru = country.ruPath ? cp.buildCountryPageModel(country.slug, 'ru', now) : null
+      const enPass = liveCountryGatePasses(en, country.slug, 'en')
+      const ruPass = liveCountryGatePasses(ru, country.slug, 'ru')
+      assert.equal(en.indexable, enPass, `${en.path} sitemap expectation follows the gate`)
+      if (enPass) {
+        const entry = baseline.get(en.path)
+        assert.ok(entry, `${en.path} is in the live sitemap because the EN gate passes`)
+        if (ruPass) {
+          assert.equal(entry.alternates.languages.ru, `https://tradersfundhub.com${ru.path}`)
+          assert.equal(entry.alternates.languages.en, `https://tradersfundhub.com${en.path}`)
+          assert.equal(entry.alternates.languages['x-default'], `https://tradersfundhub.com${en.path}`)
+        } else {
+          assert.equal(entry.alternates?.languages, undefined, `${en.path} has no sitemap hreflang without a passing RU twin`)
+        }
+      } else {
+        assert.ok(!baseline.has(en.path), `${en.path} stays out of the sitemap because the EN gate fails`)
+      }
+      if (ru) {
+        assert.equal(ru.indexable, ruPass, `${ru.path} sitemap expectation follows the gate`)
+        if (ruPass) {
+          const entry = baseline.get(ru.path)
+          assert.ok(entry, `${ru.path} is in the live sitemap because the RU gate passes`)
+          if (enPass) {
+            assert.equal(entry.alternates.languages.en, `https://tradersfundhub.com${en.path}`)
+            assert.equal(entry.alternates.languages.ru, `https://tradersfundhub.com${ru.path}`)
+            assert.equal(entry.alternates.languages['x-default'], `https://tradersfundhub.com${en.path}`)
+          } else {
+            assert.equal(entry.alternates?.languages, undefined, `${ru.path} has no sitemap hreflang without a passing EN twin`)
+          }
+        } else {
+          assert.ok(!baseline.has(ru.path), `${ru.path} stays out of the sitemap because the RU gate fails`)
+        }
+      }
     }
+    for (const p of baseline.keys()) {
+      const isTemplateEn = p.startsWith('/best-prop-firms-in-') && !/^\/best-prop-firms-in-(uk|us|india)(\/|$)/.test(p)
+      const isTemplateRu = p.startsWith('/ru/luchshie-prop-firmy-v-') || p.startsWith('/ru/luchshie-prop-firmy-na-')
+      if (isTemplateEn || isTemplateRu) {
+        assert.ok(expected.has(p), `${p} is in the live sitemap only if the gate marked it indexable`)
+      }
+    }
+    for (const p of expected) assert.ok(baseline.has(p), `${p} missing from the live sitemap`)
     for (const hub of ['/best-prop-firms-in-uk', '/best-prop-firms-in-us', '/best-prop-firms-in-india']) assert.ok(baseline.has(hub), hub)
   })
-  const stripTemplate = map => new Map([...map].filter(([p]) => !p.includes('nigeria') && !p.includes('nigerii') && !p.includes('pakistan')))
+  const isTemplateCountryPath = pathname => (
+    (pathname.startsWith('/best-prop-firms-in-') && !/^\/best-prop-firms-in-(uk|us|india)(\/|$)/.test(pathname))
+    || pathname.startsWith('/ru/luchshie-prop-firmy-v-')
+    || pathname.startsWith('/ru/luchshie-prop-firmy-na-')
+  )
+  // Fixture sitemap runs set TFH_COUNTRY_CONTENT_ROOT to a temp tree, so live
+  // indexable country URLs drop out of that run. Compare the non-template set.
+  const stripTemplate = map => new Map([...map].filter(([p]) => !isTemplateCountryPath(p)))
   check('indexable fixture enters the sitemap with hreflang; every other URL (incl. UK/US/India) unchanged', () => {
     process.env.TFH_COUNTRY_CONTENT_ROOT = goodRoot
     const withCountry = entries(sitemap())
@@ -390,7 +552,7 @@ try {
     assert.ok(en && ru, 'both indexable paths listed')
     assert.equal(en.alternates.languages.ru, 'https://tradersfundhub.com/ru/luchshie-prop-firmy-v-nigerii')
     assert.equal(ru.alternates.languages.en, 'https://tradersfundhub.com/best-prop-firms-in-nigeria')
-    assert.deepEqual(JSON.parse(JSON.stringify([...stripTemplate(withCountry)])), JSON.parse(JSON.stringify([...baseline])))
+    assert.deepEqual(JSON.parse(JSON.stringify([...stripTemplate(withCountry)])), JSON.parse(JSON.stringify([...stripTemplate(baseline)])))
   })
   check('noindex fixture (no verdict) stays out of the sitemap', () => {
     const dir = makeRoot({ 'content/data/nigeria-access-evidence.json': evidence(rows(FRESH), meta) })
@@ -399,7 +561,7 @@ try {
     delete process.env.TFH_COUNTRY_CONTENT_ROOT
     assert.ok(!map.has('/best-prop-firms-in-nigeria'))
     assert.ok(!map.has('/ru/luchshie-prop-firmy-v-nigerii'))
-    assert.equal(map.size, baseline.size)
+    assert.deepEqual(JSON.parse(JSON.stringify([...stripTemplate(map)])), JSON.parse(JSON.stringify([...stripTemplate(baseline)])))
   })
 
   const { countryMetadata } = require(path.join(root, 'lib/countryRoute.tsx'))
@@ -444,6 +606,39 @@ try {
     passed += 1
     console.log('ok - metadata robots/hreflang, route params, rendered EN/RU HTML')
   })()
+
+  // ── Definite article in EN running copy (name.enProse) ──────────────────
+  check('name.enProse puts "the" in EN running copy only; titles, H1, crumbs, labels and RU unchanged; invalid prose fails', () => {
+    const files = prose => ({
+      'content/data/philippines-access-evidence.json': evidence(rows(FRESH), { countryCode: 'PH', name: { en: 'Philippines', ru: 'Филиппины', ...(prose ? { enProse: prose } : {}) }, ruSlug: 'filippinakh', ruInfix: 'na' }),
+      'content/verdicts/country/philippines.md': verdictMd('philippines', 'en'),
+      'content/verdicts/country/philippines.ru.md': verdictMd('philippines', 'ru'),
+    })
+    const CountryPage = require(path.join(root, 'components/CountryPage.tsx')).default
+    const render = (dir, lang) => {
+      process.env.TFH_COUNTRY_CONTENT_ROOT = dir
+      try {
+        const model = cp.buildCountryPageModel('philippines', lang, now, dir)
+        return { model, html: renderToStaticMarkup(createElement(CountryPage, { model })) }
+      } finally { delete process.env.TFH_COUNTRY_CONTENT_ROOT }
+    }
+    const withRoot = makeRoot(files('the Philippines'))
+    const withoutRoot = makeRoot(files(null))
+    const en = render(withRoot, 'en')
+    const enPlain = render(withoutRoot, 'en')
+    assert.equal(en.model.country.proseName, 'the Philippines')
+    assert.equal(enPlain.model.country.proseName, 'Philippines', 'no enProse → displayName')
+    assert.ok(en.html.includes('does not exclude the Philippines,'), 'EN intro uses the article')
+    assert.ok(enPlain.html.includes('does not exclude Philippines,'), 'without enProse the intro is unchanged')
+    for (const key of ['h1', 'metaTitle', 'metaDescription']) assert.equal(en.model[key], enPlain.model[key], `${key} unchanged by enProse`)
+    assert.ok(en.html.includes('Philippines access') && !en.html.includes('the Philippines access'), 'card label keeps displayName')
+    assert.equal(en.html.replace('does not exclude the Philippines,', 'does not exclude Philippines,'), enPlain.html, 'only the intro sentence differs')
+    assert.equal(render(withRoot, 'ru').html, render(withoutRoot, 'ru').html, 'RU HTML byte-identical with or without enProse')
+    for (const bad of ['Philippines', 'the Phillipines', 'The Philippines', 'a Philippines', 7]) {
+      const dir = makeRoot({ 'content/data/philippines-access-evidence.json': evidence(rows(FRESH), { name: { en: 'Philippines', enProse: bad } }) })
+      assert.throws(() => cp.listCountryDefinitions(dir), /name\.enProse/, `rejects enProse ${JSON.stringify(bad)}`)
+    }
+  })
 
   check('content/data and content/verdicts are byte-identical after the run', () => {
     assert.deepEqual([...fingerprint('content/data'), ...fingerprint('content/verdicts')], contentBefore)

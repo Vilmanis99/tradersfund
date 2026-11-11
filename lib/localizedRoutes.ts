@@ -22,6 +22,7 @@ export const LOCALIZED_ROUTE_PAIRS = [
   { en: '/blog/hash-hedge-review', ru: '/ru/obzor-hash-hedge' },
   { en: '/blog/alpha-capital-review', ru: '/ru/obzor-alpha-capital' },
   { en: '/blog/e8-markets-review', ru: '/ru/obzor-e8-markets' },
+  { en: '/blog/my-funded-futures', ru: '/ru/obzor-my-funded-futures' },
   { en: '/blog/what-is-a-prop-firm', ru: '/ru/chto-takoe-prop-firma' },
   {
     en: '/how-prop-firm-challenges-work',
@@ -129,6 +130,7 @@ export const RUSSIAN_ROUTE_EDITORIAL_DATES = {
   '/ru/obzor-goat-funded-trader': '2026-11-02',
   '/ru/obzor-hash-hedge': '2026-10-27',
   '/ru/obzor-kascapital': '2026-10-20',
+  '/ru/obzor-my-funded-futures': '2026-11-10',
   '/ru/obzor-proplive': '2026-10-20',
   '/ru/obzor-spice-prop': '2026-10-30',
   '/ru/obzor-teamtraders': '2026-10-20',

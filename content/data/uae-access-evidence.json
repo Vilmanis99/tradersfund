@@ -2,6 +2,7 @@
   "countryCode": "AE",
   "name": {
     "en": "United Arab Emirates",
+    "enProse": "the United Arab Emirates",
     "ru": "Объединённые Арабские Эмираты"
   },
   "ruSlug": "oae",
@@ -29,7 +30,7 @@
       "sourceQuote": "The lists below are the 203 countries and territories currently selectable in the checkout country dropdown on alphacapitalgroup.uk (source: live checkout configuration). Availability is always confirmed for your specific country at signup",
       "evidenceLabel": "Checkout-country list",
       "evidenceSummary": "Alpha Capital's country-availability guide lists the 203 countries and territories selectable in its checkout country dropdown; United Arab Emirates is named in the Asia (42) list.",
-      "decisionNote": "All 10 captured configurations are mapped, the same set as the UK file. The guide says its country names match the live signup dropdown (synced 23 July 2026) and that availability is confirmed for each country at signup, so recheck at checkout. Exact purchase availability remains unsettled for One variants, Swing and Three. Guide page dated 30 June 2026."
+      "decisionNote": "Nine captured configurations are mapped; Alpha Three is left out because Alpha says it is not currently offered for new purchases (checked 20 October 2026). The guide says its country names match the live signup dropdown (synced 23 July 2026) and that availability is confirmed for each country at signup, so recheck at checkout. Exact purchase availability remains unsettled for One variants and Swing. Guide page dated 30 June 2026."
     },
     {
       "firmSlug": "apex-trader-funding",
@@ -62,7 +63,7 @@
       "sourceUrl": "https://brightfunded.com/terms-and-conditions",
       "sourceCapturedAt": "2026-11-09",
       "sourceQuote": "services related to MetaTrader 5 (MT5) and the associated information provided on this website are not intended for residents or citizens of the United States, United Arab Emirates, and other restricted countries",
-      "platformConstraint": "MetaTrader 5 is not available to UAE residents or citizens",
+      "platformConstraint": "MetaTrader 5 is not intended for UAE residents or citizens",
       "secondarySourceUrl": "https://help.brightfunded.com/en/articles/9286630-what-countries-are-restricted-at-brightfunded",
       "secondarySourcePublishedAt": "2026-09-15",
       "evidenceLabel": "Non-MT5 platforms only",

@@ -29,7 +29,7 @@
       "sourceQuote": "The lists below are the 203 countries and territories currently selectable in the checkout country dropdown on alphacapitalgroup.uk (source: live checkout configuration). Availability is always confirmed for your specific country at signup",
       "evidenceLabel": "Checkout-country list",
       "evidenceSummary": "Alpha Capital's country-availability guide lists the 203 countries and territories selectable in its checkout country dropdown; Nigeria is named in the Africa (45) list.",
-      "decisionNote": "All 10 captured configurations are mapped, the same set as the UK file. The guide says its country names match the live signup dropdown (synced 23 July 2026) and that availability is confirmed for each country at signup, so recheck at checkout. Exact purchase availability remains unsettled for One variants, Swing and Three. Guide page dated 30 June 2026."
+      "decisionNote": "Nine captured configurations are mapped; Alpha Three is left out because Alpha says it is not currently offered for new purchases (checked 20 October 2026). The guide says its country names match the live signup dropdown (synced 23 July 2026) and that availability is confirmed for each country at signup, so recheck at checkout. Exact purchase availability remains unsettled for One variants and Swing. Guide page dated 30 June 2026."
     },
     {
       "firmSlug": "bright-funded",

@@ -964,7 +964,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     },
     intro: {
       en: 'These firms explicitly allow Expert Advisors on at least one current product. Firms that ban EAs or leave EA permission unconfirmed do not qualify.',
-      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Запрет советников или «не подтверждено» не подходят.',
+      ru: 'Здесь только фирмы, которые явно разрешают советники хотя бы на одном актуальном продукте. Фирмы, где советники запрещены или их разрешение на сайте не указано, не подходят.',
     },
     methodology: {
       en: 'A firm qualifies when its profile marks EAs as allowed, or a challenge captured within 30 days explicitly allows EAs.',
@@ -1057,7 +1057,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'consistencyRule', 'phases'],
     qualifies: (firm, products) => beginnerFriendly(firm, products, { applyRussiaFilter: false }),
     dataNote: `Entry caps: $${BEGINNER_MAX_ENTRY_PRICE_USD} / €${BEGINNER_MAX_ENTRY_PRICE_EUR}; we rank by fee ÷ that currency’s cap (no FX). Every RU firm — ranked or excluded for listing Russia on its restriction list — keeps a sign-up link and Russia-access badge.`,
-    lastReviewed: '2026-11-02',
+    lastReviewed: '2026-11-11',
   },
   {
     id: 'weekly-payouts',

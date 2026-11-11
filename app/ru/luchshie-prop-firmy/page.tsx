@@ -221,6 +221,7 @@ const russianReviewRoutes: Record<string, string> = {
     topstep: '/ru/obzor-topstep',
     'alpha-capital': '/ru/obzor-alpha-capital',
     'e8-markets': '/ru/obzor-e8-markets',
+    'my-funded-futures': '/ru/obzor-my-funded-futures',
   }),
   // Hash Hedge (ships with EN Writer's HH review, Tue 27.10.2026): shared RU gate — firms.json entry + registered route.
   ...(ruHashHedgeReviewHref('/ru/obzor-hash-hedge') ? { 'hash-hedge': '/ru/obzor-hash-hedge' } : {}),
@@ -754,7 +755,7 @@ export default function RussianBestPropFirmsPage() {
       <section className="ru-section" id="po-zadache">
         <div className="ru-shell" data-russian-ranking-intent-paths="payout-drawdown-budget">
           <h2>Какую проп-фирму выбрать по задаче</h2>
-          <p className="ru-muted">Цена, отсутствие челленджа или выплата в криптовалюте описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение.</p>
+          <p className="ru-muted">Цена, отсутствие челленджа или выплата в криптовалюте описывают только 1 фильтр. В каждой карточке ниже есть второй фильтр, который способен отменить решение. Если выбираете первую программу, откройте <Link href="/ru/luchshie-prop-firmy-dlya-novichkov">подборку проп-фирм для новичков</Link>.</p>
           <div className="ru-grid">
             <article className="ru-card">
               <h3>Минимальный бюджет в USD</h3>

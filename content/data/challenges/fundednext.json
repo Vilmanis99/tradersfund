@@ -60,6 +60,7 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-2-step",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "Rolling recheck 10 November 2026: official schema.org list prices and the published evaluation and payout fields on Stellar 2-Step, 1-Step, Lite and Instant were re-read; values unchanged. Promotional sale prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-19 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/fundednext-2026-11-10.json",
       "Standard global USD list prices; promotions, platform fees and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The standard first reward window is 21 days, followed by 14-day cycles; compliance review still applies.",
@@ -130,6 +131,7 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-1-step",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "Rolling recheck 10 November 2026: official schema.org list prices and the published evaluation and payout fields on Stellar 2-Step, 1-Step, Lite and Instant were re-read; values unchanged. Promotional sale prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-19 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/fundednext-2026-11-10.json",
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
       "The first standard reward cycle is 5 business days; the fee refund is tied to the third reward for new accounts.",
@@ -199,6 +201,7 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-lite",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "Rolling recheck 10 November 2026: official schema.org list prices and the published evaluation and payout fields on Stellar 2-Step, 1-Step, Lite and Instant were re-read; values unchanged. Promotional sale prices are excluded from stored list prices. sourceCapturedAt left at 2026-10-19 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/fundednext-2026-11-10.json",
       "UNIT (2026-10-20): payoutFirstDays 10 and the 10-day subsequent cycle are BUSINESS days, not calendar days. https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward: \"First Performance Reward is available after 10 business days. Subsequent rewards are available every 10 business days.\" https://help.fundednext.com/en/articles/17253939-stellar-lite-account: \"First Cycle Duration | 10 business days\". About two calendar weeks; legacy accounts bought before 12 Oct 2026 keep 21 calendar days then every 14 days. The schema has no unit field, so any UI that prints \"10 days\" should say \"10 business days\".",
       "Standard global USD list prices; promotions and optional add-ons are excluded.",
       "The base Reward Share is 80%; add-ons can increase the share up to 95%.",
@@ -259,6 +262,7 @@
     "sourceUrl": "https://fundednext.com/cfds/stellar-instant",
     "sourceCapturedAt": "2026-10-19",
     "notes": [
+      "Rolling recheck 10 November 2026: official schema.org list prices $59.99 / $149.99 / $299.99 / $599.99 and the published Instant rules (no evaluation, 6% trailing maximum loss, no daily loss limit, no consistency rule, 70% reward from day 1 rising to 80% from tier 3, on-demand or 14-day cycle at 5% growth) were re-read; values unchanged. sourceCapturedAt left at 2026-10-19 so the Russian-surface page clock is unchanged. Log: content/data/challenges/_captures/fundednext-2026-11-10.json",
       "Standard global USD list prices; promotions, swap-free pricing and optional add-ons are excluded.",
       "Stellar Instant has no evaluation phase and no refundable fee.",
       "The starting Reward Share is 70%; current product guidance raises it to 80% from tier 3.",

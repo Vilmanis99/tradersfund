@@ -1,0 +1,123 @@
+{
+  "firmSlug": "fundednext",
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-10",
+  "timezone": "Europe/Riga",
+  "officialDomain": "https://fundednext.com",
+  "method": "Public English product pages, trading-objectives page and Help Centre articles re-read on 10 November 2026. List prices taken from schema.org Offer data on each product page. No account or checkout. Stored values are list prices, not promotional sale prices.",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "stellar-2-step",
+      "pricesUsd": {
+        "6000": 59.99,
+        "15000": 119.99,
+        "25000": 199.99,
+        "50000": 299.99,
+        "100000": 549.99,
+        "200000": 1099.99
+      }
+    },
+    {
+      "productSlug": "stellar-1-step",
+      "pricesUsd": {
+        "6000": 65.99,
+        "15000": 129.99,
+        "25000": 219.99,
+        "50000": 329.99,
+        "100000": 569.99,
+        "200000": 1099.99
+      }
+    },
+    {
+      "productSlug": "stellar-lite",
+      "pricesUsd": {
+        "5000": 32.99,
+        "10000": 59.99,
+        "25000": 139.99,
+        "50000": 229.99,
+        "100000": 399.99,
+        "200000": 798.99
+      }
+    },
+    {
+      "productSlug": "stellar-instant",
+      "pricesUsd": {
+        "2000": 59.99,
+        "5000": 149.99,
+        "10000": 299.99,
+        "20000": 599.99
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Stellar 2-Step Offer prices $59.99 / $119.99 / $199.99 / $299.99 / $549.99 / $1099.99",
+    "Stellar 1-Step Offer prices $65.99 / $129.99 / $219.99 / $329.99 / $569.99 / $1099.99",
+    "Stellar Lite Offer prices $32.99 / $59.99 / $139.99 / $229.99 / $399.99 / $798.99",
+    "Stellar Instant Offer prices $59.99 / $149.99 / $299.99 / $599.99"
+  ],
+  "rulesRecheck": {
+    "valuesUnchanged": true,
+    "quotes": {
+      "stellar-2-step": "Profit Target 8% Phase 2 Profit Target 5% Daily Loss Limit 5% Maximum Loss limit 10% Drawdown Type Static Minimum Trading Days 5 per phase Reward Share 80% First Withdrawal 21 Days Subsequent Withdrawal 14 Days",
+      "stellar-1-step": "Profit Target 10% Daily Loss Limit 3% Maximum Loss limit 6% Drawdown Type Static Minimum Trading Days 2 Reward Share Up to 95% First Withdrawal 5 Business Days Subsequent Withdrawal 5 Days",
+      "stellar-lite": "Profit Target 8% Phase 2 Profit Target 4% Daily Loss Limit 4% Maximum Loss limit 8% Drawdown Type Static Minimum Trading Days 2 days Reward Share 80% First Withdrawal 10 Business Days Subsequent Withdrawal 10 Business Days",
+      "stellar-instant": "70% performance reward from Day 1, increasing to 80% from Tier 3 onwards. Maximum Loss Limit 6% trailing. Daily Loss Limit None. Consistency Rule None. On-demand reward at 5% or on the usual 14-day cycle."
+    }
+  },
+  "loggedOnly": "Product pages advertised sale prices under codes NOVSTR (Stellar 2-Step, 1-Step and Lite) and NOVINS (Stellar Instant). These were not checkout-verified and are not stored as list-price changes. Rule-only watch entries that rely on separate EA or leverage evidence were not redated.",
+  "pagesRead": [
+    {
+      "url": "https://fundednext.com/"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-2-step"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-1-step"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-lite"
+    },
+    {
+      "url": "https://fundednext.com/cfds/stellar-instant"
+    },
+    {
+      "url": "https://fundednext.com/general-rules/cfds/trading-objectives"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/10701585-how-often-will-i-receive-my-performance-reward",
+      "lastUpdatedDate": "2026-10-16T06:59:37Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext",
+      "lastUpdatedDate": "2026-09-08T09:18:37Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/11641328-are-there-any-consistency-rules-for-the-stellar-instant-account",
+      "lastUpdatedDate": "2026-02-24T10:38:20Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/11641410-is-news-trading-allowed-in-the-stellar-instant-accounts",
+      "lastUpdatedDate": "2026-02-24T10:46:28Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/15586820-does-fundednext-cfds-offer-on-demand-performance-rewards",
+      "lastUpdatedDate": "2026-09-09T09:00:44Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/8019808-which-platforms-can-i-use-for-trading-at-fundednext",
+      "lastUpdatedDate": "2026-03-29T07:17:31Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/8020084-how-can-i-withdraw-my-profits",
+      "lastUpdatedDate": "2026-10-22T03:02:49Z"
+    },
+    {
+      "url": "https://help.fundednext.com/en/articles/17253939-stellar-lite-account",
+      "lastUpdatedDate": "2026-11-05T12:49:24Z"
+    }
+  ],
+  "changes": [],
+  "sourceCapturedAtPolicy": "All stored list prices and the published evaluation fields were re-read unchanged on 10 November 2026. sourceCapturedAt left at 2026-10-19 so the Russian-surface page clock is unchanged. The Stellar Instant price-watch lastCheckedAt stays 2026-10-19 to match the product capture."
+}

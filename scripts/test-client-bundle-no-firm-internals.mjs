@@ -6,12 +6,13 @@
  * and the site-wide header/footer chunk bundled closed-firms.json and
  * ru-how-we-make-money.json (with their _note fields and /workspace evidence paths).
  *
- * The site-wide client Footer and HeaderNav are enforced like every other client file:
- * components/SiteDocument.tsx and components/Header.tsx (server) resolve the closed-firms
- * flag/link and the RU disclosure link and pass them as props, so neither client component
- * imports lib/closedFirms or lib/ruDisclosure (each statically imports its JSON). This test
- * fails if either import comes back, and the text of the three data files is scanned for in
- * every client chunk below.
+ * The site-wide Footer is a server component: SiteDocument resolves the closed-firms
+ * flag/link and the RU disclosure link and passes them as props, along with lang, so Footer
+ * does not import lib/closedFirms or lib/ruDisclosure (each statically imports its JSON).
+ * HeaderNav remains a client component and is enforced like every other client file:
+ * components/Header.tsx (server) resolves the closed-firms publish flag and passes it as a
+ * prop, so HeaderNav does not import lib/closedFirms. This test fails if either import
+ * comes back, and the text of the three data files is scanned for in every client chunk below.
  *
  * Scans every .js under .next/static (run after `npm run build`) for:
  *  - internal firms.json field names (evidence, notes, previous codes, checkout flags);
@@ -65,15 +66,17 @@ for (const name of fs.readdirSync(dataDir).filter(file => file.endsWith('.json')
   }
 }
 
-// Site-wide client components must receive their data as props from the server layout.
+// Site-wide chrome must receive closed-firms / disclosure data as props from the server layout.
 const SERVER_ONLY_IMPORT = /^\s*import\b[^\n]*?from\s+['"][^'"]*(lib\/closedFirms|lib\/ruDisclosure|content\/data\/closed-firms|content\/data\/ru-how-we-make-money)[^'"]*['"]/m
 const failures = []
-for (const source of ['components/Footer.tsx', 'components/HeaderNav.tsx']) {
-  const text = fs.readFileSync(path.join(root, source), 'utf8')
-  assert(text.trimStart().startsWith("'use client'"), `${source} is expected to be a client component`)
-  const hit = text.match(SERVER_ONLY_IMPORT)
-  if (hit) failures.push(`${source}: client component imports ${hit[1]} (bundles closed-firms / disclosure JSON into every page)`)
-}
+const footerSource = fs.readFileSync(path.join(root, 'components/Footer.tsx'), 'utf8')
+assert(!footerSource.trimStart().startsWith("'use client'"), 'components/Footer.tsx is expected to be a server component')
+const footerHit = footerSource.match(SERVER_ONLY_IMPORT)
+if (footerHit) failures.push(`components/Footer.tsx: imports ${footerHit[1]} (pass the resolved link as a prop from SiteDocument instead)`)
+const headerNavSource = fs.readFileSync(path.join(root, 'components/HeaderNav.tsx'), 'utf8')
+assert(headerNavSource.trimStart().startsWith("'use client'"), 'components/HeaderNav.tsx is expected to be a client component')
+const headerNavHit = headerNavSource.match(SERVER_ONLY_IMPORT)
+if (headerNavHit) failures.push(`components/HeaderNav.tsx: client component imports ${headerNavHit[1]} (bundles closed-firms / disclosure JSON into every page)`)
 function stringValues(value, out = []) {
   if (typeof value === 'string') out.push(value)
   else if (Array.isArray(value)) value.forEach(item => stringValues(item, out))

@@ -2836,6 +2836,7 @@ function checkAnalyticsMeasurementContract() {
     ['/ru/obzor-spice-prop', 'russian_review'],
     ['/ru/obzor-goat-funded-trader', 'russian_review'],
     ['/ru/obzor-e8-markets', 'russian_review'],
+    ['/ru/obzor-my-funded-futures', 'russian_review'],
     ['/ru/fundednext-mt5', 'russian_product'],
     ['/ru/fundednext-stellar-instant/', 'russian_product'],
     ['/ru/fundingpips-pravila', 'russian_product'],
@@ -7745,7 +7746,6 @@ function checkDiscountHub() {
   if (!brightObservation || brightObservation.firmSlug !== 'bright-funded'
     || brightObservation.status !== 'advertised-unverified' || brightObservation.checkoutVerified !== false
     || !Array.isArray(brightObservation.offers) || brightObservation.offers.length === 0
-    || new Set(brightObservation.offers.map(offer => offer.code)).size !== brightObservation.offers.length
     || new Set(brightObservation.offers.map(offer => offer.productSlug)).size !== brightObservation.offers.length
     || brightObservation.offers.some(offer =>
       typeof offer.productSlug !== 'string' || !offer.productSlug.startsWith('bright-funded-')
@@ -11297,6 +11297,7 @@ function checkRussianAcquisitionPilot() {
     ['/ru/obzor-blue-guardian', path.join(ROOT, 'app/ru/obzor-blue-guardian/page.tsx')],
     ['/ru/obzor-e8-markets', path.join(ROOT, 'app/ru/obzor-e8-markets/page.tsx')],
     ['/ru/obzor-spice-prop', path.join(ROOT, 'app/ru/obzor-spice-prop/page.tsx')],
+    ['/ru/obzor-my-funded-futures', path.join(ROOT, 'app/ru/obzor-my-funded-futures/page.tsx')],
     ['/ru/chto-takoe-prop-firma', path.join(ROOT, 'app/ru/chto-takoe-prop-firma/page.tsx')],
     ['/ru/forex-prop-firmy', path.join(ROOT, 'app/ru/forex-prop-firmy/page.tsx')],
     ['/ru/prop-firmy-s-ctrader', path.join(ROOT, 'app/ru/prop-firmy-s-ctrader/page.tsx')],

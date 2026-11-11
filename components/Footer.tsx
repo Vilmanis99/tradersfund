@@ -1,14 +1,13 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { TrendingUp } from 'lucide-react'
 import NewsletterForm from './NewsletterForm'
 import AnalyticsPreferencesButton from './AnalyticsPreferencesButton'
 import { PARTNERSHIP_POLICY } from '@/lib/trustPages'
+import { indexableBestForNavLinks, indexableCountryNavLinks } from '@/lib/gateInlinks'
 import RuTelegramBlock from './RuTelegramBlock'
 
 type FooterProps = {
+  lang: 'en' | 'ru'
   firmCount: number
   pricedChallengeCount: number
   articleCount: number
@@ -16,7 +15,7 @@ type FooterProps = {
   newsletterEnabled: boolean
   /**
    * Resolved on the server in components/SiteDocument.tsx (lib/ruDisclosure and the
-   * closed-firms publish flag in lib/closedFirms), so this client component never
+   * closed-firms publish flag in lib/closedFirms), so this server component never
    * pulls ru-how-we-make-money.json or closed-firms.json into a client chunk.
    * ruClosedFirmsLink is null while the closed-firms list is unpublished.
    */
@@ -28,6 +27,7 @@ type FooterLinkItem = { label: string; href: string }
 type FooterColumn = { title: string; links: FooterLinkItem[] }
 
 export default function Footer({
+  lang,
   firmCount,
   pricedChallengeCount,
   latestCapture,
@@ -35,8 +35,7 @@ export default function Footer({
   ruDisclosureLink,
   ruClosedFirmsLink,
 }: FooterProps) {
-  const pathname = usePathname()
-  const isRussian = pathname === '/ru' || pathname.startsWith('/ru/')
+  const isRussian = lang === 'ru'
   const captureDateLabel = latestCapture
     ? new Date(`${latestCapture}T00:00:00Z`).toLocaleDateString(isRussian ? 'ru-RU' : 'en-US', {
         day: 'numeric',
@@ -46,6 +45,10 @@ export default function Footer({
       })
     : isRussian ? 'нет данных' : 'Not available'
 
+  // Same sitemap index gates: noindex country / best-for pages are never linked.
+  const countryLinks = indexableCountryNavLinks(lang)
+  const bestForLinks = indexableBestForNavLinks(lang)
+
   const columns: FooterColumn[] = isRussian ? [
     { title: 'Сравнение', links: [
       { label: 'Рейтинг проп-фирм 2026', href: '/ru/luchshie-prop-firmy' },
@@ -54,6 +57,8 @@ export default function Footer({
       { label: 'Выплаты проп-фирм', href: '/ru/vyplaty-prop-firm' },
       { label: 'Без KYC: проверка условий', href: '/ru/prop-firmy-bez-kyc' },
       { label: 'Что такое проп-фирма', href: '/ru/chto-takoe-prop-firma' },
+      ...countryLinks,
+      ...bestForLinks,
     ] },
     { title: 'Для трейдеров', links: [
       { label: 'Для русскоязычных трейдеров', href: '/ru/dlya-russkoyazychnykh-treyderov' },
@@ -92,12 +97,14 @@ export default function Footer({
       { label: 'UK', href: '/best-prop-firms-in-uk' },
       { label: 'US', href: '/best-prop-firms-in-us' },
       { label: 'India', href: '/best-prop-firms-in-india' },
+      ...countryLinks,
       { label: 'India: challenge comparison', href: '/best-prop-firms-in-india/challenge-comparison' },
       { label: 'India: firm matchups', href: '/best-prop-firms-in-india/compare' },
       { label: 'India: rule changes', href: '/best-prop-firms-in-india/challenge-changes' },
       { label: 'Futures', href: '/best-futures-prop-firms' },
       { label: 'Crypto', href: '/best-crypto-prop-firms' },
       { label: 'Swing trading', href: '/best-swing-trading-prop-firms' },
+      ...bestForLinks,
     ] },
     { title: 'Reviews', links: [
       { label: 'FTMO', href: '/blog/ftmo-review' },

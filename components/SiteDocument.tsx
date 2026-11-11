@@ -48,11 +48,12 @@ export default function SiteDocument({ lang, children }: { lang: 'en' | 'ru'; ch
             from Article/Review/WebPage schema on every page (EN and RU). */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(websiteSchema()) }} />
-        <Header />
+        <Header lang={lang} />
         <main style={{ flex: 1 }}>
           {children}
         </main>
         <Footer
+          lang={lang}
           firmCount={firms.length}
           pricedChallengeCount={pricedChallengeCount}
           articleCount={posts.length}

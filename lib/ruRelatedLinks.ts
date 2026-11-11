@@ -72,6 +72,7 @@ export const RU_REVIEW_FIRMS: ReadonlyArray<{ path: string; firm: string; name: 
   { path: '/ru/obzor-fundednext', firm: 'fundednext', name: 'FundedNext' },
   { path: '/ru/obzor-the5ers', firm: 'the5ers', name: 'The5ers' },
   { path: '/ru/obzor-topstep', firm: 'topstep', name: 'Topstep' },
+  { path: '/ru/obzor-my-funded-futures', firm: 'my-funded-futures', name: 'My Funded Futures' },
   { path: '/ru/obzor-teamtraders', firm: 'teamtraders', name: 'TeamTraders', local: true },
   { path: '/ru/obzor-kascapital', firm: 'kascapital', name: 'KasCapital', local: true },
   { path: '/ru/obzor-proplive', firm: 'proplive', name: 'PropLive', local: true },
@@ -283,11 +284,23 @@ export const RU_RELATED: Partial<Record<RuMapPath, RuRelatedLink[]>> = {
     rel('/ru/luchshie-kripto-prop-firmy', 'крипто проп компании'),
     rel('/ru/otzyvy-prop-firm', 'отзывы о проп-компаниях'),
   ],
+  '/ru/obzor-my-funded-futures': [
+    alt('/ru/obzor-bright-funded', 'BrightFunded отзывы'),
+    alt('/ru/obzor-crypto-fund-trader', 'Crypto Fund Trader как альтернатива'),
+    // Related hrefs must not repeat in-body links on this page (audit:ru-links (d)):
+    // topstep, luchshie-prop-firmy, otzyvy and vyplaty already appear in
+    // app/ru/obzor-my-funded-futures/page.tsx.
+    rel('/ru/obzor-blue-guardian', 'Blue Guardian отзывы'),
+    rel('/ru/obzor-the5ers', 'Обзор The5ers'),
+    rel('/ru/ftmo-dlya-rossiyan', 'FTMO в России: что изменилось'),
+    rel('/ru/promokody-prop-firm', 'Промокоды проп-фирм'),
+  ],
   '/ru/obzor-topstep': [
     ...RUSSIA_ALTERNATIVES,
     rel('/ru/luchshie-prop-firmy', 'Рейтинг проп-компаний'),
     rel('/ru/otzyvy-prop-firm', 'Отзывы о проп-фирмах'),
     rel('/ru/obzor-blue-guardian', 'Blue Guardian отзывы'),
+    rel('/ru/obzor-my-funded-futures', 'My Funded Futures: обзор'),
   ],
   '/ru/fundingpips-pravila': [
     alt('/ru/obzor-bright-funded', 'Обзор BrightFunded'),

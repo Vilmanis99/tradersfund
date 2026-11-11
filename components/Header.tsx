@@ -22,13 +22,13 @@ function computeFreshnessLabel(): string {
   return `${freshFirmCount}/${firms.length} source-checked`
 }
 
-export default function Header() {
+export default function Header({ lang }: { lang: 'en' | 'ru' }) {
   const dataStatus = computeFreshnessLabel()
 
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <HeaderBrand />
+        <HeaderBrand lang={lang} />
 
         <HeaderNav dataStatus={dataStatus} closedFirmsPublished={CLOSED_FIRMS_PUBLISHED} />
       </div>

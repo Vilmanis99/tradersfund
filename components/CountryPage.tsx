@@ -92,7 +92,7 @@ function groupProducts(group: CountryEvidenceGroup, lang: 'en' | 'ru'): string {
 export default function CountryPage({ model }: { model: CountryPageModel }) {
   const { country, lang, ranked, indexable, reasons, verdict, differingFieldCount, fields, firmCount } = model
   const t = COPY[lang]
-  const placeName = lang === 'ru' ? `страны «${country.names.ru ?? country.displayName}»` : country.displayName
+  const placeName = lang === 'ru' ? `страны «${country.names.ru ?? country.displayName}»` : country.proseName
   const crumbs = lang === 'ru'
     ? [{ name: 'Русская версия', url: '/ru' }, { name: country.names.ru ?? country.displayName }]
     : [{ name: 'Home', url: '/' }, { name: 'Prop Firms', url: '/prop-firms' }, { name: country.displayName }]
@@ -269,7 +269,7 @@ export default function CountryPage({ model }: { model: CountryPageModel }) {
               className="prose"
               dangerouslySetInnerHTML={{ __html: renderVerdictMarkdown(lang === 'ru' ? ruRedactExchanges(verdict.body) : verdict.body) }}
             />
-            <p className="rules-meta">{t.by} {verdict.author} · {t.checked} {verdict.checkedAt}</p>
+            <p className="rules-meta">{t.by} {verdict.author} · {t.checked} {localeDate(verdict.checkedAt, lang)}</p>
           </section>
         )}
 

@@ -143,6 +143,8 @@ export default function RussianChallengeLifecyclePage() {
             <Link href="/ru/luchshie-kripto-prop-firmy"> обзор крипто-проп-фирм</Link>.
             Если торгуете в cTrader, отдельно проверьте
             <Link href="/ru/prop-firmy-s-ctrader"> доступность платформы и её правила</Link> до оплаты челленджа.
+            Если это ваш первый челлендж, загляните в
+            <Link href="/ru/luchshie-prop-firmy-dlya-novichkov"> подборку проп-фирм для начинающих трейдеров</Link>: в ней собраны программы с недорогим входом.
           </p>
           <p>
             Сравнивайте не размер виртуального счёта, а сумму, которую реально можно

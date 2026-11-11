@@ -1,0 +1,90 @@
+{
+  "firmSlug": "ftmo",
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-10",
+  "timezone": "Europe/Riga",
+  "officialDomain": "https://ftmo.com",
+  "method": "Public English challenge pages, Trading Objectives, withdrawal FAQ, imprint, platforms page and the current rewards promotion page re-read on 10 November 2026. List prices taken from the pages' embedded price data (EUR). No account or checkout. Stored values are list prices, not promotional discounted prices.",
+  "pricesMatchStored": true,
+  "storedPricesChecked": [
+    {
+      "productSlug": "ftmo-challenge-2-step",
+      "pricesEur": {
+        "200000": 1080,
+        "100000": 540,
+        "50000": 345,
+        "25000": 250,
+        "10000": 89
+      }
+    },
+    {
+      "productSlug": "ftmo-challenge-1-step",
+      "pricesEur": {
+        "200000": 999,
+        "100000": 499,
+        "50000": 319,
+        "25000": 199,
+        "10000": 79
+      }
+    },
+    {
+      "productSlug": "ftmo-instant-account",
+      "pricesEur": {
+        "100000": 2999,
+        "50000": 1499,
+        "25000": 749,
+        "10000": 339,
+        "5000": 169
+      }
+    }
+  ],
+  "priceQuotes": [
+    "Embedded price fields include 2-Step 1080 / 540 / 345 / 250 / 89, 1-Step 999 / 499 / 319 / 199 / 79, Instant 2999 / 1499 / 749 / 339 / 169, all EUR."
+  ],
+  "rulesRecheck": {
+    "valuesUnchanged": true,
+    "quotes": {
+      "twoStep": "Max Loss 10% Max Daily Loss 5% Min Trading Days 4 Days Trading Period Unlimited. Default 2-Step reward remains 80% of simulated profit, increasable to 90% under the Scaling Plan or Premium Programme (withdrawal FAQ).",
+      "oneStep": "Here are the Trading Objectives for the 1-Step FTMO Challenge. Max Loss 10% Reward 90% Trading Period Unlimited Profit Target 10% Max Daily Loss 3% Best Day Rule 50%.",
+      "instant": "3% Max Daily Loss. 10% Max Loss. Consistency 30%. Keep 90% of the simulated profits you make as a reward.",
+      "payout": "You request a Reward claim in the Account MetriX. This can be done on the 14th or any following day after the first trade is placed on the specific account. Rewards can be requested on demand after a minimum of 14 days from your first demo trade (promo page).",
+      "consistencyGate": "Applicable to accounts initiated from orders created on or after 12 Oct 2026, or any accounts merged on or after this date. Consistency replaces the Best Day Rule on the 1-Step path (Trading Objectives)."
+    }
+  },
+  "russiaAccess": {
+    "statusUnchanged": "restricted",
+    "sourceUrl": "https://ftmo.com/en/faq/who-can-join-ftmo/",
+    "quote": "Due to business decisions based on risk management considerations, FTMO does not provide FTMO CFDs to clients in the countries and regions listed in the following table. ... Russian Federation"
+  },
+  "pagesRead": [
+    {
+      "url": "https://ftmo.com/en/2-step-challenge/"
+    },
+    {
+      "url": "https://ftmo.com/en/1-step-challenge/"
+    },
+    {
+      "url": "https://ftmo.com/en/instant-account/"
+    },
+    {
+      "url": "https://ftmo.com/en/trading-objectives/"
+    },
+    {
+      "url": "https://ftmo.com/en/trading-platforms/"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/how-do-i-withdraw-my-profits/"
+    },
+    {
+      "url": "https://ftmo.com/en/faq/who-can-join-ftmo/"
+    },
+    {
+      "url": "https://ftmo.com/en/imprint/"
+    },
+    {
+      "url": "https://promo.ftmo.com/m26b-practice-trading-without-risk/"
+    }
+  ],
+  "changes": [],
+  "sourceCapturedAtPolicy": "2-Step and 1-Step fields were re-read unchanged on 10 November 2026; Instant likewise. sourceCapturedAt left at 2026-10-20 (Instant 2026-10-21) so the Russian-surface page clock is unchanged. The who-can-join FAQ still lists the Russian Federation; russiaSourceCapturedAt left at 2026-10-21."
+}

@@ -1,0 +1,72 @@
+{
+  "firmSlug": "fundingpips",
+  "captureType": "rolling-recheck",
+  "capturedAt": "2026-11-10",
+  "timezone": "Europe/Riga",
+  "officialDomain": "https://fundingpips.com",
+  "method": "Official Help Centre articles re-read on 10 November 2026 through the public Help Centre article API (same articles as the product sourceUrl values). The FundingPips marketing site and checkout were not available to re-read on this date.",
+  "pricesMatchStored": null,
+  "helpTable": {
+    "sourceUrl": "https://help.fundingpips.com/hc/en-us/articles/48368490585105-Compare-Account-Models",
+    "apiUrl": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/48368490585105.json",
+    "title": "Compare Account Models",
+    "articleUpdatedAt": "2026-10-21T09:40:17Z",
+    "verbatimPriceMap": "var prices = { '1step': {5:59,10:99,25:210,50:322,100:566,200:null}, '2std8': {5:36,10:66,25:177,50:299,100:544,200:null}, '2std10':{5:34,10:63,25:168,50:285,100:520,200:null}, '2pro':  {5:29,10:55,25:134,50:224,100:422,200:844}, '2flex': {5:32,10:59,25:159,50:269,100:555,200:null}, 'zero':  {5:60,10:88,25:188,50:244,100:444,200:888} };",
+    "unchangedVs2Nov2026": true,
+    "note": "The help table still lists the lower 21 October 2026 figures. Stored list prices remain the 2 November 2026 checkout totals, which were higher than this table on most 1 Step Flex, 2 Step Flex, 2 Step Standard and larger 2 Step Pro sizes. 2 Step Pro $5K / $10K ($29 / $55) and all Zero sizes still match this table. Because checkout could not be re-read, stored prices and product sourceCapturedAt were left unchanged."
+  },
+  "rulesRecheck": {
+    "productArticlesUpdatedAt": {
+      "1-step-flex": "2026-11-02T09:16:20Z",
+      "2-step-flex": "2026-11-02T09:12:07Z",
+      "2-step-pro": "2026-11-02T09:13:45Z",
+      "2-step-standard": "2026-11-02T09:14:58Z",
+      "zero": "2026-11-02T09:05:06Z",
+      "get-started": "2026-09-24T09:41:29Z"
+    },
+    "twoStepProUnchanged": "6% profit target in both phases. No Minimum trading day per phase to the Master Account. 6% max loss / 3% daily loss. Weekly 80% Split ... every 7 calendar days. On Demand 100% Split.",
+    "helloCodeUnchanged": "Apply the code HELLO to get 20% OFF your first purchase. This coupon excludes $100K accounts. It must be applied before payment. (Get Started article.)"
+  },
+  "pagesRead": [
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/48368490585105.json",
+      "title": "Compare Account Models"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/34501697434385.json",
+      "title": "1 Step Flex"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/47835196271249.json",
+      "title": "2 Step Flex"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/34502027344017.json",
+      "title": "2 Step Pro Model"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/34501809112081.json",
+      "title": "2 Step Standard"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/34502157694865.json",
+      "title": "FundingPips Zero"
+    },
+    {
+      "url": "https://help.fundingpips.com/api/v2/help_center/en-us/articles/44390730743825.json",
+      "title": "Get Started"
+    }
+  ],
+  "unreadable": [
+    {
+      "url": "https://fundingpips.com/",
+      "reason": "Marketing homepage and checkout were not available to re-read on 10 November 2026."
+    },
+    {
+      "url": "https://app.fundingpips.com/",
+      "reason": "Checkout was not available to re-read on 10 November 2026."
+    }
+  ],
+  "changes": [],
+  "sourceCapturedAtPolicy": "Product sourceCapturedAt left at 2026-10-20 (Zero 2026-10-19). Help-centre rules were re-read and are unchanged; prices were not re-verified at checkout, so dates were not bumped."
+}

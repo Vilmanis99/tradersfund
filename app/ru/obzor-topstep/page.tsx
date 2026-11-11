@@ -662,6 +662,11 @@ export default function RussianTopstepReviewPage() {
               которые в наших данных Россию не ограничивают. Это не биржевые фьючерсы CME: другая просадка, другие часы торговли и другие
               способы выплаты.
             </p>
+            <p>
+              Ещё один фьючерсный проп с похожим ограничением для РФ —{' '}
+              <Link href="/ru/obzor-my-funded-futures">обзор My Funded Futures</Link> (справочно, не как альтернатива для
+              резидента РФ).
+            </p>
             <div className="ru-table-wrap">
               <table className="ru-table" data-russian-topstep-futures-table={futuresFirms.length}>
                 <thead><tr><th>Фьючерсная проп-фирма</th><th>Доступ для РФ</th></tr></thead>

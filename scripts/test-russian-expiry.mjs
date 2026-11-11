@@ -163,10 +163,10 @@ try {
   assert.equal(brightOfferObservation.checkoutVerified, false, 'homepage advertising alone is not checkout verification')
   assert.equal(new URL(brightOfferObservation.sourceUrl).hostname, 'brightfunded.com')
   assert.deepEqual(brightOfferObservation.offers.map(offer => [offer.productSlug, offer.code, offer.advertisedDiscountPct]), [
-    ['bright-funded-1-step', 'RALLY30', 30],
-    ['bright-funded-2-step-bright', 'RALLY25', 25],
-    ['bright-funded-2-step-classic', 'RALLY15', 15],
-  ], 'current homepage codes are specific to their advertised products')
+    ['bright-funded-1-step', 'UNLUCKY', 30],
+    ['bright-funded-2-step-bright', 'UNLUCKY', 30],
+    ['bright-funded-2-step-classic', 'UNLUCKY', 30],
+  ], 'current homepage code UNLUCKY is advertised at 30% off on all three CFD products')
   for (const offer of brightOfferObservation.offers) {
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.code)))
     assert(offer.sourceQuotes.some(quote => quote.includes(offer.productName) && quote.includes(String(offer.advertisedDiscountPct))))
@@ -651,7 +651,10 @@ try {
     })
     clock = rankingClock
   }
-  clock = `${Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt).sort().at(-1)}T12:00:00Z`
+  clock = `${[
+    ...getAllChallenges().filter(product => product.firmSlug === 'bright-funded').map(product => product.sourceCapturedAt),
+    ...Object.values(brightEvidence.sources).map(source => source.sourceCapturedAt),
+  ].sort().at(-1)}T12:00:00Z`
   const BrightModule = require(path.join(root, 'app/ru/obzor-bright-funded/page.tsx'))
   const renderBright = () => renderToStaticMarkup(React.createElement(BrightModule.default))
   const brightReference = renderBright()
@@ -1027,7 +1030,7 @@ try {
   {
     // Reward Methods were recaptured 2026-10-20 (Tracker); the page keeps the date in REWARD_METHODS_CAPTURED_AT.
     const rewardMethodsDate = fs.readFileSync(path.join(root, 'app/ru/obzor-fundingpips/page.tsx'), 'utf8').match(/const REWARD_METHODS_CAPTURED_AT = '(\d{4}-\d{2}-\d{2})'/)?.[1]
-    assert(rewardMethodsDate && fundingPipsReviewReference.includes(rewardMethodsDate) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
+    assert(rewardMethodsDate && fundingPipsReviewReference.includes(ruDay(rewardMethodsDate)) && fundingPipsReviewReference.includes('Tradin'), 'Russian FundingPips review reflects the current reward-method source')
   }
   assert(!fundingPipsReviewReference.includes('85%') && !fundingPipsReviewReference.includes('10% и 6%'), 'Russian FundingPips review does not retain retired Flex terms')
   const originalFundedEvidence = JSON.stringify(fundedReviewEvidence)
@@ -1327,7 +1330,7 @@ try {
   const russiaCtaSweep = new Map()
   // /ru/obzor-<firm>: the reviewed firm's own CTAs are exempt from ranking (rule c); Era Trade, KasCapital,
   // PropLive and TeamTraders are not firms.json partners, so every /go/ CTA on their reviews is an alternative.
-  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundingpips-pravila': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext', 'obzor-topstep': 'topstep', 'obzor-alpha-capital': 'alpha-capital', 'obzor-e8-markets': 'e8-markets' }
+  const REVIEWED_FIRM_BY_SLUG = { 'obzor-bright-funded': 'bright-funded', 'obzor-crypto-fund-trader': 'crypto-fund-trader', 'obzor-ftmo': 'ftmo', 'obzor-fundednext': 'fundednext', 'obzor-fundingpips': 'fundingpips', 'fundingpips-pravila': 'fundingpips', 'fundednext-mt5': 'fundednext', 'fundednext-stellar-instant': 'fundednext', 'obzor-topstep': 'topstep', 'obzor-alpha-capital': 'alpha-capital', 'obzor-e8-markets': 'e8-markets', 'obzor-my-funded-futures': 'my-funded-futures' }
   const { russianDiasporaEvidence } = require(path.join(root, 'lib/russianDiasporaEvidence.ts'))
   // Week 1 rewrite (2026-10-14): diaspora page merges the former local-firms directory (#rossiyskie).
   {
@@ -1825,7 +1828,7 @@ try {
             && faqKyc.some(item => item.firmSlug === firmSlug)
             && faqPayout.some(item => item.firmSlug === firmSlug))
             && faqProducts.every(product => isChallengeFresh(product))
-            && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt, brightEvidence.sources.countryTerms.sourceCapturedAt,
+            && [marketEvidence.capturedAt, brightEvidence.sources.countries.sourceCapturedAt, brightEvidence.sources.countryTerms.sourceCapturedAt, fundingPipsAccessEvidence.sourceCapturedAt,
               ...faqKyc.map(item => item.sourceCapturedAt), ...faqPayout.map(item => item.sourceCapturedAt)]
               .every(sourceCapturedAt => isChallengeFresh({ sourceCapturedAt }))
           assert.equal(cryptoSchemas(html).some(item => item['@type'] === 'FAQPage'), faqCurrent, 'ranking FAQ schema follows product, access, KYC and payout source age')

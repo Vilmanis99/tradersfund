@@ -64,6 +64,7 @@ import {
 } from '../lib/indexNow.ts'
 
 import { gatedRuRulesHandwrittenPaths } from '../lib/rulesPages.ts'
+import { indexableBestForPaths } from '../lib/bestFor.ts'
 
 /** Same output as lib/ruDate.ts ruMonthYear(): «ноябрь 2026» for the current month in Riga time. */
 function ruMonthYearForCrawl(now = new Date()) {
@@ -753,9 +754,13 @@ if (closedFirmsPublished) russianRoutePairs.push(CLOSED_FIRMS_ROUTE_PAIR)
 // pages until the gate opens: checked below as 200 + noindex + no hreflang + out of the sitemap.
 const gatedRuRulesPaths = new Set(gatedRuRulesHandwrittenPaths())
 const russianOnlyPaths = RUSSIAN_ONLY_ROUTES.filter(path => !gatedRuRulesPaths.has(path))
+// Same gate as the sitemap and IndexNow: indexable RU best-for pages join the
+// acquisition inventory automatically. Do not add them to LOCALIZED_ROUTE_PAIRS.
+const indexableRuBestForPaths = indexableBestForPaths().filter(path => path.startsWith('/ru/'))
 const russianPaths = [
   ...russianRoutePairs.map(pair => pair.ru),
   ...russianOnlyPaths,
+  ...indexableRuBestForPaths,
 ]
 const russianIndexNowPaths = getRussianIndexNowUrls(PRODUCTION_ORIGIN)
   .map(url => new URL(url).pathname)
@@ -1447,6 +1452,40 @@ const russianExpectations = new Map([
       'data-russian-risk-disclaimer="alpha-capital-review"',
       'Alpha Capital Group Limited',
       'Проверено 29.10.2026 по официальным страницам',
+    ],
+  }],
+  ['/ru/obzor-my-funded-futures', {
+    title: 'My Funded Futures: обзор 2026 — цены, правила и доступ из РФ',
+    h1: 'My Funded Futures: обзор и отзывы 2026',
+    markers: [
+      'Автор: редакция Traders Fund Hub',
+      'data-russian-review="my-funded-futures"',
+      'data-russian-mff-verdict-box="info-only"',
+      'data-russian-mff-verdict="summary"',
+      'data-russian-mff-access="restricted"',
+      'data-russia-status="restricted"',
+      'data-russia-firm="my-funded-futures"',
+      'В списке ограничений',
+      'по данным на 04.11.2026',
+      'по данным на 05.11.2026',
+      '"datePublished":"2026-11-10"',
+      'data-russian-mff-product-count="4"',
+      'data-russian-mff-legacy="flex"',
+      'data-russian-mff-conflicts="2026-11-04"',
+      'На странице только лист-цены',
+      'условия расходятся, уточните у поддержки',
+      'Условия расходятся, уточните у поддержки',
+      'в продаже не отображается',
+      'на сайте не указано',
+      'data-russian-mff-example="rapid-50k"',
+      'Пример, не прогноз',
+      'data-russian-mff-alternatives="bright-funded-first"',
+      'href="/go/bright-funded?from=ru-mff-alternative-bright-funded"',
+      'data-russian-mff-official="non-affiliate"',
+      'data-russian-affiliate-disclosure="my-funded-futures-review"',
+      'data-russian-risk-disclaimer="my-funded-futures-review"',
+      'MyFunded Futures, LLC',
+      'Проверено 04.11.2026 по официальным страницам',
     ],
   }],
   ['/ru/obzor-goat-funded-trader', {
@@ -2230,7 +2269,7 @@ for (const [path, expectation] of russianExpectations) {
   }
 }
 // 24 Article pages before RU batch 1/2, plus one per released new page (each ships in its own PR).
-const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital', 'obzor-e8-markets']
+const expectedRussianArticleSchemaCount = 24 + ['prop-trejding', 'funded-account', 'prop-kompanii-v-rossii', 'prop-kompanii-otzyvy', 'obzor-the5ers', 'ftmo-vs-bright-funded', 'kak-my-zarabatyvaem', 'fundingpips-vs-bright-funded', 'ftmo-vs-fundednext', 'obzor-crypto-fund-trader', 'obzor-hash-hedge', 'fundingpips-pravila', 'obzor-topstep', 'obzor-spice-prop', 'obzor-goat-funded-trader', 'obzor-blue-guardian', 'obzor-alpha-capital', 'obzor-e8-markets', 'obzor-my-funded-futures']
   .filter(slug => existsSync(new URL(`../app/ru/${slug}/page.tsx`, import.meta.url)) && !gatedRuRulesPaths.has(`/ru/${slug}`)).length
   + (closedFirmsPublished ? 1 : 0)
 
