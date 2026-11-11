@@ -15,10 +15,16 @@
  *    page body already links.
  * Plus: /ru, promokody and otzyvy link every registered review; every /ru href
  * inside <main> is a registered route (no 404 links).
+ *
+ * Registered routes are RUSSIAN_ROUTE_EDITORIAL_DATES, the published closed-firms
+ * page, and gate-passing RU best-for paths from indexableBestForPaths() — the
+ * same set the sitemap, IndexNow and release-crawl already use. Best-for paths
+ * must not be added to LOCALIZED_ROUTE_PAIRS (that would force hreflang).
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { indexableBestForPaths } from '../lib/bestFor.ts'
 import { RU_CLOSED_FIRMS_PATH, RUSSIAN_ROUTE_EDITORIAL_DATES } from '../lib/localizedRoutes.ts'
 import { RU_RELATED_MAX, ruReviewFirmFor } from '../lib/ruRelatedLinks.ts'
 
@@ -34,9 +40,23 @@ const MIN_INBOUND = 3
 
 // /ru/zakrytye-prop-firmy is gated by content/data/closed-firms.json (lib/closedFirms.ts), not by
 // RUSSIAN_ROUTE_EDITORIAL_DATES; while published it is a live route and gets the same checks.
-const closedFirmsPublished = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8')).published === true
-const routes = [...Object.keys(RUSSIAN_ROUTE_EDITORIAL_DATES), ...(closedFirmsPublished ? [RU_CLOSED_FIRMS_PATH] : [])].sort()
-const registered = new Set(routes)
+function closedFirmsPublished() {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, 'content/data/closed-firms.json'), 'utf8')).published === true
+}
+
+/**
+ * RU routes the 404-guard and inbound checks treat as registered.
+ * `now` / `verdictRoot` are forwarded to indexableBestForPaths() so tests can
+ * prove a best-for path that fails the gate stays unregistered.
+ */
+export function registeredRuLinkRoutes(now = new Date(), verdictRoot = process.cwd()) {
+  const indexableRuBestFor = indexableBestForPaths(now, verdictRoot).filter(path => path.startsWith('/ru/'))
+  return [...new Set([
+    ...Object.keys(RUSSIAN_ROUTE_EDITORIAL_DATES),
+    ...(closedFirmsPublished() ? [RU_CLOSED_FIRMS_PATH] : []),
+    ...indexableRuBestFor,
+  ])].sort()
+}
 
 async function load(route) {
   const slug = route === '/ru' ? 'ru' : route.replace('/ru/', '')
@@ -68,86 +88,95 @@ function relatedBlock(main) {
   return { block: main.slice(start, end), rest: main.slice(0, start) + main.slice(end) }
 }
 
-const pages = new Map()
-for (const route of routes) {
-  const html = await load(route)
-  const main = section(html, /<main\b[\s\S]*<\/main>/)
-  const chrome = section(html, /<header\b[\s\S]*?<\/header>/) + section(html, /<footer\b[\s\S]*?<\/footer>/)
-  const { block, rest } = relatedBlock(main)
-  pages.set(route, {
-    html,
-    body: new Set(hrefsIn(rest)),
-    related: hrefsIn(block),
-    relatedItems: (block.match(/data-ru-slot="related"/g) ?? []).length,
-    chrome: new Set(hrefsIn(chrome)),
-    goFundedNext: (main.match(/href="\/go\/fundednext[^"]*"/g) ?? []).length,
-  })
-}
-
-const errors = []
-const warnings = []
-const inbound = Object.fromEntries(routes.map(route => [route, { content: new Set(), all: new Set() }]))
-for (const [from, page] of pages) {
-  for (const href of [...page.body, ...page.related]) if (href !== from && inbound[href]) { inbound[href].content.add(from); inbound[href].all.add(from) }
-  for (const href of page.chrome) if (href !== from && inbound[href]) inbound[href].all.add(from)
-  // 404 guard
-  for (const href of new Set([...page.body, ...page.related])) if (!registered.has(href)) errors.push(`${from}: links unregistered RU route ${href}`)
-}
-
-// a) inbound
-for (const route of routes) if (inbound[route].all.size < MIN_INBOUND) errors.push(`(a) ${route}: ${inbound[route].all.size} inbound RU pages (min ${MIN_INBOUND})`)
-
-// b) review → vs pages for its firm
-const vsPages = routes.filter(route => route.includes('-vs-'))
-for (const route of routes.filter(r => r.startsWith('/ru/obzor-'))) {
-  const firm = ruReviewFirmFor(route)?.firm
-  if (!firm) { errors.push(`(b) ${route}: unknown firm`); continue }
-  const page = pages.get(route)
-  const links = new Set([...page.body, ...page.related])
-  for (const vs of vsPages) {
-    const parts = vs.replace('/ru/', '').split('-vs-')
-    if (parts.includes(firm) && !links.has(vs)) errors.push(`(b) ${route}: missing link to ${vs}`)
+export async function auditRuLinks() {
+  const routes = registeredRuLinkRoutes()
+  const registered = new Set(routes)
+  const pages = new Map()
+  for (const route of routes) {
+    const html = await load(route)
+    const main = section(html, /<main\b[\s\S]*<\/main>/)
+    const chrome = section(html, /<header\b[\s\S]*?<\/header>/) + section(html, /<footer\b[\s\S]*?<\/footer>/)
+    const { block, rest } = relatedBlock(main)
+    pages.set(route, {
+      html,
+      body: new Set(hrefsIn(rest)),
+      related: hrefsIn(block),
+      relatedItems: (block.match(/data-ru-slot="related"/g) ?? []).length,
+      chrome: new Set(hrefsIn(chrome)),
+      goFundedNext: (main.match(/href="\/go\/fundednext[^"]*"/g) ?? []).length,
+    })
   }
+
+  const errors = []
+  const warnings = []
+  const inbound = Object.fromEntries(routes.map(route => [route, { content: new Set(), all: new Set() }]))
+  for (const [from, page] of pages) {
+    for (const href of [...page.body, ...page.related]) if (href !== from && inbound[href]) { inbound[href].content.add(from); inbound[href].all.add(from) }
+    for (const href of page.chrome) if (href !== from && inbound[href]) inbound[href].all.add(from)
+    // 404 guard
+    for (const href of new Set([...page.body, ...page.related])) if (!registered.has(href)) errors.push(`${from}: links unregistered RU route ${href}`)
+  }
+
+  // a) inbound
+  for (const route of routes) if (inbound[route].all.size < MIN_INBOUND) errors.push(`(a) ${route}: ${inbound[route].all.size} inbound RU pages (min ${MIN_INBOUND})`)
+
+  // b) review → vs pages for its firm
+  const vsPages = routes.filter(route => route.includes('-vs-'))
+  for (const route of routes.filter(r => r.startsWith('/ru/obzor-'))) {
+    const firm = ruReviewFirmFor(route)?.firm
+    if (!firm) { errors.push(`(b) ${route}: unknown firm`); continue }
+    const page = pages.get(route)
+    const links = new Set([...page.body, ...page.related])
+    for (const vs of vsPages) {
+      const parts = vs.replace('/ru/', '').split('-vs-')
+      if (parts.includes(firm) && !links.has(vs)) errors.push(`(b) ${route}: missing link to ${vs}`)
+    }
+  }
+
+  // c) warnings only (static rule lives in test-ru-related-links.mjs)
+  for (const [route, page] of pages) {
+    const reviewOrHub = route === '/ru' || route.startsWith('/ru/obzor-')
+    if (page.goFundedNext && reviewOrHub && !route.includes('fundednext')) warnings.push(`(c) ${route}: ${page.goFundedNext} FundedNext sign-up link(s) on a non-FundedNext review/hub (plan §4.2: swap the FundedNext alternative card for Crypto Fund Trader once its review is live)`)
+  }
+
+  // d) related block
+  for (const [route, page] of pages) {
+    if (page.relatedItems > RU_RELATED_MAX) errors.push(`(d) ${route}: ${page.relatedItems} related items (max ${RU_RELATED_MAX})`)
+    for (const href of page.related) if (page.body.has(href)) errors.push(`(d) ${route}: related block repeats body link ${href}`)
+    if (new Set(page.related).size !== page.related.length) errors.push(`(d) ${route}: duplicate href in related block`)
+  }
+
+  // hubs list every review
+  const reviews = routes.filter(route => route.startsWith('/ru/obzor-'))
+  const hubMissing = {}
+  for (const hub of HUBS) {
+    const page = pages.get(hub)
+    const missing = reviews.filter(review => !page.body.has(review))
+    hubMissing[hub] = missing
+    if (missing.length) errors.push(`(hub) ${hub}: missing ${missing.length} review link(s): ${missing.join(', ')}`)
+  }
+
+  const counts = Object.fromEntries(routes.map(route => [route, {
+    inboundContent: inbound[route].content.size,
+    inboundAll: inbound[route].all.size,
+    outboundContent: new Set([...pages.get(route).body, ...pages.get(route).related].filter(h => h !== route)).size,
+    related: pages.get(route).relatedItems,
+  }]))
+  return { routes, errors, warnings, counts, hubMissing }
 }
 
-// c) warnings only (static rule lives in test-ru-related-links.mjs)
-for (const [route, page] of pages) {
-  const reviewOrHub = route === '/ru' || route.startsWith('/ru/obzor-')
-  if (page.goFundedNext && reviewOrHub && !route.includes('fundednext')) warnings.push(`(c) ${route}: ${page.goFundedNext} FundedNext sign-up link(s) on a non-FundedNext review/hub (plan §4.2: swap the FundedNext alternative card for Crypto Fund Trader once its review is live)`)
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const { routes, errors, warnings, counts, hubMissing } = await auditRuLinks()
+  if (report) {
+    console.log('route\tinbound(body)\tinbound(+nav/footer)\toutbound(body)\trelated')
+    for (const [route, c] of Object.entries(counts)) console.log(`${route}\t${c.inboundContent}\t${c.inboundAll}\t${c.outboundContent}\t${c.related}`)
+  }
+  if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify({ counts, hubMissing }, null, 2))
+  for (const warning of warnings) console.warn(`WARN ${warning}`)
+  if (errors.length) {
+    for (const error of errors) console.error(`FAIL ${error}`)
+    console.error(`\n${errors.length} RU link audit error(s)`)
+    process.exit(1)
+  }
+  console.log(`RU link audit OK: ${routes.length} routes, checks a/b/d + hubs + 404 guard passed`)
 }
-
-// d) related block
-for (const [route, page] of pages) {
-  if (page.relatedItems > RU_RELATED_MAX) errors.push(`(d) ${route}: ${page.relatedItems} related items (max ${RU_RELATED_MAX})`)
-  for (const href of page.related) if (page.body.has(href)) errors.push(`(d) ${route}: related block repeats body link ${href}`)
-  if (new Set(page.related).size !== page.related.length) errors.push(`(d) ${route}: duplicate href in related block`)
-}
-
-// hubs list every review
-const reviews = routes.filter(route => route.startsWith('/ru/obzor-'))
-const hubMissing = {}
-for (const hub of HUBS) {
-  const page = pages.get(hub)
-  const missing = reviews.filter(review => !page.body.has(review))
-  hubMissing[hub] = missing
-  if (missing.length) errors.push(`(hub) ${hub}: missing ${missing.length} review link(s): ${missing.join(', ')}`)
-}
-
-const counts = Object.fromEntries(routes.map(route => [route, {
-  inboundContent: inbound[route].content.size,
-  inboundAll: inbound[route].all.size,
-  outboundContent: new Set([...pages.get(route).body, ...pages.get(route).related].filter(h => h !== route)).size,
-  related: pages.get(route).relatedItems,
-}]))
-if (report) {
-  console.log('route\tinbound(body)\tinbound(+nav/footer)\toutbound(body)\trelated')
-  for (const [route, c] of Object.entries(counts)) console.log(`${route}\t${c.inboundContent}\t${c.inboundAll}\t${c.outboundContent}\t${c.related}`)
-}
-if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify({ counts, hubMissing }, null, 2))
-for (const warning of warnings) console.warn(`WARN ${warning}`)
-if (errors.length) {
-  for (const error of errors) console.error(`FAIL ${error}`)
-  console.error(`\n${errors.length} RU link audit error(s)`)
-  process.exit(1)
-}
-console.log(`RU link audit OK: ${routes.length} routes, checks a/b/d + hubs + 404 guard passed`)

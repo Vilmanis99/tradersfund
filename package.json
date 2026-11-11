@@ -69,6 +69,7 @@
     "test:split-tiers-display": "node scripts/test-split-tiers-display.mjs",
     "test:rules-index-guard": "node scripts/test-rules-index-guard.mjs",
     "test:best-for-gate": "node scripts/test-best-for-gate.mjs",
+    "test:audit-ru-links": "node scripts/test-audit-ru-links.mjs",
     "test:country-pages": "node scripts/test-country-pages.mjs",
     "test:prop-firm-changes-report": "node scripts/test-prop-firm-changes-report.mjs",
     "test:best-for-plain-copy": "node scripts/test-best-for-plain-copy.mjs",
