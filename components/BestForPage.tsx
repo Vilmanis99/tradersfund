@@ -365,7 +365,7 @@ export default function BestForPage({ model }: { model: BestForPageModel }) {
             />
             <p className="rules-meta">
               {lang === 'ru' ? 'Автор' : 'By'} {verdict.author} · {lang === 'ru' ? 'проверено' : 'checked'}{' '}
-              {verdict.checkedAt}
+              {localeDate(verdict.checkedAt, lang)}
             </p>
           </section>
         )}
