@@ -2587,6 +2587,11 @@
       "changed": "2026-11-09",
       "first": "2026-11-06"
     },
+    "file:content/verdicts/country/philippines.md": {
+      "hash": "19c444eea4ae1298",
+      "changed": "2026-11-11",
+      "first": "2026-11-11"
+    },
     "file:content/verdicts/country/uae.md": {
       "hash": "2cad60d7d8854e42",
       "changed": "2026-11-10",
@@ -3229,6 +3234,10 @@
     "/best-prop-firms-in-india/payout-methods": {
       "hash": "d67447aa8db2996e",
       "lastmod": "2026-10-28"
+    },
+    "/best-prop-firms-in-philippines": {
+      "hash": "1fc853a1f896906a",
+      "lastmod": "2026-11-11"
     },
     "/best-prop-firms-in-uae": {
       "hash": "120efc25e08f17f9",
