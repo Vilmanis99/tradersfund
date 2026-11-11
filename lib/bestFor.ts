@@ -1057,7 +1057,7 @@ export const BEST_FOR_USE_CASES: BestForUseCase[] = [
     fields: ['maxTradingDays', 'minTradingDays', 'drawdownType', 'entryPriceUsd', 'profitSplitPct', 'payoutFrequency', 'payoutFirstDays', 'consistencyRule', 'phases'],
     qualifies: (firm, products) => beginnerFriendly(firm, products, { applyRussiaFilter: false }),
     dataNote: `Entry caps: $${BEGINNER_MAX_ENTRY_PRICE_USD} / €${BEGINNER_MAX_ENTRY_PRICE_EUR}; we rank by fee ÷ that currency’s cap (no FX). Every RU firm — ranked or excluded for listing Russia on its restriction list — keeps a sign-up link and Russia-access badge.`,
-    lastReviewed: '2026-11-02',
+    lastReviewed: '2026-11-11',
   },
   {
     id: 'weekly-payouts',
