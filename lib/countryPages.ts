@@ -115,7 +115,12 @@ export interface CountryFirmEvidence {
   platformConstraint?: string
 }
 
-export interface CountryNames { en?: string; ru?: string }
+export interface CountryNames {
+  en?: string
+  ru?: string
+  /** Mid-sentence EN form when the name takes an article: exactly "the " + en. */
+  enProse?: string
+}
 
 /** UK allow-list shape plus optional country metadata. */
 export interface CountryEvidenceFile {
@@ -133,6 +138,12 @@ export interface CountryDefinition {
   countryCode: string | null
   /** From name.en / name.ru only; en is null when the file has no name (page stays noindex). */
   names: { en: string | null; ru: string | null }
+  /**
+   * EN name as it reads mid-sentence ("the Philippines", "the United Arab Emirates"):
+   * name.enProse when set, else displayName. Running copy only; titles, H1, breadcrumbs
+   * and labels keep displayName.
+   */
+  proseName: string
   /** Visible EN label: name.en, else the raw file slug (incomplete state, never indexable). */
   displayName: string
   enPath: string
@@ -252,6 +263,12 @@ export function countryEvidenceProblems(data: unknown, fileSlug: string): string
   }
   if (file.name !== undefined && (typeof file.name !== 'object' || file.name === null || Array.isArray(file.name))) {
     problems.push('name, when present, must be an object { en, ru }')
+  } else if (file.name?.enProse !== undefined) {
+    // Prose form may only add a leading article to name.en ("the Philippines"), never rename the country.
+    const en = typeof file.name.en === 'string' ? file.name.en.trim() : ''
+    if (typeof file.name.enProse !== 'string' || !en || file.name.enProse.trim() !== `the ${en}`) {
+      problems.push('name.enProse, when present, must be "the " + name.en (e.g. "the Philippines")')
+    }
   }
   if (!isNonEmptyString(file.methodology)) problems.push('methodology is required')
   if (!Array.isArray(file.firms)) {
@@ -326,6 +343,7 @@ export function listCountryDefinitions(root = countryContentRoot(), appRoot = pr
       countryCode: trimmedOrNull(data.countryCode),
       names: { en: enName, ru: ruName },
       displayName: enName ?? slug,
+      proseName: (enName && trimmedOrNull(data.name?.enProse)) || (enName ?? slug),
       enPath: `${COUNTRY_EN_PREFIX}${slug}`,
       ruPath,
       methodology: data.methodology.trim(),

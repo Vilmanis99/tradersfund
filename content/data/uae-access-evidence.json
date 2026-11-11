@@ -2,6 +2,7 @@
   "countryCode": "AE",
   "name": {
     "en": "United Arab Emirates",
+    "enProse": "the United Arab Emirates",
     "ru": "Объединённые Арабские Эмираты"
   },
   "ruSlug": "oae",

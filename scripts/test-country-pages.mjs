@@ -607,6 +607,39 @@ try {
     console.log('ok - metadata robots/hreflang, route params, rendered EN/RU HTML')
   })()
 
+  // ── Definite article in EN running copy (name.enProse) ──────────────────
+  check('name.enProse puts "the" in EN running copy only; titles, H1, crumbs, labels and RU unchanged; invalid prose fails', () => {
+    const files = prose => ({
+      'content/data/philippines-access-evidence.json': evidence(rows(FRESH), { countryCode: 'PH', name: { en: 'Philippines', ru: 'Филиппины', ...(prose ? { enProse: prose } : {}) }, ruSlug: 'filippinakh', ruInfix: 'na' }),
+      'content/verdicts/country/philippines.md': verdictMd('philippines', 'en'),
+      'content/verdicts/country/philippines.ru.md': verdictMd('philippines', 'ru'),
+    })
+    const CountryPage = require(path.join(root, 'components/CountryPage.tsx')).default
+    const render = (dir, lang) => {
+      process.env.TFH_COUNTRY_CONTENT_ROOT = dir
+      try {
+        const model = cp.buildCountryPageModel('philippines', lang, now, dir)
+        return { model, html: renderToStaticMarkup(createElement(CountryPage, { model })) }
+      } finally { delete process.env.TFH_COUNTRY_CONTENT_ROOT }
+    }
+    const withRoot = makeRoot(files('the Philippines'))
+    const withoutRoot = makeRoot(files(null))
+    const en = render(withRoot, 'en')
+    const enPlain = render(withoutRoot, 'en')
+    assert.equal(en.model.country.proseName, 'the Philippines')
+    assert.equal(enPlain.model.country.proseName, 'Philippines', 'no enProse → displayName')
+    assert.ok(en.html.includes('does not exclude the Philippines,'), 'EN intro uses the article')
+    assert.ok(enPlain.html.includes('does not exclude Philippines,'), 'without enProse the intro is unchanged')
+    for (const key of ['h1', 'metaTitle', 'metaDescription']) assert.equal(en.model[key], enPlain.model[key], `${key} unchanged by enProse`)
+    assert.ok(en.html.includes('Philippines access') && !en.html.includes('the Philippines access'), 'card label keeps displayName')
+    assert.equal(en.html.replace('does not exclude the Philippines,', 'does not exclude Philippines,'), enPlain.html, 'only the intro sentence differs')
+    assert.equal(render(withRoot, 'ru').html, render(withoutRoot, 'ru').html, 'RU HTML byte-identical with or without enProse')
+    for (const bad of ['Philippines', 'the Phillipines', 'The Philippines', 'a Philippines', 7]) {
+      const dir = makeRoot({ 'content/data/philippines-access-evidence.json': evidence(rows(FRESH), { name: { en: 'Philippines', enProse: bad } }) })
+      assert.throws(() => cp.listCountryDefinitions(dir), /name\.enProse/, `rejects enProse ${JSON.stringify(bad)}`)
+    }
+  })
+
   check('content/data and content/verdicts are byte-identical after the run', () => {
     assert.deepEqual([...fingerprint('content/data'), ...fingerprint('content/verdicts')], contentBefore)
   })
