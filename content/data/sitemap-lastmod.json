@@ -1718,8 +1718,8 @@
       "first": "2026-11-02"
     },
     "file:app/ru/luchshie-prop-firmy/page.tsx": {
-      "hash": "5583a5f6474d3e11",
-      "changed": "2026-11-10",
+      "hash": "7e7d6fb5e44c915f",
+      "changed": "2026-11-11",
       "first": "2026-08-24"
     },
     "file:app/ru/obzor-alpha-capital/page.tsx": {
@@ -2571,6 +2571,11 @@
       "hash": "83e3f36a2be2651b",
       "changed": "2026-11-02",
       "first": "2026-11-02"
+    },
+    "file:content/verdicts/best-for/beginners.ru.md": {
+      "hash": "cac1373e55fcccf7",
+      "changed": "2026-11-10",
+      "first": "2026-11-06"
     },
     "file:content/verdicts/best-for/low-drawdown.md": {
       "hash": "79f8a0e27d69257c",
@@ -4310,8 +4315,12 @@
       "lastmod": "2026-11-09"
     },
     "/ru/luchshie-prop-firmy": {
-      "hash": "f4cc23bea6467b67",
-      "lastmod": "2026-11-10"
+      "hash": "c54133631b1b36a5",
+      "lastmod": "2026-11-11"
+    },
+    "/ru/luchshie-prop-firmy-dlya-novichkov": {
+      "hash": "f4ca5221770e2212",
+      "lastmod": "2026-11-11"
     },
     "/ru/obzor-alpha-capital": {
       "hash": "a951248f54612214",

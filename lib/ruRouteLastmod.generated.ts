@@ -18,7 +18,7 @@ export const RU_ROUTE_LASTMOD: Record<string, string> = {
   '/ru/kak-my-zarabatyvaem': '2026-11-04',
   '/ru/kak-rabotayut-chellendzhi-prop-firm': '2026-11-05',
   '/ru/luchshie-kripto-prop-firmy': '2026-11-09',
-  '/ru/luchshie-prop-firmy': '2026-11-10',
+  '/ru/luchshie-prop-firmy': '2026-11-11',
   '/ru/obzor-alpha-capital': '2026-11-06',
   '/ru/obzor-blue-guardian': '2026-11-05',
   '/ru/obzor-bright-funded': '2026-11-10',
