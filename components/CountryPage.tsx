@@ -269,7 +269,7 @@ export default function CountryPage({ model }: { model: CountryPageModel }) {
               className="prose"
               dangerouslySetInnerHTML={{ __html: renderVerdictMarkdown(lang === 'ru' ? ruRedactExchanges(verdict.body) : verdict.body) }}
             />
-            <p className="rules-meta">{t.by} {verdict.author} · {t.checked} {verdict.checkedAt}</p>
+            <p className="rules-meta">{t.by} {verdict.author} · {t.checked} {localeDate(verdict.checkedAt, lang)}</p>
           </section>
         )}
 
